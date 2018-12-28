@@ -218,9 +218,11 @@ border:0.5px solid gray;margin-left:35px;margin-bottom:10px;width:140px;text-ali
 		
 	</div>
 	<!-- === END CONTENT === -->
+	
+	<jsp:include page="../homePage/footer.jsp" />
 	<div id="player">
 	<jsp:include page="../homePage/player.jsp"/>
 	</div>
-	<jsp:include page="../homePage/footer.jsp" />
+	
 </body>
 </html>

@@ -148,9 +148,10 @@
 			</div>
 		</div>
 	</div>
+	
+	<jsp:include page="../homePage/footer.jsp"/>
 	<div id="player">
 	<jsp:include page="../homePage/player.jsp"/>
 	</div>
-	<jsp:include page="../homePage/footer.jsp"/>
 </body>
 </html>

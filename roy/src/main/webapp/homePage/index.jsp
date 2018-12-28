@@ -177,10 +177,10 @@
 
 	</div>
 	<!-- === END CONTENT === -->
+	<jsp:include page="footer.jsp" />
 	<div id="player">
 		<jsp:include page="player.jsp" />
 	</div>
-	<jsp:include page="footer.jsp" />
 
 </body>
 </html>
