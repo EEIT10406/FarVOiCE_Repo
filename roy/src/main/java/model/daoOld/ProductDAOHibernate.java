@@ -1,4 +1,4 @@
-package model.dao;
+package model.daoOld;
 
 import java.util.Date;
 import java.util.List;
@@ -15,6 +15,7 @@ import model.ProductDAO;
 public class ProductDAOHibernate implements ProductDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
+
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}

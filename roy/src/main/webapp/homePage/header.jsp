@@ -2,10 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-	crossorigin="anonymous">
+<script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
 	
 <script>
 	$(document).ready(function() {
@@ -62,9 +59,9 @@
 				<div class="col-md-12 no-padding">
 					<div class="pull-right visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="/roy/homePage/index.jsp" class="fa-home">回首頁</a></li>
+							<li><a href="/roy/homePage/index.jsp"><i class="fas fa-home fa-lg"></i>   回首頁</a></li>
 							<%-- 									<li><a href="${request.contextPath}/rank.jsp" class="far fa-trophy">看排行</a> --%>
-							<li><a href="/roy/rank/rank.jsp" class="far fa-trophy">看排行</a>
+							<li><a href="/roy/rank/rank.jsp" ><i class="fas fa-trophy fa-lg"></i>   看排行</a>
 								<ul>
 									<li class="parent"><span>Typography</span>
 										<ul>
@@ -101,7 +98,7 @@
 									<li><a href="features-animate-on-scroll.html">Animate
 											On Scroll</a></li>
 								</ul></li>
-							<li><a href="index.html" class="far fa-list-ol">聽歌單</a>
+							<li><a href="index.html"><i class="fas fa-list-ol fa-lg"></i>   聽歌單</a>
 								<ul>
 									<li><a href="pages-about-us.html">About Us</a></li>
 									<li><a href="pages-services.html">Services</a></li>
@@ -114,21 +111,21 @@
 									<li><a href="pages-sign-up.html">Sign-Up</a></li>
 									<li><a href="pages-404.html">404 Error Page</a></li>
 								</ul></li>
-							<li><a href="/roy/searchMusic/searchMusic.jsp" class="far fa-headphones">找音樂</a>
+							<li><a href="/roy/searchMusic/searchMusic.jsp"><i class="fas fa-headphones fa-lg"></i>  找音樂</a>
 								<ul>
 									<li><a href="portfolio-2-column.html">2 Column</a></li>
 									<li><a href="portfolio-3-column.html">3 Column</a></li>
 									<li><a href="portfolio-4-column.html">4 Column</a></li>
 									<li><a href="portfolio-6-column.html">6 Column</a></li>
 								</ul></li>
-							<li><a href="index.html" class="fa-copy">找文章</a>
+							<li><a href="index.html"><i class="fas fa-pencil-alt fa-lg"></i>   找文章</a>
 								<ul>
 									<li><a href="blog-list.html">Blog</a></li>
 									<li><a href="blog-single.html">Blog Single Item</a></li>
 								</ul></li>
-							<li><a href="index.html" class="fas fa-search-dollar">找募資</a>
+							<li><a href="index.html"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
-							<li><a href="contact.html" class="fa-comment">聯絡我們</a></li>
+							<li><a href="contact.html"><i class="fas fa-envelope fa-lg"></i>   聯絡我們</a></li>
 						</ul>
 					</div>
 				</div>

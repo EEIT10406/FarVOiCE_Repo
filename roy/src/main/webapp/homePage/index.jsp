@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <!-- Title -->
 <title>FarVoice</title>
 <!-- Meta -->
@@ -19,25 +20,25 @@
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
-	<!-- JS -->
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/scripts.js"></script>
-	<!-- Isotope - Portfolio Sorting -->
-	<script type="text/javascript" src="../js/jquery.isotope.js"></script>
-	<!-- Mobile Menu - Slicknav -->
-	<script type="text/javascript" src="../js/jquery.slicknav.js"></script>
-	<!-- Animate on Scroll-->
-	<script type="text/javascript" src="../js/jquery.visible.js"
-		charset="utf-8"></script>
-	<!-- Sticky Div -->
-	<script type="text/javascript" src="../js/jquery.sticky.js"
-		charset="utf-8"></script>
-	<!-- Slimbox2-->
-	<script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
-	<!-- Modernizr -->
-	<script src="../js/modernizr.custom.js" type="text/javascript"></script>
-	<!-- End JS -->
+<!-- JS -->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<!-- Isotope - Portfolio Sorting -->
+<script type="text/javascript" src="../js/jquery.isotope.js"></script>
+<!-- Mobile Menu - Slicknav -->
+<script type="text/javascript" src="../js/jquery.slicknav.js"></script>
+<!-- Animate on Scroll-->
+<script type="text/javascript" src="../js/jquery.visible.js"
+	charset="utf-8"></script>
+<!-- Sticky Div -->
+<script type="text/javascript" src="../js/jquery.sticky.js"
+	charset="utf-8"></script>
+<!-- Slimbox2-->
+<script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
+<!-- Modernizr -->
+<script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<!-- End JS -->
 </head>
 <body>
 	<div id="body_bg">
@@ -75,11 +76,10 @@
 					</div>
 					<!-- End Carousel Images -->
 					<!-- Carousel Controls -->
-					<a class="left carousel-control" href="#carousel-example" data-slide="prev"> 
-                     <img src="../img/left.JPG"/>
-					</a> 
-					<a class="right carousel-control" href="#carousel-example" data-slide="next"> 
-                     <img src="../img/right.JPG"/>
+					<a class="left carousel-control" href="#carousel-example"
+						data-slide="prev"> <img src="../img/left.JPG" />
+					</a> <a class="right carousel-control" href="#carousel-example"
+						data-slide="next"> <img src="../img/right.JPG" />
 					</a>
 
 					<!-- End Carousel Controls -->
@@ -104,7 +104,7 @@
 		<div class="container">
 			<div class="row margin-vert-30">
 				<!-- Main Text -->
-				<div class="col-md-9" style="float:left;width:380px;">
+				<div class="col-md-9" style="float: left; width: 380px;">
 					<h2>本日精選</h2>
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
 						sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
@@ -123,7 +123,7 @@
 						style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;"
 						src="img/frontpage/responsive_homepage.png" alt="">
 				</div>
-				<div class="col-md-9" style="float:left;width:380px;">
+				<div class="col-md-9" style="float: left; width: 380px;">
 					<h2>熱門募資活動</h2>
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
 						sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
@@ -144,7 +144,7 @@
 				</div>
 				<!-- End Main Text -->
 				<!-- Side Column -->
-				<div class="col-md-3" style="float:right">
+				<div class="col-md-3" style="float: right">
 					<h3 class="title">即時熱門排行</h3>
 					<h6 style="margin: 0;">Mon - Wed</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
@@ -174,13 +174,13 @@
 				<!-- End Side Column -->
 			</div>
 		</div>
-		
+
 	</div>
 	<!-- === END CONTENT === -->
 	<div id="player">
-	<jsp:include page="player.jsp"/>
+		<jsp:include page="player.jsp" />
 	</div>
-	<jsp:include page="footer.jsp"/>
-	
+	<jsp:include page="footer.jsp" />
+
 </body>
 </html>
