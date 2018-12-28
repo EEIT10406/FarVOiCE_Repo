@@ -11,53 +11,37 @@
 <meta name="author" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
-<!-- <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
 <!-- Template CSS -->
-<link rel="stylesheet" href="css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/animate.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
 	<!-- JS -->
-	<script type="text/javascript" src="js/jquery.min.js"
-		type="text/javascript"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"
-		type="text/javascript"></script>
-	<script type="text/javascript" src="js/scripts.js"></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/scripts.js"></script>
 	<!-- Isotope - Portfolio Sorting -->
-	<script type="text/javascript" src="js/jquery.isotope.js"
-		type="text/javascript"></script>
+	<script type="text/javascript" src="../js/jquery.isotope.js"></script>
 	<!-- Mobile Menu - Slicknav -->
-	<script type="text/javascript" src="js/jquery.slicknav.js"
-		type="text/javascript"></script>
+	<script type="text/javascript" src="../js/jquery.slicknav.js"></script>
 	<!-- Animate on Scroll-->
-	<script type="text/javascript" src="js/jquery.visible.js"
+	<script type="text/javascript" src="../js/jquery.visible.js"
 		charset="utf-8"></script>
 	<!-- Sticky Div -->
-	<script type="text/javascript" src="js/jquery.sticky.js"
+	<script type="text/javascript" src="../js/jquery.sticky.js"
 		charset="utf-8"></script>
 	<!-- Slimbox2-->
-	<script type="text/javascript" src="js/slimbox2.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 	<!-- Modernizr -->
-	<script src="js/modernizr.custom.js" type="text/javascript"></script>
+	<script src="../js/modernizr.custom.js" type="text/javascript"></script>
 	<!-- End JS -->
-<script>
-$(document).ready(function() {
-	$('#login').click(function() {
-		window.location.href="login.jsp";
-	})
-	$('#upload').click(function() {
-		window.location.href="upload.jsp";
-	})
-})
-</script>
 </head>
 <body>
 	<div id="body_bg">
-		<jsp:include page="header.html" />
+		<jsp:include page="header.jsp" />
 		<!-- === BEGIN CONTENT === -->
 		<div id="content">
 			<div class="container no-padding">
@@ -77,25 +61,25 @@ $(document).ready(function() {
 					<!-- 					Carousel Images -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="img/slideshow/slide1.jpg">
+							<img src="../img/slideshow/slide1.jpg">
 						</div>
 						<div class="item">
-							<img src="img/slideshow/slide2.jpg">
+							<img src="../img/slideshow/slide2.jpg">
 						</div>
 						<div class="item">
-							<img src="img/slideshow/slide3.jpg">
+							<img src="../img/slideshow/slide3.jpg">
 						</div>
 						<div class="item">
-							<img src="img/slideshow/slide4.jpg">
+							<img src="../img/slideshow/slide4.jpg">
 						</div>
 					</div>
 					<!-- End Carousel Images -->
 					<!-- Carousel Controls -->
 					<a class="left carousel-control" href="#carousel-example" data-slide="prev"> 
-                     <img src="left.JPG"/>
+                     <img src="../img/left.JPG"/>
 					</a> 
 					<a class="right carousel-control" href="#carousel-example" data-slide="next"> 
-                     <img src="right.JPG"/>
+                     <img src="../img/right.JPG"/>
 					</a>
 
 					<!-- End Carousel Controls -->
@@ -120,8 +104,27 @@ $(document).ready(function() {
 		<div class="container">
 			<div class="row margin-vert-30">
 				<!-- Main Text -->
-				<div class="col-md-9">
-					<h2>Lorem ipsum dolor</h2>
+				<div class="col-md-9" style="float:left;width:380px;">
+					<h2>本日精選</h2>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+						sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+						aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
+						exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
+						commodo consequat.</p>
+					<p>Duis autem vel eum iriure dolor in hendrerit in vulputate
+						velit esse molestie consequat, vel illum dolore eu feugiat nulla
+						facilisis at vero eros et accumsan et iusto odio dignissim qui
+						blandit praesent luptatum zzril delenit augue duis dolore te
+						feugait nulla facilisi. Cras non sem sem, at eleifend mi. Nam
+						liber tempor cum soluta nobis eleifend option congue nihil
+						imperdiet doming id quod mazim placerat facer possim assum.
+						Curabitur eget nisl a risus.</p>
+					<img class="visible-lg animate fadeInUp"
+						style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;"
+						src="img/frontpage/responsive_homepage.png" alt="">
+				</div>
+				<div class="col-md-9" style="float:left;width:380px;">
+					<h2>熱門募資活動</h2>
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
 						sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
 						aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
@@ -141,7 +144,7 @@ $(document).ready(function() {
 				</div>
 				<!-- End Main Text -->
 				<!-- Side Column -->
-				<div class="col-md-3">
+				<div class="col-md-3" style="float:right">
 					<h3 class="title">即時熱門排行</h3>
 					<h6 style="margin: 0;">Mon - Wed</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
@@ -171,76 +174,13 @@ $(document).ready(function() {
 				<!-- End Side Column -->
 			</div>
 		</div>
-		<div class="container background-gray-lighter">
-			<div class="row row-no-margin">
-				<!-- Portfolio -->
-				<ul class="portfolio-group">
-					<!-- Portfolio Item -->
-					<li class="portfolio-item col-sm-3 col-xs-6 no-padding"><a
-						href="#">
-							<h3>Placerat facer possim</h3>
-							<figure class="animate fadeInLeft animated">
-								<img alt="image1" src="img/frontpage/image1.png">
-								<figcaption>
-									<span style="color: #212121;">Vel illum dolore eu
-										feugiat nulla facilisis at vero eros et accumsan et iusto odio
-										dignissim qui et everti tamquam suavitate mea.</span>
-								</figcaption>
-							</figure>
-					</a></li>
-					<!-- //Portfolio Item// -->
-					<!-- Portfolio Item -->
-					<li class="portfolio-item col-sm-3 col-xs-6 no-padding"><a
-						href="#">
-							<h3>Placerat facer possim</h3>
-							<figure class="animate fadeInLeft animated">
-								<img alt="image2" src="img/frontpage/image2.png">
-								<figcaption>
-									<span style="color: #212121;">Vel illum dolore eu
-										feugiat nulla facilisis at vero eros et accumsan et iusto odio
-										dignissim qui et everti tamquam suavitate mea.</span>
-								</figcaption>
-							</figure>
-					</a></li>
-					<!-- //Portfolio Item// -->
-					<!-- Portfolio Item -->
-					<li class="portfolio-item col-sm-3 col-xs-6 no-padding"><a
-						href="#">
-							<h3>Placerat facer possim</h3>
-							<figure class="animate fadeInLeft animated">
-								<img alt="image3" src="img/frontpage/image3.png">
-								<figcaption>
-									<span style="color: #212121;">Vel illum dolore eu
-										feugiat nulla facilisis at vero eros et accumsan et iusto odio
-										dignissim qui et everti tamquam suavitate mea.</span>
-								</figcaption>
-							</figure>
-					</a></li>
-					<!-- //Portfolio Item// -->
-					<!-- Portfolio Item -->
-					<li class="portfolio-item col-sm-3 col-xs-6 no-padding"><a
-						href="#">
-							<h3>Placerat facer possim</h3>
-							<figure class="animate fadeInLeft animated">
-								<img alt="image4" src="img/frontpage/image4.png">
-								<figcaption>
-									<span style="color: #212121;">Vel illum dolore eu
-										feugiat nulla facilisis at vero eros et accumsan et iusto odio
-										dignissim qui et everti tamquam suavitate mea.</span>
-								</figcaption>
-							</figure>
-					</a></li>
-					<!-- //Portfolio Item// -->
-				</ul>
-				<!-- End Portfolio -->
-			</div>
-		</div>
-	</div>
-	</div>
+		
 	</div>
 	<!-- === END CONTENT === -->
-	
-	<jsp:include page="${request.contextPath}/footer.html" />
+	<div id="player">
+	<jsp:include page="player.jsp"/>
+	</div>
+	<jsp:include page="footer.jsp"/>
 	
 </body>
 </html>
