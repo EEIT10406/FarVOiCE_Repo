@@ -109,7 +109,6 @@
 			//2. 使用readAsDataURL方法，讀取檔案內容
 			reader.readAsDataURL(files[i]);
 		}
-
 	}
 </script>
 
