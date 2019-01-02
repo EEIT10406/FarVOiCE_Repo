@@ -7,15 +7,15 @@ public class MusicBean {
 /*	music_id			int			primary key,
 	music_name			varchar(30),
 	member_username		varchar(30)	REFERENCES member (member_username),
-	music_music			varbinary ,	 --實體檔案，上傳時需要限制大小及格式
+	music_music			varbinary(max) ,	 --實體檔案，上傳時需要限制大小及格式
 	music_caption		varchar(200),--說明文字
 	music_uploadTime	datetime,
 	music_playCount		int,
 	music_styleName		varchar(50), --接受多種風格
 	music_lyric			varchar(800),
 	music_likeCount		int,
-	music_bigImage		varbinary,	 --上傳時需要限制大小
-	music_smallImage	varbinary,	 --上傳時需要限制大小
+	music_bigImage		varbinary(max),	 --上傳時需要限制大小
+	music_smallImage	varbinary(max),	 --上傳時需要限制大小
 	music_ban			bit,
 */
 	private Integer music_id;

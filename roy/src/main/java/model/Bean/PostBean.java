@@ -6,14 +6,12 @@ public class PostBean {
 //	member_username	varchar(30) REFERENCES member (member_username),
 //	post_content	varchar(800),
 //	post_time		datetime,
-//	post_likeCount	int ,
 //	post_privacy	bit,
 	private Integer post_idS;
 	private Integer post_idM;
 	private String member_username;
 	private String post_content;
 	private java.util.Date post_time;
-	private Integer post_likeCount;
 	private Boolean post_privacy;
 	public Integer getPost_idS() {
 		return post_idS;
@@ -44,12 +42,6 @@ public class PostBean {
 	}
 	public void setPost_time(java.util.Date post_time) {
 		this.post_time = post_time;
-	}
-	public Integer getPost_likeCount() {
-		return post_likeCount;
-	}
-	public void setPost_likeCount(Integer post_likeCount) {
-		this.post_likeCount = post_likeCount;
 	}
 	public Boolean getPost_privacy() {
 		return post_privacy;
