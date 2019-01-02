@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class FollowId implements Serializable{
-
+ 
 	@Override
 	public int hashCode() {
 		return Objects.hash(getMember_usernameS(), getMember_usernameM());
