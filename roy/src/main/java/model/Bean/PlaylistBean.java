@@ -7,7 +7,6 @@ public class PlaylistBean {
 /*	playlist_id				int			primary key,
 	member_username			varchar(30) REFERENCES member (member_username),
 	playlist_name			varchar(30)	,
-	playlist_styleName		varchar(30) ,--接受多種風格
 	playlist_image			varbinary,--上傳時需要限制大小
 	playlist_registerTime	datetime,
 	playlist_musicCount		int,
@@ -16,7 +15,6 @@ public class PlaylistBean {
 	private Integer playlist_id;
 	private String member_username;
 	private String playlist_name;
-	private String playlist_styleName;
 	private Blob playlist_image;
 	private java.util.Date playlist_registerTime;
 	private Integer playlist_musicCount;
@@ -38,12 +36,6 @@ public class PlaylistBean {
 	}
 	public void setPlaylist_name(String playlist_name) {
 		this.playlist_name = playlist_name;
-	}
-	public String getPlaylist_styleName() {
-		return playlist_styleName;
-	}
-	public void setPlaylist_styleName(String playlist_styleName) {
-		this.playlist_styleName = playlist_styleName;
 	}
 	public Blob getPlaylist_image() {
 		return playlist_image;
