@@ -7,7 +7,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Post")
 public class PostBean {
-//	post_idS		int			primary key,
+@Override
+	public String toString() {
+		return "PostBean [post_idS=" + post_idS + ", post_idM=" + post_idM + ", member_username=" + member_username
+				+ ", post_content=" + post_content + ", post_time=" + post_time + ", post_privacy=" + post_privacy
+				+ "]";
+	}
+	//	post_idS		int			primary key,
 //	post_idM		int			REFERENCES Post (post_idS),--發文本人此欄位為null
 //	member_username	varchar(30) REFERENCES member (member_username),
 //	post_content	varchar(800),

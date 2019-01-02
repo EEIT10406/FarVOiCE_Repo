@@ -8,7 +8,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Funding")
 public class FundingBean {
-/*	funding_id          int primary key,
+@Override
+public String toString() {
+	return "FundingBean [funding_id=" + funding_id + ", member_username=" + member_username + ", funding_description="
+			+ funding_description + ", funding_city=" + funding_city + ", funding_title=" + funding_title
+			+ ", funding_styleName=" + funding_styleName + ", funding_image=" + funding_image + ", music_id=" + music_id
+			+ ", funding_goal=" + funding_goal + ", funding_currentAmount=" + funding_currentAmount
+			+ ", funding_duration=" + funding_duration + ", funding_createTime=" + funding_createTime
+			+ ", funding_browseCount=" + funding_browseCount + "]";
+}
+	/*	funding_id          int primary key,
 	member_username     varchar(30) REFERENCES member (member_username),
 	funding_description varchar(200),--募資專案描述
 	funding_city        varchar(10),--發起募資所在城市
@@ -17,6 +26,7 @@ public class FundingBean {
 	funding_image       varbinary,
 	music_id            int			REFERENCES Music (music_id),
 	funding_goal        int,--募資金額目標
+	funding_currentAmount        int,--募資目前金額
 	funding_duration    int,--募資期限	1-60day
 	funding_createTime  datetime,
 	funding_browseCount int*/
@@ -30,6 +40,14 @@ public class FundingBean {
 	private Blob funding_image;
 	private Integer music_id;
 	private Integer funding_goal;
+	private Integer funding_currentAmount;
+
+	public Integer getFunding_currentAmount() {
+		return funding_currentAmount;
+	}
+	public void setFunding_currentAmount(Integer funding_currentAmount) {
+		this.funding_currentAmount = funding_currentAmount;
+	}
 	private Integer funding_duration;
 	private java.util.Date funding_createTime;
 	private Integer funding_browseCount;

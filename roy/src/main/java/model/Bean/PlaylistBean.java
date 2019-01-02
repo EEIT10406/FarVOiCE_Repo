@@ -8,6 +8,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Playlist")
 public class PlaylistBean {
+	@Override
+	public String toString() {
+		return "PlaylistBean [playlist_id=" + playlist_id + ", member_username=" + member_username + ", playlist_name="
+				+ playlist_name + ", playlist_image=" + playlist_image + ", playlist_registerTime="
+				+ playlist_registerTime + ", playlist_musicCount=" + playlist_musicCount + ", playlist_privacy="
+				+ playlist_privacy + "]";
+	}
 	//1228
 /*	playlist_id				int			primary key,
 	member_username			varchar(30) REFERENCES member (member_username),

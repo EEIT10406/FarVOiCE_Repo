@@ -10,6 +10,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Music")
 public class MusicBean {
+	@Override
+	public String toString() {
+		return "MusicBean [music_id=" + music_id + ", music_name=" + music_name + ", member_username=" + member_username
+				+ ", music_music=" + music_music + ", music_caption=" + music_caption + ", music_uploadTime="
+				+ music_uploadTime + ", music_playCount=" + music_playCount + ", music_styleName=" + music_styleName
+				+ ", music_lyric=" + music_lyric + ", music_likeCount=" + music_likeCount + ", music_Image="
+				+ music_Image + ", music_ban=" + music_ban + ", music_unavailable=" + music_unavailable + "]";
+	}
 	//1228
 /*	music_id			int			primary key,
 	music_name			varchar(30),
@@ -23,6 +31,7 @@ public class MusicBean {
 	music_likeCount		int,
 	music_Image			varbinary(max),	 --上傳時需要限制大小
 	music_ban			bit,
+	music_unavailable	bit,--下架
 */	
 //	@ManyToOne
 //	@JoinColumn(name="member_username")
@@ -40,7 +49,13 @@ public class MusicBean {
 	private Integer music_likeCount;
 	private Blob music_Image;
 	private Boolean music_ban;
-
+	private Boolean music_unavailable;
+	public Boolean getMusic_unavailable() {
+		return music_unavailable;
+	}
+	public void setMusic_unavailable(Boolean music_unavailable) {
+		this.music_unavailable = music_unavailable;
+	}
 	public Integer getMusic_id() {
 		return music_id;
 	}

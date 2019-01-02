@@ -7,7 +7,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Report")
 public class ReportBean {
-/*	report_id				int primary key,
+@Override
+	public String toString() {
+		return "ReportBean [report_id=" + report_id + ", member_usernameReportS=" + member_usernameReportS
+				+ ", member_usernameReportM=" + member_usernameReportM + ", music_idReportM=" + music_idReportM
+				+ ", report_time=" + report_time + "]";
+	}
+	/*	report_id				int primary key,
 	member_usernameReportS	varchar(30) REFERENCES member (member_username),
 	member_usernameReportM	varchar(30) REFERENCES member (member_username),
 	music_idReportM			int			REFERENCES Music (music_id),

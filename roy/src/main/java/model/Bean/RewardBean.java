@@ -7,7 +7,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Reward")
 public class RewardBean {
-/*	reward_id          int		primary key,
+@Override
+	public String toString() {
+		return "RewardBean [reward_id=" + reward_id + ", funding_id=" + funding_id + ", reward_amount=" + reward_amount
+				+ ", reward_description=" + reward_description + ", reward_estimatedDelivery="
+				+ reward_estimatedDelivery + "]";
+	}
+	/*	reward_id          int		primary key,
 	funding_id         int      REFERENCES Funding (funding_id),
 	reward_amount      int,--單筆達標金額(由發起人自訂)
 	reward_description varchar(100),

@@ -17,6 +17,10 @@ public class FollowBean {
 //	private  String member_usernameS;
 //	private  String member_usernameM;
 	
+	@Override
+	public String toString() {
+		return "FollowBean [id=" + id + ", follow_time=" + follow_time + "]";
+	}
 	@EmbeddedId
 	private FollowId id;
 	public FollowId getId() {

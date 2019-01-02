@@ -8,7 +8,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name="MemberCommentMusic")
 public class MemberCommentMusicBean {
-//	memberCommentMusic_id		int			primary key,
+@Override
+	public String toString() {
+		return "MemberCommentMusicBean [memberCommentMusic_id=" + memberCommentMusic_id + ", member_username="
+				+ member_username + ", music_id=" + music_id + ", memberCommentMusic_content="
+				+ memberCommentMusic_content + ", memberCommentMusic_time=" + memberCommentMusic_time
+				+ ", memberCommentMusic_image=" + memberCommentMusic_image + "]";
+	}
+	//	memberCommentMusic_id		int			primary key,
 //	member_username				varchar(30) REFERENCES member (member_username),
 //	music_id					int			REFERENCES Music (music_id),
 //	memberCommentMusic_content	varchar(800),

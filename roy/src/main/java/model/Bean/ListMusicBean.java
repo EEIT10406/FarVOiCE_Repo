@@ -13,6 +13,10 @@ public class ListMusicBean {
 //	music_id		int			 REFERENCES Music (music_id),
 //	PRIMARY KEY(music_id, playlist_id)
 
+	@Override
+	public String toString() {
+		return "ListMusicBean [id=" + id + "]";
+	}
 	//	private Integer playlist_id;
 //	private Integer music_id;
 	@EmbeddedId

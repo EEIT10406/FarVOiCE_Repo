@@ -17,6 +17,10 @@ public class MemberLikeMusicBean {
 //	private String member_username;
 //	private Integer music_id;
 	
+	@Override
+	public String toString() {
+		return "MemberLikeMusicBean [id=" + id + ", memberLikeMusic_time=" + memberLikeMusic_time + "]";
+	}
 	@EmbeddedId
 	private MemberLikeMusicId id;
 	private java.util.Date memberLikeMusic_time;

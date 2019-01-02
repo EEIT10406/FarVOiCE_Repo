@@ -7,7 +7,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Backer")
 public class BackerBean {
-/*	backer_id           int identity primary key,
+@Override
+	public String toString() {
+		return "BackerBean [backer_id=" + backer_id + ", member_username=" + member_username + ", reward_id="
+				+ reward_id + ", backer_time=" + backer_time + ", backer_address=" + backer_address + "]";
+	}
+	/*	backer_id           int identity primary key,
 	member_username     varchar(30) REFERENCES member (member_username),
 	reward_id			int         REFERENCES reward (reward_id),
 	backer_time         datetime,--贊助日期
