@@ -118,11 +118,11 @@
 									<li><a href="portfolio-4-column.html">4 Column</a></li>
 									<li><a href="portfolio-6-column.html">6 Column</a></li>
 								</ul></li>
-							<li><a href="index.html"><i class="fas fa-pencil-alt fa-lg"></i>   找文章</a>
-								<ul>
-									<li><a href="blog-list.html">Blog</a></li>
-									<li><a href="blog-single.html">Blog Single Item</a></li>
-								</ul></li>
+							<li><a href="/roy/findArticle/findArticle.jsp"><i class="fas fa-pencil-alt fa-lg"></i>   找文章</a>
+<!-- 								<ul> -->
+<!-- 									<li><a href="blog-list.html">Blog</a></li> -->
+<!-- 									<li><a href="blog-single.html">Blog Single Item</a></li> -->
+<!-- 								</ul></li> -->
 							<li><a href="index.html"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
 							<li><a href="contact.html"><i class="fas fa-envelope fa-lg"></i>   即時客服</a></li>
