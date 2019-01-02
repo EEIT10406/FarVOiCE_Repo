@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- === BEGIN FOOTER === -->
-<div id="base" >
-	<div  class="container padding-vert-30 margin-top-40" > 
+<div id="base"  >
+	<div class="container padding-vert-30 margin-top-40" >
 		<div  class="row" >
 			<!-- Sample Menu -->
 			<div class="col-md-3 margin-bottom-20" >
@@ -17,7 +17,7 @@
 			</div>
 			<!-- End Sample Menu -->
 			<!-- Contact Details -->
-			<div class="col-md-3 margin-bottom-20" >
+			<div class="col-md-3 margin-bottom-20">
 				<h3 class="margin-bottom-10">資策會</h3>
 				<p>
 					<span class="fa-phone">連絡電話:</span>(02)6631-6666<br> <span
@@ -32,41 +32,41 @@
 			<div class="col-md-3 margin-bottom-20">
 				<h3 class="margin-bottom-10">這裡不知道要放甚麼</h3>
 				<div class="thumbs-gallery">
-					<a class="thumbBox" rel="lightbox-thumbs"
-						href="img/thumbsgallery/image01.jpg"> <img
-						src="img/thumbsgallery/thumbs/image01.jpg" alt="image1.jpg">
-						<i></i>
-					</a> <a class="thumbBox" rel="lightbox-thumbs"
-						href="img/thumbsgallery/image02.jpg"> <img
-						src="img/thumbsgallery/thumbs/image02.jpg" alt="image2.jpg">
-						<i></i>
-					</a> <a class="thumbBox" rel="lightbox-thumbs"
-						href="img/thumbsgallery/image03.jpg"> <img
-						src="img/thumbsgallery/thumbs/image03.jpg" alt="image3.jpg">
-						<i></i>
-					</a> <a class="thumbBox" rel="lightbox-thumbs"
-						href="img/thumbsgallery/image04.jpg"> <img
-						src="img/thumbsgallery/thumbs/image04.jpg" alt="image4.jpg">
-						<i></i>
-					</a> <a class="thumbBox" rel="lightbox-thumbs"
-						href="img/thumbsgallery/image04.jpg"> <img
-						src="img/thumbsgallery/thumbs/image05.jpg" alt="image5.jpg">
-						<i></i>
-					</a> <a class="thumbBox" rel="lightbox-thumbs"
-						href="img/thumbsgallery/image06.jpg"> <img
-						src="img/thumbsgallery/thumbs/image06.jpg" alt="image6.jpg">
-						<i></i>
-					</a> <a class="thumbBox" rel="lightbox-thumbs"
-						href="img/thumbsgallery/image07.jpg"> <img
-						src="img/thumbsgallery/thumbs/image07.jpg" alt="image7.jpg">
-						<i></i>
-					</a> <a class="thumbBox" rel="lightbox-thumbs"
-						href="img/thumbsgallery/image08.jpg"> <img
-						src="img/thumbsgallery/thumbs/image08.jpg" alt="image8.jpg">
-						<i></i>
+<!-- 					<a class="thumbBox" rel="lightbox-thumbs" -->
+<!-- 						href="img/thumbsgallery/image01.jpg"> <img -->
+<!-- 						src="img/thumbsgallery/thumbs/image01.jpg" alt="image1.jpg"> -->
+<!-- 						<i></i> -->
+<!-- 					</a> <a class="thumbBox" rel="lightbox-thumbs" -->
+<!-- 						href="img/thumbsgallery/image02.jpg"> <img -->
+<!-- 						src="img/thumbsgallery/thumbs/image02.jpg" alt="image2.jpg"> -->
+<!-- 						<i></i> -->
+<!-- 					</a> <a class="thumbBox" rel="lightbox-thumbs" -->
+<!-- 						href="img/thumbsgallery/image03.jpg"> <img -->
+<!-- 						src="img/thumbsgallery/thumbs/image03.jpg" alt="image3.jpg"> -->
+<!-- 						<i></i> -->
+<!-- 					</a> <a class="thumbBox" rel="lightbox-thumbs" -->
+<!-- 						href="img/thumbsgallery/image04.jpg"> <img -->
+<!-- 						src="img/thumbsgallery/thumbs/image04.jpg" alt="image4.jpg"> -->
+<!-- 						<i></i> -->
+<!-- 					</a> <a class="thumbBox" rel="lightbox-thumbs" -->
+<!-- 						href="img/thumbsgallery/image04.jpg"> <img -->
+<!-- 						src="img/thumbsgallery/thumbs/image05.jpg" alt="image5.jpg"> -->
+<!-- 						<i></i> -->
+<!-- 					</a> <a class="thumbBox" rel="lightbox-thumbs" -->
+<!-- 						href="img/thumbsgallery/image06.jpg"> <img -->
+<!-- 						src="img/thumbsgallery/thumbs/image06.jpg" alt="image6.jpg"> -->
+<!-- 						<i></i> -->
+<!-- 					</a> <a class="thumbBox" rel="lightbox-thumbs" -->
+<!-- 						href="img/thumbsgallery/image07.jpg"> <img -->
+<!-- 						src="img/thumbsgallery/thumbs/image07.jpg" alt="image7.jpg"> -->
+<!-- 						<i></i> -->
+<!-- 					</a> <a class="thumbBox" rel="lightbox-thumbs" -->
+<!-- 						href="img/thumbsgallery/image08.jpg"> <img -->
+<!-- 						src="img/thumbsgallery/thumbs/image08.jpg" alt="image8.jpg"> -->
+<!-- 						<i></i> -->
 					</a> <a class="thumbBox" rel="lightbox-thumbs"
 						href="img/thumbsgallery/image09.jpg"> <img
-						src="img/thumbsgallery/thumbs/image09.jpg" alt="image9.jpg">
+						src="../img/how.jpg" alt="how.jpg">
 						<i></i>
 					</a>
 				</div>
