@@ -15,16 +15,26 @@
 * {
 	font-family: 微軟正黑體;
 }
-.play { 
+
+.play {
 	width: 40px;
- 	-webkit-filter:invert(100%);  
-	
+	-webkit-filter: invert(100%);
 }
+
 .play2 {
 	width: 40px;
 }
-.topTen{
-border:0.5px solid gray;margin-left:35px;margin-bottom:10px;width:140px;text-align:center;padding:1px;
+
+.topTen {
+	border: 0.5px solid gray;
+	margin-left: 35px;
+	margin-bottom: 10px;
+	width: 140px;
+	text-align: center;
+	padding: 1px;
+	font-size: 15px;
+	font-weight: 400;
+	background-color: #DDDDDD;
 }
 </style>
 <link href="favicon.ico" rel="shortcut icon">
@@ -50,7 +60,8 @@ border:0.5px solid gray;margin-left:35px;margin-bottom:10px;width:140px;text-ali
 <script type="text/javascript" src="../js/jquery.visible.js"
 	charset="utf-8"></script>
 <!-- Sticky Div -->
-<script type="text/javascript" src="../js/jquery.sticky.js" charset="utf-8"></script>
+<script type="text/javascript" src="../js/jquery.sticky.js"
+	charset="utf-8"></script>
 <!-- Slimbox2-->
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
@@ -58,7 +69,6 @@ border:0.5px solid gray;margin-left:35px;margin-bottom:10px;width:140px;text-ali
 <!-- End JS -->
 
 <script>
-
 	var plays;
 	$(document).ready(function() {
 		plays = document.querySelectorAll("img.play");
@@ -77,7 +87,6 @@ border:0.5px solid gray;margin-left:35px;margin-bottom:10px;width:140px;text-ali
 		var locate = this.id.charAt(9);
 		plays[locate - 1].setAttribute("class", "play");
 	}
-	
 </script>
 </head>
 <body>
@@ -97,132 +106,167 @@ border:0.5px solid gray;margin-left:35px;margin-bottom:10px;width:140px;text-ali
 				<div class="col-md-3"
 					style="border: 1px #AAAAAA solid; margin-left: 50px;">
 					<h3 class="title">
-						<img id="playerPic1" src="../img/player.png" class="play" /><span>即時熱門排行</span>
+						<img id="playerPic1" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
 					</h3>
-					<h6 style="margin: 0;">1<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
-					
-					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+
+
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">2<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						2<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">3<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						3<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">4<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						4<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">CLOSED</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">5<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						5<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
-					<hr>
-					<button type="button" class="topTen"><a href="">看本榜 TOP 10</a></button>
+					<button type="button" class="topTen">
+						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+					</button>
 				</div>
 
 
 				<div class="col-md-3"
 					style="border: 1px #AAAAAA solid; margin-left: 70px;">
 					<h3 class="title">
-						<img id="playerPic2" src="../img/player.png" class="play" /><span>所有類型排行</span>
+						<img id="playerPic2" src="../img/player.png" class="play" /><span>所有類型</span>
 					</h3>
-					<h6 style="margin: 0;">1<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">2<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						2<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">3<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						3<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">4<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						4<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">CLOSED</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">5<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						5<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
-					<hr>
-					<button type="button" class="topTen"><a href="">看本榜 TOP 10</a></button>
+					<button type="button" class="topTen">
+						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+					</button>
 				</div>
 
 
 				<div class="col-md-3"
 					style="border: 1px #AAAAAA solid; margin-left: 70px;">
 					<h3 class="title">
-						<img id="playerPic3" src="../img/player.png" class="play" /><span>即時熱門排行</span>
+						<img id="playerPic3" src="../img/player.png" class="play" /><span>抒情</span>
 					</h3>
-					<h6 style="margin: 0;">1<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">2<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						2<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">3<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						3<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">4<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						4<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">5<img src="../img/left.JPG" style="margin-left:10px;" /></h6>
+					<h6 style="margin: 0;">
+						5<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
 					<h4 style="margin: 0;">CLOSED</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
-					<hr> 
-					<button type="button" class="topTen"><a href="">看本榜 TOP 10</a></button>
-				
+
+					<button type="button" class="topTen">
+						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+					</button>
+
 				</div>
 				<!-- End Main Text -->
 			</div>
 		</div>
-		
+
 	</div>
 	<!-- === END CONTENT === -->
-	
+
 	<jsp:include page="../homePage/footer.jsp" />
 	<div id="player">
-	<jsp:include page="../homePage/player.jsp"/>
+		<jsp:include page="../homePage/player.jsp" />
 	</div>
-	
+
 </body>
 </html>

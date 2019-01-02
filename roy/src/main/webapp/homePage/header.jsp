@@ -125,7 +125,7 @@
 								</ul></li>
 							<li><a href="index.html"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
-							<li><a href="contact.html"><i class="fas fa-envelope fa-lg"></i>   聯絡我們</a></li>
+							<li><a href="contact.html"><i class="fas fa-envelope fa-lg"></i>   即時客服</a></li>
 						</ul>
 					</div>
 				</div>
