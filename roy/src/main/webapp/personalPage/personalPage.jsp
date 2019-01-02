@@ -112,6 +112,10 @@ table {
 	width: 180px;
 	margin: 10px;
 }
+.listType{
+list-style-type:none;
+font-size:15px;
+}
 </style>
 <script>
 	$(document).ready(function() {
@@ -200,9 +204,34 @@ table {
 						</div>
 
 						<div class="tab-pane fade in" style="overflow:auto;" id="music">
+							
+								<div class="col-md-5" style="float:left;width:300px;">
+									<a href=""><img src="../img/love.png"
+										style="width: 160px; height: 160px;" /></a>
 
+									<div style="font-size: 16px;">讓我為你唱情歌</div>
+									<div>
+										<img src="../img/emptyLove.png" class="heart"> <span
+											class="heartCount"> 0</span> <span id="share"
+											class="shareAndAdd"> <a href="" style="color: black;"><img
+												src="../img/share.png" width="15px" />分享</a>
+										</span> <span class="dropdown"> <span id="add"
+											data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false"><button type="button"
+													class="btn" style="outline: none;">
+													<img src="../img/add.png" width="15px">更多
+												</button></span> <span class="dropdown-menu" 
+											style="background-color: white;">
+												<button class="btn" style="outline: none;" type="button"
+													data-toggle="modal" data-target="#addToPlayList">加入歌單</button>
+												<button class="btn" style="outline: none;" type="button"
+													data-toggle="modal" data-target="#createPlayList">建立歌單</button>
+										</span>
+										</span>
+									</div>
+								</div>
 
-							<div>
+					
 								<div class="col-md-5" style="float:left;width:300px;">
 									<a href=""><img src="../img/love.png"
 										style="width: 160px; height: 160px;" /></a>
@@ -227,13 +256,9 @@ table {
 										</span>
 										</span>
 									</div>
-
 								</div>
-							
-							
-							
-							
-							
+								
+								
 								<div class="col-md-5" style="float:left;width:300px;">
 									<a href=""><img src="../img/love.png"
 										style="width: 160px; height: 160px;" /></a>
@@ -258,18 +283,203 @@ table {
 										</span>
 										</span>
 									</div>
-
-
-
 								</div>
-							</div>
+								
+								<div class="col-md-5" style="float:left;width:300px;">
+									<a href=""><img src="../img/love.png"
+										style="width: 160px; height: 160px;" /></a>
+
+									<div style="font-size: 16px;">讓我為你唱情歌</div>
+									<div>
+										<img src="../img/emptyLove.png" class="heart"> <span
+											class="heartCount"> 0</span> <span id="share"
+											class="shareAndAdd"> <a href="" style="color: black;"><img
+												src="../img/share.png" width="15px" />分享</a>
+										</span> <span class="dropdown"> <span id="add"
+											data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false"><button type="button"
+													class="btn" style="outline: none;">
+													<img src="../img/add.png" width="15px">更多
+												</button></span> <span class="dropdown-menu"
+											style="background-color: white;">
+												<button class="btn" style="outline: none;" type="button"
+													data-toggle="modal" data-target="#addToPlayList">加入歌單</button>
+												<button class="btn" style="outline: none;" type="button"
+													data-toggle="modal" data-target="#createPlayList">建立歌單</button>
+										</span>
+										</span>
+									</div>
+								</div>
+								
+
+
+
+<!-- addPlayList & createPlayList begin-->
+
+														<div class="modal fade" id="addToPlayList"
+															aria-hidden="true">
+															<div class="modal-dialog" style="width: 300px;">
+																<div class="modal-content">
+																	<h5 style="margin: 10px;">加入歌單</h5>
+																	<form>
+																		<div class="modal-body">
+
+																			<div class="form-group">
+																				<select class="form-control">
+																					<option>歌單名稱</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-primary"
+																				data-dismiss="modal">取消</button>
+																			<button type="button" class="btn btn-primary">確定</button>
+																		</div>
+																	</form>
+																</div>
+															</div>
+														</div>
+
+														<div class="modal fade" id="createPlayList"
+															aria-hidden="true">
+															<div class="modal-dialog" style="width: 300px;">
+																<div class="modal-content">
+																	<h5 style="margin: 10px;">建立歌單</h5>
+
+																	<form>
+																		<div class="modal-body">
+																			<div class="form-group">
+																				<input type="text" class="form-control"
+																					placeHolder="請輸入歌單名稱" id="recipient-name">
+																			</div>
+																			<div class="form-group">
+																				<select class="form-control">
+																					<option>狀態 : 公開</option>
+																					<option>狀態 : 隱藏</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-primary"
+																				data-dismiss="modal">取消</button>
+																			<button type="button" class="btn btn-primary">確定</button>
+																		</div>
+
+																	</form>
+																</div>
+															</div>
+														</div> 
+														<!-- addPlayList & createPlayList end-->
+
+
+
 
 
 						</div>
 						<div class="tab-pane fade in" id="list"></div>
-						<div class="tab-pane fade in" id="like"></div>
+						<div class="tab-pane fade in" style="overflow:auto;" id="like">
+						
+						
+						<div class="col-md-5" style="float:left;width:300px;">
+									<a href=""><img src="../img/love.png"
+										style="width: 160px; height: 160px;" /></a>
 
-						<div class="tab-pane fade in" id="about"></div>
+									<div style="font-size: 16px;">讓我為你唱情歌</div>
+									<div>
+										<img src="../img/emptyLove.png" class="heart"> <span
+											class="heartCount"> 0</span> <span id="share"
+											class="shareAndAdd"> <a href="" style="color: black;"><img
+												src="../img/share.png" width="15px" />分享</a>
+										</span> <span class="dropdown"> <span id="add"
+											data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false"><button type="button"
+													class="btn" style="outline: none;">
+													<img src="../img/add.png" width="15px">更多
+												</button></span> <span class="dropdown-menu"
+											style="background-color: white;">
+												<button class="btn" style="outline: none;" type="button"
+													data-toggle="modal" data-target="#addToPlayList">加入歌單</button>
+												<button class="btn" style="outline: none;" type="button"
+													data-toggle="modal" data-target="#createPlayList">建立歌單</button>
+										</span>
+										</span>
+									</div>
+								</div>
+						
+						
+						
+						
+						
+						</div>
+
+						<div class="tab-pane fade in" id="about">
+						 <!-- Tab v3 -->
+                                    <div class="row tabs">
+                                        <div class="col-sm-3">
+                                            <ul class="listType">
+                                                <li class="active" style="border-bottom:1px solid #D3D3D3;padding:10px;">
+                                                    <a href="#introduce" data-toggle="tab">
+                                                        詳細介紹</a>
+                                                </li>
+                                                <li style="border-bottom:1px solid #D3D3D3;padding:10px;">
+                                                    <a href="#following" data-toggle="tab">
+                                                        追蹤名單</a>
+                                                </li>
+                                                <li style="border-bottom:1px solid #D3D3D3;padding:10px;">
+                                                    <a href="#fans" data-toggle="tab">
+                                                       粉絲</a>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade in active" id="introduce">
+                                                    <div class="row">
+                                                        
+                                                        <div class="col-md-7">
+                                                            <h3 class="no-margin no-padding">詳細介紹</h3>
+                                                            <p style="margin-top:15px;">地區：台灣, 臺北市   </p>
+                                                            <p>性別：   </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade in" id="following">
+                                                    <p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus,
+                                                        qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta
+                                                        decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+                                                </div>
+                                                <div class="tab-pane fade in" id="fans">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <img src="assets/img/fillers/filler3.jpg" alt="filler image">
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <h3 class="no-margin no-padding">Mirum Est Notare</h3>
+                                                            <p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus
+                                                                dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothicas.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade in" id="sample-3d">
+                                                    <p>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec eget orci metus, Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec eget orci metus, ac adipiscing
+                                                        nunc. Pellentesque fermentum, ante ac interdum ullamcorper. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, consectetur id.</p>
+                                                    <ul>
+                                                        <li>Donec eget orci metus</li>
+                                                        <li>Ante ac interdum ullamcorper</li>
+                                                        <li>Vivamus imperdiet condimentum</li>
+                                                        <li>Pellentesque fermentum</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Tab v3 -->
+						
+						</div>
+
+
+
 
 					</div>
 				</div>
