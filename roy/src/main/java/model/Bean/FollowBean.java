@@ -1,24 +1,31 @@
 package model.Bean;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import model.Bean.primarykey.FollowId;
+
+@Entity
+@Table(name="Follow")
 public class FollowBean {
 //	member_usernameS	varchar(30) REFERENCES member (member_username),
 //	member_usernameM	varchar(30) REFERENCES member (member_username),
 //	follow_time			datetime,
-	private  String member_usernameS;
-	private  String member_usernameM;
+//PRIMARY KEY(member_usernameS, member_usernameM)
+	
+//	private  String member_usernameS;
+//	private  String member_usernameM;
+	
+	@EmbeddedId
+	private FollowId id;
+	public FollowId getId() {
+		return id;
+	}
+	public void setId(FollowId id) {
+		this.id = id;
+	}
 	private java.util.Date follow_time;
-	public String getMember_usernameS() {
-		return member_usernameS;
-	}
-	public void setMember_usernameS(String member_usernameS) {
-		this.member_usernameS = member_usernameS;
-	}
-	public String getMember_usernameM() {
-		return member_usernameM;
-	}
-	public void setMember_usernameM(String member_usernameM) {
-		this.member_usernameM = member_usernameM;
-	}
 	public java.util.Date getFollow_time() {
 		return follow_time;
 	}

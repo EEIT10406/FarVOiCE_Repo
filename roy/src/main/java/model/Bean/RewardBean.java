@@ -1,5 +1,11 @@
 package model.Bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Reward")
 public class RewardBean {
 /*	reward_id          int		primary key,
 	funding_id         int      REFERENCES Funding (funding_id),
@@ -7,6 +13,7 @@ public class RewardBean {
 	reward_description varchar(100),
 	reward_estimatedDelivery datetime--(估計交貨日期)
 */	
+	@Id
 	private Integer reward_id;
 	private Integer funding_id;
 	private Integer reward_amount;

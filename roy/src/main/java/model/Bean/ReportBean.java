@@ -1,11 +1,18 @@
 package model.Bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Report")
 public class ReportBean {
 /*	report_id				int primary key,
 	member_usernameReportS	varchar(30) REFERENCES member (member_username),
 	member_usernameReportM	varchar(30) REFERENCES member (member_username),
 	music_idReportM			int			REFERENCES Music (music_id),
 	report_time				datetime*/
+	@Id
 	private Integer report_id;
 	private String member_usernameReportS;
 	private String member_usernameReportM;

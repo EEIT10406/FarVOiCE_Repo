@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- === BEGIN FOOTER === -->
-<div id="base">
-	<div class="container padding-vert-30 margin-top-40">
-		<div class="row">
+<div id="base" >
+	<div  class="container padding-vert-30 margin-top-40" > 
+		<div  class="row" >
 			<!-- Sample Menu -->
-			<div class="col-md-3 margin-bottom-20">
+			<div class="col-md-3 margin-bottom-20" >
 				<h3 class="margin-bottom-10">快選目錄</h3>
 				<ul class="menu">
 					<li><a class="fa-tasks" href="#">放一些</a></li>
@@ -17,7 +17,7 @@
 			</div>
 			<!-- End Sample Menu -->
 			<!-- Contact Details -->
-			<div class="col-md-3 margin-bottom-20">
+			<div class="col-md-3 margin-bottom-20" >
 				<h3 class="margin-bottom-10">資策會</h3>
 				<p>
 					<span class="fa-phone">連絡電話:</span>(02)6631-6666<br> <span

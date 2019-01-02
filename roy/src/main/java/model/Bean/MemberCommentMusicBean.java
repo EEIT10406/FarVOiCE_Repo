@@ -2,6 +2,11 @@ package model.Bean;
 
 import java.sql.Blob;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="MemberCommentMusic")
 public class MemberCommentMusicBean {
 //	memberCommentMusic_id		int			primary key,
 //	member_username				varchar(30) REFERENCES member (member_username),
@@ -9,6 +14,7 @@ public class MemberCommentMusicBean {
 //	memberCommentMusic_content	varchar(800),
 //	memberCommentMusic_time		datetime,
 //	memberCommentMusic_image	varbinary--上傳時需要限制大小
+	@Id
 	private Integer memberCommentMusic_id;
 	private String member_username;
 	private Integer music_id;

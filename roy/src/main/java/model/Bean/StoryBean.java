@@ -1,11 +1,18 @@
 package model.Bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Story")
 public class StoryBean {
 /*	story_id		int primary key,
 	member_username	varchar(30) REFERENCES member (member_username),
 	music_id		int			REFERENCES Music (music_id),
 	story_time		datetime
 */	
+	@Id
 	private Integer story_id;
 	private String member_username;
 	private Integer music_id;

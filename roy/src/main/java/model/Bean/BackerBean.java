@@ -1,11 +1,18 @@
 package model.Bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Backer")
 public class BackerBean {
 /*	backer_id           int identity primary key,
 	member_username     varchar(30) REFERENCES member (member_username),
 	reward_id			int         REFERENCES reward (reward_id),
 	backer_time         datetime,--贊助日期
 	backer_address      varchar(50),--寄送地址*/
+	@Id
 	private Integer backer_id;
 	private String member_username;
 	private Integer reward_id;

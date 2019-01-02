@@ -2,22 +2,32 @@ package model.Bean;
 
 import java.sql.Blob;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name="Music")
 public class MusicBean {
 	//1228
 /*	music_id			int			primary key,
 	music_name			varchar(30),
 	member_username		varchar(30)	REFERENCES member (member_username),
-	music_music			varbinary(max) ,	 --實體檔案，上傳時需要限制大小及格式
+	music_music			varbinary(max) , --實體檔案，上傳時需要限制大小及格式
 	music_caption		varchar(200),--說明文字
 	music_uploadTime	datetime,
 	music_playCount		int,
 	music_styleName		varchar(50), --接受多種風格
 	music_lyric			varchar(800),
 	music_likeCount		int,
-	music_bigImage		varbinary(max),	 --上傳時需要限制大小
-	music_smallImage	varbinary(max),	 --上傳時需要限制大小
+	music_Image			varbinary(max),	 --上傳時需要限制大小
 	music_ban			bit,
-*/
+*/	
+//	@ManyToOne
+//	@JoinColumn(name="member_username")
+//	private MemberBean memberBean;
+	@Id
 	private Integer music_id;
 	private String music_name;
 	private String member_username;
@@ -28,8 +38,7 @@ public class MusicBean {
 	private String music_styleName;
 	private String music_lyric;
 	private Integer music_likeCount;
-	private Blob music_bigImage;
-	private Blob music_smallImage;
+	private Blob music_Image;
 	private Boolean music_ban;
 
 	public Integer getMusic_id() {
@@ -92,17 +101,12 @@ public class MusicBean {
 	public void setMusic_likeCount(Integer music_likeCount) {
 		this.music_likeCount = music_likeCount;
 	}
-	public Blob getMusic_bigImage() {
-		return music_bigImage;
+	
+	public Blob getMusic_Image() {
+		return music_Image;
 	}
-	public void setMusic_bigImage(Blob music_bigImage) {
-		this.music_bigImage = music_bigImage;
-	}
-	public Blob getMusic_smallImage() {
-		return music_smallImage;
-	}
-	public void setMusic_smallImage(Blob music_smallImage) {
-		this.music_smallImage = music_smallImage;
+	public void setMusic_Image(Blob music_Image) {
+		this.music_Image = music_Image;
 	}
 	public Boolean getMusic_ban() {
 		return music_ban;

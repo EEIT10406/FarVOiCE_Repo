@@ -15,6 +15,19 @@
   
   		<mapping class="model.CustomerBean"/>
   		<mapping class="model.ProductBean"/>
+		<mapping class="model.Bean.BackerBean"/>
+		<mapping class="model.Bean.FollowBean"/>
+		<mapping class="model.Bean.FundingBean"/>
+		<mapping class="model.Bean.ListMusicBean"/>
 		<mapping class="model.Bean.MemberBean"/>
+		<mapping class="model.Bean.MemberCommentMusicBean"/>
+		<mapping class="model.Bean.MemberLikeMusicBean"/>
+		<mapping class="model.Bean.MessageBean"/>
+		<mapping class="model.Bean.MusicBean"/>
+		<mapping class="model.Bean.PlaylistBean"/>
+		<mapping class="model.Bean.PostBean"/>
+		<mapping class="model.Bean.ReportBean"/>
+		<mapping class="model.Bean.RewardBean"/>
+		<mapping class="model.Bean.StoryBean"/>
     </session-factory>
 </hibernate-configuration>

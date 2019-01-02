@@ -2,6 +2,11 @@ package model.Bean;
 
 import java.sql.Blob;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="Funding")
 public class FundingBean {
 /*	funding_id          int primary key,
 	member_username     varchar(30) REFERENCES member (member_username),
@@ -15,6 +20,7 @@ public class FundingBean {
 	funding_duration    int,--募資期限	1-60day
 	funding_createTime  datetime,
 	funding_browseCount int*/
+	@Id
 	private Integer funding_id;
 	private String member_username;
 	private String funding_description;

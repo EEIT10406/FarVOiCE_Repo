@@ -2,6 +2,11 @@ package model.Bean;
 
 import java.sql.Blob;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="Playlist")
 public class PlaylistBean {
 	//1228
 /*	playlist_id				int			primary key,
@@ -11,7 +16,9 @@ public class PlaylistBean {
 	playlist_registerTime	datetime,
 	playlist_musicCount		int,
 	playlist_privacy		bit,
+	
 */	
+	@Id
 	private Integer playlist_id;
 	private String member_username;
 	private String playlist_name;

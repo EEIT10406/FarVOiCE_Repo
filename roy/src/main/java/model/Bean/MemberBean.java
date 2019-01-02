@@ -1,9 +1,12 @@
 package model.Bean;
 
 import java.sql.Blob;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="Member")
@@ -17,6 +20,11 @@ public class MemberBean {
 		member_registerTime datetime,
 		member_ban			bit,
 	*/
+//	@OneToMany(
+//		mappedBy="Member",
+//		cascade= {CascadeType.REMOVE}
+//	)
+//	private List<MusicBean> MusicBeans;
 	@Id
 	private String member_username;
 	private String member_password;
