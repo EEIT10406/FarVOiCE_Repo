@@ -45,9 +45,6 @@
 			$(this).parent('ul').children('li').removeClass('active');
 			$(this).addClass('active');
 		})
-		$('#music_type li').click(function() {
-			$(this).toggleClass('active');
-		})
 		$('#soChi').click(function() {
 			if ($(this).text() == "收起") {
 				$(this).text("展開");
@@ -55,11 +52,24 @@
 				$(this).text("收起");
 			}
 		})
+		
+		$('#playButton').hover(function() {
+		src = $( this ).attr("src");
+		$( this ).attr("src","../img/player.png");
+	  }, function() {
+		 $( this ).attr("src",src);
+	  })
 	})
 </script>
+<style>
+#playButton{
+  position: absolute;
+  bottom:50%;
+  right: 40%;
+}
+</style>
 </head>
 <body>
-
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
 		<!--選單 -->
@@ -67,9 +77,8 @@
 			<div class="container">
 				<div class="container">
 					<div class="row margin-vert-30">
-						<ul id="type" class="nav nav-tabs m-bottom-6">
-							<li class="active"><a href="#">最新推薦</a></li>
-							<li><a href="#">所有音樂</a></li>
+						<ul class="nav nav-tabs m-bottom-6">
+							<li class="active"><a>最新推薦</a></li>
 							<a id="soChi" aria-controls="collapse-filter"
 								aria-expanded="false"
 								class="pull-right m-top-1 js-collapse-filter"
@@ -80,44 +89,10 @@
 								<div class="form-group">
 									<label class="col-sm-1 control-label text-muted"><small>類型</small></label>
 									<div class="col-sm-11">
-										<ul id="music_type" class="nav nav-pills nav-sm">
-											<li class="active"><a class="dynamic" href="#">全部類型</a></li>
-											<li><a class="dynamic" href="#">Rock</a></li>
-											<li><a class="dynamic" href="#">Hip hop / Rap</a></li>
-											<li><a class="dynamic" href="#">Electronic</a></li>
-											<li><a class="dynamic" href="#">Pop</a></li>
-											<li><a class="dynamic" href="#">Folk</a></li>
-											<li><a class="dynamic" href="#">Singer / Songwriter</a></li>
-											<li><a class="dynamic" href="#">Alternative</a></li>
-											<li><a class="dynamic" href="#">Post rock</a></li>
-											<li><a class="dynamic" href="#">Metal</a></li>
-											<li><a class="dynamic" href="#">Punk</a></li>
-											<li><a class="dynamic" href="#">Reggae / Funk</a></li>
-											<li><a class="dynamic" href="#">R&amp;B / Soul</a></li>
-											<li><a class="dynamic" href="#">Classical</a></li>
-											<li><a class="dynamic" href="#">Blues</a></li>
-											<li><a class="dynamic" href="#">Jazz</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-1 control-label text-muted"><small>排序</small></label>
-									<div class="col-sm-11">
 										<ul id="type" class="nav nav-pills nav-sm">
-											<li class="active"><a href="#">最新上傳</a></li>
-											<li><a href="#">最多播放</a></li>
-											<li><a href="#">最多喜歡</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-1 control-label text-muted"><small>期間</small></label>
-									<div class="col-sm-11">
-										<ul id="type" class="nav nav-pills nav-sm">
-											<li class="active"><a href="#">不限時間</a></li>
-											<li><a href="#">7 天內</a></li>
-											<li><a href="#">30 天內</a></li>
-											<li><a href="#">1 年內</a></li>
+											<li class="active"><a class="dynamic" href="#">最多喜歡</a></li>
+											<li><a class="dynamic" href="#">最多播放</a></li>
+											<li><a class="dynamic" href="#">最新上傳</a></li>
 										</ul>
 									</div>
 								</div>
@@ -130,36 +105,28 @@
 		<!--選單 -->
 	</div>
 
-
 	<!-- 歌單	 -->
 	<div class="container">
 		<div class="row margin-vert-30">
-
-
+		
+			<!-- 歌	 -->
 			<div class="col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box">
-
-
 				<div class="work-block m-bottom-2">
-
-					<a href="#"><img class="img-full"
+					<a href="/roy/searchMusic/songList.jsp"><img class="img-full"
 						src="https://cfstatic.streetvoice.com/playlist_images/da/rk/darkbluew/zyjhmW5MGAhKpxtKPBBbSD.jpg?x-oss-process=image/resize,m_fill,h_260,w_260,limit_0/interlace,1/quality,q_85/format,jpg"></a>
-
+						<input id="playButton" type="image" src = "../img/left.JPG" height="50" width="50">
 				</div>
-				<!-- /work-block -->
-
 				<div class="song-info">
 					<h4 class="text-ellipsis">
-						<a href="#">他們的瘋狂幽默</a>
+						<a href="/roy/searchMusic/songList.jsp">他們的瘋狂幽默</a>
 					</h4>
 				</div>
-
 			</div>
-
-
+			<!-- 歌	 -->
+			
 		</div>
 	</div>
 	<!-- 歌單	 -->
-
 
 	<jsp:include page="../homePage/footer.jsp" />
 	<div id="player">
