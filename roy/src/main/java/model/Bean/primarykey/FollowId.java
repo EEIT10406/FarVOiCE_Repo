@@ -1,8 +1,9 @@
 package model.Bean.primarykey;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class FollowId {
+public class FollowId implements Serializable{
 
 	@Override
 	public int hashCode() {

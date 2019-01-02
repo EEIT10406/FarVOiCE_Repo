@@ -35,8 +35,8 @@ public class MusicDAO {
 		MusicDAO memberDAO = new MusicDAO();
 		memberDAO.setSession(session);
 		//findByPk
-//		MusicBean bean0 = memberDAO.findByPrimaryKey("Peter");
-//		System.out.println(bean0);		
+		MusicBean bean0 = memberDAO.findByPrimaryKey(1);
+		System.out.println(bean0);		
 //		
 		//findAll
 //		List<MusicBean> beans = memberDAO.findAll();
@@ -91,18 +91,18 @@ public class MusicDAO {
 		return session;
 	}
 	
-	public MusicBean findByPrimaryKey(String member_username) {
-		//1228	OK
-		return this.getSession().get(MusicBean.class, member_username);
+	public MusicBean findByPrimaryKey(Integer music_id) {
+		
+		return this.getSession().get(MusicBean.class, music_id);
 	}
 	public List<MusicBean> findAll() {
-		//1228  OK
+		
 		return this.getSession().createQuery("from MusicBean", MusicBean.class)
 				.setMaxResults(50)
 				.list();
 	}
 	public MusicBean create(MusicBean bean) {
-		//1228 OK
+	
 		if(bean!=null) {
 			MusicBean result = this.getSession().get(MusicBean.class, bean.getMember_username());
 			if(result==null) {
@@ -114,12 +114,12 @@ public class MusicDAO {
 	}
 	
 	public void update(MusicBean bean) {
-		//1228 OK
+	
 		getSession().update(bean);
 	}
 	
 	public boolean remove(String member_username) {
-		//1228 OK
+	
 		MusicBean result = this.getSession().get(MusicBean.class, member_username);
 		if(result!=null) {
 			this.getSession().delete(result);
