@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +81,7 @@ table {
 }
 
 .dynamic {
-	background-color: #F5F5F5;
+	background-color: #dcdcdc;
 	height: 200px;
 	margin: 20px;
 }
@@ -161,7 +163,17 @@ table {
 					style="border: 0.5px solid #DDDDDD; align: center; height: 231px; margin-top: 30px; margin-bottom: 30px;">
 					<img src="../img/left.JPG"
 						style="float: left; height: 230px; width: 230px; margin-right: 15px;" />
-					<div style="padding: 15px; font-size: 30px;">阿腫</div>
+					<div style="padding: 15px; font-size: 30px;">
+					<c:choose>
+					    <c:when test="${empty user}">
+					       	阿腫
+					    </c:when>
+					    <c:otherwise>
+					        ${user.member_nickname}
+					    </c:otherwise>
+					</c:choose>
+					
+					</div>
 					<div id="follow" class="unfollow">追蹤</div>
 
 					<table>

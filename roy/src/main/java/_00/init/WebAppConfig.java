@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "_01", "_02" })
+@ComponentScan(basePackages = {"controller"})
 public class WebAppConfig implements WebMvcConfigurer{
 
 	@Autowired
