@@ -5,13 +5,8 @@
 	<div class="container padding-vert-30 margin-top-40" >
 		<div  class="row" >
 			<!-- Sample Menu -->
-<<<<<<< HEAD
 			<div class="col-md-3 margin-bottom-20" >
 				<h3 class="margin-bottom-10">關於發聲</h3>
-=======
-			<div class="col-md-3 margin-bottom-20" >
-				<h3 class="margin-bottom-10">關於發聲</h3>
->>>>>>> refs/heads/findArtile0103
 				<ul class="menu">
 					<li><a class="fa-tasks" href="#">會員服務條款</a></li>
 					<li><a class="fa-users" href="#">隱私權保護政策</a></li>
@@ -71,8 +66,10 @@
 <!-- 					</a> <a class="thumbBox" rel="lightbox-thumbs" -->
 <!-- 						href="img/thumbsgallery/image08.jpg"> <img -->
 <!-- 						src="img/thumbsgallery/thumbs/image08.jpg" alt="image8.jpg"> -->
-<!-- 						<i></i> -->
-					</a> <a class="thumbBox" rel="lightbox-thumbs"
+<!-- 						<i></i> 
+								</a> -->
+					
+					<a class="thumbBox" rel="lightbox-thumbs"
 						href="img/thumbsgallery/image09.jpg"> <img
 						src="../img/how.jpg" alt="how.jpg">
 						<i></i>
