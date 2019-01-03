@@ -1,19 +1,30 @@
 package model.Bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Post")
 public class PostBean {
-//	post_idS		int			primary key,
+@Override
+	public String toString() {
+		return "PostBean [post_idS=" + post_idS + ", post_idM=" + post_idM + ", member_username=" + member_username
+				+ ", post_content=" + post_content + ", post_time=" + post_time + ", post_privacy=" + post_privacy
+				+ "]";
+	}
+	//	post_idS		int			primary key,
 //	post_idM		int			REFERENCES Post (post_idS),--發文本人此欄位為null
 //	member_username	varchar(30) REFERENCES member (member_username),
 //	post_content	varchar(800),
 //	post_time		datetime,
-//	post_likeCount	int ,
 //	post_privacy	bit,
+	@Id
 	private Integer post_idS;
 	private Integer post_idM;
 	private String member_username;
 	private String post_content;
 	private java.util.Date post_time;
-	private Integer post_likeCount;
 	private Boolean post_privacy;
 	public Integer getPost_idS() {
 		return post_idS;
@@ -44,12 +55,6 @@ public class PostBean {
 	}
 	public void setPost_time(java.util.Date post_time) {
 		this.post_time = post_time;
-	}
-	public Integer getPost_likeCount() {
-		return post_likeCount;
-	}
-	public void setPost_likeCount(Integer post_likeCount) {
-		this.post_likeCount = post_likeCount;
 	}
 	public Boolean getPost_privacy() {
 		return post_privacy;

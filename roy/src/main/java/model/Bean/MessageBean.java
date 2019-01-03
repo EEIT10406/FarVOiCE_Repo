@@ -2,13 +2,25 @@ package model.Bean;
 
 import java.sql.Blob;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="Message")
 public class MessageBean {
-//	message_id					int			primary key,
+@Override
+	public String toString() {
+		return "MessageBean [message_id=" + message_id + ", member_usernameSend=" + member_usernameSend
+				+ ", member_usernameReceive=" + member_usernameReceive + ", message_content=" + message_content
+				+ ", message_image=" + message_image + ", message_time=" + message_time + "]";
+	}
+	//	message_id					int			primary key,
 //	member_usernameSend			varchar(30) REFERENCES member (member_username),
 //	member_usernameReceive		varchar(30) REFERENCES member (member_username),
 //	message_content				varchar(800),
 //	message_image				varbinary,
 //	message_time				datetime,
+	@Id
 	private Integer message_id;
 	private String member_usernameSend;
 	private String member_usernameReceive;

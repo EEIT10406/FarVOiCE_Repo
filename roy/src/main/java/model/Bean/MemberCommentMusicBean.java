@@ -2,13 +2,26 @@ package model.Bean;
 
 import java.sql.Blob;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="MemberCommentMusic")
 public class MemberCommentMusicBean {
-//	memberCommentMusic_id		int			primary key,
+@Override
+	public String toString() {
+		return "MemberCommentMusicBean [memberCommentMusic_id=" + memberCommentMusic_id + ", member_username="
+				+ member_username + ", music_id=" + music_id + ", memberCommentMusic_content="
+				+ memberCommentMusic_content + ", memberCommentMusic_time=" + memberCommentMusic_time
+				+ ", memberCommentMusic_image=" + memberCommentMusic_image + "]";
+	}
+	//	memberCommentMusic_id		int			primary key,
 //	member_username				varchar(30) REFERENCES member (member_username),
 //	music_id					int			REFERENCES Music (music_id),
 //	memberCommentMusic_content	varchar(800),
 //	memberCommentMusic_time		datetime,
 //	memberCommentMusic_image	varbinary--上傳時需要限制大小
+	@Id
 	private Integer memberCommentMusic_id;
 	private String member_username;
 	private Integer music_id;

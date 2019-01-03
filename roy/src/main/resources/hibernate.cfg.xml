@@ -7,7 +7,7 @@
         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
         <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;database=FarVoice</property>
         <property name="hibernate.connection.username">sa</property>
-        <property name="hibernate.connection.password">sa123456</property>
+        <property name="hibernate.connection.password">passw0rd</property>
 
         <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
         <property name="hibernate.show_sql">true</property>
@@ -15,6 +15,19 @@
   
   		<mapping class="model.CustomerBean"/>
   		<mapping class="model.ProductBean"/>
+		<mapping class="model.Bean.BackerBean"/>
+		<mapping class="model.Bean.FollowBean"/>
+		<mapping class="model.Bean.FundingBean"/>
+		<mapping class="model.Bean.ListMusicBean"/>
 		<mapping class="model.Bean.MemberBean"/>
+		<mapping class="model.Bean.MemberCommentMusicBean"/>
+		<mapping class="model.Bean.MemberLikeMusicBean"/>
+		<mapping class="model.Bean.MessageBean"/>
+		<mapping class="model.Bean.MusicBean"/>
+		<mapping class="model.Bean.PlaylistBean"/>
+		<mapping class="model.Bean.PostBean"/>
+		<mapping class="model.Bean.ReportBean"/>
+		<mapping class="model.Bean.RewardBean"/>
+		<mapping class="model.Bean.StoryBean"/>
     </session-factory>
 </hibernate-configuration>
