@@ -256,25 +256,23 @@
 					</div>
 					<!-- End Main Column -->
 					<!-- Side Column -->
+					<br>
 					<div class="col-md-3">
 						<!-- Blog Tags -->
 						<div class="blog-tags">
-							<h3>Tags</h3>
+<!-- 							<h3>搜尋文章</h3> -->
 							<ul class="blog-tags">
-								<li><a href="#" class="blog-tag">HTML</a></li>
-								<li><a href="#" class="blog-tag">CSS</a></li>
-								<li><a href="#" class="blog-tag">JavaScript</a></li>
-								<li><a href="#" class="blog-tag">jQuery</a></li>
-								<li><a href="#" class="blog-tag">PHP</a></li>
-								<li><a href="#" class="blog-tag">Ruby</a></li>
-								<li><a href="#" class="blog-tag">CoffeeScript</a></li>
-								<li><a href="#" class="blog-tag">Grunt</a></li>
-								<li><a href="#" class="blog-tag">Bootstrap</a></li>
-								<li><a href="#" class="blog-tag">HTML5</a></li>
-							</ul>
+<!-- 					<!-- 搜尋文章 -->
+<!-- 						<form class="form-inline"> -->
+<!-- 							<input class="form-control mr-sm-2" type="search" -->
+<!-- 								placeholder="搜尋" aria-label="Search"> -->
+<!-- 							<button class="btn btn-outline-success" type="submit">搜尋</button> -->
+<!-- 						</form> -->
+						</ul>
 						</div>
 						<!-- End Blog Tags -->
 						<!-- Recent Posts -->
+						<br>
 						<div class="recent-posts">
 							<h3>最近新增文章</h3>
 							<ul class="posts-list margin-top-10">
@@ -304,8 +302,8 @@
 										<a href=""> <img class="pull-left"
 											src="assets/img/blog/thumbs/thumb3.jpg"
 											style="width: 100px; height: 90px" alt="thumb3">
-										</a> <a href="#" class="posts-list-title">Sidebar post example</a>
-										<br> <span class="recent-post-date"> July 30, 2013
+										</a> <a href="#" class="posts-list-title">第三篇</a>
+										<br> <span class="recent-post-date">2019.01.03
 										</span>
 									</div>
 									<div class="clearfix"></div>
@@ -316,8 +314,8 @@
 										<a href=""> <img class="pull-left"
 											src="assets/img/blog/thumbs/thumb4.jpg"
 											style="width: 100px; height: 90px" alt="thumb4">
-										</a> <a href="#" class="posts-list-title">Sidebar post example</a>
-										<br> <span class="recent-post-date"> July 30, 2013
+										</a> <a href="#" class="posts-list-title">第四篇</a>
+										<br> <span class="recent-post-date">2018.05.06
 										</span>
 									</div>
 									<div class="clearfix"></div>
@@ -337,6 +335,11 @@
 	<!-- === BEGIN FOOTER === -->
 	<jsp:include page="../homePage/footer.jsp" />
 	<!-- END Footer Menu -->
+	<div id="player">
+		<jsp:include page="../homePage/player.jsp"/>
+	</div>
+	
+	
 	<!-- JS -->
 	<script type="text/javascript" src="assets/js/jquery.min.js"
 		type="text/javascript"></script>

@@ -40,383 +40,385 @@
 </head>
 
 <body>
-<!-- 	<div id="body_bg"> -->
-<!-- 		<div id="pre_header" class="container"> -->
-<!-- 			<div class="row margin-top-10 visible-lg"> -->
-<!-- 				<div class="col-md-6"> -->
-<!-- 					<p> -->
-<!-- 						<strong>Phone:</strong>&nbsp;1-800-123-4567 -->
-<!-- 					</p> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-md-6 text-right"> -->
-<!-- 					<p> -->
-<!-- 						<strong>Email:</strong>info@example.com -->
-<!-- 					</p> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-		<div class="primary-container-group">
-			<!-- Background -->
-			<div class="primary-container-background">
-				<div class="primary-container"></div>
-				<div class="clearfix"></div>
-			</div>
-			<!--End Background -->
-			<!-- === BEGIN header === -->
-			<jsp:include page="../homePage/header.jsp" />
-			<!-- === END header === -->
+	<!-- 	<div id="body_bg"> -->
+	<!-- 		<div id="pre_header" class="container"> -->
+	<!-- 			<div class="row margin-top-10 visible-lg"> -->
+	<!-- 				<div class="col-md-6"> -->
+	<!-- 					<p> -->
+	<!-- 						<strong>Phone:</strong>&nbsp;1-800-123-4567 -->
+	<!-- 					</p> -->
+	<!-- 				</div> -->
+	<!-- 				<div class="col-md-6 text-right"> -->
+	<!-- 					<p> -->
+	<!-- 						<strong>Email:</strong>info@example.com -->
+	<!-- 					</p> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<div class="primary-container-group">
+		<!-- Background -->
+		<div class="primary-container-background">
+			<div class="primary-container"></div>
+			<div class="clearfix"></div>
+		</div>
+		<!--End Background -->
+		<!-- === BEGIN header === -->
+		<jsp:include page="../homePage/header.jsp" />
+		<!-- === END header === -->
 
-			<!-- === BEGIN CONTENT === -->
-			<div id="content">
-				<div class="container">
-					<div class="row margin-vert-30">
-						<!-- Main Column -->
-						<div class="col-md-9">
-							<!-- Blog Post -->
-							<div class="blog-post padding-bottom-20">
-								<!-- Blog Item Header -->
-								<div class="blog-item-header">
-									<!-- Title -->
-									<h2>
-										<a href="#">最新文章</a>
-									</h2>
-									<div class="clearfix"></div>
-									<!-- End Title -->
-								</div>
-								<!-- End Blog Item Header -->
-								<!-- Blog Item Details -->
-								<div class="blog-post-details">
-									<!-- Author Name -->
-									<div class="blog-post-details-item blog-post-details-item-left">
-										<i class="fa fa-user color-gray-light"></i> <a href="#">作者:黃金鼠</a>
-									</div>
-									<!-- End Author Name -->
-									<!-- Date -->
-									<div class="blog-post-details-item blog-post-details-item-left">
-										<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-									</div>
-									<!-- End Date -->
-									<!-- Tags -->
-									<div
-										class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-										<i class="fa fa-tag color-gray-light"></i> <a href="#">HTML5</a>,
-										<a href="#">CSS</a>, <a href="#">Grunt</a>
-									</div>
-									<!-- End Tags -->
-									<!-- # of Comments -->
-									<div
-										class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-										<a href=""> <i class="fa fa-comments color-gray-light"></i>
-											9 Comments
-										</a>
-									</div>
-									<!-- End # of Comments -->
-								</div>
-								<!-- End Blog Item Details -->
-								<!-- Blog Item Body -->
-								<div class="blog">
-									<div class="clearfix"></div>
-									<div class="blog-post-body row margin-top-15">
-										<div class="col-md-5">
-											<img class="margin-bottom-20"
-												src="imgs/mouse.PNG" alt="thumb1">
-										</div>
-										<div class="col-md-7">
-											<p >最新文章</p>
-											<p>我是一隻黃金鼠</p>
-											<!-- Read More -->
-											<a href="../findArticle/singleArticle.jsp" class="btn btn-primary">查看全文<i
-												class="icon-chevron-right readmore-icon"></i>
-											</a>
-											<!-- End Read More -->
-										</div>
-									</div>
-								</div>
-								<!-- End Blog Item Body -->
+		<!-- === BEGIN CONTENT === -->
+		<div id="content">
+			<div class="container">
+				<div class="row margin-vert-30">
+					<!-- Main Column -->
+					<div class="col-md-9">
+						<!-- Blog Post -->
+						<div class="blog-post padding-bottom-20">
+							<!-- Blog Item Header -->
+							<div class="blog-item-header">
+								<!-- Title -->
+								<h2>
+									<a href="#">最新文章</a>
+								</h2>
+								<div class="clearfix"></div>
+								<!-- End Title -->
 							</div>
-							<!-- End Blog Item -->
-							<!-- Blog Post -->
-							<div class="blog-post padding-bottom-20">
-								<!-- Blog Item Header -->
-								<div class="blog-item-header">
-									<!-- Title -->
-									<h2>
-										<a href="#">玄鳳</a>
-									</h2>
-									<div class="clearfix"></div>
-									<!-- End Title -->
+							<!-- End Blog Item Header -->
+							<!-- Blog Item Details -->
+							<div class="blog-post-details">
+								<!-- Author Name -->
+								<div class="blog-post-details-item blog-post-details-item-left">
+									<i class="fa fa-user color-gray-light"></i> <a href="#">作者:黃金鼠</a>
 								</div>
-								<!-- End Blog Item Header -->
-								<!-- Blog Item Details -->
-								<div class="blog-post-details">
-									<!-- Author Name -->
-									<div class="blog-post-details-item blog-post-details-item-left">
-										<i class="fa fa-user color-gray-light"></i> <a href="#">作者:玄鳳鸚鵡</a>
-									</div>
-									<!-- End Author Name -->
-									<!-- Date -->
-									<div class="blog-post-details-item blog-post-details-item-left">
-										<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-									</div>
-									<!-- End Date -->
-									<!-- Tags -->
-									<div
-										class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-										<i class="fa fa-tag color-gray-light"></i> <a href="#">CoffeeScript</a>,
-										<a href="#">CSS</a>, <a href="#">Ruby</a>
-									</div>
-									<!-- End Tags -->
-									<!-- # of Comments -->
-									<div
-										class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-										<a href=""> <i class="fa fa-comments color-gray-light"></i>
-											5 Comments
-										</a>
-									</div>
-									<!-- End # of Comments -->
+								<!-- End Author Name -->
+								<!-- Date -->
+								<div class="blog-post-details-item blog-post-details-item-left">
+									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
 								</div>
-								<!-- End Blog Item Details -->
-								<!-- Blog Item Body -->
-								<div class="blog">
-									<div class="clearfix"></div>
-									<div class="blog-post-body row margin-top-15">
-										<div class="col-md-5">
-											<img class="margin-bottom-20"
-												src="imgs/bird.jpg" alt="thumb2">
-										</div>
-										<div class="col-md-7">
-											<p>你好我是玄鳳</p>
-											<p>你好我是鸚鵡</p>
-											
-											<!-- Read More -->
-											<a href="#" class="btn btn-primary"> 查看全文 <i
-												class="icon-chevron-right readmore-icon"></i>
-											</a>
-											<!-- End Read More -->
-										</div>
-									</div>
+								<!-- End Date -->
+								<!-- Tags -->
+								<div
+									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
+									<i class="fa fa-tag color-gray-light"></i> <a href="#">HTML5</a>,
+									<a href="#">CSS</a>, <a href="#">Grunt</a>
 								</div>
-								<!-- End Blog Item Body -->
+								<!-- End Tags -->
+								<!-- # of Comments -->
+								<div
+									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
+									<a href=""> <i class="fa fa-comments color-gray-light"></i>
+										9 Comments
+									</a>
+								</div>
+								<!-- End # of Comments -->
 							</div>
-							<!-- End Blog Item -->
-							<!-- Blog Post -->
-							<div class="blog-post padding-bottom-20">
-								<!-- Blog Item Header -->
-								<div class="blog-item-header">
-									<!-- Title -->
-									<h2>
-										<a href="#"> 第三篇</a>
-									</h2>
-									<div class="clearfix"></div>
-									<!-- End Title -->
-								</div>
-								<!-- End Blog Item Header -->
-								<!-- Blog Item Details -->
-								<div class="blog-post-details">
-									<!-- Author Name -->
-									<div class="blog-post-details-item blog-post-details-item-left">
-										<i class="fa fa-user color-gray-light"></i> <a href="#">作者</a>
+							<!-- End Blog Item Details -->
+							<!-- Blog Item Body -->
+							<div class="blog">
+								<div class="clearfix"></div>
+								<div class="blog-post-body row margin-top-15">
+									<div class="col-md-5">
+										<img class="margin-bottom-20" src="imgs/mouse.PNG"
+											alt="thumb1">
 									</div>
-									<!-- End Author Name -->
-									<!-- Date -->
-									<div class="blog-post-details-item blog-post-details-item-left">
-										<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-									</div>
-									<!-- End Date -->
-									<!-- Tags -->
-									<div
-										class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-										<i class="fa fa-tag color-gray-light"></i> <a href="#">Bootstrap</a>,
-										<a href="#">CoffeeScript</a>, <a href="#">Ruby</a>
-									</div>
-									<!-- End Tags -->
-									<!-- # of Comments -->
-									<div
-										class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-										<a href=""> <i class="fa fa-comments color-gray-light"></i>
-											9 Comments
+									<div class="col-md-7">
+										<p>最新文章</p>
+										<p>我是一隻黃金鼠</p>
+										<!-- Read More -->
+										<a href="../findArticle/singleArticle.jsp"
+											class="btn btn-primary">查看全文<i
+											class="icon-chevron-right readmore-icon"></i>
 										</a>
-									</div>
-									<!-- End # of Comments -->
-								</div>
-								<!-- End Blog Item Details -->
-								<!-- Blog Item Body -->
-								<div class="blog">
-									<div class="clearfix"></div>
-									<div class="blog-post-body row margin-top-15">
-										<div class="col-md-5">
-											<img class="margin-bottom-20"
-												src="assets/img/blog/image3.jpg" alt="thumb3">
-										</div>
-										<div class="col-md-7">
-											<p>333333333333333333</p>
-											<!-- Read More -->
-											<a href="#" class="btn btn-primary"> 查看全文 <i
-												class="icon-chevron-right readmore-icon"></i>
-											</a>
-											<!-- End Read More -->
-										</div>
+										<!-- End Read More -->
 									</div>
 								</div>
-								<!-- End Blog Item Body -->
 							</div>
-							<!-- End Blog Item -->
-							<!-- Blog Post -->
-							<div class="blog-post padding-bottom-20">
-								<!-- Blog Item Header -->
-								<div class="blog-item-header">
-									<!-- Title -->
-									<h2>
-										<a href="#"> 第四篇</a>
-									</h2>
-									<div class="clearfix"></div>
-									<!-- End Title -->
-								</div>
-								<!-- End Blog Item Header -->
-								<!-- Blog Item Details -->
-								<div class="blog-post-details">
-									<!-- Author Name -->
-									<div class="blog-post-details-item blog-post-details-item-left">
-										<i class="fa fa-user color-gray-light"></i> <a href="#">作者</a>
-									</div>
-									<!-- End Author Name -->
-									<!-- Date -->
-									<div class="blog-post-details-item blog-post-details-item-left">
-										<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.08.03</a>
-									</div>
-									<!-- End Date -->
-									<!-- Tags -->
-									<div
-										class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-										<i class="fa fa-tag color-gray-light"></i> <a href="#">PHP</a>,
-										<a href="#">HTML</a>, <a href="#">HTML5</a>
-									</div>
-									<!-- End Tags -->
-									<!-- # of Comments -->
-									<div
-										class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-										<a href=""> <i class="fa fa-comments color-gray-light"></i>
-											4 Comments
-										</a>
-									</div>
-									<!-- End # of Comments -->
-								</div>
-								<!-- End Blog Item Details -->
-								<!-- Blog Item Body -->
-								<div class="blog">
-									<div class="clearfix"></div>
-									<div class="blog-post-body row margin-top-15">
-										<div class="col-md-5">
-											<img class="margin-bottom-20"
-												src="assets/img/blog/image4.jpg" alt="thumb4">
-										</div>
-										<div class="col-md-7">
-											<p>4444444444444444</p>
-											<!-- Read More -->
-											<a href="#" class="btn btn-primary">查看全文 <i
-												class="icon-chevron-right readmore-icon"></i>
-											</a>
-											<!-- End Read More -->
-										</div>
-									</div>
-								</div>
-								<!-- End Blog Item Body -->
-							</div>
-							<!-- End Blog Item -->
-							<!-- Pagination -->
-							<ul class="pagination">
-								<li><a href="#">&laquo;</a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li class="disabled"><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
-							<!-- End Pagination -->
+							<!-- End Blog Item Body -->
 						</div>
-						<!-- End Main Column -->
-						<!-- Side Column -->
-						<div class="col-md-3">
-							<!-- Blog Tags -->
-							<div class="blog-tags">
-								<h3>Tags</h3>
-								<ul class="blog-tags">
-									<li><a href="#" class="blog-tag">HTML</a></li>
-									<li><a href="#" class="blog-tag">CSS</a></li>
-									<li><a href="#" class="blog-tag">JavaScript</a></li>
-									<li><a href="#" class="blog-tag">jQuery</a></li>
-									<li><a href="#" class="blog-tag">PHP</a></li>
-									<li><a href="#" class="blog-tag">Ruby</a></li>
-									<li><a href="#" class="blog-tag">CoffeeScript</a></li>
-									<li><a href="#" class="blog-tag">Grunt</a></li>
-									<li><a href="#" class="blog-tag">Bootstrap</a></li>
-									<li><a href="#" class="blog-tag">HTML5</a></li>
-								</ul>
+						<!-- End Blog Item -->
+						<!-- Blog Post -->
+						<div class="blog-post padding-bottom-20">
+							<!-- Blog Item Header -->
+							<div class="blog-item-header">
+								<!-- Title -->
+								<h2>
+									<a href="#">玄鳳</a>
+								</h2>
+								<div class="clearfix"></div>
+								<!-- End Title -->
 							</div>
-							<!-- End Blog Tags -->
-							<!-- Recent Posts -->
-							<div class="recent-posts">
-								<h3>最近新增文章</h3>
-								<ul class="posts-list margin-top-10">
-									<li>
-										<div class="recent-post">
-											<a href=""> <img class="pull-left"
-												src="imgs/mouse.PNG" style="width:100px;height:90px" alt="thumb1">
-											</a> <a href="../findArticle/singleArticle.jsp" class="posts-list-title">黃金鼠
-												</a> <br> <span class="recent-post-date">
-												2019.01.02 </span>
-										</div>
-										<div class="clearfix"></div>
-									</li>
-									<br>
-									<li>
-										<div class="recent-post">
-											<a href=""> <img class="pull-left"
-												src="imgs/bird.jpg"  style="width:100px;height:90px" alt="thumb2">
-											</a> <a href="#" class="posts-list-title">玄鳳</a> <br> <span class="recent-post-date">
-												2019.01.02 </span>
-										</div>
-										<div class="clearfix"></div>
-									</li>
-									<br>
-									<li>
-										<div class="recent-post">
-											<a href=""> <img class="pull-left" 
-												src="assets/img/blog/thumbs/thumb3.jpg" style="width:100px;height:90px" alt="thumb3">
-											</a> <a href="#" class="posts-list-title">Sidebar post
-												example</a> <br> <span class="recent-post-date">
-												July 30, 2013 </span>
-										</div>
-										<div class="clearfix"></div>
-									</li>
-									<br>
-									<li>
-										<div class="recent-post">
-											<a href=""> <img class="pull-left"
-												src="assets/img/blog/thumbs/thumb4.jpg" style="width:100px;height:90px" alt="thumb4">
-											</a> <a href="#" class="posts-list-title">Sidebar post
-												example</a> <br> <span class="recent-post-date">
-												July 30, 2013 </span>
-										</div>
-										<div class="clearfix"></div>
-									</li>
-								</ul>
+							<!-- End Blog Item Header -->
+							<!-- Blog Item Details -->
+							<div class="blog-post-details">
+								<!-- Author Name -->
+								<div class="blog-post-details-item blog-post-details-item-left">
+									<i class="fa fa-user color-gray-light"></i> <a href="#">作者:玄鳳鸚鵡</a>
+								</div>
+								<!-- End Author Name -->
+								<!-- Date -->
+								<div class="blog-post-details-item blog-post-details-item-left">
+									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
+								</div>
+								<!-- End Date -->
+								<!-- Tags -->
+								<div
+									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
+									<i class="fa fa-tag color-gray-light"></i> <a href="#">CoffeeScript</a>,
+									<a href="#">CSS</a>, <a href="#">Ruby</a>
+								</div>
+								<!-- End Tags -->
+								<!-- # of Comments -->
+								<div
+									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
+									<a href=""> <i class="fa fa-comments color-gray-light"></i>
+										5 Comments
+									</a>
+								</div>
+								<!-- End # of Comments -->
 							</div>
-							<!-- End Recent Posts -->
+							<!-- End Blog Item Details -->
+							<!-- Blog Item Body -->
+							<div class="blog">
+								<div class="clearfix"></div>
+								<div class="blog-post-body row margin-top-15">
+									<div class="col-md-5">
+										<img class="margin-bottom-20" src="imgs/bird.jpg" alt="thumb2">
+									</div>
+									<div class="col-md-7">
+										<p>你好我是玄鳳</p>
+										<p>你好我是鸚鵡</p>
+
+										<!-- Read More -->
+										<a href="#" class="btn btn-primary"> 查看全文 <i
+											class="icon-chevron-right readmore-icon"></i>
+										</a>
+										<!-- End Read More -->
+									</div>
+								</div>
+							</div>
+							<!-- End Blog Item Body -->
 						</div>
-						<!-- End Side Column -->
+						<!-- End Blog Item -->
+						<!-- Blog Post -->
+						<div class="blog-post padding-bottom-20">
+							<!-- Blog Item Header -->
+							<div class="blog-item-header">
+								<!-- Title -->
+								<h2>
+									<a href="#">讓我為你唱情歌</a>
+								</h2>
+								<div class="clearfix"></div>
+								<!-- End Title -->
+							</div>
+							<!-- End Blog Item Header -->
+							<!-- Blog Item Details -->
+							<div class="blog-post-details">
+								<!-- Author Name -->
+								<div class="blog-post-details-item blog-post-details-item-left">
+									<i class="fa fa-user color-gray-light"></i> <a href="#">蕭敬騰</a>
+								</div>
+								<!-- End Author Name -->
+								<!-- Date -->
+								<div class="blog-post-details-item blog-post-details-item-left">
+									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
+								</div>
+								<!-- End Date -->
+								<!-- Tags -->
+								<div
+									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
+									<i class="fa fa-tag color-gray-light"></i> <a href="#">Bootstrap</a>,
+									<a href="#">CoffeeScript</a>, <a href="#">Ruby</a>
+								</div>
+								<!-- End Tags -->
+								<!-- # of Comments -->
+								<div
+									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
+									<a href=""> <i class="fa fa-comments color-gray-light"></i>
+										9 Comments
+									</a>
+								</div>
+								<!-- End # of Comments -->
+							</div>
+							<!-- End Blog Item Details -->
+							<!-- Blog Item Body -->
+							<div class="blog">
+								<div class="clearfix"></div>
+								<div class="blog-post-body row margin-top-15">
+									<div class="col-md-5">
+										<img class="margin-bottom-20" src="imgs/hqdefault.jpg"
+											alt="thumb3">
+									</div>
+									<div class="col-md-7">
+										<p>333333333333333333</p>
+										<!-- Read More -->
+										<a href="#" class="btn btn-primary"> 查看全文 <i
+											class="icon-chevron-right readmore-icon"></i>
+										</a>
+										<!-- End Read More -->
+									</div>
+								</div>
+							</div>
+							<!-- End Blog Item Body -->
+						</div>
+						<!-- End Blog Item -->
+						<!-- Blog Post -->
+						<div class="blog-post padding-bottom-20">
+							<!-- Blog Item Header -->
+							<div class="blog-item-header">
+								<!-- Title -->
+								<h2>
+									<a href="#"> 第四篇</a>
+								</h2>
+								<div class="clearfix"></div>
+								<!-- End Title -->
+							</div>
+							<!-- End Blog Item Header -->
+							<!-- Blog Item Details -->
+							<div class="blog-post-details">
+								<!-- Author Name -->
+								<div class="blog-post-details-item blog-post-details-item-left">
+									<i class="fa fa-user color-gray-light"></i> <a href="#">作者</a>
+								</div>
+								<!-- End Author Name -->
+								<!-- Date -->
+								<div class="blog-post-details-item blog-post-details-item-left">
+									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.08.03</a>
+								</div>
+								<!-- End Date -->
+								<!-- Tags -->
+								<div
+									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
+									<i class="fa fa-tag color-gray-light"></i> <a href="#">PHP</a>,
+									<a href="#">HTML</a>, <a href="#">HTML5</a>
+								</div>
+								<!-- End Tags -->
+								<!-- # of Comments -->
+								<div
+									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
+									<a href=""> <i class="fa fa-comments color-gray-light"></i>
+										4 Comments
+									</a>
+								</div>
+								<!-- End # of Comments -->
+							</div>
+							<!-- End Blog Item Details -->
+							<!-- Blog Item Body -->
+							<div class="blog">
+								<div class="clearfix"></div>
+								<div class="blog-post-body row margin-top-15">
+									<div class="col-md-5">
+										<img class="margin-bottom-20" src="assets/img/blog/image4.jpg"
+											alt="thumb4">
+									</div>
+									<div class="col-md-7">
+										<p>4444444444444444</p>
+										<!-- Read More -->
+										<a href="#" class="btn btn-primary">查看全文 <i
+											class="icon-chevron-right readmore-icon"></i>
+										</a>
+										<!-- End Read More -->
+									</div>
+								</div>
+							</div>
+							<!-- End Blog Item Body -->
+						</div>
+						<!-- End Blog Item -->
+						<!-- Pagination -->
+						<ul class="pagination">
+							<li><a href="#">&laquo;</a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li class="disabled"><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">&raquo;</a></li>
+						</ul>
+						<!-- End Pagination -->
 					</div>
+					<br> <br>
+					<!-- End Main Column -->
+					<!-- Side Column -->
+					<div class="col-md-3">
+						<div class="blog-tags">
+							<h3>搜尋文章</h3>
+							<ul class="blog-tags">
+
+								<!-- 搜尋文章 -->
+								<form class="form-inline">
+									<input class="form-control mr-sm-2" type="search"
+										placeholder="搜尋" aria-label="Search">
+									<button class="btn btn-outline-success" type="submit">搜尋</button>
+								</form>
+							</ul>
+						</div>
+
+						<hr>
+						<br>
+						<div class="recent-posts">
+							<h3>最近新增文章</h3>
+							<ul class="posts-list margin-top-10">
+								<li>
+									<div class="recent-post">
+										<a href=""> <img class="pull-left" src="imgs/mouse.PNG"
+											style="width: 100px; height: 90px" alt="thumb1">
+										</a> <a href="../findArticle/singleArticle.jsp"
+											class="posts-list-title">黃金鼠 </a> <br> <span
+											class="recent-post-date"> 2019.01.02 </span>
+									</div>
+									<div class="clearfix"></div>
+								</li>
+								<br>
+								<li>
+									<div class="recent-post">
+										<a href=""> <img class="pull-left" src="imgs/bird.jpg"
+											style="width: 100px; height: 90px" alt="thumb2">
+										</a> <a href="#" class="posts-list-title">玄鳳</a> <br> <span
+											class="recent-post-date"> 2019.01.02 </span>
+									</div>
+									<div class="clearfix"></div>
+								</li>
+								<br>
+								<li>
+									<div class="recent-post">
+										<a href=""> <img class="pull-left"
+											src="assets/img/blog/thumbs/thumb3.jpg"
+											style="width: 100px; height: 90px" alt="thumb3">
+										</a> <a href="#" class="posts-list-title">第三篇</a> <br> <span
+											class="recent-post-date"> 2019.02.03 </span>
+									</div>
+									<div class="clearfix"></div>
+								</li>
+								<br>
+								<li>
+									<div class="recent-post">
+										<a href=""> <img class="pull-left"
+											src="assets/img/blog/thumbs/thumb4.jpg"
+											style="width: 100px; height: 90px" alt="thumb4">
+										</a> <a href="#" class="posts-list-title">第四篇</a> <br> <span
+											class="recent-post-date"> 2019.05.06 </span>
+									</div>
+									<div class="clearfix"></div>
+								</li>
+							</ul>
+						</div>
+						<!-- End Recent Posts -->
+					</div>
+					<!-- End Side Column -->
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
 	<!-- === END CONTENT === -->
-	
+
 	<!-- === BEGIN FOOTER === -->
 	<jsp:include page="../homePage/footer.jsp" />
 	<!-- END Footer Menu -->
-	
+	<div id="player">
+		<jsp:include page="../homePage/player.jsp" />
+	</div>
+
+
 	<!-- JS -->
 	<script type="text/javascript" src="assets/js/jquery.min.js"
 		type="text/javascript"></script>

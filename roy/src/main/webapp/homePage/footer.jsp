@@ -6,26 +6,29 @@
 		<div  class="row" >
 			<!-- Sample Menu -->
 			<div class="col-md-3 margin-bottom-20" >
-				<h3 class="margin-bottom-10">快選目錄</h3>
+				<h3 class="margin-bottom-10">關於發聲</h3>
 				<ul class="menu">
-					<li><a class="fa-tasks" href="#">放一些</a></li>
-					<li><a class="fa-users" href="#">應該是</a></li>
-					<li><a class="fa-signal" href="#">目錄或是</a></li>
-					<li><a class="fa-coffee" href="#">連結</a></li>
+					<li><a class="fa-tasks" href="#">會員服務條款</a></li>
+					<li><a class="fa-users" href="#">隱私權保護政策</a></li>
+					<li><a class="fa-signal" href="#">著作權保護措施</a></li>
+					<li><a class="fa-coffee" href="#">免責聲明</a></li>
 				</ul>
 				<div class="clearfix"></div>
 			</div>
 			<!-- End Sample Menu -->
 			<!-- Contact Details -->
 			<div class="col-md-3 margin-bottom-20">
-				<h3 class="margin-bottom-10">資策會</h3>
-				<p>
-					<span class="fa-phone">連絡電話:</span>(02)6631-6666<br> <span
-						class="fa-envelope">Email:</span> <a
-						href="mailto:info@joomla51.com">info@joomla51.com</a> <br> <span
-						class="fa-link">Website:</span> <a href="http://www.joomla51.com">www.joomla51.com</a>
-				</p>
-				<p>台北市大安區復興南路390號</p>
+				<h3 class="margin-bottom-10">商務</h3>
+<!-- 				<p> -->
+<!-- 					<span class="fa-phone">連絡電話:</span>(02)6631-6666<br>  -->
+<!-- 					<span class="fa-envelope">Email:</span><a href="mailto:info@joomla51.com">info@joomla51.com</a> <br>  -->
+<!-- 					<span class="fa-link">Website:</span><a href="http://www.joomla51.com">www.joomla51.com</a> -->
+<!-- 				</p> -->
+				
+					<p>
+						<span>行銷合作</span>
+						<span class="fa-envelope">Email:</span><a href="mailto:info@joomla51.com">info@joomla51.com</a>
+					</p>
 			</div>
 			<!-- End Contact Details -->
 			<!-- Thumbs Gallery -->
@@ -75,10 +78,9 @@
 			<!-- End Thumbs Gallery -->
 			<!-- Disclaimer -->
 			<div class="col-md-3 margin-bottom-20">
-				<h3 class="margin-bottom-10">Disclaimer</h3>
-				<p>想要發洩卻沒地方可以宣洩嗎？想要讓全世界的人聽到你的聲音嗎？ 如果你有這些煩惱的話，就來發聲吧!
-					發聲是一個可以單純放鬆聽音樂的空間，也是一個提供獨立音樂創作者分享交流的平台，
-					除了讓音樂創作者可以尋找知音同好，也可以使他們的音樂作品被更多人挖掘看到， 為夢想開創一條道路，讓全世界聽見他們的聲音。</p>
+				<h3 class="margin-bottom-10">其他</h3>
+				<p>人才招募</p>
+				<p>FarVOiCE 媒體工具</p>
 				<div class="clearfix"></div>
 			</div>
 			<!-- End Disclaimer -->
