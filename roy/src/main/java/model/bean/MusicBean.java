@@ -1,11 +1,10 @@
-package model.Bean;
+package model.bean;
 
 import java.sql.Blob;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="Music")
@@ -40,6 +39,7 @@ public class MusicBean {
 	private Integer music_id;
 	private String music_name;
 	private String member_username;
+	@Column(updatable=false)
 	private Blob music_music;
 	private String music_caption;
 	private java.util.Date music_uploadTime;
@@ -74,6 +74,7 @@ public class MusicBean {
 	public void setMember_username(String member_username) {
 		this.member_username = member_username;
 	}
+	
 	public Blob getMusic_music() {
 		return music_music;
 	}

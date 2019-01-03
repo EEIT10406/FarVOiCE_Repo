@@ -1,10 +1,10 @@
-package model.Bean;
+package model.bean;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import model.Bean.primarykey.FollowId;
+import model.bean.primarykey.FollowId;
 
 @Entity
 @Table(name="Follow")
@@ -21,6 +21,7 @@ public class FollowBean {
 	public String toString() {
 		return "FollowBean [id=" + id + ", follow_time=" + follow_time + "]";
 	}
+	
 	@EmbeddedId
 	private FollowId id;
 	public FollowId getId() {

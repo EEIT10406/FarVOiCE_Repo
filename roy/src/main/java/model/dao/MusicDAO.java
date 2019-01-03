@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -14,7 +13,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import model.Bean.MusicBean;
+import model.bean.BackerBean;
+import model.bean.MusicBean;
 import model.hibernate.HibernateUtil;
 
 public class MusicDAO {
@@ -37,28 +37,38 @@ public class MusicDAO {
 		//findByPk
 //		MusicBean bean0 = musicDAO.findByPrimaryKey(1);
 //		System.out.println(bean0);		
-//		
+		
 		//findAll
-		List<MusicBean> beans = musicDAO.findAll();
-		for(MusicBean bean1:beans) {
-			System.out.println(bean1);
-		}
+//		List<MusicBean> beans = musicDAO.findAll();
+//		for(MusicBean bean1:beans) {
+//			System.out.println(bean1);
+//		}
 		
 		//create
 //		MusicBean bean2 = new MusicBean();
 //		bean2.setMusic_id(6);
+//		File fileIn = new File("C:/Users/User/Desktop/FarVoice/浪人琵琶.mp3");
+//		int length = (int)fileIn.length();
+//		byte[] fileInByteArray = new byte[length];
+//		Blob blob = null;
+//		FileInputStream fis = new FileInputStream(fileIn);
+//		fis.read(fileInByteArray);
+//		blob = new SerialBlob(fileInByteArray);
+//		fis.close();
+//		bean2.setMusic_music(blob);
 //		MusicBean beanResult = musicDAO.create(bean2);
 //		System.out.println(beanResult);
-		
+//		
 		//update
 //		MusicBean bean3 = new MusicBean();
-//		bean3.setMember_username("roy");
-//		bean3.setMember_password("456update");
-//		bean3.setMember_nickname("資海喔咿咿");
+//		bean3.setMusic_id(6);
+//		bean3.setMusic_name("666唱情歌");
 //		musicDAO.update(bean3);
+//		MusicBean updateTempBean = musicDAO.findByPrimaryKey(6);
+//		System.out.println(updateTempBean);
 		
 		//remove
-//		boolean  remove = musicDAO.remove("Roy");
+//		boolean  remove = musicDAO.remove(6);
 //		System.out.println(remove);
 		
 		
@@ -78,17 +88,17 @@ public class MusicDAO {
 	}
 	
 	public MusicBean findByPrimaryKey(Integer music_id) {
-		//0102 OK
+		//0103 OK
 		return this.getSession().get(MusicBean.class, music_id);
 	}
 	public List<MusicBean> findAll() {
-		//0102 OK
+		//0103 OK
 		return this.getSession().createQuery("from MusicBean", MusicBean.class)
 				.setMaxResults(50)
 				.list();
 	}
 	public MusicBean create(MusicBean bean) {
-	
+		//0103 OK
 		if(bean!=null) {
 			MusicBean result = this.getSession().get(MusicBean.class, bean.getMusic_id());
 			if(result==null) {
@@ -100,13 +110,13 @@ public class MusicDAO {
 	}
 	
 	public void update(MusicBean bean) {
-	
+	//0103 OK
 		getSession().update(bean);
 	}
 	
-	public boolean remove(String member_username) {
-	
-		MusicBean result = this.getSession().get(MusicBean.class, member_username);
+	public boolean remove(Integer music_id) {
+	//0103 OK
+		MusicBean result = this.getSession().get(MusicBean.class, music_id);
 		if(result!=null) {
 			this.getSession().delete(result);
 			return true;

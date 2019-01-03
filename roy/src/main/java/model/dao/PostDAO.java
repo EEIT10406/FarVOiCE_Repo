@@ -1,0 +1,122 @@
+package model.dao;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+import model.bean.PostBean;
+import model.hibernate.HibernateUtil;
+
+public class PostDAO {
+	//Spring MVC
+//	private SessionFactory sessionFactory;
+//	public void setSessionFactory(SessionFactory sessionFactory) {
+//		this.sessionFactory = sessionFactory;
+//	}
+//	public Session getSession() {
+//	return this.sessionFactory.getCurrentSession();
+//}
+	
+	
+	public static void main(String... args) throws IOException, Exception, SQLException {
+		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		PostDAO postDAO = new PostDAO();
+		postDAO.setSession(session);
+		
+//		//findByPk
+//		PostBean bean0 = postDAO.findByPrimaryKey(1);
+//		System.out.println(bean0);		
+//		
+//		//findAll
+		List<PostBean> beans = postDAO.findAll();
+		for(PostBean bean1:beans) {
+			System.out.println(bean1);
+		}
+		
+//		//create
+//		PostBean bean2 = new PostBean();
+//		bean2.setPost_idS(5);
+//		bean2.setMember_username("Jack");
+//		bean2.setPost_content("幹哪媽我最終二");
+//		java.util.Date date = java.sql.Date.valueOf("2019-01-03");
+//		bean2.setPost_time(date);
+//		bean2.setPost_privacy(true);
+//		PostBean beanResult = postDAO.create(bean2);
+//		System.out.println(beanResult);
+		
+//		//update 
+//		PostBean bean3 = new PostBean();
+//		bean3.setPost_idS(4);
+//		bean3.setMember_username("Jack");
+//		bean3.setPost_content("幹哪媽我最終二4444444444");
+//		java.util.Date date = java.sql.Date.valueOf("2019-01-03");
+//		bean3.setPost_time(date);
+//		bean3.setPost_privacy(true);
+//		postDAO.update(bean3);
+//		PostBean updateTempBean = postDAO.findByPrimaryKey(4);
+//		System.out.println(updateTempBean);
+		
+//		//remove
+		boolean  remove = postDAO.remove(5);
+		System.out.println(remove);
+		
+		
+		
+		tx.commit();
+		session.close();
+		HibernateUtil.closeSessionFactory();
+	}
+	
+	private Session session;
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
+	public Session getSession() {
+		return session;
+	}
+	
+	public PostBean findByPrimaryKey(Integer post_idS) {
+		//0103 OK
+		return this.getSession().get(PostBean.class, post_idS);
+	}
+	public List<PostBean> findAll() {
+		//0103 OK
+		return this.getSession().createQuery("from PostBean", PostBean.class)
+				.setMaxResults(50)
+				.list();
+	}
+	public PostBean create(PostBean bean) {
+		//0103 OK
+		if(bean!=null) {
+			PostBean result = this.getSession().get(PostBean.class, bean.getPost_idS());
+			if(result==null) {
+				this.getSession().save(bean);
+				return bean;
+			}
+		}
+		return null;
+	}
+	
+	public void update(PostBean bean) {
+		//0103 OK
+		getSession().clear();
+		getSession().update(bean);
+	}
+	
+	public boolean remove(Integer post_idS) {
+		//0103 OK
+		PostBean result = this.getSession().get(PostBean.class, post_idS);
+		if(result!=null) {
+			this.getSession().delete(result);
+			return true;
+		}
+		return false;
+	}
+}

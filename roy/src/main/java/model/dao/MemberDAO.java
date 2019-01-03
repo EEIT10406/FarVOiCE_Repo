@@ -1,20 +1,14 @@
 package model.dao;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
-
-import javax.sql.rowset.serial.SerialBlob;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import model.Bean.MemberBean;
+import model.bean.MemberBean;
 import model.hibernate.HibernateUtil;
 
 public class MemberDAO {
@@ -115,6 +109,7 @@ public class MemberDAO {
 	
 	public void update(MemberBean bean) {
 		//1228 OK
+		getSession().clear();
 		getSession().update(bean);
 	}
 	

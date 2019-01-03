@@ -1,4 +1,4 @@
-package model.Bean;
+package model.bean;
 
 import java.sql.Blob;
 
@@ -23,7 +23,7 @@ public String toString() {
 	funding_city        varchar(10),--發起募資所在城市
 	funding_title       varchar(30),
 	funding_styleName   varchar(20),--音樂類型(選填,單選)
-	funding_image       varbinary,
+	funding_image       varbinary(max),
 	music_id            int			REFERENCES Music (music_id),
 	funding_goal        int,--募資金額目標
 	funding_currentAmount        int,--募資目前金額

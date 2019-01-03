@@ -1,9 +1,14 @@
-package model.Bean.primarykey;
+package model.bean.primarykey;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 public class MemberLikeMusicId implements Serializable{
+	@Override
+	public String toString() {
+		return "MemberLikeMusicId [member_username=" + member_username + ", music_id=" + music_id + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(getMember_username(), getMusic_id());

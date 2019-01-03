@@ -1,10 +1,10 @@
-package model.Bean;
+package model.bean;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import model.Bean.primarykey.ListMusicId;
+import model.bean.primarykey.ListMusicId;
 
 @Entity
 @Table(name="ListMusic")
@@ -18,7 +18,7 @@ public class ListMusicBean {
 		return "ListMusicBean [id=" + id + "]";
 	}
 	//	private Integer playlist_id;
-//	private Integer music_id;
+	//	private Integer music_id;
 	@EmbeddedId
 	private ListMusicId id;
 	public ListMusicId getId() {

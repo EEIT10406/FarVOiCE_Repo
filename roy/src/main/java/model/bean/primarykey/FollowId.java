@@ -1,10 +1,15 @@
-package model.Bean.primarykey;
+package model.bean.primarykey;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 public class FollowId implements Serializable{
  
+	@Override
+	public String toString() {
+		return "FollowId [member_usernameS=" + member_usernameS + ", member_usernameM=" + member_usernameM + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(getMember_usernameS(), getMember_usernameM());

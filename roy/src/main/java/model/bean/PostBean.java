@@ -1,4 +1,4 @@
-package model.Bean;
+package model.bean;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +13,7 @@ public class PostBean {
 				+ ", post_content=" + post_content + ", post_time=" + post_time + ", post_privacy=" + post_privacy
 				+ "]";
 	}
-	//	post_idS		int			primary key,
+//	post_idS		int			primary key,
 //	post_idM		int			REFERENCES Post (post_idS),--發文本人此欄位為null
 //	member_username	varchar(30) REFERENCES member (member_username),
 //	post_content	varchar(800),

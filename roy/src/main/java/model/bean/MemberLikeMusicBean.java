@@ -1,10 +1,10 @@
-package model.Bean;
+package model.bean;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import model.Bean.primarykey.MemberLikeMusicId;
+import model.bean.primarykey.MemberLikeMusicId;
 
 @Entity
 @Table(name="MemberLikeMusic")
