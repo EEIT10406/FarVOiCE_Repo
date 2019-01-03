@@ -21,7 +21,7 @@ public class BackerDAO {
 //	return this.sessionFactory.getCurrentSession();
 //}
 	
-	
+	 
 	public static void main(String... args) throws IOException, Exception, SQLException {
 		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
 		Session session = sessionFactory.openSession();
