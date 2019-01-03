@@ -134,22 +134,7 @@
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
-					<hr>
-					<h6 style="margin: 0;">
-						4<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<h4 style="margin: 0;">CLOSED</h4>
-					<p>
-						<small>* Lorem ipsum dolor sit amet</small>
-					</p>
-					<hr>
-					<h6 style="margin: 0;">
-						5<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
-					<p>
-						<small>* Lorem ipsum dolor sit amet</small>
-					</p>
+					
 					<button type="button" class="topTen">
 						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
 					</button>
@@ -184,22 +169,7 @@
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
-					<hr>
-					<h6 style="margin: 0;">
-						4<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<h4 style="margin: 0;">CLOSED</h4>
-					<p>
-						<small>* Lorem ipsum dolor sit amet</small>
-					</p>
-					<hr>
-					<h6 style="margin: 0;">
-						5<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
-					<p>
-						<small>* Lorem ipsum dolor sit amet</small>
-					</p>
+					
 					<button type="button" class="topTen">
 						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
 					</button>
@@ -234,23 +204,7 @@
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
-					<hr>
-					<h6 style="margin: 0;">
-						4<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
-					<p>
-						<small>* Lorem ipsum dolor sit amet</small>
-					</p>
-					<hr>
-					<h6 style="margin: 0;">
-						5<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<h4 style="margin: 0;">CLOSED</h4>
-					<p>
-						<small>* Lorem ipsum dolor sit amet</small>
-					</p>
-
+									
 					<button type="button" class="topTen">
 						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
 					</button>

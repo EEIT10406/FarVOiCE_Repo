@@ -31,7 +31,7 @@ table {
 
 .music {
 	width: 70px;
-	height:70px;
+	height: 70px;
 }
 
 .heart {
@@ -49,6 +49,12 @@ table {
 .heartCount {
 	margin-top: 10px;
 	font-size: 13px;
+}
+
+.btnAddList {
+	color: black;
+	background-color: white;
+	border: 0px;
 }
 </style>
 
@@ -164,81 +170,16 @@ table {
 																class="shareAndAdd"> <a href=""
 																style="color: black;"><img src="../img/share.png"
 																	width="15px" />分享</a>
-															</span> <span class="dropdown"> <span id="add"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false"><button type="button"
-																		class="btn" style="outline: none;">
-																		<img src="../img/add.png" width="15px">更多
-																	</button></span> <span class="dropdown-menu"
-																style="background-color: white;">
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#addToPlayList">加入歌單</button>
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#createPlayList">建立歌單</button>
+															</span> <span id="add">
+
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#addList"
+																	style="outline: none;">
+																	<img src="../img/add.png" width="15px">加入歌單
+																</button>
+
 															</span>
-															</span>
-														</div> 
-														
-														<!-- addPlayList & createPlayList begin-->
-
-														<div class="modal fade" id="addToPlayList"
-															aria-hidden="true">
-															<div class="modal-dialog" style="width: 300px;">
-																<div class="modal-content">
-																	<h5 style="margin: 10px;">加入歌單</h5>
-																	<form>
-																		<div class="modal-body">
-
-																			<div class="form-group">
-																				<select class="form-control">
-																					<option>歌單名稱</option>
-																				</select>
-																			</div>
-																		</div>
-																		<div class="modal-footer">
-																			<button type="button" class="btn btn-primary"
-																				data-dismiss="modal">取消</button>
-																			<button type="button" class="btn btn-primary">確定</button>
-																		</div>
-																	</form>
-																</div>
-															</div>
-														</div>
-
-														<div class="modal fade" id="createPlayList"
-															aria-hidden="true">
-															<div class="modal-dialog" style="width: 300px;">
-																<div class="modal-content">
-																	<h5 style="margin: 10px;">建立歌單</h5>
-
-																	<form>
-																		<div class="modal-body">
-																			<div class="form-group">
-																				<input type="text" class="form-control"
-																					placeHolder="請輸入歌單名稱" id="recipient-name">
-																			</div>
-																			<div class="form-group">
-																				<select class="form-control">
-																					<option>狀態 : 公開</option>
-																					<option>狀態 : 隱藏</option>
-																				</select>
-																			</div>
-																		</div>
-																		<div class="modal-footer">
-																			<button type="button" class="btn btn-primary"
-																				data-dismiss="modal">取消</button>
-																			<button type="button" class="btn btn-primary">確定</button>
-																		</div>
-
-																	</form>
-																</div>
-															</div>
-														</div> 
-														<!-- addPlayList & createPlayList end-->
-														
-														</td>
+														</div></td>
 													<td>老蕭</td>
 													<td>02:44</td>
 													<td>2018-12-12</td>
@@ -255,20 +196,14 @@ table {
 																class="shareAndAdd"> <a href=""
 																style="color: black;"><img src="../img/share.png"
 																	width="15px" />分享</a>
-															</span> <span class="dropdown"> <span id="add"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false"><button type="button"
-																		class="btn" style="outline: none;">
-																		<img src="../img/add.png" width="15px">更多
-																	</button></span> <span class="dropdown-menu"
-																style="background-color: white;">
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#addToPlayList">加入歌單</button>
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#createPlayList">建立歌單</button>
-															</span>
+															</span> <span id="add">
+
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#addList"
+																	style="outline: none;">
+																	<img src="../img/add.png" width="15px">加入歌單
+																</button>
+
 															</span>
 														</div></td>
 													<td>老蕭</td>
@@ -287,20 +222,14 @@ table {
 																class="shareAndAdd"> <a href=""
 																style="color: black;"><img src="../img/share.png"
 																	width="15px" />分享</a>
-															</span> <span class="dropdown"> <span id="add"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false"><button type="button"
-																		class="btn" style="outline: none;">
-																		<img src="../img/add.png" width="15px">更多
-																	</button></span> <span class="dropdown-menu"
-																style="background-color: white;">
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#addToPlayList">加入歌單</button>
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#createPlayList">建立歌單</button>
-															</span>
+															</span> <span id="add">
+
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#addList"
+																	style="outline: none;">
+																	<img src="../img/add.png" width="15px">加入歌單
+																</button>
+
 															</span>
 														</div></td>
 													<td>老蕭</td>
@@ -319,20 +248,14 @@ table {
 																class="shareAndAdd"> <a href=""
 																style="color: black;"><img src="../img/share.png"
 																	width="15px" />分享</a>
-															</span> <span class="dropdown"> <span id="add"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false"><button type="button"
-																		class="btn" style="outline: none;">
-																		<img src="../img/add.png" width="15px">更多
-																	</button></span> <span class="dropdown-menu"
-																style="background-color: white;">
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#addToPlayList">加入歌單</button>
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#createPlayList">建立歌單</button>
-															</span>
+															</span> <span id="add">
+
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#addList"
+																	style="outline: none;">
+																	<img src="../img/add.png" width="15px">加入歌單
+																</button>
+
 															</span>
 														</div></td>
 													<td>老蕭</td>
@@ -351,20 +274,14 @@ table {
 																class="shareAndAdd"> <a href=""
 																style="color: black;"><img src="../img/share.png"
 																	width="15px" />分享</a>
-															</span> <span class="dropdown"> <span id="add"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false"><button type="button"
-																		class="btn" style="outline: none;">
-																		<img src="../img/add.png" width="15px">更多
-																	</button></span> <span class="dropdown-menu"
-																style="background-color: white;">
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#addToPlayList">加入歌單</button>
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#createPlayList">建立歌單</button>
-															</span>
+															</span> <span id="add">
+
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#addList"
+																	style="outline: none;">
+																	<img src="../img/add.png" width="15px">加入歌單
+																</button>
+
 															</span>
 														</div></td>
 													<td>老蕭</td>
@@ -383,20 +300,14 @@ table {
 																class="shareAndAdd"> <a href=""
 																style="color: black;"><img src="../img/share.png"
 																	width="15px" />分享</a>
-															</span> <span class="dropdown"> <span id="add"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false"><button type="button"
-																		class="btn" style="outline: none;">
-																		<img src="../img/add.png" width="15px">更多
-																	</button></span> <span class="dropdown-menu"
-																style="background-color: white;">
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#addToPlayList">加入歌單</button>
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#createPlayList">建立歌單</button>
-															</span>
+															</span> <span id="add">
+
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#addList"
+																	style="outline: none;">
+																	<img src="../img/add.png" width="15px">加入歌單
+																</button>
+
 															</span>
 														</div></td>
 													<td>老蕭</td>
@@ -415,20 +326,14 @@ table {
 																class="shareAndAdd"> <a href=""
 																style="color: black;"><img src="../img/share.png"
 																	width="15px" />分享</a>
-															</span> <span class="dropdown"> <span id="add"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false"><button type="button"
-																		class="btn" style="outline: none;">
-																		<img src="../img/add.png" width="15px">更多
-																	</button></span> <span class="dropdown-menu"
-																style="background-color: white;">
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#addToPlayList">加入歌單</button>
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#createPlayList">建立歌單</button>
-															</span>
+															</span> <span id="add">
+
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#addList"
+																	style="outline: none;">
+																	<img src="../img/add.png" width="15px">加入歌單
+																</button>
+
 															</span>
 														</div></td>
 													<td>老蕭</td>
@@ -447,20 +352,14 @@ table {
 																class="shareAndAdd"> <a href=""
 																style="color: black;"><img src="../img/share.png"
 																	width="15px" />分享</a>
-															</span> <span class="dropdown"> <span id="add"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false"><button type="button"
-																		class="btn" style="outline: none;">
-																		<img src="../img/add.png" width="15px">更多
-																	</button></span> <span class="dropdown-menu"
-																style="background-color: white;">
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#addToPlayList">加入歌單</button>
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#createPlayList">建立歌單</button>
-															</span>
+															</span> <span id="add">
+
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#addList"
+																	style="outline: none;">
+																	<img src="../img/add.png" width="15px">加入歌單
+																</button>
+
 															</span>
 														</div></td>
 													<td>老蕭</td>
@@ -479,20 +378,14 @@ table {
 																class="shareAndAdd"> <a href=""
 																style="color: black;"><img src="../img/share.png"
 																	width="15px" />分享</a>
-															</span> <span class="dropdown"> <span id="add"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false"><button type="button"
-																		class="btn" style="outline: none;">
-																		<img src="../img/add.png" width="15px">更多
-																	</button></span> <span class="dropdown-menu"
-																style="background-color: white;">
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#addToPlayList">加入歌單</button>
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#createPlayList">建立歌單</button>
-															</span>
+															</span> <span id="add">
+
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#addList"
+																	style="outline: none;">
+																	<img src="../img/add.png" width="15px">加入歌單
+																</button>
+
 															</span>
 														</div></td>
 													<td>老蕭</td>
@@ -511,23 +404,15 @@ table {
 																class="shareAndAdd"> <a href=""
 																style="color: black;"><img src="../img/share.png"
 																	width="15px" />分享</a>
-															</span> <span class="dropdown"> <span id="add"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false"><button type="button"
-																		class="btn" style="outline: none;">
-																		<img src="../img/add.png" width="15px">更多
-																	</button></span> <span class="dropdown-menu"
-																style="background-color: white;">
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#addToPlayList">加入歌單</button>
-																	<button class="btn" style="outline: none;"
-																		type="button" data-toggle="modal"
-																		data-target="#createPlayList">建立歌單</button>
-															</span>
-															</span>
+															</span> <span id="add">
 
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#addList"
+																	style="outline: none;">
+																	<img src="../img/add.png" width="15px">加入歌單
+																</button>
 
+															</span>
 														</div></td>
 													<td>老蕭</td>
 													<td>02:44</td>
@@ -558,21 +443,21 @@ table {
 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
 														<div>
 
-															<img src="emptyLove.png" class="love"> <span
-																id="share" class="shareAndAdd"><a href=""
-																style="color: black;"><img src="share.png"
-																	width="15px" />分享</a> </span> <span class="dropdown"> <span
-																class="shareAndAdd" id="add" data-toggle="dropdown"
-																aria-haspopup="true" aria-expanded="false"><a
-																	href="" style="color: black;"><img src="add.png"
-																		width="15px" />更多</a></span> <span class="dropdown-menu"
-																style="background-color: white;"
-																aria-labelledby="dropdownMenu2">
-																	<button class="dropdown-item" type="button">加入歌單</button>
-																	<button class="dropdown-item" type="button">建立歌單</button>
-															</span>
-															</span>
+															<div>
+															<img src="../img/emptyLove.png" class="heart"> <span
+																class="heartCount"> 0</span> <span id="share"
+																class="shareAndAdd"> <a href=""
+																style="color: black;"><img src="../img/share.png"
+																	width="15px" />分享</a>
+															</span> <span id="add">
 
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#addList"
+																	style="outline: none;">
+																	<img src="../img/add.png" width="15px">加入歌單
+																</button>
+
+															</span>
 														</div></td>
 													<td>老蕭</td>
 													<td>02:44</td>
@@ -723,6 +608,36 @@ table {
 		</div>
 	</div>
 	<!-- === END CONTENT === -->
+
+	<!-- addPlayList begin-->
+	<div class="modal fade" id="addList" aria-hidden="true">
+		<div class="modal-dialog" style="width: 300px;">
+			<div class="modal-content">
+				<h5 style="margin: 10px;">加入歌單</h5>
+				<form>
+					<div class="modal-body">
+
+						<div class="form-group">
+							<select class="form-control">
+								<option>歌單名稱</option>
+							</select>
+						</div>
+						<div style="float: right;">
+							<a href="">建立歌單</a>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary">確定</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- addPlayList end-->
+
 
 	<jsp:include page="../homePage/footer.jsp" />
 	<div id="player">
