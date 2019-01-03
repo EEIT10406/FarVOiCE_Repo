@@ -1,23 +1,30 @@
 package model.Bean;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import model.Bean.primarykey.ListMusicId;
+
+@Entity
+@Table(name="ListMusic")
 public class ListMusicBean {
 //	playlist_id		int			 REFERENCES PlayList (playlist_id),
 //	music_id		int			 REFERENCES Music (music_id),
 //	PRIMARY KEY(music_id, playlist_id)
-	private Integer playlist_id;
-	private Integer music_id;
-	public Integer getPlaylist_id() {
-		return playlist_id;
+
+	@Override
+	public String toString() {
+		return "ListMusicBean [id=" + id + "]";
 	}
-	public void setPlaylist_id(Integer playlist_id) {
-		this.playlist_id = playlist_id;
+	//	private Integer playlist_id;
+//	private Integer music_id;
+	@EmbeddedId
+	private ListMusicId id;
+	public ListMusicId getId() {
+		return id;
 	}
-	public Integer getMusic_id() {
-		return music_id;
+	public void setId(ListMusicId id) {
+		this.id = id;
 	}
-	public void setMusic_id(Integer music_id) {
-		this.music_id = music_id;
-	}
-	
-	
 }

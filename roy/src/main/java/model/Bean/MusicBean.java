@@ -2,22 +2,41 @@ package model.Bean;
 
 import java.sql.Blob;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name="Music")
 public class MusicBean {
+	@Override
+	public String toString() {
+		return "MusicBean [music_id=" + music_id + ", music_name=" + music_name + ", member_username=" + member_username
+				+ ", music_music=" + music_music + ", music_caption=" + music_caption + ", music_uploadTime="
+				+ music_uploadTime + ", music_playCount=" + music_playCount + ", music_styleName=" + music_styleName
+				+ ", music_lyric=" + music_lyric + ", music_likeCount=" + music_likeCount + ", music_Image="
+				+ music_Image + ", music_ban=" + music_ban + ", music_unavailable=" + music_unavailable + "]";
+	}
 	//1228
 /*	music_id			int			primary key,
 	music_name			varchar(30),
 	member_username		varchar(30)	REFERENCES member (member_username),
-	music_music			varbinary ,	 --實體檔案，上傳時需要限制大小及格式
+	music_music			varbinary(max) , --實體檔案，上傳時需要限制大小及格式
 	music_caption		varchar(200),--說明文字
 	music_uploadTime	datetime,
 	music_playCount		int,
 	music_styleName		varchar(50), --接受多種風格
 	music_lyric			varchar(800),
 	music_likeCount		int,
-	music_bigImage		varbinary,	 --上傳時需要限制大小
-	music_smallImage	varbinary,	 --上傳時需要限制大小
+	music_Image			varbinary(max),	 --上傳時需要限制大小
 	music_ban			bit,
-*/
+	music_unavailable	bit,--下架
+*/	
+//	@ManyToOne
+//	@JoinColumn(name="member_username")
+//	private MemberBean memberBean;
+	@Id
 	private Integer music_id;
 	private String music_name;
 	private String member_username;
@@ -28,10 +47,15 @@ public class MusicBean {
 	private String music_styleName;
 	private String music_lyric;
 	private Integer music_likeCount;
-	private Blob music_bigImage;
-	private Blob music_smallImage;
+	private Blob music_Image;
 	private Boolean music_ban;
-
+	private Boolean music_unavailable;
+	public Boolean getMusic_unavailable() {
+		return music_unavailable;
+	}
+	public void setMusic_unavailable(Boolean music_unavailable) {
+		this.music_unavailable = music_unavailable;
+	}
 	public Integer getMusic_id() {
 		return music_id;
 	}
@@ -92,17 +116,12 @@ public class MusicBean {
 	public void setMusic_likeCount(Integer music_likeCount) {
 		this.music_likeCount = music_likeCount;
 	}
-	public Blob getMusic_bigImage() {
-		return music_bigImage;
+	
+	public Blob getMusic_Image() {
+		return music_Image;
 	}
-	public void setMusic_bigImage(Blob music_bigImage) {
-		this.music_bigImage = music_bigImage;
-	}
-	public Blob getMusic_smallImage() {
-		return music_smallImage;
-	}
-	public void setMusic_smallImage(Blob music_smallImage) {
-		this.music_smallImage = music_smallImage;
+	public void setMusic_Image(Blob music_Image) {
+		this.music_Image = music_Image;
 	}
 	public Boolean getMusic_ban() {
 		return music_ban;
