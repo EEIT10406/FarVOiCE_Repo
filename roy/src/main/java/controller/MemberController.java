@@ -76,12 +76,13 @@ public class MemberController {
 			errors.put("signUpError", " 每個欄位是必須的喔。");
 		}
 		if (errors != null && !errors.isEmpty()) {
+			model.addAttribute("CssError","border:1px #880000 solid");
 			return "/login-signUp-upload/signUp.jsp";
 		}
 		
-////呼叫model
+//呼叫model
 		MemberBean signUpbean = memberService.signUp(bean);
-////呼叫view
+//呼叫view
 		if (signUpbean == null) {
 			errors.put("signUpError", "註冊失敗");
 			return "/login-signUp-upload/signUp.jsp";

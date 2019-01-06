@@ -28,10 +28,7 @@ public class MemberService {
 //			temp.setMember_nickname("炸雞");
 //			temp.setMember_registerTime(new Date());
 //			MemberBean register = memberService.signUp(temp);
-//			
-//			
-//			
-//			
+//
 //			HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
 //		} finally {
 //			HibernateUtil.closeSessionFactory();

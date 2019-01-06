@@ -16,6 +16,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import model.bean.MemberBean;
+import model.bean.PostBean;
 
 @Configuration
 @ComponentScan(basePackages="model")
@@ -38,7 +39,7 @@ public class RootAppConfig {
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-		builder.addAnnotatedClasses(MemberBean.class);
+		builder.addAnnotatedClasses(MemberBean.class,PostBean.class);
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.setProperty("hibernate.show_sql", "true");

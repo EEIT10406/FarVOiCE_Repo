@@ -45,20 +45,20 @@ public class MusicDAO {
 //		}
 		
 		//create
-//		MusicBean bean2 = new MusicBean();
-//		bean2.setMusic_id(6);
-//		File fileIn = new File("C:/Users/User/Desktop/FarVoice/浪人琵琶.mp3");
-//		int length = (int)fileIn.length();
-//		byte[] fileInByteArray = new byte[length];
-//		Blob blob = null;
-//		FileInputStream fis = new FileInputStream(fileIn);
-//		fis.read(fileInByteArray);
-//		blob = new SerialBlob(fileInByteArray);
-//		fis.close();
-//		bean2.setMusic_music(blob);
-//		MusicBean beanResult = musicDAO.create(bean2);
-//		System.out.println(beanResult);
-//		
+		MusicBean bean2 = new MusicBean();
+
+		File fileIn = new File("C:/Users/User/Desktop/FarVoice/浪人琵琶.mp3");
+		int length = (int)fileIn.length();
+		byte[] fileInByteArray = new byte[length];
+		Blob blob = null;
+		FileInputStream fis = new FileInputStream(fileIn);
+		fis.read(fileInByteArray);
+		blob = new SerialBlob(fileInByteArray);
+		fis.close();
+		bean2.setMusic_music(blob);
+		MusicBean beanResult = musicDAO.create(bean2);
+		System.out.println(beanResult);
+		
 		//update
 //		MusicBean bean3 = new MusicBean();
 //		bean3.setMusic_id(6);
@@ -99,14 +99,10 @@ public class MusicDAO {
 	}
 	public MusicBean create(MusicBean bean) {
 		//0103 OK
-		if(bean!=null) {
-			MusicBean result = this.getSession().get(MusicBean.class, bean.getMusic_id());
-			if(result==null) {
+	
 				this.getSession().save(bean);
 				return bean;
-			}
-		}
-		return null;
+
 	}
 	
 	public void update(MusicBean bean) {

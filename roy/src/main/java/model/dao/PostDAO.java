@@ -7,38 +7,49 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import model.bean.MemberBean;
 import model.bean.PostBean;
 import model.hibernate.HibernateUtil;
-
+@Repository
 public class PostDAO {
 	//Spring MVC
-//	private SessionFactory sessionFactory;
-//	public void setSessionFactory(SessionFactory sessionFactory) {
-//		this.sessionFactory = sessionFactory;
-//	}
-//	public Session getSession() {
-//	return this.sessionFactory.getCurrentSession();
-//}
+	@Autowired
+	private SessionFactory sessionFactory;
+	public PostDAO(SessionFactory sessionfactory) {
+		this.sessionFactory = sessionfactory;
+	}
+
+
+	public Session getSession() {
+	return this.sessionFactory.getCurrentSession();
+	}
 	
 	
 	public static void main(String... args) throws IOException, Exception, SQLException {
 		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		PostDAO postDAO = new PostDAO();
-		postDAO.setSession(session);
-		
+//		PostDAO postDAO = new PostDAO();
+//		postDAO.setSession(session);
+//		
 //		//findByPk
 //		PostBean bean0 = postDAO.findByPrimaryKey(1);
 //		System.out.println(bean0);		
 //		
 //		//findAll
-		List<PostBean> beans = postDAO.findAll();
-		for(PostBean bean1:beans) {
-			System.out.println(bean1);
-		}
-		
+//		List<PostBean> beans = postDAO.findAll();
+//		for(PostBean bean1:beans) {
+//			System.out.println(bean1);
+//		}
+//		findArticleFromMember
+//		List<PostBean> posts = postDAO.findArticleFromMember("Peter");
+//		for(PostBean beantemp:posts) {
+//			System.out.println(beantemp);
+//		}
 //		//create
 //		PostBean bean2 = new PostBean();
 //		bean2.setPost_idS(5);
@@ -63,8 +74,8 @@ public class PostDAO {
 //		System.out.println(updateTempBean);
 		
 //		//remove
-		boolean  remove = postDAO.remove(5);
-		System.out.println(remove);
+//		boolean  remove = postDAO.remove(5);
+//		System.out.println(remove);
 		
 		
 		
@@ -73,15 +84,16 @@ public class PostDAO {
 		HibernateUtil.closeSessionFactory();
 	}
 	
-	private Session session;
-	public void setSession(Session session) {
-		this.session = session;
-	}
-
-	public Session getSession() {
-		return session;
-	}
-	
+	//if you need to test
+//	private Session session;
+//	public void setSession(Session session) {
+//		this.session = session;
+//	}
+//
+//	public Session getSession() {
+//		return session;
+//	}
+	//------------------
 	public PostBean findByPrimaryKey(Integer post_idS) {
 		//0103 OK
 		return this.getSession().get(PostBean.class, post_idS);
@@ -92,16 +104,20 @@ public class PostDAO {
 				.setMaxResults(50)
 				.list();
 	}
+	public List<PostBean> findArticleFromMember (String member_username){
+		//0106 OK
+		String hql = "from PostBean WHERE member_username=:member_username and post_idM=null";
+		Query<PostBean> query = this.getSession().createQuery(hql);
+		query.setParameter("member_username", member_username);
+		List<PostBean> PostList = query.list();
+		return PostList;
+	}
 	public PostBean create(PostBean bean) {
 		//0103 OK
-		if(bean!=null) {
-			PostBean result = this.getSession().get(PostBean.class, bean.getPost_idS());
-			if(result==null) {
+		
 				this.getSession().save(bean);
 				return bean;
-			}
-		}
-		return null;
+
 	}
 	
 	public void update(PostBean bean) {
