@@ -108,11 +108,7 @@ table {
 	width: 17px;
 }
 
-<<<<<<< HEAD
-.btnRyo {
-=======
 .btnAddList {
->>>>>>> branch 'branch1' of https://github.com/EEIT10406/FarVOiCE_Repo.git
 	color: black;
 	background-color: white;
 	border: 0px;
@@ -353,40 +349,7 @@ word-break:break-all;
 
 						<div class="tab-pane fade in" style="overflow: auto;" id="music">
 
-							<div class="col-md-5" style="float: left; width: 300px;">
-								<a href=""><img src="../img/love.png"
-									style="width: 160px; height: 160px;" /></a>
-
-								<div style="font-size: 16px;">讓我為你唱情歌</div>
-								<div>
-									<img src="../img/emptyLove.png" class="heart"> 
-									<span class="heartCount"> 0</span> 
-									<span id="share"
-										class="shareAndAdd"> 
-										<a href="" style="color: black;"><img
-											src="../img/share.png" width="15px" />分享</a>
-									</span>
-									
-										<img src="../img/emptyLove.png" class="heart"> <span
-											class="heartCount"> 0</span> <span id="share"
-											class="shareAndAdd"> <a href="" style="color: black;"><img
-												src="../img/share.png" width="15px" />分享</a>
-										</span> <span class="dropdown"> <span id="add"
-											data-toggle="dropdown" aria-haspopup="true"
-											aria-expanded="false"><button type="button"
-													class="btnRyo" style="outline: none;">
-													<img src="../img/add.png" width="15px">更多
-												</button></span> <span class="dropdown-menu"
-											style="background-color: white;">
-												<button class="btnRyo" style="outline: none;" type="button"
-													data-toggle="modal" data-target="#addToPlayList">加入歌單</button>
-												<button class="btnRyo" style="outline: none;" type="button"
-													data-toggle="modal" data-target="#createPlayList">建立歌單</button>
-										</span>
-										</span>
-									</div>
-
-								</div>
+						
 								<div class="col-md-5" style="float:left;width:300px;">
 									<a href=""><img src="../img/love.png"
 										style="width: 160px; height: 160px;" /></a>

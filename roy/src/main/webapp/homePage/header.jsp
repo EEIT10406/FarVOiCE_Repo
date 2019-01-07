@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" ></script>
+<script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
 	
 <script>
 	$(document).ready(function() {
@@ -27,10 +27,10 @@
 			<div class="row">
 				<!-- Logo -->
 				<div class="logo">
-					<a href="/roy/homePage/index.jsp"><img src="../img/logo.PNG" alt="Logo" /></a>
+					<img src="../img/logo.PNG" alt="Logo" />
 				</div>
 				<!-- End Logo -->
-				<ul class="social-icons  pull-right hidden-xs ">
+				<ul class="social-icons pull-right hidden-xs">
 					<li>
 						<button id="login" type="button" class="btn btn-outline-danger">
 							登入/註冊</button>
@@ -50,19 +50,6 @@
 							<button class="btn btn-outline-success" type="submit">搜尋</button>
 						</form>
 					</li>
-					<c:choose>
-					    <c:when test="${empty user}">
-<!-- 					      	<li><img src="../img/noProfile.gif" class="img-circle" style="width:45px;height:45px;" /></li> -->
-					    </c:when>
-					    <c:otherwise>
-					    
-							<LI>	
-								<IMG SRC="../img/123.jpg"  class="img-circle" style="width:45px;height:45px;" />
-							</LI>
-					
-						 
-						</c:otherwise>
-					</c:choose>
 				</ul>
 			</div>
 		</div>
@@ -73,6 +60,7 @@
 					<div class="pull-right visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
 							<li><a href="/roy/homePage/index.jsp"><i class="fas fa-home fa-lg"></i>   回首頁</a></li>
+							<%-- 									<li><a href="${request.contextPath}/rank.jsp" class="far fa-trophy">看排行</a> --%>
 							<li><a href="/roy/rank/rank.jsp" ><i class="fas fa-trophy fa-lg"></i>   看排行</a>
 								<ul>
 									<li class="parent"><span>Typography</span>
@@ -135,7 +123,7 @@
 <!-- 									<li><a href="blog-list.html">Blog</a></li> -->
 <!-- 									<li><a href="blog-single.html">Blog Single Item</a></li> -->
 <!-- 								</ul></li> -->
-							<li><a href="../funding/explore.jsp"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
+							<li><a href="index.html"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
 							<li><a href="contact.html"><i class="fas fa-envelope fa-lg"></i>   即時客服</a></li>
 						</ul>
@@ -143,5 +131,3 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
