@@ -109,7 +109,7 @@
 									<li><a href="features-animate-on-scroll.html">Animate
 											On Scroll</a></li>
 								</ul></li>
-							<li><a href="index.html"><i class="fas fa-list-ol fa-lg"></i>   聽歌單</a>
+							<li><a href="../searchMusic/searchLists.jsp"><i class="fas fa-list-ol fa-lg"></i>   聽歌單</a>
 								<ul>
 									<li><a href="pages-about-us.html">About Us</a></li>
 									<li><a href="pages-services.html">Services</a></li>
@@ -134,7 +134,7 @@
 <!-- 									<li><a href="blog-list.html">Blog</a></li> -->
 <!-- 									<li><a href="blog-single.html">Blog Single Item</a></li> -->
 <!-- 								</ul></li> -->
-							<li><a href="index.html"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
+							<li><a href="../funding/explore.jsp"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
 							<li><a href="contact.html"><i class="fas fa-envelope fa-lg"></i>   即時客服</a></li>
 						</ul>

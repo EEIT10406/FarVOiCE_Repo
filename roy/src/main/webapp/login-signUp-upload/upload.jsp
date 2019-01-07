@@ -176,7 +176,6 @@
 			</div>
 		</div>
 	</div>
-	</div>
 	<!-- === END CONTENT === -->
 	
 	<jsp:include page="../homePage/footer.jsp" />

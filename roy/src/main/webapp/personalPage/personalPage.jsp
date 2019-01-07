@@ -46,7 +46,10 @@
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <!-- End JS -->
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+
+
 <style>
 .post{
 	float: left;
@@ -105,7 +108,11 @@ table {
 	width: 17px;
 }
 
+<<<<<<< HEAD
 .btnRyo {
+=======
+.btnAddList {
+>>>>>>> branch 'branch1' of https://github.com/EEIT10406/FarVOiCE_Repo.git
 	color: black;
 	background-color: white;
 	border: 0px;
@@ -125,9 +132,25 @@ table {
 }
 
 .music {
-	border: 1px solid black; margin : 10px;
+	border: 1px solid black;
+	margin: 10px;
 	width: 180px;
 	margin: 10px;
+}
+
+.listType {
+	list-style-type: none;
+	font-size: 15px;
+}
+.list{
+width: 160px;height: 160px;background: url("../img/right.JPG") no-repeat; background-size:160px 160px;
+}
+.listSongCount{
+border:1px solid black;width:50px;height:50px;background-color:black;color:white;font-size:20px;margin-left:0;
+padding:11px;
+text-align:center;
+word-wrap:break-word; 
+word-break:break-all;
 }
 </style>
 <script>
@@ -138,18 +161,28 @@ table {
 		$('#upload').click(function() {
 			window.location.href = "upload.jsp";
 		})
-
-		$('#follow').click(function() {
-			if ($('#follow').attr("class") == "follow") {
-				$('#follow').attr("class", "unfollow");
-				$('#follow').html('追蹤');
-			} else {
-				$('#follow').attr("class", "follow");
-				$('#follow').html('已追蹤');
-			}
-		})
-
+		var follows = document.querySelectorAll("div.follow");
+		var unfollows = document.querySelectorAll("div.unfollow");
+		
+		for (var i = 0; i < follows.length; i++) {
+			follows[i].addEventListener("click", followClick);
+		}
+		for (var i = 0; i < unfollows.length; i++) {
+			unfollows[i].addEventListener("click", followClick);
+		}
 	})
+
+	function followClick() {
+		if ($(this).attr("class") == "follow") {
+			$(this).attr("class", "unfollow");
+			$(this).html('追蹤');
+
+		} else {
+			$(this).attr("class", "follow");
+			$(this).html('已追蹤');
+		}
+	}
+
 </script>
 <script>
 	$(document).ready(function() {
@@ -205,6 +238,7 @@ table {
 							data-toggle="modal" data-target="#sharebox" value="發佈新動態">
 <!-- 										style="outline: none;"> -->
 
+
 					</form>
 					<table>
 						<tr>
@@ -218,10 +252,9 @@ table {
 							<td class="number">0</td>
 						</tr>
 					</table>
-
-
 				</div>
-
+				
+				
 				<!-- Tab v2 -->
 				<div class="tabs alternative">
 					<ul class="nav nav-tabs">
@@ -317,14 +350,24 @@ table {
 <!-- 							<div class="dynamic"></div> -->
 <!-- 						</div> -->
 
-						<div class="tab-pane fade in" style="overflow:auto;" id="music">
-							<div>
-								<div class="col-md-5" style="float:left;width:300px;">
-									<a href=""><img src="../img/love.png"
-										style="width: 160px; height: 160px;" /></a>
 
-									<div style="font-size: 16px;">讓我為你唱情歌</div>
-									<div>
+						<div class="tab-pane fade in" style="overflow: auto;" id="music">
+
+							<div class="col-md-5" style="float: left; width: 300px;">
+								<a href=""><img src="../img/love.png"
+									style="width: 160px; height: 160px;" /></a>
+
+								<div style="font-size: 16px;">讓我為你唱情歌</div>
+								<div>
+									<img src="../img/emptyLove.png" class="heart"> 
+									<span
+										class="heartCount"> 0</span> 
+									<span id="share"
+										class="shareAndAdd"> 
+										<a href="" style="color: black;"><img
+											src="../img/share.png" width="15px" />分享</a>
+									</span>
+									
 										<img src="../img/emptyLove.png" class="heart"> <span
 											class="heartCount"> 0</span> <span id="share"
 											class="shareAndAdd"> <a href="" style="color: black;"><img
@@ -343,38 +386,236 @@ table {
 										</span>
 										</span>
 									</div>
+
 								</div>
 								<div class="col-md-5" style="float:left;width:300px;">
 									<a href=""><img src="../img/love.png"
 										style="width: 160px; height: 160px;" /></a>
 
-									<div style="font-size: 16px;">讓我為你唱情歌</div>
-									<div>
-										<img src="../img/emptyLove.png" class="heart"> <span
-											class="heartCount"> 0</span> <span id="share"
-											class="shareAndAdd"> <a href="" style="color: black;"><img
-												src="../img/share.png" width="15px" />分享</a>
-										</span> <span class="dropdown"> <span id="add"
-											data-toggle="dropdown" aria-haspopup="true"
-											aria-expanded="false"><button type="button"
-													class="btnRyo" style="outline: none;">
-													<img src="../img/add.png" width="15px">更多
-												</button></span> <span class="dropdown-menu"
-											style="background-color: white;">
-												<button class="btnRyo" style="outline: none;" type="button"
-													data-toggle="modal" data-target="#addToPlayList">加入歌單</button>
-												<button class="btnRyo" style="outline: none;" type="button"
-													data-toggle="modal" data-target="#createPlayList">建立歌單</button>
-										</span>
-										</span>
+
+								<div style="font-size: 16px;">讓我為你唱情歌</div>
+								<div>
+									<img src="../img/emptyLove.png" class="heart"> 
+									<span
+										class="heartCount"> 0</span> 
+									<span id="share"
+										class="shareAndAdd"> 
+										<a href="" style="color: black;"><img
+											src="../img/share.png" width="15px" />分享</a>
+									</span>
+									 <span id="add">
+
+										<button type="button" class="btnAddList" data-toggle="modal"
+											data-target="#addList" style="outline: none;">
+											<img src="../img/add.png" width="15px">加入歌單
+										</button>
+
+									</span>
+								</div>
+							</div>
+							
+							
+							<div class="col-md-5" style="float: left; width: 300px;">
+								<a href=""><img src="../img/love.png"
+									style="width: 160px; height: 160px;" /></a>
+
+								<div style="font-size: 16px;">讓我為你唱情歌</div>
+								<div>
+									<img src="../img/emptyLove.png" class="heart"> 
+									<span
+										class="heartCount"> 0</span> 
+									<span id="share"
+										class="shareAndAdd"> 
+										<a href="" style="color: black;"><img
+											src="../img/share.png" width="15px" />分享</a>
+									</span>
+									 <span id="add">
+
+										<button type="button" class="btnAddList" data-toggle="modal"
+											data-target="#addList" style="outline: none;">
+											<img src="../img/add.png" width="15px">加入歌單
+										</button>
+
+									</span>
+								</div>
+							</div>
+
+
+						</div>
+						<div class="tab-pane fade in" style="overflow: auto;" id="list">
+						
+						<div class="col-md-5" style="float: left; width: 300px;">
+												
+								<a href="">
+								<div class="list">					
+									<div class="listSongCount">2</div>
+								</div>
+								</a>	
+					
+								<div style="font-size: 16px;">蕭氏情歌精選</div>
+								<div>
+									<img src="../img/emptyLove.png" class="heart"> 
+									<span
+										class="heartCount"> 0</span> 
+									<span id="share"
+										class="shareAndAdd"> 
+										<a href="" style="color: black;"><img
+											src="../img/share.png" width="15px" />分享</a>
+									</span>
+									 <span id="add">
+
+										<button type="button" class="btnAddList" data-toggle="modal"
+											data-target="#addList" style="outline: none;">
+											<img src="../img/add.png" width="15px"/>加入歌單
+										</button>
+
+									</span>
+									<span>
+									<a href="../list/editList.jsp" style="color:black;"><img src="../img/edit.png" width="17px"/>編輯</a>
+									</span>
+								</div>
+							</div>
+
+						
+						
+						</div>
+						<div class="tab-pane fade in" style="overflow: auto;" id="like">
+
+
+							<div class="col-md-5" style="float: left; width: 300px;">
+								<a href=""><img src="../img/love.png"
+									style="width: 160px; height: 160px;" /></a>
+
+								<div style="font-size: 16px;">讓我為你唱情歌</div>
+								<div>
+									<img src="../img/emptyLove.png" class="heart"> 
+									<span
+										class="heartCount"> 0</span> 
+									<span id="share"
+										class="shareAndAdd"> 
+										<a href="" style="color: black;"><img
+											src="../img/share.png" width="15px" />分享</a>
+									</span>
+									 <span id="add">
+
+										<button type="button" class="btnAddList" data-toggle="modal"
+											data-target="#addList" style="outline: none;">
+											<img src="../img/add.png" width="15px">加入歌單
+										</button>
+
+									</span>
+								</div>
+							</div>
+
+						</div>
+
+<!-- 						end music -->
+
+
+						<div class="tab-pane fade in" id="about">
+							<!-- about begin -->
+							<div class="row tabs">
+								<div class="col-sm-3">
+									<ul class="listType">
+										<li class="active"
+											style="border-bottom: 1px solid #D3D3D3; padding: 10px;">
+											<a href="#introduce" data-toggle="tab">詳細介紹</a>
+										</li>
+										<li style="border-bottom: 1px solid #D3D3D3; padding: 10px;">
+											<a href="#following" data-toggle="tab">追蹤名單</a>
+										</li>
+										<li style="border-bottom: 1px solid #D3D3D3; padding: 10px;">
+											<a href="#fans" data-toggle="tab">粉絲</a>
+										</li>
+
+									</ul>
+								</div>
+								<div class="col-sm-9">
+									<div class="tab-content">
+										<div class="tab-pane fade in active" id="introduce">
+											<div class="row">
+
+												<div class="col-md-5">
+													<h3 class="no-margin no-padding">詳細介紹</h3>
+													<p style="margin-top: 15px;">地區：台灣, 臺北市</p>
+													<p>性別：</p>
+												</div>
+												
+												<div class="col-md-7">
+													<div style="float: right;"><a href="personalDetail.jsp">編輯</a></div>
+												</div>
+												
+											</div>
+										</div>
+										<div class="tab-pane fade in" id="following">
+											<h3 class="no-margin no-padding"
+												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px;">追蹤名單</h3>
+
+											<div class="row">
+												<div class="col-md-5">
+													<img src="../img/left.JPG"
+														style="margin-top: 15px; width: 100px; height: 100px;" />
+													<span
+														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
+												</div>
+												<div class="col-md-7">
+													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-5">
+													<img src="../img/left.JPG"
+														style="margin-top: 15px; width: 100px; height: 100px;" />
+													<span
+														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
+												</div>
+												<div class="col-md-7">
+													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
+												</div>
+											</div>
+
+										</div>
+
+										<div class="tab-pane fade in" id="fans">
+
+											<h3 class="no-margin no-padding"
+												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px;">粉絲</h3>
+
+											<div class="row">
+												<div class="col-md-5">
+													<img src="../img/left.JPG"
+														style="margin-top: 15px; width: 100px; height: 100px;" />
+													<span
+														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
+												</div>
+												<div class="col-md-7">
+													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
+												</div>
+											</div>
+
+
+											<div class="row">
+												<div class="col-md-5">
+													<img src="../img/left.JPG"
+														style="margin-top: 15px; width: 100px; height: 100px;" />
+													<span
+														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
+												</div>
+												<div class="col-md-7">
+													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
+												</div>
+											</div>
+
+										</div>
+
 									</div>
 								</div>
 							</div>
+							<!-- about end -->
+
 						</div>
-<!-- 						end music -->
-						<div class="tab-pane fade in" id="list"></div>
-						<div class="tab-pane fade in" id="like"></div>
-						<div class="tab-pane fade in" id="about"></div>
+
 					</div>
 				</div>
 			</div>
@@ -446,8 +687,38 @@ table {
 	
 	
 	
+	<!-- === END CONTENT === -->
 	
+	<!-- addPlayList begin-->
+								
+							<div class="modal fade" id="addList" aria-hidden="true">
+										<div class="modal-dialog" style="width: 300px;">
+											<div class="modal-content">
+												<h5 style="margin: 10px;">加入歌單</h5>
+												<form>
+													<div class="modal-body">
 
+														<div class="form-group">
+															<select class="form-control">
+																<option>歌單名稱</option>
+															</select>
+														</div>
+														<div style="float:right;">
+														<a href="" >建立歌單</a>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-primary"
+															data-dismiss="modal">取消</button>
+														<button type="button" class="btn btn-primary">確定</button>
+													</div>
+												</form>
+												
+											</div>
+										</div>
+									</div>							
+							
+							<!-- addPlayList end-->
 	<jsp:include page="../homePage/footer.jsp" />
 <!-- 	<div id="player"> -->
 <%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
