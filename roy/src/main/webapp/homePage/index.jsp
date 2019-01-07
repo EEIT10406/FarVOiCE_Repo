@@ -121,7 +121,7 @@
 						Curabitur eget nisl a risus.</p>
 					<img class="visible-lg animate fadeInUp"
 						style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;"
-						src="img/frontpage/responsive_homepage.png" alt="">
+						src="/roy/img/frontpage/responsive_homepage.png" alt="">
 				</div>
 				<div class="col-md-9" style="float: left; width: 380px;">
 					<h2>熱門募資活動</h2>
@@ -140,7 +140,7 @@
 						Curabitur eget nisl a risus.</p>
 					<img class="visible-lg animate fadeInUp"
 						style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;"
-						src="img/frontpage/responsive_homepage.png" alt="">
+						src="/roy/img/frontpage/responsive_homepage.png" alt="">
 				</div>
 				<!-- End Main Text -->
 				<!-- Side Column -->
@@ -178,9 +178,9 @@
 	</div>
 	<!-- === END CONTENT === -->
 	<jsp:include page="footer.jsp" />
-	<div id="player">
-		<jsp:include page="player.jsp" />
-	</div>
+<!-- 	<div id="player"> -->
+<%-- 		<jsp:include page="player.jsp" /> --%>
+<!-- 	</div> -->
 
 </body>
 </html>

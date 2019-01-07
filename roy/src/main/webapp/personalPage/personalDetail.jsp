@@ -45,6 +45,7 @@
 			$(this).parent('ul').children('li').removeClass('active');
 			$(this).addClass('active');
 		})
+	}
 </script>
 <style>
 #content {

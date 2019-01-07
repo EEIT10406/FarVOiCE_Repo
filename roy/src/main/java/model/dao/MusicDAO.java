@@ -49,6 +49,7 @@ public class MusicDAO {
 //		}
 		
 		//create
+
 //		MusicBean bean2 = new MusicBean();
 //		File fileIn = new File("D:\\音樂\\4MINUTE-Crazy.mp3");
 //		int length = (int)fileIn.length();
@@ -62,6 +63,7 @@ public class MusicDAO {
 //		MusicBean beanResult = musicDAO.create(bean2);
 //		System.out.println(beanResult);
 //		
+
 		//update
 //		MusicBean bean3 = new MusicBean();
 //		bean3.setMusic_id(6);
@@ -104,7 +106,6 @@ public class MusicDAO {
 		//0103 OK
 				this.getSession().save(bean);
 				return bean;
-	
 	}
 	
 	public void update(MusicBean bean) {

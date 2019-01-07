@@ -61,19 +61,19 @@
 					<div class="row margin-vert-30">
 						<!-- Login Box -->
 						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-							<form class="login-page">
+							<form class="login-page" action="/roy/login-signUp-upload/MemberLogin.controller" method="post">
 								<div class="login-header margin-bottom-30">
 									<h3>請輸入帳號與密碼</h3>
 								</div>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-user"></i>
-									</span> <input placeholder="帳號" class="form-control" type="text" id="username">
-									<span id="sp1"></span>
+									</span> <input placeholder="帳號" style="${CssError}" class="form-control" type="text" id="username" name="username" value="${param.username}">
+									<span id="sp1" style='color:#880000;'>${errors.usernameError}</span>
 								</div>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-lock"></i>
-									</span> <input placeholder="密碼" class="form-control" type="password" id="password">
-									<span id="sp2"></span>
+									</span> <input placeholder="密碼" style="${CssError}" class="form-control" type="password" id="password" name="password" value="${param.password}">
+									<span id="sp2" style='color:#880000;'>${errors.passwordError}</span>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
@@ -115,14 +115,21 @@
 				document.getElementById("sp1").innerHTML = "<span style='color:#880000;'>  這個欄位是必須的。</span>";				
 					$("#username").css("border","1px #880000 solid");
 			}
+			else{
+				document.getElementById("sp1").innerHTML = "<span style='color:#880000;'></span>";				
+				$("#username").css("border","");
+			}
 		}
 		
 		function chkPassword() {
 			var pass = document.getElementById("password").value;
 			
 			if (pass == "") {
-					document.getElementById("sp2").innerHTML = "<span style='color:#880000;'>  此欄位是必須的。</span>";					
-					$("#password").css("border","1px #880000 solid");
+				document.getElementById("sp2").innerHTML = "<span style='color:#880000;'>  此欄位是必須的。</span>";					
+				$("#password").css("border","1px #880000 solid");
+			}else{
+				document.getElementById("sp2").innerHTML = "<span style='color:#880000;'></span>";					
+				$("#password").css("border","");
 			}
 		}
 	</script>

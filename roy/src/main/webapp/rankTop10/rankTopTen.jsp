@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -166,20 +167,48 @@ table {
 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
 
 														<div>
-															<img src="../img/emptyLove.png" class="heart"> <span
-																class="heartCount"> 0</span> <span id="share"
-																class="shareAndAdd"> <a href=""
-																style="color: black;"><img src="../img/share.png"
-																	width="15px" />分享</a>
-															</span> <span id="add">
+<!-- <<<<<<< HEAD -->
+															<img src="../img/emptyLove.png" class="heart"> 
+<!-- 															<span -->
+<!-- 																class="heartCount"> 0</span>  -->
+<!-- 																<span id="share" -->
+<!-- 																class="shareAndAdd"> <a href="" -->
+<!-- 																style="color: black;"><img src="../img/share.png" -->
+<!-- 																	width="15px" />分享</a> -->
+<!-- 															</span>  -->
+															
+																<span id="share">
+																<button type="button" class="btnAddList"
+																	data-toggle="modal" data-target="#sharebox"
+																	style="outline: none;">
+																	<img src="../img/share.png" width="15px">分享
+																</button>
+<!-- ======= -->
+<!-- 															<img src="../img/emptyLove.png" class="heart"> <span -->
+<!-- 																class="heartCount"> 0</span> <span id="share" -->
+<!-- 																class="shareAndAdd"> <a href="" -->
+<!-- 																style="color: black;"><img src="../img/share.png" -->
+<!-- 																	width="15px" />分享</a> -->
+<!-- 															</span> <span id="add"> -->
 
+<!-- 																<button type="button" class="btnAddList" -->
+<!-- 																	data-toggle="modal" data-target="#addList" -->
+<!-- 																	style="outline: none;"> -->
+<!-- 																	<img src="../img/add.png" width="15px">加入歌單 -->
+<!-- 																</button> -->
+
+<!-- >>>>>>> branch 'branch1' of https://github.com/EEIT10406/FarVOiCE_Repo.git -->
+															</span>
+
+															
+															<span id="add">
 																<button type="button" class="btnAddList"
 																	data-toggle="modal" data-target="#addList"
 																	style="outline: none;">
 																	<img src="../img/add.png" width="15px">加入歌單
 																</button>
-
 															</span>
+
 														</div></td>
 													<td>老蕭</td>
 													<td>02:44</td>
@@ -442,7 +471,6 @@ table {
 													<td>1</td>
 													<td><img src="left.JPG" class="music" /><a href=""><span
 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-														<div>
 
 															<div>
 															<img src="../img/emptyLove.png" class="heart"> <span
@@ -638,6 +666,35 @@ table {
 	</div>
 
 	<!-- addPlayList end-->
+
+	
+	
+	<!-- addshare begin-->
+	<div class="modal fade" id="sharebox" aria-hidden="true">
+		<div class="modal-dialog" style="width: 300px;">
+			<div class="modal-content">
+				<h5 style="margin: 20px;">分享</h5>
+				
+				<form action="<c:url value="/rankTop10/ShareMusic.controller"/>" method="get">
+					<div class="modal-body" >
+						<div class="form-group">
+						</div>
+<!-- 						<div style="float: right;"> -->
+							<textarea name="shareContent" style="width:250px;height:270px">留言</textarea>
+<!-- 						</div> -->
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+						<button type="submit" class="btn btn-primary">確定</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- addshare end-->
+
 
 
 	<jsp:include page="../homePage/footer.jsp" />

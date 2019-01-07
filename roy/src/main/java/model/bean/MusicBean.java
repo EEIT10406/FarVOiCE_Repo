@@ -20,7 +20,7 @@ public class MusicBean {
 				+ music_Image + ", music_ban=" + music_ban + ", music_unavailable=" + music_unavailable + "]";
 	}
 	//1228
-/*	music_id			int			primary key,
+/*	music_id			int		identity	primary key,
 	music_name			varchar(30),
 	member_username		varchar(30)	REFERENCES member (member_username),
 	music_music			varbinary(max) , --實體檔案，上傳時需要限制大小及格式
@@ -38,7 +38,7 @@ public class MusicBean {
 //	@JoinColumn(name="member_username")
 //	private MemberBean memberBean;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer music_id;
 	private String music_name;
 	private String member_username;
