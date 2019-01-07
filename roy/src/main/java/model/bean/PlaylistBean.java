@@ -3,6 +3,8 @@ package model.bean;
 import java.sql.Blob;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
@@ -26,10 +28,11 @@ public class PlaylistBean {
 	
 */	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer playlist_id;
 	private String member_username;
 	private String playlist_name;
-	private Blob playlist_image;
+	private String playlist_image;
 	private java.util.Date playlist_registerTime;
 	private Integer playlist_musicCount;
 	private Boolean playlist_privacy;
@@ -51,10 +54,10 @@ public class PlaylistBean {
 	public void setPlaylist_name(String playlist_name) {
 		this.playlist_name = playlist_name;
 	}
-	public Blob getPlaylist_image() {
+	public String getPlaylist_image() {
 		return playlist_image;
 	}
-	public void setPlaylist_image(Blob playlist_image) {
+	public void setPlaylist_image(String playlist_image) {
 		this.playlist_image = playlist_image;
 	}
 	public java.util.Date getPlaylist_registerTime() {

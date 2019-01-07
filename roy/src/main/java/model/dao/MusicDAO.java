@@ -12,28 +12,32 @@ import javax.sql.rowset.serial.SerialBlob;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import model.bean.BackerBean;
 import model.bean.MusicBean;
 import model.hibernate.HibernateUtil;
 
+@Repository
 public class MusicDAO {
 	//Spring MVC
-//	private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 //	public void setSessionFactory(SessionFactory sessionFactory) {
 //		this.sessionFactory = sessionFactory;
 //	}
-//	public Session getSession() {
-//	return this.sessionFactory.getCurrentSession();
-//}
+	public Session getSession() {
+	return this.sessionFactory.getCurrentSession();
+}
 	
 	
 	public static void main(String... args) throws IOException, Exception, SQLException {
-		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		MusicDAO musicDAO = new MusicDAO();
-		musicDAO.setSession(session);
+		
+//		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
+//		Session session = sessionFactory.openSession();
+//		Transaction tx = session.beginTransaction();
+//		MusicDAO musicDAO = new MusicDAO();
+//		musicDAO.setSession(session);
 		//findByPk
 //		MusicBean bean0 = musicDAO.findByPrimaryKey(1);
 //		System.out.println(bean0);		
@@ -46,8 +50,7 @@ public class MusicDAO {
 		
 		//create
 //		MusicBean bean2 = new MusicBean();
-//		bean2.setMusic_id(6);
-//		File fileIn = new File("C:/Users/User/Desktop/FarVoice/浪人琵琶.mp3");
+//		File fileIn = new File("D:\\音樂\\4MINUTE-Crazy.mp3");
 //		int length = (int)fileIn.length();
 //		byte[] fileInByteArray = new byte[length];
 //		Blob blob = null;
@@ -73,19 +76,19 @@ public class MusicDAO {
 		
 		
 		
-		tx.commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+//		tx.commit();
+//		session.close();
+//		HibernateUtil.closeSessionFactory();
 	}
 	
-	private Session session;
-	public void setSession(Session session) {
-		this.session = session;
-	}
-
-	public Session getSession() {
-		return session;
-	}
+//	private Session session;
+//	public void setSession(Session session) {
+//		this.session = session;
+//	}
+//
+//	public Session getSession() {
+//		return session;
+//	}
 	
 	public MusicBean findByPrimaryKey(Integer music_id) {
 		//0103 OK
@@ -99,14 +102,9 @@ public class MusicDAO {
 	}
 	public MusicBean create(MusicBean bean) {
 		//0103 OK
-		if(bean!=null) {
-			MusicBean result = this.getSession().get(MusicBean.class, bean.getMusic_id());
-			if(result==null) {
 				this.getSession().save(bean);
 				return bean;
-			}
-		}
-		return null;
+	
 	}
 	
 	public void update(MusicBean bean) {

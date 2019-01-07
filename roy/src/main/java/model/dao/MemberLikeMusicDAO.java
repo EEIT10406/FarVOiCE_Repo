@@ -14,11 +14,12 @@ import javax.sql.rowset.serial.SerialBlob;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import model.bean.MemberLikeMusicBean;
 import model.bean.primarykey.MemberLikeMusicId;
 import model.hibernate.HibernateUtil;
-
+@Repository
 public class MemberLikeMusicDAO {
 	//Spring MVC
 //	private SessionFactory sessionFactory;
@@ -37,11 +38,11 @@ public class MemberLikeMusicDAO {
 		MemberLikeMusicDAO memberLikeMusicDAO = new MemberLikeMusicDAO();
 		memberLikeMusicDAO.setSession(session);
 //		//findByPk
-//		MemberLikeMusicId memberLikeMusicId = new MemberLikeMusicId();
-//		memberLikeMusicId.setMember_username("Peter");
-//		memberLikeMusicId.setMusic_id(1);
-//		MemberLikeMusicBean bean0 = memberLikeMusicDAO.findByPrimaryKey(memberLikeMusicId);
-//		System.out.println(bean0);		
+		MemberLikeMusicId memberLikeMusicId = new MemberLikeMusicId();
+		memberLikeMusicId.setMember_username("Peter");
+		memberLikeMusicId.setMusic_id(1);
+		MemberLikeMusicBean bean0 = memberLikeMusicDAO.findByPrimaryKey(memberLikeMusicId);
+		System.out.println(bean0);		
 //		
 //		//findAll
 //		List<MemberLikeMusicBean> beans = memberLikeMusicDAO.findAll();
@@ -70,11 +71,11 @@ public class MemberLikeMusicDAO {
 //		System.out.println(updateTempBean);
 		
 //		//remove
-		MemberLikeMusicId removeMemberLikeMusicId = new MemberLikeMusicId();
-		removeMemberLikeMusicId.setMember_username("Peter");
-		removeMemberLikeMusicId.setMusic_id(2);
-		boolean  remove = memberLikeMusicDAO.remove(removeMemberLikeMusicId);
-		System.out.println(remove);
+//		MemberLikeMusicId removeMemberLikeMusicId = new MemberLikeMusicId();
+//		removeMemberLikeMusicId.setMember_username("Peter");
+//		removeMemberLikeMusicId.setMusic_id(2);
+//		boolean  remove = memberLikeMusicDAO.remove(removeMemberLikeMusicId);
+//		System.out.println(remove);
 		
 		
 		
