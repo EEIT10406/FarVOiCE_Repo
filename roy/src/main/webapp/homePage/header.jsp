@@ -30,7 +30,7 @@
 					<a href="/roy/homePage/index.jsp"><img src="../img/logo.PNG" alt="Logo" /></a>
 				</div>
 				<!-- End Logo -->
-				<ul class="social-icons pull-right hidden-xs ">
+				<ul class="social-icons  pull-right hidden-xs ">
 					<li>
 						<button id="login" type="button" class="btn btn-outline-danger">
 							登入/註冊</button>
@@ -56,10 +56,11 @@
 					    </c:when>
 					    <c:otherwise>
 					    
-							<li>	
-								<a href="/roy/homePage/index.jsp" style="width:45px;height:45px;" ><img src="../img/123.jpg" class="img-circle"  /></a>
-							</li>
-										    
+							<LI>	
+								<IMG SRC="../img/123.jpg"  class="img-circle" style="width:45px;height:45px;" />
+							</LI>
+					
+						 
 						</c:otherwise>
 					</c:choose>
 				</ul>
