@@ -43,14 +43,14 @@ public class MusicBean {
 	private String music_name;
 	private String member_username;
 	@Column(updatable=false)
-	private Blob music_music;
+	private String music_music;
 	private String music_caption;
 	private java.util.Date music_uploadTime;
 	private Integer music_playCount;
 	private String music_styleName;
 	private String music_lyric;
 	private Integer music_likeCount;
-	private Blob music_Image;
+	private String music_Image;
 	private Boolean music_ban;
 	private Boolean music_unavailable;
 	public Boolean getMusic_unavailable() {
@@ -78,10 +78,10 @@ public class MusicBean {
 		this.member_username = member_username;
 	}
 	
-	public Blob getMusic_music() {
+	public String getMusic_music() {
 		return music_music;
 	}
-	public void setMusic_music(Blob music_music) {
+	public void setMusic_music(String music_music) {
 		this.music_music = music_music;
 	}
 	public String getMusic_caption() {
@@ -121,10 +121,10 @@ public class MusicBean {
 		this.music_likeCount = music_likeCount;
 	}
 	
-	public Blob getMusic_Image() {
+	public String getMusic_Image() {
 		return music_Image;
 	}
-	public void setMusic_Image(Blob music_Image) {
+	public void setMusic_Image(String music_Image) {
 		this.music_Image = music_Image;
 	}
 	public Boolean getMusic_ban() {

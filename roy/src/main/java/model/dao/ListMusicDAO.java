@@ -7,29 +7,40 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import model.bean.ListMusicBean;
 import model.bean.primarykey.ListMusicId;
 import model.hibernate.HibernateUtil;
-
+@Repository
 public class ListMusicDAO {
 	//Spring MVC
-//	private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 //	public void setSessionFactory(SessionFactory sessionFactory) {
 //		this.sessionFactory = sessionFactory;
 //	}
-//	public Session getSession() {
-//	return this.sessionFactory.getCurrentSession();
-//}
+	public Session getSession() {
+	return this.sessionFactory.getCurrentSession();
+}
 	
 	
-	public static void main(String... args) throws IOException, Exception, SQLException {
-		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		ListMusicDAO fundingDAO = new ListMusicDAO();
-		fundingDAO.setSession(session);
-//		//findByPk
+//	public static void main(String... args) throws IOException, Exception, SQLException {
+//		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
+//		Session session = sessionFactory.openSession();
+//		Transaction tx = session.beginTransaction();
+//		ListMusicDAO fundingDAO = new ListMusicDAO();
+//		fundingDAO.setSession(session);
+		
+		//findByPlayLIst
+//		ListMusicId listMusicIdByPlayId = new ListMusicId();
+//		listMusicIdByPlayId.setPlaylist_id(1);
+//		List<ListMusicBean> bean7 = fundingDAO.findByPlayListId(listMusicIdByPlayId);
+//		System.out.println(bean7);	
+//		
+		
+		//findByPk
 //		ListMusicId listMusicIdByPk = new ListMusicId();
 //		listMusicIdByPk.setPlaylist_id(1);
 //		listMusicIdByPk.setMusic_id(1);
@@ -37,10 +48,10 @@ public class ListMusicDAO {
 //		System.out.println(bean0);		
 //		
 //		//findAll
-		List<ListMusicBean> beans = fundingDAO.findAll();
-		for(ListMusicBean bean1:beans) {
-			System.out.println(bean1);
-		}
+//		List<ListMusicBean> beans = fundingDAO.findAll();
+//		for(ListMusicBean bean1:beans) {
+//			System.out.println(bean1);
+//		}
 		
 //		//create
 //		ListMusicBean bean2 = new ListMusicBean();
@@ -61,26 +72,32 @@ public class ListMusicDAO {
 //		System.out.println(updateTempBean);
 		
 //		//remove
-		ListMusicId removeListMusicId = new ListMusicId();
-		removeListMusicId.setPlaylist_id(2);
-		removeListMusicId.setMusic_id(1);
-		boolean  remove = fundingDAO.remove(removeListMusicId);
-		System.out.println(remove);
+//		ListMusicId removeListMusicId = new ListMusicId();
+//		removeListMusicId.setPlaylist_id(2);
+//		removeListMusicId.setMusic_id(1);
+//		boolean  remove = fundingDAO.remove(removeListMusicId);
+//		System.out.println(remove);
 		
 		
 		
-		tx.commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
-	}
+//		tx.commit();
+//		session.close();
+//		HibernateUtil.closeSessionFactory();
+//	}
+//	
+//	private Session session;
+//	public void setSession(Session session) {
+//		this.session = session;
+//	}
+//
+//	public Session getSession() {
+//		return session;
+//	}
 	
-	private Session session;
-	public void setSession(Session session) {
-		this.session = session;
-	}
-
-	public Session getSession() {
-		return session;
+	//找該歌單的所有music
+	public List<ListMusicBean> findByPlayListId(ListMusicId listMusicId) {
+		return this.getSession().createQuery("from ListMusicBean where playlist_id="+String.valueOf(listMusicId.getPlaylist_id()), ListMusicBean.class)
+		.list();
 	}
 	
 	public ListMusicBean findByPrimaryKey(ListMusicId listMusicId) {

@@ -15,10 +15,14 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import model.bean.ListMusicBean;
+import model.bean.MusicBean;
+import model.bean.PlaylistBean;
 import model.bean.MemberBean;
 import model.bean.PostBean;
 
 @Configuration
+
 @ComponentScan(basePackages="model")
 @EnableTransactionManagement
 public class RootAppConfig {
@@ -39,7 +43,8 @@ public class RootAppConfig {
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-		builder.addAnnotatedClasses(MemberBean.class,PostBean.class);
+
+		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class);
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.setProperty("hibernate.show_sql", "true");

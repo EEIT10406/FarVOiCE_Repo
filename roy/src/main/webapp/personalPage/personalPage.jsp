@@ -360,8 +360,7 @@ word-break:break-all;
 								<div style="font-size: 16px;">讓我為你唱情歌</div>
 								<div>
 									<img src="../img/emptyLove.png" class="heart"> 
-									<span
-										class="heartCount"> 0</span> 
+									<span class="heartCount"> 0</span> 
 									<span id="share"
 										class="shareAndAdd"> 
 										<a href="" style="color: black;"><img
@@ -700,11 +699,11 @@ word-break:break-all;
 
 														<div class="form-group">
 															<select class="form-control">
-																<option>歌單名稱</option>
+																<option>請選擇歌單</option>
 															</select>
 														</div>
 														<div style="float:right;">
-														<a href="" >建立歌單</a>
+														<a href="../list/createList.jsp" >建立歌單</a>
 														</div>
 													</div>
 													<div class="modal-footer">

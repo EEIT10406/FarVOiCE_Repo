@@ -88,6 +88,7 @@ table {
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js"></script>
 <!-- End JS -->
+
 <script>
 	$(document).ready(function() {
 		var music = document.querySelectorAll("img.music");
@@ -651,7 +652,7 @@ table {
 							</select>
 						</div>
 						<div style="float: right;">
-							<a href="">建立歌單</a>
+							<a href="../list/createList.jsp">建立歌單</a>
 						</div>
 					</div>
 					<div class="modal-footer">
