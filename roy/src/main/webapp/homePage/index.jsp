@@ -42,6 +42,7 @@
 </head>
 <body>
 	<div id="body_bg">
+
 		<jsp:include page="header.jsp" />
 		<!-- === BEGIN CONTENT === -->
 		<div id="content">
@@ -119,9 +120,7 @@
 						liber tempor cum soluta nobis eleifend option congue nihil
 						imperdiet doming id quod mazim placerat facer possim assum.
 						Curabitur eget nisl a risus.</p>
-					<img class="visible-lg animate fadeInUp"
-						style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;"
-						src="/roy/img/frontpage/responsive_homepage.png" alt="">
+					
 				</div>
 				<div class="col-md-9" style="float: left; width: 380px;">
 					<h2>熱門募資活動</h2>
@@ -138,9 +137,7 @@
 						liber tempor cum soluta nobis eleifend option congue nihil
 						imperdiet doming id quod mazim placerat facer possim assum.
 						Curabitur eget nisl a risus.</p>
-					<img class="visible-lg animate fadeInUp"
-						style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;"
-						src="/roy/img/frontpage/responsive_homepage.png" alt="">
+				
 				</div>
 				<!-- End Main Text -->
 				<!-- Side Column -->
