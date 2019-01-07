@@ -59,30 +59,36 @@
 				<div class="row margin-vert-30">
 					<!-- Register Box -->
 					<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-						<form class="signup-page">
+						<form class="signup-page" action="/roy/login-signUp-upload/MemberSignUP.controller" method="post">
 							<div class="login-header margin-bottom-30">
 								<h3>註冊 FarVoice ID</h3>
 							</div>
-							<label>名字</label> <input class="form-control margin-bottom-20"
-								type="text"> <label>電子郵件</label> <input
-								class="form-control margin-bottom-20" type="text"> <label>帳號</label>
-							<input class="form-control margin-bottom-20" type="text">
+							<label>帳號</label>
+								<input class="form-control margin-bottom-20"type="text" id="member_username" name="member_username">
 							<div class="row">
 								<div class="col-sm-6">
-									<label>密碼</label> <input class="form-control margin-bottom-20"
-										type="password">
+									<label>密碼</label> <input class="form-control margin-bottom-20" type="password" id="member_password" name="member_password">
 								</div>
 								<div class="col-sm-6">
 									<label>密碼確認</label> <input
-										class="form-control margin-bottom-20" type="password">
+										class="form-control margin-bottom-20" type="password" id="member_passwordConfirm" name="member_passwordConfirm">
 								</div>
 							</div>
+							<label>電子郵件</label> 
+								<input class="form-control margin-bottom-20" type="text" id="member_email" name="member_email"> 
+							<label>暱稱</label> 
+								<input class="form-control margin-bottom-20" type="text" id="member_nickname" name="member_nickname">
 							<hr>
 							<div class="row">
-								<div class="col-lg-8"></div>
-								<div class="col-lg-4 text-right">
+<!-- 								<div class="col-lg-8"></div> -->
+								<div class="col-lg-12 text-center" style='color:#880000;'>
+								${errors.signUpError}
+<%-- 									<span id="sp1" style='color:#880000;'>${errors.signUpError}</span> --%>
+								</div>
+								<div class="col-lg-12 text-center">
 									<button class="btn btn-primary" type="submit">註冊</button>
 								</div>
+								
 							</div>
 						</form>
 					</div>
@@ -91,7 +97,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 	<!-- === END CONTENT === -->
 	
 	<jsp:include page="../homePage/footer.jsp" />

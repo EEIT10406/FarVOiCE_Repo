@@ -215,18 +215,18 @@
 													</div>
 													<div class="row margin-top-20">
 														<div class="col-md-12">
-															<form>
+															<form action="<c:url value="/personalPage/PostComment.controller"/>" method="post">>
 																<label>姓名</label>
 																<div class="row margin-bottom-20">
 																	<div class="col-md-7 col-md-offset-0">
-																		<input class="form-control" type="text" id="name" readonly="readonly">
+																		<input class="form-control" type="text" id="name" readonly="readonly" value="${user.member_nickname}">
 																	</div>
 																</div>
 																<label>Email <span>*</span>
 																</label>
 																<div class="row margin-bottom-20">
 																	<div class="col-md-7 col-md-offset-0">
-																		<input class="form-control" type="text" id="email" readonly="readonly">
+																		<input class="form-control" type="text" id="email" readonly="readonly" value="${user.member_email}" >
 																	</div>
 																</div>
 																<label>內容</label>

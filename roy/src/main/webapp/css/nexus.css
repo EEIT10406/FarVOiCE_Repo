@@ -136,13 +136,14 @@ body {
 .logo {
   position: absolute;
 }
-.logo a {
-  left: 15px;
-  top: 30px;
-  display: block;
-  position: relative;
-  z-index: 20;
-}
+/* 0107 */
+/* .logo a { */
+/*   left: 15px; */
+/*   top: 30px; */
+/*   display: block; */
+/*   position: relative; */
+/*   z-index: 20; */
+/* } */
 p.site-slogan {
   color: #b1a5bd;
   font-size: 11px;

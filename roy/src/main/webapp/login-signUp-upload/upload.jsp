@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,8 @@
 <script type="text/javascript" src="../js/jquery.visible.js"
 	charset="utf-8"></script>
 <!-- Sticky Div -->
-<script type="text/javascript" src="../js/jquery.sticky.js" charset="utf-8"></script>
+<script type="text/javascript" src="../js/jquery.sticky.js"
+	charset="utf-8"></script>
 <!-- Slimbox2-->
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
@@ -45,7 +47,6 @@
 <!-- End JS -->
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <style type="text/css">
-
 #picArea {
 	width: 200px;
 	height: 200px;
@@ -64,13 +65,13 @@
 </style>
 <script>
 	$(document).ready(function() {
-		$('#login').click(function() {
-			window.location.href = "login.jsp";
-		})
-		$('#upload').click(function() {
-			window.location.href = "upload.jsp";
-		})
-	})
+				$('#login').click(function() {
+					window.location.href = "login.jsp";
+				})
+				$('#upload').click(function() {
+					window.location.href = "upload.jsp";
+				})
+			})
 </script>
 
 <script>
@@ -78,7 +79,7 @@
 		document.getElementById("picFile").addEventListener("change",
 				fileViewer);
 	});
-
+	
 	function fileViewer() {
 		//取得使用者在檔案選擇標籤中選取檔案
 		var files = document.getElementById("picFile").files;
@@ -110,10 +111,16 @@
 			reader.readAsDataURL(files[i]);
 		}
 	}
+	<!-- //判斷上傳是否成功 begin -->
+		<c:if test="${not empty uploadresult}">
+		     alert("${uploadresult}");
+		</c:if>
+		<!-- //  判斷上傳是否成功 end  -->
 </script>
 
 </head>
 <body>
+
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
@@ -121,67 +128,67 @@
 			<div class="container">
 				<div class="container">
 					<div class="row margin-vert-30">
-					
+
 						<!-- Login Box -->
 						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-		<form class="login-page" action="" method="">
-			<div class="input-group margin-bottom-20">
-				音樂 (mp3格式): <input type="file" id="musicFile" accept=".mp3">
-			</div>
-			<div class="input-group margin-bottom-20">
-				<label for="songName">歌曲名稱:</label> 
-				<input id="songName" type="text"
-					style="width: 380px;" class="form-control">
-			</div>
-			<div class="input-group margin-bottom-20">
-				封面照片: <input type="file" id="picFile" accept="image/*">
-				<div class="form-control" id="picArea">預覽</div>
-			</div>
-			<div class="input-group margin-bottom-20">
-				<label for="songIntroduce">歌曲介紹:</label>
-				<textarea class="form-control" style="resize: none;" cols="80"
-					rows="3" id="songIntroduce"></textarea>
-			</div>
-			<div class="input-group margin-bottom-20">
-				<label for="lyric">歌詞:</label>
-				<textarea class="form-control" style="resize: none;" cols="80"
-					rows="5" id="lyric"></textarea>
-			</div>
-			<div class="input-group margin-bottom-20">
-				歌曲分類 : <select class="form-control" id="songType"
-					style="padding: 7px;width:380px;">
-					<option>未分類</option>
-					<option>抒情</option>
-					<option>搖滾</option>
-					<option>雷鬼</option>
-					<option>藍調</option>
-					<option>動感</option>
-					<option>古典</option>
-				</select>
-			</div>
-			<div class="row">
-			<div class="col-md-6">
-                                                    
-                                                </div>
-				<div class="col-md-6" >
-					<button class="btn btn-primary pull-right" type="submit">發佈</button>
-				</div>
-			</div>
-			<hr>
-		</form>
-	</div>
+						
+	                	<form class="login-page" action="<c:url value="/login-signUp-upload/uploadMusic" />" enctype="multipart/form-data" method="post" >
+								<div class="input-group margin-bottom-20">
+									音樂 (mp3格式): <input type="file" id="musicFile" accept=".mp3" name="musicFile">
+								</div>
+								<div class="input-group margin-bottom-20">
+									<label for="musicNam">歌曲名稱:</label> <input id="musicName"
+										type="text" style="width: 380px;" class="form-control"
+										name="music_name">
+								</div>
+								<div class="input-group margin-bottom-20">
+									封面照片: <input type="file" id="picFile" accept="image/*" name="imageFile">
+									<div class="form-control" id="picArea">預覽</div>
+								</div>
+								<div class="input-group margin-bottom-20">
+									<label for="musicIntroduce">歌曲介紹:</label>
+									<textarea class="form-control" style="resize: none;" cols="80"
+										rows="3" id="musicIntroduce" name="music_caption"></textarea>
+								</div>
+								<div class="input-group margin-bottom-20">
+									<label for="musicLyric">歌詞:</label>
+									<textarea class="form-control" style="resize: none;" cols="80"
+										rows="5" id="musicLyric" name="music_lyric"></textarea>
+								</div>
+								<div class="input-group margin-bottom-20">
+									歌曲分類 : <select class="form-control" id="songType"
+										style="padding: 7px; width: 380px;" name="music_styleName">
+										<option value="noType">未分類</option>
+										<option value="emotion">抒情</option>
+										<option value="rock">搖滾</option>
+										<option value="reggae">雷鬼</option>
+										<option value="blue">藍調</option>
+										<option value="dynamic">動感</option>
+										<option value="classic">古典</option>
+									</select>
+								</div>
+								<div class="row">
+									<div class="col-md-6"></div>
+									<div class="col-md-6">
+										<input class="btn btn-primary pull-right" type="submit" value="發佈">
+									</div>
+
+								</div>
+								<hr>
+							</form>
+
+						</div>
 						<!-- End Login Box -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
 	<!-- === END CONTENT === -->
-	
+
 	<jsp:include page="../homePage/footer.jsp" />
-	<div id="player">
-	<jsp:include page="../homePage/player.jsp"/>
-	</div>
+	<!-- 	<div id="player"> -->
+	<%-- 	<jsp:include page="../homePage/player.jsp"/> --%>
+	<!-- 	</div> -->
 </body>
 </html>

@@ -98,7 +98,7 @@
 									<li><a href="features-animate-on-scroll.html">Animate
 											On Scroll</a></li>
 								</ul></li>
-							<li><a href="index.html"><i class="fas fa-list-ol fa-lg"></i>   聽歌單</a>
+							<li><a href="../searchMusic/searchLists.jsp"><i class="fas fa-list-ol fa-lg"></i>   聽歌單</a>
 								<ul>
 									<li><a href="pages-about-us.html">About Us</a></li>
 									<li><a href="pages-services.html">Services</a></li>

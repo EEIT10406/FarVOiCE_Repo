@@ -7,19 +7,29 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import model.bean.MemberBean;
 import model.hibernate.HibernateUtil;
-
+@Repository
 public class MemberDAO {
 	//Spring MVC
-//	private SessionFactory sessionFactory;
-//	public void setSessionFactory(SessionFactory sessionFactory) {
-//		this.sessionFactory = sessionFactory;
-//	}
-//	public Session getSession() {
-//	return this.sessionFactory.getCurrentSession();
-//}
+	@Autowired
+	private SessionFactory sessionFactory;
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	public Session getSession() {
+		return this.sessionFactory.getCurrentSession();
+	}
+	public MemberDAO(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+	}
+	public MemberDAO() {}
+	
 	
 	
 	public static void main(String... args) throws IOException, Exception, SQLException {
@@ -27,7 +37,7 @@ public class MemberDAO {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		MemberDAO memberDAO = new MemberDAO();
-		memberDAO.setSession(session);
+//		memberDAO.setSession(session);
 		//findByPk
 //		MemberBean bean0 = memberDAO.findByPrimaryKey("Peter");
 //		System.out.println(bean0);		
@@ -75,15 +85,15 @@ public class MemberDAO {
 		session.close();
 		HibernateUtil.closeSessionFactory();
 	}
-	
-	private Session session;
-	public void setSession(Session session) {
-		this.session = session;
-	}
-
-	public Session getSession() {
-		return session;
-	}
+	//Test
+//	private Session session;
+//	public void setSession(Session session) {
+//		this.session = session;
+//	}
+//
+//	public Session getSession() {
+//		return session;
+//	}
 	
 	public MemberBean findByPrimaryKey(String member_username) {
 		//1228	OK

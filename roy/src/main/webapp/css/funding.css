@@ -1,0 +1,168 @@
+.blockHead {
+	position: relative;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.blockHead a.pull-right {
+	padding-bottom: 5px;
+	border-bottom: 3px solid transparent;
+	transition: .2s all ease
+}
+
+.blockHead a.pull-right:hover {
+	border-bottom-color: #eb4b4b;
+	color: #eb4b4b
+}
+
+.catNav li {
+	display: inline-block;
+	padding-bottom: 5px;
+	margin-right: 2em;
+	cursor: pointer;
+	border-bottom: 3px solid transparent;
+	transition: .2s all ease
+}
+
+.catNav li.active, .catNav li:hover {
+	color: #eb4b4b;
+	border-bottom-color: #eb4b4b
+}
+
+.catNav li a:hover {
+	color: #eb4b4b
+}
+
+.preview {
+	
+}
+
+.count {
+	color: #009E74;
+	font-weight: 700;
+}
+
+.title {
+	font-weight: 400;
+	margin-bottom: 1.8rem;
+	margin-bottom: 3rem;
+	padding-top: 1.2rem;
+}
+
+span strong{
+	font-size: 20px;
+}
+
+
+
+
+.project {
+	border: 1px solid;
+	height: 450px;
+	width: 30%;
+	margin: 10px 15px 20px 15px;
+	float: left;
+}
+
+.img-pre {
+	width: 100%;
+	height: 40%;
+}
+
+.img-in {
+	width: 100%;
+	height: 100%;
+}
+
+.pcontent {
+	padding: 10px;
+	margin-bottom: 10px;
+	height: 160px;
+	overflow: hidden;
+}
+
+.title-content {
+	color: #000;
+	font-weight: 700;
+}
+
+.excerpt {
+	font-size: .75rem;
+	margin-top: 10px;
+	word-break: break-all;
+	text-align: justify;
+}
+
+.downMeta {
+	padding: 10px;
+	position: static;
+}
+
+.goalMoney {
+	font-size: 15px;
+	margin-bottom: 15px;
+	font-weight: 700;
+}
+
+.osmfont {
+	font-family: Oswald, sans-serif;
+	
+}
+.osmfont:before{
+	content:"NT$ ";
+}
+
+.goalMoney,.goalpercent
+	{
+	font-family: Oswald, sans-serif;
+}
+
+.goalpercent {
+	font-size: 15px;
+	font-weight: 700;
+	padding-left: 10px;
+	position: relative;
+}
+
+.fa-pull-right, .pull-right {
+	float: right;
+	font-family: Oswald, sans-serif;
+}
+
+.small, small {
+	font-size: 85%;
+	font-family: Oswald, sans-serif;
+}
+
+.pull-right {
+	float: right !important;
+	font-family: Oswald, sans-serif;
+}
+
+progress {
+	/* 	position: absolute; */
+	width: 100%;
+	height: 1.3rem;
+	border: 2px solid #d9d9d9;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	/* 	border-radius: 1rem; */
+	-webkit-apperance: none;
+}
+
+::-webkit-progress-bar {
+	border: 2px solid #fff;
+	background-color: #d9d9d9;
+	border-radius: 1rem;
+}
+
+::-webkit-progress-value {
+	background-color: #eb4b4b;
+	border-radius: 1rem;
+}
+.visitcount{
+	display: none;
+}

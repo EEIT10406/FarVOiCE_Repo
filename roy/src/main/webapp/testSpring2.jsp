@@ -33,7 +33,6 @@
 
 	<%@ page import="org.hibernate.SessionFactory"%>
 	<%@ page import="java.util.List"%>
-	<%@ page import="model.ProductBean"%>
 	<%
 		// SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		// sessionFactory.getCurrentSession().beginTransaction();

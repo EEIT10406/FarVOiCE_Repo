@@ -16,7 +16,7 @@ public class MemberBean {
 		member_password		varchar(30),
 		member_email		varchar(30),
 		member_nickname		varchar(30),
-		member_profileImage	varbinary,--上傳時需要限制大小
+		member_profileImage	varchar(200),--上傳時需要限制大小
 		member_registerTime datetime,
 		member_ban			bit,
 	*/
@@ -30,7 +30,7 @@ public class MemberBean {
 	private String member_password;
 	private String member_email;
 	private String member_nickname;
-	private Blob member_profileImage;
+	private String member_profileImage;
 	private java.util.Date member_registerTime;
 	private Boolean member_ban;
 	@Override
@@ -64,10 +64,10 @@ public class MemberBean {
 	public void setMember_nickname(String member_nickname) {
 		this.member_nickname = member_nickname;
 	}
-	public Blob getMember_profileImage() {
+	public String getMember_profileImage() {
 		return member_profileImage;
 	}
-	public void setMember_profileImage(Blob member_profileImage) {
+	public void setMember_profileImage(String member_profileImage) {
 		this.member_profileImage = member_profileImage;
 	}
 	public java.util.Date getMember_registerTime() {
