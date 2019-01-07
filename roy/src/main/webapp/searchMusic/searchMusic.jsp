@@ -50,10 +50,25 @@
 		})
 		$('#soChi').click(function() {
 			if ($(this).text() == "收起") {
+				$('#music_type-div').hide(500);
 				$(this).text("展開");
 			} else {
+				$('#music_type-div').show(500);
 				$(this).text("收起");
 			}
+		})
+		
+		
+		$('#allType').click(function() {
+			$('#music_type-div').hide(350);
+			$('#soChi').hide(350);
+			$('#search-div').show(350);
+		})
+		$('#choseType').click(function() {
+			$('#music_type-div').show(350);
+			$('#soChi').show(350);
+			$('#soChi').text("收起");
+			$('#search-div').hide(350);
 		})
 	})
 </script>
@@ -68,14 +83,15 @@
 				<div class="container">
 					<div class="row margin-vert-30">
 						<ul id="type" class="nav nav-tabs m-bottom-6">
-							<li class="active"><a href="#">最新推薦</a></li>
-							<li><a href="#">所有音樂</a></li>
+							<li id="choseType" class="active"><a href="#">音樂類型</a></li>
+							<li id="allType"><a href="#">所有音樂</a></li>
 							<a id="soChi" aria-controls="collapse-filter"
 								aria-expanded="false"
 								class="pull-right m-top-1 js-collapse-filter"
 								data-toggle="collapse" href="#collapse-filter">收起</a>
 						</ul>
-						<div class="collapse in" id="collapse-filter">
+						<!--類型 -->
+						<div id="music_type-div" class="collapse in" id="collapse-filter">
 							<form class="form-horizontal p-bottom-4">
 								<div class="form-group">
 									<label class="col-sm-1 control-label text-muted"><small>類型</small></label>
@@ -123,7 +139,16 @@
 								</div>
 							</form>
 						</div>
+						<!--類型 -->
 					</div>
+					<form id="search-div" class="form-inline">
+							<input class="form-control mr-sm-2" type="search"
+								placeholder="搜尋" aria-label="Search">
+							<button class="btn btn-outline-success" type="submit">搜尋</button>
+						</form>
+						<script>
+						$('#search-div').hide(0);
+						</script>
 				</div>
 			</div>
 		</div>

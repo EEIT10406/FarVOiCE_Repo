@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -16,9 +17,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import model.CustomerBean;
 import model.ProductBean;
+import model.bean.ReportBean;
+import model.bean.StoryBean;
 
 @Configuration
 @EnableTransactionManagement
+@ComponentScan(basePackages={"model"})
 public class RootAppConfig {
 	@Bean
 	public DataSource dataSource() {
@@ -37,12 +41,12 @@ public class RootAppConfig {
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-		builder.addAnnotatedClasses(CustomerBean.class, ProductBean.class);
+		builder.addAnnotatedClasses(CustomerBean.class, ProductBean.class,ReportBean.class,StoryBean.class);
 
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.setProperty("hibernate.show_sql", "true");
-		props.setProperty("hibernate.current_session_context_class", "thread");
+//		props.setProperty("hibernate.current_session_context_class", "thread");
 		builder.addProperties(props);
 
 		return builder.buildSessionFactory();
