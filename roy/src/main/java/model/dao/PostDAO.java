@@ -125,7 +125,6 @@ public class PostDAO {
 		
 				this.getSession().save(bean);
 				return bean;
-
 	}
 	
 	public void update(PostBean bean) {
