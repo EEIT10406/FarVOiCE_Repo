@@ -68,7 +68,7 @@
 					    </c:when>
 					    <c:otherwise>
 							<li>	
-								<img src="../img/123.jpg"  class="img-circle" style="width:45px;height:45px;" />
+								<img src="../personalPage/imgs/profile/${user.member_username}.jpg"  class="img-circle" style="width:45px;height:45px;" />
 							</li>
 						</c:otherwise>
 					</c:choose>

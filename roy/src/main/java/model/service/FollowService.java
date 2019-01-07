@@ -28,12 +28,11 @@ public class FollowService {
 
 			FollowService followService = new FollowService(new FollowDAO(HibernateUtil.getSessionfactory()));
 			
-			MemberBean bean1 = new MemberBean();
-			bean1.setMember_username("Peter");
-			MemberBean bean2 = new MemberBean();
-			bean2.setMember_username("Marry");
-			
-			followService.followORCancelFollow(bean1, bean2);
+//			MemberBean bean1 = new MemberBean();
+//			bean1.setMember_username("Jack");
+//			String m = "Marry";
+//			
+//			System.out.println(followService.checkFollowOrNot(bean1, m));
 			
 			
 			HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
@@ -41,10 +40,10 @@ public class FollowService {
 			HibernateUtil.closeSessionFactory();
 		}
 	}
-	public void followORCancelFollow(MemberBean S,MemberBean M) {
+	public void followORCancelFollow(MemberBean S,String member_username) {
 		//0107 OK
 		//如果沒訂閱就訂閱，已訂閱就取消訂閱
-		FollowId followId = new FollowId(S.getMember_username(),M.getMember_username());
+		FollowId followId = new FollowId(S.getMember_username(),member_username);
 		FollowBean followExistBean = followDAO.findByPrimaryKey(followId);
 		if(followExistBean==null) {
 			//沒追蹤就追蹤
@@ -56,6 +55,19 @@ public class FollowService {
 		else {
 			//追蹤就退追蹤
 			followDAO.remove(followId); 
+		}
+	}
+	public boolean checkFollowOrNot(MemberBean S,String member_username) {
+		//0107 OK
+		//找找看S訂閱M了沒
+		FollowId followId = new FollowId(S.getMember_username(),member_username);
+		FollowBean followExistBean = followDAO.findByPrimaryKey(followId);
+		if(followExistBean==null) {
+			//沒追蹤就沒追蹤阿阿不然勒
+			return false;
+		}else {
+			//追蹤就true連你阿罵都知道
+			return true;
 		}
 	}
 }

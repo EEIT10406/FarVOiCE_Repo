@@ -97,8 +97,8 @@ public class MemberController {
 	@RequestMapping(path="/login-signUp-upload/MemberLogOut.controller")
 	public String signUp(Model model,
 			HttpSession session) {
-		System.out.println("asd");
-		session.setAttribute("user", "");
+		MemberBean bean =null;
+		session.setAttribute("user", bean);
 		return"redirect:/homePage/index.jsp";
 	}
 		

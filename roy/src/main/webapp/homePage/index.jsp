@@ -149,19 +149,19 @@
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">Thursday</h6>
+					<h6 style="margin: 0;"><a href="/roy/personalPage/somebodyPersonalPage.controller?somebody=Peter&nickname=fifi">fifi</a></h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">Fri-Sat</h6>
+					<h6 style="margin: 0;">Marry</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">Suday</h6>
+					<h6 style="margin: 0;">Jack</h6>
 					<h4 style="margin: 0;">CLOSED</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
