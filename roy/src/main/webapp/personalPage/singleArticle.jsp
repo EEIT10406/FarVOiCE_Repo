@@ -5,9 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!--<![endif]-->
 <head>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
 <!-- Title -->
 <title>Far VOiCE | 閱讀文章</title>
 <!-- Meta -->
@@ -85,7 +83,7 @@
 								<!-- End Author Name -->
 								<!-- Date -->
 								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
+									<i class="fa fa-calendar color-gray-light"></i> <a href="#">${currentPost.post_time}</a>
 								</div>
 								<!-- End Date -->
 								<!-- Tags -->
@@ -113,6 +111,8 @@
 									</div>
 									<div class="col-md-7">
 										<p>我是一隻黃金鼠</p>
+										<p>${currentPost.post_content}</p>
+										<span hidden="true" id="postPK">${currentPost.post_idS}</span>
 									</div>
 									<div class="col-md-12">
 										<p>我是一隻黃金鼠</p>
@@ -153,56 +153,7 @@
 										<div class="panel-heading">
 											<h3>評論</h3>
 										</div>
-										<ul class="list-group">
-											<li class="list-group-item">
-												<div class="row">
-													<div class="col-md-2 profile-thumb">
-														<a href="#"> <img class="media-object"
-															src="assets/img/profiles/99.jpg" alt="">
-														</a>
-													</div>
-													<div class="col-md-10">
-														<h4>真是篇好文章</h4>
-														<p>我完全了解你是隻黃金鼠</p>
-														<span class="date"> <i
-															class="fa fa-clock-o color-gray-light"></i>1 hours ago
-														</span>
-													</div>
-												</div>
-											</li>
-											<li class="list-group-item">
-												<div class="row">
-													<div class="col-md-2 profile-thumb">
-														<a href="#"> <img class="media-object"
-															src="assets/img/profiles/53.jpg" alt="">
-														</a>
-													</div>
-													<div class="col-md-10">
-														<h4>我是留言一號</h4>
-														<p>很煩</p>
-														<p>掰不下去欸</p>
-														<span class="date"> <i
-															class="fa fa-clock-o color-gray-light"></i>12 May 2013
-														</span>
-													</div>
-												</div>
-											</li>
-											<li class="list-group-item">
-												<div class="row">
-													<div class="col-md-2 profile-thumb">
-														<a href="#"> <img class="media-object"
-															src="assets/img/profiles/37.jpg" alt="">
-														</a>
-													</div>
-													<div class="col-md-10">
-														<h4>謝你</h4>
-														<p>機掰咧</p>
-														<span class="date"> <i
-															class="fa fa-clock-o color-gray-light"></i>10 May 2013
-														</span>
-													</div>
-												</div>
-											</li>
+										<ul class="list-group" id="0106Test">
 											<!-- Comment Form -->
 											<li class="list-group-item">
 												<div class="blog-comment-form">
@@ -216,6 +167,9 @@
 													<div class="row margin-top-20">
 														<div class="col-md-12">
 															<form action="<c:url value="/personalPage/PostComment.controller"/>" method="post">>
+																<input hidden="true" value="${currentPost.post_idS}" name="post_idSReff">
+																<input hidden="true" value="${user.member_username}" name="member_username">
+																
 																<label>姓名</label>
 																<div class="row margin-bottom-20">
 																	<div class="col-md-7 col-md-offset-0">
@@ -232,7 +186,7 @@
 																<label>內容</label>
 																<div class="row margin-bottom-20">
 																	<div class="col-md-11 col-md-offset-0">
-																		<textarea class="form-control" rows="8" id="comment" style=""></textarea>
+																		<textarea class="form-control" rows="8" id="comment" name="post_content"></textarea>
 																	
 																	</div>
 																</div>
@@ -300,7 +254,7 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="assets/img/blog/thumbs/thumb3.jpg"
+											src="../img/blog/thumbs/thumb3.jpg"
 											style="width: 100px; height: 90px" alt="thumb3">
 										</a> <a href="#" class="posts-list-title">第三篇</a>
 										<br> <span class="recent-post-date">2019.01.03
@@ -312,7 +266,7 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="assets/img/blog/thumbs/thumb4.jpg"
+											src="../img/blog/thumbs/thumb4.jpg"
 											style="width: 100px; height: 90px" alt="thumb4">
 										</a> <a href="#" class="posts-list-title">第四篇</a>
 										<br> <span class="recent-post-date">2018.05.06
@@ -329,40 +283,98 @@
 			</div>
 		</div>
 	</div>
-	</div>
 	<!-- === END CONTENT === -->
+	<!-- 	showAllCommentFromArticle start-->
+	<script>
+        $(function () {            
+            $.ajax({
+                url: "/roy/personalPage/showAllCommentFromArticle.controller",   //存取Json的網址             
+                type: "POST",
+                cache:false,
+                dataType:'json',
+                data:{post_idS:$('#postPK').text()},
+                //contentType: "application/json",              
+				success : function(list)
+				 {   
+					list.forEach(function(obj, index) {
+						console.log(obj.post_time)
+// 								<li class='list-group-item'>
+// 									<div class='row'>
+// 										<div class='col-md-2 profile-thumb'>
+// 											<a href='#'> <img class='media-object'
+// 												src='../img/profiles/99.jpg' alt=''>
+// 											</a>
+// 										</div>
+// 										<div class='col-md-10'>
+// 											<h4>真是篇好文章</h4>
+// 											<p>我完全了解你是隻黃金鼠</p>
+// 											<span class='date'> <i
+// 												class='fa fa-clock-o color-gray-light'></i>1 hours ago
+// 											</span>
+// 										</div>
+// 									</div>
+// 								</li>
+						var temp = "	<li class='list-group-item'>"
+												+"<div class='row'>"
+												+"<div class='col-md-2 profile-thumb'>"
+													+"<a href='#'> <img class='media-object'"
+													+	"src='../img/profiles/99.jpg' alt=''>"
+													+"</a>"
+												+"</div>"
+												+"<div class='col-md-10'>"
+													+"<h4>"+obj.member_username+"</h4>"
+													+"<p>"+obj.post_content+"</p>"
+													+"<span class='date'> <i"
+													+"	class='fa fa-clock-o color-gray-light'></i>"+obj.post_time
+													+"</span>"
+											+"</div>"
+										+"</li>"
+// 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
+// 				        var div =  img+content + time + button +"<br></br>";
+				        $('#0106Test').append(temp); 
+				  	})
+				  },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
 
+        });
+    </script>
+	<!-- 	showAllCommentFromArticle end-->
+	
 	<!-- === BEGIN FOOTER === -->
 	<jsp:include page="../homePage/footer.jsp" />
 	<!-- END Footer Menu -->
-	<div id="player">
-		<jsp:include page="../homePage/player.jsp"/>
-	</div>
+<!-- 	<div id="player"> -->
+<%-- 		<jsp:include page="../homePage/player.jsp"/> --%>
+<!-- 	</div> -->
 	
 	
 	<!-- JS -->
-	<script type="text/javascript" src="assets/js/jquery.min.js"
+	<script type="text/javascript" src="../js/jquery.min.js"
 		type="text/javascript"></script>
-	<script type="text/javascript" src="assets/js/bootstrap.min.js"
+	<script type="text/javascript" src="../js/bootstrap.min.js"
 		type="text/javascript"></script>
-	<script type="text/javascript" src="assets/js/scripts.js"></script>
+	<script type="text/javascript" src="../js/scripts.js"></script>
 	<!-- Isotope - Portfolio Sorting -->
-	<script type="text/javascript" src="assets/js/jquery.isotope.js"
+	<script type="text/javascript" src="../js/jquery.isotope.js"
 		type="text/javascript"></script>
 	<!-- Mobile Menu - Slicknav -->
-	<script type="text/javascript" src="assets/js/jquery.slicknav.js"
+	<script type="text/javascript" src="../js/jquery.slicknav.js"
 		type="text/javascript"></script>
 	<!-- Animate on Scroll-->
-	<script type="text/javascript" src="assets/js/jquery.visible.js"
+	<script type="text/javascript" src="../js/jquery.visible.js"
 		charset="utf-8"></script>
 	<!-- Sticky Div -->
-	<script type="text/javascript" src="assets/js/jquery.sticky.js"
+	<script type="text/javascript" src="../js/jquery.sticky.js"
 		charset="utf-8"></script>
 	<!-- Slimbox2-->
-	<script type="text/javascript" src="assets/js/slimbox2.js"
+	<script type="text/javascript" src="../js/slimbox2.js"
 		charset="utf-8"></script>
 	<!-- Modernizr -->
-	<script src="assets/js/modernizr.custom.js" type="text/javascript"></script>
+	<script src="../js/modernizr.custom.js" type="text/javascript"></script>
 	<!-- End JS -->
 
 	<script>

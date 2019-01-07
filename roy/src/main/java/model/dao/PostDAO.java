@@ -112,6 +112,14 @@ public class PostDAO {
 		List<PostBean> PostList = query.list();
 		return PostList;
 	}
+	public List<PostBean> findCommentFromArticle (Integer post_idS){
+		
+		String hql = "from PostBean WHERE post_idM=:post_idM ";
+		Query<PostBean> query = this.getSession().createQuery(hql);
+		query.setParameter("post_idM", post_idS);
+		List<PostBean> PostList = query.list();
+		return PostList;
+	}
 	public PostBean create(PostBean bean) {
 		//0103 OK
 		

@@ -193,6 +193,7 @@ table {
 					    </c:when>
 					    <c:otherwise>
 					        ${user.member_nickname}
+					        <span hidden="true" id="userName">${user.member_username}</span>
 					    </c:otherwise>
 					</c:choose>
 					
@@ -295,7 +296,7 @@ table {
 												<p>最新文章</p>
 												<p>我是一隻黃金鼠</p>
 												<!-- Read More -->
-												<a  class="btn btn-primary" target="_blank" href="../findArticle/singleArticle.jsp"
+												<a  class="btn btn-primary" target="_blank" href="singleArticle.jsp"
 													>
 													查看全文
 												</a>
@@ -390,8 +391,8 @@ table {
 				
 				<form action="<c:url value="/personalPage/Post.controller"/>" method="post">
 					<div class="modal-body" >
-						<textarea name="shareContent" style="width:100px;height:30px" placeholder="標題"></textarea>
-						<textarea name="post_content" style="width:650px;height:500px" placeholder="是不在想些色色的呢?"></textarea>
+						<textarea class="form-control" name="shareContent" style="width:100px;height:30px" placeholder="標題"  ></textarea>
+						<textarea class="form-control" name="post_content" style="width:650px;height:500px" placeholder="是不在想些色色的呢?"  ></textarea>
 						<input type="checkbox" name="post_privacy" value="true">不想被女友看到嗎?<br>					
 					</div>
 					<div class="modal-footer">
@@ -414,7 +415,7 @@ table {
                 type: "POST",
                 cache:false,
                 dataType:'json',
-                data:{user:"Peter"},
+                data:{user:$('#userName').text()},
                 //contentType: "application/json",              
 				success : function(list)
 				 {   
@@ -423,10 +424,12 @@ table {
 // 						<h4style='margin-bottom:0px'>發表了一篇文章</h5>
 // 						<small>9 小時前</small>
 // 						<div class="clearfix"></div>
+//						<a  class='btn btn-primary' target='_blank' href='singleArticle.jsp'>查看全文</a>
 						var img = "<img src='imgs/123.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 						var content = "<h5 style='margin-bottom:0px'>發表了一篇文章</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
 						var time = "<h6>" + obj.post_time +"</h6>";
-				        var div =  img+content + time +"<br>";
+						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
+				        var div =  img+content + time + button +"<br></br>";
 				        $('#test').append(div); 
 				  	})
 				  },

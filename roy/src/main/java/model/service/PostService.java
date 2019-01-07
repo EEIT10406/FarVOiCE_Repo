@@ -55,4 +55,21 @@ public class PostService {
 		//0106 OK
 		return postDAO.findArticleFromMember(member_username);
 	}
+	public List<PostBean> showAllCommentFromArticle(Integer post_idS){
+	
+		return postDAO.findCommentFromArticle(post_idS);
+	}
+	public PostBean postNewComment(PostBean bean) {
+		if(bean.getPost_idM()==null)return null;//代表是發文
+		PostBean newPostBean = postDAO.create(bean);
+		return newPostBean;
+	}
+	public PostBean findSinglePost(Integer Post_idS) {
+		
+		PostBean bean = postDAO.findByPrimaryKey(Post_idS);
+		if(bean!=null) {
+					return bean;
+		}
+		return null;
+	}
 }
