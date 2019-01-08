@@ -152,7 +152,7 @@ table {
 											<div
 												style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">FarVoice
 												即時熱門</div>
-											<table>
+											<table id="rankTopTen">
 												<tr>
 													<th>排名</th>
 													<th>歌曲名稱</th>
@@ -167,7 +167,6 @@ table {
 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
 
 														<div>
-<!-- <<<<<<< HEAD -->
 															<img src="../img/emptyLove.png" class="heart"> 
 <!-- 															<span -->
 <!-- 																class="heartCount"> 0</span>  -->
@@ -183,7 +182,7 @@ table {
 																	style="outline: none;">
 																	<img src="../img/share.png" width="15px">分享
 																</button>
-<!-- ======= -->
+
 <!-- 															<img src="../img/emptyLove.png" class="heart"> <span -->
 <!-- 																class="heartCount"> 0</span> <span id="share" -->
 <!-- 																class="shareAndAdd"> <a href="" -->
@@ -197,12 +196,11 @@ table {
 <!-- 																	<img src="../img/add.png" width="15px">加入歌單 -->
 <!-- 																</button> -->
 
-<!-- >>>>>>> branch 'branch1' of https://github.com/EEIT10406/FarVOiCE_Repo.git -->
 															</span>
 
 															
 															<span id="add">
-																<button type="button" class="btnAddList"
+																<button type="button" id="addToList" class="btnAddList"
 																	data-toggle="modal" data-target="#addList"
 																	style="outline: none;">
 																	<img src="../img/add.png" width="15px">加入歌單
@@ -638,37 +636,6 @@ table {
 	</div>
 	<!-- === END CONTENT === -->
 
-	<!-- addPlayList begin-->
-	<div class="modal fade" id="addList" aria-hidden="true">
-		<div class="modal-dialog" style="width: 300px;">
-			<div class="modal-content">
-				<h5 style="margin: 10px;">加入歌單</h5>
-				<form>
-					<div class="modal-body">
-
-						<div class="form-group">
-							<select class="form-control">
-								<option>歌單名稱</option>
-							</select>
-						</div>
-						<div style="float: right;">
-							<a href="../list/createList.jsp">建立歌單</a>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
-						<button type="button" class="btn btn-primary">確定</button>
-					</div>
-				</form>
-
-			</div>
-		</div>
-	</div>
-
-	<!-- addPlayList end-->
-
-	
-	
 	<!-- addshare begin-->
 	<div class="modal fade" id="sharebox" aria-hidden="true">
 		<div class="modal-dialog" style="width: 300px;">
@@ -694,13 +661,87 @@ table {
 	</div>
 
 	<!-- addshare end-->
+	
+	
+	<!-- addPlayList begin-->
+	
+	<div class="modal fade" id="addList" aria-hidden="true">
+		<div class="modal-dialog" style="width: 300px;">
+			<div class="modal-content">
+				<h5 style="margin: 10px;">加入歌單</h5>
+				<form>
+					<div class="modal-body">
 
+						<div class="form-group">
+							<select class="form-control">
+								<option>歌單名稱</option>
+							</select>
+						</div>
+						<div style="float: right;">
+							<a href="../list/createList.jsp">建立歌單</a>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary">確定</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	
+	<!-- addPlayList end-->
 
 
 	<jsp:include page="../homePage/footer.jsp" />
 	<div id="player">
 		<jsp:include page="../homePage/player.jsp" />
 	</div>
+	
+	<script>
+		//讀取使用者有什麼歌單
+// 		function loadListMusic(playListId) {
+// 			$.getJSON('/roy/list/readPlayListMusic',
+// 							{'playListId' : playListId},
+// 							function(data) {
+// 								var docFrag = $(document.createDocumentFragment());
+// 								$.each(data,function(index, list) {
+// 									var cell1 = $('<td name="music_id"></td>').text(list.music_id)
+// 									var img = $("<img>");
+// 									$(img).attr({"src" : list.music_music,"style" : "width: 100px; height: 100px;"});
+// 									var cell2 = $('<td></td>').append(img)
+// 									var cell3 = $('<td name="music_name"></td>').attr("style","font-size: 15px;").text(list.music_name)
+// 									var cell4 = $('<td name="member_username"></td>').attr("style","font-size: 15px;").text(list.member_username)
+// 									var cell5 = $('<td name="music_uploadTime"></td>').attr("style","font-size: 15px;").text(list.music_uploadTime)
+// 									var cell6 = $('<td></td>').html('<button class="btn btn-primary pull-right" >刪除</button>')
+// 													//<tr><td>
+// 									var row = $('<tr></tr>').append([cell1,cell2,cell3,cell4,cell5,cell6 ])
+// 									docFrag.append(row);
+// 							})
+// 								$('#playListMusicTable>tbody').html(docFrag);
+// 								$('td[name="music_id"]').hide();
+// 					})
+// 		}
+// 		$('#rankTopTen>tbody').on('click', 'td:nth-child(3)',
+// 				function() {
+// 					var row = $(this).parents('tr');
+// 					var playlist_id = row.children('td:nth-child(1)').text();
+// 					loadListMusic(playlist_id)	
+					
+// 					//刪除歌單裡的音樂
+// 					$('#playListMusicTable>tbody').on('click', 'button:nth-child(1)',function() {
+// 					var row = $(this).parents('tr');
+// 					var music_id = row.children('td:nth-child(1)').text();
+					
+// 					$.get('/roy/list/deletePlayListMusic', {'music_id' : music_id,'playlist_id':playlist_id}, function(data) {
+// 						loadListMusic(playlist_id)
+// 						loadList('${user.member_username}')
+// 					})
+// 				})
+// 		})
+						
+	</script>
 
 </body>
 </html>
