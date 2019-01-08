@@ -227,8 +227,7 @@ word-break:break-all;
 					</c:choose>
 					
 					</div>
-<!-- 					<div id="follow" class="unfollow">追蹤</div> -->
-<!-- 					發布新動態按鈕 -->
+					<!-- 					發布新動態按鈕 -->
 					<form class="post">
 						<input type="button" class="btn btn-primary"
 							data-toggle="modal" data-target="#sharebox" value="發佈新動態">

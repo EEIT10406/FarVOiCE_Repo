@@ -6,6 +6,7 @@
 	
 <script>
 	$(document).ready(function() {
+		$('#profile').css("cursor","pointer");
 		$('#login').click(function() {
 			window.location.href = "/roy/login-signUp-upload/login.jsp";
 		})
@@ -14,6 +15,10 @@
 		})
 		$('#upload').click(function() {
 			window.location.href = "/roy/login-signUp-upload/upload.jsp";
+		})
+		$('#profile').click(function() {
+			window.location.href = "/roy/personalPage/personalPage.jsp";
+			
 		})
 	})
 </script>
@@ -68,7 +73,7 @@
 					    </c:when>
 					    <c:otherwise>
 							<li>	
-								<img src="../personalPage/imgs/profile/${user.member_username}.jpg"  class="img-circle" style="width:45px;height:45px;" />
+								<img id="profile" src="../personalPage/imgs/profile/${user.member_username}.jpg"  class="img-circle" style="width:45px;height:45px;"  />
 							</li>
 						</c:otherwise>
 					</c:choose>

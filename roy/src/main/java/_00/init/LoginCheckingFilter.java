@@ -23,7 +23,8 @@ import model.bean.MemberBean;
 				@WebInitParam(name = "mustLogin1", value = "/_03_listBooks/*"), 
 				@WebInitParam(name = "mustLogin2", value = "/_04_ShoppingCart/*"), 
 				@WebInitParam(name = "mustLogin3", value = "/_05_orderProcess/*"),
-				@WebInitParam(name = "mustLogin4", value = "/personalPage/somebodyPersonalPageFollow.controller")				
+				@WebInitParam(name = "mustLogin4", value = "/personalPage/somebodyPersonalPageFollow.controller"),				
+				@WebInitParam(name = "mustLogin5", value = "/rankTop10/ShareMusic.controller")				
 		})
 public class LoginCheckingFilter implements Filter {
 	Collection<String> url = new ArrayList<String>();
