@@ -15,8 +15,12 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
 import model.bean.BackerBean;
 import model.bean.FundingBean;
+
+import model.bean.FollowBean;
+
 import model.bean.ListMusicBean;
 import model.bean.MemberBean;
 import model.bean.MusicBean;
@@ -47,8 +51,9 @@ public class RootAppConfig {
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
 
-		builder.addAnnotatedClasses(MemberBean.class, PostBean.class, MusicBean.class, PlaylistBean.class,
-				ListMusicBean.class, BackerBean.class, FundingBean.class, RewardBean.class);
+
+		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,FollowBean.class, BackerBean.class, FundingBean.class, RewardBean.class);
+
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.setProperty("hibernate.show_sql", "true");

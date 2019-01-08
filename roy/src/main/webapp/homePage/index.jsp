@@ -42,6 +42,7 @@
 </head>
 <body>
 	<div id="body_bg">
+
 		<jsp:include page="header.jsp" />
 		<!-- === BEGIN CONTENT === -->
 		<div id="content">
@@ -119,9 +120,7 @@
 						liber tempor cum soluta nobis eleifend option congue nihil
 						imperdiet doming id quod mazim placerat facer possim assum.
 						Curabitur eget nisl a risus.</p>
-					<img class="visible-lg animate fadeInUp"
-						style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;"
-						src="/roy/img/frontpage/responsive_homepage.png" alt="">
+					
 				</div>
 				<div class="col-md-9" style="float: left; width: 380px;">
 					<h2>熱門募資活動</h2>
@@ -138,9 +137,7 @@
 						liber tempor cum soluta nobis eleifend option congue nihil
 						imperdiet doming id quod mazim placerat facer possim assum.
 						Curabitur eget nisl a risus.</p>
-					<img class="visible-lg animate fadeInUp"
-						style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;"
-						src="/roy/img/frontpage/responsive_homepage.png" alt="">
+				
 				</div>
 				<!-- End Main Text -->
 				<!-- Side Column -->
@@ -152,19 +149,19 @@
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">Thursday</h6>
+					<h6 style="margin: 0;"><a href="/roy/personalPage/somebodyPersonalPage.controller?somebody=Peter&nickname=fifi">fifi</a></h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">Fri-Sat</h6>
+					<h6 style="margin: 0;">Marry</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">Suday</h6>
+					<h6 style="margin: 0;">Jack</h6>
 					<h4 style="margin: 0;">CLOSED</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>

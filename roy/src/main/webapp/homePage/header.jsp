@@ -9,6 +9,9 @@
 		$('#login').click(function() {
 			window.location.href = "/roy/login-signUp-upload/login.jsp";
 		})
+		$('#logout').click(function() {
+			window.location.href = "/roy//login-signUp-upload/MemberLogOut.controller";
+		})
 		$('#upload').click(function() {
 			window.location.href = "/roy/login-signUp-upload/upload.jsp";
 		})
@@ -33,11 +36,21 @@
 					<img src="../img/logo.PNG" alt="Logo" />
 				</div>
 				<!-- End Logo -->
-				<ul class="social-icons pull-right hidden-xs">
-					<li>
-						<button id="login" type="button" class="btn btn-outline-danger">
-							登入/註冊</button>
-					</li>
+				<ul class="social-icons  pull-right hidden-xs ">
+					<c:choose>
+					    <c:when test="${empty user}">
+					    	<li>
+								<button id="login" type="button" class="btn btn-outline-danger">
+								登入/註冊</button>
+							</li>
+					    </c:when>
+					    <c:otherwise>
+							<li>
+								<button id="logout" type="button" class="btn btn-outline-danger">
+								登出</button>
+							</li>
+						</c:otherwise>
+					</c:choose>
 					<li>
 						<button id="upload" type="button" class="btn btn-outline-danger">
 							發佈音樂</button>
@@ -53,6 +66,15 @@
 							<button class="btn btn-outline-success" type="submit">搜尋</button>
 						</form>
 					</li>
+					<c:choose>
+					    <c:when test="${empty user}">
+					    </c:when>
+					    <c:otherwise>
+							<li>	
+								<img src="../personalPage/imgs/profile/${user.member_username}.jpg"  class="img-circle" style="width:45px;height:45px;" />
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 		</div>

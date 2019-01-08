@@ -7,28 +7,32 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import model.bean.FollowBean;
 import model.bean.primarykey.FollowId;
 import model.hibernate.HibernateUtil;
-
+@Repository
 public class FollowDAO {
 	//Spring MVC
-//	private SessionFactory sessionFactory;
-//	public void setSessionFactory(SessionFactory sessionFactory) {
-//		this.sessionFactory = sessionFactory;
-//	}
-//	public Session getSession() {
-//	return this.sessionFactory.getCurrentSession();
-//}
+	@Autowired
+	private SessionFactory sessionFactory;
+	public FollowDAO(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+	}
+	public Session getSession() {
+		return this.sessionFactory.getCurrentSession();
+	}
 	
 	
 	public static void main(String... args) throws IOException, Exception, SQLException {
 		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		FollowDAO followDAO = new FollowDAO();
-		followDAO.setSession(session);
+//		FollowDAO followDAO = new FollowDAO();
+//		followDAO.setSession(session);
 		//findByPk
 //		FollowId followId = new FollowId();
 //		followId.setMember_usernameS("Peter");
@@ -66,12 +70,12 @@ public class FollowDAO {
 //		System.out.println(updateTempBean);
 		
 		//remove
-		FollowId removeFollowId = new FollowId();
-		removeFollowId.setMember_usernameS("Marry");
-		removeFollowId.setMember_usernameM("Peter");
-		
-		boolean  remove = followDAO.remove(removeFollowId);
-		System.out.println(remove);
+//		FollowId removeFollowId = new FollowId();
+//		removeFollowId.setMember_usernameS("Marry");
+//		removeFollowId.setMember_usernameM("Peter");
+//		
+//		boolean  remove = followDAO.remove(removeFollowId);
+//		System.out.println(remove);
 		
 		
 		
@@ -80,14 +84,14 @@ public class FollowDAO {
 		HibernateUtil.closeSessionFactory();
 	}
 	
-	private Session session;
-	public void setSession(Session session) {
-		this.session = session;
-	}
-
-	public Session getSession() {
-		return session;
-	}
+//	private Session session;
+//	public void setSession(Session session) {
+//		this.session = session;
+//	}
+//
+//	public Session getSession() {
+//		return session;
+//	}
 	
 	public FollowBean findByPrimaryKey(FollowId followId) {
 		//0103 OK

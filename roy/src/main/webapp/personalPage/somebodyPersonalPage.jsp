@@ -106,7 +106,6 @@ table {
 
 .heart {
 	width: 17px;
-	margin-right:5px;
 }
 
 .btnAddList {
@@ -121,10 +120,6 @@ table {
 	padding: 5px;
 	font-size: 13px;
 	margin-left: 10px;
-}
-
-.deleteClick{
-cursor: pointer;
 }
 
 .heartCount {
@@ -175,10 +170,12 @@ word-break:break-all;
 
 	function followClick() {
 		if ($(this).attr("class") == "follow") {
+	
 			$(this).attr("class", "unfollow");
 			$(this).html('追蹤');
 
 		} else {
+			window.location.href = "/roy/personalPage/somebodyPersonalPageFollow.controller?somebody="+$('#userName').text();
 			$(this).attr("class", "follow");
 			$(this).html('已追蹤');
 		}
@@ -186,80 +183,20 @@ word-break:break-all;
 
 </script>
 <script>
-$(document).ready(function() {
-	loadMusic('${user.member_username}');
-	
-	//刪除歌單
-	$('#musics>tbody').on('click','.deleteClick',
-		function() {
-			var row = $(this).parents('tr');
-			var music_id = row.children('td:nth-child(1)').text();
-			$.get('/roy/list/deleteMusic', {
-				'music_id' : music_id
-			}, function(data) {
-				alert(data);
-	            loadMusic('${user.member_username}');
-			})
+	$(document).ready(function() {
+		var heart = document.querySelectorAll("img.heart");
+		for (var i = 0; i < heart.length; i++) {
+			heart[i].addEventListener("click", click);
+		}
 	})
-	//點愛心
-	$('#musics>tbody').on('click','.heart',function(){
+
+	function click() {
 		if (this.src.indexOf("love.png") != -1) {
 			this.src = "../img/emptyLove.png";
 		} else {
 			this.src = "../img/love.png"
 		}
-	});
-	
-	
-	
-})
-
-
-//讀取該使用者的所有歌
-function loadMusic(username) {
-	$.getJSON('/roy/personalPage/readMusic',{'username' : username},function(data) {
-		var html;
-		 $('#musics>tbody').html("");
-		$.each(data,function(index, list) {
-		  html+='<tr style="border-bottom:1px solid #DDDDDD;">'+
-		        '<td name="music_id">'+list.music_id+'</td>'+
-				'<td style="text-align:center"><img src="'+list.music_Image+'"style="width: 90px; height: 90px;" /></td>'+
-				'<td style="font-size: 16px;">'+list.music_name+'</td>'+		
-				'<td><img src="../img/emptyLove.png" class="heart">'+
-				     '<span id="heartCount">'+list.music_likeCount+'</span>'+
-				     '<span style="cursor: pointer;margin:15px;"><img src="../img/share.png" width="15px" />分享</span>'+
-					 '<span class="deleteClick"><img src="../img/delete.png" width="15px" />刪除</span>'+
-				'</td>'+
-				'</tr>';
-              })
-              $('#musics>tbody').html(html);
-		$('td[name="music_id"]').hide();
-	})
-}
-
-
-//讀取該使用者的所有歌單
-function loadPlayList(username) {
-	$.getJSON('/roy/personalPage/readMusic',{'username' : username},function(data) {
-		var html;
-		 $('#musics>tbody').html("");
-		$.each(data,function(index, list) {
-		  html+='<tr style="border-bottom:1px solid #DDDDDD;">'+
-		        '<td name="music_id">'+list.music_id+'</td>'+
-				'<td style="text-align:center"><img src="'+list.music_Image+'"style="width: 90px; height: 90px;" /></td>'+
-				'<td style="font-size: 16px;">'+list.music_name+'</td>'+		
-				'<td><img src="../img/emptyLove.png" class="heart">'+
-				     '<span id="heartCount">'+list.music_likeCount+'</span>'+
-				     '<span style="cursor: pointer;margin:15px;"><img src="../img/share.png" width="15px" />分享</span>'+
-					 '<span class="deleteClick"><img src="../img/delete.png" width="15px" />刪除</span>'+
-				'</td>'+
-				'</tr>';
-              })
-              $('#musics>tbody').html(html);
-		$('td[name="music_id"]').hide();
-	})
-}
-			
+	}
 </script>
 </head>
 <body>
@@ -269,38 +206,13 @@ function loadPlayList(username) {
 		<div id="content">
 			<div class="container">
 				<div style="border: 0.5px solid #DDDDDD; align: center; height: 231px; margin-top: 30px; margin-bottom: 30px;">
-					
-					<c:choose>
-					    <c:when test="${empty user}">
-					      	<img src="imgs/noProfile.gif" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />
-					    </c:when>
-					    <c:otherwise>
-							<img src="imgs/profile/${user.member_username}.jpg" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />					    </c:otherwise>
-					</c:choose>
-<!-- 					<img src="imgs/123.jpg" style="float: left; height: 230px; width: 230px; margin-right: 15px;" /> -->
-					
-					
+					<img src="imgs/profile/${somebody}.jpg" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />	
+				
 					<div style="padding: 15px; font-size: 30px;">
-					<c:choose>
-					    <c:when test="${empty user}">
-					       	阿腫
-					    </c:when>
-					    <c:otherwise>
-					        ${user.member_nickname}
-					        <span hidden="true" id="userName">${user.member_username}</span>
-					    </c:otherwise>
-					</c:choose>
-					
+					 ${nickname}
+					  <span hidden="true" id="userName">${somebody}</span>
 					</div>
-<!-- 					<div id="follow" class="unfollow">追蹤</div> -->
-<!-- 					發布新動態按鈕 -->
-					<form class="post">
-						<input type="button" class="btn btn-primary"
-							data-toggle="modal" data-target="#sharebox" value="發佈新動態">
-<!-- 										style="outline: none;"> -->
-
-
-					</form>
+					    <div id="follow" class="unfollow">追蹤</div>
 					<table>
 						<tr>
 							<td>音樂</td>
@@ -327,84 +239,12 @@ function loadPlayList(username) {
 						<li><a href="#about" data-toggle="tab">關於</a></li>
 					</ul>
 					
-					<div class="tab-content" style="height: auto;" style="margin-bottom:20px" >
-						<div class="tab-pane fade in active" id="dynamic">
-							<div id="test"><br>
-<!-- 								<img src="imgs/123.jpg" class="img-circle" style="width:45px;height:45px;float:left;margin-right:15px" > -->
-<!-- 								<h5 style="margin-bottom:0px">分享了一條音樂</h5> -->
-<!-- 								<small>9 小時前</small> -->
-<!-- 								<div class="clearfix">心得內容</div> -->
-<!-- 								<div id="displayShareMusic"> -->
-<!-- 										<img src="../img/300x300.jpg"  style="width:50px;height:50px;"/><a href=""></a> -->
-<!-- 										<span style="font-size: 15px;">讓我為你唱情歌</span><br><br> -->
-<!-- 								</div> -->
-					</div>
+					<div class="tab-content" style="height: auto;">
 					
-					    <!-- Blog Post -->
-								<div class="blog-post padding-bottom-20">
-									<!-- Blog Item Header -->
-									<div class="blog-item-header">
-										<!-- Title -->
-										<h2>
-											<a href="#">最新文章</a>
-										</h2>
-										<div class="clearfix"></div>
-										<!-- End Title -->
-									</div>
-									<!-- End Blog Item Header -->
-									<!-- Blog Item Details -->
-									<div class="blog-post-details">
-										<!-- Author Name -->
-										<div class="blog-post-details-item blog-post-details-item-left">
-											<i class="fa fa-user color-gray-light"></i> <a href="#">作者:黃金鼠</a>
-										</div>
-										<!-- End Author Name -->
-										<!-- Date -->
-										<div class="blog-post-details-item blog-post-details-item-left">
-											<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-										</div>
-										<!-- End Date -->
-										<!-- Tags -->
-										<div
-											class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-											<i class="fa fa-tag color-gray-light"></i> <a href="#">HTML5</a>,
-											<a href="#">CSS</a>, <a href="#">Grunt</a>
-										</div>
-										<!-- End Tags -->
-										<!-- # of Comments -->
-										<div
-											class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-											<a href=""> <i class="fa fa-comments color-gray-light"></i>
-												9 Comments
-											</a>
-										</div>
-										<!-- End # of Comments -->
-									</div>
-									<!-- End Blog Item Details -->
-									<!-- Blog Item Body -->
-									<div class="blog">
-										<div class="clearfix"></div>
-										<div class="blog-post-body row margin-top-15">
-											<div class="col-md-5">
-												<img class="margin-bottom-20" src="imgs/mouse.PNG"
-													alt="thumb1">
-											</div>
-											<div class="col-md-7">
-												<p>最新文章</p>
-												<p>我是一隻黃金鼠</p>
-												<!-- Read More -->
-												<a  class="btn btn-primary" target="_blank" href="singleArticle.jsp"
-													>
-													查看全文
-												</a>
-												<!-- End Read More -->
-											</div>
-										</div>
-									</div>
-									<!-- End Blog Item Body -->
-									</div>
-								
-								<!-- End Blog Item -->
+						<div class="tab-pane fade in active" id="dynamic">
+							<div id="test">
+							</div>
+				
 						</div>
 						<!-- End dynamic -->
 <!-- 						<div class="tab-pane fade in active" id="dynamic"> -->
@@ -415,53 +255,100 @@ function loadPlayList(username) {
 <!-- 						</div> -->
 
 
-
 						<div class="tab-pane fade in" style="overflow: auto;" id="music">
-						<table id="musics" style="width: 700px;margin-top:0px;">
-									<tbody>
-<!--                                      <tr> -->
-<!-- 										<td name="music_id"></td> -->
-<!-- 										<td><img src="../img/love.png" -->
-<!-- 											style="width: 100px; height: 100px;" /> -->
-<!-- 										</td> -->
-<!-- 										<td style="font-size: 16px;">讓我為你唱情歌</td>		 -->
-										
-<!-- 										<td> -->
-<!-- 										<img src="../img/emptyLove.png" class="heart"> -->
-<!-- 										<span id="heartCount"> 0</span> -->
-<!-- 										<span style="cursor: pointer;"><img -->
-<!-- 											src="../img/share.png" width="15px" />分享</span> -->
-<!-- 											<span style="cursor: pointer;"><img -->
-<!-- 											src="../img/delete.png" width="15px" />刪除</span> -->
-<!-- 										</td> -->
-<!-- 									</tr> -->
-									</tbody>
-							</table>
-						</div>
-						
-						
-						
-						
-						<div class="tab-pane fade in" style="overflow: auto;" id="list">
-						
-						<div class="col-md-5" style="float: left; width: 300px;">
-								<a href="">
-									<div class="list">
-										<div class="listSongCount">2</div>
-									</div>
-								</a>
 
-								<div style="font-size: 16px;">蕭氏情歌精選</div>
+						
+								<div class="col-md-5" style="float:left;width:300px;">
+									<a href=""><img src="../img/love.png"
+										style="width: 160px; height: 160px;" /></a>
+
+
+								<div style="font-size: 16px;">讓我為你唱情歌</div>
 								<div>
-									<span style="cursor: pointer;"> <img
-										src="../img/delete.png" width="17px" />刪除
+									<img src="../img/emptyLove.png" class="heart"> 
+									<span
+										class="heartCount"> 0</span> 
+									<span id="share"
+										class="shareAndAdd"> 
+										<a href="" style="color: black;"><img
+											src="../img/share.png" width="15px" />分享</a>
+									</span>
+									 <span id="add">
+
+										<button type="button" class="btnAddList" data-toggle="modal"
+											data-target="#addList" style="outline: none;">
+											<img src="../img/add.png" width="15px">加入歌單
+										</button>
+
 									</span>
 								</div>
 							</div>
-	
+							
+							
+							<div class="col-md-5" style="float: left; width: 300px;">
+								<a href=""><img src="../img/love.png"
+									style="width: 160px; height: 160px;" /></a>
+
+								<div style="font-size: 16px;">讓我為你唱情歌</div>
+								<div>
+									<img src="../img/emptyLove.png" class="heart"> 
+									<span
+										class="heartCount"> 0</span> 
+									<span id="share"
+										class="shareAndAdd"> 
+										<a href="" style="color: black;"><img
+											src="../img/share.png" width="15px" />分享</a>
+									</span>
+									 <span id="add">
+
+										<button type="button" class="btnAddList" data-toggle="modal"
+											data-target="#addList" style="outline: none;">
+											<img src="../img/add.png" width="15px">加入歌單
+										</button>
+
+									</span>
+								</div>
+							</div>
+
+
 						</div>
+						<div class="tab-pane fade in" style="overflow: auto;" id="list">
+						
+						<div class="col-md-5" style="float: left; width: 300px;">
+												
+								<a href="">
+								<div class="list">					
+									<div class="listSongCount">2</div>
+								</div>
+								</a>	
+					
+								<div style="font-size: 16px;">蕭氏情歌精選</div>
+								<div>
+									<img src="../img/emptyLove.png" class="heart"> 
+									<span
+										class="heartCount"> 0</span> 
+									<span id="share"
+										class="shareAndAdd"> 
+										<a href="" style="color: black;"><img
+											src="../img/share.png" width="15px" />分享</a>
+									</span>
+									 <span id="add">
+
+										<button type="button" class="btnAddList" data-toggle="modal"
+											data-target="#addList" style="outline: none;">
+											<img src="../img/add.png" width="15px"/>加入歌單
+										</button>
+
+									</span>
+									<span>
+									<a href="../list/editList.jsp" style="color:black;"><img src="../img/edit.png" width="17px"/>編輯</a>
+									</span>
+								</div>
+							</div>
+
 						
 						
+						</div>
 						<div class="tab-pane fade in" style="overflow: auto;" id="like">
 
 
@@ -606,31 +493,6 @@ function loadPlayList(username) {
 		</div>
 		</div>
 	<!-- === END CONTENT === -->
-	
-	<!-- addPost begin-->
-	<div class="modal fade" id="sharebox" aria-hidden="true">
-		<div class="modal-dialog" style="width: 690px;">
-			<div class="modal-content">
-				<h5 style="margin: 20px;">發佈新動態</h5>
-				
-				<form action="<c:url value="/personalPage/Post.controller"/>" method="post">
-					<div class="modal-body" >
-						<textarea class="form-control" name="shareContent" style="width:100px;height:30px" placeholder="標題"  ></textarea>
-						<textarea class="form-control" name="post_content" style="width:650px;height:500px" placeholder="是不在想些色色的呢?"  ></textarea>
-						<input type="checkbox" name="post_privacy" value="true">不想被女友看到嗎?<br>					
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
-						<button type="submit" class="btn btn-primary">確定</button>
-					</div>
-				</form>
-
-			</div>
-		</div>
-	</div>
-
-	<!-- addPost end-->
-	
 	<!-- 	showArticleFromMember start-->
 	<script>
         $(function () {            
@@ -644,21 +506,17 @@ function loadPlayList(username) {
 				success : function(list)
 				 {   
 					list.forEach(function(obj, index) {
-						var postorshare = obj.post_postorshare;
+// 						<img src='imgs/123.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >
+// 						<h4style='margin-bottom:0px'>發表了一篇文章</h5>
+// 						<small>9 小時前</small>
+// 						<div class="clearfix"></div>
+//						<a  class='btn btn-primary' target='_blank' href='singleArticle.jsp'>查看全文</a>
 						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
-						var content = "<br><h5 style='margin-bottom:0px'>發表了一篇文章</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
-						var content2 = "<br><h5 style='margin-bottom:0px'>分享了一條音樂</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
+						var content = "<h5 style='margin-bottom:0px'>發表了一篇文章</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
 						var time = "<h6>" + obj.post_time +"</h6>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
 				        var div =  img+content + time + button +"<br></br>";
-				        
-						//分享的內容
-				        var div2 = img+content2 + time + "<br></br>";
-				        if(postorshare==true){
-				        	$('#test').append(div);
-				        	}else if(postorshare==false){
-				        		$('#test').append(div2);
-				        	}				        
+				        $('#test').append(div); 
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -668,11 +526,6 @@ function loadPlayList(username) {
             });
 
         });
-        
-        
-        
-        
-        
     </script>
 	<!-- 	showArticleFromMember end-->
 	
@@ -711,7 +564,6 @@ function loadPlayList(username) {
 									</div>							
 							
 							<!-- addPlayList end-->
-							
 	<jsp:include page="../homePage/footer.jsp" />
 <!-- 	<div id="player"> -->
 <%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
