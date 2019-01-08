@@ -331,7 +331,7 @@
 										+"</li>"
 // 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
 // 				        var div =  img+content + time + button +"<br></br>";
-				        $('#0106Test').append(temp); 
+				        $('#0106Test').prepend(temp); 
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
