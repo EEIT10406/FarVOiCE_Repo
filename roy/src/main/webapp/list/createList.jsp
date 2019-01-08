@@ -70,17 +70,15 @@ td {
 					</tr>
 				</thead>
 				<tbody>
-
-					<tr>
-						<td name="playlist_id"></td>
-						<td><img src="../img/left.JPG"
-							style="width: 100px; height: 100px;" /></td>
-						<td style="font-size: 15px;">蕭氏情歌</td>
-						<td style="font-size: 15px;">公開</td>
-						<td style="font-size: 15px;">2</td>
-						<td><button class="btn btn-primary pull-right">刪除</button></td>
-					</tr>
-
+<!-- 					<tr> -->
+<!-- 						<td name="playlist_id"></td> -->
+<!-- 						<td><img src="../img/left.JPG" -->
+<!-- 							style="width: 100px; height: 100px;" /></td> -->
+<!-- 						<td style="font-size: 15px;">蕭氏情歌</td> -->
+<!-- 						<td style="font-size: 15px;">公開</td> -->
+<!-- 						<td style="font-size: 15px;">2</td> -->
+<!-- 						<td><button class="btn btn-primary pull-right">刪除</button></td> -->
+<!-- 					</tr> -->
 				</tbody>
 				<tfoot>
 
@@ -158,13 +156,15 @@ td {
 		<jsp:include page="../homePage/player.jsp" />
 	</div>
 
-	<script>
-		$(document).ready(function() {
-			loadList('${user.member_username}');
-				
-		})
-</script>
 <script>
+
+
+$(document).ready(function() {
+	loadList('${user.member_username}');
+		
+})
+
+
 		//讀取歌單
 		function loadList(username) {
 			$.getJSON('/roy/list/readPlayList',{'username' : username},function(data) {
@@ -214,14 +214,11 @@ td {
 						function(data) {
 							var docFrag = $(document.createDocumentFragment());
 							$.each(data,function(index, list) {
-								//判斷是否下架 如果已下架，名稱加上刪除線
-								if(list.music_unavailable=="true"){
-								
-								}
 								var cell1 = $('<td name="music_id"></td>').text(list.music_id)
 								var img = $("<img>");
 								$(img).attr({"src" : list.music_music,"style" : "width: 100px; height: 100px;"});
 								var cell2 = $('<td></td>').append(img)
+								//判斷歌曲是否下架
 								if(list.music_unavailable=="true"){
 							      var cell3 = $('<td name="music_name" ></td>').attr("style","font-size: 15px; vertical-align:middle").html(list.music_name+"<br>(該歌曲已下架)")
 								}else{
