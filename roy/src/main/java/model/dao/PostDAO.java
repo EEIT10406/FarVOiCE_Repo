@@ -30,9 +30,9 @@ public class PostDAO {
 	
 	
 	public static void main(String... args) throws IOException, Exception, SQLException {
-		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
+//		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
+//		Session session = sessionFactory.openSession();
+//		Transaction tx = session.beginTransaction();
 //		PostDAO postDAO = new PostDAO();
 //		postDAO.setSession(session);
 //		
@@ -79,9 +79,9 @@ public class PostDAO {
 		
 		
 		
-		tx.commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+//		tx.commit();
+//		session.close();
+//		HibernateUtil.closeSessionFactory();
 	}
 	
 	//if you need to test
@@ -122,9 +122,9 @@ public class PostDAO {
 	}
 	public PostBean create(PostBean bean) {
 		//0103 OK
-		
-				this.getSession().save(bean);
-				return bean;
+		this.getSession().save(bean);
+		System.out.println("postDao的"+bean);
+		return bean;
 	}
 	
 	public void update(PostBean bean) {

@@ -262,15 +262,18 @@ word-break:break-all;
 						<li><a href="#about" data-toggle="tab">關於</a></li>
 					</ul>
 					
-					<div class="tab-content" style="height: auto;">
-					
+					<div class="tab-content" style="height: auto;" style="margin-bottom:20px" >
 						<div class="tab-pane fade in active" id="dynamic">
-							<div id="test">
+							<div id="test"><br>
 <!-- 								<img src="imgs/123.jpg" class="img-circle" style="width:45px;height:45px;float:left;margin-right:15px" > -->
-<!-- 								<h4 style="margin-bottom:0px">發表了一篇文章</h4> -->
+<!-- 								<h5 style="margin-bottom:0px">分享了一條音樂</h5> -->
 <!-- 								<small>9 小時前</small> -->
-<!-- 								<div class="clearfix"></div> -->
-							</div>
+<!-- 								<div class="clearfix">心得內容</div> -->
+<!-- 								<div id="displayShareMusic"> -->
+<!-- 										<img src="../img/300x300.jpg"  style="width:50px;height:50px;"/><a href=""></a> -->
+<!-- 										<span style="font-size: 15px;">讓我為你唱情歌</span><br><br> -->
+<!-- 								</div> -->
+					</div>
 					
 					    <!-- Blog Post -->
 								<div class="blog-post padding-bottom-20">
@@ -623,17 +626,21 @@ word-break:break-all;
 				success : function(list)
 				 {   
 					list.forEach(function(obj, index) {
-// 						<img src='imgs/123.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >
-// 						<h4style='margin-bottom:0px'>發表了一篇文章</h5>
-// 						<small>9 小時前</small>
-// 						<div class="clearfix"></div>
-//						<a  class='btn btn-primary' target='_blank' href='singleArticle.jsp'>查看全文</a>
+						var postorshare = obj.post_postorshare;
 						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
-						var content = "<h5 style='margin-bottom:0px'>發表了一篇文章</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
+						var content = "<br><h5 style='margin-bottom:0px'>發表了一篇文章</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
+						var content2 = "<br><h5 style='margin-bottom:0px'>分享了一條音樂</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
 						var time = "<h6>" + obj.post_time +"</h6>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
 				        var div =  img+content + time + button +"<br></br>";
-				        $('#test').append(div); 
+				        
+						//分享的內容
+				        var div2 = img+content2 + time + "<br></br>";
+				        if(postorshare==true){
+				        	$('#test').append(div);
+				        	}else if(postorshare==false){
+				        		$('#test').append(div2);
+				        	}				        
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -643,6 +650,11 @@ word-break:break-all;
             });
 
         });
+        
+        
+        
+        
+        
     </script>
 	<!-- 	showArticleFromMember end-->
 	
