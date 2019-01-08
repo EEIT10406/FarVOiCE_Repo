@@ -1,13 +1,12 @@
 package controller;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,27 +15,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import model.bean.MemberBean;
 import model.bean.MusicBean;
-import model.bean.PlaylistBean;
 import model.service.MusicService;
 
 @Controller
 public class MusicController {
 	@Autowired
 	private MusicService musicService;
+	@Autowired
+	private ServletContext application;
 
 	// 上傳音樂
 	@RequestMapping("/login-signUp-upload/uploadMusic")
 	public String upLoadMUsic(MusicBean bean, Model model, @RequestParam("musicFile") MultipartFile musicFile,
-			@RequestParam("imageFile") MultipartFile imageFile, HttpSession session) {
+			@RequestParam("imageFile") MultipartFile imageFile, HttpSession session,HttpServletRequest req) {
 		String musicPath = "";
 		String imagePath = "";
+		String s = req.getRequestURI();
+		System.out.println("s="+s);
 		if (!musicFile.isEmpty()) {
 			try {
 				byte[] musicByte = musicFile.getBytes();

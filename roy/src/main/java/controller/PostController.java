@@ -30,6 +30,7 @@ public class PostController {
 			newPostBean.setPost_time(now);
 			MemberBean memberWhoPost = (MemberBean)session.getAttribute("user");
 			newPostBean.setMember_username(memberWhoPost.getMember_username());
+			newPostBean.setPost_privacy(false);
 			newPostBean.setPost_postorshare(true);
 			//呼叫service的po文功能
 			PostBean newArticle = postService.postNewArticle(newPostBean);

@@ -653,11 +653,12 @@ function loadPlayList(username) {
 				        
 						//分享的內容
 				        var div2 = img+content2 + time + "<br></br>";
+				       
 				        if(postorshare==true){
 				        	$('#test').append(div);
-				        	}else if(postorshare==false){
-				        		$('#test').append(div2);
-				        	}				        
+				        }else if(postorshare==false){
+				        	$('#test').append(div2);
+				        }				        
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
