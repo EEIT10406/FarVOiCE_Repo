@@ -286,14 +286,12 @@ function loadPlayList(username) {
 					style="border: 0.5px solid #DDDDDD; align: center; height: 231px; margin-top: 30px; margin-bottom: 30px;">
 
 					<c:choose>
-						<c:when test="${empty user}">
-							<img src="imgs/noProfile.gif"
-								style="float: left; height: 230px; width: 230px; margin-right: 15px;" />
-						</c:when>
-						<c:otherwise>
-							<img src="imgs/123.jpg"
-								style="float: left; height: 230px; width: 230px; margin-right: 15px;" />
-						</c:otherwise>
+					    <c:when test="${empty user}">
+					      	<img src="imgs/noProfile.gif" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />
+					    </c:when>
+					    <c:otherwise>
+							<img src="imgs/profile/${user.member_username}.jpg" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />					    </c:otherwise>
+
 					</c:choose>
 					<!-- 					<img src="imgs/123.jpg" style="float: left; height: 230px; width: 230px; margin-right: 15px;" /> -->
 
@@ -345,33 +343,32 @@ function loadPlayList(username) {
 						<li><a href="#about" data-toggle="tab">關於</a></li>
 					</ul>
 
-					<div class="tab-content" style="height: auto;">
-
+					
+					<div class="tab-content" style="height: auto;" style="margin-bottom:20px" >
 						<div class="tab-pane fade in active" id="dynamic">
-							<div id="test">
-								<!-- 								<img src="imgs/123.jpg" class="img-circle" style="width:45px;height:45px;float:left;margin-right:15px" > -->
-								<!-- 								<h4 style="margin-bottom:0px">發表了一篇文章</h4> -->
-								<!-- 								<small>9 小時前</small> -->
-								<!-- 								<div class="clearfix"></div> -->
-							</div>
 
-							<!-- Blog Post -->
-							<div class="blog-post padding-bottom-20">
-								<!-- Blog Item Header -->
-								<div class="blog-item-header">
-									<!-- Title -->
-									<h2>
-										<a href="#">最新文章</a>
-									</h2>
-									<div class="clearfix"></div>
-									<!-- End Title -->
-								</div>
-								<!-- End Blog Item Header -->
-								<!-- Blog Item Details -->
-								<div class="blog-post-details">
-									<!-- Author Name -->
-									<div class="blog-post-details-item blog-post-details-item-left">
-										<i class="fa fa-user color-gray-light"></i> <a href="#">作者:黃金鼠</a>
+							<div id="test"><br>
+<!-- 								<img src="imgs/123.jpg" class="img-circle" style="width:45px;height:45px;float:left;margin-right:15px" > -->
+<!-- 								<h5 style="margin-bottom:0px">分享了一條音樂</h5> -->
+<!-- 								<small>9 小時前</small> -->
+<!-- 								<div class="clearfix">心得內容</div> -->
+<!-- 								<div id="displayShareMusic"> -->
+<!-- 										<img src="../img/300x300.jpg"  style="width:50px;height:50px;"/><a href=""></a> -->
+<!-- 										<span style="font-size: 15px;">讓我為你唱情歌</span><br><br> -->
+<!-- 								</div> -->
+					</div>
+					
+					    <!-- Blog Post -->
+								<div class="blog-post padding-bottom-20">
+									<!-- Blog Item Header -->
+									<div class="blog-item-header">
+										<!-- Title -->
+										<h2>
+											<a href="#">最新文章</a>
+										</h2>
+										<div class="clearfix"></div>
+										<!-- End Title -->
+
 									</div>
 									<!-- End Author Name -->
 									<!-- Date -->
@@ -659,17 +656,21 @@ function loadPlayList(username) {
 				success : function(list)
 				 {   
 					list.forEach(function(obj, index) {
-// 						<img src='imgs/123.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >
-// 						<h4style='margin-bottom:0px'>發表了一篇文章</h5>
-// 						<small>9 小時前</small>
-// 						<div class="clearfix"></div>
-//						<a  class='btn btn-primary' target='_blank' href='singleArticle.jsp'>查看全文</a>
-						var img = "<img src='imgs/123.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
-						var content = "<h5 style='margin-bottom:0px'>發表了一篇文章</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
+						var postorshare = obj.post_postorshare;
+						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
+						var content = "<br><h5 style='margin-bottom:0px'>發表了一篇文章</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
+						var content2 = "<br><h5 style='margin-bottom:0px'>分享了一條音樂</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
 						var time = "<h6>" + obj.post_time +"</h6>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
 				        var div =  img+content + time + button +"<br></br>";
-				        $('#test').append(div); 
+				        
+						//分享的內容
+				        var div2 = img+content2 + time + "<br></br>";
+				        if(postorshare==true){
+				        	$('#test').append(div);
+				        	}else if(postorshare==false){
+				        		$('#test').append(div2);
+				        	}				        
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -679,6 +680,11 @@ function loadPlayList(username) {
             });
 
         });
+        
+        
+        
+        
+        
     </script>
 	<!-- 	showArticleFromMember end-->
 

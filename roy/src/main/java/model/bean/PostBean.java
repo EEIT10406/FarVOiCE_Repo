@@ -9,13 +9,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Post")
 public class PostBean {
+
 @Override
 	public String toString() {
 		return "PostBean [post_idS=" + post_idS + ", post_idM=" + post_idM + ", member_username=" + member_username
 				+ ", post_content=" + post_content + ", post_time=" + post_time + ", post_privacy=" + post_privacy
-				+ "]";
+				+ ", post_postorshare=" + post_postorshare + "]";
 	}
-//	post_idS		int		identity	primary key,
+	//	post_idS		int		identity	primary key,
 //	post_idM		int			REFERENCES Post (post_idS),--發文本人此欄位為null
 //	member_username	varchar(30) REFERENCES member (member_username),
 //	post_content	varchar(800),
@@ -29,6 +30,8 @@ public class PostBean {
 	private String post_content;
 	private java.util.Date post_time;
 	private Boolean post_privacy;
+	private Boolean post_postorshare;
+
 	public Integer getPost_idS() {
 		return post_idS;
 	}
@@ -64,6 +67,12 @@ public class PostBean {
 	}
 	public void setPost_privacy(Boolean post_privacy) {
 		this.post_privacy = post_privacy;
+	}
+	public Boolean getPost_postorshare() {
+		return post_postorshare;
+	}
+	public void setPost_postorshare(Boolean post_postorshare) {
+		this.post_postorshare = post_postorshare;
 	}
 
 }

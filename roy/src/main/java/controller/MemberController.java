@@ -91,4 +91,24 @@ public class MemberController {
 			return"redirect:/personalPage/personalPage.jsp";
 		}
 	}
+	
+	
+	
+	@RequestMapping(path="/login-signUp-upload/MemberLogOut.controller")
+	public String signUp(Model model,
+			HttpSession session) {
+		MemberBean bean =null;
+		session.setAttribute("user", bean);
+		return"redirect:/homePage/index.jsp";
+	}
+		
 }
+	
+	
+	
+	
+	
+	
+	
+	
+
