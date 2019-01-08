@@ -2,6 +2,7 @@ package model.service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 
@@ -26,6 +27,14 @@ public class MusicService {
 
 	public void setMusicDao(MusicDAO musicDao) {
 		this.musicDao = musicDao;
+	}
+	
+	// 找該使用者上傳的所有音樂
+	public List<MusicBean> findMusicByUser(String member_username) {
+		if(member_username!=null) {
+			return musicDao.findAllByUser(member_username);
+		}
+		return null; 
 	}
 	
 	//把音樂從資料庫刪除

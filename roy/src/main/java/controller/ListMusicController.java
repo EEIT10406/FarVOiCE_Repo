@@ -36,13 +36,16 @@ public class ListMusicController {
 				for (Integer musicId : musicIds) {
 					musicBean = musicService.findMusic(musicId);
 					if (musicBean != null) {
-						Map<String, String> jsonMap = new HashMap<>();
-						jsonMap.put("music_id", String.valueOf(musicBean.getMusic_id()));
-						jsonMap.put("music_music", musicBean.getMusic_music());
-						jsonMap.put("music_name", musicBean.getMusic_name());
-						jsonMap.put("member_username", musicBean.getMember_username());
-						jsonMap.put("music_uploadTime", String.valueOf(musicBean.getMusic_uploadTime()).substring(0, 10));
-						musics.add(jsonMap);
+//						if(musicBean.getMusic_ban() != true && musicBean.getMusic_unavailable() != true) {
+							Map<String, String> jsonMap = new HashMap<>();
+							jsonMap.put("music_id", String.valueOf(musicBean.getMusic_id()));
+							jsonMap.put("music_music", musicBean.getMusic_music());
+							jsonMap.put("music_name", musicBean.getMusic_name());
+							jsonMap.put("member_username", musicBean.getMember_username());
+							jsonMap.put("music_uploadTime", String.valueOf(musicBean.getMusic_uploadTime()).substring(0, 10));
+							jsonMap.put("music_unavailable", String.valueOf(musicBean.getMusic_unavailable()));
+							musics.add(jsonMap);
+//						}
 					}
 				}
 				return JSONValue.toJSONString(musics);
