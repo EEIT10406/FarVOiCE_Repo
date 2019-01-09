@@ -40,12 +40,11 @@ public class PlayListService {
 
 	// 給上傳的圖片檔一個儲存路徑
 	public String imageFilePath(byte[] file) throws IOException {
-		String imageFilePath = application.getRealPath("/list/uploadImage/") + System.currentTimeMillis()
-				+ ".jpg";
+		String imageFilePath = "C:/Roy_FarVoice/image/" + System.currentTimeMillis()+".jpg";
 		FileOutputStream out = new FileOutputStream(imageFilePath);
 		out.write(file);
 		out.close();
-		return imageFilePath.substring(imageFilePath.indexOf("uploadImage"));
+		return "/roy/image"+imageFilePath.substring(21);
 	}
 	
 	//載入該使用者所有歌單

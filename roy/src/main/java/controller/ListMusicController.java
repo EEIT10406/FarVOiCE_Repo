@@ -36,16 +36,15 @@ public class ListMusicController {
 				for (Integer musicId : musicIds) {
 					musicBean = musicService.findMusic(musicId);
 					if (musicBean != null) {
-//						if(musicBean.getMusic_ban() != true && musicBean.getMusic_unavailable() != true) {
-							Map<String, String> jsonMap = new HashMap<>();
-							jsonMap.put("music_id", String.valueOf(musicBean.getMusic_id()));
-							jsonMap.put("music_music", musicBean.getMusic_music());
-							jsonMap.put("music_name", musicBean.getMusic_name());
-							jsonMap.put("member_username", musicBean.getMember_username());
-							jsonMap.put("music_uploadTime", String.valueOf(musicBean.getMusic_uploadTime()).substring(0, 10));
-							jsonMap.put("music_unavailable", String.valueOf(musicBean.getMusic_unavailable()));
-							musics.add(jsonMap);
-//						}
+						Map<String, String> jsonMap = new HashMap<>();
+						jsonMap.put("music_id", String.valueOf(musicBean.getMusic_id()));
+						jsonMap.put("music_music", musicBean.getMusic_music());
+						jsonMap.put("music_name", musicBean.getMusic_name());
+						jsonMap.put("member_username", musicBean.getMember_username());
+						jsonMap.put("music_uploadTime",
+								String.valueOf(musicBean.getMusic_uploadTime()).substring(0, 10));
+						jsonMap.put("music_unavailable", String.valueOf(musicBean.getMusic_unavailable()));
+						musics.add(jsonMap);
 					}
 				}
 				return JSONValue.toJSONString(musics);
@@ -53,21 +52,37 @@ public class ListMusicController {
 		}
 		return "";
 	}
-	
-	
-	//刪歌單裡的音樂
-			@RequestMapping(value="/list/deletePlayListMusic",produces= "text/plain;charset=UTF-8")
-			@ResponseBody
-			public String deletePlayListMusic(ListMusicId listMusicId,Integer music_id,Integer playlist_id,ListMusicBean bean) {
-				listMusicId.setPlaylist_id(playlist_id);
-				boolean deleteListMusic = listMusicService.deleteMusicFromList(listMusicId,music_id);
-				if (deleteListMusic==true) {
-					bean.setId(listMusicId);
-					listMusicService.reduceMusicCount(bean);
-					return "刪除成功";
-				} else {
-					return "刪除失敗";
-				}
-			}
+
+//刪歌單裡的音樂
+	@RequestMapping(value = "/list/deletePlayListMusic", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String deletePlayListMusic(ListMusicId listMusicId, Integer music_id, Integer playlist_id,
+			ListMusicBean bean) {
+		listMusicId.setPlaylist_id(playlist_id);
+		boolean deleteListMusic = listMusicService.deleteMusicFromList(listMusicId, music_id);
+		if (deleteListMusic == true) {
+			bean.setId(listMusicId);
+			listMusicService.reduceMusicCount(bean);
+			return "刪除成功";
+		} else {
+			return "刪除失敗";
+		}
+	}
+
+	// 把音樂加入想要的歌單
+	@RequestMapping(value = "/list/addMusicToPlayList", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String addMusicToPlayList(ListMusicId listMusicId, Integer music_id, Integer playlist_id,
+			ListMusicBean bean) {
+		listMusicId.setPlaylist_id(playlist_id);
+		boolean deleteListMusic = listMusicService.deleteMusicFromList(listMusicId, music_id);
+		if (deleteListMusic == true) {
+			bean.setId(listMusicId);
+			listMusicService.reduceMusicCount(bean);
+			return "刪除成功";
+		} else {
+			return "刪除失敗";
+		}
+	}
 
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,10 @@ import model.dao.MusicDAO;
 public class MusicService {
 	@Autowired
 	private MusicDAO musicDao;
+	
+	@Autowired
+	private HttpServletRequest request;
+	
 	@Autowired
 	private ServletContext application;
 
@@ -69,23 +74,35 @@ public class MusicService {
 
 	// 給上傳的音檔一個儲存路徑(上傳音檔限制 5000000 byte)
 	public String musicFilePath(byte[] file) throws IOException {
-		String musicFilePath = application.getRealPath("/login-signUp-upload/uploadMusic/") + System.currentTimeMillis()
-				+ ".mp3";
+		String musicFilePath = "C:/Roy_FarVoice/music/" + System.currentTimeMillis()+".mp3";
 		FileOutputStream out = new FileOutputStream(musicFilePath);
 		out.write(file);
 		out.close();
-		return musicFilePath.substring(musicFilePath.indexOf("uploadMusic"));
+		return "/roy/music"+musicFilePath.substring(21);
 	}
 
 	// 給上傳的圖片檔一個儲存路徑
 	public String imageFilePath(byte[] file) throws IOException {
-		String imageFilePath = application.getRealPath("/login-signUp-upload/uploadImage/") + System.currentTimeMillis()
-				+ ".jpg";
+		String imageFilePath = "C:/Roy_FarVoice/image/" + System.currentTimeMillis()+".jpg";
 		FileOutputStream out = new FileOutputStream(imageFilePath);
 		out.write(file);
 		out.close();
-		return imageFilePath.substring(imageFilePath.indexOf("uploadImage"));
+		return "/roy/image"+imageFilePath.substring(21);
 	}
+	
+	
+//	// 給上傳的圖片檔一個儲存路徑
+//		public String imageFilePath(byte[] file) throws IOException {
+//			String imageFilePath = application.getRealPath("/login-signUp-upload/uploadImage/") + System.currentTimeMillis()
+//					+ ".jpg";
+//			System.out.println(imageFilePath);
+//			FileOutputStream out = new FileOutputStream(imageFilePath);
+//			out.write(file);
+//			out.close();
+//			System.out.println(imageFilePath.substring(imageFilePath.indexOf("roy")));
+//			return "\\"+imageFilePath.substring(imageFilePath.indexOf("roy"));
+//		}
+
 
 //	public static void main(String[] args) {
 //		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
