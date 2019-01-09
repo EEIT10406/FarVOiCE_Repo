@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,46 @@
 <script type="text/javascript" src="../js/scripts.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+
+<!-- Meta -->
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<!-- Favicon -->
+<link href="favicon.ico" rel="shortcut icon">
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
+<!-- Template CSS -->
+<link rel="stylesheet" href="../css/animate.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
+
 <script>
+	// 設置日期max屬性
+	function getNewDay() {
+		var date = $('#bookdate').attr('min')
+		var dateTemp = date.split("-");
+		var nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-'
+				+ dateTemp[0]); //轉換為MM-DD-YYYY格式
+		var millSeconds = Math.abs(nDate) + (60 * 24 * 60 * 60 * 1000);
+		var rDate = new Date(millSeconds);
+		var year = rDate.getFullYear();
+		var month = rDate.getMonth() + 1;
+		if (month < 10)
+			month = "0" + month;
+		var date = rDate.getDate();
+		if (date < 10)
+			date = "0" + date;
+		var qqq = (year + "-" + month + "-" + date);
+		$('#bookdate').attr('max', year + '-' + month + '-' + date)
+
+	}
+
 	$(document).ready(
 			function() {
 
@@ -31,29 +71,10 @@
 								return false
 							}
 						})
+				// 呼叫設置日期max屬性方法 
+				getNewDay();
 
-				$('input[name="funding_duration"]').change(
-						function() {
-							var myDate = new Date(); //获取当前时间对象，精确到当前的时、分、秒
-
-							var this_time = $('input[name="funding_duration"]')
-									.val();//获取用户选择后的时间值
-
-							var this_datetime = new Date(this_time);//获取用户选择的时间，生成时间对象  具体时间为时间8:00:00
-							var year = myDate.getFullYear(); //获取当前时间的年份 格式xxxx 如：2016
-							var month = myDate.getMonth() + 1; //获取当前时间的月份 格式1-9月为x， 10-12月为xx 如：11
-							var date = myDate.getDate(); //获取当前时间的日期 格式同月份 如11
-							myDate = new Date(year + '-' + month + '-' + date); //获取根据上述时间生成的时间对象 具体时间为0:00:00  
-							var now = new Date(year + '-' + month + '-' + date
-									+ '8:00:00');
-							myDate.setDate(now.getDate() - 1); //设置now对象相应日期的七天前日期 具体时间为0:00:00
-							if (this_datetime<myDate||this_datetime>now) { //时间对象可以直接比较大小
-								alert('拜访时间需选择今天及以前7天内的时间');
-								$('input[name="funding_duration"]').val('');
-							}
-							;
-						});
-
+				// 				
 			})
 </script>
 
@@ -77,7 +98,7 @@ input[type=date]::-webkit-inner-spin-button {
 					<div class="inputWordCount">
 						<input style="font-weight: 400" name="funding_title" type="text"
 							placeholder="40 個字以內的專案標題" maxlength="40" class="form-control"
-							required oninvalid="setCustomValidity('请输入專案標題');"
+							required oninvalid="setCustomValidity('請輸入專案標題');"
 							oninput="setCustomValidity('');">
 					</div>
 					<label for="" class="input-label">一個好的標題應該要好記、好搜尋、吸引人想點進去看，並讓瀏覽者能在最短的時間內瞭解專案的核心理念。</label>
@@ -91,7 +112,7 @@ input[type=date]::-webkit-inner-spin-button {
 						<textarea style="font-weight: 400" class="form-control"
 							name="funding_description" placeholder="500個字以內的專案描述"
 							maxlength="500" rows="10" required
-							oninvalid="setCustomValidity('请输入專案描述');"
+							oninvalid="setCustomValidity('請輸入專案描述');"
 							oninput="setCustomValidity('');"></textarea>
 					</div>
 					<label for="" class="input-label">使用吸引人的文字說明你的目標以及理念，強調你的獨一無二，讓贊助人對你或你的專案好奇，願意更進一步贊助專案。</label>
@@ -104,7 +125,7 @@ input[type=date]::-webkit-inner-spin-button {
 					<!------------------------------->
 					<a href="javascript:;" class="a-upload"> <input type="file"
 						accept="image/jpeg, image/png" name="funding_image" required
-						oninvalid="setCustomValidity('请選擇上傳圖片');"
+						oninvalid="setCustomValidity('請選擇上傳圖片');"
 						oninput="setCustomValidity('');"><i class="fa fa-camera"></i>上傳封面圖片
 					</a>
 					<p class="showFileName"></p>
@@ -115,8 +136,11 @@ input[type=date]::-webkit-inner-spin-button {
 
 					<p class="bluequote">選擇專案期限</p>
 
-					<input type="date" id="bookdate" name="funding_duration">
+					<input class="form-control" type="date" id="bookdate"
+						name="funding_duration"
+						min=<%out.println(new java.sql.Date(new Date().getTime()));%>>
 
+					<label for="" class="input-label">募資天數為提案開始60天為限。</label>
 
 				</div>
 
@@ -185,15 +209,12 @@ input[type=date]::-webkit-inner-spin-button {
 					</select>
 				</div>
 
-				<table>
+				<div class="next-reward">
+					<input   class="form-control next" type="submit" name="start-project"
+						value="下一步 回饋設定">
 
-
-					<tr>
-						<td><input type="submit" name="start-project" value="Insert">
-						</td>
-					</tr>
-
-				</table>
+				</div>
+				
 			</form>
 			<div>${errors.Error}</div>
 		</div>
@@ -202,23 +223,6 @@ input[type=date]::-webkit-inner-spin-button {
 
 	<jsp:include page="../homePage/footer.jsp" />
 </body>
-<!-- Meta -->
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="description" content="">
-<meta name="author" content="">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<!-- Favicon -->
-<link href="favicon.ico" rel="shortcut icon">
-<!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
-<!-- Template CSS -->
-<link rel="stylesheet" href="../css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/custom.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 
 
 </html>

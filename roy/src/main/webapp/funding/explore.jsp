@@ -10,19 +10,36 @@
 <script type="text/javascript" src="../js/scripts.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-
 <!-- sort -->
 <script type="text/javascript" src="../js/tinysort.min.js"></script>
+<!-- Meta -->
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<!-- Favicon -->
+<link href="favicon.ico" rel="shortcut icon">
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
+<!-- Template CSS -->
+<link rel="stylesheet" href="../css/animate.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
+
 <script>
 	$(document).ready(function() {
 		// 	獲取專案數量
-		
+
 		var pcount = $('.project').size();
 		$('.count').text(pcount + " 個募資專案");
 		//預設
 		tinysort.defaults.order = 'desc';
 		tinysort('div#sortThis>div', 'span.visitcount');
-		
+
 		//瀏覽次數降序排列
 		$('#hot').on('click', function() {
 
@@ -52,18 +69,18 @@
 			$('#new').removeClass('active');
 			$('#pledged').removeClass('active');
 			$('#end').addClass('active');
-			
+
 			tinysort.defaults.order = 'asc';
 			tinysort('div#sortThis>div', 'strong.days');
 		})
-        //募款金額降序排列
+		//募款金額降序排列
 		$('#pledged').on('click', function() {
 
 			$('#hot').removeClass('active');
 			$('#new').removeClass('active');
 			$('#end').removeClass('active');
 			$('#pledged').addClass('active');
-			
+
 			tinysort.defaults.order = 'desc';
 			tinysort('div#sortThis>div', 'span.goalMoney');
 		})
@@ -283,28 +300,11 @@
 	<!-- 	=== END CONTENT === -->
 
 	<jsp:include page="../homePage/footer.jsp" />
-<!-- 		<div id="player"> -->
-<%-- 			<jsp:include page="../homePage/player.jsp" /> --%>
-<!-- 		</div> -->
+	<!-- 		<div id="player"> -->
+	<%-- 			<jsp:include page="../homePage/player.jsp" /> --%>
+	<!-- 		</div> -->
 
 </body>
-<!-- Meta -->
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="description" content="">
-<meta name="author" content="">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<!-- Favicon -->
-<link href="favicon.ico" rel="shortcut icon">
-<!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
-<!-- Template CSS -->
-<link rel="stylesheet" href="../css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/custom.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 
 
 </html>

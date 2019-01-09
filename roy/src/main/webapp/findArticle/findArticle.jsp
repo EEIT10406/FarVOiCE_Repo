@@ -6,7 +6,7 @@
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!-->
-<!-- <html lang="en"> -->
+<html>
 <!--<![endif]-->
 <head>
 <!-- Title -->
@@ -36,24 +36,35 @@
 	font-family: 微軟正黑體;
 }
 </style>
+<!-- JS -->
+<script type="text/javascript" src="../js/jquery.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<!-- Isotope - Portfolio Sorting -->
+<script type="text/javascript" src="../js/jquery.isotope.js"
+	type="text/javascript"></script>
+<!-- Mobile Menu - Slicknav -->
+<script type="text/javascript" src="../js/jquery.slicknav.js"
+	type="text/javascript"></script>
+<!-- Animate on Scroll-->
+<script type="text/javascript" src="../js/jquery.visible.js"
+	charset="utf-8"></script>
+<!-- Sticky Div -->
+<script type="text/javascript" src="../js/jquery.sticky.js"
+	charset="utf-8"></script>
+<!-- Slimbox2-->
+<script type="text/javascript" src="../js/slimbox2.js"
+	charset="utf-8"></script>
+<!-- Modernizr -->
+<script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<!-- End JS -->
+
 </head>
 
 <body>
-	<!-- 	<div id="body_bg"> -->
-	<!-- 		<div id="pre_header" class="container"> -->
-	<!-- 			<div class="row margin-top-10 visible-lg"> -->
-	<!-- 				<div class="col-md-6"> -->
-	<!-- 					<p> -->
-	<!-- 						<strong>Phone:</strong>&nbsp;1-800-123-4567 -->
-	<!-- 					</p> -->
-	<!-- 				</div> -->
-	<!-- 				<div class="col-md-6 text-right"> -->
-	<!-- 					<p> -->
-	<!-- 						<strong>Email:</strong>info@example.com -->
-	<!-- 					</p> -->
-	<!-- 				</div> -->
-	<!-- 			</div> -->
-	<!-- 		</div> -->
+
 	<div class="primary-container-group">
 		<!-- Background -->
 		<div class="primary-container-background">
@@ -62,6 +73,7 @@
 		</div>
 		<!--End Background -->
 		<!-- === BEGIN header === -->
+	
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === END header === -->
 
@@ -306,7 +318,7 @@
 								<div class="clearfix"></div>
 								<div class="blog-post-body row margin-top-15">
 									<div class="col-md-5">
-										<img class="margin-bottom-20" src="assets/img/blog/image4.jpg"
+										<img class="margin-bottom-20" src="../img/blog/image4.jpg"
 											alt="thumb4">
 									</div>
 									<div class="col-md-7">
@@ -380,7 +392,7 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="assets/img/blog/thumbs/thumb3.jpg"
+											src="../img/blog/thumbs/thumb3.jpg"
 											style="width: 100px; height: 90px" alt="thumb3">
 										</a> <a href="#" class="posts-list-title">第三篇</a> <br> <span
 											class="recent-post-date"> 2019.02.03 </span>
@@ -391,7 +403,7 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="assets/img/blog/thumbs/thumb4.jpg"
+											src="../img/blog/thumbs/thumb4.jpg"
 											style="width: 100px; height: 90px" alt="thumb4">
 										</a> <a href="#" class="posts-list-title">第四篇</a> <br> <span
 											class="recent-post-date"> 2019.05.06 </span>
@@ -413,35 +425,12 @@
 	<!-- === BEGIN FOOTER === -->
 	<jsp:include page="../homePage/footer.jsp" />
 	<!-- END Footer Menu -->
-	<div id="player">
-		<jsp:include page="../homePage/player.jsp" />
-	</div>
+<!-- 	<div id="player"> -->
+<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
+<!-- 	</div> -->
 
 
-	<!-- JS -->
-	<script type="text/javascript" src="assets/js/jquery.min.js"
-		type="text/javascript"></script>
-	<script type="text/javascript" src="assets/js/bootstrap.min.js"
-		type="text/javascript"></script>
-	<script type="text/javascript" src="assets/js/scripts.js"></script>
-	<!-- Isotope - Portfolio Sorting -->
-	<script type="text/javascript" src="assets/js/jquery.isotope.js"
-		type="text/javascript"></script>
-	<!-- Mobile Menu - Slicknav -->
-	<script type="text/javascript" src="assets/js/jquery.slicknav.js"
-		type="text/javascript"></script>
-	<!-- Animate on Scroll-->
-	<script type="text/javascript" src="assets/js/jquery.visible.js"
-		charset="utf-8"></script>
-	<!-- Sticky Div -->
-	<script type="text/javascript" src="assets/js/jquery.sticky.js"
-		charset="utf-8"></script>
-	<!-- Slimbox2-->
-	<script type="text/javascript" src="assets/js/slimbox2.js"
-		charset="utf-8"></script>
-	<!-- Modernizr -->
-	<script src="assets/js/modernizr.custom.js" type="text/javascript"></script>
-	<!-- End JS -->
+
 </body>
 </html>
 <!-- === END FOOTER === -->

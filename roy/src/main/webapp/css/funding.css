@@ -186,12 +186,18 @@ progress {
 
 .create-title, .create-description,.upload-image,.create-goal,.create-type,.create-city,.chose-music,.limit-date {
 	width: 40%;
-	margin-left: 10px 10px 10px 10px;
+	margin: 10px 10px 10px 10px;
 	padding-top: 10px;
 	padding-left: 10px;
 	font-weight: 600;
 }
-
+.next-reward{
+	width: 40%;
+	margin: 50px auto;
+	padding-top: 10px;
+	padding-left: 10px;
+	font-weight: 600;
+}
 .bluequote {
 	color: #00bbd6;
 	padding-left: 8px;
@@ -225,6 +231,15 @@ progress {
 	border-radius: 4px;
 	background-color: #fff;
 	border: 1px solid #e4e4e4;
+}
+.next:hover{
+	background-color: #e61d1d;
+    color: #fff;
+}
+.next{
+	text-align:center;
+	color: #f7f7f7;
+    background-color: #eb4b4b;
 }
 /*a  upload */
 .a-upload {

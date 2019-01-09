@@ -6,14 +6,23 @@
 	
 <script>
 	$(document).ready(function() {
+		$('#logo').css("cursor","pointer");
+		$('#profile').css("cursor","pointer");
 		$('#login').click(function() {
 			window.location.href = "/roy/login-signUp-upload/login.jsp";
 		})
 		$('#logout').click(function() {
-			window.location.href = "/roy//login-signUp-upload/MemberLogOut.controller";
+			window.location.href = "/roy/login-signUp-upload/MemberLogOut.controller";
 		})
 		$('#upload').click(function() {
 			window.location.href = "/roy/login-signUp-upload/upload.jsp";
+		})
+		$('#profile').click(function() {
+			window.location.href = "/roy/personalPage/personalPage.jsp";
+			
+		})
+		$('#logo').click(function() {
+			window.location.href = "/roy/homePage/index.jsp";
 		})
 		$('#project').click(function(){
 			window.location.href="/roy/funding/startProject.jsp"
@@ -33,7 +42,7 @@
 			<div class="row">
 				<!-- Logo -->
 				<div class="logo">
-					<img src="../img/logo.PNG" alt="Logo" />
+					<img src="../img/logo.PNG" alt="Logo" id="logo"/>
 				</div>
 				<!-- End Logo -->
 				<ul class="social-icons  pull-right hidden-xs ">
@@ -71,7 +80,7 @@
 					    </c:when>
 					    <c:otherwise>
 							<li>	
-								<img src="../personalPage/imgs/profile/${user.member_username}.jpg"  class="img-circle" style="width:45px;height:45px;" />
+								<img id="profile" src="../personalPage/imgs/profile/${user.member_username}.jpg"  class="img-circle" style="width:45px;height:45px;"  />
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -125,30 +134,21 @@
 								</ul></li>
 							<li><a href="../searchMusic/searchLists.jsp"><i class="fas fa-list-ol fa-lg"></i>   聽歌單</a>
 								<ul>
-									<li><a href="pages-about-us.html">About Us</a></li>
-									<li><a href="pages-services.html">Services</a></li>
-									<li><a href="pages-faq.html">F.A.Q.</a></li>
-									<li><a href="pages-about-me.html">About Me</a></li>
-									<li><a href="pages-full-width.html">Full Width</a></li>
-									<li><a href="pages-left-sidebar.html">Left Sidebar</a></li>
-									<li><a href="pages-right-sidebar.html">Right Sidebar</a></li>
-									<li><a href="pages-login.html">Login</a></li>
-									<li><a href="pages-sign-up.html">Sign-Up</a></li>
-									<li><a href="pages-404.html">404 Error Page</a></li>
+									<li><a href="pages-about-us.html">搖滾</a></li>
+									<li><a href="pages-services.html">抒情</a></li>
+									<li><a href="pages-faq.html">金屬</a></li>
+									<li><a href="pages-about-me.html">爵士</a></li>
+									<li><a href="pages-full-width.html">古典</a></li>
+									
 								</ul></li>
 							<li><a href="/roy/searchMusic/searchMusic.jsp"><i class="fas fa-headphones fa-lg"></i>  找音樂</a>
-								<ul>
-									<li><a href="portfolio-2-column.html">2 Column</a></li>
-									<li><a href="portfolio-3-column.html">3 Column</a></li>
-									<li><a href="portfolio-4-column.html">4 Column</a></li>
-									<li><a href="portfolio-6-column.html">6 Column</a></li>
-								</ul></li>
+								</li>
 							<li><a href="/roy/findArticle/findArticle.jsp"><i class="fas fa-pencil-alt fa-lg"></i>   找文章</a>
 <!-- 								<ul> -->
 <!-- 									<li><a href="blog-list.html">Blog</a></li> -->
 <!-- 									<li><a href="blog-single.html">Blog Single Item</a></li> -->
 <!-- 								</ul></li> -->
-							<li><a href="index.html"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
+							<li><a href="/roy/funding/explore.jsp"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
 							<li><a href="contact.html"><i class="fas fa-envelope fa-lg"></i>   即時客服</a></li>
 						</ul>

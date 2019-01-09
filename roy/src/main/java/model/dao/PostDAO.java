@@ -106,7 +106,7 @@ public class PostDAO {
 	}
 	public List<PostBean> findArticleFromMember (String member_username){
 		//0106 OK
-		String hql = "from PostBean WHERE member_username=:member_username and post_idM=null";
+		String hql = "from PostBean WHERE member_username=:member_username and post_idM=null Order By post_time Desc";
 		Query<PostBean> query = this.getSession().createQuery(hql);
 		query.setParameter("member_username", member_username);
 		List<PostBean> PostList = query.list();
