@@ -371,8 +371,9 @@ function loadMusicCount(username) {
 							<td class="number">0</td>
 						</tr>
 					</table>
-				</div>
+				</div><!-- === END of CONTENT === -->
 				
+			
 				
 				<!-- Tab v2 -->
 				<div class="tabs alternative">
@@ -387,6 +388,82 @@ function loadMusicCount(username) {
 					
 					<div class="tab-content" style="height: auto;" style="margin-bottom:20px" >
 						<div class="tab-pane fade in active" id="dynamic">
+								
+							<div><!-- ===BEGIN of HISTORY === -->
+										 
+										<div class="bg-white p-20">
+											<div>
+												<div>
+													<img src="https://cfstatic.streetvoice.com/profile_images/st/re/street0717/r2npMySeePybCPTA5DbR87.jpeg?x-oss-process=image/resize,m_fill,h_40,w_40,limit_0/interlace,1/quality,q_85/format,jpg" class="img-xs img-circle">
+												</div><!-- /media-left -->
+												<div >
+													<h4><span></span>最近聆聽歌曲</h4>		
+												</div>	
+<!-- 													<table class="table vertical-m" style="margin-bottom:20px" > -->
+													<div>
+															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> 														
+																	<div style="float:left">
+<!-- 																		<button  -->
+<!-- 														                    data-type="song" -->
+<!-- 														                    data-id="558439" -->
+<!-- 														                    data-ga-on="click" -->
+<!-- 														                    data-ga-event-category="user triggered play" -->
+<!-- 														                    data-ga-event-action="song" -->
+<!-- 														                    data-ga-event-label="07_啊！又忘記你的名字啦！｜Ah! Forgot your name again (558439)" -->
+<!-- 														                    data-ga-dimension-value="Song detail"> -->
+<!-- 																			<span class="glyphicon glyphicon-play"></span> -->
+<!-- 																		</button> -->
+																		<a href="/angry_youth/songs/558439/"><img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg"></a>
+																	</div><!-- /work-block img-xxs -->
+																	<div style="margin-left:250px">
+																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a> - <a href="/angry_youth/">厭世少年</a></h4>						
+																	</div>
+														  		</div>
+													</div>	
+													<div>
+															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> 														
+																	<div style="float:left">
+<!-- 																		<button  -->
+<!-- 														                    data-type="song" -->
+<!-- 														                    data-id="558439" -->
+<!-- 														                    data-ga-on="click" -->
+<!-- 														                    data-ga-event-category="user triggered play" -->
+<!-- 														                    data-ga-event-action="song" -->
+<!-- 														                    data-ga-event-label="07_啊！又忘記你的名字啦！｜Ah! Forgot your name again (558439)" -->
+<!-- 														                    data-ga-dimension-value="Song detail"> -->
+<!-- 																			<span class="glyphicon glyphicon-play"></span> -->
+<!-- 																		</button> -->
+																		<a href="/angry_youth/songs/558439/"><img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg"></a>
+																	</div><!-- /work-block img-xxs -->
+																	<div style="margin-left:250px">
+																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a> - <a href="/angry_youth/">厭世少年</a></h4>						
+																	</div>
+														  		</div>
+													</div>	
+												<!-- /media-body -->
+											</div><!-- /media -->
+										</div>
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+							</div><!-- ===END of HISTORY === -->
+							
+							
 							<div id="test"><br>
 <!-- 								<img src="imgs/123.jpg" class="img-circle" style="width:45px;height:45px;float:left;margin-right:15px" > -->
 <!-- 								<h5 style="margin-bottom:0px">分享了一條音樂</h5> -->
@@ -663,8 +740,9 @@ function loadMusicCount(username) {
 							<!-- about end -->
 
 						</div>
-
 					</div>
+				</div>
+			</div>
 				</div>
 			</div>
 			<!-- End Tab v2 -->
@@ -710,6 +788,7 @@ function loadMusicCount(username) {
 				 {   
 					list.forEach(function(obj, index) {
 						var postorshare = obj.post_postorshare;
+						var privacy = obj.Post_privacy;
 						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 						var content = "<br><h5 style='margin-bottom:0px'>發表了一篇文章</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
 						var content2 = "<br><h5 style='margin-bottom:0px'>分享了一條音樂</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
@@ -719,9 +798,10 @@ function loadMusicCount(username) {
 				        
 						//分享的內容
 				        var div2 = img+content2 + time + "<br></br>";
-				        if(postorshare==true){
+				        
+				        if(postorshare==true&&privacy==true){
 				        	$('#test').append(div);
-				        	}else if(postorshare==false){
+				        	}else if(postorshare==false&&privacy==true){
 				        		$('#test').append(div2);
 				        	}				        
 				  	})
