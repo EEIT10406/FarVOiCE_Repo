@@ -39,7 +39,8 @@ public class PostService {
 //			for(PostBean beantemp:posts) {
 //				System.out.println(beantemp);
 //			}
-			
+			int post_idS =5;
+			System.out.println(postService.removePost(post_idS));
 			HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
 		} finally {
 			HibernateUtil.closeSessionFactory();
@@ -64,12 +65,17 @@ public class PostService {
 		PostBean newPostBean = postDAO.create(bean);
 		return newPostBean;
 	}
-	public PostBean findSinglePost(Integer Post_idS) {
+	public PostBean findSinglePost(Integer post_idS) {
 		
-		PostBean bean = postDAO.findByPrimaryKey(Post_idS);
+		PostBean bean = postDAO.findByPrimaryKey(post_idS);
 		if(bean!=null) {
 					return bean;
 		}
 		return null;
+	}
+	public boolean removePost(Integer post_idS) {
+		//0109 OK
+		boolean b = postDAO.remove(post_idS);
+		return b;
 	}
 }

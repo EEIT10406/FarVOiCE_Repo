@@ -54,6 +54,8 @@ public class PostController {
 	public String singleArticle(Integer post_idS,Model model) {
 		//進去文章頁面並帶著這個文章的bean
 		PostBean currentPostBean = postService.findSinglePost(post_idS);
+		currentPostBean.setPost_content(currentPostBean.getPost_content().replace("\n","<br>"));
+		System.out.println(currentPostBean.getPost_content());
 		model.addAttribute("currentPost",currentPostBean);
 		return"/personalPage/singleArticle.jsp";
 	}
@@ -83,5 +85,13 @@ public class PostController {
 		System.out.println(jsonList);
 		return jsonList;
 		
+	}
+	
+	@RequestMapping(path="/personalPage/removePost.controller")
+	public String removePost(Integer post_idS,Model model,String member_username,String post_content,HttpSession session) {
+		//刪除文章
+		System.out.println(post_idS);
+		postService.removePost(post_idS);
+		return "redirect:/personalPage/personalPage.jsp";
 	}
 }

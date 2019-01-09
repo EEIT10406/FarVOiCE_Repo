@@ -70,15 +70,15 @@
 					<div class="col-md-9">
 						<div class="blog-post">
 							<div class="blog-item-header">
-								<h2>
-									<a href="#">最新文章</a>
-								</h2>
+<!-- 								<h2> -->
+<!-- 									<a href="#">最新文章</a> -->
+<!-- 								</h2> -->
 							</div>
 							<div class="blog-post-details">
 								<!-- Author Name -->
 								<div
 									class="blog-post-details-item blog-post-details-item-left user-icon">
-									<i class="fa fa-user color-gray-light"></i> <a href="#">作者:黃金鼠</a>
+									<i class="fa fa-user color-gray-light"></i> <a href="#">作者: ${currentPost.member_username}</a>
 								</div>
 								<!-- End Author Name -->
 								<!-- Date -->
@@ -87,17 +87,17 @@
 								</div>
 								<!-- End Date -->
 								<!-- Tags -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-									<i class="fa fa-tag color-gray-light"></i> <a href="#">PHP</a>,
-									<a href="#">Javascript</a>, <a href="#">CoffeeScript</a>
-								</div>
+<!-- 								<div -->
+<!-- 									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags"> -->
+<!-- 									<i class="fa fa-tag color-gray-light"></i> <a href="#">PHP</a>, -->
+<!-- 									<a href="#">Javascript</a>, <a href="#">CoffeeScript</a> -->
+<!-- 								</div> -->
 								<!-- End Tags -->
 								<!-- # of Comments -->
 								<div
 									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
 									<a href=""> <i class="fa fa-comments color-gray-light"></i>
-										9 Comments
+										<span id="commentCount">Comments</span>
 									</a>
 								</div>
 								<!-- End # of Comments -->
@@ -105,51 +105,15 @@
 							<div class="blog-item">
 								<div class="clearfix"></div>
 								<div class="blog-post-body row margin-top-15">
-									<div class="col-md-5">
-										<img class="margin-bottom-20" src="imgs/mouse.PNG"
-											alt="image1">
-									</div>
-									<div class="col-md-7">
-										<p>我是一隻黃金鼠</p>
+									<div class="col-md-12" style="margin-bottom:100px">
 										<p>${currentPost.post_content}</p>
 										<span hidden="true" id="postPK">${currentPost.post_idS}</span>
 									</div>
-									<div class="col-md-12">
-										<p>我是一隻黃金鼠</p>
-										<blockquote class="primary">
-											<p>
-												<em>"我是黃金鼠阿"</em>
-											</p>
-											<small> 黃金鼠 <cite title="Source Title">Source
-													Title</cite>
-											</small>
-										</blockquote>
-										<p>我是鼠 黃金鼠</p>
-										<p>黃金鼠鼠鼠鼠鼠</p>
-									</div>
 								</div>
 								<div class="blog-item-footer">
-									<!-- About the Author -->
-									<div class="blog-author panel panel-default margin-bottom-30">
-										<div class="panel-heading">
-											<h3>關於作者</h3>
-										</div>
-										<div class="panel-body">
-											<div class="row">
-												<div class="col-md-2">
-													<img class="pull-left" src="imgs/mouse.PNG" alt="image1">
-												</div>
-												<div class="col-md-10">
-													<label>黃。金鼠</label>
-													<p>我是一隻很長的鼠</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- End About the Author -->
 									<!-- Comments -->
 									<div id="comments"
-										class="blog-recent-comments panel panel-default margin-bottom-30">
+										class="blog-recent-comments panel panel-default margin-bottom-30" style="border-left:none;border-right:none">
 										<div class="panel-heading">
 											<h3>評論</h3>
 										</div>
@@ -186,7 +150,7 @@
 																<label>內容</label>
 																<div class="row margin-bottom-20">
 																	<div class="col-md-11 col-md-offset-0">
-																		<textarea class="form-control" rows="8" id="comment" name="post_content"></textarea>
+																		<textarea class="form-control" rows="8" id="comment" name="post_content" style="resize:none"></textarea>
 																	
 																	</div>
 																</div>
@@ -209,76 +173,6 @@
 						<!-- End Blog Post -->
 					</div>
 					<!-- End Main Column -->
-					<!-- Side Column -->
-					<br>
-					<div class="col-md-3">
-						<!-- Blog Tags -->
-						<div class="blog-tags">
-<!-- 							<h3>搜尋文章</h3> -->
-							<ul class="blog-tags">
-<!-- 					<!-- 搜尋文章 -->
-<!-- 						<form class="form-inline"> -->
-<!-- 							<input class="form-control mr-sm-2" type="search" -->
-<!-- 								placeholder="搜尋" aria-label="Search"> -->
-<!-- 							<button class="btn btn-outline-success" type="submit">搜尋</button> -->
-<!-- 						</form> -->
-						</ul>
-						</div>
-						<!-- End Blog Tags -->
-						<!-- Recent Posts -->
-						<br>
-						<div class="recent-posts">
-							<h3>最近新增文章</h3>
-							<ul class="posts-list margin-top-10">
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left" src="imgs/mouse.PNG"
-											style="width: 100px; height: 90px" alt="thumb1">
-										</a> <a href="../findArticle/singleArticle.jsp"
-											class="posts-list-title">黃金鼠 </a> <br> <span
-											class="recent-post-date"> 2019.01.02 </span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
-								<br>
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left" src="imgs/bird.jpg"
-											style="width: 100px; height: 90px" alt="thumb2">
-										</a> <a href="#" class="posts-list-title">玄鳳</a> <br> <span
-											class="recent-post-date"> 2019.01.02 </span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
-								<br>
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left"
-											src="../img/blog/thumbs/thumb3.jpg"
-											style="width: 100px; height: 90px" alt="thumb3">
-										</a> <a href="#" class="posts-list-title">第三篇</a>
-										<br> <span class="recent-post-date">2019.01.03
-										</span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
-								<br>
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left"
-											src="../img/blog/thumbs/thumb4.jpg"
-											style="width: 100px; height: 90px" alt="thumb4">
-										</a> <a href="#" class="posts-list-title">第四篇</a>
-										<br> <span class="recent-post-date">2018.05.06
-										</span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
-							</ul>
-						</div>
-						<!-- End Recent Posts -->
-					</div>
-					<!-- End Side Column -->
 				</div>
 			</div>
 		</div>
@@ -295,8 +189,9 @@
                 data:{post_idS:$('#postPK').text()},
                 //contentType: "application/json",              
 				success : function(list)
-				 {   
+				 {   var totalComment = 0;
 					list.forEach(function(obj, index) {
+						totalComment++;
 						console.log(obj.post_time)
 // 								<li class='list-group-item'>
 // 									<div class='row'>
@@ -318,7 +213,7 @@
 												+"<div class='row'>"
 												+"<div class='col-md-2 profile-thumb'>"
 													+"<a href='#'> <img class='media-object'"
-													+	"src='../img/profiles/99.jpg' alt=''>"
+													+	"src='../img/noProfile.gif' alt=''>"
 													+"</a>"
 												+"</div>"
 												+"<div class='col-md-10'>"
@@ -329,10 +224,10 @@
 													+"</span>"
 											+"</div>"
 										+"</li>"
-// 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
-// 				        var div =  img+content + time + button +"<br></br>";
 				        $('#0106Test').prepend(temp); 
 				  	})
+				  	totalComment +="  ";
+				  	$('#commentCount').prepend(totalComment); 
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert(xhr.status);

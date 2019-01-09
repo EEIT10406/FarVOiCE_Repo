@@ -23,6 +23,7 @@ import model.bean.MemberBean;
 				@WebInitParam(name = "mustLogin1", value = "/personalPage/somebodyPersonalPageFollow.controller"),				
 				@WebInitParam(name = "mustLogin2", value = "/rankTop10/ShareMusic.controller"),				
 				@WebInitParam(name = "mustLogin3", value = "/login-signUp-upload/upload.jsp"),				
+				@WebInitParam(name = "mustLogin3", value = "/personalPage/personalPage.jsp")				
 								
 		})
 public class LoginCheckingFilter implements Filter {
