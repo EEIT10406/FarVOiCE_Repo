@@ -24,6 +24,8 @@
 		$('#logo').click(function() {
 			window.location.href = "/roy/homePage/index.jsp";
 			
+		$('#project').click(function(){
+			window.location.href="/roy/funding/startProject.jsp"
 		})
 	})
 </script>
@@ -63,7 +65,7 @@
 							發佈音樂</button>
 					</li>
 					<li>
-						<button id="login" type="button" class="btn btn-outline-danger">
+						<button id="project" type="button" class="btn btn-outline-danger">
 							開始提案</button>
 					</li>
 					<li>
@@ -146,7 +148,7 @@
 <!-- 									<li><a href="blog-list.html">Blog</a></li> -->
 <!-- 									<li><a href="blog-single.html">Blog Single Item</a></li> -->
 <!-- 								</ul></li> -->
-							<li><a href="index.html"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
+							<li><a href="/roy/funding/explore.jsp"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
 							<li><a href="contact.html"><i class="fas fa-envelope fa-lg"></i>   即時客服</a></li>
 						</ul>

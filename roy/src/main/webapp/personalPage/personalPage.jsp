@@ -152,6 +152,7 @@ padding:11px;
 text-align:center;
 word-wrap:break-word; 
 word-break:break-all;
+opacity:0.5
 }
 </style>
 <script>
@@ -189,75 +190,132 @@ word-break:break-all;
 <script>
 $(document).ready(function() {
 	loadMusic('${user.member_username}');
+	loadMusicCount('${user.member_username}')
+	loadPlayList('${user.member_username}')
 	
 	//刪除歌單
-	$('#musics>tbody').on('click','.deleteClick',
+	$('#music').on('click','.deleteClick',
 		function() {
-			var row = $(this).parents('tr');
-			var music_id = row.children('td:nth-child(1)').text();
+// 			var row = $(this).parents('tr');
+// 			var music_id = row.children('td:nth-child(1)').text();
+            var row = $(this).parents('#musics');
+            var music_id =row.children('span[name="music_id"]').text();
 			$.get('/roy/list/deleteMusic', {
 				'music_id' : music_id
 			}, function(data) {
 				alert(data);
 	            loadMusic('${user.member_username}');
+	            loadMusicCount('${user.member_username}')
 			})
 	})
 	//點愛心
-	$('#musics>tbody').on('click','.heart',function(){
+	$('#music').on('click','.heart',function(){
 		if (this.src.indexOf("love.png") != -1) {
 			this.src = "../img/emptyLove.png";
 		} else {
 			this.src = "../img/love.png"
 		}
-	});
+	})
 	
+	//按加入歌單時載入有哪些歌單 (待做完對音樂的按讚再寫)
+// 	$('body').on('click','.btnAddList',function() {
+			
+// 		$.getJSON('/roy/list/readPlayList',{'username' : '${user.member_username}'},function(data) {
+// 			var html="<option>請輸入歌單</option>";
+// 			$.each(data,function(index, list) {
+				
+// 			    html+='<option value='+list.playlist_name+'>'+list.playlist_name+'</option><span name="playlistId">'+list.playlist_id+'</span>';
+			         
+// 	              })
+// 	         $('#selectPlayList').html(html);
+// 			 $('span[name="playlistId"]').hide();
+// 		})
+			
+// 	})
 	
 	
 })
 
 
 //讀取該使用者的所有歌
+// function loadMusic(username) {
+// 	$.getJSON('/roy/personalPage/readMusic',{'username' : username},function(data) {
+// 		var html;
+// 		 $('#musics>tbody').html("");
+// 		$.each(data,function(index, list) {
+// 		  html+='<tr style="border-bottom:1px solid #DDDDDD;">'+
+// 		        '<td name="music_id">'+list.music_id+'</td>'+
+// 				'<td style="text-align:center"><img src="'+list.music_Image+'"style="width: 90px; height: 90px;" /></td>'+
+// 				'<td style="font-size: 16px;">'+list.music_name+'</td>'+		
+// 				'<td><img src="../img/emptyLove.png" class="heart">'+
+// 				     '<span id="heartCount">'+list.music_likeCount+'</span>'+
+// 				     '<span style="cursor: pointer;margin:15px;"><img src="../img/share.png" width="15px" />分享</span>'+
+// 					 '<span class="deleteClick"><img src="../img/delete.png" width="15px" />刪除</span>'+
+// 				'</td>'+
+// 				'</tr>';
+//               })
+//               $('#musics>tbody').html(html);
+// 		$('td[name="music_id"]').hide();
+// 	})
+// }
+
+
+
+
+
+
+//讀取該使用者的所有歌
 function loadMusic(username) {
+
 	$.getJSON('/roy/personalPage/readMusic',{'username' : username},function(data) {
-		var html;
-		 $('#musics>tbody').html("");
+		
+		var content;
 		$.each(data,function(index, list) {
-		  html+='<tr style="border-bottom:1px solid #DDDDDD;">'+
-		        '<td name="music_id">'+list.music_id+'</td>'+
-				'<td style="text-align:center"><img src="'+list.music_Image+'"style="width: 90px; height: 90px;" /></td>'+
-				'<td style="font-size: 16px;">'+list.music_name+'</td>'+		
-				'<td><img src="../img/emptyLove.png" class="heart">'+
-				     '<span id="heartCount">'+list.music_likeCount+'</span>'+
-				     '<span style="cursor: pointer;margin:15px;"><img src="../img/share.png" width="15px" />分享</span>'+
-					 '<span class="deleteClick"><img src="../img/delete.png" width="15px" />刪除</span>'+
-				'</td>'+
-				'</tr>';
-              })
-              $('#musics>tbody').html(html);
-		$('td[name="music_id"]').hide();
+			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;margin-bottom:10px;">'+
+			          '<span name="music_id">'+list.music_id+'</span>'+
+			          '<span><a href=""><img src="'+list.music_Image+'" style="width: 160px; height: 160px;" /></a></span>'+
+			       '<div style="font-size: 16px;">'+list.music_name+'</div>'+
+                   '<div><img src="../img/emptyLove.png" class="heart"><span id="heartCount">'+list.music_likeCount+'</span>'+ 
+                      '<span id="share" class="shareAndAdd"><a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a></span>'+
+                      '<span id="add">'+
+                      '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
+					  '</span>'+
+					  '<span class="deleteClick" style="cursor: pointer;"> <img src="../img/delete.png" width="15px" />刪除</span>'+
+                   '</div>'+
+                   '</div>';
+           })
+           $('#music').html(content.substring(9));
+		$('span[name="music_id"]').hide();
 	})
 }
 
 
 //讀取該使用者的所有歌單
 function loadPlayList(username) {
-	$.getJSON('/roy/personalPage/readMusic',{'username' : username},function(data) {
-		var html;
-		 $('#musics>tbody').html("");
+	$.getJSON('/roy/list/readPlayList',{'username' : username},function(data) {
+		var content;
+		 $('#list').html("");
 		$.each(data,function(index, list) {
-		  html+='<tr style="border-bottom:1px solid #DDDDDD;">'+
-		        '<td name="music_id">'+list.music_id+'</td>'+
-				'<td style="text-align:center"><img src="'+list.music_Image+'"style="width: 90px; height: 90px;" /></td>'+
-				'<td style="font-size: 16px;">'+list.music_name+'</td>'+		
-				'<td><img src="../img/emptyLove.png" class="heart">'+
-				     '<span id="heartCount">'+list.music_likeCount+'</span>'+
-				     '<span style="cursor: pointer;margin:15px;"><img src="../img/share.png" width="15px" />分享</span>'+
-					 '<span class="deleteClick"><img src="../img/delete.png" width="15px" />刪除</span>'+
-				'</td>'+
-				'</tr>';
+			content+='<div class="col-md-5" style="float: left; width: 300px;margin-bottom:13px;">'+
+		             '<span name="playlist_id">'+list.playlist_id+'</span>'+
+			         '<a href="">'+
+		                  '<div style="width: 160px;height: 160px;background: url('+list.playlist_image+') no-repeat; background-size:160px 160px;">'+
+			              '<div class="listSongCount">'+list.playlist_musicCount+'</div></div>'+
+		             '</a>'+
+                     '<div style="font-size: 16px;">'+list.playlist_name+'</div>'+
+	                 '<div><span style="cursor: pointer;"> <img src="../img/delete.png" width="17px" />刪除</span></div>'+
+                 '</div>';
               })
-              $('#musics>tbody').html(html);
-		$('td[name="music_id"]').hide();
+              $('#list').html(content.substring(9));
+		$('span[name="playlist_id"]').hide();
+	})
+}
+
+
+//讀取使用者上傳的音樂數
+function loadMusicCount(username) {
+	$.getJSON('/roy/personalPage/uploadMusicCount',{'username' : username},function(data) {
+		$('#musicCount').html(data);
 	})
 }
 			
@@ -308,7 +366,7 @@ function loadPlayList(username) {
 							<td>追蹤中</td>
 						</tr>
 						<tr>
-							<td class="number">0</td>
+							<td id="musicCount" class="number">0</td>
 							<td class="number">0</td>
 							<td class="number">0</td>
 						</tr>
@@ -417,26 +475,22 @@ function loadPlayList(username) {
 
 
 						<div class="tab-pane fade in" style="overflow: auto;" id="music">
-						<table id="musics" style="width: 700px;margin-top:0px;">
-									<tbody>
-<!--                                      <tr> -->
-<!-- 										<td name="music_id"></td> -->
-<!-- 										<td><img src="../img/love.png" -->
-<!-- 											style="width: 100px; height: 100px;" /> -->
-<!-- 										</td> -->
-<!-- 										<td style="font-size: 16px;">讓我為你唱情歌</td>		 -->
-										
-<!-- 										<td> -->
-<!-- 										<img src="../img/emptyLove.png" class="heart"> -->
-<!-- 										<span id="heartCount"> 0</span> -->
-<!-- 										<span style="cursor: pointer;"><img -->
-<!-- 											src="../img/share.png" width="15px" />分享</span> -->
-<!-- 											<span style="cursor: pointer;"><img -->
-<!-- 											src="../img/delete.png" width="15px" />刪除</span> -->
-<!-- 										</td> -->
-<!-- 									</tr> -->
-									</tbody>
-							</table>
+						
+							
+<!-- 							<div id="musics" class="col-md-5" style="float: left; width: 300px;"> -->
+<!-- 								<span name="music_id"></span>  -->
+<!-- 								<span><a href=""><img src="../img/love.png" style="width: 160px; height: 160px;" /></a></span> -->
+
+<!-- 								<div style="font-size: 16px;">讓我為你唱情歌</div> -->
+<!-- 								<div> -->
+<!-- 									<img src="../img/emptyLove.png" class="heart">  -->
+<!-- 									<span id="heartCount"> 0</span>  -->
+<!-- 									<span id="share" class="shareAndAdd"> <a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a></span>  -->
+<!-- 									<span class="deleteClick" style="cursor: pointer;"> <img src="../img/delete.png" width="15px" />刪除</span> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+							
+							
 						</div>
 						
 						
@@ -444,9 +498,12 @@ function loadPlayList(username) {
 						
 						<div class="tab-pane fade in" style="overflow: auto;" id="list">
 						
+						
 						<div class="col-md-5" style="float: left; width: 300px;">
+						<span name="playlist_id">2</span>
 								<a href="">
-									<div class="list">
+									<div style="width: 160px;height: 160px;background: url(/roy/img/add.png) no-repeat; background-size:160px 160px;">
+								
 										<div class="listSongCount">2</div>
 									</div>
 								</a>
@@ -458,11 +515,16 @@ function loadPlayList(username) {
 									</span>
 								</div>
 							</div>
+							
+	
+	
 	
 						</div>
 						
 						
 						<div class="tab-pane fade in" style="overflow: auto;" id="like">
+
+
 
 
 							<div class="col-md-5" style="float: left; width: 300px;">
@@ -489,6 +551,9 @@ function loadPlayList(username) {
 									</span>
 								</div>
 							</div>
+
+
+
 
 						</div>
 
@@ -727,12 +792,12 @@ function loadPlayList(username) {
 										<div class="modal-dialog" style="width: 300px;">
 											<div class="modal-content">
 												<h5 style="margin: 10px;">加入歌單</h5>
-												<form>
+												<form action="/" method="post">
 													<div class="modal-body">
 
 														<div class="form-group">
-															<select class="form-control">
-																<option>請選擇歌單</option>
+															<select id="selectPlayList" class="form-control">
+																<option>請選擇歌單</option><span name="playlistId"></span>
 															</select>
 														</div>
 														<div style="float:right;">
@@ -742,7 +807,7 @@ function loadPlayList(username) {
 													<div class="modal-footer">
 														<button type="button" class="btn btn-primary"
 															data-dismiss="modal">取消</button>
-														<button type="button" class="btn btn-primary">確定</button>
+														<input type="submit" class="btn btn-primary" value="確定" />
 													</div>
 												</form>
 												

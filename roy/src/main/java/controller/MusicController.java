@@ -75,7 +75,7 @@ public class MusicController {
 	// 讀取使用者的音樂
 	@RequestMapping(value = "/personalPage/readMusic", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String readMusic(Model model, String username) {
+	public String readMusic(String username) {
 		if (username != null && username.trim() != "") {
 			List<MusicBean> musicBean = musicService.findMusicByUser(username);
 			if (musicBean != null) {
@@ -93,6 +93,21 @@ public class MusicController {
 		}
 		return "";
 	}
+	
+	
+	// 讀取使用者上傳的音樂個數(不包括下架音樂)
+		@RequestMapping(value = "/personalPage/uploadMusicCount", produces = "text/plain;charset=UTF-8")
+		@ResponseBody
+		public String uploadMusicCount(String username) {
+			if (username != null && username.trim() != "") {
+				List<MusicBean> musicBean = musicService.findMusicByUser(username);
+				if (musicBean != null) {
+					return String.valueOf(musicBean.size());
+				}
+			}
+			return "";
+		}
+		
 
 	// 刪音樂
 	@RequestMapping(value = "/list/deleteMusic", produces = "text/plain;charset=UTF-8")
