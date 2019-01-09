@@ -15,6 +15,9 @@
 		$('#upload').click(function() {
 			window.location.href = "/roy/login-signUp-upload/upload.jsp";
 		})
+		$('#project').click(function(){
+			window.location.href="/roy/funding/startProject.jsp"
+		})
 	})
 </script>
 
@@ -53,7 +56,7 @@
 							發佈音樂</button>
 					</li>
 					<li>
-						<button id="login" type="button" class="btn btn-outline-danger">
+						<button id="project" type="button" class="btn btn-outline-danger">
 							開始提案</button>
 					</li>
 					<li>

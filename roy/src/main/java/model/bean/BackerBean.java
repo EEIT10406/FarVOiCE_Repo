@@ -1,6 +1,8 @@
 package model.bean;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,6 +20,7 @@ public class BackerBean {
 	backer_time         datetime,--贊助日期
 	backer_address      varchar(50),--寄送地址*/
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer backer_id;
 	private String member_username;
 	private Integer reward_id;

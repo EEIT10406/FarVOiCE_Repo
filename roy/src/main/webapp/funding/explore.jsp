@@ -16,7 +16,7 @@
 <script>
 	$(document).ready(function() {
 		// 	獲取專案數量
-
+		
 		var pcount = $('.project').size();
 		$('.count').text(pcount + " 個募資專案");
 		//預設
@@ -283,9 +283,9 @@
 	<!-- 	=== END CONTENT === -->
 
 	<jsp:include page="../homePage/footer.jsp" />
-	<!-- 	<div id="player"> -->
-	<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
-	<!-- 	</div> -->
+<!-- 		<div id="player"> -->
+<%-- 			<jsp:include page="../homePage/player.jsp" /> --%>
+<!-- 		</div> -->
 
 </body>
 <!-- Meta -->
