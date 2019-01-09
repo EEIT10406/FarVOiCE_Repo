@@ -25,6 +25,7 @@ public class ShareMusicController {
 	
 	@Autowired
 	private ShareMusicService shareMusicService;
+	
 	@RequestMapping(path= {"/rankTop10/ShareMusic.controller"})
 	public String method(
 			@RequestParam(value="shareContent")String shareContent,

@@ -21,6 +21,7 @@ import model.bean.MusicBean;
 import model.bean.PlaylistBean;
 import model.bean.MemberBean;
 import model.bean.PostBean;
+import model.dao.StoryDAO;
 
 @Configuration
 
@@ -45,7 +46,7 @@ public class RootAppConfig {
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
 
-		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,FollowBean.class);
+		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,FollowBean.class,StoryDAO.class);
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.setProperty("hibernate.show_sql", "true");

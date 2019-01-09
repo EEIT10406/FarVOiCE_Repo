@@ -22,12 +22,12 @@ public class PostService {
 		this.postDAO = postDAO;
 	}
 	
-	public static void main(String[] args) {
-		try {
-			HibernateUtil.getSessionfactory().getCurrentSession().beginTransaction();
-
-			PostService postService = new PostService(new PostDAO(HibernateUtil.getSessionfactory()));
-			
+//	public static void main(String[] args) {
+//		try {
+//			HibernateUtil.getSessionfactory().getCurrentSession().beginTransaction();
+//
+//			PostService postService = new PostService(new PostDAO(HibernateUtil.getSessionfactory()));
+//			
 //			PostBean temp = new PostBean();
 //			temp.setMember_username("Peter");
 //			temp.setPost_content("哈囉囉囉囉囉");
@@ -35,16 +35,17 @@ public class PostService {
 //			System.out.println(newPostBean);
 //			MemberBean member = new MemberBean();
 //			member.setMember_username("Peter");
-//			List<PostBean> posts = postService.showAllArticleFromMember(member);		
+//			List<PostBean> posts = postService.showAllArticleFromMember(member);
+	
 //			for(PostBean beantemp:posts) {
 //				System.out.println(beantemp);
 //			}
 			
-			HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
-		} finally {
-			HibernateUtil.closeSessionFactory();
-		}
-	}
+//			HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
+//		} finally {
+//			HibernateUtil.closeSessionFactory();
+//		}
+//	}
 
 	public PostBean postNewArticle(PostBean bean) {
 		//0104 OK
@@ -67,7 +68,8 @@ public class PostService {
 	public PostBean findSinglePost(Integer Post_idS) {
 		
 		PostBean bean = postDAO.findByPrimaryKey(Post_idS);
-		if(bean!=null) {
+		if(bean!=null) 
+		{
 					return bean;
 		}
 		return null;

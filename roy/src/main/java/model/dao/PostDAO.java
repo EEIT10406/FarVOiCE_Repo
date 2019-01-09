@@ -22,11 +22,11 @@ public class PostDAO {
 	public PostDAO(SessionFactory sessionfactory) {
 		this.sessionFactory = sessionfactory;
 	}
-
-
 	public Session getSession() {
 	return this.sessionFactory.getCurrentSession();
 	}
+	
+	
 	
 	
 	public static void main(String... args) throws IOException, Exception, SQLException {
@@ -85,6 +85,7 @@ public class PostDAO {
 	}
 	
 	//if you need to test
+	
 //	private Session session;
 //	public void setSession(Session session) {
 //		this.session = session;
@@ -122,8 +123,9 @@ public class PostDAO {
 	}
 	public PostBean create(PostBean bean) {
 		//0103 OK
-		this.getSession().save(bean);
-		System.out.println("postDao的"+bean);
+		if(bean!=null) {this.getSession().save(bean);
+		return bean;
+		}
 		return bean;
 	}
 	
