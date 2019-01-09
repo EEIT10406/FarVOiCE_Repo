@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import model.bean.MemberBean;
 import model.bean.MusicBean;
 import model.bean.PlaylistBean;
 import model.service.PlayListService;
@@ -30,7 +32,7 @@ public class PlayListController {
 	//建歌單
 	@RequestMapping("/list/createPlayList")
 	public String createPlayList(PlaylistBean bean, Model model, @RequestParam("imageFile") MultipartFile imageFile,
-			String privacy) {
+			String privacy,HttpSession session) {
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("errors", errors);
 
@@ -51,14 +53,11 @@ public class PlayListController {
 				e.printStackTrace();
 			}
 		}
-        bean.setMember_username("Jack");
+		MemberBean memberBean=(MemberBean)session.getAttribute("user");
+        bean.setMember_username(memberBean.getMember_username());
 		bean.setPlaylist_image(imagePath);
 		bean.setPlaylist_registerTime(new java.util.Date());
 		bean.setPlaylist_musicCount(0);
-
-		// 取得member的username
-//		MemberBean memberbean=(MemberBean)request.getSession().getAttribute("MemberBean");
-//		bean.setMember_username(b);
 
 		PlaylistBean createPlayList = playListService.createPlayList(bean);
 		if (createPlayList != null) {
@@ -88,7 +87,6 @@ public class PlayListController {
 					jsonMap.put("playlist_musicCount", String.valueOf(bean.getPlaylist_musicCount()));
 					playLists.add(jsonMap);
 				}
-				System.out.println(playLists);
 				return JSONValue.toJSONString(playLists);
 			}
 		}

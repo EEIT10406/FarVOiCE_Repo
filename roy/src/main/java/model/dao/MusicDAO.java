@@ -31,14 +31,21 @@ public class MusicDAO {
 }
 	
 	
-	public static void main(String... args) throws IOException, Exception, SQLException {
-		
+//	public static void main(String... args) throws IOException, Exception, SQLException {
+//		
 //		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
 //		Session session = sessionFactory.openSession();
 //		Transaction tx = session.beginTransaction();
 //		MusicDAO musicDAO = new MusicDAO();
 //		musicDAO.setSession(session);
-		//findByPk
+		
+		//findByUser
+//		List<MusicBean> beans=musicDAO.findAllByUser("Jack");
+//		for(MusicBean bean1:beans) {
+//			System.out.println(bean1);
+//		}
+//		
+//		findByPk
 //		MusicBean bean0 = musicDAO.findByPrimaryKey(1);
 //		System.out.println(bean0);		
 		
@@ -81,8 +88,8 @@ public class MusicDAO {
 //		tx.commit();
 //		session.close();
 //		HibernateUtil.closeSessionFactory();
-	}
-	
+//	}
+//	
 //	private Session session;
 //	public void setSession(Session session) {
 //		this.session = session;
@@ -91,6 +98,12 @@ public class MusicDAO {
 //	public Session getSession() {
 //		return session;
 //	}
+	
+	//找所有music table有且沒被下架的音樂
+	public List<MusicBean> findAllByUser(String member_username) {
+		//0107 OK
+		return this.getSession().createQuery("from MusicBean where member_username='"+member_username+"'and music_unavailable = 0", MusicBean.class).list();
+	}
 	
 	public MusicBean findByPrimaryKey(Integer music_id) {
 		//0103 OK
@@ -104,22 +117,28 @@ public class MusicDAO {
 	}
 	public MusicBean create(MusicBean bean) {
 		//0103 OK
+		        bean.setMusic_unavailable(false);
+		        bean.setMusic_likeCount(0);
+		        bean.setMusic_playCount(0);
 				this.getSession().save(bean);
 				return bean;
 	}
 	
 	public void update(MusicBean bean) {
-	//0103 OK
-		getSession().update(bean);
+		//0108 OK
+		MusicBean originalBean = findByPrimaryKey(bean.getMusic_id());
+		originalBean.setMusic_ban(bean.getMusic_ban());
+		originalBean.setMusic_unavailable(bean.getMusic_unavailable());
+		originalBean.setMusic_likeCount(bean.getMusic_likeCount());
+		originalBean.setMusic_playCount(bean.getMusic_playCount());
+		getSession().update(originalBean);
 	}
 	
 	public boolean remove(Integer music_id) {
-	//0103 OK
-		MusicBean result = this.getSession().get(MusicBean.class, music_id);
-		if(result!=null) {
-			this.getSession().delete(result);
-			return true;
-		}
-		return false;
+		//0108 OK
+		MusicBean originalBean = findByPrimaryKey(music_id);
+		originalBean.setMusic_unavailable(true);
+		return true;
 	}
+	
 }

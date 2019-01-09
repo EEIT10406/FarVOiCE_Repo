@@ -106,6 +106,7 @@ table {
 
 .heart {
 	width: 17px;
+	margin-right:5px;
 }
 
 .btnAddList {
@@ -120,6 +121,10 @@ table {
 	padding: 5px;
 	font-size: 13px;
 	margin-left: 10px;
+}
+
+.deleteClick{
+cursor: pointer;
 }
 
 .heartCount {
@@ -147,10 +152,12 @@ padding:11px;
 text-align:center;
 word-wrap:break-word; 
 word-break:break-all;
+opacity:0.5
 }
 </style>
 <script>
 	$(document).ready(function() {
+		
 		$('#login').click(function() {
 			window.location.href = "login.jsp";
 		})
@@ -181,20 +188,137 @@ word-break:break-all;
 
 </script>
 <script>
-	$(document).ready(function() {
-		var heart = document.querySelectorAll("img.heart");
-		for (var i = 0; i < heart.length; i++) {
-			heart[i].addEventListener("click", click);
-		}
+$(document).ready(function() {
+	loadMusic('${user.member_username}');
+	loadMusicCount('${user.member_username}')
+	loadPlayList('${user.member_username}')
+	
+	//刪除歌單
+	$('#music').on('click','.deleteClick',
+		function() {
+// 			var row = $(this).parents('tr');
+// 			var music_id = row.children('td:nth-child(1)').text();
+            var row = $(this).parents('#musics');
+            var music_id =row.children('span[name="music_id"]').text();
+			$.get('/roy/list/deleteMusic', {
+				'music_id' : music_id
+			}, function(data) {
+				alert(data);
+	            loadMusic('${user.member_username}');
+	            loadMusicCount('${user.member_username}')
+			})
 	})
-
-	function click() {
+	//點愛心
+	$('#music').on('click','.heart',function(){
 		if (this.src.indexOf("love.png") != -1) {
 			this.src = "../img/emptyLove.png";
 		} else {
 			this.src = "../img/love.png"
 		}
-	}
+	})
+	
+	//按加入歌單時載入有哪些歌單 (待做完對音樂的按讚再寫)
+// 	$('body').on('click','.btnAddList',function() {
+			
+// 		$.getJSON('/roy/list/readPlayList',{'username' : '${user.member_username}'},function(data) {
+// 			var html="<option>請輸入歌單</option>";
+// 			$.each(data,function(index, list) {
+				
+// 			    html+='<option value='+list.playlist_name+'>'+list.playlist_name+'</option><span name="playlistId">'+list.playlist_id+'</span>';
+			         
+// 	              })
+// 	         $('#selectPlayList').html(html);
+// 			 $('span[name="playlistId"]').hide();
+// 		})
+			
+// 	})
+	
+	
+})
+
+
+//讀取該使用者的所有歌
+// function loadMusic(username) {
+// 	$.getJSON('/roy/personalPage/readMusic',{'username' : username},function(data) {
+// 		var html;
+// 		 $('#musics>tbody').html("");
+// 		$.each(data,function(index, list) {
+// 		  html+='<tr style="border-bottom:1px solid #DDDDDD;">'+
+// 		        '<td name="music_id">'+list.music_id+'</td>'+
+// 				'<td style="text-align:center"><img src="'+list.music_Image+'"style="width: 90px; height: 90px;" /></td>'+
+// 				'<td style="font-size: 16px;">'+list.music_name+'</td>'+		
+// 				'<td><img src="../img/emptyLove.png" class="heart">'+
+// 				     '<span id="heartCount">'+list.music_likeCount+'</span>'+
+// 				     '<span style="cursor: pointer;margin:15px;"><img src="../img/share.png" width="15px" />分享</span>'+
+// 					 '<span class="deleteClick"><img src="../img/delete.png" width="15px" />刪除</span>'+
+// 				'</td>'+
+// 				'</tr>';
+//               })
+//               $('#musics>tbody').html(html);
+// 		$('td[name="music_id"]').hide();
+// 	})
+// }
+
+
+
+
+
+
+//讀取該使用者的所有歌
+function loadMusic(username) {
+
+	$.getJSON('/roy/personalPage/readMusic',{'username' : username},function(data) {
+		
+		var content;
+		$.each(data,function(index, list) {
+			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;margin-bottom:10px;">'+
+			          '<span name="music_id">'+list.music_id+'</span>'+
+			          '<span><a href=""><img src="'+list.music_Image+'" style="width: 160px; height: 160px;" /></a></span>'+
+			       '<div style="font-size: 16px;">'+list.music_name+'</div>'+
+                   '<div><img src="../img/emptyLove.png" class="heart"><span id="heartCount">'+list.music_likeCount+'</span>'+ 
+                      '<span id="share" class="shareAndAdd"><a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a></span>'+
+                      '<span id="add">'+
+                      '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
+					  '</span>'+
+					  '<span class="deleteClick" style="cursor: pointer;"> <img src="../img/delete.png" width="15px" />刪除</span>'+
+                   '</div>'+
+                   '</div>';
+           })
+           $('#music').html(content.substring(9));
+		$('span[name="music_id"]').hide();
+	})
+}
+
+
+//讀取該使用者的所有歌單
+function loadPlayList(username) {
+	$.getJSON('/roy/list/readPlayList',{'username' : username},function(data) {
+		var content;
+		 $('#list').html("");
+		$.each(data,function(index, list) {
+			content+='<div class="col-md-5" style="float: left; width: 300px;margin-bottom:13px;">'+
+		             '<span name="playlist_id">'+list.playlist_id+'</span>'+
+			         '<a href="">'+
+		                  '<div style="width: 160px;height: 160px;background: url('+list.playlist_image+') no-repeat; background-size:160px 160px;">'+
+			              '<div class="listSongCount">'+list.playlist_musicCount+'</div></div>'+
+		             '</a>'+
+                     '<div style="font-size: 16px;">'+list.playlist_name+'</div>'+
+	                 '<div><span style="cursor: pointer;"> <img src="../img/delete.png" width="17px" />刪除</span></div>'+
+                 '</div>';
+              })
+              $('#list').html(content.substring(9));
+		$('span[name="playlist_id"]').hide();
+	})
+}
+
+
+//讀取使用者上傳的音樂數
+function loadMusicCount(username) {
+	$.getJSON('/roy/personalPage/uploadMusicCount',{'username' : username},function(data) {
+		$('#musicCount').html(data);
+	})
+}
+			
 </script>
 </head>
 <body>
@@ -227,8 +351,7 @@ word-break:break-all;
 					</c:choose>
 					
 					</div>
-<!-- 					<div id="follow" class="unfollow">追蹤</div> -->
-<!-- 					發布新動態按鈕 -->
+					<!-- 					發布新動態按鈕 -->
 					<form class="post">
 						<input type="button" class="btn btn-primary"
 							data-toggle="modal" data-target="#sharebox" value="發佈新動態">
@@ -243,7 +366,7 @@ word-break:break-all;
 							<td>追蹤中</td>
 						</tr>
 						<tr>
-							<td class="number">0</td>
+							<td id="musicCount" class="number">0</td>
 							<td class="number">0</td>
 							<td class="number">0</td>
 						</tr>
@@ -350,103 +473,60 @@ word-break:break-all;
 <!-- 						</div> -->
 
 
+
 						<div class="tab-pane fade in" style="overflow: auto;" id="music">
-
 						
-								<div class="col-md-5" style="float:left;width:300px;">
-									<a href=""><img src="../img/love.png"
-										style="width: 160px; height: 160px;" /></a>
+							
+<!-- 							<div id="musics" class="col-md-5" style="float: left; width: 300px;"> -->
+<!-- 								<span name="music_id"></span>  -->
+<!-- 								<span><a href=""><img src="../img/love.png" style="width: 160px; height: 160px;" /></a></span> -->
 
-
-								<div style="font-size: 16px;">讓我為你唱情歌</div>
-								<div>
-									<img src="../img/emptyLove.png" class="heart"> 
-									<span
-										class="heartCount"> 0</span> 
-									<span id="share"
-										class="shareAndAdd"> 
-										<a href="" style="color: black;"><img
-											src="../img/share.png" width="15px" />分享</a>
-									</span>
-									 <span id="add">
-
-										<button type="button" class="btnAddList" data-toggle="modal"
-											data-target="#addList" style="outline: none;">
-											<img src="../img/add.png" width="15px">加入歌單
-										</button>
-
-									</span>
-								</div>
-							</div>
+<!-- 								<div style="font-size: 16px;">讓我為你唱情歌</div> -->
+<!-- 								<div> -->
+<!-- 									<img src="../img/emptyLove.png" class="heart">  -->
+<!-- 									<span id="heartCount"> 0</span>  -->
+<!-- 									<span id="share" class="shareAndAdd"> <a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a></span>  -->
+<!-- 									<span class="deleteClick" style="cursor: pointer;"> <img src="../img/delete.png" width="15px" />刪除</span> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							
 							
-							<div class="col-md-5" style="float: left; width: 300px;">
-								<a href=""><img src="../img/love.png"
-									style="width: 160px; height: 160px;" /></a>
-
-								<div style="font-size: 16px;">讓我為你唱情歌</div>
-								<div>
-									<img src="../img/emptyLove.png" class="heart"> 
-									<span
-										class="heartCount"> 0</span> 
-									<span id="share"
-										class="shareAndAdd"> 
-										<a href="" style="color: black;"><img
-											src="../img/share.png" width="15px" />分享</a>
-									</span>
-									 <span id="add">
-
-										<button type="button" class="btnAddList" data-toggle="modal"
-											data-target="#addList" style="outline: none;">
-											<img src="../img/add.png" width="15px">加入歌單
-										</button>
-
-									</span>
-								</div>
-							</div>
-
-
 						</div>
+						
+						
+						
+						
 						<div class="tab-pane fade in" style="overflow: auto;" id="list">
 						
+						
 						<div class="col-md-5" style="float: left; width: 300px;">
-												
+						<span name="playlist_id">2</span>
 								<a href="">
-								<div class="list">					
-									<div class="listSongCount">2</div>
-								</div>
-								</a>	
-					
+									<div style="width: 160px;height: 160px;background: url(/roy/img/add.png) no-repeat; background-size:160px 160px;">
+								
+										<div class="listSongCount">2</div>
+									</div>
+								</a>
+
 								<div style="font-size: 16px;">蕭氏情歌精選</div>
 								<div>
-									<img src="../img/emptyLove.png" class="heart"> 
-									<span
-										class="heartCount"> 0</span> 
-									<span id="share"
-										class="shareAndAdd"> 
-										<a href="" style="color: black;"><img
-											src="../img/share.png" width="15px" />分享</a>
-									</span>
-									 <span id="add">
-
-										<button type="button" class="btnAddList" data-toggle="modal"
-											data-target="#addList" style="outline: none;">
-											<img src="../img/add.png" width="15px"/>加入歌單
-										</button>
-
-									</span>
-									<span>
-									<a href="../list/editList.jsp" style="color:black;"><img src="../img/edit.png" width="17px"/>編輯</a>
+									<span style="cursor: pointer;"> <img
+										src="../img/delete.png" width="17px" />刪除
 									</span>
 								</div>
 							</div>
-
-						
-						
+							
+	
+	
+	
 						</div>
+						
+						
 						<div class="tab-pane fade in" style="overflow: auto;" id="like">
 
 
+
+
 							<div class="col-md-5" style="float: left; width: 300px;">
 								<a href=""><img src="../img/love.png"
 									style="width: 160px; height: 160px;" /></a>
@@ -471,6 +551,9 @@ word-break:break-all;
 									</span>
 								</div>
 							</div>
+
+
+
 
 						</div>
 
@@ -597,8 +680,7 @@ word-break:break-all;
 				
 				<form action="<c:url value="/personalPage/Post.controller"/>" method="post">
 					<div class="modal-body" >
-						<textarea class="form-control" name="shareContent" style="width:100px;height:30px" placeholder="標題"  ></textarea>
-						<textarea class="form-control" name="post_content" style="width:650px;height:500px" placeholder="是不在想些色色的呢?"  ></textarea>
+						<textarea class="form-control" name="post_content" style="width:650px;height:500px;resize:none" placeholder="是不在想些色色的呢?"  ></textarea>
 						<input type="checkbox" name="post_privacy" value="true">不想被女友看到嗎?<br>					
 					</div>
 					<div class="modal-footer">
@@ -615,6 +697,15 @@ word-break:break-all;
 	
 	<!-- 	showArticleFromMember start-->
 	<script>
+	function remove(post_idS)
+	{
+		if(confirm("確實要刪除嗎?"))
+			{	alert("已經刪除！");
+				window.location.href='/roy/personalPage/removePost.controller?post_idS=' + post_idS ;
+				}
+		else
+			{	alert("已經取消了刪除操作");}
+	}
         $(function () {            
             $.ajax({
                 url: "/roy/personalPage/showArticleFromMember.controller",   //存取Json的網址             
@@ -626,21 +717,53 @@ word-break:break-all;
 				success : function(list)
 				 {   
 					list.forEach(function(obj, index) {
+						
+						function timeFn(d1) {//di作为一个变量传进来
+						    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+						    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
+						    var dateEnd = new Date();//获取当前时间
+						    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+						    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+						    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
+						    var hours=Math.floor(leave1 /(3600*1000))//计算出小时数
+						    //计算相差分钟数
+						    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
+						    var minutes=Math.floor(leave2 /(60*1000))//计算相差分钟数
+						    //计算相差秒数
+						    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+						    var seconds=Math.round(leave3/1000)
+						    console.log(" 相差 "+dayDiff+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
+						    if(dayDiff>1){
+						    	timediff += dayDiff+"天前";
+						    }else if(hours>1){
+						    	timediff += hours+"小時前";
+						    }else if(minutes>1){
+						    	timediff += minutes+"分鐘前";
+						    }else{
+						    	timediff+="剛剛";
+						    }
+// 						    console.log(dateDiff+"时间差的毫秒数",dayDiff+"计算出相差天数",leave1+"计算天数后剩余的毫秒数"
+// 						        ,hours+"计算出小时数",minutes+"计算相差分钟数",seconds+"计算相差秒数");
+						}
+						var timediff ="";
+						timeFn(obj.post_time);
+
 						var postorshare = obj.post_postorshare;
 						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
-						var content = "<br><h5 style='margin-bottom:0px'>發表了一篇文章</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
-						var content2 = "<br><h5 style='margin-bottom:0px'>分享了一條音樂</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
-						var time = "<h6>" + obj.post_time +"</h6>";
+						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+// 						var time = "<h6>" + obj.post_time +"</h6>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
-				        var div =  img+content + time + button +"<br></br>";
+				        var div =  "<div style='margin-bottom:45px'>"+img+content + button +"<br></br></div>";
 				        
 						//分享的內容
-				        var div2 = img+content2 + time + "<br></br>";
+				        var div2 = "<div style='margin-bottom:45px'>"+img+content2 + "<br></br></div>";
+				       
 				        if(postorshare==true){
 				        	$('#test').append(div);
-				        	}else if(postorshare==false){
-				        		$('#test').append(div2);
-				        	}				        
+				        }else if(postorshare==false){
+				        	$('#test').append(div2);
+				        }				        
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -669,12 +792,12 @@ word-break:break-all;
 										<div class="modal-dialog" style="width: 300px;">
 											<div class="modal-content">
 												<h5 style="margin: 10px;">加入歌單</h5>
-												<form>
+												<form action="/" method="post">
 													<div class="modal-body">
 
 														<div class="form-group">
-															<select class="form-control">
-																<option>請選擇歌單</option>
+															<select id="selectPlayList" class="form-control">
+																<option>請選擇歌單</option><span name="playlistId"></span>
 															</select>
 														</div>
 														<div style="float:right;">
@@ -684,7 +807,7 @@ word-break:break-all;
 													<div class="modal-footer">
 														<button type="button" class="btn btn-primary"
 															data-dismiss="modal">取消</button>
-														<button type="button" class="btn btn-primary">確定</button>
+														<input type="submit" class="btn btn-primary" value="確定" />
 													</div>
 												</form>
 												
@@ -693,6 +816,7 @@ word-break:break-all;
 									</div>							
 							
 							<!-- addPlayList end-->
+							
 	<jsp:include page="../homePage/footer.jsp" />
 <!-- 	<div id="player"> -->
 <%-- 		<jsp:include page="../homePage/player.jsp" /> --%>

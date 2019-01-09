@@ -16,7 +16,7 @@ public class SomebodyPersonalPageController {
 	@RequestMapping(path="/personalPage/somebodyPersonalPage.controller")
 	public String method(Model model,String somebody,String nickname,HttpSession session) {
 		//進別人的首頁
-		System.out.println(somebody+","+nickname);
+//		System.out.println(somebody+","+nickname);
 		session.setAttribute("somebody", somebody);
 		session.setAttribute("nickname", nickname);
 

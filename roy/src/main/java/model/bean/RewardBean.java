@@ -1,6 +1,8 @@
 package model.bean;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,6 +22,7 @@ public class RewardBean {
 	reward_estimatedDelivery datetime--(估計交貨日期)
 */	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer reward_id;
 	private Integer funding_id;
 	private Integer reward_amount;
