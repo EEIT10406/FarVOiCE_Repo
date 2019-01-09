@@ -24,7 +24,7 @@ public class FundingController {
 		System.out.println(bean);
 		fundingService.insert(bean);
 
-		return "";
+		return "startProject.jsp";
 	}
 
 }
