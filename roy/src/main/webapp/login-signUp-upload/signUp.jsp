@@ -54,8 +54,6 @@
 				if(pass1!=pass2){
 					alert("密碼不一致喔")
 				}
-			}else{
-				alert("沒東西");
 			}
  
 		})

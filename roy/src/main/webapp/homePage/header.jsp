@@ -23,7 +23,7 @@
 		})
 		$('#logo').click(function() {
 			window.location.href = "/roy/homePage/index.jsp";
-			
+		})
 		$('#project').click(function(){
 			window.location.href="/roy/funding/startProject.jsp"
 		})

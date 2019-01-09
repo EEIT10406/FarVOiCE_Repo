@@ -98,7 +98,7 @@ input[type=date]::-webkit-inner-spin-button {
 					<div class="inputWordCount">
 						<input style="font-weight: 400" name="funding_title" type="text"
 							placeholder="40 個字以內的專案標題" maxlength="40" class="form-control"
-							required oninvalid="setCustomValidity('请输入專案標題');"
+							required oninvalid="setCustomValidity('請輸入專案標題');"
 							oninput="setCustomValidity('');">
 					</div>
 					<label for="" class="input-label">一個好的標題應該要好記、好搜尋、吸引人想點進去看，並讓瀏覽者能在最短的時間內瞭解專案的核心理念。</label>
@@ -112,7 +112,7 @@ input[type=date]::-webkit-inner-spin-button {
 						<textarea style="font-weight: 400" class="form-control"
 							name="funding_description" placeholder="500個字以內的專案描述"
 							maxlength="500" rows="10" required
-							oninvalid="setCustomValidity('请输入專案描述');"
+							oninvalid="setCustomValidity('請輸入專案描述');"
 							oninput="setCustomValidity('');"></textarea>
 					</div>
 					<label for="" class="input-label">使用吸引人的文字說明你的目標以及理念，強調你的獨一無二，讓贊助人對你或你的專案好奇，願意更進一步贊助專案。</label>
@@ -125,7 +125,7 @@ input[type=date]::-webkit-inner-spin-button {
 					<!------------------------------->
 					<a href="javascript:;" class="a-upload"> <input type="file"
 						accept="image/jpeg, image/png" name="funding_image" required
-						oninvalid="setCustomValidity('请選擇上傳圖片');"
+						oninvalid="setCustomValidity('請選擇上傳圖片');"
 						oninput="setCustomValidity('');"><i class="fa fa-camera"></i>上傳封面圖片
 					</a>
 					<p class="showFileName"></p>
