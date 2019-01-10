@@ -1,6 +1,7 @@
 package model.bean;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,18 +12,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Story")
 public class StoryBean {
-	@ManyToOne 
-	@JoinColumn(name="music_id",
-				referencedColumnName="music_id",
-				insertable=false,updatable=false)
-	private MusicBean musicBean;
-	 
-	public MusicBean getMusicBean() {
-		return musicBean;
-	}
-	public void setMusicBean(MusicBean musicBean) {
-		this.musicBean = musicBean;
-	}
+//	@ManyToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name="music_id",
+//				referencedColumnName="music_id",
+//				insertable=false,updatable=false)
+//	private MusicBean musicBean;
+//	 
+//	public MusicBean getMusicBean() {
+//		return musicBean;
+//	}
+//	public void setMusicBean(MusicBean musicBean) {
+//		this.musicBean = musicBean;
+//	}
 	
 	@Override
 	public String toString() {

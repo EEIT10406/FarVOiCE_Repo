@@ -459,7 +459,7 @@ function loadMemberLikeMusic(username) {
 																		<a href="/angry_youth/songs/558439/"><img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg"></a>
 																	</div><!-- /work-block img-xxs -->
 																	<div style="margin-left:250px">
-																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a></h4>						
+																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a><a style="margin-left:100px;color:gray;">時間</a></h4>						
 																	</div>
 														  		</div>
 															</div>	
@@ -801,17 +801,14 @@ function loadMemberLikeMusic(username) {
 					list.forEach(function(obj, index) {
 
 						var music_name = obj.music_name;
-						var music_name = obj.music_name;
 						var content="<div style='border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px'>";
 						var content2="<div style='float:left'>";
 						var content3="<a href='/angry_youth/songs/558439/'><img class='img-full' src='https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg'></a></div>";
 						var content4="<div style='margin-left:250px'>";
-						var content5="<h4><a href='/angry_youth/songs/558439/'>"+music_name+"</a></h4>";
+						var content5="<h4><a href='/angry_youth/songs/558439/'>"+music_name+"</a><a style='margin-left:100px;color:gray;'>"+"</a></h4>";
 						var content6="</div></div>";
 						var div3 = content+content2+content3+content4+content5+content6;
 						$('#history').append(div3);
-											
-						
 				  	})//foreach的
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -820,16 +817,37 @@ function loadMemberLikeMusic(username) {
                 }
             });
 				  
+            
+            
+            
+            
+            //顯示歷史紀錄時間
+            var story_time ;
+            $.ajax({
+                url: "/roy/personalPage/showAllHistoryTimeFromHstory.controller",   //存取Json的網址             
+                type: "POST",
+                cache:false,
+                dataType:'json',
+                data:{user:$('#userName').text()},
+                //contentType: "application/json",              
+				success : function(list)
+				 {   
+					list.forEach(function(obj, index) {
+
+						story_time = obj.story_time;
+// 						alert(story_time);
+						
+				  	})//foreach的
+				  },
+				  
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
 				  
 				  
             });
-
-       
-        
-        
-        
-        
-        
     </script>
 	<!-- 	showArticleFromMember end-->
 	

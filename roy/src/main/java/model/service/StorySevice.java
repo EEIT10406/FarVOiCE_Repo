@@ -34,7 +34,6 @@ public class StorySevice {
 //	}
 //	public StorySevice(MusicDAO musicDAO) {
 //		super();
-//		
 //		this.musicDAO = musicDAO;
 //	}
 	public static void main(String[] args) {
@@ -65,11 +64,12 @@ public class StorySevice {
 //		
 		
 		//test五筆版
-//		List<MusicBean> aaa = storySevice.findStoryByUsernameMax5("Peter");
-//		for(MusicBean bean2:aaa) {
+//		List<Object[]> aaa = storySevice.StoryController("Peter");
+//		System.out.println("aaa"+aaa);
+//		for(Object[] bean2:aaa) {
 //			System.out.println("service"+bean2);
 //		}
-		
+//		
 //		HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
 //		HibernateUtil.closeSessionFactory();
 	}
@@ -94,19 +94,19 @@ public class StorySevice {
 	}
 	
 	//給使用者name，回傳使用者的記錄的所有musicBean (全部紀錄正確版)
-//	public List<MusicBean> findAllHistorybyusername(String user) {
-//		List<StoryBean> result = storyDAO.findStoryByUsername(user);
-//		List<MusicBean> MusicBeanresult = new ArrayList<>(); 
-//		MusicBean mm = null;
-//		if(user!=null) {	
-//			for(StoryBean bean2:result) {
-//				 mm =musicDAO.findByPrimaryKey(bean2.getMusic_id());			
-//				 MusicBeanresult.add(mm);
-//			}		
-//		}
-//		return MusicBeanresult;
-//	}
-//	
+	public List<MusicBean> findAllHistorybyusername(String user) {
+		List<StoryBean> result = storyDAO.findStoryByUsername(user);
+		List<MusicBean> MusicBeanresult = new ArrayList<>(); 
+		MusicBean mm = null;
+		if(user!=null) {	
+			for(StoryBean bean2:result) {
+				 mm =musicDAO.findByPrimaryKey(bean2.getMusic_id());			
+				 MusicBeanresult.add(mm);
+			}		
+		}
+		return MusicBeanresult;
+	}
+	
 	//給使用者name，回傳使用者的記錄的所有musicBean (五筆版)
 //		public List<MusicBean> findStoryByUsernameMax5(String user) {
 //			List<StoryBean> result = storyDAO.findStoryByUsernameMax5(user);
@@ -121,15 +121,12 @@ public class StorySevice {
 //			return MusicBeanresult;
 //		}
 	
-
-	
-	public List<Object[]> tee(String user) {
+	//回傳history最終版
+	public List<Object[]> StoryController(String user) {
 		List<Object[]> result = storyDAO.test(user);
-		
 		if(user!=null) {	
-			for(Object[] bean2:result) {
-				 		
-				 System.out.println(Arrays.toString(bean2));
+			for(Object[] bean2:result) {	
+				 System.out.println("storyService的"+Arrays.toString(bean2));
 			}		
 		}
 		return result;

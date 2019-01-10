@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,20 +15,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Music")
 public class MusicBean {
-	@OneToMany(mappedBy="musicBean")
-	private List<StoryBean> StoryBean;
-	
-	public List<StoryBean> getStoryBean() {
-		return StoryBean;
-	}
-	public void setStoryBean(List<StoryBean> storyBean) {
-		StoryBean = storyBean;
-	}
-	
-	
-	
-	
-	
+//	@OneToMany(mappedBy="musicBean",fetch=FetchType.EAGER)
+//	private List<StoryBean> StoryBean;
+//	
+//	public List<StoryBean> getStoryBean() {
+//		return StoryBean;
+//	}
+//	public void setStoryBean(List<StoryBean> storyBean) {
+//		StoryBean = storyBean;
+//	}
 
 	@Override
 	public String toString() {
