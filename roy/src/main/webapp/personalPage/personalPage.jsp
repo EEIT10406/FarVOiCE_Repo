@@ -54,9 +54,6 @@
 .post{
 	float: left;
 
-/* 	margin-top:30px; */
-/* 	margin-bottom:150px; */
-
 }
 * {
 	font-family: 微軟正黑體;
@@ -158,7 +155,6 @@ opacity:0.4
 </style>
 <script>
 	$(document).ready(function() {
-
 		var follows = document.querySelectorAll("div.follow");
 		var unfollows = document.querySelectorAll("div.unfollow");
 		
@@ -188,7 +184,8 @@ $(document).ready(function() {
 	loadMusicCount('${user.member_username}')
 	loadPlayList('${user.member_username}')
 	loadMemberLikeMusic('${user.member_username}')
-	
+	loadFanCount('${user.member_username}')
+	loadStarCount('${user.member_username}')
 	//按音樂重新載入喜歡的音樂
 	$('#memberMusic').on('click',function(){
 		loadMusic('${user.member_username}')
@@ -278,15 +275,11 @@ function loadMusic(username) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;margin-bottom:10px;">'+
 			          '<span name="music_id">'+list.music_id+'</span>'+
 			          '<span><a href=""><img src="'+list.music_Image+'" style="width: 160px; height: 160px;" /></a></span>'+
-<<<<<<< HEAD
-			      	  '<div style="font-size: 16px;">'+list.music_name+'</div>'+
-                   	  '<div><img src="../img/emptyLove.png" class="heart"><span id="heartCount">'+list.music_likeCount+'</span>'+ 
-=======
+
 			       '<div style="font-size: 16px;">'+list.music_name+'</div>'+
                    '<div>'+
 			       '<img src="'+list.memberLikeMusic+'" class="heart">'+
                    '<span class="heartCount">'+list.music_likeCount+'</span>'+ 
->>>>>>> branch 'branch1' of https://github.com/EEIT10406/FarVOiCE_Repo.git
                       '<span id="share" class="shareAndAdd"><a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a></span>'+
                       '<span id="add">'+
                       '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
@@ -351,13 +344,32 @@ function loadMemberLikeMusic(username) {
 }
 
 
-//讀取使用者上傳的音樂數
-function loadMusicCount(username) {
-	$.getJSON('/roy/personalPage/uploadMusicCount',{'username' : username},function(data) {
-		$('#musicCount').html(data);
-	})
-}
+
+	//讀取使用者上傳的音樂數
+	function loadMusicCount(username) {
+		$.getJSON('/roy/personalPage/uploadMusicCount',{'username' : username},function(data) {
+			$('#musicCount').html(data);
+		})
+	}
+	
+	
+
+	//抓粉絲數
+	function loadFanCount(username) {
+		$.get('/roy/personalPage/howMuchFollowMe.controller',{'username' : username},function(data) {
 		
+			$('#fansCount').html(data);
+		})
+	}
+	//抓偶像數
+	function loadStarCount(username) {
+		$.get('/roy/personalPage/iFollowHowMuch.controller',{'username' : username},function(data) {
+		
+			$('#starsCount').html(data);
+		})
+	}		
+
+
 </script>
 </head>
 <body>
@@ -369,13 +381,13 @@ function loadMusicCount(username) {
 				<div style="border: 0.5px solid #DDDDDD; align: center; height: 231px; margin-top: 30px; margin-bottom: 30px;">
 					
 					<c:choose>
-					    <c:when test="${empty user}">
+					    <c:when test="${empty user.member_profileImage}">
 					      	<img src="imgs/noProfile.gif" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />
 					    </c:when>
 					    <c:otherwise>
-							<img src="imgs/profile/${user.member_username}.jpg" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />					    </c:otherwise>
+							<img src="${user.member_profileImage}" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />					    
+						</c:otherwise>
 					</c:choose>
-<!-- 					<img src="imgs/123.jpg" style="float: left; height: 230px; width: 230px; margin-right: 15px;" /> -->
 					
 					
 					<div style="padding: 15px; font-size: 30px;">
@@ -405,8 +417,8 @@ function loadMusicCount(username) {
 						</tr>
 						<tr>
 							<td id="musicCount" class="number">0</td>
-							<td class="number">0</td>
-							<td class="number">0</td>
+							<td id="fansCount" class="number">0</td>
+							<td id="starsCount" class="number">0</td>
 						</tr>
 					</table>
 				</div><!-- === END of CONTENT === -->
@@ -453,86 +465,15 @@ function loadMusicCount(username) {
 															</div>	
 												<!-- /media-body -->
 											</div><!-- /media -->
-										</div>	
+										</div>
+
 							</div><!-- ===END of HISTORY === -->
 							
 							
 							<div id="test"><br>
-<!-- 								<img src="imgs/123.jpg" class="img-circle" style="width:45px;height:45px;float:left;margin-right:15px" > -->
-<!-- 								<h5 style="margin-bottom:0px">分享了一條音樂</h5> -->
-<!-- 								<small>9 小時前</small> -->
-<!-- 								<div class="clearfix">心得內容</div> -->
-<!-- 								<div id="displayShareMusic"> -->
-<!-- 										<img src="../img/300x300.jpg"  style="width:50px;height:50px;"/><a href=""></a> -->
-<!-- 										<span style="font-size: 15px;">讓我為你唱情歌</span><br><br> -->
-<!-- 								</div> -->
-					</div>
+							</div>
 					
-					    <!-- Blog Post -->
-								<div class="blog-post padding-bottom-20">
-									<!-- Blog Item Header -->
-									<div class="blog-item-header">
-										<!-- Title -->
-										<h2>
-											<a href="#">最新文章</a>
-										</h2>
-										<div class="clearfix"></div>
-										<!-- End Title -->
-									</div>
-									<!-- End Blog Item Header -->
-									<!-- Blog Item Details -->
-									<div class="blog-post-details">
-										<!-- Author Name -->
-										<div class="blog-post-details-item blog-post-details-item-left">
-											<i class="fa fa-user color-gray-light"></i> <a href="#">作者:黃金鼠</a>
-										</div>
-										<!-- End Author Name -->
-										<!-- Date -->
-										<div class="blog-post-details-item blog-post-details-item-left">
-											<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-										</div>
-										<!-- End Date -->
-										<!-- Tags -->
-										<div
-											class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-											<i class="fa fa-tag color-gray-light"></i> <a href="#">HTML5</a>,
-											<a href="#">CSS</a>, <a href="#">Grunt</a>
-										</div>
-										<!-- End Tags -->
-										<!-- # of Comments -->
-										<div
-											class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-											<a href=""> <i class="fa fa-comments color-gray-light"></i>
-												9 Comments
-											</a>
-										</div>
-										<!-- End # of Comments -->
-									</div>
-									<!-- End Blog Item Details -->
-									<!-- Blog Item Body -->
-									<div class="blog">
-										<div class="clearfix"></div>
-										<div class="blog-post-body row margin-top-15">
-											<div class="col-md-5">
-												<img class="margin-bottom-20" src="imgs/mouse.PNG"
-													alt="thumb1">
-											</div>
-											<div class="col-md-7">
-												<p>最新文章</p>
-												<p>我是一隻黃金鼠</p>
-												<!-- Read More -->
-												<a  class="btn btn-primary" target="_blank" href="singleArticle.jsp"
-													>
-													查看全文
-												</a>
-												<!-- End Read More -->
-											</div>
-										</div>
-									</div>
-									<!-- End Blog Item Body -->
-									</div>
-								
-								<!-- End Blog Item -->
+					
 						</div>
 						<!-- End dynamic -->
 <!-- 						<div class="tab-pane fade in active" id="dynamic"> -->
@@ -793,11 +734,14 @@ function loadMusicCount(username) {
 						    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
 						    var dateEnd = new Date();//获取当前时间
 						    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
-						    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+						    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
+						    //计算出相差天数
 						    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
-						    var hours=Math.floor(leave1 /(3600*1000))//计算出小时数
+						    var hours=Math.floor( leave1 /(3600*1000))
+						    //计算出小时数
 						    //计算相差分钟数
 						    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
+
 						    var minutes=Math.floor(leave2 /(60*1000))
 						    //计算相差分钟数
 						    //计算相差秒数
@@ -813,14 +757,14 @@ function loadMusicCount(username) {
 						    }else{
 						    	timediff+="剛剛";
 						    }
-// 						    console.log(dateDiff+"时间差的毫秒数",dayDiff+"计算出相差天数",leave1+"计算天数后剩余的毫秒数"
-// 						        ,hours+"计算出小时数",minutes+"计算相差分钟数",seconds+"计算相差秒数");
 						}
 						var timediff ="";
 						timeFn(obj.post_time);
+						var imgPath=$('#profile').attr('src');
+
 						var postorshare = obj.post_postorshare;
+						var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 						var privacy = obj.post_privacy;
-						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
@@ -842,11 +786,6 @@ function loadMusicCount(username) {
                     alert(thrownError);
                 }
             });
-            
-            
-            
-            
-            
             
             
             //顯示歷史紀錄
@@ -901,33 +840,34 @@ function loadMusicCount(username) {
 	
 	<!-- addPlayList begin-->
 								
-							<div class="modal fade" id="addList" aria-hidden="true">
-										<div class="modal-dialog" style="width: 300px;">
-											<div class="modal-content">
-												<h5 style="margin: 10px;">加入歌單</h5>
-	
-													<div class="modal-body">
+	<div class="modal fade" id="addList" aria-hidden="true">
+				<div class="modal-dialog" style="width: 300px;">
+					<div class="modal-content">
+						<h5 style="margin: 10px;">加入歌單</h5>
+						<form action="/" method="post">
+							<div class="modal-body">
+								<div class="form-group">
+									<select id="selectPlayList" class="form-control">
+										<option>請選擇歌單</option><span name="playlistId"></span>
+									</select>
+								</div>
+								<div style="float:right;">
+								<a href="../list/createList.jsp" >建立歌單</a>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">取消</button>
+								<input type="submit" class="btn btn-primary" value="確定" />
+							</div>
+						</form>
+						
+					</div>
+				</div>
+			</div>							
 
-														<div class="form-group">
-															<select name="selectPlayList" id="selectPlayList" class="form-control">
-																<option value="playListId">請選擇歌單</option>
-															</select>
-														</div>
-														<div style="float:right;">
-														<a href="../list/createList.jsp" >新增歌單</a>
-														</div>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-primary"
-															data-dismiss="modal">取消</button>
-														<buttin id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
-													</div>
-												
-											</div>
-										</div>
-									</div>							
 							
-							<!-- addPlayList end-->
+		<!-- addPlayList end-->
 							
 	<jsp:include page="../homePage/footer.jsp" />
 <!-- 	<div id="player"> -->

@@ -47,7 +47,6 @@ public class PostController {
 		//用gson包成json送回前端
 		Gson gson = new Gson();
 		String jsonList = gson.toJson(posts);
-//		System.out.println("json的"+jsonList);
 		return jsonList;
 	}
 	@RequestMapping(path="/personalPage/singleArticle.controller")

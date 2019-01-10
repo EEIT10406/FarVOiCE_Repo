@@ -2,19 +2,17 @@ package model.dao;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.MusicBean;
-import model.bean.PostBean;
 import model.bean.StoryBean;
 import model.hibernate.HibernateUtil;
 @Repository
@@ -28,16 +26,16 @@ public class StoryDAO {
 	public StoryDAO(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	public Session getSession() {
-		return sessionFactory.getCurrentSession();
-	}
+//	public Session getSession() {
+//		return sessionFactory.getCurrentSession();
+//	}
 
-//	public static void main(String... args) throws IOException, Exception, SQLException {
-//		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
-//		Session session = sessionFactory.openSession();
-//		Transaction tx = session.beginTransaction();
-//		StoryDAO storyDAO = new StoryDAO(sessionFactory);
-//		storyDAO.setSession(session);
+	public static void main(String... args) throws IOException, Exception, SQLException {
+		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		StoryDAO storyDAO = new StoryDAO(sessionFactory);
+		storyDAO.setSession(session);
 		
 		//findStoryByUsernameTest
 		
@@ -76,14 +74,20 @@ public class StoryDAO {
 //		boolean  remove = storyDAO.remove(4);
 //		System.out.println(remove);
 		
+		storyDAO.test("Peter");
 		
-		
-//		tx.commit();
-//		session.close();
-//		HibernateUtil.closeSessionFactory();
-//	}
+		tx.commit();
+		session.close();
+		HibernateUtil.closeSessionFactory();
+	}
 	
 	private Session session;
+	public Session getSession() {
+		return session;
+	}
+
+
+
 	public void setSession(Session session) {
 		this.session = session;
 	}
@@ -110,33 +114,24 @@ public class StoryDAO {
 		String hql = "from StoryBean WHERE member_username=:member_username Order By story_time Desc";
 		Query<StoryBean> query = this.getSession().createQuery(hql);
 		query.setParameter("member_username", member_username);
-		
-//		List<StoryBean> dkofk  = this.findAll();
-//		int a = dkofk.size();
-//		System.out.println("dkofk====>"+a);
-//		query.setFirstResult(0);
 		query.setMaxResults(5);
 		List<StoryBean> storyList = query.list();
 		return storyList;
 	}
-	
-	
-	public List<Object[]> te(String member_username) {
+
+	public List<Object[]> test(String member_username){
 		//0103 OK
-		String hql = "select s.story_time,s.member_username,s.music_id,m.music_name from StoryBean s "+"inner join s.musicBean m WHERE s.member_username=:member_username Order By story_time Desc";
-		Query<Object[]> query = this.getSession().createQuery(hql);
-//		Query<StoryBean> query = this.getSession().createQuery(hql);
+		
+		Query<Object[]> query = session.createQuery("select  s.story_time,s.member_username,s.music_id, m.music_name from StoryBean s " + "INNER JOIN s.musicBean m WHERE s.member_username=:member_username Order By story_time Desc");
 		query.setParameter("member_username", member_username);
 		query.setMaxResults(5);
 		List<Object[]> list = query.list();
-		for(Object[] abc :list) {
-			System.out.println(abc);
+		for(Object[] arr : list){
+			System.out.println(Arrays.toString(arr));
 		}
 		return list;
+		
 	}
-	
-	
-	
 	
 	public List<MusicBean> findMusicnameByMusicId(Integer music_id) {
 		//0103 OK

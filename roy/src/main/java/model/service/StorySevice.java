@@ -70,11 +70,6 @@ public class StorySevice {
 //			System.out.println("service"+bean2);
 //		}
 		
-		
-		//test五筆版
-	
-		
-		
 //		HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
 //		HibernateUtil.closeSessionFactory();
 	}
@@ -129,7 +124,7 @@ public class StorySevice {
 
 	
 	public List<Object[]> tee(String user) {
-		List<Object[]> result = storyDAO.te(user);
+		List<Object[]> result = storyDAO.test(user);
 		
 		if(user!=null) {	
 			for(Object[] bean2:result) {

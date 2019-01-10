@@ -1,5 +1,6 @@
 package model.bean;
 
+
 import java.sql.Blob;
 import java.util.List;
 
@@ -8,22 +9,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="Music")
 public class MusicBean {
 	@OneToMany(mappedBy="musicBean")
-	private List<StoryBean> storyBean;
+	private List<StoryBean> StoryBean;
 	
 	public List<StoryBean> getStoryBean() {
-		return storyBean;
+		return StoryBean;
 	}
 	public void setStoryBean(List<StoryBean> storyBean) {
-		this.storyBean = storyBean;
+		StoryBean = storyBean;
 	}
+	
+	
+	
+	
+	
+
 	@Override
 	public String toString() {
 		return "MusicBean [music_id=" + music_id + ", music_name=" + music_name + ", member_username=" + member_username
