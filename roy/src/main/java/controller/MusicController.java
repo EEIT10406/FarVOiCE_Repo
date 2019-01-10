@@ -6,8 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONValue;
@@ -27,17 +26,15 @@ import model.service.MusicService;
 public class MusicController {
 	@Autowired
 	private MusicService musicService;
-	@Autowired
-	private ServletContext application;
+	
 
 	// 上傳音樂
 	@RequestMapping("/login-signUp-upload/uploadMusic")
 	public String upLoadMUsic(MusicBean bean, Model model, @RequestParam("musicFile") MultipartFile musicFile,
-			@RequestParam("imageFile") MultipartFile imageFile, HttpSession session,HttpServletRequest req) {
+			@RequestParam("imageFile") MultipartFile imageFile, HttpSession session) {
 		String musicPath = "";
 		String imagePath = "";
-		String s = req.getRequestURI();
-		System.out.println("s="+s);
+		
 		if (!musicFile.isEmpty()) {
 			try {
 				byte[] musicByte = musicFile.getBytes();

@@ -86,12 +86,14 @@ public class MusicService {
 	// 給上傳的圖片檔一個儲存路徑
 	public String imageFilePath(byte[] file) throws IOException {
 
-		String imageFilePath = "C:/Roy_FarVoice/image/" + System.currentTimeMillis()+".jpg";
+		String imageFilePath = "C:/Roy_FarVoice/image/music/" + System.currentTimeMillis()+".jpg";
+
+
+		
 		FileOutputStream out = new FileOutputStream(imageFilePath);
 		out.write(file);
 		out.close();
-
-		return "/roy/image"+imageFilePath.substring(21);
+		return "/roy/image/music"+imageFilePath.substring(27);
 	}
 	
 	
