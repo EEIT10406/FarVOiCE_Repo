@@ -1,6 +1,7 @@
 package model.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -71,5 +72,40 @@ public class FollowService {
 			//追蹤就true連你阿罵都知道
 			return true;
 		}
+	}
+	public List<FollowBean> whoFollowMe(String myname){
+		if(myname!=null&&myname.trim()!="") {
+			List<FollowBean> fans= followDAO.whoFollowMe(myname);
+			if(fans!=null) {
+				return fans;
+			}
+		}
+		return null;
+	}
+	public Integer howMuchFollowMe(String myname){
+		//0110 OK
+		List<FollowBean> fans = whoFollowMe(myname);
+		if(fans!=null) {
+			return fans.size();
+		}
+		return 0;
+	}
+	
+	
+	public List<FollowBean> iFollowWho(String myname){
+		if(myname!=null&&myname.trim()!="") {
+			List<FollowBean> stars= followDAO.whoFollowMe(myname);
+			if(stars!=null) {
+				return stars;
+			}
+		}
+		return null;
+	}
+	public Integer iFollowHowMuch(String myname){
+		List<FollowBean> stars = whoFollowMe(myname);
+		if(stars!=null) {
+			return stars.size();
+		}
+		return 0;
 	}
 }

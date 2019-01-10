@@ -155,6 +155,13 @@ opacity:0.4
 </style>
 <script>
 	$(document).ready(function() {
+	
+		
+		
+		
+		
+		
+		
 		var follows = document.querySelectorAll("div.follow");
 		var unfollows = document.querySelectorAll("div.unfollow");
 		
@@ -184,7 +191,8 @@ $(document).ready(function() {
 	loadMusicCount('${user.member_username}')
 	loadPlayList('${user.member_username}')
 	loadMemberLikeMusic('${user.member_username}')
-	
+	loadFanCount('${user.member_username}')
+	loadStarCount('${user.member_username}')
 	//按音樂重新載入喜歡的音樂
 	$('#memberMusic').on('click',function(){
 		loadMusic('${user.member_username}')
@@ -342,15 +350,29 @@ function loadMemberLikeMusic(username) {
 }
 
 
-//讀取使用者上傳的音樂數
-function loadMusicCount(username) {
-	$.getJSON('/roy/personalPage/uploadMusicCount',{'username' : username},function(data) {
-		$('#musicCount').html(data);
-	})
-}
+	//讀取使用者上傳的音樂數
+	function loadMusicCount(username) {
+		$.getJSON('/roy/personalPage/uploadMusicCount',{'username' : username},function(data) {
+			$('#musicCount').html(data);
+		})
+	}
+	
+	
 
-
-			
+	//抓粉絲數
+	function loadFanCount(username) {
+		$.get('/roy/personalPage/howMuchFollowMe.controller',{'username' : username},function(data) {
+		
+			$('#fansCount').html(data);
+		})
+	}
+	//抓偶像數
+	function loadStarCount(username) {
+		$.get('/roy/personalPage/iFollowHowMuch.controller',{'username' : username},function(data) {
+		
+			$('#starsCount').html(data);
+		})
+	}		
 </script>
 </head>
 <body>
@@ -399,8 +421,8 @@ function loadMusicCount(username) {
 						</tr>
 						<tr>
 							<td id="musicCount" class="number">0</td>
-							<td class="number">0</td>
-							<td class="number">0</td>
+							<td id="fansCount" class="number">0</td>
+							<td id="starsCount" class="number">0</td>
 						</tr>
 					</table>
 				</div>
@@ -423,71 +445,7 @@ function loadMusicCount(username) {
 
 					</div>
 					
-					    <!-- Blog Post -->
-								<div class="blog-post padding-bottom-20">
-									<!-- Blog Item Header -->
-									<div class="blog-item-header">
-										<!-- Title -->
-										<h2>
-											<a href="#">最新文章</a>
-										</h2>
-										<div class="clearfix"></div>
-										<!-- End Title -->
-									</div>
-									<!-- End Blog Item Header -->
-									<!-- Blog Item Details -->
-									<div class="blog-post-details">
-										<!-- Author Name -->
-										<div class="blog-post-details-item blog-post-details-item-left">
-											<i class="fa fa-user color-gray-light"></i> <a href="#">作者:黃金鼠</a>
-										</div>
-										<!-- End Author Name -->
-										<!-- Date -->
-										<div class="blog-post-details-item blog-post-details-item-left">
-											<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-										</div>
-										<!-- End Date -->
-										<!-- Tags -->
-										<div
-											class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-											<i class="fa fa-tag color-gray-light"></i> <a href="#">HTML5</a>,
-											<a href="#">CSS</a>, <a href="#">Grunt</a>
-										</div>
-										<!-- End Tags -->
-										<!-- # of Comments -->
-										<div
-											class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-											<a href=""> <i class="fa fa-comments color-gray-light"></i>
-												9 Comments
-											</a>
-										</div>
-										<!-- End # of Comments -->
-									</div>
-									<!-- End Blog Item Details -->
-									<!-- Blog Item Body -->
-									<div class="blog">
-										<div class="clearfix"></div>
-										<div class="blog-post-body row margin-top-15">
-											<div class="col-md-5">
-												<img class="margin-bottom-20" src="imgs/mouse.PNG"
-													alt="thumb1">
-											</div>
-											<div class="col-md-7">
-												<p>最新文章</p>
-												<p>我是一隻黃金鼠</p>
-												<!-- Read More -->
-												<a  class="btn btn-primary" target="_blank" href="singleArticle.jsp"
-													>
-													查看全文
-												</a>
-												<!-- End Read More -->
-											</div>
-										</div>
-									</div>
-									<!-- End Blog Item Body -->
-									</div>
-								
-								<!-- End Blog Item -->
+					
 						</div>
 						<!-- End dynamic -->
 <!-- 						<div class="tab-pane fade in active" id="dynamic"> -->
