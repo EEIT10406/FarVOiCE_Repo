@@ -56,10 +56,10 @@ td {
 <body>
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
-		<div id="content" style="margin-left: 250px; margin-top: 50px;">
+		<div id="content" style="margin-left: 230px; margin-top: 50px;">
 			<!-- 每頁不同的內容從這裡開始 -->
 			<table id="playListTable" class="table table-bordered"
-				style="width: 750px;">
+				style="width: 800px;">
 				<thead>
 					<tr>
 						<th>圖片</th>
@@ -92,8 +92,8 @@ td {
 								class="form-control" id="playlist_name" name="playlist_name"
 								placeholder="歌單名稱"></td>
 							<td><select name="playlist_privacy">
-									<option value="true">公開</option>
-									<option value="false">隱藏</option>
+									<option value="false">公開</option>
+									<option value="true">不公開</option>
 							</select></td>
 							<td><input type="hidden" name=""><span></span></td>
 							<td><input class="btn btn-primary pull-right" type="submit"
@@ -178,9 +178,9 @@ $(document).ready(function() {
 						.attr({"style" : "cursor:pointer;font-size: 15px;","data-toggle" : "modal",
 								"data-target" : "#editPLayList","id" : "editList"}).text(list.playlist_name)
 							if (list.playlist_privacy == "true") {
-								var cell4 = $('<td name="playlist_privacy"></td>').attr("style","font-size: 15px;").text("公開")
+								var cell4 = $('<td name="playlist_privacy"></td>').attr("style","font-size: 15px;").text("不公開")
 							} else {
-								var cell4 = $('<td name="playlist_privacy"></td>').attr("style","font-size: 15px;").text("隱藏")
+								var cell4 = $('<td name="playlist_privacy"></td>').attr("style","font-size: 15px;").text("公開")
 							}
 						var cell5 = $('<td name="playlist_musicCount"></td>').attr("style","font-size: 15px;").text(list.playlist_musicCount)
 						var cell6 = $('<td></td>').html('<button class="btn btn-primary pull-right" >刪除</button>')

@@ -72,16 +72,16 @@ public class ListMusicController {
 	// 把音樂加入想要的歌單
 	@RequestMapping(value = "/list/addMusicToPlayList", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String addMusicToPlayList(ListMusicId listMusicId, Integer music_id, Integer playlist_id,
-			ListMusicBean bean) {
-		listMusicId.setPlaylist_id(playlist_id);
-		boolean deleteListMusic = listMusicService.deleteMusicFromList(listMusicId, music_id);
-		if (deleteListMusic == true) {
-			bean.setId(listMusicId);
-			listMusicService.reduceMusicCount(bean);
-			return "刪除成功";
+	public String addMusicToPlayList(String musicId,String playListId,ListMusicId listMusicId,ListMusicBean bean) {
+		listMusicId.setPlaylist_id(Integer.valueOf(playListId));
+		listMusicId.setMusic_id(Integer.valueOf(musicId));
+		bean.setId(listMusicId);
+		ListMusicBean listMusicBean = listMusicService.addMusicToPlayList(bean);
+		if (listMusicBean !=null) {
+			listMusicService.addMusicCount(listMusicBean);
+			return "新增成功";
 		} else {
-			return "刪除失敗";
+			return "該首歌已在歌單中";
 		}
 	}
 

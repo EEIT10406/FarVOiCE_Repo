@@ -85,6 +85,11 @@ public class PlayListController {
 					jsonMap.put("playlist_name", bean.getPlaylist_name());
 					jsonMap.put("playlist_privacy", String.valueOf(bean.getPlaylist_privacy()));
 					jsonMap.put("playlist_musicCount", String.valueOf(bean.getPlaylist_musicCount()));
+					if(bean.getPlaylist_privacy()==true) {
+						jsonMap.put("showPlaylist_privacy", "(不公開)");
+					}else {
+						jsonMap.put("showPlaylist_privacy", "");
+					}
 					playLists.add(jsonMap);
 				}
 				return JSONValue.toJSONString(playLists);

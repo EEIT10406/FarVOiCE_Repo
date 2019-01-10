@@ -21,8 +21,31 @@ public class ListMusicService {
 	private ListMusicDAO listMusicDao;
 	@Autowired
 	private PlaylistDAO playlistDao;
+	
+	// 如果增加歌單的音樂便更新歌單的音樂數
+		public void addMusicCount(ListMusicBean bean) {
+			PlaylistBean playlistBean = playlistDao.findByPrimaryKey(bean.getId().getPlaylist_id());
+			if (playlistBean != null) {
+				int updateMusicCount = playlistBean.getPlaylist_musicCount() + 1;
+				if (updateMusicCount >= 0) {
+					playlistBean.setPlaylist_musicCount(updateMusicCount);
+					playlistDao.update(playlistBean);
+				}
+			}
+		}
 
-	// 如果刪除歌單的音樂便更新歌單的歌曲數
+	// 把音樂加進歌單
+	public ListMusicBean addMusicToPlayList(ListMusicBean bean) {
+		if (bean != null) {
+			ListMusicBean listMusicBean = listMusicDao.create(bean);
+			if (listMusicBean != null) {
+                return listMusicBean;
+			}
+		}
+		return null;
+	}
+
+	// 如果刪除歌單的音樂便更新歌單的音樂數
 	public void reduceMusicCount(ListMusicBean bean) {
 		PlaylistBean playlistBean = playlistDao.findByPrimaryKey(bean.getId().getPlaylist_id());
 		if (playlistBean != null) {
@@ -50,7 +73,7 @@ public class ListMusicService {
 		return false;
 	}
 
-	// 找歌單內的所有音樂的id
+	// 找歌單內所有音樂的id
 	public List<Integer> findByPlayListId(ListMusicId listMusicId) {
 		if (listMusicId != null) {
 			List<ListMusicBean> listMusicBean = listMusicDao.findByPlayListId(listMusicId);
