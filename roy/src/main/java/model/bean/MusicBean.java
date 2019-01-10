@@ -1,16 +1,37 @@
 package model.bean;
 
-import java.sql.Blob;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="Music")
 public class MusicBean {
+	
+	
+	@OneToMany(mappedBy="musicBean")
+	private List<StoryBean> StoryBean;
+	
+	public List<StoryBean> getStoryBean() {
+		return StoryBean;
+	}
+	public void setStoryBean(List<StoryBean> storyBean) {
+		StoryBean = storyBean;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "MusicBean [music_id=" + music_id + ", music_name=" + music_name + ", member_username=" + member_username

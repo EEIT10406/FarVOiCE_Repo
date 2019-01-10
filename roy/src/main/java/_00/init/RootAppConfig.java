@@ -20,6 +20,7 @@ import model.bean.FollowBean;
 import model.bean.FundingBean;
 import model.bean.ListMusicBean;
 import model.bean.MemberBean;
+import model.bean.MemberLikeMusicBean;
 import model.bean.MusicBean;
 import model.bean.PlaylistBean;
 import model.bean.PostBean;
@@ -52,7 +53,7 @@ public class RootAppConfig {
 
 
 		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,
-				FollowBean.class, BackerBean.class, FundingBean.class, RewardBean.class,StoryBean.class);
+				FollowBean.class, BackerBean.class, FundingBean.class, RewardBean.class,StoryBean.class,MemberLikeMusicBean.class);
 
 
 		Properties props = new Properties();

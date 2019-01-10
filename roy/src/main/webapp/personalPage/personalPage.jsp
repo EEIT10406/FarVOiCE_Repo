@@ -786,11 +786,6 @@ function loadMemberLikeMusic(username) {
             });
             
             
-            
-            
-            
-            
-            
             //顯示歷史紀錄
             $.ajax({
                 url: "/roy/personalPage/showAllHistoryFromHstory.controller",   //存取Json的網址             

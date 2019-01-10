@@ -4,12 +4,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Story")
 public class StoryBean {
-@Override
+	@ManyToOne 
+	@JoinColumn(name="music_id",
+				referencedColumnName="music_id",
+				insertable=false,updatable=false)
+	private MusicBean musicBean;
+	 
+	public MusicBean getMusicBean() {
+		return musicBean;
+	}
+	public void setMusicBean(MusicBean musicBean) {
+		this.musicBean = musicBean;
+	}
+	
+	@Override
 	public String toString() {
 		return "StoryBean [story_id=" + story_id + ", member_username=" + member_username + ", music_id=" + music_id
 				+ ", story_time=" + story_time + "]";
@@ -18,7 +33,7 @@ public class StoryBean {
 	member_username	varchar(30) REFERENCES member (member_username),
 	music_id		int			REFERENCES Music (music_id),
 	story_time		datetime
-*/	
+	 */	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer story_id;
