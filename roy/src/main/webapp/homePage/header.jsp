@@ -16,7 +16,7 @@
 			window.location.href = "/roy/login-signUp-upload/upload.jsp";
 		})
 		$('#project').click(function(){
-			window.location.href="/roy/funding/startProject.jsp"
+			window.location.href="/roy/funding/showMusic.controller"
 		})
 	})
 </script>

@@ -91,10 +91,17 @@ public class FundingDAO {
 //		return session;
 //	}
 
+//找出使用者所有的募資專案
+	public List<FundingBean> findByUsername(String member_username) {
+		return this.getSession()
+				.createQuery("from FundingBean where member_username='" + member_username + "'", FundingBean.class)
+				.list();
+	}
 	public FundingBean findByPrimaryKey(Integer funding_id) {
 		// 0103 OK
 		return this.getSession().get(FundingBean.class, funding_id);
 	}
+
 
 	public List<FundingBean> findAll() {
 		// 0103 OK
