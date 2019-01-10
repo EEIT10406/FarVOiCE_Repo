@@ -25,8 +25,6 @@ import model.bean.MemberBean;
 import model.bean.PostBean;
 
 @Configuration
-
-@ComponentScan(basePackages="model")
 @EnableTransactionManagement
 @ComponentScan(basePackages={"model"})
 public class RootAppConfig {

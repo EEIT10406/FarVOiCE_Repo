@@ -92,6 +92,12 @@ public class MusicDAO {
 //		return session;
 //	}
 	
+	public List<MusicBean> search(String searchString) {
+		return this.getSession().createQuery("from MusicBean where"+searchString, MusicBean.class)
+				.setMaxResults(50)
+				.list();
+	}
+	
 	public MusicBean findByPrimaryKey(Integer music_id) {
 		//0103 OK
 		return this.getSession().get(MusicBean.class, music_id);

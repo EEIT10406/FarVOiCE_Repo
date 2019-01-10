@@ -53,7 +53,16 @@ out.println(storyService.findByPrimaryKey(1));
 <% 
 out.println(new java.sql.Date(new Date().getTime()));
 %>
-<form action="report.get">
+<script>
+var date = new Date();
+alert(date);
+alert(date.getFullYear()+'-'+date.getMonth()+1+'-'+date.getDate());
+$('#testdate').attr('max',date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate());
+</script>
+
+<input id="testdate" type="date" min='2019-01-09'>
+
+<form action="report.get" method="post">
 <input name="report_id">
 <input type='submit'>
 </form>

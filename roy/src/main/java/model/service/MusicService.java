@@ -2,6 +2,8 @@ package model.service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 import javax.servlet.ServletContext;
 
@@ -26,6 +28,26 @@ public class MusicService {
 
 	public void setMusicDao(MusicDAO musicDao) {
 		this.musicDao = musicDao;
+	}
+	
+	public LinkedList<HashMap<String, String>> search(String type,String searchString,String before) {
+		searchString = " music_name like '%"+searchString+"%'";
+		if(type!=null&&(!"".equals(type.trim()))) {
+			searchString=searchString+"and music_styleName in ("+type+")";
+		}
+		if(before!=null&&(!"".equals(before.trim()))) {
+			searchString=searchString+"and music_uploadTime > DATEADD(DAY, -"+before+", GETDATE ( ))";
+		}
+		LinkedList<HashMap<String,String>> l1 = new LinkedList<HashMap<String,String>>();
+		 for (MusicBean bean:musicDao.search(searchString)) {
+			 HashMap<String,String>  m1 = new HashMap<String,String>();       
+			 m1.put("Music_name",bean.getMusic_name());
+			 m1.put("Music_id",""+bean.getMusic_id());
+			 m1.put("Member_username",""+bean.getMember_username());
+			 m1.put("Music_Image",bean.getMusic_Image());
+			 l1.add(m1);
+		 }
+		return l1;
 	}
 	
 	//把音樂從資料庫刪除

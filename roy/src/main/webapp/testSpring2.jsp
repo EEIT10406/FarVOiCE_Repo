@@ -45,7 +45,7 @@
 	<%@ page import="model.bean.ReportBean"%>
 	<%@ page import="model.service.StoryService"%>
 	<%@ page import="model.bean.StoryBean"%>
-	<form:form modelAttribute="reportBean" action="report.create">
+	<form:form modelAttribute="reportBean" action="report.update">
 		<Table>
 			<TR>
 				<TD align="RIGHT">report_id：</TD>
@@ -70,7 +70,7 @@
 			</TR>
 			<TR>
 				<TD align="RIGHT">report_time：</TD>
-				<TD align="LEFT"><form:input path="report_time" /> <font
+				<TD align="LEFT"><form:input path="report_time" type="date" /> <font
 					color='red' size='-3'></font></TD>
 			</TR>
 			<TR>
