@@ -107,14 +107,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 					<!---->
 					<div class="inputWordCount">
 						<input style="font-weight: 400" name="funding_title" type="text"
-<<<<<<< HEAD
 							placeholder="30 個字以內的專案標題" maxlength="30" class="form-control"
 							required oninvalid="setCustomValidity('請输入專案標題');"
-=======
-							placeholder="40 個字以內的專案標題" maxlength="40" class="form-control"
-							required oninvalid="setCustomValidity('請輸入專案標題');"
->>>>>>> refs/remotes/origin/branch1
-							oninput="setCustomValidity('');">
+
+>
 					</div>
 					<label for="" class="input-label">一個好的標題應該要好記、好搜尋、吸引人想點進去看，並讓瀏覽者能在最短的時間內瞭解專案的核心理念。</label>
 				</div>
@@ -154,11 +150,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 						<textarea style="font-weight: 400" class="form-control"
 							name="funding_description" placeholder="500個字以內的專案描述"
 							maxlength="500" rows="10" required
-<<<<<<< HEAD
-							oninvalid="setCustomValidity('請输入專案描述');"
-=======
+
 							oninvalid="setCustomValidity('請輸入專案描述');"
->>>>>>> refs/remotes/origin/branch1
 							oninput="setCustomValidity('');"></textarea>
 					</div>
 					<label for="" class="input-label">使用吸引人的文字說明你的目標以及理念，強調你的獨一無二，讓贊助人對你或你的專案好奇，願意更進一步贊助專案。</label>
@@ -169,7 +162,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 					<label for="" class="input-label-img">請提供 JPEG、PNG，圖片尺寸至少
 						1024 x 768 px (4:3)； 2MB 以內。</label>
 					<!------------------------------->
-<<<<<<< HEAD
 
 					<label for="file-upload" class="custom-file-upload"> <i
 						class="fas fa-cloud-upload-alt"></i> 上傳專案圖片
@@ -182,13 +174,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 						oninvalid="setCustomValidity('請選擇上傳圖片');"
 						oninput="setCustomValidity('');">
 						</a>
-=======
-					<a href="javascript:;" class="a-upload"> <input type="file"
-						accept="image/jpeg, image/png" name="funding_image" required
-						oninvalid="setCustomValidity('請選擇上傳圖片');"
-						oninput="setCustomValidity('');"><i class="fa fa-camera"></i>上傳封面圖片
-					</a>
->>>>>>> refs/remotes/origin/branch1
+
 					<p class="showFileName"></p>
 					<p class="fileerrorTip"></p>
 
