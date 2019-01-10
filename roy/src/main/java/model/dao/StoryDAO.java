@@ -22,9 +22,9 @@ public class StoryDAO {
 	//Spring MVC
 	@Autowired
 	private SessionFactory sessionFactory;
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+//	public void setSessionFactory(SessionFactory sessionFactory) {
+//		this.sessionFactory = sessionFactory;
+//	}
 	public StoryDAO(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -95,6 +95,7 @@ public class StoryDAO {
 		return this.getSession().get(StoryBean.class, story_id);
 	}
 	
+	//正確版
 	public List<StoryBean> findStoryByUsername(String member_username) {
 		//0103 OK
 		String hql = "from StoryBean WHERE member_username=:member_username";
@@ -103,6 +104,23 @@ public class StoryDAO {
 		List<StoryBean> storyList = query.list();
 		return storyList;
 	}
+	
+	public List<StoryBean> findStoryByUsernameMax5(String member_username) {
+		//0103 OK
+		String hql = "from StoryBean WHERE member_username=:member_username Order By story_time Desc";
+		Query<StoryBean> query = this.getSession().createQuery(hql);
+		query.setParameter("member_username", member_username);
+		
+//		List<StoryBean> dkofk  = this.findAll();
+//		int a = dkofk.size();
+//		System.out.println("dkofk====>"+a);
+//		query.setFirstResult(0);
+		query.setMaxResults(5);
+		List<StoryBean> storyList = query.list();
+		return storyList;
+	}
+	
+	
 	
 	public List<MusicBean> findMusicnameByMusicId(Integer music_id) {
 		//0103 OK

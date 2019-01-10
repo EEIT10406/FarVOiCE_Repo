@@ -435,19 +435,7 @@ function loadMusicCount(username) {
 																	</div>
 														  		</div>
 													</div>	
-													<div>
-															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> 														
-																	<div style="float:left">
-<!-- 																		<button  -->
-<!-- 														                   
-<!-- 																		</button> -->
-																		<a href="/angry_youth/songs/558439/"><img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg"></a>
-																	</div><!-- /work-block img-xxs -->
-																	<div style="margin-left:250px">
-																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a> - <a href="/angry_youth/">厭世少年</a></h4>						
-																	</div>
-														  		</div>
-													</div>	
+												
 												<!-- /media-body -->
 											</div><!-- /media -->
 										</div>
@@ -814,7 +802,8 @@ function loadMusicCount(username) {
 						    var hours=Math.floor(leave1 /(3600*1000))//计算出小时数
 						    //计算相差分钟数
 						    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
-						    var minutes=Math.floor(leave2 /(60*1000))//计算相差分钟数
+						    var minutes=Math.floor(leave2 /(60*1000))
+						    //计算相差分钟数
 						    //计算相差秒数
 						    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
 						    var seconds=Math.round(leave3/1000)
@@ -864,7 +853,7 @@ function loadMusicCount(username) {
             
             
             
-            
+            //顯示歷史紀錄
             $.ajax({
                 url: "/roy/personalPage/showAllHistoryFromHstory.controller",   //存取Json的網址             
                 type: "POST",
@@ -875,21 +864,18 @@ function loadMusicCount(username) {
 				success : function(list)
 				 {   
 					list.forEach(function(obj, index) {
-											
+
 						var music_name = obj.music_name;
-						alert(music_name);
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
+						var music_name = obj.music_name;
+						var content="<div style='border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px'>";
+						var content2="<div style='float:left'>";
+						var content3="<a href='/angry_youth/songs/558439/'><img class='img-full' src='https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg'></a></div>";
+						var content4="<div style='margin-left:250px'>";
+						var content5="<h4><a href='/angry_youth/songs/558439/'>"+music_name+"</a></h4>";
+						var content6="</div></div>";
+						var div3 = content+content2+content3+content4+content5+content6;
+						$('#history').append(div3);
+											
 						
 				  	})//foreach的
 				  },

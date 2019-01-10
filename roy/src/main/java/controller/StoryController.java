@@ -26,12 +26,10 @@ public class StoryController {
 	@ResponseBody
 	public String showAllHistoryByUsername(Model model,HttpSession session,String user) {
 		//show這個人的文章
-				List<MusicBean> historys = storySevice.findAllHistorybyusername(user);
+				List<MusicBean> historys = storySevice.findStoryByUsernameMax5(user);
 				System.out.println("historys"+historys);
-				
 				//用gson包成json送回前端
 				Gson gson = new Gson();
-				
 				String jsonList = gson.toJson(historys);
 //				System.out.println("json的"+jsonList);
 				return jsonList;

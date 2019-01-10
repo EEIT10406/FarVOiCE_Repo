@@ -22,6 +22,8 @@ public class StorySevice {
 	private StoryDAO storyDAO;
 	@Autowired
 	private MusicDAO musicDAO;
+	
+	//用mvc之後需要註解以下東西
 //	public StorySevice(StoryDAO storyDAO,MusicDAO musicDAO) {
 //		super();
 //		this.storyDAO = storyDAO;
@@ -58,7 +60,14 @@ public class StorySevice {
 		//test findAllHistorybyusername
 //		storySevice.findAllHistorybyusername("Peter");
 //		
-//		
+		
+		//test五筆版
+//		List<MusicBean> aaa = storySevice.findStoryByUsernameMax5("Peter");
+//		for(MusicBean bean2:aaa) {
+//			System.out.println("service"+bean2);
+//		}
+		
+		
 //		HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
 //		HibernateUtil.closeSessionFactory();
 	}
@@ -82,21 +91,33 @@ public class StorySevice {
 		return result;
 	}
 	
-	//給使用者name，回傳使用者的記錄的所有musicBean
-	public List<MusicBean> findAllHistorybyusername(String user) {
-		List<StoryBean> result = storyDAO.findStoryByUsername(user);
-		List<MusicBean> MusicBeanresult = new ArrayList<>(); 
-		MusicBean mm = null;
-		if(user!=null) {	
-			for(StoryBean bean2:result) {
-				 mm =musicDAO.findByPrimaryKey(bean2.getMusic_id());			
-				 MusicBeanresult.add(mm);
-			}		
+	//給使用者name，回傳使用者的記錄的所有musicBean (全部紀錄正確版)
+//	public List<MusicBean> findAllHistorybyusername(String user) {
+//		List<StoryBean> result = storyDAO.findStoryByUsername(user);
+//		List<MusicBean> MusicBeanresult = new ArrayList<>(); 
+//		MusicBean mm = null;
+//		if(user!=null) {	
+//			for(StoryBean bean2:result) {
+//				 mm =musicDAO.findByPrimaryKey(bean2.getMusic_id());			
+//				 MusicBeanresult.add(mm);
+//			}		
+//		}
+//		return MusicBeanresult;
+//	}
+//	
+	//給使用者name，回傳使用者的記錄的所有musicBean (五筆版)
+		public List<MusicBean> findStoryByUsernameMax5(String user) {
+			List<StoryBean> result = storyDAO.findStoryByUsernameMax5(user);
+			List<MusicBean> MusicBeanresult = new ArrayList<>(); 
+			MusicBean mm = null;
+			if(user!=null) {	
+				for(StoryBean bean2:result) {
+					 mm =musicDAO.findByPrimaryKey(bean2.getMusic_id());			
+					 MusicBeanresult.add(mm);
+				}		
+			}
+			return MusicBeanresult;
 		}
-		return MusicBeanresult;
-	}
-	
-	
 	
 	
 	
