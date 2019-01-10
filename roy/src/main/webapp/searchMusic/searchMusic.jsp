@@ -44,6 +44,13 @@
 	bottom: 15%;
 	right: 15%;
 }
+* {
+	animation: spin 8000s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 </style>
 </head>
 <body>
@@ -111,7 +118,6 @@
 					</script>
 					<!--搜尋 -->
 				</div>
-	<button onclick="report()" value="檢舉" >檢舉</button>
 			</div>
 		</div>
 		<!--選單 -->
@@ -158,12 +164,13 @@
 		$('#music_type li').click(function() {
 			$(this).toggleClass('active');
 			type = $("#music_type li.active").map(function(){return $(this).attr("type");}).get();
+			before = $('#time-type li.active').attr('before');
 			loadMusic(''+type,"",''+before);
 		})
 		$('#time-type li').click(function() {
 			$(this).parent('ul').children('li').removeClass('active');
 			$(this).addClass('active');
-			before = $(this).attr('before')
+			before = $(this).attr('before');
 			loadMusic(''+type,"",''+before);
 		})
 		$('#sort-type li').click(function() {
@@ -184,8 +191,6 @@
 		// 		搜尋
 		$('#search-div button').click(function(){
 			var searchString = $('#search-div input').val();
-			type = '';
-			before = '';
 			loadMusic("",searchString,"");
 			    })
 		// 		搜尋
@@ -198,11 +203,11 @@
 				    $.each(data,function(index,music){
 				    		var row = $("<div></div>").html(
 				    				'<div class="col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box">'+
-				    				'<div class="work-block m-bottom-2"><a href="#">'+
-				    				'<img class="img-full"src="https://cfstatic.streetvoice.com/playlist_images/da/rk/darkbluew/zyjhmW5MGAhKpxtKPBBbSD.jpg?x-oss-process=image/resize,m_fill,h_260,w_260,limit_0/interlace,1/quality,q_85/format,jpg">'+
-				    				'</a><input class="reportButton" type="image" src="../img/檢舉.png"height="50" width="50" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'">'+
+				    				'<div class="work-block m-bottom-2"><a class="play-link" href="#">'+
+				    				'<img class="img-full" height="100%" width="100%" src="'+music.Music_Image+'" onclick="play(this)" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
+				    				'</a><input class="reportButton" type="image" src="../img/檢舉.png" onmouseover="report()" height="50" width="50" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'">'+
 				    				'</div>	<div class="song-info"><h4 class="text-ellipsis">'+
-				    				'<a href="#">'+music.Music_name+'</a></h4></div></div>');
+				    				'<a class="play-link" href="#" onclick="play(this)" src="'+music.Music_Image+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+music.Music_name+'</a></h4></div></div>');
 				    		docFrag.append(row);
 				    	});
 				    $('#music-container').html(docFrag);
@@ -212,8 +217,20 @@
 				
 	})
 	
+	//播放
+	function play(e) {
+				ap.list.add([{
+					title : $(e).attr('music_name'),
+					author : $(e).attr('member_username'),
+					url : $(e).attr('music_music'),
+					pic : $(e).attr('src')
+				}]);
+	}
+	//播放
+	
+	// 		檢舉
 	function report(){
-// 		檢舉
+		$('.reportButton').attr("onmouseover",'');
 		$('.reportButton').hover(function() {
 			src = $(this).attr("src");
 			$(this).attr("src", "../img/檢舉 2.png");
@@ -221,17 +238,17 @@
 			$(this).attr("src", src);
 		})
 		$('.reportButton').click(function() {
-			$.get("report.create", {'music_id':$(this).attr('music_id'),'member_username':$(this).attr('member_username')}, function(message) {
-				alert(message);
-			})
+			<%if (session.getAttribute("user") == null) {%>
+	 			alert('請先登入');
+			<%} else {%>
+				$.get("report.create", {'music_id':$(this).attr('music_id'),'member_username':$(this).attr('member_username')}, function(message) {
+					alert(message);
+				})
+			<%}%>
 		})
-		
-		<%if (session.getAttribute("user") == null) {%>
-		$('.reportButton').hide(0);
-		<%}%>
-		//	檢舉
 		}
-	
+		//	檢舉
+		
 </script>
 	
 </body>

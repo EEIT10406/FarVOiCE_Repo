@@ -63,7 +63,6 @@ public class ReportController {
 	@RequestMapping(value = "**/report.searchMusic", produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String searchMusic(Model model,String type,String searchString,String before) {
-		System.out.println(before);
 		return JSONValue.toJSONString(musicService.search(type,searchString,before));
 	}
 	

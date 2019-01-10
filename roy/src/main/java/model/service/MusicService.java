@@ -53,6 +53,7 @@ public class MusicService {
 			 m1.put("Music_name",bean.getMusic_name());
 			 m1.put("Music_id",""+bean.getMusic_id());
 			 m1.put("Member_username",""+bean.getMember_username());
+			 m1.put("Music_music",""+bean.getMusic_music());
 			 m1.put("Music_Image",bean.getMusic_Image());
 			 l1.add(m1);
 		 }

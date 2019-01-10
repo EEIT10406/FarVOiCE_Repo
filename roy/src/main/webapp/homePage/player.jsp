@@ -46,8 +46,8 @@
 			ap.list.add([{
 				title : 'addtest',
 				author : 'addtest',
-				url : 'jPlayer-2.9.2/examples/blue.monday/addtest.mp3',
-				pic : 'jPlayer-2.9.2/examples/blue.monday/addtest.gif'
+				url : '/roy/music/addtest.mp3',
+				pic : '/roy/image/music/addtest.gif'
 			}]);
 		})
 	})
@@ -89,18 +89,19 @@
 			element : document.getElementById('player1'),
 			narrow : false,
 			autoplay : true,
-			showlrc : true,
 			audio : [ {
 				title : 'addtest',
 				author : 'addtest',
-				url : 'music/addtest.mp3',
-				pic : 'music/addtest.gif'
-			}, {
+				url : '/roy/music/addtest.mp3',
+				pic : '/roy/image/music/addtest.gif'
+			}
+			, {
 				title : 'addtest',
 				author : 'addtest',
 				url : 'jPlayer-2.9.2/examples/blue.monday/addtest.mp3',
 				pic : 'jPlayer-2.9.2/examples/blue.monday/addtest.gif'
-			} ]
+			} 
+			]
 		});
 		ap.init();
 	</script>

@@ -47,7 +47,7 @@ public class RootAppConfig {
 
 	@Bean
 	public SessionFactory sessionFactory() {
-		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,FollowBean.class, BackerBean.class, FundingBean.class, RewardBean.class);
+		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,FollowBean.class, BackerBean.class, FundingBean.class, RewardBean.class,ReportBean.class,StoryBean.class);
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.setProperty("hibernate.show_sql", "true");

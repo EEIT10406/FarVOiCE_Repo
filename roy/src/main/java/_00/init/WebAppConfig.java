@@ -32,13 +32,13 @@ public class WebAppConfig implements WebMvcConfigurer{
 //		configurer.defaultContentType(MediaType.APPLICATION_JSON);
 //	}
 	// 配置 Spring提供的 InternalResourceViewResolver
-	@Bean
-	public ViewResolver jspViewResolver() {
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setViewClass(JstlView.class);
-		viewResolver.setSuffix(".jsp");
-		return viewResolver;
-	}
+//	@Bean
+//	public ViewResolver jspViewResolver() {
+//		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+//		viewResolver.setViewClass(JstlView.class);
+//		viewResolver.setSuffix(".jsp");
+//		return viewResolver;
+//	}
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
@@ -46,7 +46,7 @@ public class WebAppConfig implements WebMvcConfigurer{
 	@Bean
 	public MultipartResolver multipartResolver() {
 		CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver();
-		multipartResolver.setMaxUploadSize(5000000);
+		//multipartResolver.setMaxUploadSize(5000000);
 		return multipartResolver;
 	}
 //	@Override
