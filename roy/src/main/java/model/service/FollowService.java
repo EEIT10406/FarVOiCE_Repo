@@ -40,11 +40,13 @@ public class FollowService {
 			HibernateUtil.closeSessionFactory();
 		}
 	}
+
 	public void followORCancelFollow(MemberBean S,String member_username) {
 		//0107 OK
 		//如果沒訂閱就訂閱，已訂閱就取消訂閱
 		FollowId followId = new FollowId(S.getMember_username(),member_username);
 		FollowBean followExistBean = followDAO.findByPrimaryKey(followId);
+
 		if(followExistBean==null) {
 			//沒追蹤就追蹤
 			FollowBean newFollowBean = new FollowBean();

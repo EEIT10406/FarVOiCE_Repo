@@ -20,11 +20,10 @@ import model.bean.MemberBean;
 @WebFilter(
 		urlPatterns = { "/*" }, 
 		initParams = { 
-				@WebInitParam(name = "mustLogin1", value = "/personalPage/somebodyPersonalPageFollow.controller"),				
+				@WebInitParam(name = "mustLogin1", value = "/personalPage/personalDetail.jsp"),				
 				@WebInitParam(name = "mustLogin2", value = "/rankTop10/ShareMusic.controller"),				
 				@WebInitParam(name = "mustLogin3", value = "/login-signUp-upload/upload.jsp"),				
 				@WebInitParam(name = "mustLogin4", value = "/personalPage/personalPage.jsp"),				
-				@WebInitParam(name = "mustLogin5", value = "/personalPage/personalDetail.jsp")				
 								
 		})
 public class LoginCheckingFilter implements Filter {
@@ -65,16 +64,19 @@ public class LoginCheckingFilter implements Filter {
 					HttpSession session = req.getSession();
 				    // 記住原本的"requestURI"，稍後如果登入成功，系統可以自動轉入
 					// 原本要執行的程式。
+					System.out.println("放requestURI"+requestURI);
 					session.setAttribute("requestURI", requestURI);
 					if ( ! isRequestedSessionIdValid ) {
-						
+						System.out.println("使用逾時，請重新登入");
 						session.setAttribute("timeOut", "使用逾時，請重新登入");
 					}
 					resp.sendRedirect(contextPath + "/login-signUp-upload/login.jsp");
 					return;
 				}
 			} else {   //不需要登入，直接去執行他要執行的程式
+			
 				chain.doFilter(request, response);
+				
 			}
 		} else {
 			throw new ServletException("Request/Response 型態錯誤(極不可能發生)");

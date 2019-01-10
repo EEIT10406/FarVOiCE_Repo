@@ -126,15 +126,21 @@
 											<label for="" class="input-label-img">請提供 JPEG、PNG，圖片尺寸至少
 												1024 x 768 px (4:3)； 2MB 以內。</label>
 											
-											<a href="javascript:;" class="a-upload"> 
-											<input type="file"
-													accept="image/jpeg, image/png" name="member_profileImage" required
-													oninvalid="setCustomValidity('請選擇上傳圖片');"
-													oninput="setCustomValidity('');" >
-												<i class="fa fa-camera"></i>上傳大頭貼
-											</a>
-											<p class="showFileName"></p>
-											<p class="fileerrorTip"></p>
+											<label for="file-upload" class="custom-file-upload"> <i
+						class="fas fa-cloud-upload-alt"></i> 上傳專案圖片
+					</label>
+					<!----------------------- -->
+					<a href="javascript:;" class="a-upload">
+					<input onchange="readURL(this)"
+						targetID="preview_progressbarTW_img" id="file-upload" type="file"
+						accept="image/jpeg, image/png" name="member_profileImage" required
+						oninvalid="setCustomValidity('請選擇上傳圖片');"
+						oninput="setCustomValidity('');">
+						</a>
+					<p class="showFileName"></p>
+					<p class="fileerrorTip"></p>
+
+
 										</div>
 											
 										<button type="submit" class="btn btn-default m-top-4">儲存變更</button>

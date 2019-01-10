@@ -15,23 +15,32 @@ import model.service.FollowService;
 public class FollowController {
 	@Autowired
 	FollowService followService;
+	//追蹤or退追蹤
 	@RequestMapping(path="personalPage/somebodyPersonalPageFollow.controller")
 	public String method(Model model,String somebody,HttpSession session) {
 		System.out.println(somebody);
 		MemberBean memberWhoS = (MemberBean)session.getAttribute("user");
+		if(memberWhoS!=null) { 
 		followService.followORCancelFollow(memberWhoS, somebody);
 		return "/personalPage/somebodyPersonalPage.jsp";
+		}
+		return "/personalPage/somebodyPersonalPage.jsp";
+
 	}
+	//檢查有無追蹤
 	@RequestMapping(path="personalPage/somebodyPersonalPageCheckFollow.controller")
 	@ResponseBody
 	public String method1(Model model,HttpSession session) {
 		String somebody = (String) session.getAttribute("somebody");
 		MemberBean memberWhoS = (MemberBean)session.getAttribute("user");
-		if(followService.checkFollowOrNot(memberWhoS, somebody)) {
-			return "true";
-		}else {
-			return "false";
+		if(memberWhoS!=null) {
+			if(followService.checkFollowOrNot(memberWhoS, somebody)) {
+					return "true";
+				}else {
+					return "false";
+			}
 		}
+		return "false";
 	}
 	
 }

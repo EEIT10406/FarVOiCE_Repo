@@ -54,9 +54,6 @@
 .post{
 	float: left;
 
-/* 	margin-top:30px; */
-/* 	margin-bottom:150px; */
-
 }
 * {
 	font-family: 微軟正黑體;
@@ -723,12 +720,15 @@ function loadMusicCount(username) {
 						    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
 						    var dateEnd = new Date();//获取当前时间
 						    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
-						    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+						    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
+						    //计算出相差天数
 						    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
-						    var hours=Math.floor(leave1 /(3600*1000))//计算出小时数
+						    var hours=Math.floor( leave1 /(3600*1000))
+						    //计算出小时数
 						    //计算相差分钟数
 						    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
-						    var minutes=Math.floor(leave2 /(60*1000))//计算相差分钟数
+						    var minutes=Math.floor( leave2 /(60*1000))
+						    //计算相差分钟数
 						    //计算相差秒数
 						    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
 						    var seconds=Math.round(leave3/1000)
@@ -747,9 +747,9 @@ function loadMusicCount(username) {
 						}
 						var timediff ="";
 						timeFn(obj.post_time);
-
+						var imgPath=$('#profile').attr('src');
 						var postorshare = obj.post_postorshare;
-						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
+						var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 // 						var time = "<h6>" + obj.post_time +"</h6>";
@@ -788,34 +788,34 @@ function loadMusicCount(username) {
 	
 	<!-- addPlayList begin-->
 								
-							<div class="modal fade" id="addList" aria-hidden="true">
-										<div class="modal-dialog" style="width: 300px;">
-											<div class="modal-content">
-												<h5 style="margin: 10px;">加入歌單</h5>
-												<form action="/" method="post">
-													<div class="modal-body">
+	<div class="modal fade" id="addList" aria-hidden="true">
+				<div class="modal-dialog" style="width: 300px;">
+					<div class="modal-content">
+						<h5 style="margin: 10px;">加入歌單</h5>
+						<form action="/" method="post">
+							<div class="modal-body">
 
-														<div class="form-group">
-															<select id="selectPlayList" class="form-control">
-																<option>請選擇歌單</option><span name="playlistId"></span>
-															</select>
-														</div>
-														<div style="float:right;">
-														<a href="../list/createList.jsp" >建立歌單</a>
-														</div>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-primary"
-															data-dismiss="modal">取消</button>
-														<input type="submit" class="btn btn-primary" value="確定" />
-													</div>
-												</form>
-												
-											</div>
-										</div>
-									</div>							
+								<div class="form-group">
+									<select id="selectPlayList" class="form-control">
+										<option>請選擇歌單</option><span name="playlistId"></span>
+									</select>
+								</div>
+								<div style="float:right;">
+								<a href="../list/createList.jsp" >建立歌單</a>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">取消</button>
+								<input type="submit" class="btn btn-primary" value="確定" />
+							</div>
+						</form>
+						
+					</div>
+				</div>
+			</div>							
 							
-							<!-- addPlayList end-->
+		<!-- addPlayList end-->
 							
 	<jsp:include page="../homePage/footer.jsp" />
 <!-- 	<div id="player"> -->
