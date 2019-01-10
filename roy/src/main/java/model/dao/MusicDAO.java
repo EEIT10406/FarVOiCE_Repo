@@ -103,7 +103,8 @@ public class MusicDAO {
 //		return session;
 //	}
 	
-	//找所有music table有且沒被下架的音樂
+	
+	//找該使用者上傳的所有音樂且該音樂沒被下架
 	public List<MusicBean> findAllByUser(String member_username) {
 		//0107 OK
 		return this.getSession().createQuery("from MusicBean where member_username='"+member_username+"'and music_unavailable = 0", MusicBean.class).list();

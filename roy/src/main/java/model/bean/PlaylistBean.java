@@ -1,11 +1,14 @@
 package model.bean;
 
 import java.sql.Blob;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="Playlist")
@@ -27,6 +30,14 @@ public class PlaylistBean {
 	playlist_privacy		bit,
 	
 */	
+	@OneToMany(
+	    mappedBy="playList",
+	    cascade= {
+			CascadeType.REMOVE
+	    }
+    )
+	private Set<ListMusicBean> listMusics;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer playlist_id;
