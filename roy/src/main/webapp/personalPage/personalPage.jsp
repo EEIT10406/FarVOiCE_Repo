@@ -758,6 +758,7 @@ function loadMemberLikeMusic(username) {
 						    	timediff+="剛剛";
 						    }
 						}
+						
 						var timediff ="";
 						timeFn(obj.post_time);
 						var imgPath=$('#profile').attr('src');
