@@ -25,15 +25,16 @@ public class ShareMusicController {
 	
 	@Autowired
 	private ShareMusicService shareMusicService;
-	
 	@RequestMapping(path= {"/rankTop10/ShareMusic.controller"})
 	public String method(
 			@RequestParam(value="shareContent")String shareContent,
+			@RequestParam(value="isprivacy")boolean isprivacy,
 											   Model model,
 											   PostBean shareMusicbean,
 											   HttpSession session) {
 //		接收資料
 //		System.out.println(shareContent);
+		System.out.println("isprivacy===========>"+isprivacy);
 		
 //		驗證資料
 		Map<String,String> errors = new HashMap<>();
@@ -55,7 +56,7 @@ public class ShareMusicController {
 			
 			
 			//設定隱私是否公開
-			shareMusicbean.setPost_privacy(false);
+			shareMusicbean.setPost_privacy(isprivacy);
 			//設定是share
 			shareMusicbean.setPost_postorshare(false);
 			

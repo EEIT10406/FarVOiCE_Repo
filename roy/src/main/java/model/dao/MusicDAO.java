@@ -23,12 +23,16 @@ public class MusicDAO {
 	//Spring MVC
 	@Autowired
 	private SessionFactory sessionFactory;
-//	public void setSessionFactory(SessionFactory sessionFactory) {
-//		this.sessionFactory = sessionFactory;
-//	}
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	public MusicDAO(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	public Session getSession() {
 	return this.sessionFactory.getCurrentSession();
 }
+
 	
 	
 //	public static void main(String... args) throws IOException, Exception, SQLException {
@@ -90,11 +94,11 @@ public class MusicDAO {
 //		HibernateUtil.closeSessionFactory();
 //	}
 //	
-//	private Session session;
-//	public void setSession(Session session) {
-//		this.session = session;
-//	}
-//
+	private Session session;
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
 //	public Session getSession() {
 //		return session;
 //	}

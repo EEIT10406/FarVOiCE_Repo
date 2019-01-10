@@ -4,13 +4,16 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.bean.MusicBean;
 import model.bean.PostBean;
 import model.bean.StoryBean;
 import model.hibernate.HibernateUtil;
@@ -19,22 +22,25 @@ public class StoryDAO {
 	//Spring MVC
 	@Autowired
 	private SessionFactory sessionFactory;
-	public StoryDAO(SessionFactory sessionFactory) {
+	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	public void setSessionFactory(SessionFactory sessionFactory) {
+	public StoryDAO(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
 
-	public static void main(String... args) throws IOException, Exception, SQLException {
+//	public static void main(String... args) throws IOException, Exception, SQLException {
 //		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
 //		Session session = sessionFactory.openSession();
 //		Transaction tx = session.beginTransaction();
-//		StoryDAO storyDAO = new StoryDAO();
+//		StoryDAO storyDAO = new StoryDAO(sessionFactory);
 //		storyDAO.setSession(session);
+		
+		//findStoryByUsernameTest
+		
 		
 		//findByPk
 //		StoryBean bean0 = storyDAO.findByPrimaryKey(1);
@@ -75,12 +81,12 @@ public class StoryDAO {
 //		tx.commit();
 //		session.close();
 //		HibernateUtil.closeSessionFactory();
-	}
-	
-//	private Session session;
-//	public void setSession(Session session) {
-//		this.session = session;
 //	}
+	
+	private Session session;
+	public void setSession(Session session) {
+		this.session = session;
+	}
 
 
 	
@@ -97,6 +103,18 @@ public class StoryDAO {
 		List<StoryBean> storyList = query.list();
 		return storyList;
 	}
+	
+	public List<MusicBean> findMusicnameByMusicId(Integer music_id) {
+		//0103 OK
+		String hql = "from MusicBean WHERE music_id=:music_id";
+		Query<MusicBean> query = this.getSession().createQuery(hql);
+		query.setParameter("music_id", music_id);
+		List<MusicBean> MusicBean = query.list();
+		return MusicBean;
+	}
+	
+	
+	
 	
 	public List<StoryBean> findAll() {
 		//0103 OK

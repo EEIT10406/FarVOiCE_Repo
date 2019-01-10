@@ -274,8 +274,8 @@ function loadMusic(username) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;margin-bottom:10px;">'+
 			          '<span name="music_id">'+list.music_id+'</span>'+
 			          '<span><a href=""><img src="'+list.music_Image+'" style="width: 160px; height: 160px;" /></a></span>'+
-			       '<div style="font-size: 16px;">'+list.music_name+'</div>'+
-                   '<div><img src="../img/emptyLove.png" class="heart"><span id="heartCount">'+list.music_likeCount+'</span>'+ 
+			      	  '<div style="font-size: 16px;">'+list.music_name+'</div>'+
+                   	  '<div><img src="../img/emptyLove.png" class="heart"><span id="heartCount">'+list.music_likeCount+'</span>'+ 
                       '<span id="share" class="shareAndAdd"><a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a></span>'+
                       '<span id="add">'+
                       '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
@@ -318,6 +318,29 @@ function loadMusicCount(username) {
 		$('#musicCount').html(data);
 	})
 }
+
+//讀取歷史紀錄
+// function loadHistory(username) {
+// 	$.getJSON('/roy/list/readPlayList',{'username' : username},function(data) {
+// 		var content;
+// 		 $('#history').html("");
+// 		$.each(data,function(index, list) {
+// 			content+='<div class="col-md-5" style="float: left; width: 300px;margin-bottom:13px;">'+
+// 		             '<span name="playlist_id">'+list.playlist_id+'</span>'+
+// 			         '<a href="">'+
+// 		                  '<div style="width: 160px;height: 160px;background: url('+list.playlist_image+') no-repeat; background-size:160px 160px;">'+
+// 			              '<div class="listSongCount">'+list.playlist_musicCount+'</div></div>'+
+// 		             '</a>'+
+//                      '<div style="font-size: 16px;">'+list.playlist_name+'</div>'+
+// 	                 '<div><span style="cursor: pointer;"> <img src="../img/delete.png" width="17px" />刪除</span></div>'+
+//                  '</div>';
+//               })
+//               $('#list').html(content.substring(9));
+// 		$('span[name="playlist_id"]').hide();
+// 	})
+//}
+
+
 			
 </script>
 </head>
@@ -351,8 +374,7 @@ function loadMusicCount(username) {
 					</c:choose>
 					
 					</div>
-					<!-- 					發布新動態按鈕 -->
-					<form class="post">
+ 					<form class="post">
 						<input type="button" class="btn btn-primary"
 							data-toggle="modal" data-target="#sharebox" value="發佈新動態">
 <!-- 										style="outline: none;"> -->
@@ -371,8 +393,9 @@ function loadMusicCount(username) {
 							<td class="number">0</td>
 						</tr>
 					</table>
-				</div>
+				</div><!-- === END of CONTENT === -->
 				
+			
 				
 				<!-- Tab v2 -->
 				<div class="tabs alternative">
@@ -387,6 +410,68 @@ function loadMusicCount(username) {
 					
 					<div class="tab-content" style="height: auto;" style="margin-bottom:20px" >
 						<div class="tab-pane fade in active" id="dynamic">
+								
+							<div><!-- ===BEGIN of HISTORY === -->
+										 
+										<div class="bg-white p-20">
+											<div>
+												<div>
+													<img src="https://cfstatic.streetvoice.com/profile_images/st/re/street0717/r2npMySeePybCPTA5DbR87.jpeg?x-oss-process=image/resize,m_fill,h_40,w_40,limit_0/interlace,1/quality,q_85/format,jpg" class="img-xs img-circle">
+												</div><!-- /media-left -->
+												<div >
+													<h4><span></span>最近聆聽歌曲</h4>		
+												</div>	
+<!-- 													<table class="table vertical-m" style="margin-bottom:20px" > -->
+													<div id="history">
+															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> 														
+																	<div style="float:left">
+<!-- 																		<button  -->
+														                  
+<!-- 																		</button> -->
+																		<a href="/angry_youth/songs/558439/"><img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg"></a>
+																	</div><!-- /work-block img-xxs -->
+																	<div style="margin-left:250px">
+																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a></h4>						
+																	</div>
+														  		</div>
+													</div>	
+													<div>
+															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> 														
+																	<div style="float:left">
+<!-- 																		<button  -->
+<!-- 														                   
+<!-- 																		</button> -->
+																		<a href="/angry_youth/songs/558439/"><img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg"></a>
+																	</div><!-- /work-block img-xxs -->
+																	<div style="margin-left:250px">
+																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a> - <a href="/angry_youth/">厭世少年</a></h4>						
+																	</div>
+														  		</div>
+													</div>	
+												<!-- /media-body -->
+											</div><!-- /media -->
+										</div>
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+							</div><!-- ===END of HISTORY === -->
+							
+							
 							<div id="test"><br>
 <!-- 								<img src="imgs/123.jpg" class="img-circle" style="width:45px;height:45px;float:left;margin-right:15px" > -->
 <!-- 								<h5 style="margin-bottom:0px">分享了一條音樂</h5> -->
@@ -663,8 +748,9 @@ function loadMusicCount(username) {
 							<!-- about end -->
 
 						</div>
-
 					</div>
+				</div>
+			</div>
 				</div>
 			</div>
 			<!-- End Tab v2 -->
@@ -747,23 +833,23 @@ function loadMusicCount(username) {
 						}
 						var timediff ="";
 						timeFn(obj.post_time);
-
 						var postorshare = obj.post_postorshare;
+						var privacy = obj.post_privacy;
 						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-// 						var time = "<h6>" + obj.post_time +"</h6>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
 				        var div =  "<div style='margin-bottom:45px'>"+img+content + button +"<br></br></div>";
-				        
+				       
 						//分享的內容
 				        var div2 = "<div style='margin-bottom:45px'>"+img+content2 + "<br></br></div>";
 				       
-				        if(postorshare==true){
+				        if(postorshare==true && privacy==false){
 				        	$('#test').append(div);
-				        }else if(postorshare==false){
-				        	$('#test').append(div2);
-				        }				        
+				        }else if(postorshare==false && privacy==false){
+				        			$('#test').append(div2);
+				        		}				        
+
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -771,8 +857,53 @@ function loadMusicCount(username) {
                     alert(thrownError);
                 }
             });
+            
+            
+            
+            
+            
+            
+            
+            
+            $.ajax({
+                url: "/roy/personalPage/showAllHistoryFromHstory.controller",   //存取Json的網址             
+                type: "POST",
+                cache:false,
+                dataType:'json',
+                data:{user:$('#userName').text()},
+                //contentType: "application/json",              
+				success : function(list)
+				 {   
+					list.forEach(function(obj, index) {
+											
+						var music_name = obj.music_name;
+						alert(music_name);
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+				  	})//foreach的
+				  },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+				  
+				  
+				  
+            });
 
-        });
+       
         
         
         
