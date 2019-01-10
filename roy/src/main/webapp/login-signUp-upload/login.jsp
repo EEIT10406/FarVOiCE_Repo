@@ -67,12 +67,20 @@
 								</div>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-user"></i>
-									</span> <input placeholder="帳號" style="${CssError}" class="form-control" type="text" id="username" name="username" value="${param.username}">
+									</span> <input placeholder="帳號" style="${CssError}" class="form-control" type="text" id="username" name="username" value="${param.username}"
+											required
+											oninvalid="setCustomValidity('請輸入帳號');"
+											oninput="setCustomValidity('');"
+											>
 									<span id="sp1" style='color:#880000;'>${errors.usernameError}</span>
 								</div>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-lock"></i>
-									</span> <input placeholder="密碼" style="${CssError}" class="form-control" type="password" id="password" name="password" value="${param.password}">
+									</span> <input placeholder="密碼" style="${CssError}" class="form-control" type="password" id="password" name="password" value="${param.password}"
+										required
+										oninvalid="setCustomValidity('請輸入密碼');"
+										oninput="setCustomValidity('');"
+									>
 									<span id="sp2" style='color:#880000;'>${errors.passwordError}</span>
 								</div>
 								<div class="row">

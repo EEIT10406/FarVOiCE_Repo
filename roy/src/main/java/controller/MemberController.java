@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,14 +18,16 @@ import model.service.MemberService;
 public class MemberController {
 	@Autowired
 	MemberService memberService;
+	//登入
+	
 	@RequestMapping(path="/login-signUp-upload/MemberLogin.controller")
 	public String login(Model model,
 			String username,
 			String password,
 			HttpSession session) {
-// 驗證資料
 		System.out.println(username);
 		System.out.println(password);
+	
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("errors", errors);
 
@@ -37,32 +40,42 @@ public class MemberController {
 		if (errors != null && !errors.isEmpty()) {
 			return "/login-signUp-upload/login.jsp";
 		}
-		
-//呼叫model
+		String requestURI = (String) session.getAttribute("requestURI");
+		System.out.println(requestURI);
 		MemberBean bean = memberService.login(username, password);
-//呼叫view
 		if (bean == null) {
 			errors.put("usernameError", "登入失敗");
 			return "/login-signUp-upload/login.jsp";
 		} else {
 			session.setAttribute("user", bean);
+			if(requestURI!=null && requestURI.length() > 0) {
+				System.out.println("跳轉喔");
+				if(requestURI.contains("rankTop10")) {
+					
+					return "redirect:/rankTop10/rankTopTen.jsp";
+				}
+				requestURI = requestURI.substring(5,requestURI.length() );
+				return"redirect:/"+requestURI;
+				
+			}
 			return"redirect:/personalPage/personalPage.jsp";
 		}
 	}
 	
-	
+	//註冊
 	@RequestMapping(path="/login-signUp-upload/MemberSignUP.controller")
 	public String signUp(Model model,
 			MemberBean bean,
+			String member_passwordConfirm,
 			HttpSession session) {
-// 驗證資料
-//		System.out.println(bean.getMember_username());
-//		System.out.println(bean.getMember_password());
-//		System.out.println(bean.getMember_email());
-//		System.out.println(bean.getMember_nickname());
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("errors", errors);
-
+		System.out.println(bean.getMember_password()+","+member_passwordConfirm);
+		if(bean!=null) {
+			if (!bean.getMember_password().equals(member_passwordConfirm)) {
+				errors.put("signUpError", "密碼484不一致呢");
+			}
+		}
 		if (bean.getMember_username() == null || bean.getMember_username().trim().length() == 0) {
 			errors.put("signUpError", " 每個欄位是必須的喔。");
 		}
@@ -79,10 +92,9 @@ public class MemberController {
 			model.addAttribute("CssError","border:1px #880000 solid");
 			return "/login-signUp-upload/signUp.jsp";
 		}
-		
-//呼叫model
+		bean.setMember_registerTime(new Date());
+		bean.setMember_ban(false);
 		MemberBean signUpbean = memberService.signUp(bean);
-//呼叫view
 		if (signUpbean == null) {
 			errors.put("signUpError", "註冊失敗");
 			return "/login-signUp-upload/signUp.jsp";
@@ -91,4 +103,36 @@ public class MemberController {
 			return"redirect:/personalPage/personalPage.jsp";
 		}
 	}
+	@RequestMapping(path="/login-signUp-upload/MemberLogOut.controller")
+	public String signUp(Model model,
+			HttpSession session) {
+		MemberBean bean =null;
+		session.setAttribute("user", bean);
+		return"redirect:/homePage/index.jsp";
+	}
+	
+	
+	@RequestMapping(path="/accounts/change_password/")
+	public String changePassword(Model model,
+			HttpSession session,String old_password,String new_password,String new_passconf) {
+		MemberBean bean = (MemberBean) session.getAttribute("user");
+		Map<String, String> errors = new HashMap<>();
+		if(!bean.getMember_password().equals(old_password)) {
+			errors.put("passError", "是不是忘記密碼了呢?");
+		}
+		if(!errors.isEmpty()) {
+			model.addAttribute("errors", errors);
+			return "/personalPage/personalDetail.jsp";
+		}
+		return"redirect:/homePage/index.jsp";
+	}
 }
+	
+	
+	
+	
+	
+	
+	
+	
+

@@ -30,9 +30,9 @@ public class PostDAO {
 	
 	
 	public static void main(String... args) throws IOException, Exception, SQLException {
-		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
+//		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
+//		Session session = sessionFactory.openSession();
+//		Transaction tx = session.beginTransaction();
 //		PostDAO postDAO = new PostDAO();
 //		postDAO.setSession(session);
 //		
@@ -79,9 +79,9 @@ public class PostDAO {
 		
 		
 		
-		tx.commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+//		tx.commit();
+//		session.close();
+//		HibernateUtil.closeSessionFactory();
 	}
 	
 	//if you need to test
@@ -106,7 +106,7 @@ public class PostDAO {
 	}
 	public List<PostBean> findArticleFromMember (String member_username){
 		//0106 OK
-		String hql = "from PostBean WHERE member_username=:member_username and post_idM=null";
+		String hql = "from PostBean WHERE member_username=:member_username and post_idM=null Order By post_time Desc";
 		Query<PostBean> query = this.getSession().createQuery(hql);
 		query.setParameter("member_username", member_username);
 		List<PostBean> PostList = query.list();
@@ -122,10 +122,9 @@ public class PostDAO {
 	}
 	public PostBean create(PostBean bean) {
 		//0103 OK
-		
-				this.getSession().save(bean);
-				return bean;
-
+		this.getSession().save(bean);
+		System.out.println("postDao的"+bean);
+		return bean;
 	}
 	
 	public void update(PostBean bean) {

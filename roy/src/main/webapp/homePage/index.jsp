@@ -42,6 +42,7 @@
 </head>
 <body>
 	<div id="body_bg">
+
 		<jsp:include page="header.jsp" />
 		<!-- === BEGIN CONTENT === -->
 		<div id="content">
@@ -87,20 +88,7 @@
 				<!-- End Carousel Slideshow -->
 			</div>
 		</div>
-		<div class="container background-gray-lighter">
-			<div class="row">
-				<h2 class="animate fadeIn text-center margin-top-50">大家都在聽</h2>
-				<hr class="margin-top-15">
-				<p class="animate fadeIn text-center">
-					Enlighten offers you the canvas to turn your imagination in to a
-					reality <br>giving you the perfect framework for your project!
-				</p>
-				<p class="text-center animate fadeInUp margin-bottom-50">
-					<button type="button" class="btn btn-lg btn-primary">View
-						Details</button>
-				</p>
-			</div>
-		</div>
+	
 		<div class="container">
 			<div class="row margin-vert-30">
 				<!-- Main Text -->
@@ -119,9 +107,7 @@
 						liber tempor cum soluta nobis eleifend option congue nihil
 						imperdiet doming id quod mazim placerat facer possim assum.
 						Curabitur eget nisl a risus.</p>
-					<img class="visible-lg animate fadeInUp"
-						style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;"
-						src="/roy/img/frontpage/responsive_homepage.png" alt="">
+					
 				</div>
 				<div class="col-md-9" style="float: left; width: 380px;">
 					<h2>熱門募資活動</h2>
@@ -138,9 +124,7 @@
 						liber tempor cum soluta nobis eleifend option congue nihil
 						imperdiet doming id quod mazim placerat facer possim assum.
 						Curabitur eget nisl a risus.</p>
-					<img class="visible-lg animate fadeInUp"
-						style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;"
-						src="/roy/img/frontpage/responsive_homepage.png" alt="">
+				
 				</div>
 				<!-- End Main Text -->
 				<!-- Side Column -->
@@ -152,27 +136,123 @@
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">Thursday</h6>
+					<h6 style="margin: 0;"><a href="/roy/personalPage/somebodyPersonalPage.controller?somebody=Peter&nickname=fifi">fifi</a></h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">Fri-Sat</h6>
+					<h6 style="margin: 0;">Marry</h6>
 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
-					<h6 style="margin: 0;">Suday</h6>
+					<h6 style="margin: 0;">Jack</h6>
 					<h4 style="margin: 0;">CLOSED</h4>
 					<p>
 						<small>* Lorem ipsum dolor sit amet</small>
 					</p>
 					<hr>
+					<button type="button" class="btn btn-primary" style="width:100%" onclick="window.location.href ='/roy/rank/rank.jsp'">媽的看排行喔</button>
 				</div>
 				<!-- End Side Column -->
 			</div>
+				<div class="container background-gray-lighter">
+			<div class="row">
+				<h2 class="animate fadeIn text-center margin-top-50">大家都在聽</h2>
+				<hr class="margin-top-15">
+				<p class="animate fadeIn text-center">
+					Enlighten offers you the canvas to turn your imagination in to a
+					reality <br>giving you the perfect framework for your project!
+				</p>
+				<p class="text-center animate fadeInUp margin-bottom-50">
+					<button type="button" class="btn btn-lg btn-primary">View
+						Details</button>
+				</p>
+				          <div class="row">
+                     <!-- 小輪播 - Default Full Width -->
+                     <div class="col-md-12">
+                         <div class="carousel slide testimonials" id="testimonials1">
+                             <ol class="carousel-indicators">
+                                 <li class="active" data-slide-to="0" data-target="#testimonials-rotate">
+                                 </li>
+                                 <li data-slide-to="1" data-target="#testimonials1">
+                                 </li>
+                                 <li data-slide-to="2" data-target="#testimonials1">
+                                 </li>
+                             </ol>
+                             <div class="carousel-inner">
+                                 <div class="item active">
+                                     <div class="col-md-12">
+                                         <p>
+                                             Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
+                                             porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                         </p>
+                                         <div class="testimonial-info">
+                                             <img alt="" src="assets/img/profiles/53.jpg" class="img-circle img-responsive" />
+                                             <span class="testimonial-author">
+                                                 Cristina Hall
+                                                 <em>
+                                                     Javascript Developer, Business Inc.
+                                                 </em>
+                                             </span>
+                                         </div>
+                                     </div>
+                                     <div class="clearfix"></div>
+                                 </div>
+                                 <div class="item">
+                                     <div class="col-md-12">
+                                         <p>
+                                             Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem.
+                                             Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
+                                         </p>
+                                         <div class="testimonial-info">
+                                             <img alt="" src="assets/img/profiles/99.jpg" class="img-circle img-responsive" />
+                                             <span class="testimonial-author">
+                                                 Anthony Watkins
+                                                 <em>
+                                                     Web Developer, Amazing Designs Ltd.
+                                                 </em>
+                                             </span>
+                                         </div>
+                                     </div>
+                                     <div class="clearfix"></div>
+                                 </div>
+                                 <div class="item">
+                                     <div class="col-md-12">
+                                         <p>
+                                             Cras justo odio, dapibus ac facilisis in, egestas eget quam. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Donec id elit non mi
+                                             porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                         </p>
+                                         <div class="testimonial-info">
+                                             <img alt="" src="assets/img/profiles/78.jpg" class="img-circle img-responsive" />
+                                             <span class="testimonial-author">
+                                                 Jonathan Baker
+                                                 <em>
+                                                     CEO  Founder, Virtuoso Inc.
+                                                 </em>
+                                             </span>
+                                         </div>
+                                     </div>
+                                     <div class="clearfix"></div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="testimonials-arrows pull-right">
+                             <a class="left" href="#testimonials1" data-slide="prev">
+                                 <span class="fa fa-arrow-left"></span>
+                             </a>
+                             <a class="right" href="#testimonials1" data-slide="next">
+                                 <span class="fa fa-arrow-right"></span>
+                             </a>
+                             <div class="clearfix"></div>
+                         </div>
+                     </div>
+                     <!-- End 小輪播 - default full width -->
+                 </div>
+			</div>
+		</div>
 		</div>
 
 	</div>

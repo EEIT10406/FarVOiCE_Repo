@@ -4,8 +4,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.net.URL;
+import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +22,13 @@ import model.dao.MusicDAO;
 public class MusicService {
 	@Autowired
 	private MusicDAO musicDao;
+	
+	@Autowired
+	private HttpServletRequest request;
+	
 	@Autowired
 	private ServletContext application;
+	
 
 	public MusicDAO getMusicDao() {
 		return musicDao;
@@ -30,6 +38,7 @@ public class MusicService {
 		this.musicDao = musicDao;
 	}
 	
+	//查by類型,時間,名稱
 	public LinkedList<HashMap<String, String>> search(String type,String searchString,String before) {
 		searchString = " music_name like '%"+searchString+"%'";
 		if(type!=null&&(!"".equals(type.trim()))) {
@@ -48,6 +57,13 @@ public class MusicService {
 			 l1.add(m1);
 		 }
 		return l1;
+	}
+	// 找該使用者上傳的所有音樂
+	public List<MusicBean> findMusicByUser(String member_username) {
+		if(member_username!=null) {
+			return musicDao.findAllByUser(member_username);
+		}
+		return null; 
 	}
 	
 	//把音樂從資料庫刪除
@@ -82,23 +98,39 @@ public class MusicService {
 
 	// 給上傳的音檔一個儲存路徑(上傳音檔限制 5000000 byte)
 	public String musicFilePath(byte[] file) throws IOException {
-		String musicFilePath = application.getRealPath("/login-signUp-upload/uploadMusic/") + System.currentTimeMillis()
-				+ ".mp3";
+		String musicFilePath = "C:/Roy_FarVoice/music/" + System.currentTimeMillis()+".mp3";
 		FileOutputStream out = new FileOutputStream(musicFilePath);
 		out.write(file);
 		out.close();
-		return musicFilePath.substring(musicFilePath.indexOf("uploadMusic"));
+		return "/roy/music"+musicFilePath.substring(21);
 	}
 
 	// 給上傳的圖片檔一個儲存路徑
 	public String imageFilePath(byte[] file) throws IOException {
-		String imageFilePath = application.getRealPath("/login-signUp-upload/uploadImage/") + System.currentTimeMillis()
-				+ ".jpg";
+
+		String imageFilePath = "C:/Roy_FarVoice/image/music/" + System.currentTimeMillis()+".jpg";
+
+
+		
 		FileOutputStream out = new FileOutputStream(imageFilePath);
 		out.write(file);
 		out.close();
-		return imageFilePath.substring(imageFilePath.indexOf("uploadImage"));
+		return "/roy/image/music"+imageFilePath.substring(27);
 	}
+	
+	
+//	// 給上傳的圖片檔一個儲存路徑
+//		public String imageFilePath(byte[] file) throws IOException {
+//			String imageFilePath = application.getRealPath("/login-signUp-upload/uploadImage/") + System.currentTimeMillis()
+//					+ ".jpg";
+//			System.out.println(imageFilePath);
+//			FileOutputStream out = new FileOutputStream(imageFilePath);
+//			out.write(file);
+//			out.close();
+//			System.out.println(imageFilePath.substring(imageFilePath.indexOf("roy")));
+//			return "\\"+imageFilePath.substring(imageFilePath.indexOf("roy"));
+//		}
+
 
 //	public static void main(String[] args) {
 //		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();

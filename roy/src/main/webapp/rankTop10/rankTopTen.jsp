@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -152,7 +152,7 @@ table {
 											<div
 												style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">FarVoice
 												即時熱門</div>
-											<table>
+											<table id="rankTopTen">
 												<tr>
 													<th>排名</th>
 													<th>歌曲名稱</th>
@@ -166,43 +166,40 @@ table {
 														href=""><span
 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
 
+
 														<div>
-<!-- <<<<<<< HEAD -->
-															<img src="../img/emptyLove.png" class="heart"> 
-<!-- 															<span -->
-<!-- 																class="heartCount"> 0</span>  -->
-<!-- 																<span id="share" -->
-<!-- 																class="shareAndAdd"> <a href="" -->
-<!-- 																style="color: black;"><img src="../img/share.png" -->
-<!-- 																	width="15px" />分享</a> -->
-<!-- 															</span>  -->
-															
-																<span id="share">
+															<!-- <<<<<<< HEAD -->
+															<img src="../img/emptyLove.png" class="heart">
+															<!-- 															<span -->
+															<!-- 																class="heartCount"> 0</span>  -->
+															<!-- 																<span id="share" -->
+															<!-- 																class="shareAndAdd"> <a href="" -->
+															<!-- 																style="color: black;"><img src="../img/share.png" -->
+															<!-- 																	width="15px" />分享</a> -->
+															<!-- 															</span>  -->
+
+															<span id="share">
+
 																<button type="button" class="btnAddList"
 																	data-toggle="modal" data-target="#sharebox"
 																	style="outline: none;">
 																	<img src="../img/share.png" width="15px">分享
-																</button>
-<!-- ======= -->
-<!-- 															<img src="../img/emptyLove.png" class="heart"> <span -->
-<!-- 																class="heartCount"> 0</span> <span id="share" -->
-<!-- 																class="shareAndAdd"> <a href="" -->
-<!-- 																style="color: black;"><img src="../img/share.png" -->
-<!-- 																	width="15px" />分享</a> -->
-<!-- 															</span> <span id="add"> -->
 
-<!-- 																<button type="button" class="btnAddList" -->
-<!-- 																	data-toggle="modal" data-target="#addList" -->
-<!-- 																	style="outline: none;"> -->
-<!-- 																	<img src="../img/add.png" width="15px">加入歌單 -->
-<!-- 																</button> -->
+																</button> <!-- ======= --> <!-- 															<img src="../img/emptyLove.png" class="heart"> <span -->
+																<!-- 																class="heartCount"> 0</span> <span id="share" -->
+																<!-- 																class="shareAndAdd"> <a href="" -->
+																<!-- 																style="color: black;"><img src="../img/share.png" -->
+																<!-- 																	width="15px" />分享</a> --> <!-- 															</span> <span id="add"> -->
 
-<!-- >>>>>>> branch 'branch1' of https://github.com/EEIT10406/FarVOiCE_Repo.git -->
-															</span>
 
-															
-															<span id="add">
+
+																<!-- 																<button type="button" class="btnAddList" -->
+																<!-- 																	data-toggle="modal" data-target="#addList" -->
+																<!-- 																	style="outline: none;"> --> <!-- 																	<img src="../img/add.png" width="15px">加入歌單 -->
+																<!-- 																</button> --> <!-- >>>>>>> branch 'branch1' of https://github.com/EEIT10406/FarVOiCE_Repo.git -->
+															</span> <span id="add">
 																<button type="button" class="btnAddList"
+
 																	data-toggle="modal" data-target="#addList"
 																	style="outline: none;">
 																	<img src="../img/add.png" width="15px">加入歌單
@@ -472,7 +469,7 @@ table {
 													<td><img src="left.JPG" class="music" /><a href=""><span
 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
 
-															<div>
+														<div>
 															<img src="../img/emptyLove.png" class="heart"> <span
 																class="heartCount"> 0</span> <span id="share"
 																class="shareAndAdd"> <a href=""
@@ -638,7 +635,37 @@ table {
 	</div>
 	<!-- === END CONTENT === -->
 
+
+	<!-- addshare begin-->
+	<div class="modal fade" id="sharebox" aria-hidden="true">
+		<div class="modal-dialog" style="width: 300px;">
+			<div class="modal-content">
+				<h5 style="margin: 20px;">分享歌曲</h5>
+				<form action="<c:url value="/rankTop10/ShareMusic.controller"/>"
+					method="get">
+					<div class="modal-body">
+						<div class="form-group"></div>
+						<textarea name="shareContent" style="width: 250px; height: 270px" onFocus="if(this.value==this.defaultValue) this.value=''" onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
+					</div>
+					<div id="displayShareMusic">
+						<img src="../img/300x300.jpg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
+						<span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+						<button type="submit" class="btn btn-primary">確定</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- addshare end-->
+
+	
 	<!-- addPlayList begin-->
+	
 	<div class="modal fade" id="addList" aria-hidden="true">
 		<div class="modal-dialog" style="width: 300px;">
 			<div class="modal-content">
@@ -664,36 +691,20 @@ table {
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- addPlayList end-->
 
-	
-	
-	<!-- addshare begin-->
-	<div class="modal fade" id="sharebox" aria-hidden="true">
-		<div class="modal-dialog" style="width: 300px;">
-			<div class="modal-content">
-				<h5 style="margin: 20px;">分享</h5>
-				
-				<form action="<c:url value="/rankTop10/ShareMusic.controller"/>" method="get">
-					<div class="modal-body" >
-						<div class="form-group">
-						</div>
-<!-- 						<div style="float: right;"> -->
-							<textarea name="shareContent" style="width:250px;height:270px">留言</textarea>
-<!-- 						</div> -->
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
-						<button type="submit" class="btn btn-primary">確定</button>
-					</div>
-				</form>
+	<c:if test="${not empty insert}">
+		<script>
+			alert("分享成功~快去看看吧~~");
+			window.location.href = "/roy/personalPage/personalPage.jsp";
+			// 取的img的路徑
+			var imgSrc = $("#displayShareMusic").find("img").attr("src");
+			// 取的歌名
+			var spanContent = $("#displayShareMusic").find("span").text();
+		</script>
+	</c:if>
 
-			</div>
-		</div>
-	</div>
-
-	<!-- addshare end-->
 
 
 
@@ -701,6 +712,50 @@ table {
 	<div id="player">
 		<jsp:include page="../homePage/player.jsp" />
 	</div>
+	
+	<script>
+		//讀取使用者有什麼歌單
+// 		function loadListMusic(playListId) {
+// 			$.getJSON('/roy/list/readPlayListMusic',
+// 							{'playListId' : playListId},
+// 							function(data) {
+// 								var docFrag = $(document.createDocumentFragment());
+// 								$.each(data,function(index, list) {
+// 									var cell1 = $('<td name="music_id"></td>').text(list.music_id)
+// 									var img = $("<img>");
+// 									$(img).attr({"src" : list.music_music,"style" : "width: 100px; height: 100px;"});
+// 									var cell2 = $('<td></td>').append(img)
+// 									var cell3 = $('<td name="music_name"></td>').attr("style","font-size: 15px;").text(list.music_name)
+// 									var cell4 = $('<td name="member_username"></td>').attr("style","font-size: 15px;").text(list.member_username)
+// 									var cell5 = $('<td name="music_uploadTime"></td>').attr("style","font-size: 15px;").text(list.music_uploadTime)
+// 									var cell6 = $('<td></td>').html('<button class="btn btn-primary pull-right" >刪除</button>')
+// 													//<tr><td>
+// 									var row = $('<tr></tr>').append([cell1,cell2,cell3,cell4,cell5,cell6 ])
+// 									docFrag.append(row);
+// 							})
+// 								$('#playListMusicTable>tbody').html(docFrag);
+// 								$('td[name="music_id"]').hide();
+// 					})
+// 		}
+// 		$('#rankTopTen>tbody').on('click', 'td:nth-child(3)',
+// 				function() {
+// 					var row = $(this).parents('tr');
+// 					var playlist_id = row.children('td:nth-child(1)').text();
+// 					loadListMusic(playlist_id)	
+					
+// 					//刪除歌單裡的音樂
+// 					$('#playListMusicTable>tbody').on('click', 'button:nth-child(1)',function() {
+// 					var row = $(this).parents('tr');
+// 					var music_id = row.children('td:nth-child(1)').text();
+					
+// 					$.get('/roy/list/deletePlayListMusic', {'music_id' : music_id,'playlist_id':playlist_id}, function(data) {
+// 						loadListMusic(playlist_id)
+// 						loadList('${user.member_username}')
+// 					})
+// 				})
+// 		})
+						
+	</script>
 
 </body>
 </html>

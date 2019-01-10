@@ -15,18 +15,21 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-
 import model.bean.ReportBean;
 import model.bean.StoryBean;
+import model.bean.BackerBean;
+import model.bean.FundingBean;
+import model.bean.FollowBean;
 import model.bean.ListMusicBean;
+import model.bean.MemberBean;
 import model.bean.MusicBean;
 import model.bean.PlaylistBean;
-import model.bean.MemberBean;
 import model.bean.PostBean;
+import model.bean.RewardBean;
 
 @Configuration
+@ComponentScan(basePackages = "model")
 @EnableTransactionManagement
-@ComponentScan(basePackages={"model"})
 public class RootAppConfig {
 	@Bean
 	public DataSource dataSource() {
@@ -44,8 +47,7 @@ public class RootAppConfig {
 
 	@Bean
 	public SessionFactory sessionFactory() {
-		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,ReportBean.class,StoryBean.class);
+		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,FollowBean.class, BackerBean.class, FundingBean.class, RewardBean.class);
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.setProperty("hibernate.show_sql", "true");
@@ -54,16 +56,17 @@ public class RootAppConfig {
 
 		return builder.buildSessionFactory();
 	}
-	@Bean(name="transactionManager")
-    @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-         HibernateTransactionManager txManager = new HibernateTransactionManager();
-         txManager.setSessionFactory(sessionFactory);
-         return txManager;
-      }	
-	
-	private Properties additionalProperties()  {
-		Properties properties=new Properties();
+
+	@Bean(name = "transactionManager")
+	@Autowired
+	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+		HibernateTransactionManager txManager = new HibernateTransactionManager();
+		txManager.setSessionFactory(sessionFactory);
+		return txManager;
+	}
+
+	private Properties additionalProperties() {
+		Properties properties = new Properties();
 		properties.put("hibernate.dialect", org.hibernate.dialect.SQLServer2012Dialect.class);
 		properties.put("hibernate.show_sql", Boolean.TRUE);
 		properties.put("hibernate.format_sql", Boolean.TRUE);

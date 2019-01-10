@@ -27,6 +27,12 @@ public class FollowId implements Serializable{
 	}
 
 	private String member_usernameS;
+	public FollowId(String member_usernameS, String member_usernameM) {
+		super();
+		this.member_usernameS = member_usernameS;
+		this.member_usernameM = member_usernameM;
+	}
+
 	private String member_usernameM;
 
 	public String getMember_usernameS() {
