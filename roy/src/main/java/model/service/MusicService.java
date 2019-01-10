@@ -2,6 +2,7 @@ package model.service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -25,6 +26,7 @@ public class MusicService {
 	
 	@Autowired
 	private ServletContext application;
+	
 
 	public MusicDAO getMusicDao() {
 		return musicDao;
@@ -83,11 +85,15 @@ public class MusicService {
 
 	// 給上傳的圖片檔一個儲存路徑
 	public String imageFilePath(byte[] file) throws IOException {
+
 		String imageFilePath = "C:/Roy_FarVoice/image/music/" + System.currentTimeMillis()+".jpg";
+
+
+		
 		FileOutputStream out = new FileOutputStream(imageFilePath);
 		out.write(file);
 		out.close();
-		return "/roy/image"+imageFilePath.substring(27);
+		return "/roy/image/music"+imageFilePath.substring(27);
 	}
 	
 	

@@ -151,6 +151,22 @@ word-break:break-all;
 </style>
 <script>
 	$(document).ready(function() {
+		$.get('/roy/personalPage/somebodyPersonalPageCheckFollow.controller', {}, 
+				function(data) {
+					
+					if(data=="true"){
+						$("#follow").attr("class", "follow");
+						$("#follow").html('追蹤中');
+					}
+					else{
+						$("#follow").attr("class", "unfollow");
+						$("#follow").html('追蹤');
+					}
+				}
+		)
+	
+			
+		
 		$('#login').click(function() {
 			window.location.href = "login.jsp";
 		})
@@ -169,13 +185,15 @@ word-break:break-all;
 	})
 
 	function followClick() {
-		if ($(this).attr("class") == "follow") {
-	
+		if ($(this).attr("class") == "follow") {//追蹤改成退追蹤
+			$.get('/roy/personalPage/somebodyPersonalPageFollow.controller', {'somebody':$('#userName').text()}, function(data) {})
+// 			這個會跳轉畫面window.location.href = "/roy/personalPage/somebodyPersonalPageFollow.controller?somebody="+$('#userName').text();
 			$(this).attr("class", "unfollow");
 			$(this).html('追蹤');
 
-		} else {
-			window.location.href = "/roy/personalPage/somebodyPersonalPageFollow.controller?somebody="+$('#userName').text();
+		} else {//追蹤
+			$.get('/roy/personalPage/somebodyPersonalPageFollow.controller', {'somebody':$('#userName').text()}, function(data) {})
+// 			這個會跳轉畫面window.location.href = "/roy/personalPage/somebodyPersonalPageFollow.controller?somebody="+$('#userName').text();
 			$(this).attr("class", "follow");
 			$(this).html('已追蹤');
 		}
