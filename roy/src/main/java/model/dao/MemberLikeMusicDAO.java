@@ -14,6 +14,7 @@ import javax.sql.rowset.serial.SerialBlob;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.MemberLikeMusicBean;
@@ -22,27 +23,28 @@ import model.hibernate.HibernateUtil;
 @Repository
 public class MemberLikeMusicDAO {
 	//Spring MVC
-//	private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 //	public void setSessionFactory(SessionFactory sessionFactory) {
 //		this.sessionFactory = sessionFactory;
 //	}
-//	public Session getSession() {
-//	return this.sessionFactory.getCurrentSession();
-//}
+	public Session getSession() {
+	return this.sessionFactory.getCurrentSession();
+}
 	
 	
-	public static void main(String... args) throws IOException, Exception, SQLException {
-		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		MemberLikeMusicDAO memberLikeMusicDAO = new MemberLikeMusicDAO();
-		memberLikeMusicDAO.setSession(session);
+//	public static void main(String... args) throws IOException, Exception, SQLException {
+//		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
+//		Session session = sessionFactory.openSession();
+//		Transaction tx = session.beginTransaction();
+//		MemberLikeMusicDAO memberLikeMusicDAO = new MemberLikeMusicDAO();
+//		memberLikeMusicDAO.setSession(session);
 //		//findByPk
-		MemberLikeMusicId memberLikeMusicId = new MemberLikeMusicId();
-		memberLikeMusicId.setMember_username("Peter");
-		memberLikeMusicId.setMusic_id(1);
-		MemberLikeMusicBean bean0 = memberLikeMusicDAO.findByPrimaryKey(memberLikeMusicId);
-		System.out.println(bean0);		
+//		MemberLikeMusicId memberLikeMusicId = new MemberLikeMusicId();
+//		memberLikeMusicId.setMember_username("Peter");
+//		memberLikeMusicId.setMusic_id(1);
+//		MemberLikeMusicBean bean0 = memberLikeMusicDAO.findByPrimaryKey(memberLikeMusicId);
+//		System.out.println(bean0);		
 //		
 //		//findAll
 //		List<MemberLikeMusicBean> beans = memberLikeMusicDAO.findAll();
@@ -79,19 +81,33 @@ public class MemberLikeMusicDAO {
 		
 		
 		
-		tx.commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+//		tx.commit();
+//		session.close();
+//		HibernateUtil.closeSessionFactory();
+//	}
+	
+//	private Session session;
+//	public void setSession(Session session) {
+//		this.session = session;
+//	}
+//
+//	public Session getSession() {
+//		return session;
+//	}
+	
+	
+	//找出歌曲的按讚次數
+	public List<MemberLikeMusicBean> findLikeCountByMusicId(MemberLikeMusicId memberLikeMusicId){
+		return this.getSession().createQuery("from MemberLikeMusicBean where music_id="+memberLikeMusicId.getMusic_id(), MemberLikeMusicBean.class).list();
 	}
 	
-	private Session session;
-	public void setSession(Session session) {
-		this.session = session;
+	//找出使用者喜歡哪些歌
+	public List <MemberLikeMusicBean> findLikeMusicByUser(String member_username) {
+		
+		return this.getSession().createQuery("from MemberLikeMusicBean where member_username='"+member_username+"'", MemberLikeMusicBean.class)
+				.list();
 	}
-
-	public Session getSession() {
-		return session;
-	}
+	
 	
 	public MemberLikeMusicBean findByPrimaryKey(MemberLikeMusicId memberLikeMusicId) {
 		//0103 OK

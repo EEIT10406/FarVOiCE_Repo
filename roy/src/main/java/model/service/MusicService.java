@@ -23,13 +23,6 @@ public class MusicService {
 	@Autowired
 	private MusicDAO musicDao;
 	
-	@Autowired
-	private HttpServletRequest request;
-	
-	@Autowired
-	private ServletContext application;
-	
-
 	public MusicDAO getMusicDao() {
 		return musicDao;
 	}
@@ -59,6 +52,14 @@ public class MusicService {
 		 }
 		return l1;
 	}
+	
+	//更新音樂
+	public void updateMusic(MusicBean bean) {
+		if(bean!=null) {
+		 musicDao.update(bean);
+		}
+	}
+	
 	// 找該使用者上傳的所有音樂
 	public List<MusicBean> findMusicByUser(String member_username) {
 		if(member_username!=null) {
@@ -77,7 +78,7 @@ public class MusicService {
 	}
 	
 
-	// 新增音樂內容到資料庫ok
+	// 上傳音樂
 	public MusicBean uploadMusic(MusicBean bean) {
 		if (bean != null) {
 			return musicDao.create(bean);
@@ -86,7 +87,7 @@ public class MusicService {
 		}
 	}
 	
-	// 用musicId抓出音樂內容
+	// 抓音樂
 		public MusicBean findMusic(Integer music_id) {
 			if(music_id!=null) {
 				MusicBean musicBean=musicDao.findByPrimaryKey(music_id);
@@ -97,7 +98,7 @@ public class MusicService {
 			return null;
 		}
 
-	// 給上傳的音檔一個儲存路徑(上傳音檔限制 5000000 byte)
+	// 給上傳的音檔一個儲存路徑
 	public String musicFilePath(byte[] file) throws IOException {
 		String musicFilePath = "C:/Roy_FarVoice/music/" + System.currentTimeMillis()+".mp3";
 		FileOutputStream out = new FileOutputStream(musicFilePath);
@@ -108,29 +109,13 @@ public class MusicService {
 
 	// 給上傳的圖片檔一個儲存路徑
 	public String imageFilePath(byte[] file) throws IOException {
-
 		String imageFilePath = "C:/Roy_FarVoice/image/music/" + System.currentTimeMillis()+".jpg";
-
-
-		
 		FileOutputStream out = new FileOutputStream(imageFilePath);
 		out.write(file);
 		out.close();
 		return "/roy/image/music"+imageFilePath.substring(27);
 	}
 	
-	
-//	// 給上傳的圖片檔一個儲存路徑
-//		public String imageFilePath(byte[] file) throws IOException {
-//			String imageFilePath = application.getRealPath("/login-signUp-upload/uploadImage/") + System.currentTimeMillis()
-//					+ ".jpg";
-//			System.out.println(imageFilePath);
-//			FileOutputStream out = new FileOutputStream(imageFilePath);
-//			out.write(file);
-//			out.close();
-//			System.out.println(imageFilePath.substring(imageFilePath.indexOf("roy")));
-//			return "\\"+imageFilePath.substring(imageFilePath.indexOf("roy"));
-//		}
 
 
 //	public static void main(String[] args) {
