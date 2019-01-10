@@ -119,7 +119,7 @@ public class StoryDAO {
 		return storyList;
 	}
 	
-	public void test(String member_username){
+	public List<Object[]> test(String member_username){
 		//0103 OK
 		
 		Query<Object[]> query = session.createQuery("select  s.story_time,s.member_username,s.music_id, m.music_name from StoryBean s " + "INNER JOIN s.musicBean m WHERE s.member_username=:member_username Order By story_time Desc");
@@ -129,6 +129,8 @@ public class StoryDAO {
 		for(Object[] arr : list){
 			System.out.println(Arrays.toString(arr));
 		}
+		return list;
+		
 	}
 	
 	public List<MusicBean> findMusicnameByMusicId(Integer music_id) {
