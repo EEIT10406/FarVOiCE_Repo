@@ -2,6 +2,8 @@ package model.bean;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import model.bean.primarykey.ListMusicId;
@@ -19,6 +21,14 @@ public class ListMusicBean {
 	}
 	//	private Integer playlist_id;
 	//	private Integer music_id;
+	
+	@ManyToOne
+	@JoinColumn(
+			name="playlist_id",
+			referencedColumnName="playlist_id",
+			insertable=false, updatable=false
+			)
+	private PlaylistBean playList;
 	@EmbeddedId
 	private ListMusicId id;
 	public ListMusicId getId() {

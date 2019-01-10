@@ -1,14 +1,11 @@
 package controller;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONValue;
@@ -16,20 +13,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import model.bean.MemberBean;
 import model.bean.MusicBean;
-import model.bean.PlaylistBean;
+import model.bean.primarykey.MemberLikeMusicId;
+import model.service.MemberLikeMusicService;
 import model.service.MusicService;
 
 @Controller
 public class MusicController {
 	@Autowired
 	private MusicService musicService;
+	@Autowired
+	private MemberLikeMusicService memberLikeMusicService;
 
 	// 上傳音樂
 	@RequestMapping("/login-signUp-upload/uploadMusic")
@@ -76,37 +75,51 @@ public class MusicController {
 	@ResponseBody
 	public String readMusic(String username) {
 		if (username != null && username.trim() != "") {
+			// 使用者上傳的所有沒被下架的歌
 			List<MusicBean> musicBean = musicService.findMusicByUser(username);
+            
+			// 找出該使用者喜歡哪些音樂,回傳音樂id
+			List<Integer> memberLikeMusics = memberLikeMusicService.memberLikeMusics(username);
+			int times=0;
 			if (musicBean != null) {
 				List<Map<String, String>> musics = new LinkedList<Map<String, String>>();
 				for (MusicBean bean : musicBean) {
 					Map<String, String> jsonMap = new HashMap<>();
+					for (Integer likeMusics : memberLikeMusics) {
+						if (bean.getMusic_id() == likeMusics) {
+							jsonMap.put("memberLikeMusic", "/roy/img/love.png");
+							break;
+						}
+						times++;
+					}
+					if(times == memberLikeMusics.size()) {
+						jsonMap.put("memberLikeMusic", "/roy/img/emptyLove.png");
+					}
 					jsonMap.put("music_id", String.valueOf(bean.getMusic_id()));
 					jsonMap.put("music_name", bean.getMusic_name());
 					jsonMap.put("music_Image", bean.getMusic_Image());
 					jsonMap.put("music_likeCount", String.valueOf(bean.getMusic_likeCount()));
 					musics.add(jsonMap);
+					times=0;
 				}
 				return JSONValue.toJSONString(musics);
 			}
 		}
 		return "";
 	}
-	
-	
+
 	// 讀取使用者上傳的音樂個數(不包括下架音樂)
-		@RequestMapping(value = "/personalPage/uploadMusicCount", produces = "text/plain;charset=UTF-8")
-		@ResponseBody
-		public String uploadMusicCount(String username) {
-			if (username != null && username.trim() != "") {
-				List<MusicBean> musicBean = musicService.findMusicByUser(username);
-				if (musicBean != null) {
-					return String.valueOf(musicBean.size());
-				}
+	@RequestMapping(value = "/personalPage/uploadMusicCount", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String uploadMusicCount(String username) {
+		if (username != null && username.trim() != "") {
+			List<MusicBean> musicBean = musicService.findMusicByUser(username);
+			if (musicBean != null) {
+				return String.valueOf(musicBean.size());
 			}
-			return "";
 		}
-		
+		return "";
+	}
 
 	// 刪音樂
 	@RequestMapping(value = "/list/deleteMusic", produces = "text/plain;charset=UTF-8")
