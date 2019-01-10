@@ -1,6 +1,7 @@
 package model.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import model.bean.MusicBean;
 import model.bean.StoryBean;
@@ -68,6 +71,10 @@ public class StorySevice {
 //		}
 		
 		
+		//test五筆版
+	
+		
+		
 //		HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
 //		HibernateUtil.closeSessionFactory();
 	}
@@ -106,18 +113,36 @@ public class StorySevice {
 //	}
 //	
 	//給使用者name，回傳使用者的記錄的所有musicBean (五筆版)
-		public List<MusicBean> findStoryByUsernameMax5(String user) {
-			List<StoryBean> result = storyDAO.findStoryByUsernameMax5(user);
-			List<MusicBean> MusicBeanresult = new ArrayList<>(); 
-			MusicBean mm = null;
-			if(user!=null) {	
-				for(StoryBean bean2:result) {
-					 mm =musicDAO.findByPrimaryKey(bean2.getMusic_id());			
-					 MusicBeanresult.add(mm);
-				}		
-			}
-			return MusicBeanresult;
+//		public List<MusicBean> findStoryByUsernameMax5(String user) {
+//			List<StoryBean> result = storyDAO.findStoryByUsernameMax5(user);
+//			List<MusicBean> MusicBeanresult = new ArrayList<>(); 
+//			MusicBean mm = null;
+//			if(user!=null) {	
+//				for(StoryBean bean2:result) {
+//					 mm =musicDAO.findByPrimaryKey(bean2.getMusic_id());			
+//					 MusicBeanresult.add(mm);
+//				}		
+//			}
+//			return MusicBeanresult;
+//		}
+	
+
+	
+	public List<Object[]> tee(String user) {
+		List<Object[]> result = storyDAO.te(user);
+		
+		if(user!=null) {	
+			for(Object[] bean2:result) {
+				 		
+				 System.out.println(Arrays.toString(bean2));
+			}		
 		}
+		return result;
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -357,33 +357,7 @@ function loadMusicCount(username) {
 		$('#musicCount').html(data);
 	})
 }
-
-<<<<<<< HEAD
-//讀取歷史紀錄
-// function loadHistory(username) {
-// 	$.getJSON('/roy/list/readPlayList',{'username' : username},function(data) {
-// 		var content;
-// 		 $('#history').html("");
-// 		$.each(data,function(index, list) {
-// 			content+='<div class="col-md-5" style="float: left; width: 300px;margin-bottom:13px;">'+
-// 		             '<span name="playlist_id">'+list.playlist_id+'</span>'+
-// 			         '<a href="">'+
-// 		                  '<div style="width: 160px;height: 160px;background: url('+list.playlist_image+') no-repeat; background-size:160px 160px;">'+
-// 			              '<div class="listSongCount">'+list.playlist_musicCount+'</div></div>'+
-// 		             '</a>'+
-//                      '<div style="font-size: 16px;">'+list.playlist_name+'</div>'+
-// 	                 '<div><span style="cursor: pointer;"> <img src="../img/delete.png" width="17px" />刪除</span></div>'+
-//                  '</div>';
-//               })
-//               $('#list').html(content.substring(9));
-// 		$('span[name="playlist_id"]').hide();
-// 	})
-//}
-
-=======
->>>>>>> branch 'branch1' of https://github.com/EEIT10406/FarVOiCE_Repo.git
-
-			
+		
 </script>
 </head>
 <body>
@@ -476,29 +450,10 @@ function loadMusicCount(username) {
 																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a></h4>						
 																	</div>
 														  		</div>
-													</div>	
-												
+															</div>	
 												<!-- /media-body -->
 											</div><!-- /media -->
-										</div>
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
+										</div>	
 							</div><!-- ===END of HISTORY === -->
 							
 							

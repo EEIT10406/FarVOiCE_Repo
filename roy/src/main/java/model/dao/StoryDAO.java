@@ -121,6 +121,22 @@ public class StoryDAO {
 	}
 	
 	
+	public List<Object[]> te(String member_username) {
+		//0103 OK
+		String hql = "select s.story_time,s.member_username,s.music_id,m.music_name from StoryBean s "+"inner join s.musicBean m WHERE s.member_username=:member_username Order By story_time Desc";
+		Query<Object[]> query = this.getSession().createQuery(hql);
+//		Query<StoryBean> query = this.getSession().createQuery(hql);
+		query.setParameter("member_username", member_username);
+		query.setMaxResults(5);
+		List<Object[]> list = query.list();
+		for(Object[] abc :list) {
+			System.out.println(abc);
+		}
+		return list;
+	}
+	
+	
+	
 	
 	public List<MusicBean> findMusicnameByMusicId(Integer music_id) {
 		//0103 OK
