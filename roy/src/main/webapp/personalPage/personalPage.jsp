@@ -155,13 +155,6 @@ opacity:0.4
 </style>
 <script>
 	$(document).ready(function() {
-	
-		
-		
-		
-		
-		
-		
 		var follows = document.querySelectorAll("div.follow");
 		var unfollows = document.querySelectorAll("div.unfollow");
 		
@@ -282,6 +275,7 @@ function loadMusic(username) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;margin-bottom:10px;">'+
 			          '<span name="music_id">'+list.music_id+'</span>'+
 			          '<span><a href=""><img src="'+list.music_Image+'" style="width: 160px; height: 160px;" /></a></span>'+
+
 			       '<div style="font-size: 16px;">'+list.music_name+'</div>'+
                    '<div>'+
 			       '<img src="'+list.memberLikeMusic+'" class="heart">'+
@@ -373,6 +367,7 @@ function loadMemberLikeMusic(username) {
 			$('#starsCount').html(data);
 		})
 	}		
+
 </script>
 </head>
 <body>
@@ -405,8 +400,7 @@ function loadMemberLikeMusic(username) {
 					</c:choose>
 					
 					</div>
-					<!-- 					發布新動態按鈕 -->
-					<form class="post">
+ 					<form class="post">
 						<input type="button" class="btn btn-primary"
 							data-toggle="modal" data-target="#sharebox" value="發佈新動態">
 <!-- 										style="outline: none;"> -->
@@ -425,8 +419,9 @@ function loadMemberLikeMusic(username) {
 							<td id="starsCount" class="number">0</td>
 						</tr>
 					</table>
-				</div>
+				</div><!-- === END of CONTENT === -->
 				
+			
 				
 				<!-- Tab v2 -->
 				<div class="tabs alternative">
@@ -441,9 +436,40 @@ function loadMemberLikeMusic(username) {
 					
 					<div class="tab-content" style="height: auto;" style="margin-bottom:20px" >
 						<div class="tab-pane fade in active" id="dynamic">
+								
+							<div><!-- ===BEGIN of HISTORY === -->
+										 
+										<div class="bg-white p-20">
+											<div>
+												<div>
+													<img src="https://cfstatic.streetvoice.com/profile_images/st/re/street0717/r2npMySeePybCPTA5DbR87.jpeg?x-oss-process=image/resize,m_fill,h_40,w_40,limit_0/interlace,1/quality,q_85/format,jpg" class="img-xs img-circle">
+												</div><!-- /media-left -->
+												<div >
+													<h4><span></span>最近聆聽歌曲</h4>		
+												</div>	
+<!-- 													<table class="table vertical-m" style="margin-bottom:20px" > -->
+													<div id="history">
+															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> 														
+																	<div style="float:left">
+<!-- 																		<button  -->
+														                  
+<!-- 																		</button> -->
+																		<a href="/angry_youth/songs/558439/"><img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg"></a>
+																	</div><!-- /work-block img-xxs -->
+																	<div style="margin-left:250px">
+																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a></h4>						
+																	</div>
+														  		</div>
+													</div>	
+												
+												<!-- /media-body -->
+											</div><!-- /media -->
+										</div>
+							</div><!-- ===END of HISTORY === -->
+							
+							
 							<div id="test"><br>
-
-					</div>
+							</div>
 					
 					
 						</div>
@@ -645,8 +671,9 @@ function loadMemberLikeMusic(username) {
 							<!-- about end -->
 
 						</div>
-
 					</div>
+				</div>
+			</div>
 				</div>
 			</div>
 			<!-- End Tab v2 -->
@@ -712,7 +739,8 @@ function loadMemberLikeMusic(username) {
 						    //计算出小时数
 						    //计算相差分钟数
 						    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
-						    var minutes=Math.floor( leave2 /(60*1000))
+
+						    var minutes=Math.floor(leave2 /(60*1000))
 						    //计算相差分钟数
 						    //计算相差秒数
 						    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
@@ -727,28 +755,28 @@ function loadMemberLikeMusic(username) {
 						    }else{
 						    	timediff+="剛剛";
 						    }
-// 						    console.log(dateDiff+"时间差的毫秒数",dayDiff+"计算出相差天数",leave1+"计算天数后剩余的毫秒数"
-// 						        ,hours+"计算出小时数",minutes+"计算相差分钟数",seconds+"计算相差秒数");
 						}
 						var timediff ="";
 						timeFn(obj.post_time);
 						var imgPath=$('#profile').attr('src');
+
 						var postorshare = obj.post_postorshare;
 						var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
+						var privacy = obj.post_privacy;
 						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-// 						var time = "<h6>" + obj.post_time +"</h6>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
 				        var div =  "<div style='margin-bottom:45px'>"+img+content + button +"<br></br></div>";
-				        
+				       
 						//分享的內容
 				        var div2 = "<div style='margin-bottom:45px'>"+img+content2 + "<br></br></div>";
 				       
-				        if(postorshare==true){
+				        if(postorshare==true && privacy==false){
 				        	$('#test').append(div);
-				        }else if(postorshare==false){
-				        	$('#test').append(div2);
-				        }				        
+				        }else if(postorshare==false && privacy==false){
+				        			$('#test').append(div2);
+				        		}				        
+
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -756,8 +784,50 @@ function loadMemberLikeMusic(username) {
                     alert(thrownError);
                 }
             });
+            
+            
+            
+            
+            
+            
+            
+            //顯示歷史紀錄
+            $.ajax({
+                url: "/roy/personalPage/showAllHistoryFromHstory.controller",   //存取Json的網址             
+                type: "POST",
+                cache:false,
+                dataType:'json',
+                data:{user:$('#userName').text()},
+                //contentType: "application/json",              
+				success : function(list)
+				 {   
+					list.forEach(function(obj, index) {
 
-        });
+						var music_name = obj.music_name;
+						var music_name = obj.music_name;
+						var content="<div style='border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px'>";
+						var content2="<div style='float:left'>";
+						var content3="<a href='/angry_youth/songs/558439/'><img class='img-full' src='https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg'></a></div>";
+						var content4="<div style='margin-left:250px'>";
+						var content5="<h4><a href='/angry_youth/songs/558439/'>"+music_name+"</a></h4>";
+						var content6="</div></div>";
+						var div3 = content+content2+content3+content4+content5+content6;
+						$('#history').append(div3);
+											
+						
+				  	})//foreach的
+				  },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+				  
+				  
+				  
+            });
+
+       
         
         
         

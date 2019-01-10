@@ -4,30 +4,43 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import model.bean.MusicBean;
+import model.bean.PostBean;
 import model.bean.StoryBean;
 import model.hibernate.HibernateUtil;
-
+@Repository
 public class StoryDAO {
 	//Spring MVC
-//	private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 //	public void setSessionFactory(SessionFactory sessionFactory) {
 //		this.sessionFactory = sessionFactory;
 //	}
-//	public Session getSession() {
-//	return this.sessionFactory.getCurrentSession();
-//}
-	
-	
-	public static void main(String... args) throws IOException, Exception, SQLException {
-		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		StoryDAO storyDAO = new StoryDAO();
-		storyDAO.setSession(session);
+	public StoryDAO(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	public Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+
+//	public static void main(String... args) throws IOException, Exception, SQLException {
+//		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
+//		Session session = sessionFactory.openSession();
+//		Transaction tx = session.beginTransaction();
+//		StoryDAO storyDAO = new StoryDAO(sessionFactory);
+//		storyDAO.setSession(session);
+		
+		//findStoryByUsernameTest
+		
 		
 		//findByPk
 //		StoryBean bean0 = storyDAO.findByPrimaryKey(1);
@@ -60,29 +73,67 @@ public class StoryDAO {
 //		System.out.println(updateTempBean);
 		
 //		//remove
-		boolean  remove = storyDAO.remove(4);
-		System.out.println(remove);
+//		boolean  remove = storyDAO.remove(4);
+//		System.out.println(remove);
 		
 		
 		
-		tx.commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
-	}
+//		tx.commit();
+//		session.close();
+//		HibernateUtil.closeSessionFactory();
+//	}
 	
 	private Session session;
 	public void setSession(Session session) {
 		this.session = session;
 	}
 
-	public Session getSession() {
-		return session;
-	}
+
 	
 	public StoryBean findByPrimaryKey(Integer story_id) {
 		//0103 OK
 		return this.getSession().get(StoryBean.class, story_id);
 	}
+	
+	//正確版
+	public List<StoryBean> findStoryByUsername(String member_username) {
+		//0103 OK
+		String hql = "from StoryBean WHERE member_username=:member_username";
+		Query<StoryBean> query = this.getSession().createQuery(hql);
+		query.setParameter("member_username", member_username);
+		List<StoryBean> storyList = query.list();
+		return storyList;
+	}
+	
+	public List<StoryBean> findStoryByUsernameMax5(String member_username) {
+		//0103 OK
+		String hql = "from StoryBean WHERE member_username=:member_username Order By story_time Desc";
+		Query<StoryBean> query = this.getSession().createQuery(hql);
+		query.setParameter("member_username", member_username);
+		
+//		List<StoryBean> dkofk  = this.findAll();
+//		int a = dkofk.size();
+//		System.out.println("dkofk====>"+a);
+//		query.setFirstResult(0);
+		query.setMaxResults(5);
+		List<StoryBean> storyList = query.list();
+		return storyList;
+	}
+	
+	
+	
+	public List<MusicBean> findMusicnameByMusicId(Integer music_id) {
+		//0103 OK
+		String hql = "from MusicBean WHERE music_id=:music_id";
+		Query<MusicBean> query = this.getSession().createQuery(hql);
+		query.setParameter("music_id", music_id);
+		List<MusicBean> MusicBean = query.list();
+		return MusicBean;
+	}
+	
+	
+	
+	
 	public List<StoryBean> findAll() {
 		//0103 OK
 		return this.getSession().createQuery("from StoryBean", StoryBean.class)
@@ -92,11 +143,9 @@ public class StoryDAO {
 	public StoryBean create(StoryBean bean) {
 		//0103 OK
 		if(bean!=null) {
-			StoryBean result = this.getSession().get(StoryBean.class, bean.getStory_id());
-			if(result==null) {
+//			result = this.getSession().get(StoryBean.class, bean.getStory_id());
 				this.getSession().save(bean);
 				return bean;
-			}
 		}
 		return null;
 	}

@@ -103,6 +103,20 @@ table {
 		}
 	})
 
+	function changeCheckBoxs() {
+		var checkboxs = document.getElementsByName("isprivacy");
+		for (var i = 0; i < checkboxs.length; i++) {
+			if (checkboxs[i].checked == false) {
+					checkboxs[i].checked = true;
+					checkboxs[i].value = "false";
+			}
+		}
+	}
+	function submitBtnClick(){
+		changeCheckBoxs();
+		 $( "#addshare" ).submit();
+	}
+	
 	function mouseOver() {
 		this.src = "../img/player.png";
 	}
@@ -643,7 +657,8 @@ table {
 			<div class="modal-content">
 				<h5 style="margin: 20px;">分享歌曲</h5>
 				<form action="<c:url value="/rankTop10/ShareMusic.controller"/>"
-					method="get">
+					method="get"
+					id="addshare">
 					<div class="modal-body">
 						<div class="form-group"></div>
 						<textarea name="shareContent" style="width: 250px; height: 270px" onFocus="if(this.value==this.defaultValue) this.value=''" onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
@@ -653,8 +668,9 @@ table {
 						<span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span>
 					</div>
 					<div class="modal-footer">
+						<div style="float:left"><input type="checkbox" name="isprivacy" value="true">不公開</div>
 						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
-						<button type="submit" class="btn btn-primary">確定</button>
+						<button type="button" class="btn btn-primary" onclick="submitBtnClick()" >確定</button>
 					</div>
 				</form>
 
@@ -710,9 +726,9 @@ table {
 
 
 	<jsp:include page="../homePage/footer.jsp" />
-	<div id="player">
-		<jsp:include page="../homePage/player.jsp" />
-	</div>
+<!-- 	<div id="player"> -->
+<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
+<!-- 	</div> -->
 	
 	<script>
 		//讀取使用者有什麼歌單

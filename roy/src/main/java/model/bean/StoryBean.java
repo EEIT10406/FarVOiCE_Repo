@@ -1,6 +1,8 @@
 package model.bean;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,6 +20,7 @@ public class StoryBean {
 	story_time		datetime
 */	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer story_id;
 	private String member_username;
 	private Integer music_id;
