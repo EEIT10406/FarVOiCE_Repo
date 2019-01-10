@@ -158,6 +158,7 @@ opacity:0.4
 </style>
 <script>
 	$(document).ready(function() {
+
 		var follows = document.querySelectorAll("div.follow");
 		var unfollows = document.querySelectorAll("div.unfollow");
 		
@@ -386,8 +387,7 @@ function loadMusicCount(username) {
 					</c:choose>
 					
 					</div>
-<!-- 					<div id="follow" class="unfollow">追蹤</div> -->
-<!-- 					發布新動態按鈕 -->
+					<!-- 					發布新動態按鈕 -->
 					<form class="post">
 						<input type="button" class="btn btn-primary"
 							data-toggle="modal" data-target="#sharebox" value="發佈新動態">
@@ -715,8 +715,7 @@ function loadMusicCount(username) {
 				
 				<form action="<c:url value="/personalPage/Post.controller"/>" method="post">
 					<div class="modal-body" >
-						<textarea class="form-control" name="shareContent" style="width:100px;height:30px" placeholder="標題"  ></textarea>
-						<textarea class="form-control" name="post_content" style="width:650px;height:500px" placeholder="是不在想些色色的呢?"  ></textarea>
+						<textarea class="form-control" name="post_content" style="width:650px;height:500px;resize:none" placeholder="是不在想些色色的呢?"  ></textarea>
 						<input type="checkbox" name="post_privacy" value="true">不想被女友看到嗎?<br>					
 					</div>
 					<div class="modal-footer">
@@ -733,6 +732,15 @@ function loadMusicCount(username) {
 	
 	<!-- 	showArticleFromMember start-->
 	<script>
+	function remove(post_idS)
+	{
+		if(confirm("確實要刪除嗎?"))
+			{	alert("已經刪除！");
+				window.location.href='/roy/personalPage/removePost.controller?post_idS=' + post_idS ;
+				}
+		else
+			{	alert("已經取消了刪除操作");}
+	}
         $(function () {            
             $.ajax({
                 url: "/roy/personalPage/showArticleFromMember.controller",   //存取Json的網址             
@@ -744,21 +752,53 @@ function loadMusicCount(username) {
 				success : function(list)
 				 {   
 					list.forEach(function(obj, index) {
+						
+						function timeFn(d1) {//di作为一个变量传进来
+						    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+						    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
+						    var dateEnd = new Date();//获取当前时间
+						    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+						    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+						    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
+						    var hours=Math.floor(leave1 /(3600*1000))//计算出小时数
+						    //计算相差分钟数
+						    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
+						    var minutes=Math.floor(leave2 /(60*1000))//计算相差分钟数
+						    //计算相差秒数
+						    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+						    var seconds=Math.round(leave3/1000)
+						    console.log(" 相差 "+dayDiff+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
+						    if(dayDiff>1){
+						    	timediff += dayDiff+"天前";
+						    }else if(hours>1){
+						    	timediff += hours+"小時前";
+						    }else if(minutes>1){
+						    	timediff += minutes+"分鐘前";
+						    }else{
+						    	timediff+="剛剛";
+						    }
+// 						    console.log(dateDiff+"时间差的毫秒数",dayDiff+"计算出相差天数",leave1+"计算天数后剩余的毫秒数"
+// 						        ,hours+"计算出小时数",minutes+"计算相差分钟数",seconds+"计算相差秒数");
+						}
+						var timediff ="";
+						timeFn(obj.post_time);
+
 						var postorshare = obj.post_postorshare;
 						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
-						var content = "<br><h5 style='margin-bottom:0px'>發表了一篇文章</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
-						var content2 = "<br><h5 style='margin-bottom:0px'>分享了一條音樂</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
-						var time = "<h6>" + obj.post_time +"</h6>";
+						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+// 						var time = "<h6>" + obj.post_time +"</h6>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
-				        var div =  img+content + time + button +"<br></br>";
+				        var div =  "<div style='margin-bottom:45px'>"+img+content + button +"<br></br></div>";
 				        
 						//分享的內容
-				        var div2 = img+content2 + time + "<br></br>";
+				        var div2 = "<div style='margin-bottom:45px'>"+img+content2 + "<br></br></div>";
+				       
 				        if(postorshare==true){
 				        	$('#test').append(div);
-				        	}else if(postorshare==false){
-				        		$('#test').append(div2);
-				        	}				        
+				        }else if(postorshare==false){
+				        	$('#test').append(div2);
+				        }				        
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {

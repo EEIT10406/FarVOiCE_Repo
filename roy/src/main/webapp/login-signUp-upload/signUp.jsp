@@ -47,6 +47,16 @@
 		$('#upload').click(function() {
 			window.location.href = "upload.jsp";
 		})
+		$('#member_passwordConfirm').blur(function(){
+			var pass1 = $('#member_password').val();
+			var pass2 = $('#member_passwordConfirm').val();
+			if(pass1){
+				if(pass1!=pass2){
+					alert("密碼不一致喔")
+				}
+			}
+ 
+		})
 	})
 </script>
 </head>
@@ -64,20 +74,20 @@
 								<h3>註冊 FarVoice ID</h3>
 							</div>
 							<label>帳號</label>
-								<input class="form-control margin-bottom-20"type="text" id="member_username" name="member_username">
+								<input class="form-control margin-bottom-20"type="text" id="member_username" name="member_username"value="${param.member_username}">
 							<div class="row">
 								<div class="col-sm-6">
-									<label>密碼</label> <input class="form-control margin-bottom-20" type="password" id="member_password" name="member_password">
+									<label>密碼</label> <input class="form-control margin-bottom-20" type="password" id="member_password" name="member_password" value="${param.member_password}">
 								</div>
 								<div class="col-sm-6">
 									<label>密碼確認</label> <input
-										class="form-control margin-bottom-20" type="password" id="member_passwordConfirm" name="member_passwordConfirm">
+										class="form-control margin-bottom-20" type="password" id="member_passwordConfirm" name="member_passwordConfirm" value="${param.member_passwordConfirm}">
 								</div>
 							</div>
 							<label>電子郵件</label> 
-								<input class="form-control margin-bottom-20" type="text" id="member_email" name="member_email"> 
+								<input class="form-control margin-bottom-20" type="text" id="member_email" name="member_email" value="${param.member_email}"> 
 							<label>暱稱</label> 
-								<input class="form-control margin-bottom-20" type="text" id="member_nickname" name="member_nickname">
+								<input class="form-control margin-bottom-20" type="text" id="member_nickname" name="member_nickname" value="${param.member_nickname}">
 							<hr>
 							<div class="row">
 <!-- 								<div class="col-lg-8"></div> -->

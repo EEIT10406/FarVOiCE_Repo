@@ -45,7 +45,16 @@
 			$(this).parent('ul').children('li').removeClass('active');
 			$(this).addClass('active');
 		})
-	}
+		$('#id_new_passconf').blur(function(){
+			var pass1 = $('#id_new_password').val();
+			var pass2 = $('#id_new_passconf').val();
+			if(pass1){
+				if(pass1!=pass2){
+					alert("新密碼不一致喔")
+				}
+			}
+		})
+	})
 </script>
 <style>
 #content {
@@ -82,7 +91,7 @@
 								<p></p>
 								<div class="row">
 									<div class="col-md-5">
-										<form method="POST" action="/accounts/change_password/"
+										<form method="POST" action="/roy/accounts/change_password/"
 											data-pjax="">
 											<input type="hidden" name="csrfmiddlewaretoken"
 												value="9Dnww9nygayHsw89cFNOjwXLSmZx2zlx">
@@ -112,7 +121,7 @@
 														required="required" title="" type="password">
 												</div>
 											</div>
-											<button type="submit" class="btn btn-default m-top-4">儲存變更</button>
+											<button type="submit" class="btn btn-default m-top-4">儲存變更</button><span>${errors.passError} </span>
 										</form>
 									</div>
 								</div>
@@ -174,8 +183,8 @@
 	</div>
 
 	<jsp:include page="../homePage/footer.jsp" />
-	<div id="player">
-		<jsp:include page="../homePage/player.jsp" />
-	</div>
+<!-- 	<div id="player"> -->
+<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
+<!-- 	</div> -->
 </body>
 </html>

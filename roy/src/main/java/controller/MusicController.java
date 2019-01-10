@@ -30,12 +30,14 @@ public class MusicController {
 	@Autowired
 	private MemberLikeMusicService memberLikeMusicService;
 
+
 	// 上傳音樂
 	@RequestMapping("/login-signUp-upload/uploadMusic")
 	public String upLoadMUsic(MusicBean bean, Model model, @RequestParam("musicFile") MultipartFile musicFile,
 			@RequestParam("imageFile") MultipartFile imageFile, HttpSession session) {
 		String musicPath = "";
 		String imagePath = "";
+		
 		if (!musicFile.isEmpty()) {
 			try {
 				byte[] musicByte = musicFile.getBytes();
