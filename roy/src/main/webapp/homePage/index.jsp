@@ -39,10 +39,11 @@
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <!-- End JS -->
+
 </head>
 <body>
 	<div id="body_bg">
-
+	
 		<jsp:include page="header.jsp" />
 		<!-- === BEGIN CONTENT === -->
 		<div id="content">

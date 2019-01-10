@@ -330,13 +330,13 @@ function loadMusicCount(username) {
 				<div style="border: 0.5px solid #DDDDDD; align: center; height: 231px; margin-top: 30px; margin-bottom: 30px;">
 					
 					<c:choose>
-					    <c:when test="${empty user}">
+					    <c:when test="${empty user.member_profileImage}">
 					      	<img src="imgs/noProfile.gif" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />
 					    </c:when>
 					    <c:otherwise>
-							<img src="imgs/profile/${user.member_username}.jpg" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />					    </c:otherwise>
+							<img src="${user.member_profileImage}" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />					    
+						</c:otherwise>
 					</c:choose>
-<!-- 					<img src="imgs/123.jpg" style="float: left; height: 230px; width: 230px; margin-right: 15px;" /> -->
 					
 					
 					<div style="padding: 15px; font-size: 30px;">

@@ -49,9 +49,12 @@
 	padding-top: 1.2rem;
 }
 
-span strong {
+span strong{
 	font-size: 20px;
 }
+
+
+
 
 .project {
 	border: 1px solid;
@@ -103,13 +106,14 @@ span strong {
 
 .osmfont {
 	font-family: Oswald, sans-serif;
+	
+}
+.osmfont:before{
+	content:"NT$ ";
 }
 
-.osmfont:before {
-	content: "NT$ ";
-}
-
-.goalMoney, .goalpercent {
+.goalMoney,.goalpercent
+	{
 	font-family: Oswald, sans-serif;
 }
 
@@ -159,121 +163,6 @@ progress {
 	background-color: #eb4b4b;
 	border-radius: 1rem;
 }
-
-.visitcount {
+.visitcount{
 	display: none;
-}
-/* 元素前方圖標  */
-.bluequote:before {
-	position: relative;
-	left: -5px;
-	top: 1px;
-	content: "";
-	display: inline-block;
-	height: 12px;
-	width: 3px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	background: #00bbd6;
-}
-/* create project   */
-.create-content {
-	border: 2px solid black;
-	width: 55%;
-	margin: 0px auto;
-}
-
-.create-title, .create-description,.upload-image,.create-goal,.create-type,.create-city,.chose-music,.limit-date {
-	width: 40%;
-	margin: 10px 10px 10px 10px;
-	padding-top: 10px;
-	padding-left: 10px;
-	font-weight: 600;
-}
-.next-reward{
-	width: 40%;
-	margin: 50px auto;
-	padding-top: 10px;
-	padding-left: 10px;
-	font-weight: 600;
-}
-.bluequote {
-	color: #00bbd6;
-	padding-left: 8px;
-	line-height: 2rem;
-	position: relative;
-	letter-spacing: 1px;
-}
-
-.input-label {
-	font-size: 12px;
-	line-height: 1.67;
-	letter-spacing: 1.1px;
-	text-align: justify;
-	color: #4a4a4a;
-	margin-top: 10px;
-}
-.input-label-img{
-	font-size: 12px;
-	line-height: 1.67;
-	letter-spacing: 1.1px;
-	text-align: justify;
-	color: #4a4a4a;
-}
-.form-control {
-	font-size: 13px;
-	height: 40px;
-	letter-spacing: 1.2px;
-	text-align: left;
-	color: #000;
-	padding-left: 20px;
-	border-radius: 4px;
-	background-color: #fff;
-	border: 1px solid #e4e4e4;
-}
-.next:hover{
-	background-color: #e61d1d;
-    color: #fff;
-}
-.next{
-	text-align:center;
-	color: #f7f7f7;
-    background-color: #eb4b4b;
-}
-/*a  upload */
-.a-upload {
-	width:100%;
-    padding: 4px 10px;
-    height: 30px;
-    line-height: 20px;
-    position: relative;
-    cursor: pointer;
-    color: #888;
-    background: #fafafa;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-    display: inline-block;
-    *display: inline;
-    *zoom: 1
-}
-
-.a-upload  input {
-	text-align:center;
-	background: black;
-    position: absolute;
-    font-size: 100px;
-    right: 0;
-    top: 0;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    cursor: pointer
-}
-
-.a-upload:hover {
-    color: #444;
-    background: #eee;
-    border-color: #ccc;
-    text-decoration: none
 }
