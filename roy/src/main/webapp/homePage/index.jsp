@@ -158,7 +158,7 @@
 <!-- 						<small>* Lorem ipsum dolor sit amet</small> -->
 <!-- 					</p> -->
 <!-- 					<hr> -->
-					<button type="button" class="btn btn-primary" style="width:100%" onclick="window.location.href ='/roy/rank/rank.jsp'">媽的看排行喔</button>
+<!-- 					<button type="button" class="btn btn-primary" style="width:100%" onclick="window.location.href ='/roy/rank/rank.jsp'">媽的看排行喔</button> -->
 				</div>
 				<!-- End Side Column -->
 			</div>
@@ -275,6 +275,9 @@
 
 	
 <script>
+function rank(){
+	window.location.href ="/roy/rank/rank.jsp";
+}
 // 找出所有時間總點閱率最高的五筆音樂
 $(function () {            
 	$.ajax({
@@ -288,11 +291,11 @@ $(function () {
 				console.log(obj) ; 
 				var content = "<h6 style='margin: 0;'>"+obj.member_username+"</h6>";
 				var content1 = "<h4 style='margin: 0;'>"+obj.music_name+"</h4><hr>";
-				
 				var div=content+content1;
 				$('#hottest').append(div);
 		  	})
-		  	
+		  	var button = "<button type='button' class='btn btn-primary' style='width:100%' onclick='rank()' >媽的看排行喔</button>";
+			$('#hottest').append(button);
 		},
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status);
