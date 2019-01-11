@@ -888,7 +888,6 @@ function loadMemberLikeMusic(username) {
 											</div>
 										</div>
 									</div>							
-							
 							<!-- addPlayList end-->
 	<jsp:include page="../homePage/footer.jsp" />
 <!-- 	<div id="player"> -->
