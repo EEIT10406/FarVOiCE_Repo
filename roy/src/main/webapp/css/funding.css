@@ -49,9 +49,12 @@
 	padding-top: 1.2rem;
 }
 
-span strong {
+span strong{
 	font-size: 20px;
 }
+
+
+
 
 .project {
 	border: 1px solid;
@@ -103,13 +106,14 @@ span strong {
 
 .osmfont {
 	font-family: Oswald, sans-serif;
+	
+}
+.osmfont:before{
+	content:"NT$ ";
 }
 
-.osmfont:before {
-	content: "NT$ ";
-}
-
-.goalMoney, .goalpercent {
+.goalMoney,.goalpercent
+	{
 	font-family: Oswald, sans-serif;
 }
 
@@ -159,8 +163,7 @@ progress {
 	background-color: #eb4b4b;
 	border-radius: 1rem;
 }
-
-.visitcount {
+.visitcount{
 	display: none;
 }
 /* 元素前方圖標  */

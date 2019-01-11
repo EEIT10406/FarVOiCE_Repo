@@ -7,10 +7,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.FollowBean;
+import model.bean.PostBean;
 import model.bean.primarykey.FollowId;
 import model.hibernate.HibernateUtil;
 @Repository
@@ -77,7 +79,8 @@ public class FollowDAO {
 //		boolean  remove = followDAO.remove(removeFollowId);
 //		System.out.println(remove);
 		
-		
+//		int x = followDAO.howMuchFollowMe("Peter");
+//		System.out.println(x);
 		
 		tx.commit();
 		session.close();
@@ -129,5 +132,44 @@ public class FollowDAO {
 			return true;
 		}
 		return false;
+	}
+	public List<FollowBean> whoFollowMe (String m){
+		
+		String hql = "from FollowBean WHERE member_usernameM=:member_usernameM ";
+		Query<FollowBean> query = this.getSession().createQuery(hql);
+		query.setParameter("member_usernameM", m);
+		List<FollowBean> whoFollowMe = query.list();
+		System.out.println("whoFollowMe = "+whoFollowMe);
+		return whoFollowMe;
+	}
+	public Integer howMuchFollowMe(String m) {
+		//0110 OK
+		List<FollowBean> fans = whoFollowMe(m);
+		if (fans != null) {
+			if (!fans.isEmpty()) {
+				return fans.size();
+			}
+		}
+		return 0;
+	}
+	
+	
+	public List<FollowBean> iFollowWho (String s){
+		
+		String hql = "from FollowBean WHERE member_usernameS=:member_usernameS ";
+		Query<FollowBean> query = this.getSession().createQuery(hql);
+		query.setParameter("member_usernameS", s);
+		List<FollowBean> iFollowWho = query.list();
+		System.out.println("iFollowWho = "+iFollowWho);
+		return iFollowWho;
+	}
+	public Integer iFollowHowMuch(String s) {
+		List<FollowBean> stars = iFollowWho(s);
+		if (stars != null) {
+			if (!stars.isEmpty()) {
+				return stars.size();
+			}
+		}
+		return 0;
 	}
 }
