@@ -137,26 +137,6 @@
 <!-- 					<p> -->
 <!-- 						<small>* Lorem ipsum dolor sit amet</small> -->
 <!-- 					</p> -->
-					
-<!-- 					<hr> -->
-					
-<!-- 					<h6 style="margin: 0;"><a href="/roy/personalPage/somebodyPersonalPage.controller?somebody=Peter&nickname=fifi">fifi</a></h6> -->
-<!-- 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4> -->
-<!-- 					<p> -->
-<!-- 						<small>* Lorem ipsum dolor sit amet</small> -->
-<!-- 					</p> -->
-<!-- 					<hr> -->
-<!-- 					<h6 style="margin: 0;">Marry</h6> -->
-<!-- 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4> -->
-<!-- 					<p> -->
-<!-- 						<small>* Lorem ipsum dolor sit amet</small> -->
-<!-- 					</p> -->
-<!-- 					<hr> -->
-<!-- 					<h6 style="margin: 0;">Jack</h6> -->
-<!-- 					<h4 style="margin: 0;">CLOSED</h4> -->
-<!-- 					<p> -->
-<!-- 						<small>* Lorem ipsum dolor sit amet</small> -->
-<!-- 					</p> -->
 <!-- 					<hr> -->
 <!-- 					<button type="button" class="btn btn-primary" style="width:100%" onclick="window.location.href ='/roy/rank/rank.jsp'">媽的看排行喔</button> -->
 				</div>
@@ -288,7 +268,7 @@ $(function () {
         data:{user:$('#userName').text()},
 		success : function(list){	
 			list.forEach(function(obj, index) {
-// 	這邊的username是nicknameame
+// 	這邊的username是nickname
 				console.log(obj) ; 
 				var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a>";
 				var content = "<h6 style='margin: 0;'><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a></h6>";

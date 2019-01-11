@@ -48,17 +48,14 @@
 					var filePath = $(this).val();
 					if (filePath.indexOf("jpg") != -1
 							|| filePath.indexOf("png") != -1) {
-						alert("if")
 						$(".fileerrorTip").html("").hide();
 						var arr = filePath.split('\\');
 						var fileName = arr[arr.length - 1];
 						$(".showFileName").html(fileName);
 					} else {
-						alert("else")
 						$(".showFileName").html("");
-						$(".fileerrorTip").html("您未上傳圖片，或者您上傳圖片類型有誤！")
-								.show();
-						return false
+						$(".fileerrorTip").html("您未上傳圖片，或者您上傳圖片類型有誤！").show();
+						return false;
 					}
 				}
 		)

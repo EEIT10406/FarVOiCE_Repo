@@ -45,6 +45,7 @@
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<script src="1.js?ver=1"></script>
 <!-- End JS -->
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
@@ -151,6 +152,8 @@ word-break:break-all;
 </style>
 <script>
 	$(document).ready(function() {
+		loadFanCount('${somebody}')
+		loadStarCount('${somebody}')
 		$.get('/roy/personalPage/somebodyPersonalPageCheckFollow.controller', {}, 
 				function(data) {
 					
@@ -188,7 +191,8 @@ word-break:break-all;
 		if ($(this).attr("class") == "follow") {//追蹤改成退追蹤
 			$.get('/roy/personalPage/somebodyPersonalPageFollow.controller', {'somebody':$('#userName').text()}, function(data) {
 				if(data){
-					
+					loadFanCount('${somebody}');
+					loadStarCount('${somebody}');
 				}
 			})
 // 			這個會跳轉畫面window.location.href = "/roy/personalPage/somebodyPersonalPageFollow.controller?somebody="+$('#userName').text();
@@ -196,13 +200,30 @@ word-break:break-all;
 			$(this).html('追蹤');
 
 		} else {//追蹤
-			$.get('/roy/personalPage/somebodyPersonalPageFollow.controller', {'somebody':$('#userName').text()}, function(data) {})
+			$.get('/roy/personalPage/somebodyPersonalPageFollow.controller', {'somebody':$('#userName').text()}, function(data) {
+					loadFanCount('${somebody}');
+					loadStarCount('${somebody}');
+				})
 // 			這個會跳轉畫面window.location.href = "/roy/personalPage/somebodyPersonalPageFollow.controller?somebody="+$('#userName').text();
 			$(this).attr("class", "follow");
 			$(this).html('已追蹤');
 		}
 	}
 
+	//抓粉絲數
+	function loadFanCount(username) {
+		$.get('/roy/personalPage/howMuchFollowMe.controller',{'username' : username},function(data) {
+		
+			$('#fansCount').html(data);
+		})
+	}
+	//抓偶像數
+	function loadStarCount(username) {
+		$.get('/roy/personalPage/iFollowHowMuch.controller',{'username' : username},function(data) {
+		
+			$('#starsCount').html(data);
+		})
+	}	
 </script>
 <script>
 	$(document).ready(function() {
@@ -228,7 +249,7 @@ word-break:break-all;
 		<div id="content">
 			<div class="container">
 				<div style="border: 0.5px solid #DDDDDD; align: center; height: 231px; margin-top: 30px; margin-bottom: 30px;">
-					<img src="imgs/profile/${somebody}.jpg" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />	
+					<img id="somebodyProfile" src="${somebodyImgPath}" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />	
 				
 					<div style="padding: 15px; font-size: 30px;">
 					 ${nickname}
@@ -242,9 +263,9 @@ word-break:break-all;
 							<td>追蹤中</td>
 						</tr>
 						<tr>
-							<td class="number">0</td>
-							<td class="number">0</td>
-							<td class="number">0</td>
+							<td id="musicCount" class="number">0</td>
+							<td id="fansCount" class="number">0</td>
+							<td id="starsCount" class="number">0</td>
 						</tr>
 					</table>
 				</div>
@@ -517,7 +538,7 @@ word-break:break-all;
 	<!-- === END CONTENT === -->
 	<!-- 	showArticleFromMember start-->
 	<script>
-        $(function () {            
+ $(function () {            
             $.ajax({
                 url: "/roy/personalPage/showArticleFromMember.controller",   //存取Json的網址             
                 type: "POST",
@@ -528,27 +549,67 @@ word-break:break-all;
 				success : function(list)
 				 {   
 					list.forEach(function(obj, index) {
-// 						<img src='imgs/123.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >
-// 						<h4style='margin-bottom:0px'>發表了一篇文章</h5>
-// 						<small>9 小時前</small>
-// 						<div class="clearfix"></div>
-//						<a  class='btn btn-primary' target='_blank' href='singleArticle.jsp'>查看全文</a>
-						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
-						var content = "<h5 style='margin-bottom:0px'>發表了一篇文章</h5><small>9 小時前</small><div class='clearfix'></div>"+"<div>" + obj.post_content + "</div>";
-						var time = "<h6>" + obj.post_time +"</h6>";
+						
+						function timeFn(d1) {//di作为一个变量传进来
+						    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+						    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
+						    var dateEnd = new Date();//获取当前时间
+						    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+						    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
+						    //计算出相差天数
+						    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
+						    var hours=Math.floor( leave1 /(3600*1000))
+						    //计算出小时数
+						    //计算相差分钟数
+						    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
+
+						    var minutes=Math.floor(leave2 /(60*1000))
+						    //计算相差分钟数
+						    //计算相差秒数
+						    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+						    var seconds=Math.round(leave3/1000)
+						    console.log(" 相差 "+dayDiff+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
+						    if(dayDiff>1){
+						    	timediff += dayDiff+"天前";
+						    }else if(hours>1){
+						    	timediff += hours+"小時前";
+						    }else if(minutes>1){
+						    	timediff += minutes+"分鐘前";
+						    }else{
+						    	timediff+="剛剛";
+						    }
+						}
+						
+						var timediff ="";
+						timeFn(obj.post_time);
+						var imgPath=$('#somebodyProfile').attr('src');
+
+						var postorshare = obj.post_postorshare;
+						var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
+						var privacy = obj.post_privacy;
+						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
-				        var div =  img+content + time + button +"<br></br>";
-				        $('#test').append(div); 
+				        var div =  "<div style='margin-bottom:45px'>"+img+content + button +"<br></br></div>";
+				       
+						//分享的內容
+				        var div2 = "<div style='margin-bottom:45px'>"+img+content2 + "<br></br></div>";
+				       
+				        if(postorshare==true && privacy==false){
+				        	$('#test').append(div);
+				        }else if(postorshare==false && privacy==false){
+				        			$('#test').append(div2);
+				        		}				        
+
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert(xhr.status);
                     alert(thrownError);
                 }
-            });
-
-        });
-    </script>
+            })
+ 	})         
+</script>
 	<!-- 	showArticleFromMember end-->
 	
 	

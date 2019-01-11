@@ -137,6 +137,7 @@ public class MemberDAO {
 	}
 	//給nickname得username
 	public String nicenameToUsername (String nickname) {
+		//0111 OK
 		String hql = " from MemberBean  WHERE member_nickname=:member_nickname ";
 		Query<MemberBean> query = this.getSession().createQuery(hql);
 		query.setParameter("member_nickname", nickname);
@@ -146,7 +147,18 @@ public class MemberDAO {
 	}
 	
 	
-	
+	//檢查nickname重複
+	public boolean nicknameCheck(String nickname) {
+		String hql = " from MemberBean  WHERE member_nickname=:member_nickname ";
+		Query<MemberBean> query = this.getSession().createQuery(hql);
+		query.setParameter("member_nickname", nickname);
+		List<MemberBean> memberList = query.list();		
+		if(memberList.isEmpty()) {// no repeat
+			return false;
+		}else {
+			return true;
+		}
+	}
 	
 	
 	

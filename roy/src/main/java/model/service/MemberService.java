@@ -92,5 +92,16 @@ public class MemberService {
 		}
 
 	}
-	
+	//查找nickname有無重複
+	public boolean checkNicknameExist(String nickname) {
+		//有重複的話傳true反之則false
+		return memberDAO.nicknameCheck(nickname);
+	}
+	//給username得到Bean
+	public MemberBean getMemberBeanForSomebodyPersonalPage(String username) {
+		if(memberDAO.findByPrimaryKey(username)!=null) {
+			return memberDAO.findByPrimaryKey(username);
+		}
+		return null;
+	}
 }

@@ -82,6 +82,30 @@
 	          });
  	
 		})
+		//檢查nickname重複
+		$('#member_nickname').blur(function(){
+		      $.ajax({
+	              url: "/roy/login-signUp-upload/nicknameCheck.controller",   //存取Json的網址             
+	              type: "POST",
+	              cache:false,
+	              dataType:'json',
+	              data:{nickname:$('#member_nickname').val()},
+	              //contentType: "application/json",              
+					success : function(data)
+					 {   
+						if(data.existOrNot == 'true'){
+							$('#nicknameRepeat').text("暱稱已存在!");
+						}else{
+							$('#nicknameRepeat').text("");
+						}
+					 },
+	              error: function (xhr, ajaxOptions, thrownError) {
+	                  alert(xhr.status);
+	                  alert(thrownError);
+	              }
+	          });
+ 	
+		})
 		
 		
 		
@@ -121,7 +145,7 @@
 							</div>
 							<label>電子郵件</label> 
 								<input class="form-control margin-bottom-20" type="text" id="member_email" name="member_email" value="${param.member_email}"> 
-							<label>暱稱</label> 
+							<label>暱稱</label> <span id="nicknameRepeat" style='color:#880000;margin-left:20px'></span>
 								<input class="form-control margin-bottom-20" type="text" id="member_nickname" name="member_nickname" value="${param.member_nickname}">
 							<hr>
 							<div class="row">
