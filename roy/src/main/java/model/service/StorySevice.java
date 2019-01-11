@@ -48,7 +48,7 @@ public class StorySevice {
 //		this.musicDAO = musicDAO;
 //	}
 	public static void main(String[] args) {
-		HibernateUtil.getSessionfactory().getCurrentSession().beginTransaction();
+//		HibernateUtil.getSessionfactory().getCurrentSession().beginTransaction();
 //		StorySevice storySevice = new StorySevice(new StoryDAO(HibernateUtil.getSessionfactory()), new MusicDAO(HibernateUtil.getSessionfactory()));
 		
 		//test insertStory
@@ -124,26 +124,13 @@ public class StorySevice {
 		return MusicBeanresult;
 	}
 	
-	//給使用者name，回傳使用者的記錄的所有musicBean (五筆版)
-//		public List<MusicBean> findStoryByUsernameMax5(String user) {
-//			List<StoryBean> result = storyDAO.findStoryByUsernameMax5(user);
-//			List<MusicBean> MusicBeanresult = new ArrayList<>(); 
-//			MusicBean mm = null;
-//			if(user!=null) {	
-//				for(StoryBean bean2:result) {
-//					 mm =musicDAO.findByPrimaryKey(bean2.getMusic_id());			
-//					 MusicBeanresult.add(mm);
-//				}		
-//			}
-//			return MusicBeanresult;
-//		}
 	
 	//回傳history最終版
 	public List<Object[]> StoryController(String user) {
 		List<Object[]> result = storyDAO.test(user);
 		if(user!=null) {	
 			for(Object[] bean2:result) {	
-//				 System.out.println("storyService的"+Arrays.toString(bean2));
+					//System.out.println("storyService的"+Arrays.toString(bean2));
 			}	
 			return result;
 		}

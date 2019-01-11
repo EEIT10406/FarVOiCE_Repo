@@ -270,11 +270,7 @@ $(document).ready(function() {
 function loadMusic(username) {
 
 	$.getJSON('/roy/personalPage/readMusic',{'username' : username},function(data) {
-<<<<<<< HEAD
-		var content;
-=======
 		var content="";
->>>>>>> refs/remotes/origin/branch1
 		$.each(data,function(index, list) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;margin-bottom:10px;">'+
 			          '<span name="music_id">'+list.music_id+'</span>'+
@@ -301,13 +297,8 @@ function loadMusic(username) {
 //讀取該使用者的所有歌單
 function loadPlayList(username) {
 	$.getJSON('/roy/list/readPlayList',{'username' : username},function(data) {
-<<<<<<< HEAD
-		var content;
-		$('#list').html("");
-=======
 		var content="";
 		 $('#list').html("");
->>>>>>> refs/remotes/origin/branch1
 		$.each(data,function(index, list) {
 			content+='<div class="col-md-5" style="float: left; width: 300px;margin-bottom:13px;">'+
 		             '<span name="playlist_id">'+list.playlist_id+'</span>'+
@@ -447,100 +438,6 @@ function loadMemberLikeMusic(username) {
 					
 					<div class="tab-content" style="height: auto;" style="margin-bottom:20px" >
 						<div class="tab-pane fade in active" id="dynamic">
-<<<<<<< HEAD
-								
-							<div><!-- ===BEGIN of HISTORY === -->
-										 
-										<div class="bg-white p-20">
-											<div>
-												<div>
-													<img src="https://cfstatic.streetvoice.com/profile_images/st/re/street0717/r2npMySeePybCPTA5DbR87.jpeg?x-oss-process=image/resize,m_fill,h_40,w_40,limit_0/interlace,1/quality,q_85/format,jpg" class="img-xs img-circle">
-												</div><!-- /media-left -->
-												<div >
-													<h4><span></span>最近聆聽歌曲</h4>		
-												</div>	
-<!-- 													<table class="table vertical-m" style="margin-bottom:20px" > -->
-													<div>
-															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> 														
-																	<div style="float:left">
-<!-- 																		<button  -->
-<!-- 														                    data-type="song" -->
-<!-- 														                    data-id="558439" -->
-<!-- 														                    data-ga-on="click" -->
-<!-- 														                    data-ga-event-category="user triggered play" -->
-<!-- 														                    data-ga-event-action="song" -->
-<!-- 														                    data-ga-event-label="07_啊！又忘記你的名字啦！｜Ah! Forgot your name again (558439)" -->
-<!-- 														                    data-ga-dimension-value="Song detail"> -->
-<!-- 																			<span class="glyphicon glyphicon-play"></span> -->
-<!-- 																		</button> -->
-																		<a href="/angry_youth/songs/558439/"><img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg"></a>
-																	</div><!-- /work-block img-xxs -->
-																	<div style="margin-left:250px">
-																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a> - <a href="/angry_youth/">厭世少年</a></h4>						
-																	</div>
-														  		</div>
-													</div>	
-													<div>
-															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> 														
-																	<div style="float:left">
-<!-- 																		<button  -->
-<!-- 														                    data-type="song" -->
-<!-- 														                    data-id="558439" -->
-<!-- 														                    data-ga-on="click" -->
-<!-- 														                    data-ga-event-category="user triggered play" -->
-<!-- 														                    data-ga-event-action="song" -->
-<!-- 														                    data-ga-event-label="07_啊！又忘記你的名字啦！｜Ah! Forgot your name again (558439)" -->
-<!-- 														                    data-ga-dimension-value="Song detail"> -->
-<!-- 																			<span class="glyphicon glyphicon-play"></span> -->
-<!-- 																		</button> -->
-																		<a href="/angry_youth/songs/558439/"><img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg"></a>
-																	</div><!-- /work-block img-xxs -->
-																	<div style="margin-left:250px">
-																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a> - <a href="/angry_youth/">厭世少年</a></h4>						
-																	</div>
-														  		</div>
-													</div>	
-												<!-- /media-body -->
-											</div><!-- /media -->
-										</div>
-				
-							</div><!-- ===END of HISTORY === -->
-							
-							
-							<div id="test"><br>
-<!-- 								<img src="imgs/123.jpg" class="img-circle" style="width:45px;height:45px;float:left;margin-right:15px" > -->
-<!-- 								<h5 style="margin-bottom:0px">分享了一條音樂</h5> -->
-<!-- 								<small>9 小時前</small> -->
-<!-- 								<div class="clearfix">心得內容</div> -->
-<!-- 								<div id="displayShareMusic"> -->
-<!-- 										<img src="../img/300x300.jpg"  style="width:50px;height:50px;"/><a href=""></a> -->
-<!-- 										<span style="font-size: 15px;">讓我為你唱情歌</span><br><br> -->
-<!-- 								</div> -->
-					</div>
-					
-					    <!-- Blog Post -->
-								<div class="blog-post padding-bottom-20">
-									<!-- Blog Item Header -->
-									<div class="blog-item-header">
-										
-									</div>
-									<!-- End Blog Item Header -->
-									<!-- Blog Item Details -->
-									<div class="blog-post-details">
-									
-								
-									</div>
-									<!-- End Blog Item Details -->
-									<!-- Blog Item Body -->
-									<div class="blog">
-										<div class="clearfix"></div>
-										<div class="blog-post-body row margin-top-15">
-										</div>
-									</div>
-									<!-- End Blog Item Body -->
-									</div>
-=======
->>>>>>> refs/remotes/origin/branch1
 								
 							<div><!-- ===BEGIN of HISTORY === -->
 										 
@@ -559,11 +456,11 @@ function loadMemberLikeMusic(username) {
 														                  
 <!-- 																		</button> -->
 																		<a href="/angry_youth/songs/558439/">
-																		<img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg">
+																		
 																		</a>
 																	</div><!-- /work-block img-xxs -->
 																	<div style="margin-left:250px">
-																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a><a style="margin-left:100px;color:gray;">時間</a></h4>						
+																		<h4><a>歌名</a><a style="margin-left:100px;color:gray;">時間</a></h4>						
 																	</div>
 														  		</div>
 															</div>	
@@ -812,17 +709,6 @@ function loadMemberLikeMusic(username) {
 	
 	<!-- 	showArticleFromMember start-->
 	<script>
-<<<<<<< HEAD
-		function remove(post_idS)
-		{
-			if(confirm("確實要刪除嗎?"))
-				{	alert("已經刪除！");
-					window.location.href='/roy/personalPage/removePost.controller?post_idS=' + post_idS ;
-					}
-			else
-				{	alert("已經取消了刪除操作");}
-		}
-=======
 	function remove(post_idS)
 	{
 		if(confirm("確實要刪除嗎?"))
@@ -834,7 +720,6 @@ function loadMemberLikeMusic(username) {
 	}
 	//start 背景ajax
 	//showArticleFromMember
->>>>>>> refs/remotes/origin/branch1
         $(function () {            
             $.ajax({
                 url: "/roy/personalPage/showArticleFromMember.controller",   //存取Json的網址             
@@ -875,27 +760,15 @@ function loadMemberLikeMusic(username) {
 						    }else{
 						    	timediff+="剛剛";
 						    }
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/branch1
 						}
 						
 						var timediff ="";
 						timeFn(obj.post_time);
-<<<<<<< HEAD
-=======
 						var imgPath=$('#profile').attr('src');
 
->>>>>>> refs/remotes/origin/branch1
 						var postorshare = obj.post_postorshare;
-<<<<<<< HEAD
-						var privacy = obj.post_privacy;
-						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
-=======
 						var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 						var privacy = obj.post_privacy;
->>>>>>> refs/remotes/origin/branch1
 						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"

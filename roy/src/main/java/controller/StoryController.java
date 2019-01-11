@@ -21,7 +21,7 @@ import model.service.StorySevice;
 public class StoryController {
 	@Autowired
 	private StorySevice storySevice;
-	
+	//歷史紀錄只有音樂版
 	@RequestMapping(path= {"/personalPage/showAllHistoryTimeFromHstory.controller"},produces= "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String showAllHistoryTimeByUsername(Model model,HttpSession session,String user) {
@@ -37,16 +37,16 @@ public class StoryController {
 	@RequestMapping(path= {"/personalPage/showAllHistoryTimeFromHstory123.controller"},produces= "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String showAllHistoryTimeByUsernameFromPeter(Model model,HttpSession session,String user) {
-		//-------------------------Peter
-		List<Object[]> historyPeter = storySevice.StoryController(user);
-		for(Object[] temp:historyPeter) {
+		//--------最後版
+		List<Object[]> history = storySevice.StoryController(user);
+		for(Object[] temp:history) {
 			for(int i=0;i<temp.length;i++) {
 				System.out.print(temp[i]+",");
 			}
 			System.out.println("");
 		}
 		Gson gsonPeter = new Gson();
-		String jsonListPeter = gsonPeter.toJson(historyPeter);
+		String jsonListPeter = gsonPeter.toJson(history);
 		System.out.println("Peter Json ----");
 		System.out.println(jsonListPeter);
 		System.out.println("--------------");
