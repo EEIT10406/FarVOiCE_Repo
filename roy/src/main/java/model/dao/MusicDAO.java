@@ -104,7 +104,13 @@ public class MusicDAO {
 //	public Session getSession() {
 //		return session;
 //	}
-//	
+	
+	//條件放searchString
+	public List<MusicBean> search(String searchString) {
+		return this.getSession().createQuery("from MusicBean where"+searchString, MusicBean.class)
+				.setMaxResults(50)
+				.list();
+	}
 	
 	//找該使用者上傳的所有音樂且該音樂沒被下架
 	public List<MusicBean> findAllByUser(String member_username) {

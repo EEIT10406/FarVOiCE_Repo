@@ -45,13 +45,6 @@
 			$(this).parent('ul').children('li').removeClass('active');
 			$(this).addClass('active');
 		})
-		$('#soChi').click(function() {
-			if ($(this).text() == "收起") {
-				$(this).text("展開");
-			} else {
-				$(this).text("收起");
-			}
-		})
 		
 		$('#playButton').hover(function() {
 		src = $( this ).attr("src");
@@ -79,10 +72,6 @@
 					<div class="row margin-vert-30">
 						<ul class="nav nav-tabs m-bottom-6">
 							<li class="active"><a>最新推薦</a></li>
-							<a id="soChi" aria-controls="collapse-filter"
-								aria-expanded="false"
-								class="pull-right m-top-1 js-collapse-filter"
-								data-toggle="collapse" href="#collapse-filter">收起</a>
 						</ul>
 						<div class="collapse in" id="collapse-filter">
 							<form class="form-horizontal p-bottom-4">

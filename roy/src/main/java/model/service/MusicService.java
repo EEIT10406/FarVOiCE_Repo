@@ -2,6 +2,10 @@ package model.service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.net.URL;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +30,32 @@ public class MusicService {
 
 	public void setMusicDao(MusicDAO musicDao) {
 		this.musicDao = musicDao;
+	}
+	
+	//查by類型,時間,名稱,SORT by 時間 | 喜歡 | 播放
+	public LinkedList<HashMap<String, String>> search(String type,String searchString,String before,String sort) {
+		searchString = " music_name like '%"+searchString+"%'";
+		if(type!=null&&(!"".equals(type.trim()))) {
+			searchString=searchString+"and music_styleName in ("+type+")";
+		}
+		if(before!=null&&(!"".equals(before.trim()))) {
+			searchString=searchString+"and music_uploadTime > DATEADD(DAY, -"+before+", GETDATE ( ))";
+		}
+		if(sort!=null&&(!"".equals(sort.trim()))) {
+			searchString=searchString+"ORDER BY "+sort+" desc";
+		}
+		LinkedList<HashMap<String,String>> l1 = new LinkedList<HashMap<String,String>>();
+		 for (MusicBean bean:musicDao.search(searchString)) {
+			 HashMap<String,String>  m1 = new HashMap<String,String>();       
+			 m1.put("Music_name",bean.getMusic_name());
+			 m1.put("Music_id",""+bean.getMusic_id());
+			 m1.put("Member_username",""+bean.getMember_username());
+			 m1.put("Music_music",""+bean.getMusic_music());
+			 m1.put("Music_Image",bean.getMusic_Image());
+			 m1.put("Music_id",""+bean.getMusic_id());
+			 l1.add(m1);
+		 }
+		return l1;
 	}
 	
 	//找出所有時間總點閱率最高的五筆音樂
