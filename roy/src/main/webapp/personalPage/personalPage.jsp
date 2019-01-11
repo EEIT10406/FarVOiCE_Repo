@@ -688,8 +688,6 @@ function loadMemberLikeMusic(username) {
 				</div>
 			</div>
 			<!-- End Tab v2 -->
-		</div>
-		</div>
 	<!-- === END CONTENT === -->
 	
 	<!-- addPost begin-->
@@ -717,6 +715,7 @@ function loadMemberLikeMusic(username) {
 	
 	<!-- 	showArticleFromMember start-->
 	<script>
+	//刪除Post或Share
 	function remove(post_idS)
 	{
 		if(confirm("確實要刪除嗎?"))
@@ -724,8 +723,9 @@ function loadMemberLikeMusic(username) {
 				window.location.href='/roy/personalPage/removePost.controller?post_idS=' + post_idS ;
 				}
 		else
-			{	alert("已經取消了刪除操作");}
+			{	alert("已經取消");}
 	}
+	
 	//start 背景ajax
 	//showArticleFromMember
         $(function () {            
@@ -778,17 +778,20 @@ function loadMemberLikeMusic(username) {
 						var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 						var privacy = obj.post_privacy;
 						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+						
+// 						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+						var test = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
-				        var div =  "<div style='margin-bottom:45px'>"+img+content + button +"<br></br></div>";
-				       
+				        
+						//發佈動態的內容		
+						var Post_content =  "<div style='margin-bottom:45px'>"+img+content+button +"<br></br></div>";
 						//分享的內容
-				        var div2 = "<div style='margin-bottom:45px'>"+img+content2 + "<br></br></div>";
+				        var Share_content = "<div style='margin-bottom:45px'>"+img+test + "<br></br></div>";
 				       
 				        if(postorshare==true && privacy==false){
-				        	$('#test').append(div);
+				        	$('#test').append(Post_content);
 				        }else if(postorshare==false && privacy==false){
-				        			$('#test').append(div2);
+				        			$('#test').append(Share_content);
 				        		}				        
 
 				  	})
@@ -799,69 +802,9 @@ function loadMemberLikeMusic(username) {
                 }
             });
             
-            
-            //顯示歷史紀錄
-//             $.ajax({
-//                 url: "/roy/personalPage/showAllHistoryFromHstory.controller",   //存取Json的網址             
-//                 type: "POST",
-//                 cache:false,
-//                 dataType:'json',
-//                 data:{user:$('#userName').text()},
-//                 //contentType: "application/json",              
-// 				success : function(list)
-// 				 {   
-// 					list.forEach(function(obj, index) {
-
-// 						var music_name = obj.music_name;
-// 						var content="<div style='border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px'>";
-// 						var content2="<div style='float:left'>";
-// 						var content3="<a href='/angry_youth/songs/558439/'><img class='img-full' src='https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg'></a></div>";
-// 						var content4="<div style='margin-left:250px'>";
-// 						var content5="<h4><a href='/angry_youth/songs/558439/'>"+music_name+"</a><a style='margin-left:100px;color:gray;'>"+"</a></h4>";
-// 						var content6="</div></div>";
-// 						var div3 = content+content2+content3+content4+content5+content6;
-// 						$('#history').append(div3);
-// 				  	})//foreach的
-// 				  },
-//                 error: function (xhr, ajaxOptions, thrownError) {
-//                     alert(xhr.status);
-//                     alert(thrownError);
-//                 }
-//             });
-				  
-            
-            
-            
-            
-            //顯示歷史紀錄時間
-            var story_time ;
-//             $.ajax({
-//                 url: "/roy/personalPage/showAllHistoryTimeFromHstory.controller",   //存取Json的網址             
-//                 type: "POST",
-//                 cache:false,
-//                 dataType:'json',
-//                 data:{user:$('#userName').text()},
-//                 //contentType: "application/json",              
-// 				success : function(list)
-// 				 {  console.log(list);
-// 					list.forEach(function(obj, index) {
-
-// 						story_time = obj.story_time;
-// // 						alert(story_time);
-						
-// 				  	})//foreach的
-// 				  },
-				  
-//                 error: function (xhr, ajaxOptions, thrownError) {
-//                     alert(xhr.status);
-//                     alert(thrownError);
-//                 }
-//             });
+          			 
 				 
-				 
-				 
-				 
-//---------------peter history
+		//顯示歷史紀錄
 		$.ajax({
                 url: "/roy/personalPage/showAllHistoryTimeFromHstory123.controller",   //存取Json的網址             
                 type: "POST",
@@ -910,7 +853,7 @@ function loadMemberLikeMusic(username) {
                     alert(thrownError);
                 }
             });	 
-//---------------peter history
+			//顯示歷史紀錄END
 
 
 
@@ -919,13 +862,7 @@ function loadMemberLikeMusic(username) {
     </script>
 	<!-- 	showArticleFromMember end-->
 	
-	
-	
-	
-	<!-- === END CONTENT === -->
-	
-	<!-- addPlayList begin-->
-								
+	<!-- addPlayList begin-->						
 	<div class="modal fade" id="addList" aria-hidden="true">
 				<div class="modal-dialog" style="width: 300px;">
 					<div class="modal-content">
@@ -938,23 +875,20 @@ function loadMemberLikeMusic(username) {
 									</select>
 								</div>
 								<div style="float:right;">
-								<a href="../list/createList.jsp" >建立歌單</a>
+									<a href="../list/createList.jsp" >建立歌單</a>
 								</div>
-							</div>
-							<div class="modal-footer">
+							 </div>
+							 <div class="modal-footer">
 								<button type="button" class="btn btn-primary"
 									data-dismiss="modal">取消</button>
 								<input type="submit" class="btn btn-primary" value="確定" />
-							</div>
-						</form>
+							 </div>
+						  </form>
 						
 					</div>
 				</div>
-			</div>							
-
-							
-		<!-- addPlayList end-->
-							
+			</div>											
+		<!-- addPlayList end-->							
 	<jsp:include page="../homePage/footer.jsp" />
 <!-- 	<div id="player"> -->
 <%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
