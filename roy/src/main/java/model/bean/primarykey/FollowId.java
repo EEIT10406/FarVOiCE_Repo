@@ -5,6 +5,10 @@ import java.util.Objects;
 
 public class FollowId implements Serializable{
  
+	public FollowId() {
+		super();
+	}
+
 	@Override
 	public String toString() {
 		return "FollowId [member_usernameS=" + member_usernameS + ", member_usernameM=" + member_usernameM + "]";

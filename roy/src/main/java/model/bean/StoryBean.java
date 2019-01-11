@@ -1,15 +1,36 @@
 package model.bean;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.google.gson.annotations.Expose;
 
 @Entity
 @Table(name="Story")
 public class StoryBean {
-@Override
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="music_id",
+				referencedColumnName="music_id",
+				insertable=false,updatable=false)
+	private MusicBean musicBean;
+	 
+	
+	
+	public MusicBean getMusicBean() {
+		return musicBean;
+	}
+	public void setMusicBean(MusicBean musicBean) {
+		this.musicBean = musicBean;
+	}
+	
+	@Override
 	public String toString() {
 		return "StoryBean [story_id=" + story_id + ", member_username=" + member_username + ", music_id=" + music_id
 				+ ", story_time=" + story_time + "]";
@@ -18,12 +39,15 @@ public class StoryBean {
 	member_username	varchar(30) REFERENCES member (member_username),
 	music_id		int			REFERENCES Music (music_id),
 	story_time		datetime
-*/	
+	 */	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)@Expose
 	private Integer story_id;
+	@Expose
 	private String member_username;
+	@Expose
 	private Integer music_id;
+	@Expose
 	private java.util.Date story_time;
 	public Integer getStory_id() {
 		return story_id;

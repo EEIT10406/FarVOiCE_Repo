@@ -79,9 +79,26 @@
 					    <c:when test="${empty user}">
 					    </c:when>
 					    <c:otherwise>
-							<li>	
-								<img id="profile" src="../personalPage/imgs/profile/${user.member_username}.jpg"  class="img-circle" style="width:45px;height:45px;"  />
-							</li>
+					    
+					    
+						    <c:choose>
+						    <c:when test="${empty user.member_profileImage}">
+								<li>	 
+									<img id="profile" src="../personalPage/imgs/noProfile.gif"  class="img-circle" style="width:45px;height:45px;"  />
+								</li>							    
+							</c:when>
+						    <c:otherwise>
+								<li>	 
+									<img id="profile" src="${user.member_profileImage}"  class="img-circle" style="width:45px;height:45px;"  />
+								</li>							
+							</c:otherwise>
+							</c:choose>
+							
+							
+							
+<!-- 							<li>	 -->
+<%-- 								<img id="profile" src="${user.member_profileImage}"  class="img-circle" style="width:45px;height:45px;"  /> --%>
+<!-- 							</li> -->
 						</c:otherwise>
 					</c:choose>
 				</ul>

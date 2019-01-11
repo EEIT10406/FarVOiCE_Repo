@@ -47,7 +47,6 @@ public class PostController {
 		//用gson包成json送回前端
 		Gson gson = new Gson();
 		String jsonList = gson.toJson(posts);
-//		System.out.println("json的"+jsonList);
 		return jsonList;
 	}
 	@RequestMapping(path="/personalPage/singleArticle.controller")
@@ -72,12 +71,11 @@ public class PostController {
 		postService.postNewComment(bean);
 		return "redirect:/personalPage/singleArticle.jsp";
 	}
+	
 	@RequestMapping(path="/personalPage/showAllCommentFromArticle.controller",produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String showAllCommentFromArticle(Model model,HttpSession session,Integer post_idS) {
-		
 		//show這個文章的留言
-	
 		List<PostBean> comments = postService.showAllCommentFromArticle(post_idS);
 		//用gson包成json送回前端
 		Gson gson = new Gson();

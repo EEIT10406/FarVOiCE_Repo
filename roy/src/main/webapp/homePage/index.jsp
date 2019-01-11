@@ -38,11 +38,13 @@
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<script src="1.js?ver=1"></script>
 <!-- End JS -->
+
 </head>
 <body>
 	<div id="body_bg">
-
+	
 		<jsp:include page="header.jsp" />
 		<!-- === BEGIN CONTENT === -->
 		<div id="content">
@@ -128,33 +130,35 @@
 				</div>
 				<!-- End Main Text -->
 				<!-- Side Column -->
-				<div class="col-md-3" style="float: right">
+				<div  id="hottest" class="col-md-3" style="float: right">
 					<h3 class="title">即時熱門排行</h3>
-					<h6 style="margin: 0;">Mon - Wed</h6>
-					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
-					<p>
-						<small>* Lorem ipsum dolor sit amet</small>
-					</p>
-					<hr>
-					<h6 style="margin: 0;"><a href="/roy/personalPage/somebodyPersonalPage.controller?somebody=Peter&nickname=fifi">fifi</a></h6>
-					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
-					<p>
-						<small>* Lorem ipsum dolor sit amet</small>
-					</p>
-					<hr>
-					<h6 style="margin: 0;">Marry</h6>
-					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
-					<p>
-						<small>* Lorem ipsum dolor sit amet</small>
-					</p>
-					<hr>
-					<h6 style="margin: 0;">Jack</h6>
-					<h4 style="margin: 0;">CLOSED</h4>
-					<p>
-						<small>* Lorem ipsum dolor sit amet</small>
-					</p>
-					<hr>
-					<button type="button" class="btn btn-primary" style="width:100%" onclick="window.location.href ='/roy/rank/rank.jsp'">媽的看排行喔</button>
+<!-- 					<h6 style="margin: 0;">Mon - Wed</h6> -->
+<!-- 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4> -->
+<!-- 					<p> -->
+<!-- 						<small>* Lorem ipsum dolor sit amet</small> -->
+<!-- 					</p> -->
+					
+<!-- 					<hr> -->
+					
+<!-- 					<h6 style="margin: 0;"><a href="/roy/personalPage/somebodyPersonalPage.controller?somebody=Peter&nickname=fifi">fifi</a></h6> -->
+<!-- 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4> -->
+<!-- 					<p> -->
+<!-- 						<small>* Lorem ipsum dolor sit amet</small> -->
+<!-- 					</p> -->
+<!-- 					<hr> -->
+<!-- 					<h6 style="margin: 0;">Marry</h6> -->
+<!-- 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4> -->
+<!-- 					<p> -->
+<!-- 						<small>* Lorem ipsum dolor sit amet</small> -->
+<!-- 					</p> -->
+<!-- 					<hr> -->
+<!-- 					<h6 style="margin: 0;">Jack</h6> -->
+<!-- 					<h4 style="margin: 0;">CLOSED</h4> -->
+<!-- 					<p> -->
+<!-- 						<small>* Lorem ipsum dolor sit amet</small> -->
+<!-- 					</p> -->
+<!-- 					<hr> -->
+<!-- 					<button type="button" class="btn btn-primary" style="width:100%" onclick="window.location.href ='/roy/rank/rank.jsp'">媽的看排行喔</button> -->
 				</div>
 				<!-- End Side Column -->
 			</div>
@@ -257,10 +261,63 @@
 
 	</div>
 	<!-- === END CONTENT === -->
+
+            
 	<jsp:include page="footer.jsp" />
 <!-- 	<div id="player"> -->
 <%-- 		<jsp:include page="player.jsp" /> --%>
 <!-- 	</div> -->
+
+
+
+
+
+
+	
+<script>
+function rank(){
+	window.location.href ="/roy/rank/rank.jsp";
+}
+// 找出所有時間總點閱率最高的五筆音樂
+$(function () {            
+	$.ajax({
+        url: "/roy/homePage/indexFindAllTimePlayCountTop5Music.controller",   //存取Json的網址             
+        type: "POST",
+        cache:false,
+        dataType:'json',
+        data:{user:$('#userName').text()},
+		success : function(list){	
+			list.forEach(function(obj, index) {
+// 	這邊的username是nicknameame
+				console.log(obj) ; 
+				var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a>";
+				var content = "<h6 style='margin: 0;'><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a></h6>";
+				var content1 = "<h4 style='margin: 0;'>"+obj.music_name+"</h4><hr>";
+				var div=content+content1;
+				$('#hottest').append(div);
+		  	})
+		  	var button = "<button type='button' class='btn btn-primary' style='width:100%' onclick='rank()' >媽的看排行喔</button>";
+			$('#hottest').append(button);
+		},
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+        }
+     });
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

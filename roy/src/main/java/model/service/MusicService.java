@@ -5,16 +5,16 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.net.URL;
+import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.bean.MemberBean;
 import model.bean.MusicBean;
+import model.dao.MemberDAO;
 import model.dao.MusicDAO;
 
 @Service
@@ -22,7 +22,8 @@ import model.dao.MusicDAO;
 public class MusicService {
 	@Autowired
 	private MusicDAO musicDao;
-	
+	@Autowired
+	private MemberDAO memberDAO;
 	public MusicDAO getMusicDao() {
 		return musicDao;
 	}
@@ -57,6 +58,10 @@ public class MusicService {
 		return l1;
 	}
 	
+	//找出所有時間總點閱率最高的五筆音樂
+	public List<MusicBean> findAllTimePlayCountTop5Music(){
+		return musicDao.findAllTimePlayCountTop5Music();
+	}
 	//更新音樂
 	public void updateMusic(MusicBean bean) {
 		if(bean!=null) {
@@ -120,8 +125,16 @@ public class MusicService {
 		return "/roy/image/music"+imageFilePath.substring(27);
 	}
 	
-
-
+	//給username得nickname
+	public String usernameToNickname(String username) {
+		MemberBean bean = memberDAO.findByPrimaryKey(username);
+		return bean.getMember_nickname();
+	}
+	//給nickname得username
+	public String nicenameToUsername(String username) {
+		return memberDAO.nicenameToUsername(username);
+		
+	}
 //	public static void main(String[] args) {
 //		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
 //		Session session = sessionFactory.openSession();

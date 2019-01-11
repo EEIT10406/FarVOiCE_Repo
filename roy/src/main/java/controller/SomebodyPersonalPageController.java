@@ -8,15 +8,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import model.service.MemberService;
+import model.service.MusicService;
 
 @Controller
 public class SomebodyPersonalPageController {
 	@Autowired
 	MemberService memberService; 
+	@Autowired
+	MusicService musicService;
 	@RequestMapping(path="/personalPage/somebodyPersonalPage.controller")
-	public String method(Model model,String somebody,String nickname,HttpSession session) {
+	public String method(Model model,String nickname,HttpSession session) {
 		//進別人的首頁
-//		System.out.println(somebody+","+nickname);
+//		System.out.println(somebody+","+nickname);-
+		String somebody = musicService.nicenameToUsername(nickname);
 		session.setAttribute("somebody", somebody);
 		session.setAttribute("nickname", nickname);
 

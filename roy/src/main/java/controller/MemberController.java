@@ -1,7 +1,9 @@
 package controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -10,8 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.Gson;
 
 import model.bean.MemberBean;
+import model.bean.PostBean;
 import model.service.MemberService;
 
 @Controller
@@ -94,9 +102,10 @@ public class MemberController {
 		}
 		bean.setMember_registerTime(new Date());
 		bean.setMember_ban(false);
+		bean.setMember_profileImage("");
 		MemberBean signUpbean = memberService.signUp(bean);
 		if (signUpbean == null) {
-			errors.put("signUpError", "註冊失敗");
+			errors.put("signUpError", "帳號已存在");
 			return "/login-signUp-upload/signUp.jsp";
 		} else {
 			session.setAttribute("user", signUpbean);
@@ -104,15 +113,16 @@ public class MemberController {
 		}
 	}
 	@RequestMapping(path="/login-signUp-upload/MemberLogOut.controller")
-	public String signUp(Model model,
+	public String logOut(Model model,
 			HttpSession session) {
 		MemberBean bean =null;
 		session.setAttribute("user", bean);
+		session.setAttribute("requestURI",null);
 		return"redirect:/homePage/index.jsp";
 	}
 	
-	
-	@RequestMapping(path="/accounts/change_password/")
+	//更改密碼
+	@RequestMapping(path="/personalPage/change_password")
 	public String changePassword(Model model,
 			HttpSession session,String old_password,String new_password,String new_passconf) {
 		MemberBean bean = (MemberBean) session.getAttribute("user");
@@ -120,11 +130,69 @@ public class MemberController {
 		if(!bean.getMember_password().equals(old_password)) {
 			errors.put("passError", "是不是忘記密碼了呢?");
 		}
+		if(!new_password.equals(new_passconf)) {
+			errors.put("passError", "新密碼不一致?");
+
+		}
 		if(!errors.isEmpty()) {
 			model.addAttribute("errors", errors);
 			return "/personalPage/personalDetail.jsp";
 		}
-		return"redirect:/homePage/index.jsp";
+		
+		bean.setMember_password(new_passconf);
+		memberService.update(bean);
+		model.addAttribute("changePassSucc", "密碼更改成功");
+		return"/personalPage/personalDetail.jsp";
+	}
+	
+	@RequestMapping(path="/personalPage/change_email")
+	public String changeEmail(Model model,
+			HttpSession session,String email,String emailconf) {
+		MemberBean bean = (MemberBean) session.getAttribute("user");
+		Map<String, String> errors = new HashMap<>();
+		if(!email.equals(emailconf)) {
+			errors.put("passError", "新email不一致?");
+		}
+		if(!errors.isEmpty()) {
+			model.addAttribute("errors", errors);
+			return "/personalPage/personalDetail.jsp";
+		}
+		
+		bean.setMember_email(emailconf);
+		memberService.update(bean);
+		model.addAttribute("changePassSucc", "Email更改成功");
+		return"/personalPage/personalDetail.jsp";
+	}
+	@RequestMapping(path="/personalPage/change_profile")
+	public String changeProfile(Model model,
+			HttpSession session,
+			@RequestParam("member_profileImage") MultipartFile imageFile) {
+		MemberBean bean = (MemberBean) session.getAttribute("user");
+		String imagePath = "";
+		if (!imageFile.isEmpty()) {
+			try {
+				byte[] imageByte = imageFile.getBytes();
+				imagePath = memberService.imageFilePath(imageByte);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		bean.setMember_profileImage(imagePath);
+		memberService.update(bean);
+		model.addAttribute("changeProSucc", "大頭貼更改成功");
+		return"/personalPage/personalDetail.jsp";
+	}
+	@RequestMapping(path="/login-signUp-upload/accountCheck.controller",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String accountCheck(Model model,HttpSession session,String user) {
+		//找找有沒有這個帳號
+		System.out.println(user);
+		boolean existOrNot = memberService.checkAccountExist(user);
+		//重複-->true
+		System.out.println("controller-existOrNot = " +existOrNot);
+
+		String jsonList = "{\"existOrNot\":\""+existOrNot+"\"}";
+		return jsonList;
 	}
 }
 	

@@ -22,12 +22,12 @@ public class PostService {
 		this.postDAO = postDAO;
 	}
 	
-	public static void main(String[] args) {
-		try {
-			HibernateUtil.getSessionfactory().getCurrentSession().beginTransaction();
-
-			PostService postService = new PostService(new PostDAO(HibernateUtil.getSessionfactory()));
-			
+//	public static void main(String[] args) {
+//		try {
+//			HibernateUtil.getSessionfactory().getCurrentSession().beginTransaction();
+//
+//			PostService postService = new PostService(new PostDAO(HibernateUtil.getSessionfactory()));
+//			
 //			PostBean temp = new PostBean();
 //			temp.setMember_username("Peter");
 //			temp.setPost_content("哈囉囉囉囉囉");
@@ -35,17 +35,27 @@ public class PostService {
 //			System.out.println(newPostBean);
 //			MemberBean member = new MemberBean();
 //			member.setMember_username("Peter");
-//			List<PostBean> posts = postService.showAllArticleFromMember(member);		
+//			List<PostBean> posts = postService.showAllArticleFromMember(member);
+	
 //			for(PostBean beantemp:posts) {
 //				System.out.println(beantemp);
 //			}
-			int post_idS =5;
-			System.out.println(postService.removePost(post_idS));
-			HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
-		} finally {
-			HibernateUtil.closeSessionFactory();
-		}
-	}
+
+			
+//			HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
+//		} finally {
+//			HibernateUtil.closeSessionFactory();
+//		}
+//	}
+
+//			int post_idS =5;
+//			System.out.println(postService.removePost(post_idS));
+//			HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
+//		} finally {
+//			HibernateUtil.closeSessionFactory();
+//		}
+//	}
+
 
 	public PostBean postNewArticle(PostBean bean) {
 		//0104 OK
@@ -66,11 +76,10 @@ public class PostService {
 		return newPostBean;
 	}
 	public PostBean findSinglePost(Integer post_idS) {
-		
 		PostBean bean = postDAO.findByPrimaryKey(post_idS);
 		if(bean!=null) {
 					return bean;
-		}
+			}
 		return null;
 	}
 	public boolean removePost(Integer post_idS) {

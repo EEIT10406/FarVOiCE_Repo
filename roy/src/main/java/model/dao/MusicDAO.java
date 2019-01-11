@@ -12,10 +12,12 @@ import javax.sql.rowset.serial.SerialBlob;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.MusicBean;
+import model.bean.PostBean;
 import model.hibernate.HibernateUtil;
 
 @Repository
@@ -23,16 +25,20 @@ public class MusicDAO {
 	//Spring MVC
 	@Autowired
 	private SessionFactory sessionFactory;
-//	public void setSessionFactory(SessionFactory sessionFactory) {
-//		this.sessionFactory = sessionFactory;
-//	}
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	public MusicDAO(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	public Session getSession() {
 	return this.sessionFactory.getCurrentSession();
-}
+	}
+
 	
 	
-//	public static void main(String... args) throws IOException, Exception, SQLException {
-//		
+	public static void main(String... args) throws IOException, Exception, SQLException {
+		
 //		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
 //		Session session = sessionFactory.openSession();
 //		Transaction tx = session.beginTransaction();
@@ -82,14 +88,14 @@ public class MusicDAO {
 		//remove
 //		boolean  remove = musicDAO.remove(6);
 //		System.out.println(remove);
-		
-		
+//		System.out.println(musicDAO.findAllTimePlayCountTop5Music());
+//		
 		
 //		tx.commit();
 //		session.close();
 //		HibernateUtil.closeSessionFactory();
-//	}
-//	
+	}
+	
 //	private Session session;
 //	public void setSession(Session session) {
 //		this.session = session;
@@ -147,5 +153,23 @@ public class MusicDAO {
 		originalBean.setMusic_unavailable(true);
 		return true;
 	}
+	//找出所有時間總點閱率最高的五筆音樂
+	public List<MusicBean> findAllTimePlayCountTop5Music(){
+		//0111 OK
+		String hql = "from MusicBean Order By music_playCount Desc";
+		Query<MusicBean> query = this.getSession().createQuery(hql);
+		query.setMaxResults(5);
+		List<MusicBean> musicList = query.list();
+		return musicList;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

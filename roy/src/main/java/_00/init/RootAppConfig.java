@@ -16,10 +16,9 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import model.bean.ReportBean;
-import model.bean.StoryBean;
 import model.bean.BackerBean;
-import model.bean.FundingBean;
 import model.bean.FollowBean;
+import model.bean.FundingBean;
 import model.bean.ListMusicBean;
 import model.bean.MemberBean;
 import model.bean.MemberLikeMusicBean;
@@ -27,6 +26,8 @@ import model.bean.MusicBean;
 import model.bean.PlaylistBean;
 import model.bean.PostBean;
 import model.bean.RewardBean;
+import model.bean.StoryBean;
+
 
 @Configuration
 @ComponentScan(basePackages = "model")
@@ -51,7 +52,9 @@ public class RootAppConfig {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
 
 
-		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,FollowBean.class, BackerBean.class, FundingBean.class, RewardBean.class,MemberLikeMusicBean.class,ReportBean.class,StoryBean.class);
+		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,
+				FollowBean.class, BackerBean.class, FundingBean.class, RewardBean.class,StoryBean.class,MemberLikeMusicBean.class,ReportBean.class);
+
 
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
