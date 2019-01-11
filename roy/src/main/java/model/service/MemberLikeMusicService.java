@@ -1,68 +1,88 @@
 package model.service;
 
-import javax.servlet.ServletContext;
+import java.util.LinkedList;
+import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.MemberLikeMusicBean;
+import model.bean.MusicBean;
 import model.bean.primarykey.MemberLikeMusicId;
 import model.dao.MemberLikeMusicDAO;
-import model.hibernate.HibernateUtil;
+import model.dao.MusicDAO;
 
 @Service
+@Transactional
 public class MemberLikeMusicService {
     @Autowired
-	private MemberLikeMusicDAO musicDAO;
+	private MemberLikeMusicDAO memberLikeMusicDAO;
+    @Autowired
+    private MusicDAO musicDao;
     
-	public MemberLikeMusicDAO getMusicDAO() {
-		return musicDAO;
-	}
-	public void setMusicDAO(MemberLikeMusicDAO musicDAO) {
-		this.musicDAO = musicDAO;
-	}
+    
+    
+  //使用者收回讚後刪除該筆資料
+    public boolean memberTakeBackLike(MemberLikeMusicId memberLikeMusicId) {
+    	boolean result=memberLikeMusicDAO.remove(memberLikeMusicId);
+    	if(result==true) {
+    		return true;
+    	}
+    	return false;
+    }
+    
+    
+    //使用者按讚後新增一筆資料
+    public MemberLikeMusicBean memberClickLike(MemberLikeMusicBean bean) {
+    	MemberLikeMusicBean memberLikeMusicBean=memberLikeMusicDAO.create(bean);
+    	if(memberLikeMusicBean!=null) {
+    		return memberLikeMusicBean;
+    	}
+    	return null;
+    }
+    
 
-	//判斷該使用者是否按讚該音樂
-	public boolean memberLike(MemberLikeMusicId memberLikeMusicId) {
-		//看資料庫是否有這筆資料
-		MemberLikeMusicBean bean=musicDAO.findByPrimaryKey(memberLikeMusicId);
-		//如果資料庫有傳回true
-		if(bean!=null) {
-			return true;
+	//找出該使用者喜歡哪些音樂，且該音樂沒被下架，回傳音樂id
+	public List<Integer> memberLikeMusics(String member_username) {
+		List <MemberLikeMusicBean> memberLikeMusicBean=memberLikeMusicDAO.findLikeMusicByUser(member_username);
+		if(memberLikeMusicBean!=null) {
+			List <Integer> likeMusics=new LinkedList<>();
+			for(MemberLikeMusicBean beans:memberLikeMusicBean) {
+				MusicBean musicBean=musicDao.findByPrimaryKey(beans.getId().getMusic_id());
+				if(musicBean.getMusic_unavailable()==false) {
+					likeMusics.add(beans.getId().getMusic_id());
+				}	
+			}
+			return likeMusics;
 		}else{
-			//資料庫沒有傳回false
-			return false;
+			return null;
 		}
 	}
 	
 	
 	public static void main(String[] args) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		MemberLikeMusicDAO memberLikeMusicDAO = new MemberLikeMusicDAO();
-		memberLikeMusicDAO.setSession(session);
-		
-		MemberLikeMusicService service=new MemberLikeMusicService();
-		MemberLikeMusicId memberLikeMusicId = new MemberLikeMusicId();
-		memberLikeMusicId.setMember_username("Jack");
-		memberLikeMusicId.setMusic_id(3);
-		service.setMusicDAO(memberLikeMusicDAO);
-		System.out.println(service.memberLike(memberLikeMusicId));
-		
-		
-
-		
-		
-		tx.commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+//		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
+//		Session session = sessionFactory.openSession();
+//		Transaction tx = session.beginTransaction();
+//		MemberLikeMusicDAO memberLikeMusicDAO = new MemberLikeMusicDAO();
+//		memberLikeMusicDAO.setSession(session);
+//		
+//		MemberLikeMusicService service=new MemberLikeMusicService();
+//		MemberLikeMusicId memberLikeMusicId = new MemberLikeMusicId();
+//		memberLikeMusicId.setMember_username("Jack");
+//		memberLikeMusicId.setMusic_id(3);
+//		service.setMusicDAO(memberLikeMusicDAO);
+//		System.out.println(service.memberLike(memberLikeMusicId));
+//		
+//		
+//
+//		
+//		
+//		tx.commit();
+//		session.close();
+//		HibernateUtil.closeSessionFactory();
 
 		
 

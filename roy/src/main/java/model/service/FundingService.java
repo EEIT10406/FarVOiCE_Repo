@@ -1,5 +1,7 @@
 package model.service;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,13 +10,34 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.FundingBean;
+import model.bean.MusicBean;
 import model.dao.FundingDAO;
+import model.dao.MusicDAO;
 
 @Service
 @Transactional
 public class FundingService {
 	@Autowired
 	private FundingDAO fundingDAO;
+	@Autowired
+	private MusicDAO musicDAO;
+
+	// 給上傳的圖片檔一個儲存路徑
+	public String imageFilePath(byte[] file) throws IOException {
+		String imageFilePath = "C:/Roy_FarVoice/image/funding/" + System.currentTimeMillis() + ".jpg";
+		FileOutputStream out = new FileOutputStream(imageFilePath);
+		out.write(file);
+		out.close();
+		return "/roy/image/funding" + imageFilePath.substring(29);
+	}
+
+//根據使用者名稱抓出他上傳的音樂
+	public List<MusicBean> findMusicByUser(String member_username) {
+		if (member_username != null) {
+			return musicDAO.findAllByUser(member_username);
+		}
+		return null;
+	}
 
 	public List<FundingBean> select(FundingBean bean) {
 		List<FundingBean> result = null;

@@ -159,6 +159,7 @@ table {
 						</div>
 						<div class="col-sm-9">
 							<div class="tab-content">
+							
 								<div class="tab-pane fade in active" id="imediate">
 									<div class="row">
 										<div class="col-md-7">

@@ -186,7 +186,11 @@ word-break:break-all;
 
 	function followClick() {
 		if ($(this).attr("class") == "follow") {//追蹤改成退追蹤
-			$.get('/roy/personalPage/somebodyPersonalPageFollow.controller', {'somebody':$('#userName').text()}, function(data) {})
+			$.get('/roy/personalPage/somebodyPersonalPageFollow.controller', {'somebody':$('#userName').text()}, function(data) {
+				if(data){
+					
+				}
+			})
 // 			這個會跳轉畫面window.location.href = "/roy/personalPage/somebodyPersonalPageFollow.controller?somebody="+$('#userName').text();
 			$(this).attr("class", "unfollow");
 			$(this).html('追蹤');
