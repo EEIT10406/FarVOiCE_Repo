@@ -144,9 +144,7 @@ cursor: pointer;
 	list-style-type: none;
 	font-size: 15px;
 }
-.list{
-width: 160px;height: 160px;background: url("../img/right.JPG") no-repeat; background-size:160px 160px;
-}
+
 .listSongCount{
 border:1px solid black;width:50px;height:50px;background-color:black;color:white;font-size:20px;margin-left:0;
 padding:11px;
@@ -199,7 +197,7 @@ $(document).ready(function() {
 		loadMemberLikeMusic('${user.member_username}')
 	})
 
-	//刪除歌單
+	//刪除音樂
 	$('#music').on('click','.deleteClick',
 		function() {
             var row = $(this).parents('#musics');
@@ -265,6 +263,23 @@ $(document).ready(function() {
 			
 	})
 	
+	//點歌單去歌單頁面
+	$('#list').on('click','#listPage',function(){
+		var row = $(this).parents('#lists');
+		var playListId = row.children('span[name="playlist_id"]').text();
+	
+		window.location.href = "/roy/personalPage/locateToPlayList?playListId="+playListId;
+		
+	})
+	
+	//點音樂去音樂頁面
+	$('#music').on('click','#musicPage',function(){
+		var row = $(this).parents('#musics');
+		var musicId = row.children('span[name="music_id"]').text();
+		
+		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
+		
+	})
 	
 })
 
@@ -277,7 +292,9 @@ function loadMusic(username) {
 		$.each(data,function(index, list) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;margin-bottom:10px;">'+
 			          '<span name="music_id">'+list.music_id+'</span>'+
-			          '<span><a href=""><img src="'+list.music_Image+'" style="width: 160px; height: 160px;" /></a></span>'+
+			          '<span id="musicPage" style="cursor: pointer;">'+
+			               '<img src="'+list.music_Image+'" style="width: 160px; height: 160px;" />'+
+			          '</span>'+
 			       '<div style="font-size: 16px;">'+list.music_name+'</div>'+
                    '<div>'+
 			       '<img src="'+list.memberLikeMusic+'" class="heart">'+
@@ -302,12 +319,12 @@ function loadPlayList(username) {
 		var content="";
 		 $('#list').html("");
 		$.each(data,function(index, list) {
-			content+='<div class="col-md-5" style="float: left; width: 300px;margin-bottom:13px;">'+
+			content+='<div id="lists" class="col-md-5" style="float: left; width: 300px;margin-bottom:13px;">'+
 		             '<span name="playlist_id">'+list.playlist_id+'</span>'+
-			         '<a href="">'+
+			         '<div id="listPage" style="cursor: pointer;">'+
 		                  '<div style="width: 160px;height: 160px;background: url('+list.playlist_image+') no-repeat; background-size:160px 160px;">'+
 			              '<div class="listSongCount">'+list.playlist_musicCount+'</div></div>'+
-		             '</a>'+
+		             '</div>'+
                      '<div style="font-size: 16px;">'+list.playlist_name+'</div>'+
                      '<div style="font-size:14px;">'+list.showPlaylist_privacy+'</div>'+
                  '</div>';
@@ -511,8 +528,7 @@ function loadMusicCount(username) {
 
 
 						<div class="tab-pane fade in" style="overflow: auto;" id="music">
-						
-							
+													
 <!-- 							<div id="musics" class="col-md-5" style="float: left; width: 300px;"> -->
 <!-- 								<span name="music_id"></span>  -->
 <!-- 								<span><a href=""><img src="../img/love.png" style="width: 160px; height: 160px;" /></a></span> -->
@@ -525,11 +541,9 @@ function loadMusicCount(username) {
 <!-- 									<span class="deleteClick" style="cursor: pointer;"> <img src="../img/delete.png" width="15px" />刪除</span> -->
 <!-- 								</div> -->
 <!-- 							</div> -->
-							
-							
+														
 						</div>
-						
-						
+									
 						
 						
 						<div class="tab-pane fade in" style="overflow: auto;" id="list">
@@ -551,15 +565,12 @@ function loadMusicCount(username) {
 <!-- 										src="../img/delete.png" width="17px" />刪除 -->
 <!-- 									</span> -->
 <!-- 								</div> -->
-<!-- 							</div> -->
-							
+<!-- 							</div> -->						
 	
 						</div>
 						
 						
 						<div class="tab-pane fade in" style="overflow: auto;" id="like">
-
-
 
 
 <!-- 							<div id="likes" class="col-md-5" style="float: left; width: 300px;"> -->
@@ -586,8 +597,6 @@ function loadMusicCount(username) {
 <!-- 									</span> -->
 <!-- 								</div> -->
 <!-- 							</div> -->
-
-
 
 
 						</div>
@@ -763,7 +772,8 @@ function loadMusicCount(username) {
 						    var hours=Math.floor(leave1 /(3600*1000))//计算出小时数
 						    //计算相差分钟数
 						    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
-						    var minutes=Math.floor(leave2 /(60*1000))//计算相差分钟数
+						    var minutes=Math.floor(leave2 /(60*1000))
+						    //计算相差分钟数
 						    //计算相差秒数
 						    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
 						    var seconds=Math.round(leave3/1000)
@@ -777,8 +787,7 @@ function loadMusicCount(username) {
 						    }else{
 						    	timediff+="剛剛";
 						    }
-// 						    console.log(dateDiff+"时间差的毫秒数",dayDiff+"计算出相差天数",leave1+"计算天数后剩余的毫秒数"
-// 						        ,hours+"计算出小时数",minutes+"计算相差分钟数",seconds+"计算相差秒数");
+
 						}
 						var timediff ="";
 						timeFn(obj.post_time);
