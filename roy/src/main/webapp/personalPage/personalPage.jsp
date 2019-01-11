@@ -456,11 +456,11 @@ function loadMemberLikeMusic(username) {
 														                  
 <!-- 																		</button> -->
 																		<a href="/angry_youth/songs/558439/">
-																		<img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg">
+																		
 																		</a>
 																	</div><!-- /work-block img-xxs -->
 																	<div style="margin-left:250px">
-																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a><a style="margin-left:100px;color:gray;">時間</a></h4>						
+																		<h4><a>歌名</a><a style="margin-left:100px;color:gray;">時間</a></h4>						
 																	</div>
 														  		</div>
 															</div>	
