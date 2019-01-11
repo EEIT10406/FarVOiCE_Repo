@@ -100,7 +100,11 @@ public class MusicService {
 		MemberBean bean = memberDAO.findByPrimaryKey(username);
 		return bean.getMember_nickname();
 	}
-
+	//給nickname得username
+	public String nicenameToUsername(String username) {
+		return memberDAO.nicenameToUsername(username);
+		
+	}
 //	public static void main(String[] args) {
 //		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
 //		Session session = sessionFactory.openSession();

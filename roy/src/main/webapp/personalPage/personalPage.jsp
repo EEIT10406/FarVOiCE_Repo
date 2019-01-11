@@ -872,7 +872,7 @@ function loadMemberLikeMusic(username) {
 				 		var music_img  ;
 				 		//------------obj抓直出來放到變數
 				 		$.each(obj, function( index, value ) {
-				 			console.log( index + ": " + value );
+				 			console.log( index + ":" + value );
 				 			if(index == 0){
 				 				story_time = value;
 				 			}
