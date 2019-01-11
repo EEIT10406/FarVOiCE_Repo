@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class IndexController {
 	@ResponseBody
 	public String findAllTimePlayCountTop5Music() {
 		List<MusicBean> top5 = musicService.findAllTimePlayCountTop5Music();
+		Iterator<MusicBean> top5Ite = top5.iterator();
+		while(top5Ite.hasNext()) {
+			MusicBean temp = top5Ite.next();
+			temp.setMember_username(musicService.usernameToNickname(temp.getMember_username()));
+		}
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		String json = gson.toJson(top5);
 		System.out.println(json);
