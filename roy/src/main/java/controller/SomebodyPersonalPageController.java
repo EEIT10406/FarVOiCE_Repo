@@ -26,5 +26,6 @@ public class SomebodyPersonalPageController {
 		session.setAttribute("nickname", nickname);
 		session.setAttribute("somebodyImgPath", somebodyBean.getMember_profileImage());
 		return "/personalPage/somebodyPersonalPage.jsp";
+		
 	}
 }
