@@ -268,7 +268,6 @@ $(document).ready(function() {
 function loadMusic(username) {
 
 	$.getJSON('/roy/personalPage/readMusic',{'username' : username},function(data) {
-		
 		var content;
 		$.each(data,function(index, list) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;margin-bottom:10px;">'+
@@ -294,7 +293,7 @@ function loadMusic(username) {
 function loadPlayList(username) {
 	$.getJSON('/roy/list/readPlayList',{'username' : username},function(data) {
 		var content;
-		 $('#list').html("");
+		$('#list').html("");
 		$.each(data,function(index, list) {
 			content+='<div class="col-md-5" style="float: left; width: 300px;margin-bottom:13px;">'+
 		             '<span name="playlist_id">'+list.playlist_id+'</span>'+
@@ -442,24 +441,7 @@ function loadMusicCount(username) {
 												<!-- /media-body -->
 											</div><!-- /media -->
 										</div>
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
+				
 							</div><!-- ===END of HISTORY === -->
 							
 							
@@ -478,61 +460,19 @@ function loadMusicCount(username) {
 								<div class="blog-post padding-bottom-20">
 									<!-- Blog Item Header -->
 									<div class="blog-item-header">
-										<!-- Title -->
-										<h2>
-											<a href="#">最新文章</a>
-										</h2>
-										<div class="clearfix"></div>
-										<!-- End Title -->
+										
 									</div>
 									<!-- End Blog Item Header -->
 									<!-- Blog Item Details -->
 									<div class="blog-post-details">
-										<!-- Author Name -->
-										<div class="blog-post-details-item blog-post-details-item-left">
-											<i class="fa fa-user color-gray-light"></i> <a href="#">作者:黃金鼠</a>
-										</div>
-										<!-- End Author Name -->
-										<!-- Date -->
-										<div class="blog-post-details-item blog-post-details-item-left">
-											<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-										</div>
-										<!-- End Date -->
-										<!-- Tags -->
-										<div
-											class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-											<i class="fa fa-tag color-gray-light"></i> <a href="#">HTML5</a>,
-											<a href="#">CSS</a>, <a href="#">Grunt</a>
-										</div>
-										<!-- End Tags -->
-										<!-- # of Comments -->
-										<div
-											class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-											<a href=""> <i class="fa fa-comments color-gray-light"></i>
-												9 Comments
-											</a>
-										</div>
-										<!-- End # of Comments -->
+									
+								
 									</div>
 									<!-- End Blog Item Details -->
 									<!-- Blog Item Body -->
 									<div class="blog">
 										<div class="clearfix"></div>
 										<div class="blog-post-body row margin-top-15">
-											<div class="col-md-5">
-												<img class="margin-bottom-20" src="imgs/mouse.PNG"
-													alt="thumb1">
-											</div>
-											<div class="col-md-7">
-												<p>最新文章</p>
-												<p>我是一隻黃金鼠</p>
-												<!-- Read More -->
-												<a  class="btn btn-primary" target="_blank" href="singleArticle.jsp"
-													>
-													查看全文
-												</a>
-												<!-- End Read More -->
-											</div>
 										</div>
 									</div>
 									<!-- End Blog Item Body -->
@@ -774,15 +714,15 @@ function loadMusicCount(username) {
 	
 	<!-- 	showArticleFromMember start-->
 	<script>
-	function remove(post_idS)
-	{
-		if(confirm("確實要刪除嗎?"))
-			{	alert("已經刪除！");
-				window.location.href='/roy/personalPage/removePost.controller?post_idS=' + post_idS ;
-				}
-		else
-			{	alert("已經取消了刪除操作");}
-	}
+		function remove(post_idS)
+		{
+			if(confirm("確實要刪除嗎?"))
+				{	alert("已經刪除！");
+					window.location.href='/roy/personalPage/removePost.controller?post_idS=' + post_idS ;
+					}
+			else
+				{	alert("已經取消了刪除操作");}
+		}
         $(function () {            
             $.ajax({
                 url: "/roy/personalPage/showArticleFromMember.controller",   //存取Json的網址             
@@ -819,28 +759,24 @@ function loadMusicCount(username) {
 						    }else{
 						    	timediff+="剛剛";
 						    }
-// 						    console.log(dateDiff+"时间差的毫秒数",dayDiff+"计算出相差天数",leave1+"计算天数后剩余的毫秒数"
-// 						        ,hours+"计算出小时数",minutes+"计算相差分钟数",seconds+"计算相差秒数");
+
 						}
 						var timediff ="";
 						timeFn(obj.post_time);
-
 						var postorshare = obj.post_postorshare;
-						var privacy = obj.Post_privacy;
+						var privacy = obj.post_privacy;
 						var img = "<img src='imgs/profile/"+$('#userName').text()+".jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-// 						var time = "<h6>" + obj.post_time +"</h6>";
 						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
 				        var div =  "<div style='margin-bottom:45px'>"+img+content + button +"<br></br></div>";
-				        
+				       
 						//分享的內容
-
 				        var div2 = "<div style='margin-bottom:45px'>"+img+content2 + "<br></br></div>";
 				       
-				        if(postorshare==true&&privacy==true){
+				        if(postorshare==true && privacy==false){
 				        	$('#test').append(div);
-				        }else if(postorshare==false&&privacy==true){
+				        }else if(postorshare==false && privacy==false){
 				        			$('#test').append(div2);
 				        		}				        
 
