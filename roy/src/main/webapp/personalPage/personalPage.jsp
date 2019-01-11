@@ -861,34 +861,35 @@ function loadMemberLikeMusic(username) {
 });//end 背景處理
     </script>
 	<!-- 	showArticleFromMember end-->
+	<!-- === END CONTENT === -->
+	<!-- addPlayList begin-->		
+							<div class="modal fade" id="addList" aria-hidden="true">
+										<div class="modal-dialog" style="width: 300px;">
+											<div class="modal-content">
+												<h5 style="margin: 10px;">加入歌單</h5>
 	
-	<!-- addPlayList begin-->						
-	<div class="modal fade" id="addList" aria-hidden="true">
-				<div class="modal-dialog" style="width: 300px;">
-					<div class="modal-content">
-						<h5 style="margin: 10px;">加入歌單</h5>
-						<form action="/" method="post">
-							<div class="modal-body">
-								<div class="form-group">
-									<select id="selectPlayList" class="form-control">
-										<option>請選擇歌單</option><span name="playlistId"></span>
-									</select>
-								</div>
-								<div style="float:right;">
-									<a href="../list/createList.jsp" >建立歌單</a>
-								</div>
-							 </div>
-							 <div class="modal-footer">
-								<button type="button" class="btn btn-primary"
-									data-dismiss="modal">取消</button>
-								<input type="submit" class="btn btn-primary" value="確定" />
-							 </div>
-						  </form>
-						
-					</div>
-				</div>
-			</div>											
-		<!-- addPlayList end-->							
+													<div class="modal-body">
+
+														<div class="form-group">
+															<select name="selectPlayList" id="selectPlayList" class="form-control">
+																<option value="playListId">請選擇歌單</option>
+															</select>
+														</div>
+														<div style="float:right;">
+														<a href="../list/createList.jsp" >新增歌單</a>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-primary"
+															data-dismiss="modal">取消</button>
+														<buttin id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
+													</div>
+												
+											</div>
+										</div>
+									</div>							
+							
+							<!-- addPlayList end-->
 	<jsp:include page="../homePage/footer.jsp" />
 <!-- 	<div id="player"> -->
 <%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
