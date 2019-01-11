@@ -107,7 +107,6 @@ public class StoryDAO {
 
 	
 	public StoryBean findByPrimaryKey(Integer story_id) {
-		//0103 OK
 		return this.getSession().get(StoryBean.class, story_id);
 	}
 	
@@ -166,7 +165,6 @@ public class StoryDAO {
 	
 	
 	public List<StoryBean> findAll() {
-		//0103 OK
 		return this.getSession().createQuery("from StoryBean", StoryBean.class)
 				.setMaxResults(50)
 				.list();
@@ -182,13 +180,11 @@ public class StoryDAO {
 	}
 	
 	public void update(StoryBean bean) {
-		//0103 OK
 		getSession().clear();
 		getSession().update(bean);
 	}
 	
 	public boolean remove(Integer story_id) {
-		//0103 OK
 		StoryBean result = this.getSession().get(StoryBean.class, story_id);
 		if(result!=null) {
 			this.getSession().delete(result);

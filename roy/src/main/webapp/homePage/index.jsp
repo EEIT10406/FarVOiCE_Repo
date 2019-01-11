@@ -288,8 +288,10 @@ $(function () {
         data:{user:$('#userName').text()},
 		success : function(list){	
 			list.forEach(function(obj, index) {
+// 	這邊的username是nicknameame
 				console.log(obj) ; 
-				var content = "<h6 style='margin: 0;'>"+obj.member_username+"</h6>";
+				var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a>";
+				var content = "<h6 style='margin: 0;'><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a></h6>";
 				var content1 = "<h4 style='margin: 0;'>"+obj.music_name+"</h4><hr>";
 				var div=content+content1;
 				$('#hottest').append(div);
