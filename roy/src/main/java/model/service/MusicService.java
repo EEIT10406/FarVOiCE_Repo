@@ -29,7 +29,10 @@ public class MusicService {
 		this.musicDao = musicDao;
 	}
 	
-	
+	//找出所有時間總點閱率最高的五筆音樂
+	public List<MusicBean> findAllTimePlayCountTop5Music(){
+		return musicDao.findAllTimePlayCountTop5Music();
+	}
 	//更新音樂
 	public void updateMusic(MusicBean bean) {
 		if(bean!=null) {

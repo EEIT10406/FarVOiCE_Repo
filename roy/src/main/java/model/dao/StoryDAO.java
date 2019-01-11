@@ -20,27 +20,38 @@ public class StoryDAO {
 	//Spring MVC
 	@Autowired
 	private SessionFactory sessionFactory;
+
 	//用MVC要註解以下
 //	public void setSessionFactory(SessionFactory sessionFactory) {
 //		this.sessionFactory = sessionFactory;
 //	}
 	//用MVC要註解以上
-	
-	
 	public StoryDAO(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	private Session session;
+	
+	//一班java測試
+//	private Session session;
+//	public Session getSession() {
+//		return session;
+//	}
+//	public void setSession(Session session) {
+//		this.session = session;
+//	}
+	//-------------
+	
+	
+	
 	public static void main(String... args) throws IOException, Exception, SQLException {
 //		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
 //		Session session = sessionFactory.openSession();
 //		Transaction tx = session.beginTransaction();
 //		StoryDAO storyDAO = new StoryDAO(sessionFactory);
 //		storyDAO.setSession(session);
-//		
+		
 		//findStoryByUsernameTest
 		
 		
@@ -87,15 +98,7 @@ public class StoryDAO {
 	
 	
 	
-//	public Session getSession() {
-//		return session;
-//	}
-
-
-//
-//	public void setSession(Session session) {
-//		this.session = session;
-//	}
+	
 
 
 	
@@ -126,13 +129,13 @@ public class StoryDAO {
 
 	public List<Object[]> test(String member_username){
 		//0103 OK
-		Query<Object[]> query = session.createQuery("select  s.story_time,s.member_username,s.music_id, m.music_name from StoryBean s " + "INNER JOIN s.musicBean m WHERE s.member_username=:member_username Order By story_time Desc");
+		Query<Object[]> query = getSession().createQuery("select  s.story_time,s.member_username,s.music_id, m.music_name , m.music_Image from StoryBean s " + "INNER JOIN s.musicBean m WHERE s.member_username=:member_username Order By story_time Desc");
 		query.setParameter("member_username", member_username);
 		query.setMaxResults(5);
 		List<Object[]> list = query.list();
-		for(Object[] arr : list){
-			System.out.println(Arrays.toString(arr));
-		}
+//		for(Object[] arr : list){
+//			System.out.println(Arrays.toString(arr));
+//		}
 		return list;
 		
 	}

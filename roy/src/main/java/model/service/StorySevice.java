@@ -37,9 +37,9 @@ public class StorySevice {
 //		this.musicDAO = musicDAO;
 //	}
 	public static void main(String[] args) {
-//		HibernateUtil.getSessionfactory().getCurrentSession().beginTransaction();
+		HibernateUtil.getSessionfactory().getCurrentSession().beginTransaction();
 //		StorySevice storySevice = new StorySevice(new StoryDAO(HibernateUtil.getSessionfactory()), new MusicDAO(HibernateUtil.getSessionfactory()));
-//		
+		
 		//test insertStory
 //		Date now = new Date();
 //		StoryBean bean2 = new StoryBean();
@@ -64,11 +64,17 @@ public class StorySevice {
 //		
 		
 		//test五筆版
-//		List<Object[]> aaa = storySevice.StoryController("Peter");
-//		System.out.println("aaa"+aaa);
-//		for(Object[] bean2:aaa) {
-//			System.out.println("service"+bean2);
+//		List<Object[]> main = storySevice.StoryController("Peter");
+//		System.out.println("main ------------>"+main);
+//		System.out.println("----------------");
+//		for(Object[] temp:main) {
+//			
+//			for(int i=0;i<temp.length;i++) {
+//				System.out.print(temp[i]+",");
+//			}
+//			System.out.println("");
 //		}
+//		
 //		
 //		HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
 //		HibernateUtil.closeSessionFactory();
@@ -126,10 +132,11 @@ public class StorySevice {
 		List<Object[]> result = storyDAO.test(user);
 		if(user!=null) {	
 			for(Object[] bean2:result) {	
-				 System.out.println("storyService的"+Arrays.toString(bean2));
-			}		
+//				 System.out.println("storyService的"+Arrays.toString(bean2));
+			}	
+			return result;
 		}
-		return result;
+		return null;
 	}
 	
 	

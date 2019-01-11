@@ -444,8 +444,7 @@ function loadMemberLikeMusic(username) {
 										<div class="bg-white p-20">
 											<div>
 												<div>
-													<img src="https://cfstatic.streetvoice.com/profile_images/st/re/street0717/r2npMySeePybCPTA5DbR87.jpeg?x-oss-process=image/resize,m_fill,h_40,w_40,limit_0/interlace,1/quality,q_85/format,jpg" class="img-xs img-circle">
-												</div><!-- /media-left -->
+													<img id="profile" src="${user.member_profileImage}"  class="img-circle" style="width:45px;height:45px;"  />												</div><!-- /media-left -->
 												<div >
 													<h4><span></span>最近聆聽歌曲</h4>		
 												</div>	
@@ -456,7 +455,9 @@ function loadMemberLikeMusic(username) {
 <!-- 																		<button  -->
 														                  
 <!-- 																		</button> -->
-																		<a href="/angry_youth/songs/558439/"><img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg"></a>
+																		<a href="/angry_youth/songs/558439/">
+																		<img class="img-full" src="https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg">
+																		</a>
 																	</div><!-- /work-block img-xxs -->
 																	<div style="margin-left:250px">
 																		<h4><a href="/angry_youth/songs/558439/">^_^歌名啦</a><a style="margin-left:100px;color:gray;">時間</a></h4>						
@@ -717,6 +718,8 @@ function loadMemberLikeMusic(username) {
 		else
 			{	alert("已經取消了刪除操作");}
 	}
+	//start 背景ajax
+	//showArticleFromMember
         $(function () {            
             $.ajax({
                 url: "/roy/personalPage/showArticleFromMember.controller",   //存取Json的網址             
@@ -790,33 +793,33 @@ function loadMemberLikeMusic(username) {
             
             
             //顯示歷史紀錄
-            $.ajax({
-                url: "/roy/personalPage/showAllHistoryFromHstory.controller",   //存取Json的網址             
-                type: "POST",
-                cache:false,
-                dataType:'json',
-                data:{user:$('#userName').text()},
-                //contentType: "application/json",              
-				success : function(list)
-				 {   
-					list.forEach(function(obj, index) {
+//             $.ajax({
+//                 url: "/roy/personalPage/showAllHistoryFromHstory.controller",   //存取Json的網址             
+//                 type: "POST",
+//                 cache:false,
+//                 dataType:'json',
+//                 data:{user:$('#userName').text()},
+//                 //contentType: "application/json",              
+// 				success : function(list)
+// 				 {   
+// 					list.forEach(function(obj, index) {
 
-						var music_name = obj.music_name;
-						var content="<div style='border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px'>";
-						var content2="<div style='float:left'>";
-						var content3="<a href='/angry_youth/songs/558439/'><img class='img-full' src='https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg'></a></div>";
-						var content4="<div style='margin-left:250px'>";
-						var content5="<h4><a href='/angry_youth/songs/558439/'>"+music_name+"</a><a style='margin-left:100px;color:gray;'>"+"</a></h4>";
-						var content6="</div></div>";
-						var div3 = content+content2+content3+content4+content5+content6;
-						$('#history').append(div3);
-				  	})//foreach的
-				  },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status);
-                    alert(thrownError);
-                }
-            });
+// 						var music_name = obj.music_name;
+// 						var content="<div style='border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px'>";
+// 						var content2="<div style='float:left'>";
+// 						var content3="<a href='/angry_youth/songs/558439/'><img class='img-full' src='https://cfstatic.streetvoice.com/song_covers/an/gr/angry_youth/Frwo4Q6etJAU2aXjxKYgn8.jpg?x-oss-process=image/resize,m_fill,h_44,w_44,limit_0/interlace,1/quality,q_85/format,jpg'></a></div>";
+// 						var content4="<div style='margin-left:250px'>";
+// 						var content5="<h4><a href='/angry_youth/songs/558439/'>"+music_name+"</a><a style='margin-left:100px;color:gray;'>"+"</a></h4>";
+// 						var content6="</div></div>";
+// 						var div3 = content+content2+content3+content4+content5+content6;
+// 						$('#history').append(div3);
+// 				  	})//foreach的
+// 				  },
+//                 error: function (xhr, ajaxOptions, thrownError) {
+//                     alert(xhr.status);
+//                     alert(thrownError);
+//                 }
+//             });
 				  
             
             
@@ -824,31 +827,87 @@ function loadMemberLikeMusic(username) {
             
             //顯示歷史紀錄時間
             var story_time ;
-            $.ajax({
-                url: "/roy/personalPage/showAllHistoryTimeFromHstory.controller",   //存取Json的網址             
+//             $.ajax({
+//                 url: "/roy/personalPage/showAllHistoryTimeFromHstory.controller",   //存取Json的網址             
+//                 type: "POST",
+//                 cache:false,
+//                 dataType:'json',
+//                 data:{user:$('#userName').text()},
+//                 //contentType: "application/json",              
+// 				success : function(list)
+// 				 {  console.log(list);
+// 					list.forEach(function(obj, index) {
+
+// 						story_time = obj.story_time;
+// // 						alert(story_time);
+						
+// 				  	})//foreach的
+// 				  },
+				  
+//                 error: function (xhr, ajaxOptions, thrownError) {
+//                     alert(xhr.status);
+//                     alert(thrownError);
+//                 }
+//             });
+				 
+				 
+				 
+				 
+//---------------peter history
+		$.ajax({
+                url: "/roy/personalPage/showAllHistoryTimeFromHstory123.controller",   //存取Json的網址             
                 type: "POST",
                 cache:false,
                 dataType:'json',
                 data:{user:$('#userName').text()},
                 //contentType: "application/json",              
 				success : function(list)
-				 {   
-					list.forEach(function(obj, index) {
-
-						story_time = obj.story_time;
-// 						alert(story_time);
-						
-				  	})//foreach的
+				 {  console.log(list);
+				 	console.log("from peter");
+				 	//------------List
+				 	var imgPath=$('#profile').attr('src');
+				 	list.forEach(function(obj, index) {
+				 		var music_name ;
+				 		var story_time ;
+				 		var music_img  ;
+				 		//------------obj抓直出來放到變數
+				 		$.each(obj, function( index, value ) {
+				 			console.log( index + ": " + value );
+				 			if(index == 0){
+				 				story_time = value;
+				 			}
+				 			if(index == 3){
+				 				music_name = value;
+				 			}
+				 			if(index == 4){
+				 				music_img = value;
+				 			}
+						});
+				 		//------------endObj
+				 	
+						var content="<div style='border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px'>";
+						var content2="<div style='float:left'>";
+						var content3="<a href='/angry_youth/songs/558439/'><img class='img-circle' src='"+music_img+"' style='width:45px;height:45px;'></a></div>";
+						var content4="<div style='margin-left:250px'>";
+						var content5="<h4><a href='/angry_youth/songs/558439/'>"+music_name+"</a><a style='margin-left:100px;color:gray;'>"+story_time+"</a></h4>";
+						var content6="</div></div>";
+						var div3 = content+content2+content3+content4+content5+content6;
+						$('#history').append(div3);
+				  	})
+				  	//-------------endList
 				  },
 				  
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert(xhr.status);
                     alert(thrownError);
                 }
-            });
-				  
-				  
-            });
+            });	 
+//---------------peter history
+
+
+
+
+});//end 背景處理
     </script>
 	<!-- 	showArticleFromMember end-->
 	

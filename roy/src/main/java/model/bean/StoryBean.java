@@ -9,21 +9,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="Story")
 public class StoryBean {
-//	@ManyToOne(fetch=FetchType.EAGER)
-//	@JoinColumn(name="music_id",
-//				referencedColumnName="music_id",
-//				insertable=false,updatable=false)
-//	private MusicBean musicBean;
-//	 
-//	public MusicBean getMusicBean() {
-//		return musicBean;
-//	}
-//	public void setMusicBean(MusicBean musicBean) {
-//		this.musicBean = musicBean;
-//	}
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="music_id",
+				referencedColumnName="music_id",
+				insertable=false,updatable=false)
+	private MusicBean musicBean;
+	 
+	
+	
+	public MusicBean getMusicBean() {
+		return musicBean;
+	}
+	public void setMusicBean(MusicBean musicBean) {
+		this.musicBean = musicBean;
+	}
 	
 	@Override
 	public String toString() {
@@ -36,10 +41,13 @@ public class StoryBean {
 	story_time		datetime
 	 */	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)@Expose
 	private Integer story_id;
+	@Expose
 	private String member_username;
+	@Expose
 	private Integer music_id;
+	@Expose
 	private java.util.Date story_time;
 	public Integer getStory_id() {
 		return story_id;

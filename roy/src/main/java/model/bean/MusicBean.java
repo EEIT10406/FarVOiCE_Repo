@@ -12,18 +12,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.google.gson.annotations.Expose;
 @Entity
 @Table(name="Music")
 public class MusicBean {
-//	@OneToMany(mappedBy="musicBean",fetch=FetchType.EAGER)
-//	private List<StoryBean> StoryBean;
-//	
-//	public List<StoryBean> getStoryBean() {
-//		return StoryBean;
-//	}
-//	public void setStoryBean(List<StoryBean> storyBean) {
-//		StoryBean = storyBean;
-//	}
+	@OneToMany(mappedBy="musicBean",fetch=FetchType.EAGER)
+	private List<StoryBean> StoryBean;
+	
+	public List<StoryBean> getStoryBean() {
+		return StoryBean;
+	}
+	public void setStoryBean(List<StoryBean> storyBean) {
+		StoryBean = storyBean;
+	}
 
 	@Override
 	public String toString() {
@@ -51,21 +53,32 @@ public class MusicBean {
 //	@ManyToOne
 //	@JoinColumn(name="member_username")
 //	private MemberBean memberBean;
-	@Id
+	@Id	@Expose
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer music_id;
-	private String music_name;
+	@Expose
+	private String music_name;	
+	@Expose
 	private String member_username;
-	@Column(updatable=false)
+	@Column(updatable=false)@Expose
 	private String music_music;
+	@Expose
 	private String music_caption;
+	@Expose
 	private java.util.Date music_uploadTime;
+	@Expose
 	private Integer music_playCount;
+	@Expose
 	private String music_styleName;
+	@Expose
 	private String music_lyric;
+	@Expose
 	private Integer music_likeCount;
+	@Expose
 	private String music_Image;
+	@Expose
 	private Boolean music_ban;
+	@Expose
 	private Boolean music_unavailable;
 	public Boolean getMusic_unavailable() {
 		return music_unavailable;
