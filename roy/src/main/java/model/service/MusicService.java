@@ -31,14 +31,17 @@ public class MusicService {
 		this.musicDao = musicDao;
 	}
 	
-	//查by類型,時間,名稱
-	public LinkedList<HashMap<String, String>> search(String type,String searchString,String before) {
+	//查by類型,時間,名稱,SORT by 時間 | 喜歡 | 播放
+	public LinkedList<HashMap<String, String>> search(String type,String searchString,String before,String sort) {
 		searchString = " music_name like '%"+searchString+"%'";
 		if(type!=null&&(!"".equals(type.trim()))) {
 			searchString=searchString+"and music_styleName in ("+type+")";
 		}
 		if(before!=null&&(!"".equals(before.trim()))) {
 			searchString=searchString+"and music_uploadTime > DATEADD(DAY, -"+before+", GETDATE ( ))";
+		}
+		if(sort!=null&&(!"".equals(sort.trim()))) {
+			searchString=searchString+"ORDER BY "+sort+" desc";
 		}
 		LinkedList<HashMap<String,String>> l1 = new LinkedList<HashMap<String,String>>();
 		 for (MusicBean bean:musicDao.search(searchString)) {
@@ -48,6 +51,7 @@ public class MusicService {
 			 m1.put("Member_username",""+bean.getMember_username());
 			 m1.put("Music_music",""+bean.getMusic_music());
 			 m1.put("Music_Image",bean.getMusic_Image());
+			 m1.put("Music_id",""+bean.getMusic_id());
 			 l1.add(m1);
 		 }
 		return l1;

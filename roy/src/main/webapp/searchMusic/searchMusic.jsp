@@ -44,13 +44,13 @@
 	bottom: 15%;
 	right: 15%;
 }
-* {
-	animation: spin 8000s linear infinite;
-}
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+/* * { */
+/* 	animation: spin 20000s linear infinite; */
+/* } */
+/* @keyframes spin { */
+/*   0% { transform: rotate(0deg); } */
+/*   100% { transform: rotate(360deg); } */
+/* } */
 </style>
 </head>
 <body>
@@ -79,6 +79,12 @@
 											<li type="'Rock'"><a class="dynamic" href="#">Rock</a></li>
 											<li type="'Metal'"><a class="dynamic" href="#">Metal</a></li>
 											<li type="'Jazz'"><a class="dynamic" href="#">Jazz</a></li>
+											<li type="'classic'"><a class="dynamic" href="#">classic</a></li>
+											<li type="'dynamic'"><a class="dynamic" href="#">dynamic</a></li>
+											<li type="'blue'"><a class="dynamic" href="#">blue</a></li>
+											<li type="'reggae'"><a class="dynamic" href="#">reggae</a></li>
+											<li type="'emotion'"><a class="dynamic" href="#">emotion</a></li>
+											<li type="'noType'"><a class="dynamic" href="#">noType</a></li>
 										</ul>
 									</div>
 								</div>
@@ -86,9 +92,9 @@
 									<label class="col-sm-1 control-label text-muted"><small>排序</small></label>
 									<div class="col-sm-11">
 										<ul id="sort-type" class="nav nav-pills nav-sm">
-											<li class="active"><a href="#">最新上傳</a></li>
-											<li><a href="#">最多播放</a></li>
-											<li><a href="#">最多喜歡</a></li>
+											<li sort='music_uploadTime' class="active"><a href="#">最新上傳</a></li>
+											<li sort='music_playCount'><a href="#">最多播放</a></li>
+											<li sort='music_likeCount'><a href="#">最多喜歡</a></li>
 										</ul>
 									</div>
 								</div>
@@ -140,7 +146,8 @@
 	$(document).ready(function() {
 		var type = '';
 		var before = '';
-		loadMusic("","","");
+		var sort = 'music_uploadTime';
+		loadMusic("","","",''+sort);
 		
 		// 		上面標籤
 		$('#allType').click(function() {
@@ -164,18 +171,19 @@
 		$('#music_type li').click(function() {
 			$(this).toggleClass('active');
 			type = $("#music_type li.active").map(function(){return $(this).attr("type");}).get();
-			before = $('#time-type li.active').attr('before');
-			loadMusic(''+type,"",''+before);
+			loadMusic(''+type,"",''+before,''+sort);
 		})
 		$('#time-type li').click(function() {
 			$(this).parent('ul').children('li').removeClass('active');
 			$(this).addClass('active');
 			before = $(this).attr('before');
-			loadMusic(''+type,"",''+before);
+			loadMusic(''+type,"",''+before,''+sort);
 		})
 		$('#sort-type li').click(function() {
 			$(this).parent('ul').children('li').removeClass('active');
 			$(this).addClass('active');
+			sort = $(this).attr('sort');
+			loadMusic(''+type,"",''+before,''+sort);
 		})
 		$('#soChi').click(function() {
 			if ($(this).text() == "收起") {
@@ -191,23 +199,24 @@
 		// 		搜尋
 		$('#search-div button').click(function(){
 			var searchString = $('#search-div input').val();
-			loadMusic("",searchString,"");
+			loadMusic("",searchString,"","");
 			    })
 		// 		搜尋
 		
 			  //載音樂
-				function loadMusic(type,searchString,before){
+				function loadMusic(type,searchString,before,sort){
 					$('#music-container').html("");
-					$.getJSON('report.searchMusic',{'type':type,'searchString':searchString,'before':before},function(data){
+					$.getJSON('report.searchMusic',{'type':type,'searchString':searchString,'before':before,'sort':sort},function(data){
 					var docFrag = $(document.createDocumentFragment());
 				    $.each(data,function(index,music){
 				    		var row = $("<div></div>").html(
 				    				'<div class="col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box">'+
 				    				'<div class="work-block m-bottom-2"><a class="play-link" href="#">'+
-				    				'<img class="img-full" height="100%" width="100%" src="'+music.Music_Image+'" onclick="play(this)" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
+				    				'<img class="img-full" height="100%" width="100%" src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
 				    				'</a><input class="reportButton" type="image" src="../img/檢舉.png" onmouseover="report()" height="50" width="50" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'">'+
-				    				'</div>	<div class="song-info"><h4 class="text-ellipsis">'+
-				    				'<a class="play-link" href="#" onclick="play(this)" src="'+music.Music_Image+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+music.Music_name+'</a></h4></div></div>');
+				    				'</div>	<div class="song-info">'+
+				    				'<h4 class="text-ellipsis"><a href="/roy/personalPage/somebodyPersonalPage.controller?somebody='+music.Member_username+'&nickname=fifi">'+music.Member_username+'</a></h4>'+
+				    				'<h4 class="text-ellipsis"><a class="play-link" href="#" onclick="play(this)" src="'+music.Music_Image+'" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+music.Music_name+'</a></h4></div></div>');
 				    		docFrag.append(row);
 				    	});
 				    $('#music-container').html(docFrag);
@@ -217,14 +226,25 @@
 				
 	})
 	
+	//取消a默認
+	$('#content a').on('click',function(event){
+		event.preventDefault();
+		});
+	//取消a默認
+	
 	//播放
 	function play(e) {
+		$(e).parent('a').on('click',function(){
+			return false;
+		});
 				ap.list.add([{
 					title : $(e).attr('music_name'),
 					author : $(e).attr('member_username'),
 					url : $(e).attr('music_music'),
 					pic : $(e).attr('src')
 				}]);
+				$.get("report.addMusic_playCount", {'music_id':$(e).attr('music_id')}, function(message) {
+				})
 	}
 	//播放
 	

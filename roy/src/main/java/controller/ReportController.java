@@ -1,9 +1,6 @@
 package controller;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import model.bean.MemberBean;
 import model.bean.MusicBean;
 import model.bean.ReportBean;
+import model.service.MemberLikeMusicService;
 import model.service.MusicService;
 import model.service.ReportService;
 
@@ -28,6 +26,8 @@ public class ReportController {
 	ReportService reportService;
 	@Autowired
 	MusicService musicService;
+	@Autowired
+	MemberLikeMusicService memberLikeMusicService;
 
 	//查檢舉
 	@RequestMapping(value = "**/report.get")
@@ -62,8 +62,16 @@ public class ReportController {
 
 	@RequestMapping(value = "**/report.searchMusic", produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public String searchMusic(Model model,String type,String searchString,String before) {
-		return JSONValue.toJSONString(musicService.search(type,searchString,before));
+	public String searchMusic(Model model,String type,String searchString,String before,String sort) {
+		return JSONValue.toJSONString(musicService.search(type,searchString,before,sort));
+	}
+	
+	@RequestMapping(value = "**/report.addMusic_playCount")
+	public void addMusic_playCount(Model model,String music_id) {
+		System.out.println(music_id);
+		MusicBean musicBean = musicService.findMusic(Integer.parseInt(music_id));
+		musicBean.setMusic_playCount(musicBean.getMusic_playCount()+1);
+		musicService.updateMusic(musicBean);
 	}
 	
 }
