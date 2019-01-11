@@ -244,19 +244,19 @@ table {
 
 <script>
 $(document).ready(function() {
-	loadMusic('Peter')
-	loadMusicCount('Peter')
-	loadPlayList('Peter')
-	loadMemberLikeMusic('Peter')
+	loadMusic('${somebody}')
+	loadMusicCount('${somebody}')
+	loadPlayList('${somebody}')
+	loadMemberLikeMusic('${somebody}')
 	
-	//按音樂重新載入喜歡的音樂
+	//按音樂重新載入音樂
 	$('#memberMusic').on('click',function(){
-		loadMusic('Peter')
+		loadMusic('${somebody}')
 	})
 	
 	//按喜歡重新載入喜歡的音樂
 	$('#memberLikeMusic').on('click',function(){
-		loadMemberLikeMusic('Peter')
+		loadMemberLikeMusic('${somebody}')
 	})
 
 	//按愛心
@@ -409,7 +409,7 @@ function loadMemberLikeMusic(username) {
 }
 
 
-//讀取使用者上傳的音樂數
+//讀取somebody上傳的音樂數
 function loadMusicCount(username) {
 	$.getJSON('/roy/personalPage/uploadMusicCount',{'username' : username},function(data) {
 		$('#musicCount').html(data);
