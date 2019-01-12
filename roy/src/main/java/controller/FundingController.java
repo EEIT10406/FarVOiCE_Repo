@@ -67,6 +67,7 @@ public class FundingController {
 		String username = memberBean.getMember_username();
 		List<MusicBean> musicbeans = fundingService.findMusicByUser(username);
 		model.addAttribute("musicName", musicbeans);
+		model.addAttribute("username",username);
 		return "startProject.jsp";
 	}
 

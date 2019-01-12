@@ -29,9 +29,11 @@
 <link rel="stylesheet" href="../css/custom.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 
+
+
 <script>
 	// 設置日期max屬性
-	function getNewDay() {
+	function getMaxDay() {
 		var date = $('#bookdate').attr('min')
 		var dateTemp = date.split("-");
 		var nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-'
@@ -49,33 +51,129 @@
 		$('#bookdate').attr('max', year + '-' + month + '-' + date)
 
 	}
+	// 設置日期min屬性
+	function getMinDay() {
+		var date = $('#bookdate').attr('min')
+		var dateTemp = date.split("-");
+		var nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-'
+				+ dateTemp[0]); //轉換為MM-DD-YYYY格式
+		var millSeconds = Math.abs(nDate) + (1 * 24 * 60 * 60 * 1000);
+		var rDate = new Date(millSeconds);
+		var year = rDate.getFullYear();
+		var month = rDate.getMonth() + 1;
+		if (month < 10)
+			month = "0" + month;
+		var date = rDate.getDate();
+		if (date < 10)
+			date = "0" + date;
+		var qqq = (year + "-" + month + "-" + date);
+		$('#bookdate').attr('min', year + '-' + month + '-' + date)
 
-	$(document).ready(
-			function() {
+	}
 
-				$(".a-upload").on(
-						"change",
-						"input[type='file']",
-						function() {
-							var filePath = $(this).val();
-							if (filePath.indexOf("jpg") != -1
-									|| filePath.indexOf("png") != -1) {
-								$(".fileerrorTip").html("").hide();
-								var arr = filePath.split('\\');
-								var fileName = arr[arr.length - 1];
-								$(".showFileName").html(fileName);
-							} else {
-								$(".showFileName").html("");
-								$(".fileerrorTip").html("您未上傳圖片，或者您上傳圖片類型有誤！")
-										.show();
-								return false
-							}
-						})
-				// 呼叫設置日期max屬性方法 
-				getNewDay();
+	$(document)
+			.ready(
+					function() {
+						// 檢測上傳圖片
+						$(".a-upload")
+								.on(
+										"change",
+										"input[type='file']",
+										function() {
+											var filePath = $(this).val();
+											if (filePath.indexOf("jpg") != -1
+													|| filePath.indexOf("png") != -1) {
 
-				// 				
-			})
+												$("#spin")
+														.attr("class",
+																"fas fa-spinner fa-spin")
+														.fadeOut(1500)
+														.queue(
+																function(n) {
+																	$("#spin")
+																			.attr(
+																					"class",
+																					"fas fa-check");
+																	n();
+																});
+
+												$(".fileerrorTip").html("")
+														.hide();
+												var arr = filePath.split('\\');
+												var fileName = arr[arr.length - 1];
+												$(".showFileName").html(
+														fileName);
+											} else {
+												$("#preview_progressbarTW_img")
+														.attr("src",
+																"/roy/img/pokemon.png")
+												$("#spin")
+														.attr("class",
+																"fas fa-cloud-upload-alt")
+												$(".showFileName").html("");
+												$(".fileerrorTip").html(
+														"您未上傳圖片，或者您上傳圖片類型有誤！")
+														.show();
+												return false
+											}
+										})
+						// 呼叫設置日期max屬性方法 
+						getMinDay();
+						getMaxDay();
+						//預覽標題輸入框
+						$('input[name="funding_title"]')
+								.bind(
+										'input propertychange',
+										function() {
+
+											var title = $(
+													'input[name="funding_title"]')
+													.val();
+											$('#pre-title').text(title);
+											if (title == "") {
+												$('#pre-title').text(
+														"例：30 個字以內的專案標題");
+											}
+
+										})
+						//預覽專案描述
+						$('textarea[name="funding_description"]')
+								.bind(
+										'input propertychange',
+										function() {
+
+											var title = $(
+													'textarea[name="funding_description"]')
+													.val();
+											$('#pre-content').text(title);
+											if (title == "") {
+												$('#pre-content')
+														.text(
+																"例：簡短描述專案內容，吸引瀏覽者在 FarVoice 首頁上點擊你的專案。");
+											}
+
+										})
+						//抓取選取日期計算到期天數
+						$('input[name="funding_duration"]').on(
+								'change',
+								function() {
+									var pickdate = $(
+											'input[name="funding_duration"]')
+											.val();
+									var enddate = new Date(pickdate);
+									var nowdate = new Date();
+
+									var deadline = enddate.getTime()
+											- nowdate.getTime();
+									var days = parseInt(deadline
+											/ (1000 * 60 * 60 * 24)) + 1;
+									$('strong[class="days"]').text(days)
+									if (isNaN(days)) {
+										$('strong[class="days"]').text('0')
+									}
+								})
+
+					})
 </script>
 
 <style>
@@ -84,12 +182,40 @@ input[type=date]::-webkit-inner-spin-button {
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-	-webkit-appearance: none;
-	background: #eee;
-	border-color: #ccc;
-	border-radius: 5px;
-	width: 10%;
-	height: 100%;
+	-webkit-appearance: button;
+	/* 	background: #eee; */
+	/* 	border-color: #ccc; */
+	/* 	border-radius: 5px; */
+}
+
+.a {
+	border: 1px solid;
+	border-color: red;
+	display: inline-block;
+	height: 525px;
+	width: 30%;
+	vertical-align: middle;
+}
+
+.b {
+	height: 30%;
+	border: 1px solid;
+	border-color: red;
+}
+
+.c {
+	height: 65%;
+	border: 1px solid;
+	border-color: red;
+}
+
+.big {
+	height: 525px;
+	border: 1px solid;
+	border-color: red;
+	margin: auto;
+	width: 100%;
+	text-align: center;
 }
 </style>
 </head>
@@ -100,91 +226,98 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 		<div class="create-content">
 			<form action="<c:url value="funding.controller" />" method="post"
 				enctype="multipart/form-data">
+				<div class="big">
+					<div class="a">
+						<div class="b">
+							<div class="create-title">
+								<p class="bluequote">專案標題</p>
+								<!---->
+								<div class="inputWordCount">
+									<input oninput="title" onpropertychange="title"
+										style="font-weight: 400" name="funding_title" type="text"
+										placeholder="30 個字以內的專案標題" maxlength="30"
+										class="form-control fc" required
+										oninvalid="setCustomValidity('請输入專案標題');">
+								</div>
+								<label for="" class="input-label">一個好的標題應該要好記、好搜尋、吸引人想點進去看，並讓瀏覽者能在最短的時間內瞭解專案的核心理念。</label>
+							</div>
+						</div>
+						<div class="c">
+							<div class="create-description">
+								<p class="bluequote">專案描述</p>
+								<!---->
+								<div class="inputWordCount">
 
-
-				<div class="create-title">
-					<p class="bluequote">專案標題</p>
-					<!---->
-					<div class="inputWordCount">
-						<input style="font-weight: 400" name="funding_title" type="text"
-							placeholder="30 個字以內的專案標題" maxlength="30" class="form-control"
-							required oninvalid="setCustomValidity('請输入專案標題');"
-
->
-					</div>
-					<label for="" class="input-label">一個好的標題應該要好記、好搜尋、吸引人想點進去看，並讓瀏覽者能在最短的時間內瞭解專案的核心理念。</label>
-				</div>
-
-
-				<div class="project" style="float: right;">
-					<div class="img-pre">
-						<img class="img-in" id="preview_progressbarTW_img"
-							src="http://i2.hdslb.com/bfs/archive/bc4a2405dc128075c305597c53c3edb3fae395eb.png">
-					</div>
-					<div class="pcontent">
-						<p class="title-content">送給孩子的第一份程式禮物《Coding Ocean：海霸》</p>
-						<p class="small creator">
-							<a href="">Papacode-程式老爹</a>
-						</p>
-						<p class="excerpt">30分鐘學會四大程式邏輯。全球26個國家將程式列入基礎教育，我們將用一場遊戲，開啟孩子學習程式的大門。</p>
-					</div>
-					<div class="downMeta">
-						<progress value="100" max="100"></progress>
-						<span class="goalMoney osmfont">2671171</span>&nbsp; <span
-							class="hidden-md goalpercent goal"> 1906%</span> <span
-							class="date pull-right small"> 還剩 <strong class="days">44</strong><span>
-								天</span>
-						</span>
-						<div>
-							<span class="visitcount">159</span>
+									<textarea style="font-weight: 400" class="form-control fc"
+										oninput="title" onpropertychange="title"
+										name="funding_description" placeholder="500個字以內的專案描述"
+										maxlength="500" rows="11" required
+										oninvalid="setCustomValidity('請輸入專案描述');"
+										oninput="setCustomValidity('');"></textarea>
+								</div>
+								<label for="" class="input-label">使用吸引人的文字說明你的目標以及理念，強調你的獨一無二，讓贊助人對你或你的專案好奇，願意更進一步贊助專案。</label>
+							</div>
 						</div>
 					</div>
-				</div>
 
+					<div class="a">
+						<p class="bluequote blue-pre">專案卡預覽</p>
+						<div class="project-pre">
+							<div class="img-pres">
+								<img class="img-in" id="preview_progressbarTW_img"
+									src="/roy/img/gun.jpg">
+							</div>
+							<div class="pcontent-pre">
+								<p id="pre-title" class="title-content" style="margin-bottom: -18px">例：30 個字以內的專案標題</p>
+								<p class="small creator">
+								<p id="pre-name">${username}</p>
 
-				<div class="create-description">
-					<p class="bluequote">專案描述</p>
-					<!---->
-					<div class="inputWordCount">
+								<p id="pre-content" class="excerpt" style="font-weight: bold;font-size: 0.85rem">例：簡短描述專案內容，吸引瀏覽者在
+									FarVoice 首頁上點擊你的專案。</p>
+							</div>
+							<div class="downMeta-pre" >
+								<progress class="progress-pre" style="margin-bottom: 0px;margin-top: 0px;" value="0" max="100"></progress>
+								<span class="goalMoney osmfont" >0</span>&nbsp; <span
+									class="hidden-md goalpercent goal"> 0%</span> <span style="font-size: 13px;letter-spacing: 1px"
+									class="date pull-right small"> 還剩 <strong class="days" style="font-size: 13px;font-weight: 1000;letter-spacing: 1px">0</strong><span style="font-size: 13px;letter-spacing: 1px">
+										天</span>
+								</span>
 
-						<textarea style="font-weight: 400" class="form-control"
-							name="funding_description" placeholder="500個字以內的專案描述"
-							maxlength="500" rows="10" required
+							</div>
+						</div>
 
-							oninvalid="setCustomValidity('請輸入專案描述');"
-							oninput="setCustomValidity('');"></textarea>
 					</div>
-					<label for="" class="input-label">使用吸引人的文字說明你的目標以及理念，強調你的獨一無二，讓贊助人對你或你的專案好奇，願意更進一步贊助專案。</label>
+
 				</div>
 
-				<div class="upload-image">
+				<div class="upload-image" style="margin: auto;">
 					<p class="bluequote">專案圖片</p>
 					<label for="" class="input-label-img">請提供 JPEG、PNG，圖片尺寸至少
 						1024 x 768 px (4:3)； 2MB 以內。</label>
 					<!------------------------------->
 
 					<label for="file-upload" class="custom-file-upload"> <i
-						class="fas fa-cloud-upload-alt"></i> 上傳專案圖片
+						id="spin" class="fas fa-cloud-upload-alt"></i> 上傳專案圖片
 					</label>
 					<!----------------------- -->
-					<a href="javascript:;" class="a-upload">
-					<input onchange="readURL(this)"
-						targetID="preview_progressbarTW_img" id="file-upload" type="file"
-						accept="image/jpeg, image/png" name="imageFile" required
+					<a href="javascript:;" class="a-upload"> <input
+						onchange="readURL(this)" targetID="preview_progressbarTW_img"
+						id="file-upload" type="file" accept="image/jpeg, image/png"
+						name="imageFile" required
 						oninvalid="setCustomValidity('請選擇上傳圖片');"
 						oninput="setCustomValidity('');">
-						</a>
-
+					</a>
+					<!-- 					<i id='spin' class="fas fa-spinner fa-spin" style="display: none"></i> -->
 					<p class="showFileName"></p>
 					<p class="fileerrorTip"></p>
 
 				</div>
 
-				<div class="limit-date">
+				<div class="limit-date" style="margin: auto;">
 
 					<p class="bluequote">選擇專案期限</p>
-					<input class="form-control" type="date" id="bookdate"
-						name="funding_duration"
+					<input onchange="enddate" class="form-control fc" type="date"
+						id="bookdate" name="funding_duration"
 						min=<%out.println(new java.sql.Date(new Date().getTime()));%>>
 					<label for="" class="input-label">募資天數為提案開始60天為限。</label>
 
@@ -192,18 +325,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 
-				<div class="create-goal">
+				<div class="create-goal" style="margin: auto;">
 					<p class="bluequote">募資目標</p>
 					<input type="number" style="font-weight: 400" name="funding_goal"
-						min="5000" value="5000" step="1000" class="form-control">
+						min="5000" value="5000" step="1000" class="form-control fc">
 					<!--------------------------------- -->
 					<label for="" class="input-label">募資目標金額最低為 $5,000
 						元。設定目標金額時，除了考量專案執行的成本支出外，也必須考慮回饋項目的成本，總體而言必須滿足「最低計畫可執行資金」的門檻，才是合理的募資目標。</label>
 				</div>
 
-				<div class="create-type">
+				<div class="create-type" style="margin: auto;">
 					<p class="bluequote">音樂類型</p>
-					<select name="funding_styleName" class="form-control"><option
+					<select name="funding_styleName" class="form-control fc"><option
 							value="null" disabled="disabled" selected="selected">選擇類型</option>
 						<option value="爵士">爵士</option>
 						<option value="藍調">藍調</option>
@@ -217,9 +350,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 				</div>
 
-				<div class="create-city">
+				<div class="create-city" style="margin: auto;">
 					<p class="bluequote">提案所在城市</p>
-					<select name="funding_city" class="form-control"><option
+					<select name="funding_city" class="form-control fc"><option
 							value="null" disabled="disabled" selected="selected">選擇城市</option>
 						<option value="台北市">台北市</option>
 						<option value="新北市">新北市</option>
@@ -247,9 +380,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 				</div>
 
-				<div class="chose-music">
+				<div class="chose-music" style="margin: auto;">
 					<p class="bluequote">選擇募資音樂</p>
-					<select name="music_id" class="form-control">
+					<select name="music_id" class="form-control fc">
 						<c:if test='${empty musicName }'>
 							<option value="null" disabled="disabled" selected="selected">無音樂</option>
 						</c:if>
@@ -265,20 +398,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 				<div class="next-reward">
-					<input class="form-control next" type="submit" name="start-project"
-						value="下一步 回饋設定">
+					<input class="form-control next fc" type="submit"
+						name="start-project" value="下一步 回饋設定">
 
 				</div>
 
 			</form>
+
 		</div>
 		<!-- 	=== END CONTENT === -->
-	</div>
 
-	<jsp:include page="../homePage/footer.jsp" />
+		<jsp:include page="../homePage/footer.jsp" />
+	</div>
 </body>
-<!--預覽圖片 -->
+
 <script>
+<!--預覽圖片 -->
 	function readURL(input) {
 
 		if (input.files && input.files[0]) {
@@ -301,6 +436,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 	}
 </script>
-
-
 </html>
