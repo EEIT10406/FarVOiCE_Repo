@@ -158,13 +158,13 @@
 								<div class="input-group margin-bottom-20">
 									歌曲分類 : <select class="form-control" id="songType"
 										style="padding: 7px; width: 380px;" name="music_styleName">
-										<option value="noType">未分類</option>
-										<option value="emotion">抒情</option>
-										<option value="rock">搖滾</option>
-										<option value="reggae">雷鬼</option>
-										<option value="blue">藍調</option>
-										<option value="dynamic">動感</option>
-										<option value="classic">古典</option>
+										<option value="未分類">未分類</option>
+										<option value="抒情">抒情</option>
+										<option value="搖滾">搖滾</option>
+										<option value="雷鬼">雷鬼</option>
+										<option value="藍調">藍調</option>
+										<option value="動感">動感</option>
+										<option value="古典">古典</option>
 									</select>
 								</div>
 								<div class="row">

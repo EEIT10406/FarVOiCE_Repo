@@ -2,17 +2,20 @@ package model.service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.net.URL;
+import java.util.LinkedList;
+import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.bean.MemberBean;
 import model.bean.MusicBean;
+import model.dao.MemberDAO;
 import model.dao.MusicDAO;
 
 @Service
@@ -20,13 +23,8 @@ import model.dao.MusicDAO;
 public class MusicService {
 	@Autowired
 	private MusicDAO musicDao;
-	
 	@Autowired
-	private HttpServletRequest request;
-	
-	@Autowired
-	private ServletContext application;
-	
+	private MemberDAO memberDAO;
 
 	public MusicDAO getMusicDao() {
 		return musicDao;
@@ -36,15 +34,52 @@ public class MusicService {
 		this.musicDao = musicDao;
 	}
 	
-	// 找該使用者上傳的所有音樂
-	public List<MusicBean> findMusicByUser(String member_username) {
-		if(member_username!=null) {
-			return musicDao.findAllByUser(member_username);
+	//查by類型,時間,名稱,SORT by 時間 | 喜歡 | 播放
+	public LinkedList<HashMap<String, String>> search(String type,String searchString,String before,String sort) {
+		searchString = " music_name like '%"+searchString+"%'";
+		if(type!=null&&(!"".equals(type.trim()))) {
+			searchString=searchString+"and music_styleName in ("+type+")";
 		}
-		return null; 
+		if(before!=null&&(!"".equals(before.trim()))) {
+			searchString=searchString+"and music_uploadTime > DATEADD(DAY, -"+before+", GETDATE ( ))";
+		}
+		if(sort!=null&&(!"".equals(sort.trim()))) {
+			searchString=searchString+"ORDER BY "+sort+" desc";
+		}
+		LinkedList<HashMap<String,String>> l1 = new LinkedList<HashMap<String,String>>();
+		 for (MusicBean bean:musicDao.search(searchString)) {
+			 HashMap<String,String>  m1 = new HashMap<String,String>();       
+			 m1.put("Music_name",bean.getMusic_name());
+			 m1.put("Music_id",""+bean.getMusic_id());
+			 m1.put("Member_username",""+bean.getMember_username());
+			 m1.put("Music_music",""+bean.getMusic_music());
+			 m1.put("Music_Image",bean.getMusic_Image());
+			 m1.put("Music_id",""+bean.getMusic_id());
+			 l1.add(m1);
+		 }
+		return l1;
 	}
 	
-	//把音樂從資料庫刪除
+	//找出所有時間總點閱率最高的五筆音樂
+	public List<MusicBean> findAllTimePlayCountTop5Music(){
+		return musicDao.findAllTimePlayCountTop5Music();
+	}
+	//更新音樂
+	public void updateMusic(MusicBean bean) {
+		if (bean != null) {
+			musicDao.update(bean);
+		}
+	}
+
+	// 找該使用者上傳的所有音樂
+	public List<MusicBean> findMusicByUser(String member_username) {
+		if (member_username != null) {
+			return musicDao.findAllByUser(member_username);
+		}
+		return null;
+	}
+
+	// 把音樂從資料庫刪除
 	public boolean deleteMusic(Integer musicId) {
 		if (musicId != null) {
 			return musicDao.remove(musicId);
@@ -52,9 +87,8 @@ public class MusicService {
 			return false;
 		}
 	}
-	
 
-	// 新增音樂內容到資料庫ok
+	// 上傳音樂
 	public MusicBean uploadMusic(MusicBean bean) {
 		if (bean != null) {
 			return musicDao.create(bean);
@@ -62,53 +96,57 @@ public class MusicService {
 			return null;
 		}
 	}
-	
-	// 用musicId抓出音樂內容
-		public MusicBean findMusic(Integer music_id) {
-			if(music_id!=null) {
-				MusicBean musicBean=musicDao.findByPrimaryKey(music_id);
-				if(musicBean!=null) {
-					return musicBean;
-				}
-			}
-			return null;
-		}
 
-	// 給上傳的音檔一個儲存路徑(上傳音檔限制 5000000 byte)
+	// 抓音樂
+	public MusicBean findMusic(Integer music_id) {
+		if (music_id != null) {
+			MusicBean musicBean = musicDao.findByPrimaryKey(music_id);
+			if (musicBean != null) {
+				return musicBean;
+			}
+		}
+		return null;
+	}
+
+	// 抓沒被下架的音樂
+	public MusicBean findAvailableMusic(Integer music_id) {
+		if (music_id != null) {
+			MusicBean musicBean=musicDao.findByPrimaryKey(music_id);
+			if(musicBean.getMusic_unavailable()==false) {
+				return musicBean;
+			}
+		}
+		return null;
+	}
+
+	// 給上傳的音檔一個儲存路徑
 	public String musicFilePath(byte[] file) throws IOException {
-		String musicFilePath = "C:/Roy_FarVoice/music/" + System.currentTimeMillis()+".mp3";
+		String musicFilePath = "C:/Roy_FarVoice/music/" + System.currentTimeMillis() + ".mp3";
 		FileOutputStream out = new FileOutputStream(musicFilePath);
 		out.write(file);
 		out.close();
-		return "/roy/music"+musicFilePath.substring(21);
+		return "/roy/music" + musicFilePath.substring(21);
 	}
 
 	// 給上傳的圖片檔一個儲存路徑
 	public String imageFilePath(byte[] file) throws IOException {
-
-		String imageFilePath = "C:/Roy_FarVoice/image/music/" + System.currentTimeMillis()+".jpg";
-
-
-		
+		String imageFilePath = "C:/Roy_FarVoice/image/music/" + System.currentTimeMillis() + ".jpg";
 		FileOutputStream out = new FileOutputStream(imageFilePath);
 		out.write(file);
 		out.close();
-		return "/roy/image/music"+imageFilePath.substring(27);
+		return "/roy/image/music" + imageFilePath.substring(27);
 	}
 	
-	
-//	// 給上傳的圖片檔一個儲存路徑
-//		public String imageFilePath(byte[] file) throws IOException {
-//			String imageFilePath = application.getRealPath("/login-signUp-upload/uploadImage/") + System.currentTimeMillis()
-//					+ ".jpg";
-//			System.out.println(imageFilePath);
-//			FileOutputStream out = new FileOutputStream(imageFilePath);
-//			out.write(file);
-//			out.close();
-//			System.out.println(imageFilePath.substring(imageFilePath.indexOf("roy")));
-//			return "\\"+imageFilePath.substring(imageFilePath.indexOf("roy"));
-//		}
-
+	//給username得nickname
+	public String usernameToNickname(String username) {
+		MemberBean bean = memberDAO.findByPrimaryKey(username);
+		return bean.getMember_nickname();
+	}
+	//給nickname得username
+	public String nicenameToUsername(String username) {
+		return memberDAO.nicenameToUsername(username);
+		
+	}
 
 //	public static void main(String[] args) {
 //		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();

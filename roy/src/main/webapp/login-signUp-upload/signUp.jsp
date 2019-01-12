@@ -47,6 +47,7 @@
 		$('#upload').click(function() {
 			window.location.href = "upload.jsp";
 		})
+		//檢查密碼醫治
 		$('#member_passwordConfirm').blur(function(){
 			var pass1 = $('#member_password').val();
 			var pass2 = $('#member_passwordConfirm').val();
@@ -57,6 +58,64 @@
 			}
  
 		})
+		//檢查帳好重複
+		$('#member_username').blur(function(){
+		      $.ajax({
+	              url: "/roy/login-signUp-upload/accountCheck.controller",   //存取Json的網址             
+	              type: "POST",
+	              cache:false,
+	              dataType:'json',
+	              data:{user:$('#member_username').val()},
+	              //contentType: "application/json",              
+					success : function(data)
+					 {   
+						if(data.existOrNot == 'true'){
+							$('#accountRepeat').text("帳號已存在!");
+						}else{
+							$('#accountRepeat').text("");
+						}
+					 },
+	              error: function (xhr, ajaxOptions, thrownError) {
+	                  alert(xhr.status);
+	                  alert(thrownError);
+	              }
+	          });
+ 	
+		})
+		//檢查nickname重複
+		$('#member_nickname').blur(function(){
+		      $.ajax({
+	              url: "/roy/login-signUp-upload/nicknameCheck.controller",   //存取Json的網址             
+	              type: "POST",
+	              cache:false,
+	              dataType:'json',
+	              data:{nickname:$('#member_nickname').val()},
+	              //contentType: "application/json",              
+					success : function(data)
+					 {   
+						if(data.existOrNot == 'true'){
+							$('#nicknameRepeat').text("暱稱已存在!");
+						}else{
+							$('#nicknameRepeat').text("");
+						}
+					 },
+	              error: function (xhr, ajaxOptions, thrownError) {
+	                  alert(xhr.status);
+	                  alert(thrownError);
+	              }
+	          });
+ 	
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
 	})
 </script>
 </head>
@@ -73,7 +132,7 @@
 							<div class="login-header margin-bottom-30">
 								<h3>註冊 FarVoice ID</h3>
 							</div>
-							<label>帳號</label>
+							<label>帳號</label> <span id="accountRepeat" style='color:#880000;margin-left:20px'></span>
 								<input class="form-control margin-bottom-20"type="text" id="member_username" name="member_username"value="${param.member_username}">
 							<div class="row">
 								<div class="col-sm-6">
@@ -86,7 +145,7 @@
 							</div>
 							<label>電子郵件</label> 
 								<input class="form-control margin-bottom-20" type="text" id="member_email" name="member_email" value="${param.member_email}"> 
-							<label>暱稱</label> 
+							<label>暱稱</label> <span id="nicknameRepeat" style='color:#880000;margin-left:20px'></span>
 								<input class="form-control margin-bottom-20" type="text" id="member_nickname" name="member_nickname" value="${param.member_nickname}">
 							<hr>
 							<div class="row">

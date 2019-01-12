@@ -7,11 +7,14 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import model.bean.MemberBean;
+import model.bean.MusicBean;
+import model.bean.PostBean;
 import model.hibernate.HibernateUtil;
 @Repository
 public class MemberDAO {
@@ -132,4 +135,34 @@ public class MemberDAO {
 		}
 		return false;
 	}
+	//給nickname得username
+	public String nicenameToUsername (String nickname) {
+		//0111 OK
+		String hql = " from MemberBean  WHERE member_nickname=:member_nickname ";
+		Query<MemberBean> query = this.getSession().createQuery(hql);
+		query.setParameter("member_nickname", nickname);
+		List<MemberBean> memberList = query.list();
+		MemberBean temp =  memberList.get(0);
+		return temp.getMember_username();
+	}
+	
+	
+	//檢查nickname重複
+	public boolean nicknameCheck(String nickname) {
+		String hql = " from MemberBean  WHERE member_nickname=:member_nickname ";
+		Query<MemberBean> query = this.getSession().createQuery(hql);
+		query.setParameter("member_nickname", nickname);
+		List<MemberBean> memberList = query.list();		
+		if(memberList.isEmpty()) {// no repeat
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	
+	
+	
+	
+	
 }

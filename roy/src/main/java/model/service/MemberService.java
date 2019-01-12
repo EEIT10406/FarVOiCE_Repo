@@ -1,5 +1,7 @@
 package model.service;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 
 import javax.transaction.Transactional;
@@ -59,34 +61,47 @@ public class MemberService {
 			MemberBean newMemberBean = memberDAO.create(bean);
 			return newMemberBean;
 		}
-		return null;
+		return null;//帳號已存在
+	}
+	public void update(MemberBean bean) {
+			memberDAO.update(bean);		
 	}
 	
+	// 給上傳的大頭貼一個儲存路徑
+	public String imageFilePath(byte[] file) throws IOException {
+
+		String imageFilePath = "C:/Roy_FarVoice/image/profile/" + System.currentTimeMillis()+".jpg";
+		FileOutputStream out = new FileOutputStream(imageFilePath);
+		out.write(file);
+		out.close();
+
+		return "/roy/image"+imageFilePath.substring(21);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	public boolean changePassword(String username, String oldPassword, String newPassword) {
-//		MemberBean bean = this.login(username, oldPassword);
-//		if(bean!=null) {
-//			if (newPassword!=null && newPassword.length()!=0) {
-//				byte[] temp = newPassword.getBytes();
-////				return memberDAO.update(
-////						temp, bean.getEmail(), bean.getBirth(), username);
-//			}
-//		}
-//		return false;
-//	}
-	
+	//查找帳號有無重複
+	public boolean checkAccountExist(String username) {
+		//有重複的話傳true反之則false
+		MemberBean checkBean = memberDAO.findByPrimaryKey(username);
+		if(checkBean!=null) {//exist
+			System.out.println("service--true");
+			return true;
+		}else {
+			System.out.println("service--false");
+
+			return false;
+		}
+
+	}
+	//查找nickname有無重複
+	public boolean checkNicknameExist(String nickname) {
+		//有重複的話傳true反之則false
+		return memberDAO.nicknameCheck(nickname);
+	}
+	//給username得到Bean
+	public MemberBean getMemberBeanForSomebodyPersonalPage(String username) {
+		if(memberDAO.findByPrimaryKey(username)!=null) {
+			return memberDAO.findByPrimaryKey(username);
+		}
+		return null;
+	}
 }

@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 <!-- JS -->
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
@@ -40,7 +41,36 @@
 <!-- End JS -->
 <script>
 	$(document).ready(function() {
-
+		$(".a-upload").on(
+				"change",
+				"input[type='file']",
+				function() {
+					var filePath = $(this).val();
+					if (filePath.indexOf("jpg") != -1
+							|| filePath.indexOf("png") != -1) {
+						$(".fileerrorTip").html("").hide();
+						var arr = filePath.split('\\');
+						var fileName = arr[arr.length - 1];
+						$(".showFileName").html(fileName);
+					} else {
+						$(".showFileName").html("");
+						$(".fileerrorTip").html("您未上傳圖片，或者您上傳圖片類型有誤！").show();
+						return false;
+					}
+				}
+		)
+		var passError = $('#csrfmiddlewaretoken').val();
+		if(passError){
+			alert(passError);
+		}
+		var passSucc = $('#csr').val();
+		if(passSucc){
+			alert(passSucc);
+		}
+		var proSucc = $('#changeProSucc').val();
+		if(proSucc){
+			alert(proSucc);
+		}
 		$('#type li').click(function() {
 			$(this).parent('ul').children('li').removeClass('active');
 			$(this).addClass('active');
@@ -76,12 +106,44 @@
 						<li><a href="#email" data-toggle="tab"> 電子郵件 </a></li>
 					</ul>
 				</div>
-				<!--左選單 -->
+				<!-- end 左選單 -->
 				<div class="col-sm-9">
 					<div class="tab-content">
 
 						<!--detail-->
-						<div class="tab-pane fade in active" id="detail">註冊畫面</div>
+						<div class="tab-pane fade in active" id="detail">
+							<div class="bg-white p-30 min-height-500">
+								<h3 >StreetVoice Account :  ${user.member_username}</h3>
+									<form method="POST" action="/roy/personalPage/change_profile"
+											enctype="multipart/form-data">
+											<input type="hidden" id="changeProSucc"
+												value="${changeProSucc}">
+										<div class="upload-image">
+											<p class="bluequote">上傳大頭貼</p>
+											<label for="" class="input-label-img">請提供 JPEG、PNG，圖片尺寸至少
+												1024 x 768 px (4:3)； 2MB 以內。</label>
+											
+											<label for="file-upload" class="custom-file-upload"> <i
+						class="fas fa-cloud-upload-alt"></i> 上傳專案圖片
+					</label>
+					<!----------------------- -->
+					<a href="javascript:;" class="a-upload">
+					<input onchange="readURL(this)"
+						targetID="preview_progressbarTW_img" id="file-upload" type="file"
+						accept="image/jpeg, image/png" name="member_profileImage" required
+						oninvalid="setCustomValidity('請選擇上傳圖片');"
+						oninput="setCustomValidity('');">
+						</a>
+					<p class="showFileName"></p>
+					<p class="fileerrorTip"></p>
+
+
+										</div>
+											
+										<button type="submit" class="btn btn-default m-top-4">儲存變更</button>
+									</form>
+							</div>
+						</div>
 						<!--detail-->
 
 						<!-- changePassword -->
@@ -91,11 +153,12 @@
 								<p></p>
 								<div class="row">
 									<div class="col-md-5">
-										<form method="POST" action="/roy/accounts/change_password/"
+										<form method="POST" action="/roy/personalPage/change_password"
 											data-pjax="">
-											<input type="hidden" name="csrfmiddlewaretoken"
-												value="9Dnww9nygayHsw89cFNOjwXLSmZx2zlx">
-
+											<input type="hidden" id="csrfmiddlewaretoken"
+												value="${errors.passError}">
+											<input type="hidden" id="csr"
+												value="${changePassSucc}">
 											<div class="form-group">
 												<div class="form-group">
 													<label class="control-label" for="id_old_password">舊密碼</label><input
@@ -121,7 +184,7 @@
 														required="required" title="" type="password">
 												</div>
 											</div>
-											<button type="submit" class="btn btn-default m-top-4">儲存變更</button><span>${errors.passError} </span>
+											<button type="submit" class="btn btn-default m-top-4">儲存變更</button><span> </span>
 										</form>
 									</div>
 								</div>
@@ -135,8 +198,7 @@
 
 							<div class="bg-white p-30 min-height-500">
 								<h3 class="m-bottom-4">電子郵件</h3>
-
-
+								<p></p>
 								<div class="row">
 									<div class="col-md-8">
 										<div class="form-group">
@@ -144,14 +206,14 @@
 											<p class="form-control-static">
 
 
-												機油@gmail.com <span class="label label-success m-left-1">已驗證</span>
-
+											${user.member_email} <span class="label label-success m-left-1">已驗證個頭</span>
+ 
 
 											</p>
 
 										</div>
 										<!-- /form-group -->
-										<form action="/accounts/change_email/" method="POST"
+										<form action="/roy/personalPage/change_email" method="POST"
 											data-pjax="">
 											<input type="hidden" name="csrfmiddlewaretoken"
 												value="9Dnww9nygayHsw89cFNOjwXLSmZx2zlx">

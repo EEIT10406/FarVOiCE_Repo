@@ -5,17 +5,22 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.ListMusicBean;
 import model.bean.MusicBean;
+import model.bean.PlaylistBean;
 import model.bean.primarykey.ListMusicId;
 import model.service.ListMusicService;
 import model.service.MusicService;
+import model.service.PlayListService;
 
 @Controller
 public class ListMusicController {
@@ -23,6 +28,8 @@ public class ListMusicController {
 	private ListMusicService listMusicService;
 	@Autowired
 	private MusicService musicService;
+	@Autowired
+	private PlayListService playListService;
 
 	// 讀歌單內的音樂
 	@RequestMapping(value = "/list/readPlayListMusic", produces = "text/plain;charset=UTF-8")
@@ -72,17 +79,41 @@ public class ListMusicController {
 	// 把音樂加入想要的歌單
 	@RequestMapping(value = "/list/addMusicToPlayList", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String addMusicToPlayList(ListMusicId listMusicId, Integer music_id, Integer playlist_id,
-			ListMusicBean bean) {
-		listMusicId.setPlaylist_id(playlist_id);
-		boolean deleteListMusic = listMusicService.deleteMusicFromList(listMusicId, music_id);
-		if (deleteListMusic == true) {
-			bean.setId(listMusicId);
-			listMusicService.reduceMusicCount(bean);
-			return "刪除成功";
+	public String addMusicToPlayList(String musicId,String playListId,ListMusicId listMusicId,ListMusicBean bean) {
+		listMusicId.setPlaylist_id(Integer.valueOf(playListId));
+		listMusicId.setMusic_id(Integer.valueOf(musicId));
+		bean.setId(listMusicId);
+		ListMusicBean listMusicBean = listMusicService.addMusicToPlayList(bean);
+		if (listMusicBean !=null) {
+			listMusicService.addMusicCount(listMusicBean);
+			return "新增成功";
 		} else {
-			return "刪除失敗";
+			return "該首歌已在歌單中";
 		}
 	}
+	
+	
+	
+	// 讀歌單內的音樂
+		@RequestMapping(value = "/personalPage/locateToPlayList")
+		public String locateToPlayList(HttpSession session,String playListId,ListMusicId listMusicId,Model model) {
+			PlaylistBean playListBean=playListService.getPlayListBean(Integer.valueOf(playListId));
+			listMusicId.setPlaylist_id(Integer.valueOf(playListId));
+			List<Integer> musicIds=listMusicService.findByPlayListId(listMusicId);
+			
+			List<MusicBean>musicBeans=new LinkedList<>();
+			
+			for(Integer musicId:musicIds) {
+				MusicBean musicBean=musicService.findMusic(musicId);
+				if(musicBean.getMusic_unavailable()==true) {
+					String unavailableMusicName= musicBean.getMusic_name()+" (該歌曲已下架)";
+					musicBean.setMusic_name(unavailableMusicName);
+				}
+				musicBeans.add(musicBean);
+			}
+			model.addAttribute("playListBean", playListBean);
+			model.addAttribute("musicBeans", musicBeans);
+			return "/list/ListPage.jsp";
+		}
 
 }

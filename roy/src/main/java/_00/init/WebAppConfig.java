@@ -8,9 +8,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
@@ -31,10 +34,8 @@ public class WebAppConfig implements WebMvcConfigurer{
 	// 配置 Spring提供的 InternalResourceViewResolver
 //	@Bean
 //	public ViewResolver jspViewResolver() {
-//		System.out.println("jspViewResolver");
 //		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 //		viewResolver.setViewClass(JstlView.class);
-//		viewResolver.setPrefix("/WEB-INF/views/");
 //		viewResolver.setSuffix(".jsp");
 //		return viewResolver;
 //	}
@@ -45,7 +46,9 @@ public class WebAppConfig implements WebMvcConfigurer{
 	@Bean
 	public MultipartResolver multipartResolver() {
 		CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver();
+
 //		multipartResolver.setMaxUploadSize(5000000);
+	//	multipartResolver.setMaxUploadSize(5000000);
 		return multipartResolver;
 	}
 //	@Override
