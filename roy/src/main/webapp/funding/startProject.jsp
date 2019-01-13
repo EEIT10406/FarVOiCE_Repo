@@ -106,7 +106,7 @@
 											} else {
 												$("#preview_progressbarTW_img")
 														.attr("src",
-																"/roy/img/pokemon.png")
+																"/roy/img/gun.jpg")
 												$("#spin")
 														.attr("class",
 																"fas fa-cloud-upload-alt")
@@ -189,8 +189,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .a {
-	border: 1px solid;
-	border-color: red;
 	display: inline-block;
 	height: 525px;
 	width: 30%;
@@ -199,20 +197,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .b {
 	height: 30%;
-	border: 1px solid;
-	border-color: red;
 }
 
 .c {
 	height: 65%;
-	border: 1px solid;
-	border-color: red;
 }
 
 .big {
 	height: 525px;
-	border: 1px solid;
-	border-color: red;
 	margin: auto;
 	width: 100%;
 	text-align: center;
@@ -226,6 +218,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 		<div class="create-content">
 			<form action="<c:url value="funding.controller" />" method="post"
 				enctype="multipart/form-data">
+				<div
+					style="text-align: center; margin-bottom: 15px; margin-top: 15px;">
+					<label class="top-title">專案內容</label>
+				</div>
 				<div class="big">
 					<div class="a">
 						<div class="b">
@@ -268,19 +264,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 									src="/roy/img/gun.jpg">
 							</div>
 							<div class="pcontent-pre">
-								<p id="pre-title" class="title-content" style="margin-bottom: -18px">例：30 個字以內的專案標題</p>
+								<p id="pre-title" class="title-content"
+									style="margin-bottom: -18px">例：30 個字以內的專案標題</p>
 								<p class="small creator">
-								<p id="pre-name">${username}</p>
+								<p id="pre-name">${nickname}</p>
 
-								<p id="pre-content" class="excerpt" style="font-weight: bold;font-size: 0.85rem">例：簡短描述專案內容，吸引瀏覽者在
+								<p id="pre-content" class="excerpt"
+									style="font-weight: bold; font-size: 0.85rem">例：簡短描述專案內容，吸引瀏覽者在
 									FarVoice 首頁上點擊你的專案。</p>
 							</div>
-							<div class="downMeta-pre" >
-								<progress class="progress-pre" style="margin-bottom: 0px;margin-top: 0px;" value="0" max="100"></progress>
-								<span class="goalMoney osmfont" >0</span>&nbsp; <span
-									class="hidden-md goalpercent goal"> 0%</span> <span style="font-size: 13px;letter-spacing: 1px"
-									class="date pull-right small"> 還剩 <strong class="days" style="font-size: 13px;font-weight: 1000;letter-spacing: 1px">0</strong><span style="font-size: 13px;letter-spacing: 1px">
-										天</span>
+							<div class="downMeta-pre">
+								<progress class="progress-pre"
+									style="margin-bottom: 0px; margin-top: 0px;" value="0"
+									max="100"></progress>
+								<span class="goalMoney osmfont">0</span>&nbsp; <span
+									class="hidden-md goalpercent goal"> 0%</span> <span
+									style="font-size: 13px; letter-spacing: 1px"
+									class="date pull-right small"> 還剩 <strong class="days"
+									style="font-size: 13px; font-weight: 1000; letter-spacing: 1px">0</strong><span
+									style="font-size: 13px; letter-spacing: 1px"> 天</span>
 								</span>
 
 							</div>
@@ -291,13 +293,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 				</div>
 
 				<div class="upload-image" style="margin: auto;">
-					<p class="bluequote">專案圖片</p>
+					<p class="bluequote">專案封面</p>
 					<label for="" class="input-label-img">請提供 JPEG、PNG，圖片尺寸至少
 						1024 x 768 px (4:3)； 2MB 以內。</label>
 					<!------------------------------->
 
 					<label for="file-upload" class="custom-file-upload"> <i
-						id="spin" class="fas fa-cloud-upload-alt"></i> 上傳專案圖片
+						id="spin" class="fas fa-cloud-upload-alt"></i> 上傳封面圖片
 					</label>
 					<!----------------------- -->
 					<a href="javascript:;" class="a-upload"> <input

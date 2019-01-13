@@ -60,14 +60,16 @@ public class FundingController {
 
 	}
 
-//使用者上傳的音樂
+//使用者上傳的音樂+放入提案人暱稱
 	@RequestMapping("/funding/showMusic.controller")
 	public String findMusicByName(Model model, HttpSession session) {
 		MemberBean memberBean = (MemberBean) session.getAttribute("user");
 		String username = memberBean.getMember_username();
+		String nickname =memberBean.getMember_nickname();
 		List<MusicBean> musicbeans = fundingService.findMusicByUser(username);
 		model.addAttribute("musicName", musicbeans);
 		model.addAttribute("username",username);
+		model.addAttribute("nickname",nickname);
 		return "startProject.jsp";
 	}
 
