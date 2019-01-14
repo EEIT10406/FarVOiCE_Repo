@@ -115,7 +115,7 @@ table {
 			var music_name =row.find("a").text();
 	 		var music_id =row.find('textarea').text();
 	 		
-	        $("#realaddshareMusicname").text(""+music_name+"");
+	        $("#addshareMusicname").text(""+music_name+"");
 	        $("#addshareMusicid").text(""+music_id+"");
 	        alert(music_name);
 			})	
