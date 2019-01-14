@@ -104,7 +104,7 @@ public class MemberController {
 		}
 		signUPBean.setMember_registerTime(new Date());
 		signUPBean.setMember_ban(false);
-		signUPBean.setMember_profileImage("");
+		signUPBean.setMember_profileImage("/roy/image/profile/noProfile.gif");
 		MemberBean signedbean = memberService.signUp(signUPBean);
 		
 		if (signedbean == null) {
@@ -147,7 +147,7 @@ public class MemberController {
 		model.addAttribute("changePassSucc", "密碼更改成功");
 		return"/personalPage/personalDetail.jsp";
 	}
-	
+	//changeEmail
 	@RequestMapping(path="/personalPage/change_email")
 	public String changeEmail(Model model,
 			HttpSession session,String email,String emailconf) {
@@ -166,6 +166,7 @@ public class MemberController {
 		model.addAttribute("changePassSucc", "Email更改成功");
 		return"/personalPage/personalDetail.jsp";
 	}
+	//changeProfile
 	@RequestMapping(path="/personalPage/change_profile")
 	public String changeProfile(Model model,
 			HttpSession session,
@@ -185,19 +186,22 @@ public class MemberController {
 		model.addAttribute("changeProSucc", "大頭貼更改成功");
 		return"/personalPage/personalDetail.jsp";
 	}
+	
+	
+	//找找有沒有這個帳號
 	@RequestMapping(path="/login-signUp-upload/accountCheck.controller",produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String accountCheck(Model model,HttpSession session,String user) {
-		//找找有沒有這個帳號
 		System.out.println(user);
 		boolean existOrNot = memberService.checkAccountExist(user);
 		//重複-->true
 		System.out.println("controller-existOrNot = " +existOrNot);
-
 		String jsonList = "{\"existOrNot\":\""+existOrNot+"\"}";
 		return jsonList;
 	}
 	
+	
+	//找找有沒有這個nickname
 	@RequestMapping(path="/login-signUp-upload/nicknameCheck.controller",produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String nicknameCheck(Model model,HttpSession session,String nickname) {
@@ -209,6 +213,28 @@ public class MemberController {
 
 		String jsonList = "{\"existOrNot\":\""+existOrNot+"\"}";
 		return jsonList;
+	}
+	
+	//changeDescription
+	@RequestMapping(path="/personalPage/change_description")
+	public String changeDescription(Model model,
+			HttpSession session,String description,String emailconf) {
+		MemberBean bean = (MemberBean) session.getAttribute("user");
+		bean.setMember_description(description.replace("\n","<br>"));
+		memberService.update(bean);
+		model.addAttribute("changeDescription", "自介更改成功");
+		return"/personalPage/personalDetail.jsp";
+	}
+	//changeRegion
+	@RequestMapping(path="/personalPage/change_region")
+	public String changeRegion(Model model,
+			HttpSession session,String region,String emailconf) {
+		System.out.println(region);
+		MemberBean bean = (MemberBean) session.getAttribute("user");
+		bean.setMember_region(region);
+		memberService.update(bean);
+		model.addAttribute("changeRegion", "地區更改成功");
+		return"/personalPage/personalDetail.jsp";
 	}
 }
 	

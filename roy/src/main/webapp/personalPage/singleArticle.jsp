@@ -1,9 +1,8 @@
-<!-- === BEGIN HEADER === -->
-<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!--<![endif]-->
+<!DOCTYPE html>
+<html>
 <head>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
 <!-- Title -->
@@ -32,7 +31,6 @@
 <style>
 * {
 	font-family: 微軟正黑體;
-}
 }
 </style>
 </head>
@@ -104,7 +102,7 @@
 							</div>
 							<div class="blog-item">
 								<div class="clearfix"></div>
-								<div class="blog-post-body row margin-top-15">
+								<div class="blog-post-body row margin-top-15" style="padding-left:15px">
 									<div class="col-md-12" style="margin-bottom:100px">
 										<p>${currentPost.post_content}</p>
 										<span hidden="true" id="postPK">${currentPost.post_idS}</span>
@@ -192,7 +190,7 @@
 				 {   var totalComment = 0;
 					list.forEach(function(obj, index) {
 						totalComment++;
-						console.log(obj.post_time)
+						console.log(obj)
 // 								<li class='list-group-item'>
 // 									<div class='row'>
 // 										<div class='col-md-2 profile-thumb'>

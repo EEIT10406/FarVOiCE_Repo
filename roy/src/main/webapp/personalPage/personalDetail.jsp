@@ -71,6 +71,14 @@
 		if(proSucc){
 			alert(proSucc);
 		}
+		var changeDescription = $('#changeDescription').val();
+		if(changeDescription){
+			alert(changeDescription);
+		}
+		var changeRegion = $('#changeRegion').val();
+		if(changeRegion){
+			alert(changeRegion);
+		}
 		$('#type li').click(function() {
 			$(this).parent('ul').children('li').removeClass('active');
 			$(this).addClass('active');
@@ -90,6 +98,9 @@
 #content {
 	margin-top: 3%
 }
+* {
+	font-family: 微軟正黑體;
+}
 </style>
 </head>
 <body>
@@ -104,6 +115,8 @@
 						<li class="active"><a href="#detail" data-toggle="tab">帳號資訊</a></li>
 						<li><a href="#changePassword" data-toggle="tab"> 變更密碼 </a></li>
 						<li><a href="#email" data-toggle="tab"> 電子郵件 </a></li>
+						<li><a href="#description" data-toggle="tab"> 自我介紹 </a></li>
+						<li><a href="#region" data-toggle="tab"> 變更地區 </a></li>
 					</ul>
 				</div>
 				<!-- end 左選單 -->
@@ -118,28 +131,24 @@
 											enctype="multipart/form-data">
 											<input type="hidden" id="changeProSucc"
 												value="${changeProSucc}">
-										<div class="upload-image">
-											<p class="bluequote">上傳大頭貼</p>
-											<label for="" class="input-label-img">請提供 JPEG、PNG，圖片尺寸至少
-												1024 x 768 px (4:3)； 2MB 以內。</label>
-											
-											<label for="file-upload" class="custom-file-upload"> <i
-						class="fas fa-cloud-upload-alt"></i> 上傳專案圖片
-					</label>
-					<!----------------------- -->
-					<a href="javascript:;" class="a-upload">
-					<input onchange="readURL(this)"
-						targetID="preview_progressbarTW_img" id="file-upload" type="file"
-						accept="image/jpeg, image/png" name="member_profileImage" required
-						oninvalid="setCustomValidity('請選擇上傳圖片');"
-						oninput="setCustomValidity('');">
-						</a>
-					<p class="showFileName"></p>
-					<p class="fileerrorTip"></p>
-
-
-										</div>
-											
+											<div class="upload-image" style="width:70%">
+												<label for="" class="input-label-img">請提供 JPEG、PNG，圖片尺寸至少
+													1024 x 768 px (4:3)； 2MB 以內。</label>
+												
+												<label for="file-upload" class="custom-file-upload"> <i
+												class="fas fa-cloud-upload-alt"></i> 上傳大頭貼
+												</label>
+												<!----------------------- -->
+												<a href="javascript:;" class="a-upload">
+												<input onchange="readURL(this)"
+												targetID="preview_progressbarTW_img" id="file-upload" type="file"
+												accept="image/jpeg, image/png" name="member_profileImage" required
+												oninvalid="setCustomValidity('請選擇上傳圖片');"
+												oninput="setCustomValidity('');">
+												</a>
+												<p class="showFileName"></p>
+												<p class="fileerrorTip"></p>
+											</div>
 										<button type="submit" class="btn btn-default m-top-4">儲存變更</button>
 									</form>
 							</div>
@@ -149,7 +158,7 @@
 						<!-- changePassword -->
 						<div class="tab-pane fade in" id="changePassword">
 							<div class="bg-white p-30 min-height-500">
-								<h3 class="m-bottom-4">變更密碼</h3>
+								<h3 style="font-family: 微軟正黑體;">變更密碼</h3>
 								<p></p>
 								<div class="row">
 									<div class="col-md-5">
@@ -197,7 +206,7 @@
 						<div class="tab-pane fade in" id="email">
 
 							<div class="bg-white p-30 min-height-500">
-								<h3 class="m-bottom-4">電子郵件</h3>
+								<h3 style="font-family: 微軟正黑體;">電子郵件</h3>
 								<p></p>
 								<div class="row">
 									<div class="col-md-8">
@@ -215,8 +224,7 @@
 										<!-- /form-group -->
 										<form action="/roy/personalPage/change_email" method="POST"
 											data-pjax="">
-											<input type="hidden" name="csrfmiddlewaretoken"
-												value="9Dnww9nygayHsw89cFNOjwXLSmZx2zlx">
+											
 											<div class="form-group">
 												<label class="control-label" for="id_email">新的電子郵件地址</label><input
 													class="form-control" id="id_email" name="email"
@@ -237,7 +245,64 @@
 
 						</div>
 						<!-- email -->
-
+						
+						<!--description-->
+						<div class="tab-pane fade in " id="description">
+							<div class="bg-white p-30 min-height-500">
+								<h3 style="font-family: 微軟正黑體;">自我介紹</h3>
+								<p></p>
+								<form method="POST" action="/roy/personalPage/change_description">
+										<input type="hidden" id="changeDescription"
+											value="${changeDescription}">
+										<div class="form-group">
+											<textarea class="form-control" style='height:150px;' name="description"></textarea>
+										</div>
+									<button type="submit" class="btn btn-default m-top-4">儲存變更</button>
+								</form>
+							</div>
+						</div>
+						<!--description-->
+						<!--region-->
+						<div class="tab-pane fade in " id="region">
+							<div class="bg-white p-30 min-height-500">
+								<h3 style="font-family: 微軟正黑體;">變更地區</h3>
+								<p></p>
+								<form method="POST" action="/roy/personalPage/change_region">
+										<input type="hidden" id="changeRegion"
+											value="${changeRegion}">
+										<div  style="width:70%;">
+											<select name="region" class="form-control fc" ><option
+													value="null" disabled="disabled" selected="selected">選擇城市</option>
+												<option value="台北市">台北市</option>
+												<option value="新北市">新北市</option>
+												<option value="桃園市">桃園市</option>
+												<option value="台中市">台中市</option>
+												<option value="台南市">台南市</option>
+												<option value="高雄市">高雄市</option>
+												<option value="基隆市">基隆市</option>
+												<option value="新竹市">新竹市</option>
+												<option value="嘉義市">嘉義市</option>
+												<option value="新竹縣">新竹縣</option>
+												<option value="苗栗縣">苗栗縣</option>
+												<option value="彰化縣">彰化縣</option>
+												<option value="南投縣">南投縣</option>
+												<option value="雲林縣">雲林縣</option>
+												<option value="嘉義縣">嘉義縣</option>
+												<option value="屏東縣">屏東縣</option>
+												<option value="宜蘭縣">宜蘭縣</option>
+												<option value="花蓮縣">花蓮縣</option>
+												<option value="台東縣">台東縣</option>
+												<option value="澎湖縣">澎湖縣</option>
+												<option value="金門縣">金門縣</option>
+												<option value="連江縣">連江縣</option>
+											</select>
+					
+										</div>
+									<button type="submit" class="btn btn-default m-top-4" style="margin-top:15px">儲存變更</button>
+								</form>
+							</div>
+						</div>
+						<!--region-->
 					</div>
 				</div>
 			</div>

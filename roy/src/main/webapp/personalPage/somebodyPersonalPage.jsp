@@ -226,18 +226,89 @@ table {
 
 	//抓粉絲數
 	function loadFanCount(username) {
+		var me = username;
 		$.get('/roy/personalPage/howMuchFollowMe.controller',{'username' : username},function(data) {
 		
 			$('#fansCount').html(data);
+			if(data > 0 ){
+				//顯示粉絲名單
+				$.ajax({
+	                url: "/roy/personalPage/whoFollowMe.controller",
+	                type: "POST",
+	                cache:false,
+	                dataType:'json',
+	                data:{username:me},
+					success : function(list)
+					 {  console.log("粉絲名單----------------------");
+						console.log(list);
+					 	list.forEach(function(obj, index) {
+						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameS+"'>"+obj.member_nicknameS+"</a>"
+					 		var content0 = 	"<div class='row'>"
+						 	var content1 = 		"<div class='col-md-5'>"
+						 	var content2 = 			"<img src='"+obj.member_profileImageS+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
+				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
+				 			var content4 = 		"</div>"
+				 			var content5 = 		"<div class='col-md-7'>"
+				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
+				 			var content7 = 		"</div>"
+				 			var content8 = 	"</div>"
+							var div = content0 +  content1 +  content2 +  content3 +  content4 +  content8 ;
+				 			$('#fans').append(div);
+					  	});
+					},  
+	                error: function (xhr, ajaxOptions, thrownError) {
+	                    alert(xhr.status+"-->顯示粉絲名單");
+	                    alert(thrownError);
+	                }
+	            });	 
+				//顯示粉絲名單END
+			}
 		})
-	}
+	}	
 	//抓偶像數
 	function loadStarCount(username) {
+		var me = username;
 		$.get('/roy/personalPage/iFollowHowMuch.controller',{'username' : username},function(data) {
 		
 			$('#starsCount').html(data);
+			
+			if(data > 0){
+				//顯示追蹤名單
+				$.ajax({
+	                url: "/roy/personalPage/iFollowWho.controller",
+	                type: "POST",
+	                cache:false,
+	                dataType:'json',
+	                data:{username:me},
+					success : function(list)
+					 {  console.log("追蹤名單----------------------");
+						console.log(list);
+					 	list.forEach(function(obj, index) {
+						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameM+"'>"+obj.member_nicknameM+"</a>"
+					 		var content0 = 	"<div class='row'>"
+						 	var content1 = 		"<div class='col-md-5'>"
+						 	var content2 = 			"<img src='"+obj.member_profileImageM+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
+				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
+				 			var content4 = 		"</div>"
+				 			var content5 = 		"<div class='col-md-7'>"
+				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
+				 			var content7 = 		"</div>"
+				 			var content8 = 	"</div>"
+							var div = content0 +  content1 +  content2 +  content3 +  content4 +  content5 +  content6 +  content7 +  content8 ;
+				 			$('#following').append(div);
+					  	});
+					},  
+	                error: function (xhr, ajaxOptions, thrownError) {
+	                    alert(xhr.status+"-->追蹤名單");
+	                    alert(thrownError);
+	                }
+	            });	 
+				//顯示追蹤名單END
+			}
+			
 		})
-	}	
+		
+	}
 
 </script>
 
@@ -437,13 +508,14 @@ function loadMusicCount(username) {
 					<table>
 						<tr>
 							<td>音樂</td>
-							<td>粉絲</td>
 							<td>追蹤中</td>
+							<td>粉絲</td>
 						</tr>
 						<tr>
 							<td id="musicCount" class="number">0</td>
-							<td id="fansCount" class="number">0</td>
-							<td id="starsCount" class="number">0</td>
+							<td  class="number" ><a id="starsCount" href="#about" data-toggle="tab">0</a></td>
+							<td  class="number" ><a id="fansCount" href="#about" data-toggle="tab">0</a></td>
+							
 						</tr>
 					</table>
 				</div>
@@ -574,78 +646,29 @@ function loadMusicCount(username) {
 											<div class="row">
 
 												<div class="col-md-5">
-													<h3 class="no-margin no-padding">詳細介紹</h3>
-													<p style="margin-top: 15px;">地區：台灣, 臺北市</p>
-													<p>性別：</p>
+													<h3 class="no-margin no-padding" style="font-family: 微軟正黑體;">詳細介紹</h3>
+													<p style="margin-top: 15px;">地區：${somebodyRegion }</p>
+												
 												</div>
-
-												<div class="col-md-7">
-													<div style="float: right;">
-														<a href="personalDetail.jsp">編輯</a>
-													</div>
+												<div class="col-md-12">
+												<p> ${somebodyDescription}</p>
 												</div>
-
 											</div>
 										</div>
 										<div class="tab-pane fade in" id="following">
 											<h3 class="no-margin no-padding"
-												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px;">追蹤名單</h3>
+												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px; font-family: 微軟正黑體;">追蹤名單</h3>
 
-											<div class="row">
-												<div class="col-md-5">
-													<img src="../img/left.JPG"
-														style="margin-top: 15px; width: 100px; height: 100px;" />
-													<span
-														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
-												</div>
-												<div class="col-md-7">
-													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
-												</div>
-											</div>
-
-											<div class="row">
-												<div class="col-md-5">
-													<img src="../img/left.JPG"
-														style="margin-top: 15px; width: 100px; height: 100px;" />
-													<span
-														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
-												</div>
-												<div class="col-md-7">
-													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
-												</div>
-											</div>
+											
 
 										</div>
 
 										<div class="tab-pane fade in" id="fans">
 
 											<h3 class="no-margin no-padding"
-												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px;">粉絲</h3>
+												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px; font-family: 微軟正黑體;">粉絲</h3>
 
-											<div class="row">
-												<div class="col-md-5">
-													<img src="../img/left.JPG"
-														style="margin-top: 15px; width: 100px; height: 100px;" />
-													<span
-														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
-												</div>
-												<div class="col-md-7">
-													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
-												</div>
-											</div>
-
-
-											<div class="row">
-												<div class="col-md-5">
-													<img src="../img/left.JPG"
-														style="margin-top: 15px; width: 100px; height: 100px;" />
-													<span
-														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
-												</div>
-												<div class="col-md-7">
-													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
-												</div>
-											</div>
+											
 
 										</div>
 
@@ -663,6 +686,7 @@ function loadMusicCount(username) {
 		</div>
 	</div>
 	<!-- === END CONTENT === -->
+	
 	<!-- 	showArticleFromMember start-->
 	<script>
 
@@ -672,7 +696,7 @@ function loadMusicCount(username) {
                 type: "POST",
                 cache:false,
                 dataType:'json',
-                data:{user:$('#userName').text()},
+                data:{username:$('#userName').text()},
                 //contentType: "application/json",              
 				success : function(list)
 				 {   

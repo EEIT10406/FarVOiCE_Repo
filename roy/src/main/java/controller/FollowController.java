@@ -77,37 +77,21 @@ public class FollowController {
 	public String iFollowWho(Model model, HttpSession session, String username) {
 		System.out.println("我follow 誰" + username);
 		List<FollowBean> stars = followService.iFollowWho(username);
-		if (stars!=null) {
 		System.out.println(stars);
-		//帳號改成暱稱
-		Iterator<FollowBean> newStars =  stars.iterator();
+		Gson gson = new Gson();
+		String jsonString = gson.toJson(stars);
+		return jsonString;
 		
-			while (newStars.hasNext()) {
-				FollowBean temp = newStars.next();
-				FollowId followId = temp.getId();
-				followId.setMember_usernameM(memberService.usernameToNickname(followId.getMember_usernameM()));
-			}
-			Gson gson = new Gson();
-			String jsonString = gson.toJson(stars);
-			return jsonString;
-		}
-		return "{}";
+		
 	}
 	
 	// 誰follow我
 	@RequestMapping(path = "personalPage/whoFollowMe.controller", produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String whoFollowMe(Model model, HttpSession session, String username) {
-		System.out.println("我follow 誰" + username);
+		System.out.println("誰follow我-------我是" + username);
 		List<FollowBean> stars = followService.whoFollowMe(username);
 		System.out.println(stars);
-		//帳號改成暱稱
-		Iterator<FollowBean> newStars =  stars.iterator();
-		while(newStars.hasNext()) {
-			FollowBean temp = newStars.next();
-			FollowId followId = temp.getId();
-			followId.setMember_usernameS(memberService.usernameToNickname(followId.getMember_usernameS()));
-		}
 		Gson gson = new Gson();
 		String jsonString = gson.toJson(stars);
 		return jsonString;
