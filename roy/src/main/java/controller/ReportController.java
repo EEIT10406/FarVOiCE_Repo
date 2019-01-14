@@ -54,9 +54,9 @@ public class ReportController {
 		reportBean.setMusic_idReportM(Integer.parseInt(music_id));
 		reportBean.setReport_time(new java.sql.Date(new Date().getTime()));
 		if(reportService.create(reportBean)!=null) {
-			return "成功";
+			return "已檢舉";
 		}else {
-			return "失敗";
+			return "沒檢舉";
 		}
 	}
 
@@ -72,6 +72,13 @@ public class ReportController {
 		MusicBean musicBean = musicService.findMusic(Integer.parseInt(music_id));
 		musicBean.setMusic_playCount(musicBean.getMusic_playCount()+1);
 		musicService.updateMusic(musicBean);
+	}
+	
+	@RequestMapping(value = "**/report.searchLists", produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String searchLists(Model model,String sort) {
+		System.out.println(sort);
+		return JSONValue.toJSONString(musicService.search("","","",""));
 	}
 	
 }

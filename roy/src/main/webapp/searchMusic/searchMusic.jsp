@@ -215,8 +215,8 @@
 				    				'<img class="img-full" height="100%" width="100%" src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
 				    				'</a><input class="reportButton" type="image" src="../img/檢舉.png" onmouseover="report()" height="50" width="50" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'">'+
 				    				'</div>	<div class="song-info">'+
-				    				'<h4 class="text-ellipsis"><a href="/roy/personalPage/somebodyPersonalPage.controller?somebody='+music.Member_username+'&nickname=fifi">'+music.Member_username+'</a></h4>'+
-				    				'<h4 class="text-ellipsis"><a class="play-link" href="#" onclick="play(this)" src="'+music.Music_Image+'" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+music.Music_name+'</a></h4></div></div>');
+				    				'<h4 class="text-ellipsis"><a href="/roy/personalPage/somebodyPersonalPage.controller?somebody='+music.Member_username+'">'+music.Member_username+'</a></h4>'+
+				    				'<a class="play-link" href="#"><h4 class="text-ellipsis" onclick="play(this)" src="'+music.Music_Image+'" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+music.Music_name+'</h4></a></div></div>');
 				    		docFrag.append(row);
 				    	});
 				    $('#music-container').html(docFrag);
@@ -261,9 +261,12 @@
 			<%if (session.getAttribute("user") == null) {%>
 	 			alert('請先登入');
 			<%} else {%>
-				$.get("report.create", {'music_id':$(this).attr('music_id'),'member_username':$(this).attr('member_username')}, function(message) {
-					alert(message);
-				})
+				if(confirm("確定檢舉嗎?")){
+					$.get("report.create", {'music_id':$(this).attr('music_id'),'member_username':$(this).attr('member_username')}, function(message) {
+						alert(message);
+					})
+			  	} else {
+			  	}
 			<%}%>
 		})
 		}

@@ -36,11 +36,12 @@ public class MusicService {
 	public LinkedList<HashMap<String, String>> search(String type,String searchString,String before,String sort) {
 		searchString = " music_name like '%"+searchString+"%'";
 		if(type!=null&&(!"".equals(type.trim()))) {
-			searchString=searchString+"and music_styleName in ("+type+")";
+			searchString=searchString+" and music_styleName in ("+type+")";
 		}
 		if(before!=null&&(!"".equals(before.trim()))) {
-			searchString=searchString+"and music_uploadTime > DATEADD(DAY, -"+before+", GETDATE ( ))";
+			searchString=searchString+" and music_uploadTime > DATEADD(DAY, -"+before+", GETDATE ( ))";
 		}
+		searchString += " and music_unavailable != 'true'";
 		if(sort!=null&&(!"".equals(sort.trim()))) {
 			searchString=searchString+"ORDER BY "+sort+" desc";
 		}

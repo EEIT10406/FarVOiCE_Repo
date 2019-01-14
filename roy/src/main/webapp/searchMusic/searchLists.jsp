@@ -40,11 +40,38 @@
 <!-- End JS -->
 <script>
 	$(document).ready(function() {
+		var sort = $('#type li.active').attr("sort");
+		loadLists(sort);
+		function loadLists(sort){
+			$('#list-Container').html("");
+			$.getJSON('/roy/list/readPlayList',{'username' : 'peter'},function(data){
+				var docFrag = $(document.createDocumentFragment());
+				$.each(data,function(index,list){
+					var row = $("<div class='col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box'></div>").html(
+					'<div class="work-block m-bottom-2">'+
+					'<a href="/roy/searchMusic/songList.jsp"><img class="img-full"'+
+					'src="'+list.playlist_image+'">'+
+					'</a><input id="playButton" type="image" src = "../img/left.JPG" height="50" width="50"></div><div class="song-info">'+
+					'<h4 class="text-ellipsis"><a href="/roy/searchMusic/songList.jsp">'+list.playlist_name+'</a></h4></div>'
+					)
+					docFrag.append(row);
+				});
+			$('#list-Container').html(docFrag)
+			});
+		};
+		
+		//取消a默認
+		$('#content a').on('click',function(event){
+			event.preventDefault();
+		});
+		//取消a默認		
 
+		//排序
 		$('#type li').click(function() {
 			$(this).parent('ul').children('li').removeClass('active');
 			$(this).addClass('active');
 		})
+		//排序
 		
 		$('#playButton').hover(function() {
 		src = $( this ).attr("src");
@@ -79,9 +106,9 @@
 									<label class="col-sm-1 control-label text-muted"><small>類型</small></label>
 									<div class="col-sm-11">
 										<ul id="type" class="nav nav-pills nav-sm">
-											<li class="active"><a class="dynamic" href="#">最多喜歡</a></li>
-											<li><a class="dynamic" href="#">最多播放</a></li>
-											<li><a class="dynamic" href="#">最新上傳</a></li>
+											<li class="active" sort="playlist_registerTime"><a class="dynamic" href="#">最多喜歡</a></li>
+											<li sort="playlist_musicCount"><a class="dynamic" href="#">最多播放</a></li>
+											<li sort="playlist_privacy"><a class="dynamic" href="#">最新上傳</a></li>
 										</ul>
 									</div>
 								</div>
@@ -96,9 +123,8 @@
 
 	<!-- 歌單	 -->
 	<div class="container">
-		<div class="row margin-vert-30">
+		<div id="list-Container" class="row margin-vert-30">
 		
-			<!-- 歌	 -->
 			<div class="col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box">
 				<div class="work-block m-bottom-2">
 					<a href="/roy/searchMusic/songList.jsp"><img class="img-full"
@@ -111,7 +137,6 @@
 					</h4>
 				</div>
 			</div>
-			<!-- 歌	 -->
 			
 		</div>
 	</div>
