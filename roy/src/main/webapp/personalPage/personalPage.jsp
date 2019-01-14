@@ -398,7 +398,7 @@ function loadMemberLikeMusic(username) {
 				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
 				 			var content7 = 		"</div>"
 				 			var content8 = 	"</div>"
-							var div = content0 +  content1 +  content2 +  content3 +  content4 +  content5 +  content6 +  content7 +  content8 ;
+							var div = content0 +  content1 +  content2 +  content3 +  content4 +  content8 ;
 				 			$('#fans').append(div);
 					  	});
 					},  
