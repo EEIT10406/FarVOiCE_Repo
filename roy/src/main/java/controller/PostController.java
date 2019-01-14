@@ -88,7 +88,6 @@ public class PostController {
 	@RequestMapping(path="/personalPage/removePost.controller")
 	public String removePost(Integer post_idS,Model model,String member_username,String post_content,HttpSession session) {
 		//刪除文章
-		System.out.println(post_idS);
 		postService.removePost(post_idS);
 		return "redirect:/personalPage/personalPage.jsp";
 	}
