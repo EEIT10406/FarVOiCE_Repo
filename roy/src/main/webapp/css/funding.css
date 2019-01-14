@@ -245,15 +245,25 @@ progress {
 	background: #00bbd6;
 }
 /* create project   */
+.top-title{
+	font-family: Microsoft JhengHei;
+	padding:15px;
+	font-weight: 900;
+	font-size:16px;
+	letter-spacing:2.6px;
+	padding-bottom: 5px;
+	border-bottom: 4px solid transparent;
+	transition: .2s all ease;
+	border-color: #FF0000
+	
+}
 .create-content {
-	border: 2px solid black;
 	width: 55%;
 	margin: 0px auto;
 }
 
 .upload-image, .create-goal, .create-type, .create-city, .chose-music,
 	.limit-date {
-	border: solid 2px red;
 	width: 60%;
 	margin: 10px 10px 10px 10px;
 	padding-top: 10px;
