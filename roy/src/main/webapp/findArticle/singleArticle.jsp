@@ -39,19 +39,6 @@
 </style>
 </head>
 <body>
-	<!--         <div id="body_bg"> -->
-	<!--             <div id="pre_header" class="container"> -->
-	<!--                 <div class="row margin-top-10 visible-lg"> -->
-	<!--                     <div class="col-md-6"> -->
-	<!--                         <p> -->
-	<!--                             <strong>Phone:</strong>&nbsp;1-800-123-4567</p> -->
-	<!--                     </div> -->
-	<!--                     <div class="col-md-6 text-right"> -->
-	<!--                         <p> -->
-	<!--                             <strong>Email:</strong>info@example.com</p> -->
-	<!--                     </div> -->
-	<!--                 </div> -->
-	<!--             </div> -->
 	<div class="primary-container-group">
 		<!-- Background -->
 		<div class="primary-container-background">

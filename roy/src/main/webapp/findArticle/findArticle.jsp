@@ -86,7 +86,7 @@
 						<!-- Blog Post -->
 						<div class="blog-post padding-bottom-20">
 							<!-- Blog Item Header -->
-							<div class="blog-item-header">
+							<div class="blog-item-header" >
 								<!-- Title -->
 								<h2>
 									<a href="#">最新文章</a>
@@ -94,246 +94,22 @@
 								<div class="clearfix"></div>
 								<!-- End Title -->
 							</div>
-							<!-- End Blog Item Header -->
-							<!-- Blog Item Details -->
-							<div class="blog-post-details">
-								<!-- Author Name -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-user color-gray-light"></i> <a href="#">作者:黃金鼠</a>
-								</div>
-								<!-- End Author Name -->
-								<!-- Date -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-								</div>
-								<!-- End Date -->
-								<!-- Tags -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-									<i class="fa fa-tag color-gray-light"></i> <a href="#">HTML5</a>,
-									<a href="#">CSS</a>, <a href="#">Grunt</a>
-								</div>
-								<!-- End Tags -->
-								<!-- # of Comments -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-									<a href=""> <i class="fa fa-comments color-gray-light"></i>
-										9 Comments
-									</a>
-								</div>
-								<!-- End # of Comments -->
+							
+							<div id="articlePutHere">
+							
+							
+							
+							
+							
+							
+							
+							
 							</div>
-							<!-- End Blog Item Details -->
-							<!-- Blog Item Body -->
-							<div class="blog">
-								<div class="clearfix"></div>
-								<div class="blog-post-body row margin-top-15">
-									<div class="col-md-5">
-										<img class="margin-bottom-20" src="imgs/mouse.PNG"
-											alt="thumb1">
-									</div>
-									<div class="col-md-7">
-										<p>最新文章</p>
-										<p>我是一隻黃金鼠</p>
-										<!-- Read More -->
-										<a href="../findArticle/singleArticle.jsp"
-											class="btn btn-primary">查看全文<i
-											class="icon-chevron-right readmore-icon"></i>
-										</a>
-										<!-- End Read More -->
-									</div>
-								</div>
-							</div>
-							<!-- End Blog Item Body -->
+						
+							
+							
+							
 						</div>
-						<!-- End Blog Item -->
-						<!-- Blog Post -->
-						<div class="blog-post padding-bottom-20">
-							<!-- Blog Item Header -->
-							<div class="blog-item-header">
-								<!-- Title -->
-								<h2>
-									<a href="#">玄鳳</a>
-								</h2>
-								<div class="clearfix"></div>
-								<!-- End Title -->
-							</div>
-							<!-- End Blog Item Header -->
-							<!-- Blog Item Details -->
-							<div class="blog-post-details">
-								<!-- Author Name -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-user color-gray-light"></i> <a href="#">作者:玄鳳鸚鵡</a>
-								</div>
-								<!-- End Author Name -->
-								<!-- Date -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-								</div>
-								<!-- End Date -->
-								<!-- Tags -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-									<i class="fa fa-tag color-gray-light"></i> <a href="#">CoffeeScript</a>,
-									<a href="#">CSS</a>, <a href="#">Ruby</a>
-								</div>
-								<!-- End Tags -->
-								<!-- # of Comments -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-									<a href=""> <i class="fa fa-comments color-gray-light"></i>
-										5 Comments
-									</a>
-								</div>
-								<!-- End # of Comments -->
-							</div>
-							<!-- End Blog Item Details -->
-							<!-- Blog Item Body -->
-							<div class="blog">
-								<div class="clearfix"></div>
-								<div class="blog-post-body row margin-top-15">
-									<div class="col-md-5">
-										<img class="margin-bottom-20" src="imgs/bird.jpg" alt="thumb2">
-									</div>
-									<div class="col-md-7">
-										<p>你好我是玄鳳</p>
-										<p>你好我是鸚鵡</p>
-
-										<!-- Read More -->
-										<a href="#" class="btn btn-primary"> 查看全文 <i
-											class="icon-chevron-right readmore-icon"></i>
-										</a>
-										<!-- End Read More -->
-									</div>
-								</div>
-							</div>
-							<!-- End Blog Item Body -->
-						</div>
-						<!-- End Blog Item -->
-						<!-- Blog Post -->
-						<div class="blog-post padding-bottom-20">
-							<!-- Blog Item Header -->
-							<div class="blog-item-header">
-								<!-- Title -->
-								<h2>
-									<a href="#">讓我為你唱情歌</a>
-								</h2>
-								<div class="clearfix"></div>
-								<!-- End Title -->
-							</div>
-							<!-- End Blog Item Header -->
-							<!-- Blog Item Details -->
-							<div class="blog-post-details">
-								<!-- Author Name -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-user color-gray-light"></i> <a href="#">蕭敬騰</a>
-								</div>
-								<!-- End Author Name -->
-								<!-- Date -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-								</div>
-								<!-- End Date -->
-								<!-- Tags -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-									<i class="fa fa-tag color-gray-light"></i> <a href="#">Bootstrap</a>,
-									<a href="#">CoffeeScript</a>, <a href="#">Ruby</a>
-								</div>
-								<!-- End Tags -->
-								<!-- # of Comments -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-									<a href=""> <i class="fa fa-comments color-gray-light"></i>
-										9 Comments
-									</a>
-								</div>
-								<!-- End # of Comments -->
-							</div>
-							<!-- End Blog Item Details -->
-							<!-- Blog Item Body -->
-							<div class="blog">
-								<div class="clearfix"></div>
-								<div class="blog-post-body row margin-top-15">
-									<div class="col-md-5">
-										<img class="margin-bottom-20" src="imgs/hqdefault.jpg"
-											alt="thumb3">
-									</div>
-									<div class="col-md-7">
-										<p>333333333333333333</p>
-										<!-- Read More -->
-										<a href="#" class="btn btn-primary"> 查看全文 <i
-											class="icon-chevron-right readmore-icon"></i>
-										</a>
-										<!-- End Read More -->
-									</div>
-								</div>
-							</div>
-							<!-- End Blog Item Body -->
-						</div>
-						<!-- End Blog Item -->
-						<!-- Blog Post -->
-						<div class="blog-post padding-bottom-20">
-							<!-- Blog Item Header -->
-							<div class="blog-item-header">
-								<!-- Title -->
-								<h2>
-									<a href="#"> 第四篇</a>
-								</h2>
-								<div class="clearfix"></div>
-								<!-- End Title -->
-							</div>
-							<!-- End Blog Item Header -->
-							<!-- Blog Item Details -->
-							<div class="blog-post-details">
-								<!-- Author Name -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-user color-gray-light"></i> <a href="#">作者</a>
-								</div>
-								<!-- End Author Name -->
-								<!-- Date -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.08.03</a>
-								</div>
-								<!-- End Date -->
-								<!-- Tags -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-									<i class="fa fa-tag color-gray-light"></i> <a href="#">PHP</a>,
-									<a href="#">HTML</a>, <a href="#">HTML5</a>
-								</div>
-								<!-- End Tags -->
-								<!-- # of Comments -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-									<a href=""> <i class="fa fa-comments color-gray-light"></i>
-										4 Comments
-									</a>
-								</div>
-								<!-- End # of Comments -->
-							</div>
-							<!-- End Blog Item Details -->
-							<!-- Blog Item Body -->
-							<div class="blog">
-								<div class="clearfix"></div>
-								<div class="blog-post-body row margin-top-15">
-									<div class="col-md-5">
-										<img class="margin-bottom-20" src="../img/blog/image4.jpg"
-											alt="thumb4">
-									</div>
-									<div class="col-md-7">
-										<p>4444444444444444</p>
-										<!-- Read More -->
-										<a href="#" class="btn btn-primary">查看全文 <i
-											class="icon-chevron-right readmore-icon"></i>
-										</a>
-										<!-- End Read More -->
-									</div>
-								</div>
-							</div>
-							<!-- End Blog Item Body -->
-						</div>
-						<!-- End Blog Item -->
 						<!-- Pagination -->
 						<ul class="pagination">
 							<li><a href="#">&laquo;</a></li>
@@ -361,8 +137,7 @@
 									<button class="btn btn-outline-success" type="submit">搜尋</button>
 								</form>
 							</ul>
-						</div>
-
+						</div>		
 						<hr>
 						<br>
 						<div class="recent-posts">
@@ -429,8 +204,66 @@
 <%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
 <!-- 	</div> -->
 
+<script>
+//顯示畫面
+ $(function () {
+	 $.ajax({
+         url: "/roy/findArticle/findArticle.controller",   //存取Json的網址             
+         type: "POST",
+         cache:false,
+         dataType:'json',
+         data:{user:$('#userName').text()},
+         //contentType: "application/json",              
+			success : function(list)
+			 { 
+				list.forEach(function(obj, index) {
+					
+					var author = obj.member_username;
+					var time =obj.post_time;
+					var content =obj.post_content
+					var postnumber = obj.post_idS;
+					
+					//顯示內容
+					var Blog_Item_Details = 
+					"<div class='blog-post-details'>"+
+					"<div class='blog-post-details-item blog-post-details-item-left'>"+
+						"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+author+"</a>"+
+					"</div>"+
+					"<div class='blog-post-details-item blog-post-details-item-left'>"+
+						"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+time+"</a>"+
+					"</div>"+
+					"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
+						"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
+							
+					var Blog_Content = "<div class='blog'>"+
+										 "<div class='clearfix'></div>"+
+											"<div class='blog-post-body row margin-top-15'>"+
+											   "<div class='col-md-7'>"+"<p>"+content+"</p>"+
+												"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
+								"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
+							"</a></div></div></div></div><br><br><br><br>";
+					
+
+					content = ""
+					$("#articlePutHere").append(Blog_Item_Details+Blog_Content);
+					
+					
+				})
+
+			  },
+			  
+         error: function (xhr, ajaxOptions, thrownError) {
+             alert(xhr.status);
+             alert(thrownError);
+         }
+     });	 
+
+ });
 
 
+
+
+</script>
 </body>
 </html>
 <!-- === END FOOTER === -->

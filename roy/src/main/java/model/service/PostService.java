@@ -40,8 +40,13 @@ public class PostService {
 //			for(PostBean beantemp:posts) {
 //				System.out.println(beantemp);
 //			}
-
 			
+//			List<PostBean> bean = postService.showAllArticleInFindArticle(true);
+//			for(PostBean beantemp:bean) {
+//				System.out.println(beantemp);
+//			}
+//			
+//			
 //			HibernateUtil.getSessionfactory().getCurrentSession().getTransaction().commit();
 //		} finally {
 //			HibernateUtil.closeSessionFactory();
@@ -87,4 +92,8 @@ public class PostService {
 		boolean b = postDAO.remove(post_idS);
 		return b;
 	}
+	public List<PostBean> showAllArticleInFindArticle(Boolean article){
+		return postDAO.showAllArticleInFindArticle(article);
+	}
+	
 }
