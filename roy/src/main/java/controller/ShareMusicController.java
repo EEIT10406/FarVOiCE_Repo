@@ -29,12 +29,16 @@ public class ShareMusicController {
 	public String method(
 			@RequestParam(value="shareContent")String shareContent,
 			@RequestParam(value="isprivacy")boolean isprivacy,
+			@RequestParam(value="shareMusicid",required = false)Integer musicId,
+			@RequestParam(value="shareMusicname",required = false)String musicName,
 											   Model model,
 											   PostBean shareMusicbean,
 											   HttpSession session) {
 //		接收資料
 //		System.out.println(shareContent);
-		System.out.println("isprivacy===========>"+isprivacy);
+//		System.out.println("isprivacy===========>"+isprivacy);
+		System.out.println("addshareMusicid===========>"+musicId);
+		System.out.println("addshareMusicid===========>"+musicName);
 		
 //		驗證資料
 		Map<String,String> errors = new HashMap<>();
@@ -54,16 +58,14 @@ public class ShareMusicController {
 			java.util.Date date = new java.util.Date();
 			shareMusicbean.setPost_time(date);
 			
-			
 			//設定隱私是否公開
 			shareMusicbean.setPost_privacy(isprivacy);
 			//設定是share
 			shareMusicbean.setPost_postorshare(false);
-			
+			shareMusicbean.setPost_musicid(musicId);
+			shareMusicbean.setPost_musicname(musicName);
 
-		}
-		
-		
+		}	
 		//呼叫model
 		PostBean bean = shareMusicService.insertShareMessage(shareMusicbean);
 		System.out.println("shareMusicController的呼叫model後"+bean);
@@ -77,5 +79,58 @@ public class ShareMusicController {
 		}
 	
 	}
+	
+	@RequestMapping(path= {"/personalPage/ShareMusic.controller"})
+	public String method1(
+			@RequestParam(value="shareContent")String shareContent,
+			@RequestParam(value="isprivacy")boolean isprivacy,
+			@RequestParam(value="shareMusicid",required = false)Integer musicId,
+			@RequestParam(value="shareMusicname",required = false)String musicName,
+											   Model model,
+											   PostBean shareMusicbean,
+											   HttpSession session) {
+
+		
+//		驗證資料
+		Map<String,String> errors = new HashMap<>();
+		model.addAttribute("errors",errors);
+		
+		if(shareContent==null ||shareContent.trim().length()==0 ) {
+			errors.put("shareContentError", "不能為空值");
+		}
+		else{
+			
+			//取的發文者的username，設定發文者username
+			MemberBean memberWhoPost = (MemberBean)session.getAttribute("user");
+			shareMusicbean.setMember_username(memberWhoPost.getMember_username());
+			//塞進使用者分享內容
+			shareMusicbean.setPost_content(shareContent);
+			//新增當時日期
+			java.util.Date date = new java.util.Date();
+			shareMusicbean.setPost_time(date);
+			
+			//設定隱私是否公開
+			shareMusicbean.setPost_privacy(isprivacy);
+			//設定是share
+			shareMusicbean.setPost_postorshare(false);
+			shareMusicbean.setPost_musicid(musicId);
+			shareMusicbean.setPost_musicname(musicName);
+
+		}	
+		//呼叫model
+		PostBean bean = shareMusicService.insertShareMessage(shareMusicbean);
+		System.out.println("shareMusicController的呼叫model後"+bean);
+		//呼叫view
+		if(bean == null) {	
+			return "/homePage/index.jsp";
+		}else{
+			model.addAttribute("insert", bean);
+			return "/personalPage/personalPage.jsp";
+			
+		}
+	
+	}
+	
+	
 
 }

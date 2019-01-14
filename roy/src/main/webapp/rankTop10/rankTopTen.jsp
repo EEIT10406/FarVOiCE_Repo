@@ -22,6 +22,7 @@ th, td {
 table {
 	width: 750px;
 	height: 820px;
+	height:auto;
 }
 
 .btn {
@@ -47,6 +48,11 @@ table {
 	margin-left: 10px;
 }
 
+.btnAddShare {
+	color: black;
+	background-color: white;
+	border: 0px;
+}
 .heartCount {
 	margin-top: 10px;
 	font-size: 13px;
@@ -101,6 +107,20 @@ table {
 		for (var i = 0; i < heart.length; i++) {
 			heart[i].addEventListener("click", click);
 		}
+		
+		
+		//按分享時載入哪首音樂
+		$('body').on('click','.btnAddShare',function() {
+	 		var row = $(this).parents('#rankTopTen');
+	 		var music_name = $('td:eq(1)').find("a").text();
+	 		var music_id =row.children('td:eq(0)').text();
+	        $("#addshareMusicname").text(""+music_name+"");
+	        $("#addshareMusicid").text(""+music_id+"");
+// 	        $("#addshareMusicid").text(""+music_name+"");
+   			alert(music_id);
+			})
+			
+			
 	})
 
 	function changeCheckBoxs() {
@@ -131,6 +151,8 @@ table {
 			this.src = "../img/love.png"
 		}
 	}
+	
+	
 </script>
 </head>
 <body>
@@ -159,7 +181,6 @@ table {
 						</div>
 						<div class="col-sm-9">
 							<div class="tab-content">
-							
 								<div class="tab-pane fade in active" id="imediate">
 									<div class="row">
 										<div class="col-md-7">
@@ -176,293 +197,26 @@ table {
 												</tr>
 												<tr>
 													<td>1</td>
-													<td><img src="../img/left.JPG" class="music" /><a
-														href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-
-
-														<div>
-															<!-- <<<<<<< HEAD -->
-															<img src="../img/emptyLove.png" class="heart">
-															<!-- 															<span -->
-															<!-- 																class="heartCount"> 0</span>  -->
-															<!-- 																<span id="share" -->
-															<!-- 																class="shareAndAdd"> <a href="" -->
-															<!-- 																style="color: black;"><img src="../img/share.png" -->
-															<!-- 																	width="15px" />分享</a> -->
-															<!-- 															</span>  -->
-
+													<td><img src="../img/left.JPG" class="music" /><a href=""><span style="margin-left: 10px; font-size: 15px;" id="music_Name">讓我為你唱情歌3</span></a>
+														<div><img src="../img/emptyLove.png" class="heart">
 															<span id="share">
-
-																<button type="button" class="btnAddList"
-																	data-toggle="modal" data-target="#sharebox"
-																	style="outline: none;">
+																<button type="button" class="btnAddShare" data-toggle="modal" data-target="#sharebox" style="outline: none;">
 																	<img src="../img/share.png" width="15px">分享
-
-																</button> <!-- ======= --> <!-- 															<img src="../img/emptyLove.png" class="heart"> <span -->
-																<!-- 																class="heartCount"> 0</span> <span id="share" -->
-																<!-- 																class="shareAndAdd"> <a href="" -->
-																<!-- 																style="color: black;"><img src="../img/share.png" -->
-																<!-- 																	width="15px" />分享</a> --> <!-- 															</span> <span id="add"> -->
-
-
-
-																<!-- 																<button type="button" class="btnAddList" -->
-																<!-- 																	data-toggle="modal" data-target="#addList" -->
-																<!-- 																	style="outline: none;"> --> <!-- 																	<img src="../img/add.png" width="15px">加入歌單 -->
-																<!-- 																</button> --> <!-- >>>>>>> branch 'branch1' of https://github.com/EEIT10406/FarVOiCE_Repo.git -->
-															</span> <span id="add">
-																<button type="button" class="btnAddList"
-
-																	data-toggle="modal" data-target="#addList"
-																	style="outline: none;">
-																	<img src="../img/add.png" width="15px">加入歌單
 																</button>
-															</span>
-
-														</div></td>
-													<td>老蕭</td>
-													<td>02:44</td>
-													<td>2018-12-12</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td><img src="../img/left.JPG" class="music" /><a
-														href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-
-														<div>
-															<img src="../img/emptyLove.png" class="heart"> <span
-																class="heartCount"> 0</span> <span id="share"
-																class="shareAndAdd"> <a href=""
-																style="color: black;"><img src="../img/share.png"
-																	width="15px" />分享</a>
-															</span> <span id="add">
-
+															</span> 
+															<span id="add">
 																<button type="button" class="btnAddList"
 																	data-toggle="modal" data-target="#addList"
 																	style="outline: none;">
 																	<img src="../img/add.png" width="15px">加入歌單
 																</button>
-
 															</span>
 														</div></td>
-													<td>老蕭</td>
-													<td>02:44</td>
-													<td>2018-12-12</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td><img src="../img/left.JPG" class="music" /><a
-														href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-
-														<div>
-															<img src="../img/emptyLove.png" class="heart"> <span
-																class="heartCount"> 0</span> <span id="share"
-																class="shareAndAdd"> <a href=""
-																style="color: black;"><img src="../img/share.png"
-																	width="15px" />分享</a>
-															</span> <span id="add">
-
-																<button type="button" class="btnAddList"
-																	data-toggle="modal" data-target="#addList"
-																	style="outline: none;">
-																	<img src="../img/add.png" width="15px">加入歌單
-																</button>
-
-															</span>
-														</div></td>
-													<td>老蕭</td>
-													<td>02:44</td>
-													<td>2018-12-12</td>
-												</tr>
-												<tr>
-													<td>4</td>
-													<td><img src="../img/left.JPG" class="music" /><a
-														href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-
-														<div>
-															<img src="../img/emptyLove.png" class="heart"> <span
-																class="heartCount"> 0</span> <span id="share"
-																class="shareAndAdd"> <a href=""
-																style="color: black;"><img src="../img/share.png"
-																	width="15px" />分享</a>
-															</span> <span id="add">
-
-																<button type="button" class="btnAddList"
-																	data-toggle="modal" data-target="#addList"
-																	style="outline: none;">
-																	<img src="../img/add.png" width="15px">加入歌單
-																</button>
-
-															</span>
-														</div></td>
-													<td>老蕭</td>
-													<td>02:44</td>
-													<td>2018-12-12</td>
-												</tr>
-												<tr>
-													<td>5</td>
-													<td><img src="../img/left.JPG" class="music" /><a
-														href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-
-														<div>
-															<img src="../img/emptyLove.png" class="heart"> <span
-																class="heartCount"> 0</span> <span id="share"
-																class="shareAndAdd"> <a href=""
-																style="color: black;"><img src="../img/share.png"
-																	width="15px" />分享</a>
-															</span> <span id="add">
-
-																<button type="button" class="btnAddList"
-																	data-toggle="modal" data-target="#addList"
-																	style="outline: none;">
-																	<img src="../img/add.png" width="15px">加入歌單
-																</button>
-
-															</span>
-														</div></td>
-													<td>老蕭</td>
-													<td>02:44</td>
-													<td>2018-12-12</td>
-												</tr>
-												<tr>
-													<td>6</td>
-													<td><img src="../img/left.JPG" class="music" /><a
-														href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-
-														<div>
-															<img src="../img/emptyLove.png" class="heart"> <span
-																class="heartCount"> 0</span> <span id="share"
-																class="shareAndAdd"> <a href=""
-																style="color: black;"><img src="../img/share.png"
-																	width="15px" />分享</a>
-															</span> <span id="add">
-
-																<button type="button" class="btnAddList"
-																	data-toggle="modal" data-target="#addList"
-																	style="outline: none;">
-																	<img src="../img/add.png" width="15px">加入歌單
-																</button>
-
-															</span>
-														</div></td>
-													<td>老蕭</td>
-													<td>02:44</td>
-													<td>2018-12-12</td>
-												</tr>
-												<tr>
-													<td>7</td>
-													<td><img src="../img/left.JPG" class="music" /><a
-														href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-
-														<div>
-															<img src="../img/emptyLove.png" class="heart"> <span
-																class="heartCount"> 0</span> <span id="share"
-																class="shareAndAdd"> <a href=""
-																style="color: black;"><img src="../img/share.png"
-																	width="15px" />分享</a>
-															</span> <span id="add">
-
-																<button type="button" class="btnAddList"
-																	data-toggle="modal" data-target="#addList"
-																	style="outline: none;">
-																	<img src="../img/add.png" width="15px">加入歌單
-																</button>
-
-															</span>
-														</div></td>
-													<td>老蕭</td>
-													<td>02:44</td>
-													<td>2018-12-12</td>
-												</tr>
-												<tr>
-													<td>8</td>
-													<td><img src="../img/left.JPG" class="music" /><a
-														href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-
-														<div>
-															<img src="../img/emptyLove.png" class="heart"> <span
-																class="heartCount"> 0</span> <span id="share"
-																class="shareAndAdd"> <a href=""
-																style="color: black;"><img src="../img/share.png"
-																	width="15px" />分享</a>
-															</span> <span id="add">
-
-																<button type="button" class="btnAddList"
-																	data-toggle="modal" data-target="#addList"
-																	style="outline: none;">
-																	<img src="../img/add.png" width="15px">加入歌單
-																</button>
-
-															</span>
-														</div></td>
-													<td>老蕭</td>
-													<td>02:44</td>
-													<td>2018-12-12</td>
-												</tr>
-												<tr>
-													<td>9</td>
-													<td><img src="../img/left.JPG" class="music" /><a
-														href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-
-														<div>
-															<img src="../img/emptyLove.png" class="heart"> <span
-																class="heartCount"> 0</span> <span id="share"
-																class="shareAndAdd"> <a href=""
-																style="color: black;"><img src="../img/share.png"
-																	width="15px" />分享</a>
-															</span> <span id="add">
-
-																<button type="button" class="btnAddList"
-																	data-toggle="modal" data-target="#addList"
-																	style="outline: none;">
-																	<img src="../img/add.png" width="15px">加入歌單
-																</button>
-
-															</span>
-														</div></td>
-													<td>老蕭</td>
-													<td>02:44</td>
-													<td>2018-12-12</td>
-												</tr>
-												<tr>
-													<td>10</td>
-													<td><img src="../img/left.JPG" class="music" /><a
-														href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-
-														<div>
-															<img src="../img/emptyLove.png" class="heart"> <span
-																class="heartCount"> 0</span> <span id="share"
-																class="shareAndAdd"> <a href=""
-																style="color: black;"><img src="../img/share.png"
-																	width="15px" />分享</a>
-															</span> <span id="add">
-
-																<button type="button" class="btnAddList"
-																	data-toggle="modal" data-target="#addList"
-																	style="outline: none;">
-																	<img src="../img/add.png" width="15px">加入歌單
-																</button>
-
-															</span>
-														</div></td>
-														
-														
 													<td>老蕭</td>
 													<td>02:44</td>
 													<td>2018-12-12</td>
 												</tr>
 											</table>
-
 										</div>
 									</div>
 								</div>
@@ -483,111 +237,35 @@ table {
 												<tr>
 													<td>1</td>
 													<td><img src="left.JPG" class="music" /><a href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-
+															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌12</span></a>
 														<div>
 															<img src="../img/emptyLove.png" class="heart"> <span
-																class="heartCount"> 0</span> <span id="share"
-																class="shareAndAdd"> <a href=""
-																style="color: black;"><img src="../img/share.png"
-																	width="15px" />分享</a>
-															</span> <span id="add">
-
+																class="heartCount"> 0</span> 
+																<span id="share">
+																<button type="button" class="btnAddShare"
+																	data-toggle="modal" data-target="#sharebox"
+																	style="outline: none;">
+																	<img src="../img/share.png" width="15px">分享
+																</button>
+															</span> 
+															<span id="add">
 																<button type="button" class="btnAddList"
 																	data-toggle="modal" data-target="#addList"
 																	style="outline: none;">
 																	<img src="../img/add.png" width="15px">加入歌單
 																</button>
-
 															</span>
 														</div></td>
 													<td>老蕭</td>
 													<td>02:44</td>
 													<td>2018-12-12</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td><img src="left.JPG" class="music" /><a href=""><span
-															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
-														<div>
-															<img src="emptyLove.png" class="love">
-														</div></td>
-													<td>老蕭</td>
-													<td>02:44</td>
-													<td>2018-12-12</td>
-												</tr>
-<!-- 												<tr> -->
-<!-- 													<td>3</td> -->
-<!-- 													<td><img src="left.JPG" class="music" /><a href=""><span -->
-<!-- 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a> -->
-<!-- 														<div> -->
-<!-- 															<img src="emptyLove.png" class="love"> -->
-<!-- 														</div></td> -->
-<!-- 													<td>老蕭</td> -->
-<!-- 													<td>02:44</td> -->
-<!-- 													<td>2018-12-12</td> -->
-<!-- 												</tr> -->
-<!-- 												<tr> -->
-<!-- 													<td>4</td> -->
-<!-- 													<td><img src="left.JPG" class="music" /><a href=""><span -->
-<!-- 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a></td> -->
-<!-- 													<td>老蕭</td> -->
-<!-- 													<td>02:44</td> -->
-<!-- 													<td>2018-12-12</td> -->
-<!-- 												</tr> -->
-<!-- 												<tr> -->
-<!-- 													<td>5</td> -->
-<!-- 													<td><img src="left.JPG" class="music" /><a href=""><span -->
-<!-- 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a></td> -->
-<!-- 													<td>老蕭</td> -->
-<!-- 													<td>02:44</td> -->
-<!-- 													<td>2018-12-12</td> -->
-<!-- 												</tr> -->
-<!-- 												<tr> -->
-<!-- 													<td>6</td> -->
-<!-- 													<td><img src="left.JPG" class="music" /><a href=""><span -->
-<!-- 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a></td> -->
-<!-- 													<td>老蕭</td> -->
-<!-- 													<td>02:44</td> -->
-<!-- 													<td>2018-12-12</td> -->
-<!-- 												</tr> -->
-<!-- 												<tr> -->
-<!-- 													<td>7</td> -->
-<!-- 													<td><img src="left.JPG" class="music" /><a href=""><span -->
-<!-- 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a></td> -->
-<!-- 													<td>老蕭</td> -->
-<!-- 													<td>02:44</td> -->
-<!-- 													<td>2018-12-12</td> -->
-<!-- 												</tr> -->
-<!-- 												<tr> -->
-<!-- 													<td>8</td> -->
-<!-- 													<td><img src="left.JPG" class="music" /><a href=""><span -->
-<!-- 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a></td> -->
-<!-- 													<td>老蕭</td> -->
-<!-- 													<td>02:44</td> -->
-<!-- 													<td>2018-12-12</td> -->
-<!-- 												</tr> -->
-<!-- 												<tr> -->
-<!-- 													<td>9</td> -->
-<!-- 													<td><img src="left.JPG" class="music" /><a href=""><span -->
-<!-- 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a></td> -->
-<!-- 													<td>老蕭</td> -->
-<!-- 													<td>02:44</td> -->
-<!-- 													<td>2018-12-12</td> -->
-<!-- 												</tr> -->
-<!-- 												<tr> -->
-<!-- 													<td>10</td> -->
-<!-- 													<td><img src="left.JPG" class="music" /><a href=""><span -->
-<!-- 															style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a></td> -->
-<!-- 													<td>老蕭</td> -->
-<!-- 													<td>02:44</td> -->
-<!-- 													<td>2018-12-12</td> -->
-<!-- 												</tr> -->
+												</tr>			
 											</table>
-
 										</div>
 									</div>
 								</div>
+								
+								
 
 								<div class="tab-pane fade in" id="emotion">
 									<div class="row">
@@ -662,11 +340,12 @@ table {
 					id="addshare">
 					<div class="modal-body">
 						<div class="form-group"></div>
-						<textarea name="shareContent" style="width: 250px; height: 270px" onFocus="if(this.value==this.defaultValue) this.value=''" onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
+						<textarea maxlength="300" name="shareContent" style="width: 250px; height: 270px" onFocus="if(this.value==this.defaultValue) this.value=''" onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
 					</div>
 					<div id="displayShareMusic">
+						<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
 						<img src="../img/300x300.jpg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
-						<span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span>
+						<span style="margin-left: 10px; font-size: 15px;" id="addshareMusicname">讓我為你唱情歌</span>
 					</div>
 					<div class="modal-footer">
 						<div style="float:left"><input type="checkbox" name="isprivacy" value="true">不公開</div>
@@ -732,46 +411,7 @@ table {
 <!-- 	</div> -->
 	
 	<script>
-		//讀取使用者有什麼歌單
-// 		function loadListMusic(playListId) {
-// 			$.getJSON('/roy/list/readPlayListMusic',
-// 							{'playListId' : playListId},
-// 							function(data) {
-// 								var docFrag = $(document.createDocumentFragment());
-// 								$.each(data,function(index, list) {
-// 									var cell1 = $('<td name="music_id"></td>').text(list.music_id)
-// 									var img = $("<img>");
-// 									$(img).attr({"src" : list.music_music,"style" : "width: 100px; height: 100px;"});
-// 									var cell2 = $('<td></td>').append(img)
-// 									var cell3 = $('<td name="music_name"></td>').attr("style","font-size: 15px;").text(list.music_name)
-// 									var cell4 = $('<td name="member_username"></td>').attr("style","font-size: 15px;").text(list.member_username)
-// 									var cell5 = $('<td name="music_uploadTime"></td>').attr("style","font-size: 15px;").text(list.music_uploadTime)
-// 									var cell6 = $('<td></td>').html('<button class="btn btn-primary pull-right" >刪除</button>')
-// 													//<tr><td>
-// 									var row = $('<tr></tr>').append([cell1,cell2,cell3,cell4,cell5,cell6 ])
-// 									docFrag.append(row);
-// 							})
-// 								$('#playListMusicTable>tbody').html(docFrag);
-// 								$('td[name="music_id"]').hide();
-// 					})
-// 		}
-// 		$('#rankTopTen>tbody').on('click', 'td:nth-child(3)',
-// 				function() {
-// 					var row = $(this).parents('tr');
-// 					var playlist_id = row.children('td:nth-child(1)').text();
-// 					loadListMusic(playlist_id)	
-					
-// 					//刪除歌單裡的音樂
-// 					$('#playListMusicTable>tbody').on('click', 'button:nth-child(1)',function() {
-// 					var row = $(this).parents('tr');
-// 					var music_id = row.children('td:nth-child(1)').text();
-					
-// 					$.get('/roy/list/deletePlayListMusic', {'music_id' : music_id,'playlist_id':playlist_id}, function(data) {
-// 						loadListMusic(playlist_id)
-// 						loadList('${user.member_username}')
-// 					})
-// 				})
-// 		})
+
 						
 	</script>
 
