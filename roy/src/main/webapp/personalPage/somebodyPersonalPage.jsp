@@ -106,8 +106,8 @@ table {
 }
 
 .heart {
-	width: 17px;
-	margin-right: 5px;
+	width: 15px;
+	margin-right: 4px;
 	cursor: pointer;
 }
 
@@ -261,40 +261,48 @@ $(document).ready(function() {
 
 	//按愛心
 	$('body').on('click','.heart',function(){
-		var row = $(this).parents('#musics');
-        var musicId =row.children('span[name="music_id"]').text();
+		if('${user.member_username}'!=""){
+		    var row = $(this).parents('#musics');
+            var musicId =row.children('span[name="music_id"]').text();
 		
-		if (this.src.indexOf("love.png") != -1) {
+		    if (this.src.indexOf("love.png") != -1) {
 			
-			$.get('/roy/personalPage/memberTakeBackLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
-				row.find('.heartCount').text(data);
-			})
-			this.src = "../img/emptyLove.png";
+			    $.get('/roy/personalPage/memberTakeBackLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+				    row.find('.heartCount').text(data);
+			    })
+			    this.src = "../img/emptyLove.png";
 			
-		} else {
+		    } else {
 			
-			$.get('/roy/personalPage/memberClickLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
-				row.find('.heartCount').text(data);
-			})
-			this.src = "../img/love.png";
+			    $.get('/roy/personalPage/memberClickLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+				    row.find('.heartCount').text(data);
+			    })
+			    this.src = "../img/love.png";
+		    }
+		}else{
+			 window.location.href = "/roy/login-signUp-upload/login.jsp";
 		}
 	})
 	
 	//按加入歌單時載入有哪些歌單
 	$('body').on('click','.btnAddList',function() {
- 		var row = $(this).parents('#musics');
-        var music_id =row.children('span[name="music_id"]').text();
+		if('${user.member_username}'!=""){
+ 		   var row = $(this).parents('#musics');
+           var music_id =row.children('span[name="music_id"]').text();
 			
-		$.getJSON('/roy/list/readPlayList',{'username' : '${user.member_username}'},function(data) {
-			var html='<option value="'+music_id+'">請選擇歌單</option>';
-			$.each(data,function(index, list) {
+		   $.getJSON('/roy/list/readPlayList',{'username' : '${user.member_username}'},function(data) {
+			   var html='<option value="'+music_id+'">請選擇歌單</option>';
+			   $.each(data,function(index, list) {
 				
-			    html+='<option value="'+list.playlist_id+'">'+list.playlist_name+'</option>';
+			       html+='<option value="'+list.playlist_id+'">'+list.playlist_name+'</option>';
 			         
-	              })
-	         $('#selectPlayList').html(html);
-			 $('span[name="musicId"]').hide();
-		})
+	            })
+	           $('#selectPlayList').html(html);
+			   $('span[name="musicId"]').hide();
+		    })
+		}else{
+			 window.location.href = "/roy/login-signUp-upload/login.jsp";
+		}
 			
 	})
 	
@@ -329,24 +337,36 @@ $(document).ready(function() {
 		
 	})
 	
+	//點喜歡的音樂去音樂頁面
+	$('#like').on('click','#musicPage',function(){
+		var row = $(this).parents('#musics');
+		var musicId = row.children('span[name="music_id"]').text();
+		
+		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
+		
+	})
+	
 })
 
 
 //讀取somebody的所有歌
 function loadMusic(username) {
-
 	$.getJSON('/roy/personalPage/readSomebodyMusic',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
-			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;margin-bottom:10px;">'+
+			content += '<div id="musics" class="col-md-5" style="float: left; width: 240px;margin-bottom:10px;">'+
 			          '<span name="music_id">'+list.music_id+'</span>'+
 			          '<span id="musicPage" style="cursor: pointer;">'+
-			               '<img src="'+list.music_Image+'" style="width: 160px; height: 160px;" />'+
+			               '<img src="'+list.music_Image+'" style="width: 100px; height: 100px;" />'+
 			          '</span>'+
 			       '<div style="font-size: 16px;">'+list.music_name+'</div>'+
-                   '<div>'+
-			       '<img src="'+list.memberLikeMusic+'" class="heart">'+
-                   '<span class="heartCount">'+list.music_likeCount+'</span>'+ 
+                   '<div>';
+			if('${user.member_username}'!=""){
+				var like='<img src="'+list.memberLikeMusic+'" class="heart">';
+			}else{
+				var like='<img src="/roy/img/emptyLove.png" class="heart">';
+			}   
+	    content+=like+'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
                       '<span id="share" class="shareAndAdd"><a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a></span>'+
                       '<span id="add">'+
                       '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
@@ -358,7 +378,6 @@ function loadMusic(username) {
 		$('span[name="music_id"]').hide();
 	})
 }
-
 
 //讀取somebody的所有歌單
 function loadPlayList(username) {
@@ -380,20 +399,24 @@ function loadPlayList(username) {
 	})
 }
 
-
 //讀取somebody喜歡的歌
 function loadMemberLikeMusic(username) {
-
 	$.getJSON('/roy/personalPage/somebodyLikeMusic',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
-			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;">'+
+			content += '<div id="musics" class="col-md-5" style="float: left; width: 230px;">'+
                              '<span name="music_id">'+list.music_id+'</span>'+
-				             '<a href=""><img src="'+list.music_Image+'" style="width: 160px; height: 160px;" /></a>'+
+                             '<span id="musicPage" style="cursor: pointer;">'+
+  			                     '<img src="'+list.music_Image+'" style="width: 100px; height: 100px;" />'+
+  			                 '</span>'+
                              '<div style="font-size: 16px;">'+list.music_name+'</div>'+
-				             '<div>'+
-                                  '<img src="'+list.userLikeMusic+'" class="heart">'+
-				                  '<span class="heartCount">'+list.music_likeCount+'</span>'+ 
+				             '<div>'; 
+				             if('${user.member_username}'!=""){
+				 				var like='<img src="'+list.memberLikeMusic+'" class="heart">';
+				 			}else{
+				 				var like='<img src="/roy/img/emptyLove.png" class="heart">';
+				 			}  
+				    content+=like+'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
 					              '<span id="share" class="shareAndAdd">'+
 				                       '<a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a>'+
 					              '</span>'+
@@ -407,7 +430,6 @@ function loadMemberLikeMusic(username) {
 		$('span[name="music_id"]').hide();
 	})
 }
-
 
 //讀取somebody上傳的音樂數
 function loadMusicCount(username) {

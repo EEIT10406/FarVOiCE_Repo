@@ -73,7 +73,11 @@
 
 					<div style="padding-top: 10px; font-size: 25px;">${musicPageBean.music_name}</div>
 
-					<table style="margin-top: 20px;">
+					<table style="margin-top: 10px;">
+					     <tr>
+							<td style="font-size: 13px; font-weight: bold;">發佈者:</td>
+							<td style="padding: 3px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${nickname}">${nickname}</a></td>
+						</tr>
 						<tr>
 							<td style="font-size: 13px; font-weight: bold;">介紹:</td>
 							<td style="padding: 3px;">${musicPageBean.music_caption}</td>
@@ -89,7 +93,7 @@
 							</td>
 						</tr>
 					</table>
-					<table style="margin-top: 30px;">
+					<table style="margin-top: 20px;">
 						<tr>
 							<td style="font-size: 16px; width: 70px;">喜歡</td>
 							<td style="font-size: 16px; width: 70px;">播放次數</td>
