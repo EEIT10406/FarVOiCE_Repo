@@ -49,6 +49,7 @@ public class MusicController {
 			return "/login-signUp-upload/upload.jsp";
 		}
 
+
 		if (!musicFile.isEmpty()) {
 			try {
 				byte[] musicByte = musicFile.getBytes();
@@ -94,6 +95,7 @@ public class MusicController {
 			// 找出該使用者喜歡哪些音樂,回傳音樂id
 			List<Integer> memberLikeMusics = memberLikeMusicService.memberLikeMusics(username);
 			boolean flag = true;
+
 			if (musicBean != null) {
 				List<Map<String, String>> musics = new LinkedList<Map<String, String>>();
 				for (MusicBean bean : musicBean) {
@@ -107,7 +109,9 @@ public class MusicController {
 							}
 						}
 					}
+
 					if (flag) {
+
 						jsonMap.put("memberLikeMusic", "/roy/img/emptyLove.png");
 					}
 					jsonMap.put("music_id", String.valueOf(bean.getMusic_id()));
@@ -200,6 +204,7 @@ public class MusicController {
 		if (musicBean != null) {
 			model.addAttribute("musicPageBean", musicBean);
 			model.addAttribute("nickname", musicService.usernameToNickname(musicBean.getMember_username()));
+
 			return "/musicPage/musicPage.jsp";
 		} else {
 			return "";

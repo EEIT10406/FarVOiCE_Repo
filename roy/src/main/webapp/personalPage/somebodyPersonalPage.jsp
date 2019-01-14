@@ -412,9 +412,9 @@ function loadMemberLikeMusic(username) {
                              '<div style="font-size: 16px;">'+list.music_name+'</div>'+
 				             '<div>'; 
 				             if('${user.member_username}'!=""){
-				 				var like='<img src="'+list.memberLikeMusic+'" class="heart">';
+				 				var like='<img src="'+list.userLikeMusic+'" class="heart">';
 				 			}else{
-				 				var like='<img src="/roy/img/emptyLove.png" class="heart">';
+				 				var like='<img src="../img/emptyLove.png" class="heart">';
 				 			}  
 				    content+=like+'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
 					              '<span id="share" class="shareAndAdd">'+

@@ -127,7 +127,7 @@
 							<p class="excerpt">30分鐘學會四大程式邏輯。全球26個國家將程式列入基礎教育，我們將用一場遊戲，開啟孩子學習程式的大門。</p>
 						</div>
 						<div class="downMeta">
-							<progress value="100" max="100"></progress>
+							<progress  value="100" max="100"></progress>
 							<span class="goalMoney osmfont">2671171</span>&nbsp; <span
 								class="hidden-md goalpercent goal"> 1906%</span> <span
 								class="date pull-right small"> 還剩 <strong class="days">44</strong><span>
@@ -153,7 +153,7 @@
 							<p class="excerpt">30分鐘學會四大程式邏輯。全球26個國家將程式列入基礎教育，我們將用一場遊戲，開啟孩子學習程式的大門。</p>
 						</div>
 						<div class="downMeta">
-							<progress value="70" max="100"></progress>
+							<progress  value="70" max="100"></progress>
 							<span class="goalMoney osmfont">123965</span>&nbsp; <span
 								class="hidden-md goalpercent goal"> 70%</span> <span
 								class="date pull-right small"> 還剩 <strong class="days">24</strong><span>
@@ -178,7 +178,7 @@
 							<p class="excerpt">30分鐘學會四大程式邏輯。全球26個國家將程式列入基礎教育，我們將用一場遊戲，開啟孩子學習程式的大門。</p>
 						</div>
 						<div class="downMeta">
-							<progress value="35" max="100"></progress>
+							<progress  value="35" max="100"></progress>
 							<span class="goalMoney osmfont">3500</span>&nbsp; <span
 								class="hidden-md goalpercent goal"> 35%</span> <span
 								class="date pull-right small"> 還剩 <strong class="days">50</strong><span>
@@ -203,7 +203,7 @@
 							<p class="excerpt">30分鐘學會四大程式邏輯。全球26個國家將程式列入基礎教育，我們將用一場遊戲，開啟孩子學習程式的大門。</p>
 						</div>
 						<div class="downMeta">
-							<progress value="48" max="100"></progress>
+							<progress  value="48" max="100"></progress>
 							<span class="goalMoney osmfont">1852111</span>&nbsp; <span
 								class="hidden-md goalpercent goal"> 48%</span> <span
 								class="date pull-right small"> 還剩 <strong class="days">10</strong><span>
@@ -228,7 +228,7 @@
 							<p class="excerpt">30分鐘學會四大程式邏輯。全球26個國家將程式列入基礎教育，我們將用一場遊戲，開啟孩子學習程式的大門。</p>
 						</div>
 						<div class="downMeta">
-							<progress value="87" max="100"></progress>
+							<progress  value="87" max="100"></progress>
 							<span class="goalMoney osmfont">7654321</span>&nbsp; <span
 								class="hidden-md goalpercent goal"> 87%</span> <span
 								class="date pull-right small"> 還剩 <strong class="days">19</strong><span>
@@ -253,7 +253,7 @@
 							<p class="excerpt">30分鐘學會四大程式邏輯。全球26個國家將程式列入基礎教育，我們將用一場遊戲，開啟孩子學習程式的大門。</p>
 						</div>
 						<div class="downMeta">
-							<progress value="69" max="100"></progress>
+							<progress  value="69" max="100"></progress>
 							<span class="goalMoney osmfont">8123789</span>&nbsp; <span
 								class="hidden-md goalpercent goal"> 69%</span> <span
 								class="date pull-right small"> 還剩 <strong class="days">23</strong><span>
@@ -278,7 +278,7 @@
 							<p class="excerpt">就是唱歌給狗聽 就是唱歌給狗聽 就是唱歌給狗聽 就是唱歌給狗聽 就是唱歌給狗聽</p>
 						</div>
 						<div class="downMeta">
-							<progress value="12" max="100"></progress>
+							<progress  value="12" max="100"></progress>
 							<span class="goalMoney osmfont">150</span>&nbsp; <span
 								class="hidden-md goalpercent goal"> 12%</span> <span
 								class="date pull-right small"> 還剩 <strong class="days">12</strong><span>
