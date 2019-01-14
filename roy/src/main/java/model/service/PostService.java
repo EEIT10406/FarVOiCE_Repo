@@ -21,7 +21,7 @@ public class PostService {
 		super();
 		this.postDAO = postDAO;
 	}
-	
+
 //	public static void main(String[] args) {
 //		try {
 //			HibernateUtil.getSessionfactory().getCurrentSession().beginTransaction();
