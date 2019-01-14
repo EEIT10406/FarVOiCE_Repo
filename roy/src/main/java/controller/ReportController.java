@@ -1,7 +1,10 @@
 package controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,9 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.MemberBean;
 import model.bean.MusicBean;
+import model.bean.PlaylistBean;
 import model.bean.ReportBean;
+import model.bean.primarykey.ListMusicId;
+import model.service.ListMusicService;
 import model.service.MemberLikeMusicService;
 import model.service.MusicService;
+import model.service.PlayListService;
 import model.service.ReportService;
 
 @Controller
@@ -28,6 +35,10 @@ public class ReportController {
 	MusicService musicService;
 	@Autowired
 	MemberLikeMusicService memberLikeMusicService;
+	@Autowired
+	ListMusicService listMusicService;
+	@Autowired
+	PlayListService playListService;
 
 	//查檢舉
 	@RequestMapping(value = "**/report.get")
@@ -66,9 +77,53 @@ public class ReportController {
 		return JSONValue.toJSONString(musicService.search(type,searchString,before,sort));
 	}
 	
+	@RequestMapping(value = "**/report.searchPlaylistMusic", produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String searchPlaylistMusic(Model model,String playlist_id) {
+		ListMusicId listMusicId = new ListMusicId();
+		listMusicId.setPlaylist_id(Integer.valueOf(playlist_id));
+		List<Integer> musicIds=listMusicService.findByPlayListId(listMusicId);
+		LinkedList<HashMap<String,String>> l1 = new LinkedList<HashMap<String,String>>();
+		for(Integer music_id : musicIds)
+		{
+			MusicBean bean = musicService.findMusic(music_id);
+			HashMap<String,String>  m1 = new HashMap<String,String>();       
+			 m1.put("Music_name",bean.getMusic_name());
+			 m1.put("Member_username",bean.getMember_username());
+			 m1.put("Music_music",bean.getMusic_music());
+			 m1.put("Music_Image",bean.getMusic_Image());
+			 l1.add(m1);
+		}
+		return JSONValue.toJSONString(l1);
+	}
+	
+	@RequestMapping(value="**/report.readPlayList",produces= "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String readPlayList(String sort) {
+			List<PlaylistBean> beans = playListService.loadAllPlayList(sort);
+			if (beans != null) {
+				List<Map<String,String>> playLists = new LinkedList<Map<String,String>>();
+				for(PlaylistBean bean:beans) {
+					Map<String, String> jsonMap = new HashMap<>();
+					jsonMap.put("playlist_id", String.valueOf(bean.getPlaylist_id()));
+					jsonMap.put("playlist_image", bean.getPlaylist_image());
+					jsonMap.put("playlist_name", bean.getPlaylist_name());
+					jsonMap.put("playlist_privacy", String.valueOf(bean.getPlaylist_privacy()));
+					jsonMap.put("playlist_musicCount", String.valueOf(bean.getPlaylist_musicCount()));
+					if(bean.getPlaylist_privacy()==true) {
+						jsonMap.put("showPlaylist_privacy", "(不公開)");
+					}else {
+						jsonMap.put("showPlaylist_privacy", "");
+					}
+					playLists.add(jsonMap);
+				}
+				return JSONValue.toJSONString(playLists);
+			}
+		return "";
+	}
+	
 	@RequestMapping(value = "**/report.addMusic_playCount")
 	public void addMusic_playCount(Model model,String music_id) {
-		System.out.println(music_id);
 		MusicBean musicBean = musicService.findMusic(Integer.parseInt(music_id));
 		musicBean.setMusic_playCount(musicBean.getMusic_playCount()+1);
 		musicService.updateMusic(musicBean);
