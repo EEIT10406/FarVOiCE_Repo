@@ -33,10 +33,6 @@
 	color: #eb4b4b
 }
 
-.preview {
-	
-}
-
 .count {
 	color: #009E74;
 	font-weight: 700;
@@ -64,9 +60,27 @@ span strong{
 	float: left;
 }
 
+.project-pre {
+	height: 84%;
+	background-color: #fff;
+	border: 1px solid #e4e4e4;
+	margin: 15px 10px 10px 10px;
+	background-color: #fff;
+	border: 1px solid #e4e4e4;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	text-align: left;
+}
+
 .img-pre {
 	width: 100%;
 	height: 40%;
+}
+
+.img-pres {
+	width: 100%;
+	height: 45%;
 }
 
 .img-in {
@@ -74,7 +88,23 @@ span strong{
 	height: 100%;
 }
 
+#preview_progressbarTW_img {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	-webkit-border-top-left-radius: 8px;
+	-webkit-border-top-right-radius: 8px;
+	-moz-border-top-left-radius: 8px;
+	-moz-border-top-right-radius: 8px;
+}
+
 .pcontent {
+	padding: 10px;
+	margin-bottom: 10px;
+	height: 160px;
+	overflow: hidden;
+}
+
+.pcontent-pre {
 	padding: 10px;
 	margin-bottom: 10px;
 	height: 160px;
@@ -98,45 +128,54 @@ span strong{
 	position: static;
 }
 
+.downMeta-pre {
+	padding: 10px;
+	position: static;
+}
+
 .goalMoney {
 	font-size: 15px;
 	margin-bottom: 15px;
-	font-weight: 700;
+	font-weight: 850;
+	font-family: Roboto, sans-serif;
 }
 
 .osmfont {
 	font-family: Oswald, sans-serif;
 	
 }
-.osmfont:before{
-	content:"NT$ ";
+
+.osmfont:before {
+	content: "$ ";
+	font-size: 12px;
+	font-family: Roboto, sans-serif;
+	font-weight: 700;
 }
 
-.goalMoney,.goalpercent
-	{
-	font-family: Oswald, sans-serif;
+.goalMoney, .goalpercent {
+	font-family: Roboto, sans-serif;
 }
-
 .goalpercent {
 	font-size: 15px;
-	font-weight: 700;
+	font-weight: 850;
 	padding-left: 10px;
 	position: relative;
 }
 
 .fa-pull-right, .pull-right {
 	float: right;
-	font-family: Oswald, sans-serif;
+	font-family: Roboto, sans-serif;
 }
 
 .small, small {
 	font-size: 85%;
-	font-family: Oswald, sans-serif;
+	font-family: Roboto, sans-serif;
 }
 
 .pull-right {
+	font-weight: 700; float : right !important;
+	font-family: Roboto, sans-serif;
 	float: right !important;
-	font-family: Oswald, sans-serif;
 }
 
 progress {
@@ -150,6 +189,17 @@ progress {
 	margin-top: 20px;
 	margin-bottom: 10px;
 	/* 	border-radius: 1rem; */
+	-webkit-apperance: none;
+}
+
+.progress-pre {
+	width: 100%;
+	height: 1.3rem;
+	border: 2px solid #d9d9d9;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	margin-top: 20px;
 	-webkit-apperance: none;
 }
 
@@ -180,20 +230,52 @@ progress {
 	border-radius: 2px;
 	background: #00bbd6;
 }
+
+.goalpercent:before {
+	position: relative;
+	left: -5px;
+	top: 1px;
+	content: "";
+	display: inline-block;
+	height: 12px;
+	width: 3px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background: #00bbd6;
+}
 /* create project   */
+.top-title{
+	font-family: Microsoft JhengHei;
+	padding:15px;
+	font-weight: 900;
+	font-size:16px;
+	letter-spacing:2.6px;
+	padding-bottom: 5px;
+	border-bottom: 4px solid transparent;
+	transition: .2s all ease;
+	border-color: #FF0000
+	
+}
 .create-content {
-	border: 2px solid black;
 	width: 55%;
 	margin: 0px auto;
 }
 
-.create-title, .create-description, .upload-image, .create-goal,
-	.create-type, .create-city, .chose-music, .limit-date {
-	width: 40%;
+.upload-image, .create-goal, .create-type, .create-city, .chose-music,
+	.limit-date {
+	width: 60%;
 	margin: 10px 10px 10px 10px;
 	padding-top: 10px;
 	padding-left: 10px;
-	font-weight: 600;
+	padding-right: 10px;
+	font-weight: 700;
+}
+
+.create-title, .create-description {
+	margin: 10px 10px 10px 10px;
+	padding-top: 10px;
+	font-weight: 700;
 }
 
 .next-reward {
@@ -201,15 +283,23 @@ progress {
 	margin: 50px auto;
 	padding-top: 10px;
 	padding-left: 10px;
-	font-weight: 600;
+	font-weight: 700;
 }
 
 .bluequote {
+	text-align: left;
 	color: #00bbd6;
 	padding-left: 8px;
 	line-height: 2rem;
 	position: relative;
 	letter-spacing: 1px;
+}
+
+.blue-pre {
+	margin: 10px 10px 10px 10px;
+	padding-top: 10px;
+	text-align: left;
+	font-weight: 700;
 }
 
 .input-label {
@@ -231,7 +321,6 @@ progress {
 
 .form-control {
 	font-size: 13px;
-	height: 40px;
 	letter-spacing: 1.2px;
 	text-align: left;
 	color: #000;
@@ -239,6 +328,10 @@ progress {
 	border-radius: 4px;
 	background-color: #fff;
 	border: 1px solid #e4e4e4;
+}
+
+.fc {
+	height: 40px;
 }
 
 .next:hover {
@@ -269,7 +362,7 @@ input[type="file"] {
 }
 
 .custom-file-upload {
-	text-align:center;
+	text-align: center;
 	display: inline-block;
 	padding: 6px 12px;
 	cursor: pointer;

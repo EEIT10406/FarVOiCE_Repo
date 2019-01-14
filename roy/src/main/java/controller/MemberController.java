@@ -27,7 +27,6 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	//登入
-	
 	@RequestMapping(path="/login-signUp-upload/MemberLogin.controller")
 	public String login(Model model,
 			String username,
@@ -73,42 +72,46 @@ public class MemberController {
 	//註冊
 	@RequestMapping(path="/login-signUp-upload/MemberSignUP.controller")
 	public String signUp(Model model,
-			MemberBean bean,
+			MemberBean signUPBean,
 			String member_passwordConfirm,
 			HttpSession session) {
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("errors", errors);
-		System.out.println(bean.getMember_password()+","+member_passwordConfirm);
-		if(bean!=null) {
-			if (!bean.getMember_password().equals(member_passwordConfirm)) {
-				errors.put("signUpError", "密碼484不一致呢");
+		System.out.println(signUPBean.getMember_password()+","+member_passwordConfirm);
+		if(signUPBean!=null) {
+			if (!signUPBean.getMember_password().equals(member_passwordConfirm)) {
+				errors.put("signUpError", " 密碼不一致呢。");
 			}
 		}
-		if (bean.getMember_username() == null || bean.getMember_username().trim().length() == 0) {
+		if (signUPBean.getMember_username() == null || signUPBean.getMember_username().trim().length() == 0) {
 			errors.put("signUpError", " 每個欄位是必須的喔。");
 		}
-		if (bean.getMember_password() == null || bean.getMember_password().trim().length() == 0) {
+		if (signUPBean.getMember_password() == null || signUPBean.getMember_password().trim().length() == 0) {
 			errors.put("signUpError", " 每個欄位是必須的喔。");
 		}
-		if (bean.getMember_email() == null || bean.getMember_email().trim().length() == 0) {
+		if (signUPBean.getMember_email() == null || signUPBean.getMember_email().trim().length() == 0) {
 			errors.put("signUpError", " 每個欄位是必須的喔。");
 		}
-		if (bean.getMember_nickname() == null || bean.getMember_nickname().trim().length() == 0) {
+		if (signUPBean.getMember_nickname() == null || signUPBean.getMember_nickname().trim().length() == 0) {
 			errors.put("signUpError", " 每個欄位是必須的喔。");
+		}
+		if(memberService.checkNicknameExist(signUPBean.getMember_nickname())) {
+			errors.put("signUpError", " 暱稱是否重複了呢。");
 		}
 		if (errors != null && !errors.isEmpty()) {
 			model.addAttribute("CssError","border:1px #880000 solid");
 			return "/login-signUp-upload/signUp.jsp";
 		}
-		bean.setMember_registerTime(new Date());
-		bean.setMember_ban(false);
-		bean.setMember_profileImage("");
-		MemberBean signUpbean = memberService.signUp(bean);
-		if (signUpbean == null) {
+		signUPBean.setMember_registerTime(new Date());
+		signUPBean.setMember_ban(false);
+		signUPBean.setMember_profileImage("");
+		MemberBean signedbean = memberService.signUp(signUPBean);
+		
+		if (signedbean == null) {
 			errors.put("signUpError", "帳號已存在");
 			return "/login-signUp-upload/signUp.jsp";
 		} else {
-			session.setAttribute("user", signUpbean);
+			session.setAttribute("user", signedbean);
 			return"redirect:/personalPage/personalPage.jsp";
 		}
 	}
@@ -188,6 +191,19 @@ public class MemberController {
 		//找找有沒有這個帳號
 		System.out.println(user);
 		boolean existOrNot = memberService.checkAccountExist(user);
+		//重複-->true
+		System.out.println("controller-existOrNot = " +existOrNot);
+
+		String jsonList = "{\"existOrNot\":\""+existOrNot+"\"}";
+		return jsonList;
+	}
+	
+	@RequestMapping(path="/login-signUp-upload/nicknameCheck.controller",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String nicknameCheck(Model model,HttpSession session,String nickname) {
+		//找找有沒有這個nickname
+		System.out.println(nickname);
+		boolean existOrNot = memberService.checkNicknameExist(nickname);
 		//重複-->true
 		System.out.println("controller-existOrNot = " +existOrNot);
 

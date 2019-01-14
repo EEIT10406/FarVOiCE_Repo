@@ -40,28 +40,28 @@ public class RewardDAO {
 //		}
 		
 //		//create
-//		RewardBean bean2 = new RewardBean();
-//		bean2.setReward_id(4);
-//		bean2.setFunding_id(2);
-//		bean2.setReward_amount(800);
-//		java.util.Date date = java.sql.Date.valueOf("2019-01-03");
-//		bean2.setReward_estimatedDelivery(date);
-//		bean2.setReward_description("保力達一瓶");
-//	
-//		RewardBean beanResult = rewardDAO.create(bean2);
-//		System.out.println(beanResult);
+		RewardBean bean2 = new RewardBean();
+		bean2.setReward_id(4);
+		bean2.setFunding_id(2);
+		bean2.setReward_amount(800);
+		bean2.setReward_estimatedYear("2019");
+		bean2.setReward_estimatedMonth("4月");
+		bean2.setReward_description("保力達一瓶");
+	
+		RewardBean beanResult = rewardDAO.create(bean2);
+		System.out.println(beanResult);
 		
 //		//update 
-		RewardBean bean3 = new RewardBean();
-		bean3.setReward_id(4);
-		bean3.setFunding_id(2);
-		bean3.setReward_amount(8800);
-		java.util.Date date = java.sql.Date.valueOf("2019-01-03");
-		bean3.setReward_estimatedDelivery(date);
-		bean3.setReward_description("保力達一瓶");
-		rewardDAO.update(bean3);
-		RewardBean updateTempBean = rewardDAO.findByPrimaryKey(4);
-		System.out.println(updateTempBean);
+//		RewardBean bean3 = new RewardBean();
+//		bean3.setReward_id(4);
+//		bean3.setFunding_id(2);
+//		bean3.setReward_amount(8800);
+//		bean3.setReward_estimatedYear("2019");
+//		bean3.setReward_estimatedMonth("4月");
+//		bean3.setReward_description("保力達一瓶");
+//		rewardDAO.update(bean3);
+//		RewardBean updateTempBean = rewardDAO.findByPrimaryKey(4);
+//		System.out.println(updateTempBean);
 		
 //		//remove
 //		boolean  remove = rewardDAO.remove(4);

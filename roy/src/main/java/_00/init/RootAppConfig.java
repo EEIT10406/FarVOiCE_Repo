@@ -29,6 +29,7 @@ import model.bean.RewardBean;
 import model.bean.StoryBean;
 
 
+
 @Configuration
 @ComponentScan(basePackages = "model")
 @EnableTransactionManagement
@@ -54,7 +55,6 @@ public class RootAppConfig {
 
 		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,
 				FollowBean.class, BackerBean.class, FundingBean.class, RewardBean.class,StoryBean.class,MemberLikeMusicBean.class,ReportBean.class);
-
 
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,15 +39,16 @@
 .play {
 	width: 50px;
 	-webkit-filter: invert(100%);
+	cursor: pointer;
 }
 
 .play2 {
 	width: 50px;
+	cursor: pointer;
 }
 </style>
 <script>
 	$(document).ready(function() {
-
 		$('.play').on('mouseover', function() {
 			this.setAttribute("class", "play2")
 		})
@@ -67,32 +69,33 @@
 				<div
 					style="border-bottom: 0.5px solid #DDDDDD; align: center; height: 231px; margin-top: 30px; margin-bottom: 30px;">
 
-					<img src="../img/how.jpg"
-						style="float: left; height: 230px; width: 230px; margin-right: 15px;" />
+					<img src="${musicPageBean.music_Image}" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />
 
-					<div style="padding-top: 10px; font-size: 25px;">讓我為你唱情歌</div>
+					<div style="padding-top: 10px; font-size: 25px;">${musicPageBean.music_name}</div>
 
 					<table style="margin-top: 20px;">
 						<tr>
-							<td style="font-size: 13px; font-weight: bold;">介紹</td>
-							<td></td>
+							<td style="font-size: 13px; font-weight: bold;">介紹:</td>
+							<td style="padding: 3px;">${musicPageBean.music_caption}</td>
 						</tr>
 						<tr>
-							<td style="font-size: 13px; font-weight: bold;">類型</td>
-							<td></td>
+							<td style="font-size: 13px; font-weight: bold;">類型:</td>
+							<td style="padding: 3px;">${musicPageBean.music_styleName}</td>
 						</tr>
 						<tr>
-							<td style="font-size: 13px; font-weight: bold;">發佈時間</td>
-							<td></td>
+							<td style="font-size: 13px; font-weight: bold;">發佈時間:</td>
+							<td style="padding: 3px;">
+							<fmt:formatDate value="${musicPageBean.music_uploadTime}" type="date" />
+							</td>
 						</tr>
 					</table>
-					<table style="margin-top: 40px;">
+					<table style="margin-top: 30px;">
 						<tr>
 							<td style="font-size: 16px; width: 70px;">喜歡</td>
 							<td style="font-size: 16px; width: 70px;">播放次數</td>
 						</tr>
 						<tr>
-							<td style="font-size: 16px; color: #FF3333;">0</td>
+							<td style="font-size: 16px; color: #FF3333;">${musicPageBean.music_likeCount}</td>
 							<td style="font-size: 16px; color: #FF3333;">0</td>
 						</tr>
 					</table>
@@ -109,13 +112,9 @@
 
 						<div style="margin-top: 25px; font-size: 20px; font-weight: bold;padding:10px;">歌詞</div>
 
-						<div
-							style="margin-top: 25px; font-size: 15px; letter-spacing: 0.5px; padding:10px;">
-							印象中你帽子遮臉 在教室裡面 不發一語過每一天 眼神中有點落寞 有點藏著什麼 我問你搖頭 眼光卻閃爍 遙控我感受 眼前的人帽子遮臉
-							轉角咖啡店 戴耳機隔絕了世界 我遞上一杯咖啡 你笑著說謝謝 我知道是你 溫暖了空氣 我又遇見你 這次就 讓我為你唱情歌
-							讓我對你說愛你 請你相信我的真心 別再害怕 天塌了我會扛下 最真實的童話 就差你給我抱一下 你有一種孤單的美 像琥珀裡面
-							透明卻封住了從前 過去我愛的純粹 如今愛的沉醉 我知道是你 折射了美麗 讓我遇見你 這次就 讓我為你唱情歌 讓我對你說愛你
-							請你相信我的真心 別再害怕 天塌了我會扛下 最真實的童話 就差你給我抱一下</div>
+						<div style="margin-top: 25px; font-size: 15px; letter-spacing: 0.5px; padding:10px;">
+						   ${musicPageBean.music_lyric}
+						</div>
 
 					  </div>
 
@@ -197,5 +196,6 @@
 	<!-- 	<div id="player"> -->
 	<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
 	<!-- 	</div> -->
+	
 </body>
 </html>

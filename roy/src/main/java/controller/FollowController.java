@@ -47,7 +47,7 @@ public class FollowController {
 	@RequestMapping(path="personalPage/howMuchFollowMe.controller" ,produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String howMuchFollowMe(Model model,HttpSession session,String username) {
-		System.out.println(username);
+		System.out.println("看看幾個follow 我"+username);
 
 		 return String.valueOf(followService.howMuchFollowMe(username));
 	}
@@ -56,7 +56,7 @@ public class FollowController {
 	@RequestMapping(path="personalPage/iFollowHowMuch.controller" ,produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String iFollowHowMuch(Model model,HttpSession session,String username) {
-		System.out.println(username);
+		System.out.println("看看我follow 幾個"+username);
 		 return String.valueOf(followService.iFollowHowMuch(username));
 	}
 	

@@ -138,16 +138,17 @@ public class FollowDAO {
 		String hql = "from FollowBean WHERE member_usernameM=:member_usernameM ";
 		Query<FollowBean> query = this.getSession().createQuery(hql);
 		query.setParameter("member_usernameM", m);
-		List<FollowBean> followList = query.list();
-		System.out.println(followList);
-		return followList;
+		List<FollowBean> whoFollowMe = query.list();
+		System.out.println("whoFollowMe = "+whoFollowMe);
+		return whoFollowMe;
 	}
 	public Integer howMuchFollowMe(String m) {
 		//0110 OK
 		List<FollowBean> fans = whoFollowMe(m);
-		if(fans!=null) {
-			System.out.println("DAO OK");
-			return fans.size();
+		if (fans != null) {
+			if (!fans.isEmpty()) {
+				return fans.size();
+			}
 		}
 		return 0;
 	}
@@ -157,16 +158,17 @@ public class FollowDAO {
 		
 		String hql = "from FollowBean WHERE member_usernameS=:member_usernameS ";
 		Query<FollowBean> query = this.getSession().createQuery(hql);
-		query.setParameter("member_usernameM", s);
-		List<FollowBean> followList = query.list();
-		System.out.println(followList);
-		return followList;
+		query.setParameter("member_usernameS", s);
+		List<FollowBean> iFollowWho = query.list();
+		System.out.println("iFollowWho = "+iFollowWho);
+		return iFollowWho;
 	}
 	public Integer iFollowHowMuch(String s) {
-		List<FollowBean> fans = whoFollowMe(s);
-		if(fans!=null) {
-			System.out.println("DAO OK");
-			return fans.size();
+		List<FollowBean> stars = iFollowWho(s);
+		if (stars != null) {
+			if (!stars.isEmpty()) {
+				return stars.size();
+			}
 		}
 		return 0;
 	}

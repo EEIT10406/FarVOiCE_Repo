@@ -97,6 +97,31 @@ public class PlayListController {
 		}
 		return "";
 	}
+	
+	
+	//讀somebody的歌單
+		@RequestMapping(value="/list/readSomebodyPlayList",produces= "text/plain;charset=UTF-8")
+		@ResponseBody
+		public String readSomebodyPlayList(String username) {
+			if (username != null && username.trim() != "") {
+				List<PlaylistBean> beans = playListService.loadPublicPlayList(username);
+				if (beans != null) {
+					List<Map<String,String>> playLists = new LinkedList<Map<String,String>>();
+					for(PlaylistBean bean:beans) {
+						Map<String, String> jsonMap = new HashMap<>();
+						jsonMap.put("playlist_id", String.valueOf(bean.getPlaylist_id()));
+						jsonMap.put("playlist_image", bean.getPlaylist_image());
+						jsonMap.put("playlist_name", bean.getPlaylist_name());
+						jsonMap.put("playlist_privacy", String.valueOf(bean.getPlaylist_privacy()));
+						jsonMap.put("playlist_musicCount", String.valueOf(bean.getPlaylist_musicCount()));
+						playLists.add(jsonMap);
+					}
+					return JSONValue.toJSONString(playLists);
+				}
+			}
+			return "";
+		}
+	
 		
 	//刪歌單
 		@RequestMapping(value="/list/deletePlayList",produces= "text/plain;charset=UTF-8")
