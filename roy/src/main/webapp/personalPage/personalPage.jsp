@@ -102,8 +102,8 @@ table {
 }
 
 .heart {
-	width: 17px;
-	margin-right:5px;
+	width: 15px;
+	margin-right:4px;
 	cursor: pointer;
 }
 
@@ -124,7 +124,7 @@ table {
 	margin-top: 5px;
 	padding: 5px;
 	font-size: 13px;
-	margin-left: 10px;
+	margin-left: 5px;
 }
 
 .deleteClick{
@@ -311,6 +311,15 @@ $(document).ready(function() {
 		
 	})
 	
+	//點喜歡的音樂去音樂頁面
+	$('#like').on('click','#musicPage',function(){
+		var row = $(this).parents('#musics');
+		var musicId = row.children('span[name="music_id"]').text();
+		
+		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
+		
+	})
+	
 })
 
 
@@ -336,7 +345,7 @@ function loadMusic(username) {
 					  	'<span class="deleteClick" style="cursor: pointer;"> <img src="../img/delete.png" width="15px" />刪除</span>'+
                    		'</div>'+
                    		'</div>';
-			           
+
            })
            $('#music').html(content);
 		 
@@ -361,7 +370,7 @@ function loadPlayList(username) {
                      '<div style="font-size:14px;">'+list.showPlaylist_privacy+'</div>'+
                  '</div>';
               })
-              $('#list').html('<div style="margin-left:870px;font-size:15px;font-weight:normal"><a href="../list/createList.jsp">新增歌單</a></div>'+content);
+              $('#list').html('<div style="margin-left:870px;font-size:15px;font-weight:normal"><a href="../list/createList.jsp">編輯歌單</a></div>'+content);
 		$('span[name="playlist_id"]').hide();
 	})
 }
@@ -373,10 +382,13 @@ function loadMemberLikeMusic(username) {
 	$.getJSON('/roy/personalPage/memberLikeMusic',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
-			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;">'+
+			content += '<div id="musics" class="col-md-5" style="float: left; width: 230px;">'+
                              '<span name="music_id">'+list.music_id+'</span>'+
-				             '<a href=""><img src="'+list.music_Image+'" style="width: 160px; height: 160px;" name="music_Image"/></a>'+
-                             '<div style="font-size: 16px;" name="music_name">'+list.music_name+'</div>'+
+				             '<span id="musicPage" style="cursor: pointer;">'+
+                                  '<img src="'+list.music_Image+'" style="width: 100px; height: 100px;" />'+
+                             '</span>'+
+                             '<div style="font-size: 16px;">'+list.music_name+'</div>'+
+
 				             '<div>'+
                                   '<img src="../img/love.png" class="heart">'+
 				                  '<span class="heartCount">'+list.music_likeCount+'</span>'+ 
@@ -778,7 +790,7 @@ function loadMemberLikeMusic(username) {
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status);
+                    alert(xhr.status+"showArticleFromMember");
                     alert(thrownError);
                 }
             });
@@ -830,7 +842,7 @@ function loadMemberLikeMusic(username) {
 				  },
 				  
                 error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status);
+                    alert(xhr.status+"歷史紀錄");
                     alert(thrownError);
                 }
             });	 

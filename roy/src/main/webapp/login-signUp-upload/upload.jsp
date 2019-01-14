@@ -116,6 +116,10 @@
 		     alert("${uploadresult}");
 		</c:if>
 		<!-- //  判斷上傳是否成功 end  -->
+		<c:if test="${not empty errors}">
+		     alert("${errors.emptyValue}")
+		</c:if>
+
 </script>
 
 </head>

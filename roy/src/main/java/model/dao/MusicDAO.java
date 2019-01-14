@@ -112,6 +112,13 @@ public class MusicDAO {
 				.list();
 	}
 	
+	//找七天內點閱率高的音樂
+		public List<MusicBean> findAllByTime() {
+			//0107 OK
+			return this.getSession().createQuery("from MusicBean WHERE DATEDIFF(day, DATEADD(day, -7, GETDATE()), music_uploadTime) > 0 and music_unavailable = 0 order by music_playCount desc", MusicBean.class).list();
+			
+		}
+	
 	//找該使用者上傳的所有音樂且該音樂沒被下架
 	public List<MusicBean> findAllByUser(String member_username) {
 		//0107 OK
@@ -163,12 +170,14 @@ public class MusicDAO {
 		return musicList;
 	}
 	
-	
-	
-	
-	
-	
-	
+	//找出所有時間總點閱率最高的十筆音樂
+		public List<MusicBean> findAllTimePlayCountTop10Music(){
+			String hql = "from MusicBean where music_unavailable=false Order By music_playCount Desc";
+			Query<MusicBean> query = this.getSession().createQuery(hql);
+			query.setMaxResults(10);
+			List<MusicBean> musicList = query.list();
+			return musicList;
+		}
 	
 	
 	
