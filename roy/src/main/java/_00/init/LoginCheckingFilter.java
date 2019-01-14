@@ -30,6 +30,7 @@ import model.bean.MemberBean;
 
 
 								
+
 		})
 public class LoginCheckingFilter implements Filter {
 	Collection<String> url = new ArrayList<String>();

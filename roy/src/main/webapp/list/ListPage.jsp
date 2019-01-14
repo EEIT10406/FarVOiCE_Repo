@@ -85,7 +85,7 @@
 						</tr>
 
 						<tr>
-							<td style="font-size: 13px; font-weight: bold;">發佈時間 :</td>
+							<td style="font-size: 13px; font-weight: bold;">建立時間 :</td>
 							<td id="date" style="padding: 5px; font-size: 15px;">
 							<fmt:formatDate value="${playListBean.playlist_registerTime}" type="date" />
 							</td>
@@ -119,7 +119,7 @@
 									</td>
 									<td><img src="${musicbean.music_Image}"
 										style="width: 70px; height: 70px;" />${musicbean.music_name}</td>
-									<td style="font-size: 15px;">${musicbean.member_username}</td>
+									<td style="font-size: 15px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${musicbean.member_username}">${musicbean.member_username}</a></td>
 									<td style="font-size: 15px;">
 									    <fmt:formatDate value="${musicbean.music_uploadTime}" type="date" />
 									</td>

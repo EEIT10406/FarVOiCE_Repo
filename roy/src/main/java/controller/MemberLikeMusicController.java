@@ -91,7 +91,6 @@ public class MemberLikeMusicController {
 		return JSONValue.toJSONString(likeMusics);
 	}
 
-	
 //看somebody對哪些音樂按讚
 	@RequestMapping(value = "/personalPage/somebodyLikeMusic", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -100,23 +99,28 @@ public class MemberLikeMusicController {
 		List<Integer> somebodyMusics = memberLikeMusicService.memberLikeMusics(username);
 
 		MemberBean memberBean = (MemberBean) session.getAttribute("user");
+		List<Integer> memberLikeMusics = null;
 		// 使用者喜歡的歌
-		List<Integer> memberLikeMusics = memberLikeMusicService.memberLikeMusics(memberBean.getMember_username());
+		if (memberBean != null) {
+			memberLikeMusics = memberLikeMusicService.memberLikeMusics(memberBean.getMember_username());
+		}
 		if (somebodyMusics != null) {
 			List<Map<String, String>> likeMusics = new LinkedList<Map<String, String>>();
-			
-			boolean flag=true;
+
+			boolean flag = true;
 			for (Integer somebodyLikes : somebodyMusics) {
 				MusicBean musicBean = musicService.findMusic(somebodyLikes);
 				Map<String, String> jsonMap = new HashMap<>();
-				for (Integer userLikes : memberLikeMusics) {
-					if (somebodyLikes == userLikes) {
-						jsonMap.put("userLikeMusic", "/roy/img/love.png");
-						flag=false;
-						break;
+				if (memberLikeMusics != null) {
+					for (Integer userLikes : memberLikeMusics) {
+						if (somebodyLikes == userLikes) {
+							jsonMap.put("userLikeMusic", "/roy/img/love.png");
+							flag = false;
+							break;
+						}
 					}
 				}
-				if(flag) {
+				if (flag) {
 					jsonMap.put("userLikeMusic", "/roy/img/emptyLove.png");
 				}
 				jsonMap.put("music_id", String.valueOf(musicBean.getMusic_id()));
@@ -124,8 +128,8 @@ public class MemberLikeMusicController {
 				jsonMap.put("music_name", musicBean.getMusic_name());
 				jsonMap.put("music_likeCount", String.valueOf(musicBean.getMusic_likeCount()));
 				likeMusics.add(jsonMap);
-				flag=true;
-				
+				flag = true;
+
 			}
 			return JSONValue.toJSONString(likeMusics);
 		}
