@@ -157,4 +157,13 @@ public List<PostBean> showAllArticleInFindArticle (Boolean post_postorshare){
 		List<PostBean> PostList = query.list();
 		return PostList;
 	}
+
+//顯示單一文章在文章頁面
+//public List<PostBean> showSearchArticleInFindArticle (String searchString){
+//	String hql = "from PostBean WHERE post_postorshare=:post_postorshare Order By post_time Desc";
+//	Query<PostBean> query = this.getSession().createQuery(hql);
+//	query.setParameter("post_postorshare", post_postorshare);
+//	List<PostBean> PostList = query.list();
+//	return PostList;
+//}
 }

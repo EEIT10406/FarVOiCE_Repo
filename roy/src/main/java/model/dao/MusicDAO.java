@@ -5,9 +5,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.rowset.serial.SerialBlob;
+
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,6 +17,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.MusicBean;
 import model.bean.PostBean;
@@ -78,19 +81,32 @@ public class MusicDAO {
 //		
 
 		//update
+//		Date date = new Date();
 //		MusicBean bean3 = new MusicBean();
 //		bean3.setMusic_id(6);
 //		bean3.setMusic_name("666唱情歌");
+//		bean3.setMember_username("NewAnderson");
+//		bean3.setMusic_music(null);
+//		bean3.setMusic_caption("抱歉我妹亂上傳大家別誤會");
+//		bean3.setMusic_uploadTime(date);
+//		bean3.setMusic_playCount(25);
+//		bean3.setMusic_styleName("jazz");
+//		bean3.setMusic_lyric("我在全國睡著了");
+//		bean3.setMusic_likeCount(100);
+//		bean3.setMusic_Image(null);
+//		bean3.setMusic_ban(null);
+//		bean3.setMusic_unavailable(null);
+//		
 //		musicDAO.update(bean3);
 //		MusicBean updateTempBean = musicDAO.findByPrimaryKey(6);
-//		System.out.println(updateTempBean);
-		
+//		System.out.println("updateTempBean"+updateTempBean);
+//		
 		//remove
 //		boolean  remove = musicDAO.remove(6);
 //		System.out.println(remove);
 //		System.out.println(musicDAO.findAllTimePlayCountTop5Music());
 //		
-		
+//		
 //		tx.commit();
 //		session.close();
 //		HibernateUtil.closeSessionFactory();
@@ -143,7 +159,6 @@ public class MusicDAO {
 				this.getSession().save(bean);
 				return bean;
 	}
-	
 	public void update(MusicBean bean) {
 		//0108 OK
 		MusicBean originalBean = findByPrimaryKey(bean.getMusic_id());

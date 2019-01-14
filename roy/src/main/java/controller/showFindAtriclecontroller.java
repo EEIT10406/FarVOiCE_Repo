@@ -24,13 +24,29 @@ public class showFindAtriclecontroller {
 	@RequestMapping(path="/findArticle/findArticle.controller",produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String showAllArticleFromPost(Model model,PostBean newPostBean,
-			HttpSession session,String user) {
-		//show這個人的文章
-		List<PostBean> posts = postService.showAllArticleInFindArticle(true);
-		//用gson包成json送回前端
-		Gson gson = new Gson();
-		String jsonList = gson.toJson(posts);
-		return jsonList;
+			HttpSession session,String user,String searchString) {
+		//show全部的文章
+		if(!searchString.trim().isEmpty()) {
+			
+			
+			List<PostBean> posts = postService.showAllArticleInFindArticle(true);
+			//用gson包成json送回前端
+			Gson gson = new Gson();
+			String jsonList = gson.toJson(posts);
+			return jsonList;
+			
+			
+		}else {
+			
+			List<PostBean> posts = postService.showAllArticleInFindArticle(true);
+			//用gson包成json送回前端
+			Gson gson = new Gson();
+			String jsonList = gson.toJson(posts);
+			return jsonList;
+			
+		}
 		
+		
+	
 	}
 }

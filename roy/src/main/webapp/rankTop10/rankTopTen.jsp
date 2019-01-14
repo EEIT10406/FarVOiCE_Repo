@@ -117,7 +117,7 @@ table {
 	 		
 	        $("#addshareMusicname").text(""+music_name+"");
 	        $("#addshareMusicid").text(""+music_id+"");
-	        alert(music_name);
+	       
 			})	
 	})
 

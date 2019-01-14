@@ -131,60 +131,22 @@
 							<ul class="blog-tags">
 
 								<!-- 搜尋文章 -->
+								<div id="search-div">
 								<form class="form-inline">
 									<input class="form-control mr-sm-2" type="search"
 										placeholder="搜尋" aria-label="Search">
 									<button class="btn btn-outline-success" type="submit">搜尋</button>
 								</form>
+								</div>
 							</ul>
 						</div>		
 						<hr>
 						<br>
 						<div class="recent-posts">
 							<h3>最近新增文章</h3>
-							<ul class="posts-list margin-top-10">
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left" src="imgs/mouse.PNG"
-											style="width: 100px; height: 90px" alt="thumb1">
-										</a> <a href="../findArticle/singleArticle.jsp"
-											class="posts-list-title">黃金鼠 </a> <br> <span
-											class="recent-post-date"> 2019.01.02 </span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
-								<br>
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left" src="imgs/bird.jpg"
-											style="width: 100px; height: 90px" alt="thumb2">
-										</a> <a href="#" class="posts-list-title">玄鳳</a> <br> <span
-											class="recent-post-date"> 2019.01.02 </span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
-								<br>
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left"
-											src="../img/blog/thumbs/thumb3.jpg"
-											style="width: 100px; height: 90px" alt="thumb3">
-										</a> <a href="#" class="posts-list-title">第三篇</a> <br> <span
-											class="recent-post-date"> 2019.02.03 </span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
-								<br>
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left"
-											src="../img/blog/thumbs/thumb4.jpg"
-											style="width: 100px; height: 90px" alt="thumb4">
-										</a> <a href="#" class="posts-list-title">第四篇</a> <br> <span
-											class="recent-post-date"> 2019.05.06 </span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
+							<ul class="posts-list margin-top-10" id="newArticle">
+								
+								
 							</ul>
 						</div>
 						<!-- End Recent Posts -->
@@ -205,8 +167,14 @@
 <!-- 	</div> -->
 
 <script>
+// $('#search-div button').click(function(){
+// 	var searchString = $('#search-div input').val();
+// 	alert(searchString);
+// 	loadArticle("",searchString,"","");
+// 	    })
+
 //顯示畫面
- $(function () {
+ $(function loadArticle () {
 	 $.ajax({
          url: "/roy/findArticle/findArticle.controller",   //存取Json的網址             
          type: "POST",
@@ -247,6 +215,16 @@
 					content = ""
 					$("#articlePutHere").append(Blog_Item_Details+Blog_Content);
 					
+					
+					//顯示最近文章
+					var newArticleContent = "<li>"+
+						"<div class='recent-post'>"+
+						"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'>"+"<img class='pull-left' src='imgs/mouse.PNG'"+
+						"style='width: 100px; height: 90px' alt='thumb1'>"+
+						"</a> <a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
+						"class='posts-list-title'>"+author+"</a> <br> <span class='recent-post-date'>"+time+"</span>"+
+						"</div><div class='clearfix'></div></li><br><br>";
+						$("#newArticle").append(newArticleContent);
 					
 				})
 
