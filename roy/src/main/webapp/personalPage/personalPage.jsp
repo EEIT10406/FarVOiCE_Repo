@@ -273,7 +273,6 @@ $(document).ready(function() {
 // 		alert(music_name);
         $("#addshareMusicname").text(""+music_name+"");
         $("#realaddshareMusicname").text(""+music_name+"");
-        addshareMusicid
         $("#addshareMusicid").text(""+music_id+"");
 		})
 			
@@ -717,7 +716,7 @@ function loadMemberLikeMusic(username) {
 
 	//start 背景ajax
 	//showArticleFromMember
-        $(function () {            
+        $(function () {       
             $.ajax({
                 url: "/roy/personalPage/showArticleFromMember.controller",   //存取Json的網址             
                 type: "POST",
