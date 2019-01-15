@@ -12,9 +12,9 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <style>
-* {
-	font-family: 微軟正黑體;
-}
+/* * { */
+/* 	font-family: 微軟正黑體; */
+/* } */
 
 .play {
 	width: 40px;
@@ -362,19 +362,6 @@ function loadImediate(type) {
 					<p>老蕭</p>
 					<hr>		
 					
-					<h6 style="margin: 0;">
-						2<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>
-					
-					<h6 style="margin: 0;">
-						3<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					
 					<button type="button" class="topTen">
 						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
 					</button>
@@ -383,31 +370,164 @@ function loadImediate(type) {
 
 				<div class="col-md-3" id="allType"
 					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					
+					<h3 class="title">
+						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
+					</h3>
+					
+					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+					<span name="musicId"></span>
+					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
+					<p>老蕭</p>
+					<hr>		
+					
+					<button type="button" class="topTen">
+						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+					</button>
+					
 				</div>
 
 
 				<div class="col-md-3" id="emotion"
 					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					
+					<h3 class="title">
+						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
+					</h3>
+					
+					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+					<span name="musicId"></span>
+					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
+					<p>老蕭</p>
+					<hr>		
+					
+					<button type="button" class="topTen">
+						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+					</button>
+					
 					</div>
 					
 				<div class="col-md-3" id="rock"
 					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					
+					<h3 class="title">
+						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
+					</h3>
+					
+					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+					<span name="musicId"></span>
+					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
+					<p>老蕭</p>
+					<hr>		
+					
+					<button type="button" class="topTen">
+						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+					</button>
+					
 					</div>
 					
 					<div class="col-md-3" id="reggae"
 					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					
+					<h3 class="title">
+						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
+					</h3>
+					
+					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+					<span name="musicId"></span>
+					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
+					<p>老蕭</p>
+					<hr>		
+					
+					<button type="button" class="topTen">
+						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+					</button>
+					
 					</div>
 					
 					<div class="col-md-3" id="blue"
 					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					
+					<h3 class="title">
+						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
+					</h3>
+					
+					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+					<span name="musicId"></span>
+					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
+					<p>老蕭</p>
+					<hr>		
+					
+					<button type="button" class="topTen">
+						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+					</button>
+					
 					</div>
 					
 					<div class="col-md-3" id="dynamic"
 					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					
+					<h3 class="title">
+						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
+					</h3>
+					
+					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+					<span name="musicId"></span>
+					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
+					<p>老蕭</p>
+					<hr>		
+					
+					<button type="button" class="topTen">
+						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+					</button>
+					
 				    </div>
 				    
 				    <div class="col-md-3" id="classic"
 					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					
+					<h3 class="title">
+						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
+					</h3>
+					
+					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+					<span name="musicId"></span>
+					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
+					<p>老蕭</p>
+					<hr>		
+					
+					<button type="button" class="topTen">
+						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+					</button>
+					
 				    </div>
 				    
 				<!-- End Main Text -->

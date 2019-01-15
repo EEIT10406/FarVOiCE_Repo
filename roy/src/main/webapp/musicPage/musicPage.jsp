@@ -100,11 +100,10 @@
 						</tr>
 						<tr>
 							<td style="font-size: 16px; color: #FF3333;">${musicPageBean.music_likeCount}</td>
-							<td style="font-size: 16px; color: #FF3333;">0</td>
+							<td style="font-size: 16px; color: #FF3333;">${musicPageBean.music_playCount}</td>
 						</tr>
 					</table>
 				</div>
-
 
 				<!-- content begin -->
 				<div style="margin-bottom: 30px;">
@@ -114,10 +113,10 @@
 					</div>
 					<div style="background-color: #F5F5F5;border: 0.5px solid #DDDDDD;">
 
-						<div style="margin-top: 25px; font-size: 20px; font-weight: bold;padding:10px;">歌詞</div>
+						<div style="margin-top: 25px;font-size: 20px; font-weight: bold;padding:10px;">歌詞</div>
 
-						<div style="margin-top: 25px; font-size: 15px; letter-spacing: 0.5px; padding:10px;">
-						   ${musicPageBean.music_lyric}
+						<div style=" letter-spacing: 0.5px; padding:10px;">
+						  <pre style="border:0px;font-size: 15px;">${musicPageBean.music_lyric}</pre>
 						</div>
 
 					  </div>

@@ -127,7 +127,7 @@ table {
 	margin-left: 5px;
 }
 
-.deleteClick{
+.editClick{
 cursor: pointer;
 }
 
@@ -157,6 +157,11 @@ word-break:break-all;
 opacity:0.4
 }
 </style>
+<script>
+<c:if test="${not empty result}">
+alert("${result}")
+</c:if>
+</script>
 <script>
 	$(document).ready(function() {		
 		var follows = document.querySelectorAll("div.follow");
@@ -212,22 +217,16 @@ $(document).ready(function() {
 	//按喜歡重新載入喜歡的音樂
 	$('#memberLikeMusic').on('click',function(){
 		loadMemberLikeMusic('${user.member_username}')
-	})
+	})	
 
-	//刪除音樂
-	$('#music').on('click','.deleteClick',
-		function() {
-            var row = $(this).parents('#musics');
-            var music_id =row.children('span[name="music_id"]').text();
-			$.get('/roy/list/deleteMusic', {
-				'music_id' : music_id
-			}, function(data) {
-				
-	            loadMusic('${user.member_username}');
-	            loadMusicCount('${user.member_username}');
-	            alert(data);
-			})
+	 	//編輯音樂
+	$('#music').on('click','.editClick',function() {
+		var row = $(this).parents('#musics');
+        var music_id =row.children('span[name="music_id"]').text();	
+		window.location.href = "/roy/musicPage/editMusic?music_id="+music_id;
 	})
+	
+
 	//按愛心
 	$('body').on('click','.heart',function(){
 		var row = $(this).parents('#musics');
@@ -278,20 +277,17 @@ $(document).ready(function() {
         $("#addshareMusicid").text(""+music_id+"");
 		})
 			
-	
-	
 	//把音樂加進歌單裡
-	$('body').on('click','#addList ',function() {
+	$('body').on('click','#addMusicToList',function() {
  		var row = $(this).parents('#addList');
  		var musicId =row.find('#selectPlayList').children().val();
 		var playListId=$('#selectPlayList').val();
 		$.get('/roy/list/addMusicToPlayList',{'musicId' : musicId,'playListId':playListId},function(data) {
 			alert(data)
 			loadPlayList('${user.member_username}')
-		})	
+		})
+			
 	})
-	
-
 	
 	
 	//點歌單去歌單頁面
@@ -330,20 +326,20 @@ function loadMusic(username) {
 	$.getJSON('/roy/personalPage/readMusic',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
-			content +=  '<div id="musics" class="col-md-5" style="float: left; width: 300px;margin-bottom:10px;">'+
+			content +=  '<div id="musics" class="col-md-5" style="float: left; width: 242px;margin-bottom:10px;">'+
 			            '<span name="music_id" id="musicid">'+list.music_id+'</span>'+
 			            '<span id="musicPage" style="cursor: pointer;">'+
-			               '<img src="'+list.music_Image+'" style="width: 160px; height: 160px;" name="music_Image" />'+
+			               '<img src="'+list.music_Image+'" style="width: 120px; height: 120px;" name="music_Image" />'+
 			            '</span>'+
 			       		'<div name="music_name" style="font-size: 16px;">'+list.music_name+'</div>'+
-                   		'<div>'+
+                   		'<div style="font-size:13px">'+
 			       		'<img src="'+list.memberLikeMusic+'" class="heart">'+
                    		'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
-                      	'<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare"style="outline: none;" ><img src="../img/share.png" width="15px">分享</button></span>'+
-                      	'<span id="add">'+
-                      	'<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
+                      	'<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare"style="outline: none;" ><img src="../img/share.png" width="13px">分享</button></span>'+
+                      	'<span id="add" style="margin-left:0px;">'+
+                      	'<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="13px">加入歌單</button>'+
 					  	'</span>'+
-					  	'<span class="deleteClick" style="cursor: pointer;"> <img src="../img/delete.png" width="15px" />刪除</span>'+
+					  	'<span class="editClick"><img src="../img/edit.png" width="15px" />編輯</span>'+
                    		'</div>'+
                    		'</div>';
 
@@ -383,10 +379,10 @@ function loadMemberLikeMusic(username) {
 	$.getJSON('/roy/personalPage/memberLikeMusic',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
-			content += '<div id="musics" class="col-md-5" style="float: left; width: 230px;">'+
+			content += '<div id="musics" class="col-md-5" style="float: left; width: 240px;">'+
                              '<span name="music_id">'+list.music_id+'</span>'+
 				             '<span id="musicPage" style="cursor: pointer;">'+
-                                  '<img src="'+list.music_Image+'" style="width: 100px; height: 100px;" />'+
+                                  '<img src="'+list.music_Image+'" style="width: 120px; height: 120px;" />'+
                              '</span>'+
                              '<div style="font-size: 16px;">'+list.music_name+'</div>'+
 
