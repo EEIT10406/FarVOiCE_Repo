@@ -146,14 +146,7 @@
 			<div class="row">
 				<h2 class="animate fadeIn text-center margin-top-50">大家都在聽</h2>
 				<hr class="margin-top-15">
-				<p class="animate fadeIn text-center">
-					Enlighten offers you the canvas to turn your imagination in to a
-					reality <br>giving you the perfect framework for your project!
-				</p>
-				<p class="text-center animate fadeInUp margin-bottom-50">
-					<button type="button" class="btn btn-lg btn-primary">View
-						Details</button>
-				</p>
+			
 				          <div class="row">
                      <!-- 小輪播 - Default Full Width -->
                      <div class="col-md-12">

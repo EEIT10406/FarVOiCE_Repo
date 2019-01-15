@@ -36,6 +36,8 @@ public class PostController {
 				newPostBean.setPost_privacy(false);
 			}
 			newPostBean.setPost_postorshare(true);
+			newPostBean.setMember_profileImage(memberWhoPost.getMember_profileImage());
+			newPostBean.setMember_nickname(memberWhoPost.getMember_nickname());
 			//呼叫service的po文功能
 			PostBean newArticle = postService.postNewArticle(newPostBean);
 			return "redirect:/personalPage/personalPage.jsp";

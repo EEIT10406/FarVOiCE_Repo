@@ -56,10 +56,13 @@ td {
 <body>
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
-		<div id="content" style="margin-left: 230px; margin-top: 50px;">
+		<div id="content" >
+			<div class="container">
 			<!-- 每頁不同的內容從這裡開始 -->
+							<form action="<c:url value="/list/createPlayList" />"
+							enctype="multipart/form-data" method="post">
 			<table id="playListTable" class="table table-bordered"
-				style="width: 800px;">
+				style="width: 800px;margin:auto;margin-top:50px">
 				<thead>
 					<tr>
 						<th>圖片</th>
@@ -80,12 +83,12 @@ td {
 <!-- 						<td><button class="btn btn-primary pull-right">刪除</button></td> -->
 <!-- 					</tr> -->
 				</tbody>
+
 				<tfoot>
 
 					<tr>
-						<form action="<c:url value="/list/createPlayList" />"
-							enctype="multipart/form-data" method="post">
-							<input type="hidden" id="playListId"><span></span>
+						
+							<input type="hidden" id="playListId">
 							<td><input type="file" id="imageFile" accept="image/*"
 								name="imageFile"></td>
 							<td><input type="text" style="width: 100px"
@@ -98,11 +101,12 @@ td {
 							<td><input type="hidden" name=""><span></span></td>
 							<td><input class="btn btn-primary pull-right" type="submit"
 								value="新增"></td>
-						</form>
 					</tr>
+			
+					
 				</tfoot>
 			</table>
-
+</form>
 			<!-- 編輯歌單 begin-->
 			<div class="modal fade" id="editPLayList" aria-hidden="true">
 				<div class="modal-dialog" style="width: 795px;">
@@ -143,12 +147,12 @@ td {
 					</div>
 				</div>
 			</div>
-
+		</div>
 			<!-- 編輯歌單 end-->
 
 			<!-- 每頁不同的內容到這裡結束 -->
-		</div>
 	</div>
+</div>
 
 
 	<jsp:include page="../homePage/footer.jsp" />

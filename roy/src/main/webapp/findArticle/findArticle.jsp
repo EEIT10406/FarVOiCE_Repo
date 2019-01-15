@@ -190,10 +190,11 @@ function loadArticle (searchString) {
 		data:{'searchString':searchString},            
 		success : function(list)
 		{	list.forEach(function(obj, index) {
-				var author = obj.member_username;
+				var author = obj.member_nickname;
 				var time = obj.post_time;
 				var content = obj.post_content;
 				var postnumber = obj.post_idS;
+				var profile = obj.member_profileImage;
 				//顯示內容
 				var Blog_Item_Details = 
 				"<div class='blog-post-details'>"+
@@ -218,7 +219,7 @@ function loadArticle (searchString) {
 				//顯示最近文章
 				var newArticleContent = "<li>"+
 					"<div class='recent-post'>"+
-					"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'>"+"<img class='pull-left' src='imgs/mouse.PNG'"+
+					"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'>"+"<img class='pull-left' src='"+profile+"'"+
 					"style='width: 100px; height: 90px' alt='thumb1'>"+
 					"</a> <a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
 					"class='posts-list-title'>"+author+"</a> <br> <span class='recent-post-date'>"+time+"</span>"+

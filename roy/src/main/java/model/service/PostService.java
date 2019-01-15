@@ -96,8 +96,8 @@ public class PostService {
 		return postDAO.showAllArticleInFindArticle(article);
 	}
 	
-//	public List<PostBean> showSearchArticleInFindArticle(String searchString){
-//		return postDAO.showAllArticleInFindArticle(article);
-//	}
+	public List<PostBean> showSearchArticleInFindArticle(String searchString){
+		return postDAO.showSearchArticleInFindArticle(searchString);
+	}
 	
 }
