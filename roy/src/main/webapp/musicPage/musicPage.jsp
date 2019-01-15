@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
@@ -56,7 +56,26 @@
 		$('.play').on('mouseout', function() {
 			this.setAttribute("class", "play");
 		})
-
+// 		拿留言
+		$.getJSON('/roy/musicPage/showAllCommentFromMusic.controller',{'music_id' : '${musicPageBean.music_id}'},function(data) {
+			$.each(data,function(index, obj) {
+				console.log(obj); 
+				var temp = "<li class='list-group-item'>"
+								+"<div class='row'>"
+								+"<div class='col-md-2 profile-thumb'>"
+									+"<a href='#'> <img class='media-object'"
+									+	"src='"+obj.member_profileImage+"' alt=''>"
+									+"</a>"
+								+"</div>"
+								+"<div class='col-md-10'>"
+									+"<h4>"+obj.member_nickname+"</h4>"
+									+"<p>"+obj.memberCommentMusic_content+"</p>"
+									+"<span class='date'><i class='fa fa-clock-o color-gray-light'></i>"+obj.memberCommentMusic_time+"</span>"
+								+"</div>"
+							+"</li>"
+				$('#0106Test').prepend(temp); 
+	        })
+		})
 	})
 </script>
 </head>
@@ -72,7 +91,6 @@
 					<img src="${musicPageBean.music_Image}" style="float: left; height: 230px; width: 230px; margin-right: 15px;" />
 
 					<div style="padding-top: 10px; font-size: 25px;">${musicPageBean.music_name}</div>
-
 					<table style="margin-top: 10px;">
 					     <tr>
 							<td style="font-size: 13px; font-weight: bold;">發佈者:</td>
@@ -131,7 +149,7 @@
 				<!-- Comments -->
 				<div id="comments"
 					class="blog-recent-comments panel panel-default margin-bottom-30"
-					style="">
+					style="border-left:none;border-right:none">
 					<div class="panel-heading">
 						<h3>評論</h3>
 					</div>
@@ -149,7 +167,7 @@
 								<div class="row margin-top-20">
 									<div class="col-md-12">
 										<form
-											action="<c:url value="/personalPage/PostComment.controller"/>"
+											action='/roy/musicPage/postNewMusicComment.controller?musicid=${musicPageBean.music_id}'
 											method="post">
 											<input hidden="true" value="${currentPost.post_idS}"
 												name="post_idSReff"> <input hidden="true"
@@ -173,7 +191,7 @@
 											<div class="row margin-bottom-20">
 												<div class="col-md-11 col-md-offset-0">
 													<textarea class="form-control" rows="8" id="comment"
-														name="post_content"></textarea>
+														name="MCM_content"></textarea>
 
 												</div>
 											</div>

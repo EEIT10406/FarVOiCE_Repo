@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">

@@ -20,7 +20,16 @@ public class SomebodyPersonalPageController {
 	@RequestMapping(path="/personalPage/somebodyPersonalPage.controller")
 	public String method(Model model,String nickname,HttpSession session) {
 		//進別人的首頁
+		
 		String somebody = musicService.nicenameToUsername(nickname);
+		
+		MemberBean userBean = (MemberBean)session.getAttribute("user");
+		//如果已登入且則進自己個人首頁
+		if(userBean!=null) {
+			if(userBean.getMember_username().equals(somebody)) {
+				return "/personalPage/personalPage.jsp";
+			}
+		}
 		MemberBean somebodyBean = memberService.getMemberBeanForSomebodyPersonalPage(somebody);
 		session.setAttribute("somebody", somebody);
 		session.setAttribute("nickname", nickname);

@@ -112,14 +112,10 @@ public class MemberCommentMusicDAO {
 	}
 	public MemberCommentMusicBean create(MemberCommentMusicBean bean) {
 		//0103 OK
-		if(bean!=null) {
-			MemberCommentMusicBean result = this.getSession().get(MemberCommentMusicBean.class, bean.getMemberCommentMusic_id());
-			if(result==null) {
-				this.getSession().save(bean);
-				return bean;
-			}
+		if(bean!=null) {this.getSession().save(bean);
+		return bean;
 		}
-		return null;
+		return bean;
 	}
 	
 	public void update(MemberCommentMusicBean bean) {

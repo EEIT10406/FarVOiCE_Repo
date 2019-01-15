@@ -66,12 +66,15 @@ public class PostController {
 	public String postComment(Integer post_idSReff,Model model,String member_username,String post_content,HttpSession session) {
 		//新增留言
 		PostBean currentPostBean = postService.findSinglePost(post_idSReff);
+		MemberBean userBean = (MemberBean)session.getAttribute("user");
 		session.setAttribute("currentPost",currentPostBean);
 		PostBean bean = new PostBean();
 		bean.setPost_idM(post_idSReff);
 		bean.setMember_username(member_username);
 		bean.setPost_content(post_content);
 		bean.setPost_time(new Date());
+		bean.setMember_nickname(userBean.getMember_nickname());
+		bean.setMember_profileImage(userBean.getMember_profileImage());
 		postService.postNewComment(bean);
 		return "redirect:/personalPage/singleArticle.jsp";
 	}

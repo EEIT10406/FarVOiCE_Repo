@@ -12,21 +12,30 @@ public class PostBean {
 	@Override
 	public String toString() {
 		return "PostBean [post_idS=" + post_idS + ", post_idM=" + post_idM + ", member_username=" + member_username
+				+ ", member_profileImage=" + member_profileImage + ", member_nickname=" + member_nickname
 				+ ", post_content=" + post_content + ", post_time=" + post_time + ", post_privacy=" + post_privacy
 				+ ", post_postorshare=" + post_postorshare + ", post_musicid=" + post_musicid + ", post_musicname="
 				+ post_musicname + "]";
 	}
-	//	post_idS		int		identity	primary key,
-//	post_idM		int			REFERENCES Post (post_idS),--發文本人此欄位為null
+//	post_idS		int		identity	primary key,
+//	post_idM		int			REFERENCES Post (post_idS),--發文本人此欄位為null，留言的話此欄位為被留言的post_idS
 //	member_username	varchar(30) REFERENCES member (member_username),
+//	member_profileImage	varchar(200),
+//	member_nickname		varchar(30),
 //	post_content	varchar(800),
 //	post_time		datetime,
 //	post_privacy	bit,
+//	post_postorshare	bit,--0 是分享
+//							--1 是文章
+//	post_musicid int REFERENCES Music(music_id),
+//	post_musicname varchar(30)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer post_idS;
 	private Integer post_idM;
 	private String member_username;
+	private String member_profileImage;
+	private String member_nickname;
 	private String post_content;
 	private java.util.Date post_time;
 	private Boolean post_privacy;
@@ -89,6 +98,17 @@ public class PostBean {
 	public void setPost_musicname(String post_musicname) {
 		this.post_musicname = post_musicname;
 	}
-	
+	public String getMember_profileImage() {
+		return member_profileImage;
+	}
+	public void setMember_profileImage(String member_profileImage) {
+		this.member_profileImage = member_profileImage;
+	}
+	public String getMember_nickname() {
+		return member_nickname;
+	}
+	public void setMember_nickname(String member_nickname) {
+		this.member_nickname = member_nickname;
+	}
 
 }

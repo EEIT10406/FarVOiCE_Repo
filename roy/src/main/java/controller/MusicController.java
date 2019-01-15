@@ -199,11 +199,11 @@ public class MusicController {
 
 	// 找音樂用音樂id
 	@RequestMapping(value = "/musicPage/findMusicById")
-	public String findMusicByMusicId(String musicId, Model model) {
+	public String findMusicByMusicId(String musicId, Model model,HttpSession session) {
 		MusicBean musicBean = musicService.findAvailableMusic(Integer.valueOf(musicId));
 		if (musicBean != null) {
-			model.addAttribute("musicPageBean", musicBean);
-			model.addAttribute("nickname", musicService.usernameToNickname(musicBean.getMember_username()));
+			session.setAttribute("musicPageBean", musicBean);
+			session.setAttribute("nickname", musicService.usernameToNickname(musicBean.getMember_username()));
 
 			return "/musicPage/musicPage.jsp";
 		} else {

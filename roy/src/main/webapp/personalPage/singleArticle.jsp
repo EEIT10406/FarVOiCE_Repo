@@ -65,7 +65,7 @@
 			<div class="container">
 				<div class="row margin-vert-30">
 					<!-- Main Column -->
-					<div class="col-md-9">
+					<div class="col-md-12">
 						<div class="blog-post">
 							<div class="blog-item-header">
 <!-- 								<h2> -->
@@ -84,13 +84,6 @@
 									<i class="fa fa-calendar color-gray-light"></i> <a href="#">${currentPost.post_time}</a>
 								</div>
 								<!-- End Date -->
-								<!-- Tags -->
-<!-- 								<div -->
-<!-- 									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags"> -->
-<!-- 									<i class="fa fa-tag color-gray-light"></i> <a href="#">PHP</a>, -->
-<!-- 									<a href="#">Javascript</a>, <a href="#">CoffeeScript</a> -->
-<!-- 								</div> -->
-								<!-- End Tags -->
 								<!-- # of Comments -->
 								<div
 									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
@@ -191,31 +184,15 @@
 					list.forEach(function(obj, index) {
 						totalComment++;
 						console.log(obj)
-// 								<li class='list-group-item'>
-// 									<div class='row'>
-// 										<div class='col-md-2 profile-thumb'>
-// 											<a href='#'> <img class='media-object'
-// 												src='../img/profiles/99.jpg' alt=''>
-// 											</a>
-// 										</div>
-// 										<div class='col-md-10'>
-// 											<h4>真是篇好文章</h4>
-// 											<p>我完全了解你是隻黃金鼠</p>
-// 											<span class='date'> <i
-// 												class='fa fa-clock-o color-gray-light'></i>1 hours ago
-// 											</span>
-// 										</div>
-// 									</div>
-// 								</li>
 						var temp = "	<li class='list-group-item'>"
 												+"<div class='row'>"
 												+"<div class='col-md-2 profile-thumb'>"
 													+"<a href='#'> <img class='media-object'"
-													+	"src='../img/noProfile.gif' alt=''>"
+													+	"src='"+obj.member_profileImage+"' alt=''>"
 													+"</a>"
 												+"</div>"
 												+"<div class='col-md-10'>"
-													+"<h4>"+obj.member_username+"</h4>"
+													+"<h4>"+obj.member_nickname+"</h4>"
 													+"<p>"+obj.post_content+"</p>"
 													+"<span class='date'> <i"
 													+"	class='fa fa-clock-o color-gray-light'></i>"+obj.post_time

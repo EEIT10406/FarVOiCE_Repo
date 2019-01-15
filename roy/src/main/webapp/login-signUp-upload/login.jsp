@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>FarVoice | 登錄帳號</title>
+<title>FarVOiCE | 登錄帳號</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
