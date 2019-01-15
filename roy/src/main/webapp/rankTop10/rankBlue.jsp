@@ -376,7 +376,7 @@ function loadrankTopTen(type) {
 					<div id="displayShareMusic">
 						<img src="../img/300x300.jpg"
 							style="margin-left: 20px; width: 50px; height: 50px;" /><a
-							href=""></a> <span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span>
+							href=""><span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a> 
 					</div>
 					<div class="modal-footer">
 						<div style="float: left">
@@ -442,6 +442,20 @@ function loadrankTopTen(type) {
 	<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
 	<!-- 	</div> -->
 
-
+<script>
+//按分享時載入哪首音樂
+$('body').on('click','.btnShare',function() {
+	var row = $(this).parents('#row');
+	var music_name =row.find('#musicPage').text();
+	var music_id =row.find('td[name="music_id"]').text();
+	var music_image =row.find('td[name="music_image"] img').attr("src");
+	console.log(music_name+","+music_id+","+music_image);
+    $("#addshareMusicname").text(""+music_name+"");
+    $("#addshareMusicid").text(""+music_id+"");
+    
+    $("#displayShareMusic a").text(""+music_name+"");
+    $("#displayShareMusic img").attr("src",music_image);
+})	
+</script>
 </body>
 </html>

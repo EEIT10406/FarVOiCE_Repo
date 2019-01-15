@@ -419,7 +419,6 @@ function loadrankTopTen(type) {
 															data-dismiss="modal">取消</button>
 														<buttin id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
 													</div>
-												
 											</div>
 										</div>
 									</div>							
