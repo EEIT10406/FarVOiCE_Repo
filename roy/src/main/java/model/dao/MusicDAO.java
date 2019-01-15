@@ -28,12 +28,12 @@ public class MusicDAO {
 	//Spring MVC
 	@Autowired
 	private SessionFactory sessionFactory;
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	public MusicDAO(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+//	public void setSessionFactory(SessionFactory sessionFactory) {
+//		this.sessionFactory = sessionFactory;
+//	}
+//	public MusicDAO(SessionFactory sessionFactory) {
+//		this.sessionFactory = sessionFactory;
+//	}
 	public Session getSession() {
 	return this.sessionFactory.getCurrentSession();
 	}
@@ -55,7 +55,7 @@ public class MusicDAO {
 //		}
 //		
 //		findByPk
-//		MusicBean bean0 = musicDAO.findByPrimaryKey(1);
+//		MusicBean bean0 = musicDAO.findByPrimaryKey(6);
 //		System.out.println(bean0);		
 		
 		//findAll
@@ -84,6 +84,7 @@ public class MusicDAO {
 //		Date date = new Date();
 //		MusicBean bean3 = new MusicBean();
 //		bean3.setMusic_id(6);
+
 //		bean3.setMusic_name("666唱情歌");
 //		bean3.setMember_username("NewAnderson");
 //		bean3.setMusic_music(null);
@@ -166,7 +167,11 @@ public class MusicDAO {
 		originalBean.setMusic_unavailable(bean.getMusic_unavailable());
 		originalBean.setMusic_likeCount(bean.getMusic_likeCount());
 		originalBean.setMusic_playCount(bean.getMusic_playCount());
-		getSession().update(originalBean);
+		this.getSession().update(originalBean);
+	}
+	
+	public void editMusic(MusicBean bean) {
+		this.getSession().update(bean);
 	}
 	
 	public boolean remove(Integer music_id) {

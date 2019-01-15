@@ -12,7 +12,6 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"controller"})
@@ -44,9 +43,7 @@ public class WebAppConfig implements WebMvcConfigurer{
 	@Bean
 	public MultipartResolver multipartResolver() {
 		CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver();
-
 //		multipartResolver.setMaxUploadSize(5000000);
-	//	multipartResolver.setMaxUploadSize(5000000);
 		return multipartResolver;
 	}
 //	@Override

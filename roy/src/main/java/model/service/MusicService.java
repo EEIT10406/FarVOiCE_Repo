@@ -71,6 +71,13 @@ public class MusicService {
 			musicDao.update(bean);
 		}
 	}
+	
+	// 編輯音樂
+		public void editMusic(MusicBean bean) {
+			if (bean != null) {
+				musicDao.editMusic(bean);
+			}
+		}
 
 	// 找類型搜尋top10音樂
 	public List<MusicBean> rankTopTenByType(String type) {

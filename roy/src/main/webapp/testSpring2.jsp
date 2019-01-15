@@ -1,82 +1,139 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+ 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<%@ page import="org.springframework.web.context.WebApplicationContext"%>
-	<%@ page import="org.springframework.context.ApplicationContext"%>
-	<%@ page import="javax.sql.DataSource"%>
-	<%@ page import="java.sql.*"%>
-	<%
-		ApplicationContext context = (ApplicationContext) application
-				.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
-
-		// DataSource dataSource = (DataSource) context.getBean("dataSource");
-		// Connection conn = dataSource.getConnection();
-		// Statement stmt = conn.createStatement();
-		// ResultSet rset = stmt.executeQuery("select * from dept");
-		// while(rset.next()) {
-		// 	String col1 = rset.getString(1);
-		// 	String col2 = rset.getString(2);
-		// 	out.println("<h3>"+col1+", "+col2+"</h3>");
-		// }
-		// rset.close();
-		// stmt.close();
-		// conn.close();
-	%>
-
-	<%@ page import="org.hibernate.SessionFactory"%>
-	<%@ page import="java.util.List"%>
-	<%
-		// SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
-		// sessionFactory.getCurrentSession().beginTransaction();
-		// List<ProductBean> products = 
-		// 	sessionFactory.getCurrentSession().createQuery("from ProductBean", ProductBean.class).list();
-		// out.println("<h3>products="+products+"</h3>");
-		// sessionFactory.getCurrentSession().getTransaction().commit();
-	%>
-	<%@ page import="model.service.ReportService"%>
-	<%@ page import="model.bean.ReportBean"%>
-	<%@ page import="model.service.StoryService"%>
-	<%@ page import="model.bean.StoryBean"%>
-	<form:form modelAttribute="reportBean" action="report.update">
-		<Table>
-			<TR>
-				<TD align="RIGHT">report_id：</TD>
-				<TD align="LEFT"><form:input path="report_id" size="30" /> <font
-					color='red' size='-3'></font></TD>
-			</TR>
-			<TR>
-				<TD align="RIGHT">member_usernameReportS：</TD>
-				<TD align="LEFT"><form:input path="member_usernameReportS"
-						size="30" /> <font color='red' size='-3'></font></TD>
-			</TR>
-
-			<TR>
-				<TD align="RIGHT">member_usernameReportM：</TD>
-				<TD align="LEFT"><form:input path="member_usernameReportM" />
-					<font color='red' size='-3'></font></TD>
-			</TR>
-			<TR>
-				<TD align="RIGHT">music_idReportM：</TD>
-				<TD align="LEFT"><form:input path="music_idReportM" /> <font
-					color='red' size='-3'></font></TD>
-			</TR>
-			<TR>
-				<TD align="RIGHT">report_time：</TD>
-				<TD align="LEFT"><form:input path="report_time" type="date" /> <font
-					color='red' size='-3'></font></TD>
-			</TR>
-			<TR>
-				<TD colspan="2" align="center"><input type='submit'></TD>
-			</TR>
-		</Table>
-	</form:form>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'socket.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+ 
+  <style type="text/css">  
+        input#chat {  
+            width: 410px  
+        }  
+  
+        #console-container {  
+            width: 400px;  
+        }  
+  
+        #console {  
+            border: 1px solid #CCCCCC;  
+            border-right-color: #999999;  
+            border-bottom-color: #999999;  
+            height: 170px;  
+            overflow-y: scroll;  
+            padding: 5px;  
+            width: 100%;  
+        }  
+  
+        #console p {  
+            padding: 0;  
+            margin: 0;  
+        }  
+    </style>  
+    <script type="application/javascript"> 
+        "use strict";  
+  
+        var Chat = {};  
+  
+        Chat.socket = null;  
+  
+        Chat.connect = (function(host) {  
+            if ('WebSocket' in window) {  
+                Chat.socket = new WebSocket(host);  
+            } else if ('MozWebSocket' in window) {  
+                Chat.socket = new MozWebSocket(host);  
+            } else {  
+                Console.log('Error: 浏览器不支持WebSocket');  
+                return;  
+            }  
+  
+            Chat.socket.onopen = function () {  
+                Console.log('Info: WebSocket链接已打开');  
+                document.getElementById('chat').onkeydown = function(event) {  
+                    if (event.keyCode == 13) {  
+                        Chat.sendMessage();  
+                    }  
+                };  
+            };  
+  
+            Chat.socket.onclose = function () {  
+                document.getElementById('chat').onkeydown = null;  
+                Console.log('Info: webcocket关闭.');  
+            };  
+  
+            Chat.socket.onmessage = function (message) {  
+                Console.log(message.data);  
+            };  
+        });  
+  
+        Chat.initialize = function() {  
+            if (window.location.protocol == 'http:') {  
+                Chat.connect('ws://' + window.location.host + '/roy/chat');  
+            } else {  
+                Chat.connect('wss://' + window.location.host + '/roy/chat');  
+            }  
+        };  
+  
+        Chat.sendMessage = (function() {  
+            var message = document.getElementById('chat').value;  
+            if (message != '') {  
+                Chat.socket.send(message);  
+                document.getElementById('chat').value = '';  
+            }  
+        });  
+  
+        var Console = {};  
+  
+        Console.log = (function(message) {  
+            var console = document.getElementById('console');  
+            var p = document.createElement('p');  
+            p.style.wordWrap = 'break-word';  
+            p.innerHTML = message;  
+            console.appendChild(p);  
+            while (console.childNodes.length > 25) {  
+                console.removeChild(console.firstChild);  
+            }  
+            console.scrollTop = console.scrollHeight;  
+        });  
+  
+        Chat.initialize();  
+  
+        document.addEventListener("DOMContentLoaded", function() {  
+            // Remove elements with "noscript" class - <noscript> is not allowed in XHTML  
+            var noscripts = document.getElementsByClassName("noscript");  
+            for (var i = 0; i < noscripts.length; i++) {  
+                noscripts[i].parentNode.removeChild(noscripts[i]);  
+            }  
+        }, false);  
+  
+    </script>  
+</head>  
+<body>  
+<div class="noscript"><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websockets rely on Javascript being enabled. Please enable  
+    Javascript and reload this page!</h2></div>  
+<div>  
+    <p>  
+        <input type="text" placeholder="输入文字，回车发送" id="chat" /><br>
+        注意：输入  消息to用户名   发送给指定用户   比如：  你好to用户1<br>    
+                   输入   消息     直接发送给全体用户    
+    </p>  
+    <div id="console-container">  
+        <div id="console"/>  
+    </div>  
+</div>  
 </body>
 </html>

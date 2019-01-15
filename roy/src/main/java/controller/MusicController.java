@@ -185,18 +185,6 @@ public class MusicController {
 		return "";
 	}
 
-	// 刪音樂
-	@RequestMapping(value = "/list/deleteMusic", produces = "text/plain;charset=UTF-8")
-	@ResponseBody
-	public String deleteMusic(Integer music_id) {
-		boolean result = musicService.deleteMusic(music_id);
-		if (result) {
-			return "刪除成功";
-		} else {
-			return "刪除失敗";
-		}
-	}
-
 	// 找音樂用音樂id
 	@RequestMapping(value = "/musicPage/findMusicById")
 	public String findMusicByMusicId(String musicId, Model model,HttpSession session) {
@@ -210,6 +198,62 @@ public class MusicController {
 			return "";
 		}
 	}
+	
+	
+	// 編輯音樂用音樂id
+		@RequestMapping(value = "/musicPage/editMusic")
+		public String editMusic(String music_id, Model model) {
+			MusicBean musicBean = musicService.findAvailableMusic(Integer.valueOf(music_id));
+			if (musicBean != null) {
+				model.addAttribute("musicBean", musicBean);
+				return "/musicPage/editMusic.jsp";
+			} else {
+				return "";
+			}
+		}
+		
+		
+		// 編輯音樂或刪除音樂
+		@RequestMapping(value = "/musicPage/editOrDeleteMusic")
+		public String editOrDeleteMusic(Model model,@RequestParam("imageFile") MultipartFile imageFile,String editMusic,
+				String musicId,String musicCaption,String musicLyric) {
+			System.out.println("..........................................................................");
+			System.out.println(musicId);
+			String imagePath="";
+			if(editMusic.equals("儲存")) {
+				System.out.println("近來xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+					System.out.println("近來---------------------------------------------------------------------------");
+					MusicBean music=musicService.findMusic(Integer.valueOf(musicId));
+					music.setMusic_caption(musicCaption);
+					music.setMusic_lyric(musicLyric);
+					if (!imageFile.isEmpty()) {
+						try {
+							byte[] imageByte = imageFile.getBytes();
+							imagePath = musicService.imageFilePath(imageByte);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						music.setMusic_Image(imagePath);
+					}
+					musicService.editMusic(music);
+					System.out.println(music);
+					model.addAttribute("result","更新成功");
+					return "/personalPage/personalPage.jsp";
+			}else if(editMusic.equals("刪除音樂")) {
+				boolean delete=musicService.deleteMusic(Integer.valueOf(musicId));
+				if(delete==true) {
+					model.addAttribute("result","刪除成功");
+					return "/personalPage/personalPage.jsp";
+				}else {
+					model.addAttribute("result","刪除失敗");
+					return "/personalPage/personalPage.jsp";
+				}
+			}
+			return "";
+		}
+		
+
 
 	// 依類型搜尋音樂
 	@RequestMapping(value = "/rankTop10/findMusicByType", produces = "application/json;charset=utf-8")
