@@ -101,13 +101,13 @@
 						<!-- Pagination -->
 						<div >
 						<ul class="pagination" >
-							<li class=""><a>&laquo;</a></li>
-							<li class=""><a>1</a></li>
+							<li class="" onclick="prepage()"><a>&laquo;</a></li>
+							<li class="" value="1"><a>1</a></li>
 							<li class="active" ><a>2</a></li>
 							<li class=""><a>3</a></li>
-							<li class="disabled"><a>4</a></li>
+							<li class=""><a>4</a></li>
 							<li class=""><a>5</a></li>
-							<li class=""><a>&raquo;</a></li>
+							<li class="" onclick="nextpage()"><a>&raquo;</a></li>
 						</ul>
 						</div>
 						<!-- End Pagination -->
@@ -237,14 +237,34 @@ function loadArticle (searchString) {
 //按分享時載入哪首音樂	
 $(".pagination li").click(function(){
 	var Father = $(this).parents('.pagination');
-	var Fathers =$(".pagination>li").length
+	var Fathers =$(".pagination>li").length;
 	
-	for(var i=0;i<=Fathers;i++){
+	for(var i=1;i<=Fathers-1;i++){
 		$(".pagination li").attr("class","");
 	}
 	$(this).attr("class","active");	
 	
 })
+function prepage(){
+	var nowPage = $(".pagination li.active").text();
+	var newPage = parseInt(nowPage);
+	var Fathers =$(".pagination>li").length;
+	for(var i=1;i<=Fathers-1;i++){
+		$(".pagination li").attr("class","");
+	}
+	$(".pagination li").eq(newPage).text();
+	alert($(".pagination li").eq(newPage).text());
+	
+}
+
+function nextpage(){
+	var nowPage = $(".pagination li.active").text();
+	var newPage = nowPage+1;
+	for(var i=1;i<=Fathers-1;i++){
+		$(".pagination li").attr("class","");
+	}
+}
+
 </script>
 
 
