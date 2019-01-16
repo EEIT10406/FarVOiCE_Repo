@@ -77,6 +77,19 @@ function fileViewer() {
 	}
 }
 </script>
+<script>
+  //刪除音樂
+function remove(musicId)
+{
+	if(confirm("確定要刪除嗎?"))
+		{
+			window.location.href='/roy/musicPage/deleteMusic?musicId='+musicId;
+			}
+	else
+		{	alert("已經取消");}
+}
+
+</script>
 </head>
 <body>
 	<div id="body_bg">
@@ -123,10 +136,10 @@ function fileViewer() {
 			     <input type="submit" name="editMusic" class="btn btn-primary pull-right" value="儲存">
 			</div>
 			
-			<div style="float:left;margin-left:18px;margin-top:10px;">
-			     <input type="submit" name="editMusic" class="btn btn-primary pull-right" value="刪除音樂"> 
-			</div>
            </form>    
+           <div style="float:left;margin-left:18px;margin-top:10px;">
+			     <button type="button" name="editMusic" class="btn btn-primary pull-right" onclick="remove('${musicBean.music_id}')">刪除音樂</button>
+			</div>
 			<!-- 每頁不同的內容到這裡結束 -->
 		</div>
 		</div>

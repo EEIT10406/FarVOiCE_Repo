@@ -138,7 +138,7 @@
 						
 	                	<form class="login-page" action="<c:url value="/login-signUp-upload/uploadMusic" />" enctype="multipart/form-data" method="post" >
 								<div class="input-group margin-bottom-20">
-									音樂 (mp3格式): <input type="file" id="musicFile" accept=".mp3" name="musicFile">
+									音樂 (mp3格式): <input type="file" id="musicFile" accept=".mp3" name="musicFile" required>
 								</div>
 								<div class="input-group margin-bottom-20">
 									<label for="musicNam">歌曲名稱:</label> <input id="musicName"

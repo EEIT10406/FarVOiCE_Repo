@@ -56,10 +56,11 @@ td {
 <body>
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
-		<div id="content" style="margin-left: 230px; margin-top: 50px;">
+		<div id="content">
+		<div class="container">
 			<!-- 每頁不同的內容從這裡開始 -->
 			<table id="playListTable" class="table table-bordered"
-				style="width: 800px;">
+				style="width: 800px;margin:auto;margin-top: 50px;">
 				<thead>
 					<tr>
 						<th>圖片</th>
@@ -83,9 +84,8 @@ td {
 				<tfoot>
 
 					<tr>
-						<form action="<c:url value="/list/createPlayList" />"
-							enctype="multipart/form-data" method="post">
-							<input type="hidden" id="playListId"><span></span>
+						<form action="<c:url value="/list/createPlayList" />" enctype="multipart/form-data" method="post">
+							<input type="hidden" id="playListId">
 							<td><input type="file" id="imageFile" accept="image/*"
 								name="imageFile"></td>
 							<td><input type="text" style="width: 100px"
@@ -147,6 +147,7 @@ td {
 			<!-- 編輯歌單 end-->
 
 			<!-- 每頁不同的內容到這裡結束 -->
+		</div>
 		</div>
 	</div>
 

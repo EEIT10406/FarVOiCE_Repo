@@ -213,7 +213,7 @@ public class MusicController {
 		}
 		
 		
-		// 編輯音樂或刪除音樂
+		// 編輯音樂
 		@RequestMapping(value = "/musicPage/editOrDeleteMusic")
 		public String editOrDeleteMusic(Model model,@RequestParam("imageFile") MultipartFile imageFile,String editMusic,
 				String musicId,String musicCaption,String musicLyric) {
@@ -240,20 +240,24 @@ public class MusicController {
 					System.out.println(music);
 					model.addAttribute("result","更新成功");
 					return "/personalPage/personalPage.jsp";
-			}else if(editMusic.equals("刪除音樂")) {
-				boolean delete=musicService.deleteMusic(Integer.valueOf(musicId));
-				if(delete==true) {
-					model.addAttribute("result","刪除成功");
-					return "/personalPage/personalPage.jsp";
-				}else {
-					model.addAttribute("result","刪除失敗");
-					return "/personalPage/personalPage.jsp";
-				}
 			}
+
 			return "";
 		}
+			
+		// 刪音樂
+		@RequestMapping(value = "/musicPage/deleteMusic")
+		public String deleteMusic(String musicId,Model model) {
+			boolean result = musicService.deleteMusic(Integer.valueOf(musicId));
+			if (result) {
+				model.addAttribute("result", "刪除成功");
+				return "/personalPage/personalPage.jsp";
+			} else {
+				model.addAttribute("result", "刪除失敗");
+				return "/personalPage/personalPage.jsp";
+			}
+		}
 		
-
 
 	// 依類型搜尋音樂
 	@RequestMapping(value = "/rankTop10/findMusicByType", produces = "application/json;charset=utf-8")
