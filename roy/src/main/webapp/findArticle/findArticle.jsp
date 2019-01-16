@@ -113,15 +113,17 @@
 							
 						</div>
 						<!-- Pagination -->
-						<ul class="pagination">
-							<li><a href="#">&laquo;</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
+						<div >
+						<ul class="pagination" >
+<!-- 							<li><a href="#">&laquo;</a></li> -->
+							<li><a href="#">1</a></li>
+							<li class="active"><a href="#">2</a></li>
 							<li><a href="#">3</a></li>
 							<li class="disabled"><a href="#">4</a></li>
 							<li><a href="#">5</a></li>
-							<li><a href="#">&raquo;</a></li>
+<!-- 							<li><a href="#">&raquo;</a></li> -->
 						</ul>
+						</div>
 						<!-- End Pagination -->
 					</div>
 					<br> <br>
@@ -232,8 +234,21 @@ function loadArticle (searchString) {
 	           alert(thrownError);
 	      }
 	   });	 
-}
+}	
 </script>
+
+<script>
+//按分享時載入哪首音樂
+$('body').on('click','.pagination',function() {
+	var row = $(this).text();
+	
+	
+})	
+</script>
+
+
+
+
 </body>
 </html>
 <!-- === END FOOTER === -->
