@@ -89,12 +89,13 @@
 			element : document.getElementById('player1'),
 			narrow : false,
 			autoplay : true,
-			audio : [ {
-				title : 'addtest',
-				author : 'addtest',
-				url : '/roy/music/addtest.mp3',
-				pic : '/roy/image/music/addtest.gif'
-			}
+			audio : [ 
+// 				{
+// 				title : 'addtest',
+// 				author : 'addtest',
+// 				url : '/roy/music/addtest.mp3',
+// 				pic : '/roy/image/music/addtest.gif'
+// 			}
 // 			, {
 // 				title : 'addtest',
 // 				author : 'addtest',

@@ -22,6 +22,7 @@ import model.bean.ReportBean;
 import model.bean.primarykey.ListMusicId;
 import model.service.ListMusicService;
 import model.service.MemberLikeMusicService;
+import model.service.MemberService;
 import model.service.MusicService;
 import model.service.PlayListService;
 import model.service.ReportService;
@@ -39,6 +40,8 @@ public class ReportController {
 	ListMusicService listMusicService;
 	@Autowired
 	PlayListService playListService;
+	@Autowired
+	MemberService memberService;
 
 	//查檢舉
 	@RequestMapping(value = "**/report.get")
@@ -99,6 +102,8 @@ public class ReportController {
 			 m1.put("Music_Image",bean.getMusic_Image());
 			 m1.put("Music_id",""+bean.getMusic_id());
 			 m1.put("Music_likeCount",""+bean.getMusic_likeCount());
+			 m1.put("Member_nickname",""+
+					 memberService.getMemberBeanForSomebodyPersonalPage(bean.getMember_username()).getMember_nickname());
 			 l1.add(m1);
 		 }
 		return JSONValue.toJSONString(l1);
