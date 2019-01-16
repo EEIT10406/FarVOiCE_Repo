@@ -5,7 +5,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -212,7 +212,7 @@ function loadrankTopTen(type) {
 				content+='<tr id="row">'+
 					     '<td>'+rank+'</td>'+
 					     '<td name="music_id">'+list.music_id+'</td>'+
-					     '<td>'+
+					     '<td name="music_image">'+
 					        '<img src="'+list.music_Image+'" class="music" />'+
 					        '<span id="musicPage" class="musicName">'+list.music_name+'</span>'+
 					        '<div>';
@@ -374,7 +374,7 @@ function loadrankTopTen(type) {
 					<div id="displayShareMusic">
 						<img src="../img/300x300.jpg"
 							style="margin-left: 20px; width: 50px; height: 50px;" /><a
-							href=""></a> <span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span>
+							href=""> <span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
 					</div>
 					<div class="modal-footer">
 						<div style="float: left">
@@ -440,6 +440,21 @@ function loadrankTopTen(type) {
 	<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
 	<!-- 	</div> -->
 
-
+<script>
+//按分享時載入哪首音樂
+$('body').on('click','.btnShare',function() {
+	var row = $(this).parents('#row');
+	var music_name =row.find('#musicPage').text();
+	var music_id =row.find('td[name="music_id"]').text();
+	var music_image =row.find('td[name="music_image"] img').attr("src");
+	var music_href= "/roy/musicPage/findMusicById?musicId="+music_id;
+	console.log(music_name+","+music_id+","+music_image);
+    $("#addshareMusicname").text(""+music_name+"");
+    $("#addshareMusicid").text(""+music_id+"");
+    $("#displayShareMusic a").attr("href",music_href);
+    $("#displayShareMusic a").text(""+music_name+"");
+    $("#displayShareMusic img").attr("src",music_image);
+})	
+</script>
 </body>
 </html>

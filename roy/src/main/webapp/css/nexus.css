@@ -31,6 +31,7 @@ TABLE OF CONTENTS
 /*-----------------------------------------------------------------------------------*/
 /* Basic */
 /*-----------------------------------------------------------------------------------*/
+
 html {
   overflow-y: scroll;
 }
@@ -2525,7 +2526,7 @@ ul.social-icons li a:hover {
   border-radius: 5px;
 }
 .blog-item-footer .blog-recent-comments .list-group-item {
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 .blog-item-footer hr {
   width: 100%;

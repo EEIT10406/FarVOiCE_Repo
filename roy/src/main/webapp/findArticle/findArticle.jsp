@@ -59,6 +59,8 @@
 	charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<script src="1.js?ver=1"></script>
+
 <!-- End JS -->
 
 </head>
@@ -94,32 +96,20 @@
 								<div class="clearfix"></div>
 								<!-- End Title -->
 							</div>
-							
-							<div id="articlePutHere">
-							
-							
-							
-							
-							
-							
-							
-							
-							</div>
-						
-							
-							
-							
+							<div id="articlePutHere"></div>
 						</div>
 						<!-- Pagination -->
-						<ul class="pagination">
-							<li><a href="#">&laquo;</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li class="disabled"><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">&raquo;</a></li>
+						<div >
+						<ul class="pagination" >
+							<li class=""><a>&laquo;</a></li>
+							<li class=""><a>1</a></li>
+							<li class="active" ><a>2</a></li>
+							<li class=""><a>3</a></li>
+							<li class="disabled"><a>4</a></li>
+							<li class=""><a>5</a></li>
+							<li class=""><a>&raquo;</a></li>
 						</ul>
+						</div>
 						<!-- End Pagination -->
 					</div>
 					<br> <br>
@@ -132,10 +122,10 @@
 
 								<!-- 搜尋文章 -->
 								<div id="search-div">
-								<form class="form-inline">
-									<input class="form-control mr-sm-2" type="search"
+								<form class="form-inline"  action="">
+									<input class="form-control mr-sm-2" type="search" id="search_new"
 										placeholder="搜尋" aria-label="Search">
-									<button class="btn btn-outline-success" type="submit">搜尋</button>
+									<button class="btn btn-outline-success" type="button">搜尋</button>
 								</form>
 								</div>
 							</ul>
@@ -167,81 +157,99 @@
 <!-- 	</div> -->
 
 <script>
-// $('#search-div button').click(function(){
-// 	var searchString = $('#search-div input').val();
-// 	alert(searchString);
-// 	loadArticle("",searchString,"","");
-// 	    })
-
+$(document).ready(function() {		
+	loadArticle();
+	$("#search_new").keypress(function (event) {
+		
+		if (event.keyCode == 13) {
+			$("form").submit(function () {
+				return false;
+			});
+			var searchString = $("#search_new").val();
+			loadArticle(searchString);
+		}
+	});
+})
+$('#search-div button').click(function(){
+	var searchString = $('#search-div input').val();
+	loadArticle(searchString);
+})
 //顯示畫面
- $(function loadArticle () {
-	 $.ajax({
-         url: "/roy/findArticle/findArticle.controller",   //存取Json的網址             
-         type: "POST",
-         cache:false,
-         dataType:'json',
-         data:{user:$('#userName').text()},
-         //contentType: "application/json",              
-			success : function(list)
-			 { 
-				list.forEach(function(obj, index) {
-					
-					var author = obj.member_username;
-					var time =obj.post_time;
-					var content =obj.post_content
-					var postnumber = obj.post_idS;
-					
-					//顯示內容
-					var Blog_Item_Details = 
-					"<div class='blog-post-details'>"+
-					"<div class='blog-post-details-item blog-post-details-item-left'>"+
-						"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+author+"</a>"+
-					"</div>"+
-					"<div class='blog-post-details-item blog-post-details-item-left'>"+
-						"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+time+"</a>"+
-					"</div>"+
-					"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
-						"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
-							
-					var Blog_Content = "<div class='blog'>"+
-										 "<div class='clearfix'></div>"+
-											"<div class='blog-post-body row margin-top-15'>"+
-											   "<div class='col-md-7'>"+"<p>"+content+"</p>"+
-												"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
-								"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
-							"</a></div></div></div></div><br><br><br><br>";
-					
-
-					content = ""
-					$("#articlePutHere").append(Blog_Item_Details+Blog_Content);
-					
-					
-					//顯示最近文章
-					var newArticleContent = "<li>"+
-						"<div class='recent-post'>"+
-						"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'>"+"<img class='pull-left' src='imgs/mouse.PNG'"+
-						"style='width: 100px; height: 90px' alt='thumb1'>"+
-						"</a> <a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
-						"class='posts-list-title'>"+author+"</a> <br> <span class='recent-post-date'>"+time+"</span>"+
-						"</div><div class='clearfix'></div></li><br><br>";
-						$("#newArticle").append(newArticleContent);
-					
-				})
-
-			  },
-			  
-         error: function (xhr, ajaxOptions, thrownError) {
-             alert(xhr.status);
-             alert(thrownError);
-         }
-     });	 
-
- });
-
-
-
-
+function loadArticle (searchString) {
+	$("#articlePutHere").html("");
+	$("#newArticle").html("");
+	var searchString = searchString ;
+	$.ajax({
+		url: "/roy/findArticle/findArticle.controller",       
+		type: "POST",
+		cache:false,
+		dataType:'json',
+		data:{'searchString':searchString},            
+		success : function(list)
+		{	list.forEach(function(obj, index) {
+				var author = obj.member_nickname;
+				var time = obj.post_time;
+				var content = obj.post_content;
+				var postnumber = obj.post_idS;
+				var profile = obj.member_profileImage;
+				//顯示內容
+				var Blog_Item_Details = 
+				"<div class='blog-post-details'>"+
+				"<div class='blog-post-details-item blog-post-details-item-left'>"+
+					"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+author+"</a>"+
+				"</div>"+
+				"<div class='blog-post-details-item blog-post-details-item-left'>"+
+					"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+time+"</a>"+
+				"</div>"+
+				"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
+					"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
+						
+				var Blog_Content = "<div class='blog'>"+
+									 "<div class='clearfix'></div>"+
+										"<div class='blog-post-body row margin-top-15'>"+
+										   "<div class='col-md-7'>"+"<p>"+content+"</p>"+
+											"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
+							"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
+						"</a></div></div></div></div><br><br><br><br>";
+				content = "" ;
+				$("#articlePutHere").append(Blog_Item_Details+Blog_Content);
+				//顯示最近文章
+				var newArticleContent = "<li>"+
+					"<div class='recent-post'>"+
+					"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'>"+"<img class='pull-left' src='"+profile+"'"+
+					"style='width: 100px; height: 90px' alt='thumb1'>"+
+					"</a> <a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
+					"class='posts-list-title'>"+author+"</a> <br> <span class='recent-post-date'>"+time+"</span>"+
+					"</div><div class='clearfix'></div></li><br><br>";
+				
+				$("#newArticle").append(newArticleContent);
+			})
+		  },
+	      error: function (xhr, ajaxOptions, thrownError) {
+	           alert(xhr.status);
+	           alert(thrownError);
+	      }
+	   });	 
+}	
 </script>
+
+<script>
+//按分享時載入哪首音樂	
+$(".pagination li").click(function(){
+	var Father = $(this).parents('.pagination');
+	var Fathers =$(".pagination>li").length
+	
+	for(var i=0;i<=Fathers;i++){
+		$(".pagination li").attr("class","");
+	}
+	$(this).attr("class","active");	
+	
+})
+</script>
+
+
+
+
 </body>
 </html>
 <!-- === END FOOTER === -->

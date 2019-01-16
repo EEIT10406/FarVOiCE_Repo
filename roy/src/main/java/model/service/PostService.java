@@ -21,7 +21,7 @@ public class PostService {
 		super();
 		this.postDAO = postDAO;
 	}
-	
+
 //	public static void main(String[] args) {
 //		try {
 //			HibernateUtil.getSessionfactory().getCurrentSession().beginTransaction();
@@ -96,8 +96,8 @@ public class PostService {
 		return postDAO.showAllArticleInFindArticle(article);
 	}
 	
-//	public List<PostBean> showSearchArticleInFindArticle(String searchString){
-//		return postDAO.showAllArticleInFindArticle(article);
-//	}
+	public List<PostBean> showSearchArticleInFindArticle(String searchString){
+		return postDAO.showSearchArticleInFindArticle(searchString);
+	}
 	
 }

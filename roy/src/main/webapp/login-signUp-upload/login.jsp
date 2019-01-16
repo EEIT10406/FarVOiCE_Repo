@@ -5,7 +5,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>FarVoice | 登錄帳號</title>
+<title>FarVOiCE | 登錄帳號</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -132,7 +132,7 @@ function FBLogin() {
             //抓userID
             let third_Id = response["authResponse"]["userID"];
             console.log("userID:" + third_Id);
-           window.location.href = "/roy/login-signUp-upload/MemberLogin.controller?third_Id="+third_Id;
+            window.location.href = "/roy/login-signUp-upload/MemberLogin.controller?third_Id="+third_Id;
            
         } else {
             // user FB取消授權

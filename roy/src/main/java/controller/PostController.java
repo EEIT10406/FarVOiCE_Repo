@@ -22,7 +22,7 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	@RequestMapping(path="/personalPage/Post.controller")
-	public String post(Model model,PostBean newPostBean,HttpSession session) {
+	public String post(Model model,PostBean newPostBean,HttpSession session,String post_privacy) {
 		//發文
 		if(newPostBean!=null) {
 			//塞資料進bean
@@ -30,8 +30,14 @@ public class PostController {
 			newPostBean.setPost_time(now);
 			MemberBean memberWhoPost = (MemberBean)session.getAttribute("user");
 			newPostBean.setMember_username(memberWhoPost.getMember_username());
-			newPostBean.setPost_privacy(false);
+			if("true".equals(post_privacy)) {
+				newPostBean.setPost_privacy(true);
+			}else {
+				newPostBean.setPost_privacy(false);
+			}
 			newPostBean.setPost_postorshare(true);
+			newPostBean.setMember_profileImage(memberWhoPost.getMember_profileImage());
+			newPostBean.setMember_nickname(memberWhoPost.getMember_nickname());
 			//呼叫service的po文功能
 			PostBean newArticle = postService.postNewArticle(newPostBean);
 			return "redirect:/personalPage/personalPage.jsp";
@@ -41,9 +47,9 @@ public class PostController {
 	
 	@RequestMapping(path="/personalPage/showArticleFromMember.controller",produces="text/html;charset=UTF-8")
 	@ResponseBody
-	public String showAllArticleFromMember(Model model,HttpSession session,String user) {
+	public String showAllArticleFromMember(Model model,HttpSession session,String username) {
 		//show這個人的文章
-		List<PostBean> posts = postService.showAllArticleFromMember(user);
+		List<PostBean> posts = postService.showAllArticleFromMember(username);
 		//用gson包成json送回前端
 		Gson gson = new Gson();
 		String jsonList = gson.toJson(posts);
@@ -62,12 +68,15 @@ public class PostController {
 	public String postComment(Integer post_idSReff,Model model,String member_username,String post_content,HttpSession session) {
 		//新增留言
 		PostBean currentPostBean = postService.findSinglePost(post_idSReff);
+		MemberBean userBean = (MemberBean)session.getAttribute("user");
 		session.setAttribute("currentPost",currentPostBean);
 		PostBean bean = new PostBean();
 		bean.setPost_idM(post_idSReff);
 		bean.setMember_username(member_username);
 		bean.setPost_content(post_content);
 		bean.setPost_time(new Date());
+		bean.setMember_nickname(userBean.getMember_nickname());
+		bean.setMember_profileImage(userBean.getMember_profileImage());
 		postService.postNewComment(bean);
 		return "redirect:/personalPage/singleArticle.jsp";
 	}

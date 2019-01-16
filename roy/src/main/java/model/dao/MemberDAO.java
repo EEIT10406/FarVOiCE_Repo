@@ -1,8 +1,14 @@
 package model.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
+
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,11 +16,8 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import model.bean.MemberBean;
-import model.bean.MusicBean;
-import model.bean.PostBean;
 import model.hibernate.HibernateUtil;
 @Repository
 public class MemberDAO {
@@ -57,15 +60,7 @@ public class MemberDAO {
 //		bean2.setMember_password("456");
 //		bean2.setMember_email("hooooo@gmail.com");
 //		bean2.setMember_nickname("要要");
-//		File fileIn = new File("C:/Users/User/Desktop/FarVoice/Cutekirby.jpg");
-//		int length = (int)fileIn.length();
-//		byte[] fileInByteArray = new byte[length];
-//		Blob blob = null;;
-//		FileInputStream fis = new FileInputStream(fileIn);
-//		fis.read(fileInByteArray);
-//		blob = new SerialBlob(fileInByteArray);
-//		fis.close();
-//		bean2.setMember_profileImage(blob);
+//	
 //		bean2.setMember_registerTime(new Date());
 //		bean2.setMember_ban(true);
 //		MemberBean beanResult = memberDAO.create(bean2);
@@ -73,13 +68,13 @@ public class MemberDAO {
 		
 		//update
 //		MemberBean bean3 = new MemberBean();
-//		bean3.setMember_username("roy");
+//		bean3.setMember_username("PurpleDrag");
 //		bean3.setMember_password("456update");
 //		bean3.setMember_nickname("資海喔咿咿");
 //		memberDAO.update(bean3);
 		
 		//remove
-//		boolean  remove = memberDAO.remove("Roy");
+//		boolean  remove = memberDAO.remove("PurpleDrag");
 //		System.out.println(remove);
 		
 		
@@ -105,17 +100,17 @@ public class MemberDAO {
 	}
 	
 	public MemberBean findByPrimaryKey(String member_username) {
-		//1228	OK
+		//0114	OK
 		return this.getSession().get(MemberBean.class, member_username);
 	}
 	public List<MemberBean> findAll() {
-		//1228  OK
+		//0114  OK
 		return this.getSession().createQuery("from MemberBean", MemberBean.class)
 				.setMaxResults(50)
 				.list();
 	}
 	public MemberBean create(MemberBean bean) {
-		//1228 OK
+		//0114  OK
 		if(bean!=null) {
 			MemberBean result = this.getSession().get(MemberBean.class, bean.getMember_username());
 			if(result==null) {
@@ -127,13 +122,13 @@ public class MemberDAO {
 	}
 	
 	public void update(MemberBean bean) {
-		//1228 OK
+		//0114  OK
 		getSession().clear();
 		getSession().update(bean);
 	}
 	
 	public boolean remove(String member_username) {
-		//1228 OK
+		//0114  OK
 		MemberBean result = this.getSession().get(MemberBean.class, member_username);
 		if(result!=null) {
 			this.getSession().delete(result);
@@ -165,7 +160,6 @@ public class MemberDAO {
 			return true;
 		}
 	}
-	
 	
 	
 	

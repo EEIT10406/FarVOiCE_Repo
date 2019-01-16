@@ -12,6 +12,7 @@ import model.bean.FollowBean;
 import model.bean.MemberBean;
 import model.bean.primarykey.FollowId;
 import model.dao.FollowDAO;
+import model.dao.MemberDAO;
 import model.hibernate.HibernateUtil;
 
 @Service
@@ -19,7 +20,8 @@ import model.hibernate.HibernateUtil;
 public class FollowService {
 	@Autowired
 	private FollowDAO followDAO;
-
+	@Autowired
+	private MemberDAO memberDAO;
 	public FollowService(FollowDAO followDAO) {
 		super();
 		this.followDAO = followDAO;
@@ -54,6 +56,10 @@ public class FollowService {
 			FollowBean newFollowBean = new FollowBean();
 			newFollowBean.setId(followId);
 			newFollowBean.setFollow_time(new Date());
+			newFollowBean.setMember_nicknameS(memberDAO.findByPrimaryKey(followId.getMember_usernameS()).getMember_nickname());
+			newFollowBean.setMember_profileImageS(memberDAO.findByPrimaryKey(followId.getMember_usernameS()).getMember_profileImage());
+			newFollowBean.setMember_nicknameM(memberDAO.findByPrimaryKey(followId.getMember_usernameM()).getMember_nickname());
+			newFollowBean.setMember_profileImageM(memberDAO.findByPrimaryKey(followId.getMember_usernameM()).getMember_profileImage());
 			followDAO.create(newFollowBean);
 		} else {
 			// 追蹤就退追蹤

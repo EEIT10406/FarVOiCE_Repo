@@ -118,7 +118,7 @@ table {
 	        $("#addshareMusicname").text(""+music_name+"");
 	        $("#addshareMusicid").text(""+music_id+"");
 	       
-			})	
+		})	
 	})
 
 	function changeCheckBoxs() {
