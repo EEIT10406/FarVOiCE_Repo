@@ -450,10 +450,11 @@ $('body').on('click','.btnShare',function() {
 	var music_name =row.find('#musicPage').text();
 	var music_id =row.find('td[name="music_id"]').text();
 	var music_image =row.find('td[name="music_image"] img').attr("src");
+	var music_href= "/roy/musicPage/findMusicById?musicId="+music_id;
 	console.log(music_name+","+music_id+","+music_image);
     $("#addshareMusicname").text(""+music_name+"");
     $("#addshareMusicid").text(""+music_id+"");
-    
+    $("#displayShareMusic a").attr("href",music_href);
     $("#displayShareMusic a").text(""+music_name+"");
     $("#displayShareMusic img").attr("src",music_image);
 })	

@@ -291,37 +291,7 @@ function loadrankTopTen(type) {
 													</tr>
 												</thead>
 												<tbody>
-<!-- 													<tr> -->
-<!-- 														<td>1</td> -->
-<!-- 														<td name="music_id"></td> -->
-<!-- 														<td> -->
-														
-<!-- 														<span id="musicPage" style="cursor: pointer;"> -->
-<!-- 					                                        <img src="../img/left.JPG" class="music" /> -->
-<!-- 					                                    </span> -->
-<!-- 														<span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span> -->
-<!-- 														<div> -->
-<!-- 															<img src="../img/emptyLove.png" class="heart">  -->
-<!-- 															<span class="heartCount">0</span> -->
-<!-- 															<span id="share"> -->
-<!-- 																<button type="button" class="btnShare" -->
-<!-- 																		data-toggle="modal" data-target="#sharebox" -->
-<!-- 																		style="outline: none;"> -->
-<!-- 																		<img src="../img/share.png" width="15px">分享 -->
-<!-- 																</button> -->
-<!-- 															</span>  -->
-<!-- 															<span id="add"> -->
-<!--                                                                 <button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"> -->
-<!--                                                                 <img src="../img/add.png" width="15px">加入歌單 -->
-<!--                                                                 </button> -->
-<!-- 					                                        </span> -->
-<!-- 														</div> -->
-															
-<!-- 														</td> -->
-<!-- 														<td>老蕭</td> -->
-<!-- 														<td>2018-12-12</td> -->
-														
-<!-- 													</tr> -->
+
 												</tbody>
 											</table>
 
@@ -380,8 +350,8 @@ function loadrankTopTen(type) {
 					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
 					<div id="displayShareMusic">
 						<img src="../img/300x300.jpg"
-							style="margin-left: 20px; width: 50px; height: 50px;" /><a
-							href=""><span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a> 
+							style="margin-left: 20px; width: 50px; height: 50px;" />
+							<a href=""><span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a> 
 					</div>
 					<div class="modal-footer">
 						<div style="float: left">
@@ -454,12 +424,14 @@ $('body').on('click','.btnShare',function() {
 	var music_name =row.find('#musicPage').text();
 	var music_id =row.find('td[name="music_id"]').text();
 	var music_image =row.find('td[name="music_image"] img').attr("src");
+	var music_href= "/roy/musicPage/findMusicById?musicId="+music_id;
 	console.log(music_name+","+music_id+","+music_image);
     $("#addshareMusicname").text(""+music_name+"");
     $("#addshareMusicid").text(""+music_id+"");
-    
     $("#displayShareMusic a").text(""+music_name+"");
+    $("#displayShareMusic a").attr("href",music_href);
     $("#displayShareMusic img").attr("src",music_image);
+    
 })	
 </script>
 </body>
