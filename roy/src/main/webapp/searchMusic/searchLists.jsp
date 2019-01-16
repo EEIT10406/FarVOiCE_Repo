@@ -71,7 +71,7 @@
 				$.each(data,function(index,list){
 					var row = $("<div class='col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box'></div>").html(
 					'<div class="work-block m-bottom-2">'+
-					'<a href="/roy/personalPage/locateToPlayList?playListId='+list.playlist_id+'"><img class="img-full" height="100%" width="100%"'+
+					'<a href="/roy/personalPage/locateToPlayList?playListId='+list.playlist_id+'"><img class="img-full" height="220px" width="220px"'+
 					'src="'+list.playlist_image+'">'+
 					'</a><input id="playButton" class="play" onmouseover="mover(this)" onmouseout="mout(this)" onclick="addList('+list.playlist_id+')" type="image" src = "../img/player.png" height="50" width="50"></div><div class="song-info">'+
 					'<h4 class="text-ellipsis"><a href="/roy/personalPage/locateToPlayList?playListId='+list.playlist_id+'">'+list.playlist_name+'</a></h4></div>'

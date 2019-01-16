@@ -59,22 +59,49 @@ public class ReportController {
 	@ResponseBody
 	public String put(Model model,HttpSession session,String music_id,String member_username) {
 		MemberBean memberBean = (MemberBean)session.getAttribute("user");
-		ReportBean reportBean = new ReportBean();
-		reportBean.setMember_usernameReportS(memberBean.getMember_username());
-		reportBean.setMember_usernameReportM(member_username);
-		reportBean.setMusic_idReportM(Integer.parseInt(music_id));
-		reportBean.setReport_time(new java.sql.Date(new Date().getTime()));
-		if(reportService.create(reportBean)!=null) {
-			return "已檢舉";
-		}else {
-			return "沒檢舉";
+		if(reportService.findByMember_username(memberBean.getMember_username(),music_id).isEmpty()) {
+			ReportBean reportBean = new ReportBean();
+			reportBean.setMember_usernameReportS(memberBean.getMember_username());
+			reportBean.setMember_usernameReportM(member_username);
+			reportBean.setMusic_idReportM(Integer.parseInt(music_id));
+			reportBean.setReport_time(new java.sql.Date(new Date().getTime()));
+			if(reportService.create(reportBean)!=null) {
+				return "檢舉成功";
+			}else {
+				return "沒檢舉";
+			}
 		}
+		return "已檢舉";
 	}
 
 	@RequestMapping(value = "**/report.searchMusic", produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public String searchMusic(Model model,String type,String searchString,String before,String sort) {
-		return JSONValue.toJSONString(musicService.search(type,searchString,before,sort));
+	public String searchMusic(Model model,HttpSession session,String type,String searchString,String before,String sort) {
+		List<Integer> likeList = null;
+		try {
+			String member_username = ((MemberBean)session.getAttribute("user")).getMember_username();
+			likeList = memberLikeMusicService.memberLikeMusics(member_username);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		LinkedList<HashMap<String,String>> l1 = new LinkedList<HashMap<String,String>>();
+		for (MusicBean bean:musicService.search(type,searchString,before,sort)) {
+			 HashMap<String,String>  m1 = new HashMap<String,String>();
+			 if(likeList!=null&&likeList.contains(bean.getMusic_id())) {
+					 m1.put("memberLikeMusic", "/roy/img/love.png");
+			 } else {
+				 m1.put("memberLikeMusic", "/roy/img/emptyLove.png");
+			 }
+			 m1.put("Music_name",bean.getMusic_name());
+			 m1.put("Music_id",""+bean.getMusic_id());
+			 m1.put("Member_username",""+bean.getMember_username());
+			 m1.put("Music_music",""+bean.getMusic_music());
+			 m1.put("Music_Image",bean.getMusic_Image());
+			 m1.put("Music_id",""+bean.getMusic_id());
+			 m1.put("Music_likeCount",""+bean.getMusic_likeCount());
+			 l1.add(m1);
+		 }
+		return JSONValue.toJSONString(l1);
 	}
 	
 	@RequestMapping(value = "**/report.searchPlaylistMusic", produces = "application/json;charset=utf-8")

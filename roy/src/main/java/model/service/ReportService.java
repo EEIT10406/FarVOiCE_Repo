@@ -21,6 +21,10 @@ public class ReportService {
 	@Autowired
 	private ReportDAO reportDAO;
 	
+	public List<ReportBean> findByMember_username(String member_username,String music_id){
+		return reportDAO.findByMember_username(member_username,music_id);
+	}
+	
 	public ReportBean findByPrimaryKey(Integer report_id) {
 		return reportDAO.findByPrimaryKey(report_id);
 	}
