@@ -96,21 +96,7 @@
 								<div class="clearfix"></div>
 								<!-- End Title -->
 							</div>
-							
-							<div id="articlePutHere">
-							
-							
-							
-							
-							
-							
-							
-							
-							</div>
-						
-							
-							
-							
+							<div id="articlePutHere"></div>
 						</div>
 						<!-- Pagination -->
 						<div >
@@ -137,7 +123,7 @@
 								<!-- 搜尋文章 -->
 								<div id="search-div">
 								<form class="form-inline"  action="">
-									<input class="form-control mr-sm-2" type="search"
+									<input class="form-control mr-sm-2" type="search" id="search_new"
 										placeholder="搜尋" aria-label="Search">
 									<button class="btn btn-outline-success" type="button">搜尋</button>
 								</form>
@@ -173,6 +159,16 @@
 <script>
 $(document).ready(function() {		
 	loadArticle();
+	$("#search_new").keypress(function (event) {
+		
+		if (event.keyCode == 13) {
+			$("form").submit(function () {
+				return false;
+			});
+			var searchString = $("#search_new").val();
+			loadArticle(searchString);
+		}
+	});
 })
 $('#search-div button').click(function(){
 	var searchString = $('#search-div input').val();
