@@ -111,16 +111,14 @@ table {
 		
 		//按分享時載入哪首音樂
 		$('body').on('click','.btnAddShare',function() {
-	 		var row = $(this).parents('#rankTopTen');
-	 		var music_name = $('td:eq(1)').find("a").text();
-	 		var music_id =row.children('td:eq(0)').text();
+	 		var row = $(this).parents('tr');
+			var music_name =row.find("a").text();
+	 		var music_id =row.find('textarea').text();
+	 		
 	        $("#addshareMusicname").text(""+music_name+"");
 	        $("#addshareMusicid").text(""+music_id+"");
-// 	        $("#addshareMusicid").text(""+music_name+"");
-   			alert(music_id);
-			})
-			
-			
+	       
+		})	
 	})
 
 	function changeCheckBoxs() {
@@ -200,6 +198,7 @@ table {
 													<td><img src="../img/left.JPG" class="music" /><a href=""><span style="margin-left: 10px; font-size: 15px;" id="music_Name">讓我為你唱情歌3</span></a>
 														<div><img src="../img/emptyLove.png" class="heart">
 															<span id="share">
+																<textarea hidden="true" name="shareMusicid">4</textarea>
 																<button type="button" class="btnAddShare" data-toggle="modal" data-target="#sharebox" style="outline: none;">
 																	<img src="../img/share.png" width="15px">分享
 																</button>
@@ -345,6 +344,7 @@ table {
 					<div id="displayShareMusic">
 						<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
 						<img src="../img/300x300.jpg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
+						<textarea  hidden="true" id="realaddshareMusicname" name="shareMusicname"></textarea>
 						<span style="margin-left: 10px; font-size: 15px;" id="addshareMusicname">讓我為你唱情歌</span>
 					</div>
 					<div class="modal-footer">

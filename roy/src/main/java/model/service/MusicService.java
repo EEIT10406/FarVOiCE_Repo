@@ -54,17 +54,66 @@ public class MusicService {
 		}
 		return musicDao.search(searchString);
 	}
-	
-	//找出所有時間總點閱率最高的五筆音樂
-	public List<MusicBean> findAllTimePlayCountTop5Music(){
+
+	// 找出所有時間總點閱率最高的五筆音樂
+	public List<MusicBean> findAllTimePlayCountTop5Music() {
 		return musicDao.findAllTimePlayCountTop5Music();
 	}
-	//更新音樂
+
+	// 更新音樂
 	public void updateMusic(MusicBean bean) {
 		if (bean != null) {
 			musicDao.update(bean);
 		}
 	}
+	
+	// 編輯音樂
+		public void editMusic(MusicBean bean) {
+			if (bean != null) {
+				musicDao.editMusic(bean);
+			}
+		}
+
+	// 找類型搜尋top10音樂
+	public List<MusicBean> rankTopTenByType(String type) {
+		if (type != null) {
+			List<MusicBean> musics = musicDao.search(" music_stylename='" + type + "' order by music_playcount desc");
+			List<MusicBean> topTen = new LinkedList<>();
+			int number = 0;
+			for (MusicBean ten : musics) {
+				if (ten.getMusic_unavailable() == false) {
+					topTen.add(ten);
+					number++;
+				}
+				if (number == 10) {
+					break;
+				}
+			}
+			return topTen;
+		}
+		return null;
+	}
+	
+	// 找所有類型音樂top10
+		public List<MusicBean> rankTopTenByAllType() {
+			return musicDao.findAllTimePlayCountTop10Music();
+		}
+		
+	// 找出十首七天內點閱率最高的音樂
+	public List<MusicBean> rankIn7Day() {
+		List<MusicBean> musics=musicDao.findAllByTime();
+		List<MusicBean> topTen=new LinkedList<>();
+		int number=0;
+		for(MusicBean music:musics) {
+			topTen.add(music);
+			number++;
+			if(number==10) {
+				break;
+			}
+		}
+		return topTen;
+	}	
+		
 
 	// 找該使用者上傳的所有音樂
 	public List<MusicBean> findMusicByUser(String member_username) {
@@ -106,8 +155,8 @@ public class MusicService {
 	// 抓沒被下架的音樂
 	public MusicBean findAvailableMusic(Integer music_id) {
 		if (music_id != null) {
-			MusicBean musicBean=musicDao.findByPrimaryKey(music_id);
-			if(musicBean.getMusic_unavailable()==false) {
+			MusicBean musicBean = musicDao.findByPrimaryKey(music_id);
+			if (musicBean.getMusic_unavailable() == false) {
 				return musicBean;
 			}
 		}
@@ -131,16 +180,17 @@ public class MusicService {
 		out.close();
 		return "/roy/image/music" + imageFilePath.substring(27);
 	}
-	
-	//給username得nickname
+
+	// 給username得nickname
 	public String usernameToNickname(String username) {
 		MemberBean bean = memberDAO.findByPrimaryKey(username);
 		return bean.getMember_nickname();
 	}
-	//給nickname得username
+
+	// 給nickname得username
 	public String nicenameToUsername(String username) {
 		return memberDAO.nicenameToUsername(username);
-		
+
 	}
 
 //	public static void main(String[] args) {

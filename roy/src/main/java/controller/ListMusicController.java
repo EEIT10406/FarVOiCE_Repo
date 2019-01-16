@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.ListMusicBean;
+import model.bean.MemberBean;
 import model.bean.MusicBean;
 import model.bean.PlaylistBean;
 import model.bean.primarykey.ListMusicId;
@@ -34,23 +35,26 @@ public class ListMusicController {
 	// 讀歌單內的音樂
 	@RequestMapping(value = "/list/readPlayListMusic", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String readPlayListMusic(ListMusicId listMusicId, Integer playListId, MusicBean musicBean) {
+	public String readPlayListMusic(ListMusicId listMusicId, Integer playListId, MusicBean musicBean,MemberBean memberBean) {
 		if (playListId != null) {
 			listMusicId.setPlaylist_id(playListId);
 			List<Integer> musicIds = listMusicService.findByPlayListId(listMusicId);
 			List<Map<String, String>> musics = new LinkedList<Map<String, String>>();
+			
 			if (musicIds != null) {
 				for (Integer musicId : musicIds) {
 					musicBean = musicService.findMusic(musicId);
 					if (musicBean != null) {
 						Map<String, String> jsonMap = new HashMap<>();
 						jsonMap.put("music_id", String.valueOf(musicBean.getMusic_id()));
-						jsonMap.put("music_music", musicBean.getMusic_music());
-						jsonMap.put("music_name", musicBean.getMusic_name());
-						jsonMap.put("member_username", musicBean.getMember_username());
-						jsonMap.put("music_uploadTime",
-								String.valueOf(musicBean.getMusic_uploadTime()).substring(0, 10));
-						jsonMap.put("music_unavailable", String.valueOf(musicBean.getMusic_unavailable()));
+						jsonMap.put("music_Image", musicBean.getMusic_Image());
+						if(musicBean.getMusic_unavailable()==true) {
+							jsonMap.put("music_name", musicBean.getMusic_name()+"<br>(該歌曲已下架)");
+						}else {
+							jsonMap.put("music_name", musicBean.getMusic_name());
+						}
+						jsonMap.put("nickname", musicService.usernameToNickname(musicBean.getMember_username()));
+						jsonMap.put("music_uploadTime",String.valueOf(musicBean.getMusic_uploadTime()).substring(0, 10));
 						musics.add(jsonMap);
 					}
 				}
@@ -99,20 +103,27 @@ public class ListMusicController {
 		public String locateToPlayList(HttpSession session,String playListId,ListMusicId listMusicId,Model model) {
 			PlaylistBean playListBean=playListService.getPlayListBean(Integer.valueOf(playListId));
 			listMusicId.setPlaylist_id(Integer.valueOf(playListId));
+			
 			List<Integer> musicIds=listMusicService.findByPlayListId(listMusicId);
 			
 			List<MusicBean>musicBeans=new LinkedList<>();
 			
 			for(Integer musicId:musicIds) {
 				MusicBean musicBean=musicService.findMusic(musicId);
+				String nickname=musicService.usernameToNickname(musicBean.getMember_username()); 
+				//把memberName設為nickname的名字
+				musicBean.setMember_username(nickname);
+				
 				if(musicBean.getMusic_unavailable()==true) {
 					String unavailableMusicName= musicBean.getMusic_name()+" (該歌曲已下架)";
 					musicBean.setMusic_name(unavailableMusicName);
 				}
 				musicBeans.add(musicBean);
 			}
+				
 			model.addAttribute("playListBean", playListBean);
 			model.addAttribute("musicBeans", musicBeans);
+			
 			return "/list/ListPage.jsp";
 		}
 

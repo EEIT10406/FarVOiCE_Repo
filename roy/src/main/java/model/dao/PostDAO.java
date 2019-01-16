@@ -102,6 +102,14 @@ public class PostDAO {
 				.setMaxResults(50)
 				.list();
 	}
+	
+//	public List<PostBean> findAllReturn10(Integer page) {
+//		//0103 OK
+//		return this.getSession().createQuery("from PostBean", PostBean.class)
+//				.setMaxResults(50)
+//				.list();
+//	}
+	
 	public List<PostBean> findArticleFromMember (String member_username){
 		//0106 OK
 		String hql = "from PostBean WHERE member_username=:member_username and post_idM=null Order By post_time Desc";
@@ -111,7 +119,6 @@ public class PostDAO {
 		return PostList;
 	}
 	public List<PostBean> findCommentFromArticle (Integer post_idS){
-		
 		String hql = "from PostBean WHERE post_idM=:post_idM ";
 		Query<PostBean> query = this.getSession().createQuery(hql);
 		query.setParameter("post_idM", post_idS);
@@ -141,4 +148,22 @@ public class PostDAO {
 		}
 		return false;
 	}
+	
+//顯示所有文章在文章頁面	
+public List<PostBean> showAllArticleInFindArticle (Boolean post_postorshare){
+		String hql = "from PostBean WHERE post_postorshare=:post_postorshare Order By post_time Desc";
+		Query<PostBean> query = this.getSession().createQuery(hql);
+		query.setParameter("post_postorshare", post_postorshare);
+		List<PostBean> PostList = query.list();
+		return PostList;
+	}
+
+//顯示單一文章在文章頁面
+public List<PostBean> showSearchArticleInFindArticle (String searchString){
+	String hql = "from PostBean WHERE post_content like :post_content Order By post_time Desc";
+	Query<PostBean> query = this.getSession().createQuery(hql);
+	query.setParameter("post_content", "%"+searchString+"%");
+	List<PostBean> PostList = query.list();
+	return PostList;
+}
 }

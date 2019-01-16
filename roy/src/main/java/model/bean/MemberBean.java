@@ -16,9 +16,11 @@ public class MemberBean {
 		member_password		varchar(30),
 		member_email		varchar(30),
 		member_nickname		varchar(30),
-		member_profileImage	varchar(200),--上傳時需要限制大小
+		member_profileImage	varchar(200),
 		member_registerTime datetime,
 		member_ban			bit,
+		member_description  varchar(300),
+		member_region		varchar(30)
 	*/
 //	@OneToMany(
 //		mappedBy="Member",
@@ -33,12 +35,26 @@ public class MemberBean {
 	private String member_profileImage;
 	private java.util.Date member_registerTime;
 	private Boolean member_ban;
+	private String member_description;
+	private String member_region;
+	public String getMember_description() {
+		return member_description;
+	}
+	public void setMember_description(String member_description) {
+		this.member_description = member_description;
+	}
+	public String getMember_region() {
+		return member_region;
+	}
+	public void setMember_region(String member_region) {
+		this.member_region = member_region;
+	}
 	@Override
 	public String toString() {
 		return "MemberBean [member_username=" + member_username + ", member_password=" + member_password
 				+ ", member_email=" + member_email + ", member_nickname=" + member_nickname + ", member_profileImage="
 				+ member_profileImage + ", member_registerTime=" + member_registerTime + ", member_ban=" + member_ban
-				+ "]";
+				+ ", member_description=" + member_description + ", member_region=" + member_region + "]";
 	}
 	public String getMember_username() {
 		return member_username;

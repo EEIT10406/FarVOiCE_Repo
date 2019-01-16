@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>Enlighten - Professional Bootstrap Template</title>
+<title>FarVOiCE</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -107,15 +107,6 @@
  	
 		})
 		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	})
 </script>
 </head>

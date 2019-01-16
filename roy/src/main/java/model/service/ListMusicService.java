@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.ListMusicBean;
+import model.bean.MemberBean;
 import model.bean.PlaylistBean;
 import model.bean.primarykey.ListMusicId;
 import model.dao.ListMusicDAO;
+import model.dao.MemberDAO;
 import model.dao.PlaylistDAO;
 
 @Service
@@ -21,6 +23,8 @@ public class ListMusicService {
 	private ListMusicDAO listMusicDao;
 	@Autowired
 	private PlaylistDAO playlistDao;
+	@Autowired
+	private MemberDAO memberDao;
 	
 	// 如果增加歌單的音樂便更新歌單的音樂數
 		public void addMusicCount(ListMusicBean bean) {
@@ -87,4 +91,5 @@ public class ListMusicService {
 		}
 		return null;
 	}
+	
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -106,8 +106,8 @@ table {
 }
 
 .heart {
-	width: 17px;
-	margin-right: 5px;
+	width: 15px;
+	margin-right: 4px;
 	cursor: pointer;
 }
 
@@ -226,18 +226,89 @@ table {
 
 	//抓粉絲數
 	function loadFanCount(username) {
+		var me = username;
 		$.get('/roy/personalPage/howMuchFollowMe.controller',{'username' : username},function(data) {
 		
 			$('#fansCount').html(data);
+			if(data > 0 ){
+				//顯示粉絲名單
+				$.ajax({
+	                url: "/roy/personalPage/whoFollowMe.controller",
+	                type: "POST",
+	                cache:false,
+	                dataType:'json',
+	                data:{username:me},
+					success : function(list)
+					 {  console.log("粉絲名單----------------------");
+						console.log(list);
+					 	list.forEach(function(obj, index) {
+						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameS+"'>"+obj.member_nicknameS+"</a>"
+					 		var content0 = 	"<div class='row'>"
+						 	var content1 = 		"<div class='col-md-5'>"
+						 	var content2 = 			"<img src='"+obj.member_profileImageS+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
+				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
+				 			var content4 = 		"</div>"
+				 			var content5 = 		"<div class='col-md-7'>"
+				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
+				 			var content7 = 		"</div>"
+				 			var content8 = 	"</div>"
+							var div = content0 +  content1 +  content2 +  content3 +  content4 +  content8 ;
+				 			$('#fans').append(div);
+					  	});
+					},  
+	                error: function (xhr, ajaxOptions, thrownError) {
+	                    alert(xhr.status+"-->顯示粉絲名單");
+	                    alert(thrownError);
+	                }
+	            });	 
+				//顯示粉絲名單END
+			}
 		})
-	}
+	}	
 	//抓偶像數
 	function loadStarCount(username) {
+		var me = username;
 		$.get('/roy/personalPage/iFollowHowMuch.controller',{'username' : username},function(data) {
 		
 			$('#starsCount').html(data);
+			
+			if(data > 0){
+				//顯示追蹤名單
+				$.ajax({
+	                url: "/roy/personalPage/iFollowWho.controller",
+	                type: "POST",
+	                cache:false,
+	                dataType:'json',
+	                data:{username:me},
+					success : function(list)
+					 {  console.log("追蹤名單----------------------");
+						console.log(list);
+					 	list.forEach(function(obj, index) {
+						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameM+"'>"+obj.member_nicknameM+"</a>"
+					 		var content0 = 	"<div class='row'>"
+						 	var content1 = 		"<div class='col-md-5'>"
+						 	var content2 = 			"<img src='"+obj.member_profileImageM+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
+				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
+				 			var content4 = 		"</div>"
+				 			var content5 = 		"<div class='col-md-7'>"
+				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
+				 			var content7 = 		"</div>"
+				 			var content8 = 	"</div>"
+							var div = content0 +  content1 +  content2 +  content3 +  content4 +  content5 +  content6 +  content7 +  content8 ;
+				 			$('#following').append(div);
+					  	});
+					},  
+	                error: function (xhr, ajaxOptions, thrownError) {
+	                    alert(xhr.status+"-->追蹤名單");
+	                    alert(thrownError);
+	                }
+	            });	 
+				//顯示追蹤名單END
+			}
+			
 		})
-	}	
+		
+	}
 
 </script>
 
@@ -261,40 +332,48 @@ $(document).ready(function() {
 
 	//按愛心
 	$('body').on('click','.heart',function(){
-		var row = $(this).parents('#musics');
-        var musicId =row.children('span[name="music_id"]').text();
+		if('${user.member_username}'!=""){
+		    var row = $(this).parents('#musics');
+            var musicId =row.children('span[name="music_id"]').text();
 		
-		if (this.src.indexOf("love.png") != -1) {
+		    if (this.src.indexOf("love.png") != -1) {
 			
-			$.get('/roy/personalPage/memberTakeBackLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
-				row.find('.heartCount').text(data);
-			})
-			this.src = "../img/emptyLove.png";
+			    $.get('/roy/personalPage/memberTakeBackLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+				    row.find('.heartCount').text(data);
+			    })
+			    this.src = "../img/emptyLove.png";
 			
-		} else {
+		    } else {
 			
-			$.get('/roy/personalPage/memberClickLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
-				row.find('.heartCount').text(data);
-			})
-			this.src = "../img/love.png";
+			    $.get('/roy/personalPage/memberClickLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+				    row.find('.heartCount').text(data);
+			    })
+			    this.src = "../img/love.png";
+		    }
+		}else{
+			 window.location.href = "/roy/login-signUp-upload/login.jsp";
 		}
 	})
 	
 	//按加入歌單時載入有哪些歌單
 	$('body').on('click','.btnAddList',function() {
- 		var row = $(this).parents('#musics');
-        var music_id =row.children('span[name="music_id"]').text();
+		if('${user.member_username}'!=""){
+ 		   var row = $(this).parents('#musics');
+           var music_id =row.children('span[name="music_id"]').text();
 			
-		$.getJSON('/roy/list/readPlayList',{'username' : '${user.member_username}'},function(data) {
-			var html='<option value="'+music_id+'">請選擇歌單</option>';
-			$.each(data,function(index, list) {
+		   $.getJSON('/roy/list/readPlayList',{'username' : '${user.member_username}'},function(data) {
+			   var html='<option value="'+music_id+'">請選擇歌單</option>';
+			   $.each(data,function(index, list) {
 				
-			    html+='<option value="'+list.playlist_id+'">'+list.playlist_name+'</option>';
+			       html+='<option value="'+list.playlist_id+'">'+list.playlist_name+'</option>';
 			         
-	              })
-	         $('#selectPlayList').html(html);
-			 $('span[name="musicId"]').hide();
-		})
+	            })
+	           $('#selectPlayList').html(html);
+			   $('span[name="musicId"]').hide();
+		    })
+		}else{
+			 window.location.href = "/roy/login-signUp-upload/login.jsp";
+		}
 			
 	})
 	
@@ -329,24 +408,36 @@ $(document).ready(function() {
 		
 	})
 	
+	//點喜歡的音樂去音樂頁面
+	$('#like').on('click','#musicPage',function(){
+		var row = $(this).parents('#musics');
+		var musicId = row.children('span[name="music_id"]').text();
+		
+		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
+		
+	})
+	
 })
 
 
 //讀取somebody的所有歌
 function loadMusic(username) {
-
 	$.getJSON('/roy/personalPage/readSomebodyMusic',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
-			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;margin-bottom:10px;">'+
+			content += '<div id="musics" class="col-md-5" style="float: left; width: 240px;margin-bottom:10px;">'+
 			          '<span name="music_id">'+list.music_id+'</span>'+
 			          '<span id="musicPage" style="cursor: pointer;">'+
-			               '<img src="'+list.music_Image+'" style="width: 160px; height: 160px;" />'+
+			               '<img src="'+list.music_Image+'" style="width: 100px; height: 100px;" />'+
 			          '</span>'+
 			       '<div style="font-size: 16px;">'+list.music_name+'</div>'+
-                   '<div>'+
-			       '<img src="'+list.memberLikeMusic+'" class="heart">'+
-                   '<span class="heartCount">'+list.music_likeCount+'</span>'+ 
+                   '<div>';
+			if('${user.member_username}'!=""){
+				var like='<img src="'+list.memberLikeMusic+'" class="heart">';
+			}else{
+				var like='<img src="/roy/img/emptyLove.png" class="heart">';
+			}   
+	    content+=like+'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
                       '<span id="share" class="shareAndAdd"><a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a></span>'+
                       '<span id="add">'+
                       '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
@@ -358,7 +449,6 @@ function loadMusic(username) {
 		$('span[name="music_id"]').hide();
 	})
 }
-
 
 //讀取somebody的所有歌單
 function loadPlayList(username) {
@@ -380,20 +470,24 @@ function loadPlayList(username) {
 	})
 }
 
-
 //讀取somebody喜歡的歌
 function loadMemberLikeMusic(username) {
-
 	$.getJSON('/roy/personalPage/somebodyLikeMusic',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
-			content += '<div id="musics" class="col-md-5" style="float: left; width: 300px;">'+
+			content += '<div id="musics" class="col-md-5" style="float: left; width: 230px;">'+
                              '<span name="music_id">'+list.music_id+'</span>'+
-				             '<a href=""><img src="'+list.music_Image+'" style="width: 160px; height: 160px;" /></a>'+
+                             '<span id="musicPage" style="cursor: pointer;">'+
+  			                     '<img src="'+list.music_Image+'" style="width: 100px; height: 100px;" />'+
+  			                 '</span>'+
                              '<div style="font-size: 16px;">'+list.music_name+'</div>'+
-				             '<div>'+
-                                  '<img src="'+list.userLikeMusic+'" class="heart">'+
-				                  '<span class="heartCount">'+list.music_likeCount+'</span>'+ 
+				             '<div>'; 
+				             if('${user.member_username}'!=""){
+				 				var like='<img src="'+list.userLikeMusic+'" class="heart">';
+				 			}else{
+				 				var like='<img src="../img/emptyLove.png" class="heart">';
+				 			}  
+				    content+=like+'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
 					              '<span id="share" class="shareAndAdd">'+
 				                       '<a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a>'+
 					              '</span>'+
@@ -407,7 +501,6 @@ function loadMemberLikeMusic(username) {
 		$('span[name="music_id"]').hide();
 	})
 }
-
 
 //讀取somebody上傳的音樂數
 function loadMusicCount(username) {
@@ -437,13 +530,14 @@ function loadMusicCount(username) {
 					<table>
 						<tr>
 							<td>音樂</td>
-							<td>粉絲</td>
 							<td>追蹤中</td>
+							<td>粉絲</td>
 						</tr>
 						<tr>
 							<td id="musicCount" class="number">0</td>
-							<td id="fansCount" class="number">0</td>
-							<td id="starsCount" class="number">0</td>
+							<td  class="number" ><a id="starsCount" href="#about" data-toggle="tab">0</a></td>
+							<td  class="number" ><a id="fansCount" href="#about" data-toggle="tab">0</a></td>
+							
 						</tr>
 					</table>
 				</div>
@@ -574,78 +668,29 @@ function loadMusicCount(username) {
 											<div class="row">
 
 												<div class="col-md-5">
-													<h3 class="no-margin no-padding">詳細介紹</h3>
-													<p style="margin-top: 15px;">地區：台灣, 臺北市</p>
-													<p>性別：</p>
+													<h3 class="no-margin no-padding" style="font-family: 微軟正黑體;">詳細介紹</h3>
+													<p style="margin-top: 15px;">地區：${somebodyRegion }</p>
+												
 												</div>
-
-												<div class="col-md-7">
-													<div style="float: right;">
-														<a href="personalDetail.jsp">編輯</a>
-													</div>
+												<div class="col-md-12">
+												<p> ${somebodyDescription}</p>
 												</div>
-
 											</div>
 										</div>
 										<div class="tab-pane fade in" id="following">
 											<h3 class="no-margin no-padding"
-												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px;">追蹤名單</h3>
+												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px; font-family: 微軟正黑體;">追蹤名單</h3>
 
-											<div class="row">
-												<div class="col-md-5">
-													<img src="../img/left.JPG"
-														style="margin-top: 15px; width: 100px; height: 100px;" />
-													<span
-														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
-												</div>
-												<div class="col-md-7">
-													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
-												</div>
-											</div>
-
-											<div class="row">
-												<div class="col-md-5">
-													<img src="../img/left.JPG"
-														style="margin-top: 15px; width: 100px; height: 100px;" />
-													<span
-														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
-												</div>
-												<div class="col-md-7">
-													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
-												</div>
-											</div>
+											
 
 										</div>
 
 										<div class="tab-pane fade in" id="fans">
 
 											<h3 class="no-margin no-padding"
-												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px;">粉絲</h3>
+												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px; font-family: 微軟正黑體;">粉絲</h3>
 
-											<div class="row">
-												<div class="col-md-5">
-													<img src="../img/left.JPG"
-														style="margin-top: 15px; width: 100px; height: 100px;" />
-													<span
-														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
-												</div>
-												<div class="col-md-7">
-													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
-												</div>
-											</div>
-
-
-											<div class="row">
-												<div class="col-md-5">
-													<img src="../img/left.JPG"
-														style="margin-top: 15px; width: 100px; height: 100px;" />
-													<span
-														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span>
-												</div>
-												<div class="col-md-7">
-													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div>
-												</div>
-											</div>
+											
 
 										</div>
 
@@ -663,6 +708,7 @@ function loadMusicCount(username) {
 		</div>
 	</div>
 	<!-- === END CONTENT === -->
+	
 	<!-- 	showArticleFromMember start-->
 	<script>
 
@@ -672,7 +718,7 @@ function loadMusicCount(username) {
                 type: "POST",
                 cache:false,
                 dataType:'json',
-                data:{user:$('#userName').text()},
+                data:{username:$('#userName').text()},
                 //contentType: "application/json",              
 				success : function(list)
 				 {   

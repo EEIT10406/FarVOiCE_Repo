@@ -5,7 +5,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -116,6 +116,10 @@
 		     alert("${uploadresult}");
 		</c:if>
 		<!-- //  判斷上傳是否成功 end  -->
+		<c:if test="${not empty errors}">
+		     alert("${errors.emptyValue}")
+		</c:if>
+
 </script>
 
 </head>

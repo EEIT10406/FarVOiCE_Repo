@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -152,6 +152,9 @@
 		
 		//愛心
 		$('#music-container').on('click','.heart',function(){
+			<%if (session.getAttribute("user") == null) {%>
+ 			alert('請先登入');
+		<%} else {%>
 			var musicId = $(this).attr("music_id");
 			var count = $(this).parent('div').find('.heartCount');
 			if (this.src.indexOf("love.png") != -1) {
@@ -165,6 +168,7 @@
 				})
 				this.src = "../img/love.png";
 			}
+			<%}%>
 		})
 		//愛心
 		

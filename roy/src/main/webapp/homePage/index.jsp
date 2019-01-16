@@ -146,14 +146,7 @@
 			<div class="row">
 				<h2 class="animate fadeIn text-center margin-top-50">大家都在聽</h2>
 				<hr class="margin-top-15">
-				<p class="animate fadeIn text-center">
-					Enlighten offers you the canvas to turn your imagination in to a
-					reality <br>giving you the perfect framework for your project!
-				</p>
-				<p class="text-center animate fadeInUp margin-bottom-50">
-					<button type="button" class="btn btn-lg btn-primary">View
-						Details</button>
-				</p>
+			
 				          <div class="row">
                      <!-- 小輪播 - Default Full Width -->
                      <div class="col-md-12">
@@ -268,7 +261,7 @@ $(function () {
         data:{user:$('#userName').text()},
 		success : function(list){	
 			list.forEach(function(obj, index) {
-// 	這邊的username是nickname
+				// 	這邊的username是nickname
 				console.log(obj) ; 
 				var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a>";
 				var content = "<h6 style='margin: 0;'><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a></h6>";

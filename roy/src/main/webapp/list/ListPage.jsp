@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
@@ -47,11 +47,15 @@
 	width: 60px;
 	cursor: pointer;
 }
+
+.musicName{
+cursor: pointer;
+}
 </style>
 <script>
 	$(document).ready(function() {
 		
-
+		$('td[name="musicId"]').hide();
 				$('.play').on('mouseover', function() {
 					this.setAttribute("class", "play2")
 				})
@@ -59,9 +63,19 @@
 				$('.play').on('mouseout', function() {
 					this.setAttribute("class", "play");
 				})
+				
+				
+	//點音樂去音樂頁面
+	$('.musicName').on('click',function(){
+		var row = $(this).parents('#row');
+		var musicId = row.children('td[name="musicId"]').text();
+		
+		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
+		
+	})
 
 
-			})
+})
 </script>
 </head>
 <body>
@@ -85,7 +99,7 @@
 						</tr>
 
 						<tr>
-							<td style="font-size: 13px; font-weight: bold;">發佈時間 :</td>
+							<td style="font-size: 13px; font-weight: bold;">建立時間 :</td>
 							<td id="date" style="padding: 5px; font-size: 15px;">
 							<fmt:formatDate value="${playListBean.playlist_registerTime}" type="date" />
 							</td>
@@ -111,15 +125,16 @@
 						<tbody>
 
 							<c:forEach var="musicbean" items="${musicBeans}">
-								<tr>	
+								<tr id="row">
+								    <td name="musicId">${musicbean.music_id}</td>	
 									<td style="text-align: center;">
 									   <c:if test="${fn:indexOf(musicbean.music_name, ' (該歌曲已下架)') == -1}" >
 									    <img src="../img/player.png" class="play" />
 									    </c:if>
 									</td>
 									<td><img src="${musicbean.music_Image}"
-										style="width: 70px; height: 70px;" />${musicbean.music_name}</td>
-									<td style="font-size: 15px;">${musicbean.member_username}</td>
+										style="width: 70px; height: 70px;" /><span class="musicName">${musicbean.music_name}</span></td>
+									<td style="font-size: 15px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${musicbean.member_username}">${musicbean.member_username}</a></td>
 									<td style="font-size: 15px;">
 									    <fmt:formatDate value="${musicbean.music_uploadTime}" type="date" />
 									</td>

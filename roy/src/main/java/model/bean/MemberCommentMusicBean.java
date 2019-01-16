@@ -3,27 +3,35 @@ package model.bean;
 import java.sql.Blob;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name="MemberCommentMusic")
 public class MemberCommentMusicBean {
-@Override
+
+	@Override
 	public String toString() {
 		return "MemberCommentMusicBean [memberCommentMusic_id=" + memberCommentMusic_id + ", member_username="
-				+ member_username + ", music_id=" + music_id + ", memberCommentMusic_content="
+				+ member_username + ", member_profileImage=" + member_profileImage + ", member_nickname="
+				+ member_nickname + ", music_id=" + music_id + ", memberCommentMusic_content="
 				+ memberCommentMusic_content + ", memberCommentMusic_time=" + memberCommentMusic_time
 				+ ", memberCommentMusic_image=" + memberCommentMusic_image + "]";
 	}
-	//	memberCommentMusic_id		int			primary key,
-//	member_username				varchar(30) REFERENCES member (member_username),
-//	music_id					int			REFERENCES Music (music_id),
-//	memberCommentMusic_content	varchar(800),
-//	memberCommentMusic_time		datetime,
-//	memberCommentMusic_image	varbinary--上傳時需要限制大小
-	@Id
+	//memberCommentMusic_id		int		identity	primary key,
+	//member_username				varchar(30) REFERENCES member (member_username),
+	//member_profileImage	varchar(200),
+	//member_nickname		varchar(30),
+	//music_id					int			REFERENCES Music (music_id),
+	//memberCommentMusic_content	varchar(800),
+	//memberCommentMusic_time		datetime,
+	//memberCommentMusic_image	varchar(200)--上傳時需要限制大小
+	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer memberCommentMusic_id;
 	private String member_username;
+	private String member_profileImage;
+	private String member_nickname;
 	private Integer music_id;
 	private String memberCommentMusic_content;
 	private java.util.Date memberCommentMusic_time;
@@ -64,5 +72,16 @@ public class MemberCommentMusicBean {
 	public void setMemberCommentMusic_image(Blob memberCommentMusic_image) {
 		this.memberCommentMusic_image = memberCommentMusic_image;
 	}
-
+	public String getMember_profileImage() {
+		return member_profileImage;
+	}
+	public void setMember_profileImage(String member_profileImage) {
+		this.member_profileImage = member_profileImage;
+	}
+	public String getMember_nickname() {
+		return member_nickname;
+	}
+	public void setMember_nickname(String member_nickname) {
+		this.member_nickname = member_nickname;
+	}
 }

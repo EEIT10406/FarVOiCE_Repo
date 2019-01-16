@@ -21,8 +21,10 @@ public class IndexController {
 	@RequestMapping(path="/homePage/indexFindAllTimePlayCountTop5Music.controller",produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String findAllTimePlayCountTop5Music() {
+		System.out.println("findAllTimePlayCountTop5Music");
 		List<MusicBean> top5 = musicService.findAllTimePlayCountTop5Music();
 		Iterator<MusicBean> top5Ite = top5.iterator();
+		//帳號轉暱稱
 		while(top5Ite.hasNext()) {
 			MusicBean temp = top5Ite.next();
 			temp.setMember_username(musicService.usernameToNickname(temp.getMember_username()));
