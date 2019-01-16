@@ -115,13 +115,13 @@
 						<!-- Pagination -->
 						<div >
 						<ul class="pagination" >
-<!-- 							<li><a href="#">&laquo;</a></li> -->
-							<li><a href="#">1</a></li>
-							<li class="active"><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li class="disabled"><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-<!-- 							<li><a href="#">&raquo;</a></li> -->
+							<li class=""><a>&laquo;</a></li>
+							<li class=""><a>1</a></li>
+							<li class="active" ><a>2</a></li>
+							<li class=""><a>3</a></li>
+							<li class="disabled"><a>4</a></li>
+							<li class=""><a>5</a></li>
+							<li class=""><a>&raquo;</a></li>
 						</ul>
 						</div>
 						<!-- End Pagination -->
@@ -239,12 +239,17 @@ function loadArticle (searchString) {
 </script>
 
 <script>
-//按分享時載入哪首音樂
-$('body').on('click','.pagination',function() {
-	var row = $(this).text();
+//按分享時載入哪首音樂	
+$(".pagination li").click(function(){
+	var Father = $(this).parents('.pagination');
+	var Fathers =$(".pagination>li").length
 	
+	for(var i=0;i<=Fathers;i++){
+		$(".pagination li").attr("class","");
+	}
+	$(this).attr("class","active");	
 	
-})	
+})
 </script>
 
 
