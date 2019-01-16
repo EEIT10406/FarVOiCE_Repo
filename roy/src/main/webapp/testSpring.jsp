@@ -45,10 +45,10 @@ ApplicationContext context = (ApplicationContext)
 <%@ page import="model.bean.StoryBean" %>
 <%@ page import="java.util.Date" %>
 <%
-ReportService reportService = (ReportService) context.getBean("reportService");
-out.println(reportService.findAll());
-StoryService storyService = (StoryService) context.getBean("storyService");
-out.println(storyService.findByPrimaryKey(1));
+// ReportService reportService = (ReportService) context.getBean("reportService");
+// out.println(reportService.findAll());
+// StoryService storyService = (StoryService) context.getBean("storyService");
+// out.println(storyService.findByPrimaryKey(1));
 %>
 <% 
 out.println(new java.sql.Date(new Date().getTime()));

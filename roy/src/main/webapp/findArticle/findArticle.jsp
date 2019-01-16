@@ -134,7 +134,7 @@
 
 								<!-- 搜尋文章 -->
 								<div id="search-div">
-								<form class="form-inline" >
+								<form class="form-inline"  action="">
 									<input class="form-control mr-sm-2" type="search"
 										placeholder="搜尋" aria-label="Search">
 									<button class="btn btn-outline-success" type="button">搜尋</button>
@@ -174,7 +174,6 @@ $(document).ready(function() {
 })
 $('#search-div button').click(function(){
 	var searchString = $('#search-div input').val();
-	alert(searchString);
 	loadArticle(searchString);
 })
 //顯示畫面
