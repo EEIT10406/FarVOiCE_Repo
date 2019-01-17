@@ -96,12 +96,16 @@
 $(document).ready(function() {
 	loadEmotion('抒情')
 	loadAllType('')
-    loadDynamic('動感')
+    loadJazz('爵士')
     loadBlue('藍調')
-    loadReggae('雷鬼')
+    loadHiphop('嘻哈')
     loadClassic('古典')
     loadRock('搖滾')
     loadImediate('time')
+    loadMetal('金屬')
+    loadFunk('放克')
+    loadPopular('流行')
+    loadElectronic('電音')
 	
 	//點音樂去音樂頁面
 	$('body').on('click','#musicPage',function(){
@@ -119,13 +123,17 @@ $(document).ready(function() {
 		var row = $(this).parents('#row');
         var musicId =row.find('td[name="music_id"]').text();
         loadEmotion('抒情')
-        loadDynamic('動感')
+        loadJazz('爵士')
         loadBlue('藍調')
-        loadReggae('雷鬼')
+        loadHiphop('嘻哈')
         loadClassic('古典')
         loadRock('搖滾')
         loadAllType('')
         loadImediate('time')
+        loadMetal('金屬')
+        loadFunk('放克')
+        loadPopular('流行')
+        loadElectronic('電音')
 	})
 	
 })
@@ -155,8 +163,8 @@ function loadEmotion(type) {
         })
 }
 
-//載入動感歌
-function loadDynamic(type) {
+//載入爵士歌
+function loadJazz(type) {
 	$.getJSON('/roy/rankTop10/findMusicByType',{'type' : type},function(data) {
 			var content="";
 			var rank = 1;
@@ -173,9 +181,9 @@ function loadDynamic(type) {
 				    	return false;
 				    }
 				})
-			var btn='<button type="button" class="topTen"><a href="../rankTop10/rankDynamic.jsp">看本榜 TOP 10</a></button>'; 
+			var btn='<button type="button" class="topTen"><a href="../rankTop10/rankJazz.jsp">看本榜 TOP 10</a></button>'; 
 			
-				$('#dynamic').html('<h3 class="title"><img id="playerPic" src="../img/player.png" class="play" /><span>動感</span></h3>'+content+btn);
+				$('#jazz').html('<h3 class="title"><img id="playerPic" src="../img/player.png" class="play" /><span>爵士</span></h3>'+content+btn);
 				$('span[name="music_id"]').hide();
         })
 }
@@ -205,8 +213,8 @@ function loadBlue(type) {
         })
 }
 
-//載入雷鬼歌
-function loadReggae(type) {
+//載入嘻哈歌
+function loadHiphop(type) {
 	$.getJSON('/roy/rankTop10/findMusicByType',{'type' : type},function(data) {
 			var content="";
 			var rank = 1;
@@ -223,9 +231,9 @@ function loadReggae(type) {
 				    	return false;
 				    }
 				})
-			var btn='<button type="button" class="topTen"><a href="../rankTop10/rankReggae.jsp">看本榜 TOP 10</a></button>'; 
+			var btn='<button type="button" class="topTen"><a href="../rankTop10/rankHiphop.jsp">看本榜 TOP 10</a></button>'; 
 			
-				$('#reggae').html('<h3 class="title"><img id="playerPic" src="../img/player.png" class="play" /><span>雷鬼</span></h3>'+content+btn);
+				$('#hiphop').html('<h3 class="title"><img id="playerPic" src="../img/player.png" class="play" /><span>嘻哈</span></h3>'+content+btn);
 				$('span[name="music_id"]').hide();
         })
 }
@@ -276,6 +284,106 @@ function loadRock(type) {
 			var btn='<button type="button" class="topTen"><a href="../rankTop10/rankRock.jsp">看本榜 TOP 10</a></button>'; 
 			
 				$('#rock').html('<h3 class="title"><img id="playerPic" src="../img/player.png" class="play" /><span>搖滾</span></h3>'+content+btn);
+				$('span[name="music_id"]').hide();
+        })
+}
+
+//載入金屬歌
+function loadMetal(type) {
+	$.getJSON('/roy/rankTop10/findMusicByType',{'type' : type},function(data) {
+			var content="";
+			var rank = 1;
+			$.each(data,function(index, list) {
+			    content+='<div id=rank>'+
+				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+			             '<span name="music_id">'+list.music_id+'</span>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<hr>'+
+			             '</div>';
+				    rank=rank+1;
+				    if(rank==4){
+				    	return false;
+				    }
+				})
+			var btn='<button type="button" class="topTen"><a href="../rankTop10/rankMetal.jsp">看本榜 TOP 10</a></button>'; 
+			
+				$('#metal').html('<h3 class="title"><img id="playerPic" src="../img/player.png" class="play" /><span>金屬</span></h3>'+content+btn);
+				$('span[name="music_id"]').hide();
+        })
+}
+
+//載入放克歌
+function loadFunk(type) {
+	$.getJSON('/roy/rankTop10/findMusicByType',{'type' : type},function(data) {
+			var content="";
+			var rank = 1;
+			$.each(data,function(index, list) {
+			    content+='<div id=rank>'+
+				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+			             '<span name="music_id">'+list.music_id+'</span>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<hr>'+
+			             '</div>';
+				    rank=rank+1;
+				    if(rank==4){
+				    	return false;
+				    }
+				})
+			var btn='<button type="button" class="topTen"><a href="../rankTop10/rankFunk.jsp">看本榜 TOP 10</a></button>'; 
+			
+				$('#funk').html('<h3 class="title"><img id="playerPic" src="../img/player.png" class="play" /><span>放克</span></h3>'+content+btn);
+				$('span[name="music_id"]').hide();
+        })
+}
+
+//載入流行歌
+function loadPopular(type) {
+	$.getJSON('/roy/rankTop10/findMusicByType',{'type' : type},function(data) {
+			var content="";
+			var rank = 1;
+			$.each(data,function(index, list) {
+			    content+='<div id=rank>'+
+				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+			             '<span name="music_id">'+list.music_id+'</span>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<hr>'+
+			             '</div>';
+				    rank=rank+1;
+				    if(rank==4){
+				    	return false;
+				    }
+				})
+			var btn='<button type="button" class="topTen"><a href="../rankTop10/rankPopular.jsp">看本榜 TOP 10</a></button>'; 
+			
+				$('#popular').html('<h3 class="title"><img id="playerPic" src="../img/player.png" class="play" /><span>流行</span></h3>'+content+btn);
+				$('span[name="music_id"]').hide();
+        })
+}
+
+//載入電音歌
+function loadElectronic(type) {
+	$.getJSON('/roy/rankTop10/findMusicByType',{'type' : type},function(data) {
+			var content="";
+			var rank = 1;
+			$.each(data,function(index, list) {
+			    content+='<div id=rank>'+
+				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+			             '<span name="music_id">'+list.music_id+'</span>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<hr>'+
+			             '</div>';
+				    rank=rank+1;
+				    if(rank==4){
+				    	return false;
+				    }
+				})
+			var btn='<button type="button" class="topTen"><a href="../rankTop10/rankElectronic.jsp">看本榜 TOP 10</a></button>'; 
+			
+				$('#electronic').html('<h3 class="title"><img id="playerPic" src="../img/player.png" class="play" /><span>電音</span></h3>'+content+btn);
 				$('span[name="music_id"]').hide();
         })
 }
@@ -363,7 +471,7 @@ function loadImediate(type) {
 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
 					<p>老蕭</p>
 					<hr>		
-					<a href="../rankTop10/rankTopTen.jsp">
+					<a href="">
 						<button type="button" class="topTen">
 							看本榜 TOP 10
 						</button>
@@ -389,7 +497,7 @@ function loadImediate(type) {
 					<hr>		
 					
 					<button type="button" class="topTen">
-						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+						<a href="">看本榜 TOP 10</a>
 					</button>
 					
 				</div>
@@ -413,7 +521,7 @@ function loadImediate(type) {
 					<hr>		
 					
 					<button type="button" class="topTen">
-						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+						<a href="">看本榜 TOP 10</a>
 					</button>
 					
 					</div>
@@ -436,12 +544,12 @@ function loadImediate(type) {
 					<hr>		
 					
 					<button type="button" class="topTen">
-						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+						<a href="">看本榜 TOP 10</a>
 					</button>
 					
 					</div>
 					
-					<div class="col-md-3" id="reggae"
+					<div class="col-md-3" id="hiphop"
 					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
@@ -459,7 +567,7 @@ function loadImediate(type) {
 					<hr>		
 					
 					<button type="button" class="topTen">
-						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+						<a href="">看本榜 TOP 10</a>
 					</button>
 					
 					</div>
@@ -482,12 +590,12 @@ function loadImediate(type) {
 					<hr>		
 					
 					<button type="button" class="topTen">
-						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+						<a href="">看本榜 TOP 10</a>
 					</button>
 					
 					</div>
 					
-					<div class="col-md-3" id="dynamic"
+					<div class="col-md-3" id="jazz"
 					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
@@ -505,7 +613,7 @@ function loadImediate(type) {
 					<hr>		
 					
 					<button type="button" class="topTen">
-						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+						<a href="">看本榜 TOP 10</a>
 					</button>
 					
 				    </div>
@@ -528,10 +636,103 @@ function loadImediate(type) {
 					<hr>		
 					
 					<button type="button" class="topTen">
-						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
+						<a href="">看本榜 TOP 10</a>
 					</button>
 					
 				    </div>
+				    
+				     <div class="col-md-3" id="metal"
+					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					
+					<h3 class="title">
+						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
+					</h3>
+					
+					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+					<span name="musicId"></span>
+					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
+					<p>老蕭</p>
+					<hr>		
+					
+					<button type="button" class="topTen">
+						<a href="">看本榜 TOP 10</a>
+					</button>
+					
+				    </div>
+				    
+				     <div class="col-md-3" id="funk"
+					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					
+					<h3 class="title">
+						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
+					</h3>
+					
+					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+					<span name="musicId"></span>
+					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
+					<p>老蕭</p>
+					<hr>		
+					
+					<button type="button" class="topTen">
+						<a href="">看本榜 TOP 10</a>
+					</button>
+					
+				    </div>
+				    
+				     <div class="col-md-3" id="popular"
+					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					
+					<h3 class="title">
+						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
+					</h3>
+					
+					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+					<span name="musicId"></span>
+					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
+					<p>老蕭</p>
+					<hr>		
+					
+					<button type="button" class="topTen">
+						<a href="">看本榜 TOP 10</a>
+					</button>
+					
+				    </div>
+				    
+				     <div class="col-md-3" id="electronic"
+					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					
+					<h3 class="title">
+						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
+							即時熱門</span>
+					</h3>
+					
+					
+					<h6 style="margin: 0;">
+						1<img src="../img/left.JPG" style="margin-left: 10px;" />
+					</h6>
+					<span name="musicId"></span>
+					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
+					<p>老蕭</p>
+					<hr>		
+					
+					<button type="button" class="topTen">
+						<a href="">看本榜 TOP 10</a>
+					</button>
+					
+				    </div>
+				    
 				    
 				<!-- End Main Text -->
 			</div>

@@ -118,6 +118,22 @@ public class MusicService {
 		}
 		return topTen;
 	}	
+	
+	
+	// 找出三首七天內最多喜歡的音樂
+		public List<MusicBean> likeIn7Day() {
+			List<MusicBean> musics=musicDao.findAllByLike();
+			List<MusicBean> topThree=new LinkedList<>();
+			int number=0;
+			for(MusicBean music:musics) {
+				topThree.add(music);
+				number++;
+				if(number==3) {
+					break;
+				}
+			}
+			return topThree;
+		}	
 		
 
 	// 找該使用者上傳的所有音樂

@@ -88,7 +88,7 @@ public class MusicController {
 	@RequestMapping(value = "/personalPage/readMusic", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String readMusic(String username) {
-		if (username != null && username.trim() != "") {
+		if (username != null && !username.trim().equals("")) {
 			// 使用者上傳的所有沒被下架的歌
 			List<MusicBean> musicBean = musicService.findMusicByUser(username);
 
@@ -131,7 +131,7 @@ public class MusicController {
 	@RequestMapping(value = "/personalPage/readSomebodyMusic", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String readSomebodyMusic(String username, HttpSession session) {
-		if (username != null && username.trim() != "") {
+		if (username != null && !username.trim().equals("")) {
 			// somebody上傳的所有沒被下架的歌
 			List<MusicBean> musicBean = musicService.findMusicByUser(username);
 
@@ -176,7 +176,7 @@ public class MusicController {
 	@RequestMapping(value = "/personalPage/uploadMusicCount", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String uploadMusicCount(String username) {
-		if (username != null && username.trim() != "") {
+		if (username != null && !username.trim().equals("")) {
 			List<MusicBean> musicBean = musicService.findMusicByUser(username);
 			if (musicBean != null) {
 				return String.valueOf(musicBean.size());
@@ -217,13 +217,10 @@ public class MusicController {
 		@RequestMapping(value = "/musicPage/editOrDeleteMusic")
 		public String editOrDeleteMusic(Model model,@RequestParam("imageFile") MultipartFile imageFile,String editMusic,
 				String musicId,String musicCaption,String musicLyric) {
-			System.out.println("..........................................................................");
-			System.out.println(musicId);
+
 			String imagePath="";
 			if(editMusic.equals("儲存")) {
-				System.out.println("近來xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
-					System.out.println("近來---------------------------------------------------------------------------");
 					MusicBean music=musicService.findMusic(Integer.valueOf(musicId));
 					music.setMusic_caption(musicCaption);
 					music.setMusic_lyric(musicLyric);
@@ -310,5 +307,47 @@ public class MusicController {
 		}
 		return null;
 	}
+	
+	
+	    // 首頁大家都喜歡
+			@RequestMapping(value = "/homePage/indexLikeMusic", produces = "application/json;charset=utf-8")
+			@ResponseBody
+			public String indexLikeMusic(HttpSession session) {
+				List<MusicBean> topThree = musicService.likeIn7Day();
+				MemberBean memberBean = (MemberBean) session.getAttribute("user");
+				List<Integer> memberLikeMusics = null;
+				if (memberBean != null) {
+					// 找出該使用者喜歡哪些音樂,回傳音樂id
+					memberLikeMusics = memberLikeMusicService.memberLikeMusics(memberBean.getMember_username());
+				}
+				boolean flag = true;
+				if (topThree != null) {
+					List<Map<String, String>> musics = new LinkedList<Map<String, String>>();
+					for (MusicBean bean : topThree) {
+						Map<String, String> jsonMap = new HashMap<>();
+						if (memberLikeMusics != null) {
+							for (Integer likeMusics : memberLikeMusics) {
+								if (bean.getMusic_id() == likeMusics) {
+									jsonMap.put("memberLikeMusic", "/roy/img/indexClickHeart.png");
+									flag = false;
+									break;
+								}
+							}
+						}
+						if (flag) {
+							jsonMap.put("memberLikeMusic", "/roy/img/indexHeart.png");
+						}
+						jsonMap.put("music_id", String.valueOf(bean.getMusic_id()));
+						jsonMap.put("music_Image", bean.getMusic_Image());
+						jsonMap.put("music_name", bean.getMusic_name());
+						jsonMap.put("music_likeCount", String.valueOf(bean.getMusic_likeCount()));
+						jsonMap.put("nickname", musicService.usernameToNickname(bean.getMember_username()));
+						musics.add(jsonMap);
+						flag = true;
+					}
+					return JSONValue.toJSONString(musics);
+				}
+				return null;
+			}
 
 }
