@@ -24,12 +24,24 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 
-	// 登入
-	@RequestMapping(path = "/login-signUp-upload/MemberLogin.controller")
-	public String login(Model model, String username, String password, HttpSession session) {
+	//登入
+	@RequestMapping(path="/login-signUp-upload/MemberLogin.controller")
+	public String login(Model model,String username,String password,HttpSession session,String third_Id) {
 		System.out.println(username);
 		System.out.println(password);
-
+		//第三方登入
+		if(third_Id!=null) {
+			MemberBean bean=memberService.findThirdId(third_Id);
+			//之前有第三方登入
+			if(bean!=null) {
+				session.setAttribute("user", bean);
+				return "redirect:/personalPage/personalPage.jsp";
+			}else {
+			//之前還沒第三方登入
+				model.addAttribute("thirdId", third_Id);
+				return "/login-signUp-upload/thirdSignUp.jsp";
+			}
+		}
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("errors", errors);
 
@@ -73,10 +85,11 @@ public class MemberController {
 
 		}
 	}
-
+	
 	// 註冊
 	@RequestMapping(path = "/login-signUp-upload/MemberSignUP.controller")
 	public String signUp(Model model, MemberBean signUPBean, String member_passwordConfirm, HttpSession session) {
+
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("errors", errors);
 		System.out.println(signUPBean.getMember_password() + "," + member_passwordConfirm);
@@ -109,24 +122,43 @@ public class MemberController {
 		signUPBean.setMember_profileImage("/roy/image/profile/noProfile.gif");
 		signUPBean.setMember_state(0);
 		MemberBean signedbean = memberService.signUp(signUPBean);
-
 		if (signedbean == null) {
 			errors.put("signUpError", "帳號已存在");
 			return "/login-signUp-upload/signUp.jsp";
 		} else {
-
-//			session.setAttribute("user", signedbean);
-//			return"redirect:/personalPage/personalPage.jsp";
 			// 通知已寄信,回到首頁
-			new Thread(new JavaEmailTest(signUPBean.getMember_email(), signUPBean.getMember_username(),
-					signUPBean.getMember_password())).start();
+			new Thread(new JavaEmailTest(signUPBean.getMember_email(), signUPBean.getMember_username(),signUPBean.getMember_password())).start();
 			return "redirect:/homePage/index.jsp";
 		}
 	}
-
-	@RequestMapping(path = "/login-signUp-upload/MemberLogOut.controller")
-	public String logOut(Model model, HttpSession session) {
-		MemberBean bean = null;
+	//第三方登入後填資料
+		@RequestMapping(path="/login-signUp-upload/thirdSignUP.controller")
+		public String thirdsignUp(Model model,MemberBean bean,String member_username,String member_nickname,HttpSession session,String member_third_id) {
+			Map<String, String> errors = new HashMap<>();
+			model.addAttribute("thirdSignUp", errors);
+			
+			bean.setMember_username(member_username);
+			bean.setMember_nickname(member_nickname);
+		    bean.setMember_third_id(member_third_id);
+			bean.setMember_registerTime(new Date());
+			bean.setMember_ban(false);
+			bean.setMember_profileImage("");
+			MemberBean signedbean = memberService.signUp(bean);
+			if (signedbean != null) {
+			    session.setAttribute("user", bean);
+				return"redirect:/personalPage/personalPage.jsp";
+			}else {
+				errors.put("thirdSignUp", "帳號重複，登入失敗!!");
+				return"/login-signUp-upload/login.jsp";
+			}
+		}
+		
+	
+		
+	@RequestMapping(path="/login-signUp-upload/MemberLogOut.controller")
+	public String logOut(Model model,
+			HttpSession session) {
+		MemberBean bean =null;
 		session.setAttribute("user", bean);
 		session.setAttribute("requestURI", null);
 		return "redirect:/homePage/index.jsp";

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,112 @@
 	<script src="../js/modernizr.custom.js" type="text/javascript"></script>
 	<!-- End JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"  ></script>
-<script>
+<!--Google登入-->
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};HandleGoogleApiLibrary()"
+            onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+    <script type="text/javascript">
+        //進入 https://console.developers.google.com/，找「憑證」頁籤(記得先選對專案)，即可找到用戶端ID
+        let Google_appId = "951757376731-dv4o57orj6hpqshouf7a5h5iseu2uiok.apps.googleusercontent.com";
+
+        // Called when Google Javascript API Javascript is loaded
+        function HandleGoogleApiLibrary() {
+            // Load "client" & "auth2" libraries
+            gapi.load('client:auth2', {
+                callback: function () {
+                    // Initialize client & auth libraries
+                    gapi.client.init({
+                        clientId: Google_appId,
+                        scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me'
+                    }).then(
+                        function (success) {
+                            // Google Libraries are initialized successfully
+                            // You can now make API calls 
+                            console.log("Google Libraries are initialized successfully");
+                        },
+                        function (error) {
+                            // Error occurred
+                            console.log(error);// to find the reason 
+                        }
+                    );
+                },
+                onerror: function () {
+                    // Failed to load libraries
+                    console.log("Failed to load libraries");
+                }
+            });
+        }
+
+        function GoogleLogin() {
+            // API call for Google login  
+            gapi.auth2.getAuthInstance().signIn().then(
+                function (success) {
+                    // Login API call is successful 
+                    console.log(success);
+                    //id
+                    console.log(success.El);
+                    //email
+                    console.log(success.w3.U3);
+//                     let Google_ID = success["El"];  
+                    let third_Id = success.El;
+                    window.location.href = "/roy/login-signUp-upload/MemberLogin.controller?third_Id="+third_Id;
+                },
+                function (error) {
+                    // Error occurred
+                    // console.log(error) to find the reason
+                    console.log(error);
+                }
+            );
+        }
+
+<!--Google登入 end-->
+<!-- fb登入 begin -->
+
+
+  window.fbAsyncInit = function() {
+    FB.init({
+    	//應用程式編號
+      appId      : '1218501244979504',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v3.2'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };  
+  
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/zh_TW/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+//使用自己客製化的按鈕來登入
+function FBLogin() {
+    
+    FB.login(function (response) {
+        //debug用
+        console.log(response);
+        if (response.status === 'connected') {
+            //user已登入FB
+            //抓userID
+            let third_Id = response["authResponse"]["userID"];
+            console.log("userID:" + third_Id);
+            window.location.href = "/roy/login-signUp-upload/MemberLogin.controller?third_Id="+third_Id;
+           
+        } else {
+            // user FB取消授權
+            alert("Facebook帳號無法登入");
+        }
+    }, { scope: 'public_profile,email' });
+
+}
+
+
+<!--fb登入 end-->
+
 	function IsEmail(email) {
 	    var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	    if(!regex.test(email)) {
@@ -77,7 +183,12 @@
 		}
 		
 	})
+	
+	<c:if test="${not empty thirdSignUp}">
+	alert('${thirdSignUp.thirdSignUp}')
+	</c:if>
 </script>
+
 <style>
 *{
  font-family:"微軟正黑體";
@@ -103,6 +214,7 @@ h3{
 									<br>
 									<div id="loginError" style='color:#880000;background-color:#ffcccc;width:100%;text-align:center;'><h3 style="display:inline;margin:auto;vertical-align: middle;">${errors.loginError}</h3></div>
 								</div>
+								
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-user"></i>
 									</span> <input placeholder="帳號" style="${CssError}" class="form-control" type="text" id="username" name="username" value="${param.username}"
@@ -129,6 +241,13 @@ h3{
 									<div class="col-md-6">
 										<button class="btn btn-primary pull-right" type="submit">登入</button>
 									</div>
+                        <!-- 	fb登入  begin -->
+                        <div class="fb-login-button" style="margin-bottom:10px;margin-left:20px;" data-scope="public_profile,email" data-onlogin="FBLogin()" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                        <!-- 	fb登入  end -->
+                        <!-- 	google登入  begin -->
+                        <div style="margin-left:0px;float:right;cursor: pointer;">
+                         <img src="../img/google.png" onclick="GoogleLogin()" width="200px" height="30px"/></div>
+                         <!-- 	google登入  end -->
 								</div>
 								<hr>
 								<h5>
