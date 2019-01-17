@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Member")
 public class MemberBean {
+	
 	//1228
 	/*	member_username		varchar(30) primary key,--帳號
 		member_password		varchar(30),
@@ -21,6 +22,7 @@ public class MemberBean {
 		member_ban			bit,
 		member_description  varchar(300),
 		member_region		varchar(30)
+		member_state		tinyint --0-->no雞活，1-->蹟活
 	*/
 //	@OneToMany(
 //		mappedBy="Member",
@@ -37,6 +39,7 @@ public class MemberBean {
 	private Boolean member_ban;
 	private String member_description;
 	private String member_region;
+	private Integer member_state;
 	public String getMember_description() {
 		return member_description;
 	}
@@ -54,7 +57,8 @@ public class MemberBean {
 		return "MemberBean [member_username=" + member_username + ", member_password=" + member_password
 				+ ", member_email=" + member_email + ", member_nickname=" + member_nickname + ", member_profileImage="
 				+ member_profileImage + ", member_registerTime=" + member_registerTime + ", member_ban=" + member_ban
-				+ ", member_description=" + member_description + ", member_region=" + member_region + "]";
+				+ ", member_description=" + member_description + ", member_region=" + member_region + ", member_state="
+				+ member_state + "]";
 	}
 	public String getMember_username() {
 		return member_username;
@@ -97,5 +101,11 @@ public class MemberBean {
 	}
 	public void setMember_ban(Boolean member_ban) {
 		this.member_ban = member_ban;
+	}
+	public Integer getMember_state() {
+		return member_state;
+	}
+	public void setMember_state(Integer member_state) {
+		this.member_state = member_state;
 	}
 }

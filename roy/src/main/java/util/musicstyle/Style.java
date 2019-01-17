@@ -1,4 +1,4 @@
-package model.musicstyle;
+package util.musicstyle;
 
 public enum Style {
 	古典,

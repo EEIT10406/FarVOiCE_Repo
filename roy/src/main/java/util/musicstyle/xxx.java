@@ -1,4 +1,4 @@
-package model.musicstyle;
+package util.musicstyle;
 
 public class xxx {
 

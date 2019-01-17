@@ -40,7 +40,10 @@
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <script src="1.js?ver=1"></script>
 <!-- End JS -->
+<script>
 
+
+</script>
 </head>
 <body>
 	<div id="body_bg">
@@ -279,18 +282,6 @@ $(function () {
      });
 })
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

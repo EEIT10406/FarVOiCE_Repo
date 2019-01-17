@@ -1,4 +1,4 @@
-package model.mail;
+package util.mail;
 
 import java.util.Properties;
 
@@ -10,16 +10,39 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
  
-public class JavaEmail
-{
-    Session mailSession;
- 
+public class JavaEmailTest implements Runnable
+{	 
+	private String email;// 收件人邮箱
+	private String userAccount;
+	private String userPassword;
+	
+  
+	public JavaEmailTest(String email, String userAccount, String userPassword) {
+		super();
+		this.email = email;
+		this.userAccount = userAccount;
+		this.userPassword = userPassword;
+	}
+
+	Session mailSession;
+    
+	public void run() {
+		
+		try {
+			setMailServerProperties();
+			draftEmailMessage();
+			sendEmail();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+	}
     public static void main(String args[]) throws AddressException, MessagingException
     {
-        JavaEmail javaEmail = new JavaEmail();
-        javaEmail.setMailServerProperties();
-        javaEmail.draftEmailMessage();
-        javaEmail.sendEmail();
+//        JavaEmailTest javaEmail = new JavaEmailTest();
+//        javaEmail.setMailServerProperties();
+//        javaEmail.draftEmailMessage();
+//        javaEmail.sendEmail();
     }
  
     private void setMailServerProperties()
@@ -33,9 +56,13 @@ public class JavaEmail
  
     private MimeMessage draftEmailMessage() throws AddressException, MessagingException
     {
-        String[] toEmails = { "seimonforstudy@gmail.com" };
-        String emailSubject = "Test email subject";
+        String[] toEmails = { email };
+        String emailSubject = "FarVOiCE帳號開通";
         String emailBody = "This is an email sent by <b>//howtodoinjava.com </b>.";
+        String emailBodyTest = "This is an email sent by FarVOiCE. <br>" +
+        						"Your Account : " + userAccount + "<br>" +
+        						"Your Password : " + userPassword + "<br>" + 
+        						"請點擊以下連結啟用帳號 : http://localhost:8080/roy/register/acticeAccount?userAccount="+userAccount+"&userPassword="+userPassword;
         MimeMessage emailMessage = new MimeMessage(mailSession);
         /**
          * Set the mail recipients
@@ -48,8 +75,9 @@ public class JavaEmail
         /**
          * If sending HTML mail
          * */
+        emailMessage.setContent(emailBodyTest, "text/html;charset=UTF-8");
 //        emailMessage.setContent(emailBody, "text/html");
-        emailMessage.setContent("<html><body><font color=red>電子報</font><br><img src=http://personal.psu.edu/xqz5228/jpg.jpg></body></html>","text/html;charset=UTF-8"); 
+//        emailMessage.setContent("<html><body><font color=red>電子報</font><br><img src=http://personal.psu.edu/xqz5228/jpg.jpg></body></html>","text/html;charset=UTF-8"); 
         /**
          * If sending only text mail
          * */
