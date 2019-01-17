@@ -38,6 +38,10 @@ public class MusicController {
 		String musicPath = "";
 		String imagePath = "";
 		
+//		0117
+		musicService.uploadMusic(bean);
+		String idForPath = ""+bean.getMusic_id();
+//		0117
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("errors", errors);
 
@@ -53,7 +57,7 @@ public class MusicController {
 		if (!musicFile.isEmpty()) {
 			try {
 				byte[] musicByte = musicFile.getBytes();
-				musicPath = musicService.musicFilePath(musicByte);
+				musicPath = musicService.musicFilePath(musicByte,idForPath);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -72,7 +76,10 @@ public class MusicController {
 		bean.setMusic_Image(imagePath);
 		bean.setMusic_uploadTime(new java.util.Date());
 
-		MusicBean uploadMusicBean = musicService.uploadMusic(bean);
+//		0117
+		musicService.editMusic(bean);
+		MusicBean uploadMusicBean = bean;
+//		0117
 		if (uploadMusicBean != null) {
 			model.addAttribute("musicBean", uploadMusicBean);
 			model.addAttribute("uploadresult", "發佈成功");
