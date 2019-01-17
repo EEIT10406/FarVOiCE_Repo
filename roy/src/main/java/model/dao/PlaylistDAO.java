@@ -90,9 +90,9 @@ public class PlaylistDAO {
 		return this.getSession().get(PlaylistBean.class, playlist_id);
 	}
 
-	public List<PlaylistBean> findAll() {
+	public List<PlaylistBean> findAll(String sort) {
 		// 0103 OK
-		return this.getSession().createQuery("from PlaylistBean", PlaylistBean.class).setMaxResults(50).list();
+		return this.getSession().createQuery("from PlaylistBean order by "+sort, PlaylistBean.class).setMaxResults(50).list();
 	}
 	
 	//找該使用者的所有歌單資訊

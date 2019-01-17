@@ -220,7 +220,7 @@ function loadLikeMusic(username){
                     
        </div>
        
-       <div style="width:40%;float:right;text-align: right;z-index: 999;position: absolute;margin-left: 550px;margin-top:0px;">
+       <div style="width:40%;float:right;text-align: right;position: absolute;margin-left: 550px;margin-top:0px;">
                                  <a  href="#testimonials1" data-slide="prev"  style="margin-right:15px;text-decoration:none;" >
                                    <i style="color:#666666;" class="fas fa-angle-double-left fa-2x"></i>
                                  </a>
@@ -251,7 +251,7 @@ function loadLikeMusic(username){
                               
                               <p> 熱門募資活動</p>
                           </div>
-                          <div style="width:40%;float:right;text-align: right;z-index: 999;position: absolute;margin-left: 140px;">
+                          <div style="width:40%;float:right;text-align: right;position: absolute;margin-left: 140px;">
                                  <a  href="#testimonials2" data-slide="prev"  style="margin-right:10px;text-decoration:none;" >
                                    <i style="color:#666666;" class="fas fa-chevron-circle-left fa-2x"></i>
                                  </a>
@@ -271,10 +271,8 @@ function loadLikeMusic(username){
 			<div class="item active">
                <div class="col-md-12">
                     
-				 <div style="border-radius: 5px;align:center; height: 231px; margin-top: 30px; margin-bottom: 30px; background: linear-gradient(to right,#444444,#DDDDDD);width:700px;">
-                      
-							                         
-                 </div>    
+<!-- 				 <div style="border-radius: 5px;align:center; height: 200px; margin-top: 30px; margin-bottom: 30px; background: linear-gradient(to right,#444444,#DDDDDD);width:800px;">                          -->
+<!--                  </div>     -->
                                                       
                </div>
             </div>

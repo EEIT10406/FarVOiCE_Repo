@@ -159,6 +159,7 @@ word-break:break-all;
 opacity:0.4
 }
 </style>
+
 <script>
 <c:if test="${not empty result}">
 alert("${result}")
@@ -221,7 +222,7 @@ $(document).ready(function() {
 		loadMemberLikeMusic('${user.member_username}')
 	})	
 
-	 	//編輯音樂
+	 //編輯音樂
 	$('#music').on('click','.editClick',function() {
 		var row = $(this).parents('#musics');
         var music_id =row.children('span[name="music_id"]').text();	
@@ -272,7 +273,6 @@ $(document).ready(function() {
         var music_id =row.children('span[name="music_id"]').text();
         var music_name =row.children('div[name="music_name"]').text();
         var music_Image =row.children('img[name="music_Image"]').text();
-// 		alert(music_name);
         $("#addshareMusicname").text(""+music_name+"");
         $("#realaddshareMusicname").text(""+music_name+"");
         $("#addshareMusicid").text(""+music_id+"");
@@ -289,7 +289,6 @@ $(document).ready(function() {
 		})
 			
 	})
-	
 	
 	//點歌單去歌單頁面
 	$('#list').on('click','#listPage',function(){
@@ -494,10 +493,6 @@ function loadMemberLikeMusic(username) {
 			}
 		})
 	}		
-
-
-	
-	
 </script>
 
 </head>
@@ -606,31 +601,13 @@ function loadMemberLikeMusic(username) {
 					
 						</div>
 						<!-- End dynamic -->
-
-
-
-
-						<div class="tab-pane fade in" style="overflow: auto;" id="music">
-													
-
-														
-						</div>
-									
-						
-						
+						<div class="tab-pane fade in" style="overflow: auto;" id="music">								
+						</div>			
 						<div class="tab-pane fade in" style="overflow: auto;" id="list">
-						
-
 						</div>
-						
-						
 						<div class="tab-pane fade in" style="overflow: auto;" id="like">
-
-
-
 						</div>
-
-<!-- end music -->
+						<!-- end music -->
 
 
 						<div class="tab-pane fade in" id="about">
@@ -771,7 +748,11 @@ function loadMemberLikeMusic(username) {
 				success : function(list)
 				 {   
 					list.forEach(function(obj, index) {
-						
+						if(index == 5){
+						  	$('#test').append(" <a class='btn btn-primary'>閱讀更多</a>");
+
+							index=list.length();
+						}
 						function timeFn(d1) {//di作为一个变量传进来
 						    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
 						    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
@@ -837,8 +818,7 @@ function loadMemberLikeMusic(username) {
 				        	$('#test').append(Post_contentPrivacy);
 				        }else if(postorshare==false && privacy==true){
 				        	$('#test').append(Share_contentPrivacy);
-				        }					        
-
+				        } 
 				  	})
 				  },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -847,7 +827,9 @@ function loadMemberLikeMusic(username) {
                 }
             });
             
-          			 
+          	
+            
+            
 				 
 		//顯示歷史紀錄
 		$.ajax({
