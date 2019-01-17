@@ -100,7 +100,7 @@
 						</div>
 						<!-- Pagination -->
 						
-						<ul class="pagination" id="ul1"></ul>
+						<ul class="pagination" id="ul1" style="cursor:pointer"></ul>
 							<div id="div1">
 <!-- 							<li class="" onclick=""><a>&laquo;</a></li> -->
 <!-- 							<li class="active"><a>1</a></li> -->
@@ -159,28 +159,55 @@
 <!-- 	</div> -->
 
 <script>
-var listttt; //放資料
+var allArticle; //放資料
 var start; //從第幾筆開始
-var currentPage;//目前頁數
-function nowPage(){
-	alert("nowPage");
-	
-	
-}
+var currentPage=1;//目前頁數
+var ShowPage;//總頁數
+var count = 3;//一次幾筆
+var NumOfJData;//總筆數
 
-function doUp(){
-	var page = event.currentTarget.innerHTML;
-	start = page*2-2;
+function doPage(){
+	console.log(event.currentTarget);
+	page=event.currentTarget.innerHTML;//當前頁數
+	currentPage = event.currentTarget.innerHTML;//把當前頁數存到 currentPage
+	$(".pagination li").attr("class","");
+	$(event.currentTarget).parents('li').attr("class","active");
+	start = page*count-count;
 	showData(start);
 }
-function doDown(){
-	showData(start);
+function preP(){
+// 	console.log(ShowPage);
+// 	console.log(count);
+// 	console.log(NumOfJData);
+	if(currentPage!=1){
+		console.log(currentPage);
+		start=currentPage-1;
+		showData(start);
+		currentPage=currentPage-1;
+	}else{
+		
+		alert("已經是第一頁囉~");
+	}
+	
+}
+function NextP(){
+	
+	if(currentPage!=ShowPage){
+		start=parseInt(currentPage)+1;
+		showData(start);
+		currentPage=parseInt(currentPage)+1;
+	}else{
+		
+		alert("已經最後一頁~");
+		
+	}
+	
 }
 function showData(token){
 	console.log(token);
 	$("#articlePutHere").html("");
 	var div ="";
-	for(var i=token;i<token+2;i++){
+	for(var i=token;i<token+count;i++){
 			var Blog_Item_Details = 
 			"<div class='blog-post-details'>"+
 			"<div class='blog-post-details-item blog-post-details-item-left'>"+
@@ -241,20 +268,22 @@ function loadArticle (searchString) {
 		success : function(list)
 		{	
 			allArticle=list;
-			var NumOfJData = list.length; //NumOfJData=4
-			var count = 2;
-			var ShowPage = NumOfJData/count;   
+			NumOfJData = list.length; //NumOfJData=4 總筆數
+			ShowPage = Math.ceil((NumOfJData/count)); //總頁數 
 			
-			//顯示頁數
-			$("#ul1").append("<li class=''><a onclick='return nowPage()';>&laquo;</a></li>");	
+			//顯示總頁數
+			$("#ul1").append("<li class=''><a onclick='return preP()';>&laquo;</a></li>");	
 			for(var i=1;i<=ShowPage;i++){
-				var pages ="<li class=''><a onclick='return doUp(this);'>"+i+"</a></li>"
+				var pages ="<li class=''><a onclick='return doPage(this);'>"+i+"</a></li>"
+				if(i==1){
+				var pages ="<li class='active'><a onclick='return doPage(this);'>"+i+"</a></li>"
+				}
 				$("#ul1").append(pages);	
 			}
-			$("#ul1").append("<li class=''><a>&raquo;</a></li>");
+			$("#ul1").append("<li class=''><a onclick='return NextP()'>&raquo;</a></li>");
 			
 			//顯示首頁
-			for(var i=0;i<2;i++){
+			for(var i=0;i<count;i++){
 				
 				var Blog_Item_Details = 
 					"<div class='blog-post-details'>"+
@@ -341,7 +370,7 @@ function loadArticle (searchString) {
 	
 	
 // })
-//當前頁
+// 當前頁
 //  function pageClick(this){
 // 	 alert("pageClick");
 // 	var Father = $(this).parents('.pagination');
