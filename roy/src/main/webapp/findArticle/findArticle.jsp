@@ -250,9 +250,6 @@ $('#search-div button').click(function(){
 	loadArticle(searchString);
 })
 
-
-
-
 //顯示畫面
 function loadArticle (searchString) {
 	$("#articlePutHere").html("");
@@ -269,7 +266,7 @@ function loadArticle (searchString) {
 		{	
 			allArticle=list;
 			NumOfJData = list.length; //NumOfJData=4 總筆數
-			ShowPage = Math.ceil((NumOfJData/count)); //總頁數 
+			ShowPage = Math.ceil((NumOfJData/count));  //總頁數 
 			
 			//顯示總頁數
 			$("#ul1").append("<li class=''><a onclick='return preP()';>&laquo;</a></li>");	
