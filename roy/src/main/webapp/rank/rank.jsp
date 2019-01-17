@@ -75,6 +75,8 @@
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<script src="1.js?ver=1"></script>
+
 <!-- End JS -->
 
 <script>
@@ -361,10 +363,11 @@ function loadImediate(type) {
 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
 					<p>老蕭</p>
 					<hr>		
-					
-					<button type="button" class="topTen">
-						<a href="../rankTop10/rankTopTen.jsp">看本榜 TOP 10</a>
-					</button>
+					<a href="../rankTop10/rankTopTen.jsp">
+						<button type="button" class="topTen">
+							看本榜 TOP 10
+						</button>
+					</a>
 				</div>
 
 

@@ -93,6 +93,12 @@ public class MemberDAO {
 //		return session;
 //	}
 	
+	
+	public List<MemberBean> findByThirdId(String member_third_id) {
+		
+		return this.getSession().createQuery("from MemberBean where member_third_id='"+member_third_id+"'",MemberBean.class).list();
+	}
+	
 	public MemberBean findByPrimaryKey(String member_username) {
 		//0114	OK
 		return this.getSession().get(MemberBean.class, member_username);

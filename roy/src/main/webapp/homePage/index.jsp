@@ -40,7 +40,10 @@
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <script src="1.js?ver=1"></script>
 <!-- End JS -->
+<script>
 
+
+</script>
 </head>
 <body>
 	<div id="body_bg">
@@ -261,7 +264,7 @@ $(function () {
         data:{user:$('#userName').text()},
 		success : function(list){	
 			list.forEach(function(obj, index) {
-				// 	這邊的username是nickname
+// 	這邊的username是nickname
 				console.log(obj) ; 
 				var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a>";
 				var content = "<h6 style='margin: 0;'><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a></h6>";
@@ -279,18 +282,6 @@ $(function () {
      });
 })
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

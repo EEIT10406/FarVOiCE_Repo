@@ -215,7 +215,7 @@
 											<p class="form-control-static">
 
 
-											${user.member_email} <span class="label label-success m-left-1">已驗證個頭</span>
+											${user.member_email} <span class="label label-success m-left-1">已驗證</span>
  
 
 											</p>

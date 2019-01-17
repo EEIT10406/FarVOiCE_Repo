@@ -132,9 +132,22 @@ cursor: pointer;
 									    <img src="../img/player.png" class="play" />
 									    </c:if>
 									</td>
-									<td><img src="${musicbean.music_Image}"
-										style="width: 70px; height: 70px;" /><span class="musicName">${musicbean.music_name}</span></td>
-									<td style="font-size: 15px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${musicbean.member_username}">${musicbean.member_username}</a></td>
+									<td>
+									   <img src="${musicbean.music_Image}" style="width: 70px; height: 70px;" />						
+									    <c:choose>
+									       <c:when test="${fn:indexOf(musicbean.music_name, ' (該歌曲已下架)') == -1}" >
+									          <span class="musicName">${musicbean.music_name}</span>
+									       </c:when>
+									       <c:otherwise>
+                                                  ${musicbean.music_name}
+                                           </c:otherwise>
+									    </c:choose>	
+									</td>
+									<td style="font-size: 15px;">
+									      <a href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${musicbean.member_username}">
+									               ${musicbean.member_username}
+									      </a>
+									</td>
 									<td style="font-size: 15px;">
 									    <fmt:formatDate value="${musicbean.music_uploadTime}" type="date" />
 									</td>

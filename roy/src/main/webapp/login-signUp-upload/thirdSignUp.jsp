@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>FarVOiCE</title>
+<title>Enlighten - Professional Bootstrap Template</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -40,36 +40,15 @@
 	<!-- End JS -->
 
 <script>
-	function IsEmail(email) {
-	    var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-	    if(!regex.test(email)) {
-	        return false;
-	    }else{
-	        return true;
-	    }
-	}
-	function foo() {
-		   alert("記得去收驗證信喔!");
-		   return true;
-	}
 	$(document).ready(function() {
+		
 		$('#login').click(function() {
 			window.location.href = "login.jsp";
 		})
 		$('#upload').click(function() {
 			window.location.href = "upload.jsp";
 		})
-		//檢查密碼醫治
-		$('#member_passwordConfirm').blur(function(){
-			var pass1 = $('#member_password').val();
-			var pass2 = $('#member_passwordConfirm').val();
-			if(pass1){
-				if(pass1!=pass2){
-					alert("密碼不一致喔")
-				}
-			}
- 
-		})
+		
 		//檢查帳好重複
 		$('#member_username').blur(function(){
 		      $.ajax({
@@ -82,6 +61,7 @@
 					success : function(data)
 					 {   
 						if(data.existOrNot == 'true'){
+							$('#accountRepeat').text("");
 							$('#accountRepeat').text("帳號已存在!");
 						}else{
 							$('#accountRepeat').text("");
@@ -106,6 +86,7 @@
 					success : function(data)
 					 {   
 						if(data.existOrNot == 'true'){
+							$('#nicknameRepeat').text("");
 							$('#nicknameRepeat').text("暱稱已存在!");
 						}else{
 							$('#nicknameRepeat').text("");
@@ -118,15 +99,8 @@
 	          });
  	
 		})
-	
-		$('#member_email').blur(function() {
-			if(!IsEmail($('#member_email').val())){
-				$('#emailCheck').html("信箱格式錯誤!");
-			}else{
-				$('#emailCheck').html("");
-			}
+		
 
-		})
 	})
 </script>
 </head>
@@ -139,34 +113,26 @@
 				<div class="row margin-vert-30">
 					<!-- Register Box -->
 					<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-						<form class="signup-page" action="/roy/login-signUp-upload/MemberSignUP.controller" method="post">
+						<form class="signup-page" action="/roy/login-signUp-upload/thirdSignUP.controller" method="post">
 							<div class="login-header margin-bottom-30">
-								<h3>註冊 FarVoice ID</h3>
+								<h3>FarVoice 會員資料</h3>
 							</div>
-							<label>帳號</label> <span id="accountRepeat" style='color:#880000;margin-left:20px'></span>
-								<input class="form-control margin-bottom-20"type="text" id="member_username" name="member_username"value="${param.member_username}">
-							<div class="row">
-								<div class="col-sm-6">
-									<label>密碼</label> <input class="form-control margin-bottom-20" type="password" id="member_password" name="member_password" value="${param.member_password}">
-								</div>
-								<div class="col-sm-6">
-									<label>密碼確認</label> <input
-										class="form-control margin-bottom-20" type="password" id="member_passwordConfirm" name="member_passwordConfirm" value="${param.member_passwordConfirm}">
-								</div>
-							</div>
-							<label>電子郵件</label> <span id="emailCheck" style='color:#880000;margin-left:20px'></span>
-								<input class="form-control margin-bottom-20" type="text" id="member_email" name="member_email" value="${param.member_email}"> 
-							<label>暱稱</label> <span id="nicknameRepeat" style='color:#880000;margin-left:20px'></span>
-								<input class="form-control margin-bottom-20" type="text" id="member_nickname" name="member_nickname" value="${param.member_nickname}">
+							<input type="hidden" name="member_third_id" value="${thirdId}">
+							<label>帳號</label> 
+							<span id="accountRepeat" style='color:#880000;margin-left:20px'>${errors.emptyUsername}</span>
+								<input class="form-control margin-bottom-20"type="text" id="member_username" name="member_username" required value="${param.member_username}">
+							 
+							<label>暱稱</label> 
+							<span id="nicknameRepeat" style='color:#880000;margin-left:20px'>${errors.emptyNickname}</span>
+								<input class="form-control margin-bottom-20" type="text" id="member_nickname" name="member_nickname" required value="${param.member_nickname}">
+						     
 							<hr>
 							<div class="row">
-<!-- 								<div class="col-lg-8"></div> -->
 								<div class="col-lg-12 text-center" style='color:#880000;'>
 								${errors.signUpError}
-<%-- 									<span id="sp1" style='color:#880000;'>${errors.signUpError}</span> --%>
 								</div>
 								<div class="col-lg-12 text-center">
-									<button class="btn btn-primary" type="submit" onclick="return foo();" >註冊</button>
+									<button class="btn btn-primary" type="submit">確定</button>
 								</div>
 								
 							</div>
