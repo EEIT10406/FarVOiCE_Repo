@@ -164,8 +164,8 @@ public class MusicService {
 	}
 
 	// 給上傳的音檔一個儲存路徑
-	public String musicFilePath(byte[] file) throws IOException {
-		String musicFilePath = "C:/Roy_FarVoice/music/" + System.currentTimeMillis() + ".mp3";
+	public String musicFilePath(byte[] file,String idForPath) throws IOException {
+		String musicFilePath = "C:/Roy_FarVoice/music/" + System.currentTimeMillis() +"-"+idForPath+ ".mp3";
 		FileOutputStream out = new FileOutputStream(musicFilePath);
 		out.write(file);
 		out.close();

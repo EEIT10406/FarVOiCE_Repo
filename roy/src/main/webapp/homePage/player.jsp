@@ -20,14 +20,8 @@
 </style>
 <script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script>
 <script>
+currentSrc = "";
 	$(document).ready(function() {
-// 		$('#login').click(function() {
-// 			window.location.href = "login.jsp";
-// 		})
-// 		$('#upload').click(function() {
-// 			window.location.href = "upload.jsp";
-// 		})
-		
 		<!-- APlayer -->
 		toggleFlag = true;
 		$('#listToggle').click(function() {
@@ -42,14 +36,14 @@
 			toggleFlag = !toggleFlag;
 			}
 		})
-		$('#addtest').click(function() {
-			ap.list.add([{
-				title : 'addtest',
-				author : 'addtest',
-				url : '/roy/music/addtest.mp3',
-				pic : '/roy/image/music/addtest.gif'
-			}]);
-		})
+		ap.on('play', function (e) {
+			if(ap.audio.src!=currentSrc){
+				currentSrc = ap.audio.src;
+				currentId = currentSrc.substring(currentSrc.indexOf('-')+1,currentSrc.indexOf('.'));
+				$.get("report.addMusic_playCount", {'music_id':currentId,'member_username':'${user.member_username}'}, function(message) {
+				})
+			}
+		});
 	})
 </script>
 	<p class="fa-arrow-down" id="listToggle" />
@@ -88,20 +82,9 @@
 		var ap = new APlayer({
 			element : document.getElementById('player1'),
 			narrow : false,
-			autoplay : true,
+			autoplay : false,
+			theme :	'#CA6955',
 			audio : [ 
-// 				{
-// 				title : 'addtest',
-// 				author : 'addtest',
-// 				url : '/roy/music/addtest.mp3',
-// 				pic : '/roy/image/music/addtest.gif'
-// 			}
-// 			, {
-// 				title : 'addtest',
-// 				author : 'addtest',
-// 				url : 'jPlayer-2.9.2/examples/blue.monday/addtest.mp3',
-// 				pic : 'jPlayer-2.9.2/examples/blue.monday/addtest.gif'
-// 			} 
 			]
 		});
 		ap.init();

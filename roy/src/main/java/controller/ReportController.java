@@ -19,6 +19,7 @@ import model.bean.MemberBean;
 import model.bean.MusicBean;
 import model.bean.PlaylistBean;
 import model.bean.ReportBean;
+import model.bean.StoryBean;
 import model.bean.primarykey.ListMusicId;
 import model.service.ListMusicService;
 import model.service.MemberLikeMusicService;
@@ -26,6 +27,7 @@ import model.service.MemberService;
 import model.service.MusicService;
 import model.service.PlayListService;
 import model.service.ReportService;
+import model.service.StoryService;
 
 @Controller
 public class ReportController {
@@ -42,6 +44,8 @@ public class ReportController {
 	PlayListService playListService;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	StoryService storyService;
 
 	//查檢舉
 	@RequestMapping(value = "**/report.get")
@@ -155,10 +159,17 @@ public class ReportController {
 	}
 	
 	@RequestMapping(value = "**/report.addMusic_playCount")
-	public void addMusic_playCount(Model model,String music_id) {
+	public void addMusic_playCount(Model model,String music_id,String member_username,StoryBean storyBean) {
 		MusicBean musicBean = musicService.findMusic(Integer.parseInt(music_id));
 		musicBean.setMusic_playCount(musicBean.getMusic_playCount()+1);
 		musicService.updateMusic(musicBean);
+		System.out.println(member_username);
+		if(member_username!=null&&!"".equals(member_username.trim())) {
+			storyBean.setMusic_id(Integer.parseInt(music_id));
+			storyBean.setMember_username(member_username);
+			storyBean.setStory_time(new java.sql.Date(new Date().getTime()));
+			storyService.create(storyBean);
+		}
 	}
 	
 	@RequestMapping(value = "**/report.searchLists", produces = "application/json;charset=utf-8")
