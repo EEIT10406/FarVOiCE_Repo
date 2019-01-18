@@ -56,10 +56,11 @@ td {
 <body>
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
-		<div id="content" style="margin-left: 230px; margin-top: 50px;">
+		<div id="content" style="">
+		<div class="container">
 			<!-- 每頁不同的內容從這裡開始 -->
 			<table id="playListTable" class="table table-bordered"
-				style="width: 800px;">
+				style="width: 800px;margin:auto;margin-top: 50px;">
 				<thead>
 					<tr>
 						<th>圖片</th>
@@ -148,6 +149,7 @@ td {
 
 			<!-- 每頁不同的內容到這裡結束 -->
 		</div>
+	</div>
 	</div>
 
 

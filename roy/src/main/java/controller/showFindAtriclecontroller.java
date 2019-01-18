@@ -33,10 +33,7 @@ public class showFindAtriclecontroller {
 			Gson gson = new Gson();
 			String jsonList = gson.toJson(posts);
 			return jsonList;
-			
-			
-		
-		
+				
 	
 	}
 }
