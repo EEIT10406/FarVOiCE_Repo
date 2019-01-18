@@ -126,6 +126,8 @@ public class MemberService {
 	//給nickname得username
 	public String nicenameToUsername(String username) {
 		return memberDAO.nicenameToUsername(username);
-		
+	}
+	public MemberBean HiMethod(String member_username) {
+		return memberDAO.findByPrimaryKey(member_username);
 	}
 }

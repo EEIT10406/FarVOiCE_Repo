@@ -291,9 +291,6 @@ function loadLikeMusic(username){
                                  <div class="item">
                                      <div class="col-md-12">
                                          
-                                         
-                                         
-                                         
                                      </div>
                                  </div>
                                  
@@ -327,19 +324,15 @@ function loadLikeMusic(username){
 				</div>
 				<!-- End Side Column -->
 			</div>
-			
-			
-				<div class="container" >
-			<div class="row">
+
+
+			<div class="container">
 				<div class="row">
-                    
-                 </div>
-                 
-              
+					<div class="row"></div>
+				</div>
 			</div>
-		</div>
-		
-		
+
+
 		</div>
 
 	</div>
