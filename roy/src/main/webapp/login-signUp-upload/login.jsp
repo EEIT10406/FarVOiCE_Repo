@@ -97,8 +97,9 @@
             );
         }
 
-<!--Google登入 end-->
-<!-- fb登入 begin -->
+         
+// <!--Google登入 end-->
+// <!-- fb登入 begin -->
 
 
   window.fbAsyncInit = function() {
@@ -144,7 +145,7 @@ function FBLogin() {
 }
 
 
-<!--fb登入 end-->
+// <!--fb登入 end-->
 
 	function IsEmail(email) {
 	    var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -161,7 +162,13 @@ function FBLogin() {
         frm.method = "post";                 
         frm.submit();                        
     }
-
+	function submit_frm_pass(){
+		 alert("記得去收新密碼喔!");
+       var frm = document.getElementById("sendPassword");  
+       frm.action = "/roy/register/sendPass";  
+       frm.method = "post";                 
+       frm.submit();                        
+   	}
 	$(document).ready(function() {
 		$('#login').click(function() {
 			window.location.href = "login.jsp";
@@ -193,6 +200,8 @@ function FBLogin() {
 *{
  font-family:"微軟正黑體";
 }
+
+
 h3{
  font-family:"微軟正黑體";
 }
@@ -252,14 +261,11 @@ h3{
 								</div>
 								<hr>
 								<h5>
-									還沒註冊嗎 ?<a href="#" style="float: right;">忘記密碼</a>
+									還沒註冊嗎 ?<a href="#"data-toggle='modal' data-target='#forgetPassword'  style="float: right;">忘記密碼</a>
 								</h5>
 								<a href="signUp.jsp">按這裡</a>註冊帳號
 							</form>
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-							  Launch demo modal
-							</button>
+
 							</div>
 					
 						
@@ -297,6 +303,40 @@ h3{
 						  </div>
 						</div>
 						<!-- End 點我開通 -->
+						
+						<!-- 點我忘記密碼 -->
+						<div class="modal fade" id="forgetPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalCenterTitle">忘記密碼了嗎?</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body" >
+						         <form id="sendPassword">
+						      		Hi~ <br>
+						        	是不是忘記密碼了呢?<br>
+						        	在此輸入帳號為您寄出密碼喔。<br>
+						    
+						        	<input id="accountOrEmailCheck" type="text"  name="userEmail" style="width:230px">
+						        	<span id="accountOrEmailError" style='color:#880000;'></span>
+						        </form>	
+						        
+						      </div>
+						      <div class="modal-footer">
+						   
+						       
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">想起來了</button>
+						        <button type="button" class="btn btn-primary" onclick="submit_frm_pass()">寄出新密碼</button>
+						     
+						      </div>
+						      
+						    </div>
+						  </div>
+						</div>
+						<!-- End 點我忘記密碼 -->
 						
 						<!-- End Login Box -->
 					</div>

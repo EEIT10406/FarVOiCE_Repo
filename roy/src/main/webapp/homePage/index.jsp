@@ -157,7 +157,18 @@ function loadLikeMusic(username){
 				    content+=heart+
 				                   '</div>'+
 				                   '<div id="message" style="border-radius:5px; width: 400px;height: 140px;margin-top: 74px;margin-right: 25px;float: right;background-color:#AAAAAA">'+
+// 				                   ----------------------
+				                   "<div style='margin-bottom:45px'>"+
+				                  " <div style='margin-bottom:15px'>"+
+				                   "<img src='/roy/image/profile/1547190442734.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px'>"+
+				                   "<h5 style='margin-bottom:0px;margin-top:15px;letter-spacing:0.5px;display:inline;vertical-align: middle;'>fofo</h5>"+
+				                   "<small style='vertical-align: middle;margin-top:15px;'>15天前</small>"+
+				                   "</div>"+
+				                   "<div class='clearfix'></div>"+
+				                   "<div style='margin-bottom:15px'>大家好啊歡迎來到發聲這個大家庭</div>"+
+				                   "<br><br></div>"+
 				                   '</div>'+
+// 				                   -----------------
 			    	               '<img src="'+list.music_Image+'" style="float: left; height: 200px; width: 200px;margin:16px 16px auto 20px;border-radius: 5px; border: solid 1px #DDDDDD;" />'+
 			                       '<div style="padding-left:0px;padding-top:30px;color:white;float:left;width:150px;">'+
 						               '<div id="musicPage" style="font-size:20px;width:200px;">'+list.music_name+'</div>'+
@@ -357,7 +368,7 @@ $(function () {
         type: "POST",
         cache:false,
         dataType:'json',
-        data:{user:$('#userName').text()},
+//         data:{user:$('#userName').text()},
 		success : function(list){	
 			list.forEach(function(obj, index) {
 // 	這邊的username是nickname
@@ -378,18 +389,6 @@ $(function () {
      });
 })
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
