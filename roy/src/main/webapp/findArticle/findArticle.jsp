@@ -59,6 +59,8 @@
 	charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<script src="1.js?ver=1"></script>
+
 <!-- End JS -->
 
 </head>
@@ -86,7 +88,7 @@
 						<!-- Blog Post -->
 						<div class="blog-post padding-bottom-20">
 							<!-- Blog Item Header -->
-							<div class="blog-item-header">
+							<div class="blog-item-header" >
 								<!-- Title -->
 								<h2>
 									<a href="#">最新文章</a>
@@ -94,256 +96,22 @@
 								<div class="clearfix"></div>
 								<!-- End Title -->
 							</div>
-							<!-- End Blog Item Header -->
-							<!-- Blog Item Details -->
-							<div class="blog-post-details">
-								<!-- Author Name -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-user color-gray-light"></i> <a href="#">作者:黃金鼠</a>
-								</div>
-								<!-- End Author Name -->
-								<!-- Date -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-								</div>
-								<!-- End Date -->
-								<!-- Tags -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-									<i class="fa fa-tag color-gray-light"></i> <a href="#">HTML5</a>,
-									<a href="#">CSS</a>, <a href="#">Grunt</a>
-								</div>
-								<!-- End Tags -->
-								<!-- # of Comments -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-									<a href=""> <i class="fa fa-comments color-gray-light"></i>
-										9 Comments
-									</a>
-								</div>
-								<!-- End # of Comments -->
-							</div>
-							<!-- End Blog Item Details -->
-							<!-- Blog Item Body -->
-							<div class="blog">
-								<div class="clearfix"></div>
-								<div class="blog-post-body row margin-top-15">
-									<div class="col-md-5">
-										<img class="margin-bottom-20" src="imgs/mouse.PNG"
-											alt="thumb1">
-									</div>
-									<div class="col-md-7">
-										<p>最新文章</p>
-										<p>我是一隻黃金鼠</p>
-										<!-- Read More -->
-										<a href="../findArticle/singleArticle.jsp"
-											class="btn btn-primary">查看全文<i
-											class="icon-chevron-right readmore-icon"></i>
-										</a>
-										<!-- End Read More -->
-									</div>
-								</div>
-							</div>
-							<!-- End Blog Item Body -->
+							<div id="articlePutHere"></div>
 						</div>
-						<!-- End Blog Item -->
-						<!-- Blog Post -->
-						<div class="blog-post padding-bottom-20">
-							<!-- Blog Item Header -->
-							<div class="blog-item-header">
-								<!-- Title -->
-								<h2>
-									<a href="#">玄鳳</a>
-								</h2>
-								<div class="clearfix"></div>
-								<!-- End Title -->
-							</div>
-							<!-- End Blog Item Header -->
-							<!-- Blog Item Details -->
-							<div class="blog-post-details">
-								<!-- Author Name -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-user color-gray-light"></i> <a href="#">作者:玄鳳鸚鵡</a>
-								</div>
-								<!-- End Author Name -->
-								<!-- Date -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-								</div>
-								<!-- End Date -->
-								<!-- Tags -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-									<i class="fa fa-tag color-gray-light"></i> <a href="#">CoffeeScript</a>,
-									<a href="#">CSS</a>, <a href="#">Ruby</a>
-								</div>
-								<!-- End Tags -->
-								<!-- # of Comments -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-									<a href=""> <i class="fa fa-comments color-gray-light"></i>
-										5 Comments
-									</a>
-								</div>
-								<!-- End # of Comments -->
-							</div>
-							<!-- End Blog Item Details -->
-							<!-- Blog Item Body -->
-							<div class="blog">
-								<div class="clearfix"></div>
-								<div class="blog-post-body row margin-top-15">
-									<div class="col-md-5">
-										<img class="margin-bottom-20" src="imgs/bird.jpg" alt="thumb2">
-									</div>
-									<div class="col-md-7">
-										<p>你好我是玄鳳</p>
-										<p>你好我是鸚鵡</p>
-
-										<!-- Read More -->
-										<a href="#" class="btn btn-primary"> 查看全文 <i
-											class="icon-chevron-right readmore-icon"></i>
-										</a>
-										<!-- End Read More -->
-									</div>
-								</div>
-							</div>
-							<!-- End Blog Item Body -->
-						</div>
-						<!-- End Blog Item -->
-						<!-- Blog Post -->
-						<div class="blog-post padding-bottom-20">
-							<!-- Blog Item Header -->
-							<div class="blog-item-header">
-								<!-- Title -->
-								<h2>
-									<a href="#">讓我為你唱情歌</a>
-								</h2>
-								<div class="clearfix"></div>
-								<!-- End Title -->
-							</div>
-							<!-- End Blog Item Header -->
-							<!-- Blog Item Details -->
-							<div class="blog-post-details">
-								<!-- Author Name -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-user color-gray-light"></i> <a href="#">蕭敬騰</a>
-								</div>
-								<!-- End Author Name -->
-								<!-- Date -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.01.02</a>
-								</div>
-								<!-- End Date -->
-								<!-- Tags -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-									<i class="fa fa-tag color-gray-light"></i> <a href="#">Bootstrap</a>,
-									<a href="#">CoffeeScript</a>, <a href="#">Ruby</a>
-								</div>
-								<!-- End Tags -->
-								<!-- # of Comments -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-									<a href=""> <i class="fa fa-comments color-gray-light"></i>
-										9 Comments
-									</a>
-								</div>
-								<!-- End # of Comments -->
-							</div>
-							<!-- End Blog Item Details -->
-							<!-- Blog Item Body -->
-							<div class="blog">
-								<div class="clearfix"></div>
-								<div class="blog-post-body row margin-top-15">
-									<div class="col-md-5">
-										<img class="margin-bottom-20" src="imgs/hqdefault.jpg"
-											alt="thumb3">
-									</div>
-									<div class="col-md-7">
-										<p>333333333333333333</p>
-										<!-- Read More -->
-										<a href="#" class="btn btn-primary"> 查看全文 <i
-											class="icon-chevron-right readmore-icon"></i>
-										</a>
-										<!-- End Read More -->
-									</div>
-								</div>
-							</div>
-							<!-- End Blog Item Body -->
-						</div>
-						<!-- End Blog Item -->
-						<!-- Blog Post -->
-						<div class="blog-post padding-bottom-20">
-							<!-- Blog Item Header -->
-							<div class="blog-item-header">
-								<!-- Title -->
-								<h2>
-									<a href="#"> 第四篇</a>
-								</h2>
-								<div class="clearfix"></div>
-								<!-- End Title -->
-							</div>
-							<!-- End Blog Item Header -->
-							<!-- Blog Item Details -->
-							<div class="blog-post-details">
-								<!-- Author Name -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-user color-gray-light"></i> <a href="#">作者</a>
-								</div>
-								<!-- End Author Name -->
-								<!-- Date -->
-								<div class="blog-post-details-item blog-post-details-item-left">
-									<i class="fa fa-calendar color-gray-light"></i> <a href="#">2019.08.03</a>
-								</div>
-								<!-- End Date -->
-								<!-- Tags -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-tags">
-									<i class="fa fa-tag color-gray-light"></i> <a href="#">PHP</a>,
-									<a href="#">HTML</a>, <a href="#">HTML5</a>
-								</div>
-								<!-- End Tags -->
-								<!-- # of Comments -->
-								<div
-									class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
-									<a href=""> <i class="fa fa-comments color-gray-light"></i>
-										4 Comments
-									</a>
-								</div>
-								<!-- End # of Comments -->
-							</div>
-							<!-- End Blog Item Details -->
-							<!-- Blog Item Body -->
-							<div class="blog">
-								<div class="clearfix"></div>
-								<div class="blog-post-body row margin-top-15">
-									<div class="col-md-5">
-										<img class="margin-bottom-20" src="../img/blog/image4.jpg"
-											alt="thumb4">
-									</div>
-									<div class="col-md-7">
-										<p>4444444444444444</p>
-										<!-- Read More -->
-										<a href="#" class="btn btn-primary">查看全文 <i
-											class="icon-chevron-right readmore-icon"></i>
-										</a>
-										<!-- End Read More -->
-									</div>
-								</div>
-							</div>
-							<!-- End Blog Item Body -->
-						</div>
-						<!-- End Blog Item -->
 						<!-- Pagination -->
-						<ul class="pagination">
-							<li><a href="#">&laquo;</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li class="disabled"><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">&raquo;</a></li>
-						</ul>
+						
+						<ul class="pagination" id="ul1" style="cursor:pointer"></ul>
+							<div id="div1">
+<!-- 							<li class="" onclick=""><a>&laquo;</a></li> -->
+<!-- 							<li class="active"><a>1</a></li> -->
+<!-- 							<li class=""><a>2</a></li> -->
+<!-- 							<li class="" ><a>3</a></li> -->
+<!-- 							<li class="" ><a>4</a></li> -->
+<!-- 							<li class=""><a>5</a></li> -->
+<!-- 							<li class=""><a>&raquo;</a></li> -->
+							</div>
+						
+						
 						<!-- End Pagination -->
 					</div>
 					<br> <br>
@@ -355,61 +123,22 @@
 							<ul class="blog-tags">
 
 								<!-- 搜尋文章 -->
-								<form class="form-inline">
-									<input class="form-control mr-sm-2" type="search"
+								<div id="search-div">
+								<form class="form-inline"  action="">
+									<input class="form-control mr-sm-2" type="search" id="search_new"
 										placeholder="搜尋" aria-label="Search">
-									<button class="btn btn-outline-success" type="submit">搜尋</button>
+									<button class="btn btn-outline-success" type="button">搜尋</button>
 								</form>
+								</div>
 							</ul>
-						</div>
-
+						</div>		
 						<hr>
 						<br>
 						<div class="recent-posts">
 							<h3>最近新增文章</h3>
-							<ul class="posts-list margin-top-10">
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left" src="imgs/mouse.PNG"
-											style="width: 100px; height: 90px" alt="thumb1">
-										</a> <a href="../findArticle/singleArticle.jsp"
-											class="posts-list-title">黃金鼠 </a> <br> <span
-											class="recent-post-date"> 2019.01.02 </span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
-								<br>
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left" src="imgs/bird.jpg"
-											style="width: 100px; height: 90px" alt="thumb2">
-										</a> <a href="#" class="posts-list-title">玄鳳</a> <br> <span
-											class="recent-post-date"> 2019.01.02 </span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
-								<br>
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left"
-											src="../img/blog/thumbs/thumb3.jpg"
-											style="width: 100px; height: 90px" alt="thumb3">
-										</a> <a href="#" class="posts-list-title">第三篇</a> <br> <span
-											class="recent-post-date"> 2019.02.03 </span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
-								<br>
-								<li>
-									<div class="recent-post">
-										<a href=""> <img class="pull-left"
-											src="../img/blog/thumbs/thumb4.jpg"
-											style="width: 100px; height: 90px" alt="thumb4">
-										</a> <a href="#" class="posts-list-title">第四篇</a> <br> <span
-											class="recent-post-date"> 2019.05.06 </span>
-									</div>
-									<div class="clearfix"></div>
-								</li>
+							<ul class="posts-list margin-top-10" id="newArticle">
+								
+								
 							</ul>
 						</div>
 						<!-- End Recent Posts -->
@@ -429,8 +158,253 @@
 <%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
 <!-- 	</div> -->
 
+<script>
+var allArticle; //放資料
+var start; //從第幾筆開始
+var currentPage=1;//目前頁數
+var ShowPage;//總頁數
+var count = 3;//一次幾筆
+var NumOfJData;//總筆數
+
+function doPage(){
+	console.log(event.currentTarget);
+	page=event.currentTarget.innerHTML;//當前頁數
+	currentPage = event.currentTarget.innerHTML;//把當前頁數存到 currentPage
+	$(".pagination li").attr("class","");
+	$(event.currentTarget).parents('li').attr("class","active");
+	start = page*count-count;
+	showData(start);
+}
+function preP(){
+// 	console.log(ShowPage);
+// 	console.log(count);
+// 	console.log(NumOfJData);
+	if(currentPage!=1){
+		console.log(currentPage);
+		start=currentPage-1;
+		showData(start);
+		currentPage=currentPage-1;
+	}else{
+		
+		alert("已經是第一頁囉~");
+	}
+	
+}
+function NextP(){
+	
+	if(currentPage!=ShowPage){
+		start=parseInt(currentPage)+1;
+		showData(start);
+		currentPage=parseInt(currentPage)+1;
+	}else{
+		
+		alert("已經最後一頁~");
+		
+	}
+	
+}
+function showData(token){
+	console.log(token);
+	$("#articlePutHere").html("");
+	var div ="";
+	for(var i=token;i<token+count;i++){
+			var Blog_Item_Details = 
+			"<div class='blog-post-details'>"+
+			"<div class='blog-post-details-item blog-post-details-item-left'>"+
+				"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+allArticle[i].member_nickname+"</a>"+
+			"</div>"+
+			"<div class='blog-post-details-item blog-post-details-item-left'>"+
+				"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+allArticle[i].post_time+"</a>"+
+			"</div>"+
+			"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
+				"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
+				
+			var Blog_Content = "<div class='blog'>"+
+								 "<div class='clearfix'></div>"+
+									"<div class='blog-post-body row margin-top-15'>"+
+									   "<div class='col-md-7'>"+"<p>"+allArticle[i].post_content+"</p>"+
+										"<a href='/roy/personalPage/singleArticle.controller?post_idS="+allArticle[i].post_idS+"'"+
+						"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
+					"</a></div></div></div></div><br><br><br><br>";
+			$("#articlePutHere").append(Blog_Item_Details+Blog_Content);
+	}
+}
+$(document).ready(function() {
+	loadArticle();
+	$("#search_new").keypress(function (event) {
+		if (event.keyCode == 13) {
+			$("form").submit(function () {
+				return false;
+			});
+			var searchString = $("#search_new").val();
+			loadArticle(searchString);
+		}
+	});
+	
+})
 
 
+
+$('#search-div button').click(function(){
+	var searchString = $('#search-div input').val();
+	loadArticle(searchString);
+})
+
+//顯示畫面
+function loadArticle (searchString) {
+	$("#articlePutHere").html("");
+	$("#newArticle").html("");
+	var searchString = searchString ;
+	
+	$.ajax({
+		url: "/roy/findArticle/findArticle.controller",       
+		type: "POST",
+		cache:false,
+		dataType:'json',
+		data:{'searchString':searchString},            
+		success : function(list)
+		{	
+			allArticle=list;
+			NumOfJData = list.length; //NumOfJData=4 總筆數
+			ShowPage = Math.ceil((NumOfJData/count));  //總頁數 
+			
+			//顯示總頁數
+			$("#ul1").append("<li class=''><a onclick='return preP()';>&laquo;</a></li>");	
+			for(var i=1;i<=ShowPage;i++){
+				var pages ="<li class=''><a onclick='return doPage(this);'>"+i+"</a></li>"
+				if(i==1){
+				var pages ="<li class='active'><a onclick='return doPage(this);'>"+i+"</a></li>"
+				}
+				$("#ul1").append(pages);	
+			}
+			$("#ul1").append("<li class=''><a onclick='return NextP()'>&raquo;</a></li>");
+			
+			//顯示首頁
+			for(var i=0;i<count;i++){
+				
+				var Blog_Item_Details = 
+					"<div class='blog-post-details'>"+
+					"<div class='blog-post-details-item blog-post-details-item-left'>"+
+						"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+allArticle[i].member_nickname+"</a>"+
+					"</div>"+
+					"<div class='blog-post-details-item blog-post-details-item-left'>"+
+						"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+allArticle[i].post_time+"</a>"+
+					"</div>"+
+					"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
+						"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
+						
+					var Blog_Content = "<div class='blog'>"+
+										 "<div class='clearfix'></div>"+
+											"<div class='blog-post-body row margin-top-15'>"+
+											   "<div class='col-md-7'>"+"<p>"+allArticle[i].post_content+"</p>"+
+												"<a href='/roy/personalPage/singleArticle.controller?post_idS="+allArticle[i].post_idS+"'"+
+								"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
+							"</a></div></div></div></div><br><br><br><br>";
+					$("#articlePutHere").append(Blog_Item_Details+Blog_Content);
+					
+				
+			}
+			//顯示最近新增
+			for(var i=0;i<5;i++){
+				var author = allArticle[i].member_nickname;
+				var time = allArticle[i].post_time;
+				var content = allArticle[i].post_content;
+				var postnumber = allArticle[i].post_idS;
+				var profile = allArticle[i].member_profileImage;
+				var newArticleContent = "<li>"+
+				"<div class='recent-post'>"+
+				"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'>"+"<img class='pull-left' src='"+profile+"'"+
+				"style='width: 100px; height: 90px' alt='thumb1'>"+
+				"</a> <a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
+				"class='posts-list-title'>"+author+"</a> <br> <span class='recent-post-date'>"+time+"</span>"+
+				"</div><div class='clearfix'></div></li><br><br>";
+				$("#newArticle").append(newArticleContent);
+				
+			}
+				
+				
+				
+				
+				
+			
+			
+			//顯示內容
+// 				var Blog_Item_Details = 
+// 				"<div class='blog-post-details'>"+
+// 				"<div class='blog-post-details-item blog-post-details-item-left'>"+
+// 					"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+author+"</a>"+
+// 				"</div>"+
+// 				"<div class='blog-post-details-item blog-post-details-item-left'>"+
+// 					"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+time+"</a>"+
+// 				"</div>"+
+// 				"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
+// 					"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
+						
+// 				var Blog_Content = "<div class='blog'>"+
+// 									 "<div class='clearfix'></div>"+
+// 										"<div class='blog-post-body row margin-top-15'>"+
+// 										   "<div class='col-md-7'>"+"<p>"+content+"</p>"+
+// 											"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
+// 							"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
+// 						"</a></div></div></div></div><br><br><br><br>";
+// 				content = "" ;
+// 				$("#articlePutHere").append(Blog_Item_Details+Blog_Content);
+			
+
+		  },
+	      error: function (xhr, ajaxOptions, thrownError) {
+	           alert(xhr.status);
+	           alert(thrownError);
+	      }
+	   });
+	}
+	
+</script>
+
+<script>
+//分頁	
+// $(".pagination li").click(function(){
+	
+	
+// })
+// 當前頁
+//  function pageClick(this){
+// 	 alert("pageClick");
+// 	var Father = $(this).parents('.pagination');
+// 	var Fathers =$(".pagination>li").length;
+// 	for(var i=0;i<=Fathers;i++){
+// 		$(".pagination li").attr("class","");
+// 	}
+// 	alert($(this).text());
+// // 	$(this).attr("class","active");	
+	
+// }
+
+// function prepage(){
+// 	alert("prepage");
+// 	var nowPage = $(".pagination li.active").text();
+// 	var newPage = parseInt(nowPage);
+// 	var Fathers =$(".pagination>li").length;
+// 	for(var i=1;i<=Fathers-1;i++){
+// 		$(".pagination li").attr("class","");
+// 	}
+// 	$(".pagination li").eq(newPage).text();
+// 	alert($(".pagination li").eq(newPage).text());
+// 	$(".pagination li").eq(newPage).attr("class","active");
+	
+// }
+
+// function nextpage(){
+// 	alert("nextpage");
+// 	var nowPage = $(".pagination li.active").text();
+// 	var newPage = parseInt(nowPage)+1;
+// 	for(var i=1;i<=Fathers-1;i++){
+// 		$(".pagination li").attr("class","");
+// 	}
+// 	$(".pagination li").eq(newPage).attr("class","active");
+// }
+
+</script>
 </body>
 </html>
 <!-- === END FOOTER === -->

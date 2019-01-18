@@ -68,7 +68,6 @@ public class ShareMusicService{
 		PostBean result = null;
 		if(bean!=null) {
 			result = postDao.create(bean);
-			
 		}
 		return result;
 	}

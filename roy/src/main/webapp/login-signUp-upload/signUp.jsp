@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>Enlighten - Professional Bootstrap Template</title>
+<title>FarVOiCE</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -40,6 +40,18 @@
 	<!-- End JS -->
 
 <script>
+	function IsEmail(email) {
+	    var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	    if(!regex.test(email)) {
+	        return false;
+	    }else{
+	        return true;
+	    }
+	}
+	function foo() {
+		   alert("記得去收驗證信喔!");
+		   return true;
+	}
 	$(document).ready(function() {
 		$('#login').click(function() {
 			window.location.href = "login.jsp";
@@ -106,16 +118,15 @@
 	          });
  	
 		})
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	
+		$('#member_email').blur(function() {
+			if(!IsEmail($('#member_email').val())){
+				$('#emailCheck').html("信箱格式錯誤!");
+			}else{
+				$('#emailCheck').html("");
+			}
+
+		})
 	})
 </script>
 </head>
@@ -143,7 +154,7 @@
 										class="form-control margin-bottom-20" type="password" id="member_passwordConfirm" name="member_passwordConfirm" value="${param.member_passwordConfirm}">
 								</div>
 							</div>
-							<label>電子郵件</label> 
+							<label>電子郵件</label> <span id="emailCheck" style='color:#880000;margin-left:20px'></span>
 								<input class="form-control margin-bottom-20" type="text" id="member_email" name="member_email" value="${param.member_email}"> 
 							<label>暱稱</label> <span id="nicknameRepeat" style='color:#880000;margin-left:20px'></span>
 								<input class="form-control margin-bottom-20" type="text" id="member_nickname" name="member_nickname" value="${param.member_nickname}">
@@ -155,7 +166,7 @@
 <%-- 									<span id="sp1" style='color:#880000;'>${errors.signUpError}</span> --%>
 								</div>
 								<div class="col-lg-12 text-center">
-									<button class="btn btn-primary" type="submit">註冊</button>
+									<button class="btn btn-primary" type="submit" onclick="return foo();" >註冊</button>
 								</div>
 								
 							</div>

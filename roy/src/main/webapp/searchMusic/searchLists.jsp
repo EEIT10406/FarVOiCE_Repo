@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -39,12 +39,63 @@
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <!-- End JS -->
 <script>
-	$(document).ready(function() {
 
+	var sort;
+	
+	function mover(e){
+		e.setAttribute("class", "play2")
+	}
+	function mout(e){
+		e.setAttribute("class", "play");
+	}
+	function addList(playlist_id){
+		$.getJSON('report.searchPlaylistMusic',{'playlist_id':playlist_id},function(data){
+		    $.each(data,function(index,music){
+		    	ap.list.add([{
+					title : music.Music_name,
+					author : music.Member_username,
+					url : music.Music_music,
+					pic : music.Music_Image
+				}])
+		    	});
+		    })
+	}
+	
+	$(document).ready(function() {
+		sort = $('#type li.active').attr("sort");
+		loadLists(sort);
+		function loadLists(sort){
+			$('#list-Container').html("");
+			$.getJSON('report.readPlayList',{'sort':sort},function(data){
+				var docFrag = $(document.createDocumentFragment());
+				$.each(data,function(index,list){
+					var row = $("<div class='col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box'></div>").html(
+					'<div class="work-block m-bottom-2">'+
+					'<a href="/roy/personalPage/locateToPlayList?playListId='+list.playlist_id+'"><img class="img-full" height="220px" width="220px"'+
+					'src="'+list.playlist_image+'">'+
+					'</a><input id="playButton" class="play" onmouseover="mover(this)" onmouseout="mout(this)" onclick="addList('+list.playlist_id+')" type="image" src = "../img/player.png" height="50" width="50"></div><div class="song-info">'+
+					'<h4 class="text-ellipsis"><a href="/roy/personalPage/locateToPlayList?playListId='+list.playlist_id+'">'+list.playlist_name+'</a></h4></div>'
+					)
+					docFrag.append(row);
+				});
+			$('#list-Container').html(docFrag)
+			});
+		};
+		
+		//取消a默認
+		$('#content a').on('click',function(event){
+			event.preventDefault();
+		});
+		//取消a默認		
+
+		//排序
 		$('#type li').click(function() {
 			$(this).parent('ul').children('li').removeClass('active');
 			$(this).addClass('active');
+			sort = $('#type li.active').attr("sort");
+			loadLists(sort);
 		})
+		//排序
 		
 		$('#playButton').hover(function() {
 		src = $( this ).attr("src");
@@ -55,6 +106,16 @@
 	})
 </script>
 <style>
+.play {
+	width: 60px;
+	-webkit-filter: invert(70%);
+	cursor: pointer;
+}
+
+.play2 {
+	width: 60px;
+	cursor: pointer;
+}
 #playButton{
   position: absolute;
   bottom:50%;
@@ -79,9 +140,9 @@
 									<label class="col-sm-1 control-label text-muted"><small>類型</small></label>
 									<div class="col-sm-11">
 										<ul id="type" class="nav nav-pills nav-sm">
-											<li class="active"><a class="dynamic" href="#">最多喜歡</a></li>
-											<li><a class="dynamic" href="#">最多播放</a></li>
-											<li><a class="dynamic" href="#">最新上傳</a></li>
+											<li class="active" sort="playlist_registerTime"><a class="dynamic" href="#">最多喜歡</a></li>
+											<li sort="playlist_musicCount"><a class="dynamic" href="#">最多播放</a></li>
+											<li sort="playlist_privacy"><a class="dynamic" href="#">最新上傳</a></li>
 										</ul>
 									</div>
 								</div>
@@ -96,9 +157,8 @@
 
 	<!-- 歌單	 -->
 	<div class="container">
-		<div class="row margin-vert-30">
+		<div id="list-Container" class="row margin-vert-30">
 		
-			<!-- 歌	 -->
 			<div class="col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box">
 				<div class="work-block m-bottom-2">
 					<a href="/roy/searchMusic/songList.jsp"><img class="img-full"
@@ -111,7 +171,6 @@
 					</h4>
 				</div>
 			</div>
-			<!-- 歌	 -->
 			
 		</div>
 	</div>

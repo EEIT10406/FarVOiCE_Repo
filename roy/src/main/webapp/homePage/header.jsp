@@ -114,50 +114,15 @@
 							<%-- 									<li><a href="${request.contextPath}/rank.jsp" class="far fa-trophy">看排行</a> --%>
 							<li><a href="/roy/rank/rank.jsp" ><i class="fas fa-trophy fa-lg"></i>   看排行</a>
 								<ul>
-									<li class="parent"><span>Typography</span>
-										<ul>
-											<li><a href="features-typo-basic.html">Basic
-													Typography</a></li>
-											<li><a href="features-typo-blockquotes.html">Blockquotes</a>
-											</li>
-										</ul></li>
-									<li class="parent"><span>Components</span>
-										<ul>
-											<li><a href="features-labels.html">Labels</a></li>
-											<li><a href="features-progress-bars.html">Progress
-													Bars</a></li>
-											<li><a href="features-panels.html">Panels</a></li>
-											<li><a href="features-pagination.html">Pagination</a></li>
-										</ul></li>
-									<li class="parent"><span>Icons</span>
-										<ul>
-											<li><a href="features-icons.html">Icons General</a></li>
-											<li><a href="features-icons-social.html">Social
-													Icons</a></li>
-											<li><a href="features-icons-font-awesome.html">Font
-													Awesome</a></li>
-											<li><a href="features-icons-glyphicons.html">Glyphicons</a>
-											</li>
-										</ul></li>
-									<li><a href="features-testimonials.html">Testimonials</a>
-									</li>
-									<li><a href="features-accordions-tabs.html">Accordions
-											& Tabs</a></li>
-									<li><a href="features-buttons.html">Buttons</a></li>
-									<li><a href="features-carousels.html">Carousels</a></li>
-									<li><a href="features-grid.html">Grid System</a></li>
-									<li><a href="features-animate-on-scroll.html">Animate
-											On Scroll</a></li>
-								</ul></li>
-							<li><a href="../searchMusic/searchLists.jsp"><i class="fas fa-list-ol fa-lg"></i>   聽歌單</a>
-								<ul>
 									<li><a href="pages-about-us.html">搖滾</a></li>
 									<li><a href="pages-services.html">抒情</a></li>
 									<li><a href="pages-faq.html">金屬</a></li>
 									<li><a href="pages-about-me.html">爵士</a></li>
 									<li><a href="pages-full-width.html">古典</a></li>
 									
-								</ul></li>
+								</ul>
+							<li><a href="../searchMusic/searchLists.jsp"><i class="fas fa-list-ol fa-lg"></i>   聽歌單</a>
+								</li>
 							<li><a href="/roy/searchMusic/searchMusic.jsp"><i class="fas fa-headphones fa-lg"></i>  找音樂</a>
 								</li>
 							<li><a href="/roy/findArticle/findArticle.jsp"><i class="fas fa-pencil-alt fa-lg"></i>   找文章</a>

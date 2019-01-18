@@ -11,14 +11,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Member")
 public class MemberBean {
+	
+	@Override
+	public String toString() {
+		return "MemberBean [member_username=" + member_username + ", member_password=" + member_password
+				+ ", member_email=" + member_email + ", member_nickname=" + member_nickname + ", member_profileImage="
+				+ member_profileImage + ", member_registerTime=" + member_registerTime + ", member_ban=" + member_ban
+				+ ", member_description=" + member_description + ", member_state=" + member_state + ", member_region="
+				+ member_region + ", member_third_id=" + member_third_id + "]";
+	}
 	//1228
 	/*	member_username		varchar(30) primary key,--帳號
 		member_password		varchar(30),
 		member_email		varchar(30),
 		member_nickname		varchar(30),
-		member_profileImage	varchar(200),--上傳時需要限制大小
+		member_profileImage	varchar(200),
 		member_registerTime datetime,
 		member_ban			bit,
+		member_description  varchar(300),
+		member_region		varchar(30)
+		member_state		tinyint --0-->no雞活，1-->蹟活
+		member_third_id		varchar(300)
+
 	*/
 //	@OneToMany(
 //		mappedBy="Member",
@@ -33,13 +47,25 @@ public class MemberBean {
 	private String member_profileImage;
 	private java.util.Date member_registerTime;
 	private Boolean member_ban;
-	@Override
-	public String toString() {
-		return "MemberBean [member_username=" + member_username + ", member_password=" + member_password
-				+ ", member_email=" + member_email + ", member_nickname=" + member_nickname + ", member_profileImage="
-				+ member_profileImage + ", member_registerTime=" + member_registerTime + ", member_ban=" + member_ban
-				+ "]";
+	private String member_description;
+	private Integer member_state;
+	private String member_region;
+	private String member_third_id;
+	public String getMember_description() {
+		return member_description;
 	}
+	public void setMember_description(String member_description) {
+		this.member_description = member_description;
+	}
+	public String getMember_region() {
+		return member_region;
+	}
+	public void setMember_region(String member_region) {
+		this.member_region = member_region;
+	}
+
+
+	
 	public String getMember_username() {
 		return member_username;
 	}
@@ -81,5 +107,18 @@ public class MemberBean {
 	}
 	public void setMember_ban(Boolean member_ban) {
 		this.member_ban = member_ban;
+		
+	}
+	public String getMember_third_id() {
+		return member_third_id;
+	}
+	public void setMember_third_id(String member_third_id) {
+		this.member_third_id = member_third_id;
+	}
+	public Integer getMember_state() {
+		return member_state;
+	}
+	public void setMember_state(Integer member_state) {
+		this.member_state = member_state;
 	}
 }

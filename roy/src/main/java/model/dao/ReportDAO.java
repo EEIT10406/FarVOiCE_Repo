@@ -76,6 +76,15 @@ public class ReportDAO {
 	public ReportBean findByPrimaryKey(Integer report_id) {
 		return this.getSession().get(ReportBean.class, report_id);
 	}
+	
+	public List<ReportBean> findByMember_username(String member_usernameReportS,String music_idReportM) {
+		String s = "from ReportBean where member_usernameReportS = '" + member_usernameReportS + 
+				"' and music_idReportM = "+music_idReportM;
+		return this.getSession().createQuery(s, ReportBean.class)
+				.setMaxResults(50)
+				.list();
+	}
+	
 	public List<ReportBean> findAll() {
 		String s = "from ReportBean";
 		return this.getSession().createQuery(s, ReportBean.class)

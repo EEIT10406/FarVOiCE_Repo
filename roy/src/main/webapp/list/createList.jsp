@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
@@ -56,10 +56,13 @@ td {
 <body>
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
-		<div id="content" style="margin-left: 230px; margin-top: 50px;">
+		<div id="content">
+		<div class="container">
 			<!-- 每頁不同的內容從這裡開始 -->
-			<table id="playListTable" class="table table-bordered"
-				style="width: 800px;">
+							<form action="<c:url value="/list/createPlayList" />"
+							enctype="multipart/form-data" method="post">
+			<table id="playListTable" class="table table-bordered" style="width: 800px;margin:auto;margin-top: 50px;">
+
 				<thead>
 					<tr>
 						<th>圖片</th>
@@ -80,12 +83,11 @@ td {
 <!-- 						<td><button class="btn btn-primary pull-right">刪除</button></td> -->
 <!-- 					</tr> -->
 				</tbody>
+
 				<tfoot>
 
 					<tr>
-						<form action="<c:url value="/list/createPlayList" />"
-							enctype="multipart/form-data" method="post">
-							<input type="hidden" id="playListId"><span></span>
+							<input type="hidden" id="playListId">
 							<td><input type="file" id="imageFile" accept="image/*"
 								name="imageFile"></td>
 							<td><input type="text" style="width: 100px"
@@ -98,11 +100,12 @@ td {
 							<td><input type="hidden" name=""><span></span></td>
 							<td><input class="btn btn-primary pull-right" type="submit"
 								value="新增"></td>
-						</form>
 					</tr>
+			
+					
 				</tfoot>
 			</table>
-
+</form>
 			<!-- 編輯歌單 begin-->
 			<div class="modal fade" id="editPLayList" aria-hidden="true">
 				<div class="modal-dialog" style="width: 795px;">
@@ -117,12 +120,12 @@ td {
 
 						<div class="modal-body">
 							<table id="playListMusicTable" class="table table-bordered"
-								style="width: 750px;">
+								style="width: 760px;">
 								<thead>
-									<tr>
+									<tr style="text-align:center">
 										<th>圖片</th>
 										<th>歌曲名稱</th>
-										<th>作者</th>
+										<th>發佈者</th>
 										<th>發佈時間</th>
 										<th>管理</th>
 									</tr>
@@ -143,12 +146,13 @@ td {
 					</div>
 				</div>
 			</div>
-
+		</div>
 			<!-- 編輯歌單 end-->
 
 			<!-- 每頁不同的內容到這裡結束 -->
+
 		</div>
-	</div>
+		</div>
 
 
 	<jsp:include page="../homePage/footer.jsp" />
@@ -186,7 +190,8 @@ $(document).ready(function() {
 						var cell6 = $('<td></td>').html('<button class="btn btn-primary pull-right" >刪除</button>')
 						//<tr><td>
 						var row = $('<tr></tr>').append([cell1,cell2,cell3,cell4,cell5,cell6 ])
-						docFrag.append(row);})
+						docFrag.append(row);
+						})
 						$('#playListTable>tbody').html(docFrag);
 						$('td[name="playlist_id"]').hide();
 		        })
@@ -212,26 +217,18 @@ $(document).ready(function() {
 		$.getJSON('/roy/list/readPlayListMusic',
 						{'playListId' : playListId},
 						function(data) {
-							var docFrag = $(document.createDocumentFragment());
+							var content="";
 							$.each(data,function(index, list) {
-								var cell1 = $('<td name="music_id"></td>').text(list.music_id)
-								var img = $("<img>");
-								$(img).attr({"src" : list.music_music,"style" : "width: 100px; height: 100px;"});
-								var cell2 = $('<td></td>').append(img)
-								//判斷歌曲是否下架
-								if(list.music_unavailable=="true"){
-							      var cell3 = $('<td name="music_name" ></td>').attr("style","font-size: 15px; vertical-align:middle").html(list.music_name+"<br>(該歌曲已下架)")
-								}else{
-								var cell3 = $('<td name="music_name" ></td>').attr("style","font-size: 15px; vertical-align:middle").html(list.music_name)
-								}
-								var cell4 = $('<td name="member_username"  ></td>').attr("style","font-size: 15px; vertical-align:middle").text(list.member_username)
-								var cell5 = $('<td name="music_uploadTime"></td>').attr("style","font-size: 15px; vertical-align:middle").text(list.music_uploadTime)
-								var cell6 = $('<td style="vertical-align:middle"></td>').html('<button class="btn btn-primary pull-center"  >刪除</button>')
-												//<tr><td>								
-								var row = $('<tr style="text-align:center" ></tr>').append([cell1,cell2,cell3,cell4,cell5,cell6 ])
-								docFrag.append(row);
+								content+='<tr style="text-align:center">'+
+									        '<td name="music_id">'+list.music_id+'</td>'+
+									        '<td><img src="'+list.music_Image+'"style="width: 100px; height: 100px;" /></td>'+
+									        '<td style="font-size: 15px;vertical-align:middle">'+list.music_name+'</td>'+
+									        '<td style="font-size: 15px;vertical-align:middle">'+list.nickname+'</td>'+
+									        '<td style="font-size: 15px;vertical-align:middle">'+list.music_uploadTime+'</td>'+
+									        '<td style="vertical-align:middle;align:center"><button class="btn btn-primary pull-right">刪除</button></td>'+
+								         '</tr>';
 						})
-							$('#playListMusicTable>tbody').html(docFrag);
+							$('#playListMusicTable>tbody').html(content);
 							
 							$('td[name="music_id"]').hide();
 				})
