@@ -892,32 +892,32 @@ function loadMemberLikeMusic(username) {
 	<!-- 	showArticleFromMember end-->
 	<!-- === END CONTENT === -->
 	<!-- addPlayList begin-->		
-							<div class="modal fade" id="addList" aria-hidden="true">
-										<div class="modal-dialog" style="width: 300px;">
-											<div class="modal-content">
-												<h5 style="margin: 10px;">加入歌單</h5>
-	
-													<div class="modal-body">
+	<div class="modal fade" id="addList" aria-hidden="true">
+				<div class="modal-dialog" style="width: 300px;">
+					<div class="modal-content">
+						<h5 style="margin: 10px;">加入歌單</h5>
 
-														<div class="form-group">
-															<select name="selectPlayList" id="selectPlayList" class="form-control">
-																<option value="playListId">請選擇歌單</option>
-															</select>
-														</div>
-														<div style="float:right;">
-														<a href="../list/createList.jsp" >新增歌單</a>
-														</div>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-primary"
-															data-dismiss="modal">取消</button>
-														<buttin id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
-													</div>
-												
-											</div>
-										</div>
-									</div>							
-							<!-- addPlayList end-->
+							<div class="modal-body">
+
+								<div class="form-group">
+									<select name="selectPlayList" id="selectPlayList" class="form-control">
+										<option value="playListId">請選擇歌單</option>
+									</select>
+								</div>
+								<div style="float:right;">
+								<a href="../list/createList.jsp" >新增歌單</a>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">取消</button>
+								<buttin id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
+							</div>
+						
+					</div>
+				</div>
+			</div>							
+	<!-- addPlayList end-->
 							
 							
 	<!-- addshare begin-->

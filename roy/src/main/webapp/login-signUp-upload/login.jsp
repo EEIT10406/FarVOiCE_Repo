@@ -318,11 +318,8 @@ h3{
 						         <form id="sendPassword">
 						      		Hi~ <br>
 						        	是不是忘記密碼了呢?<br>
-						        	在此輸入帳號或Email為您寄出密碼喔。<br>
-						        	<select>
-						        		<option value="userAccount">帳號</option>
-										<option value="userEmail">信箱</option>					        	
-						        	</select>
+						        	在此輸入帳號為您寄出密碼喔。<br>
+						    
 						        	<input id="accountOrEmailCheck" type="text"  name="userEmail" style="width:230px">
 						        	<span id="accountOrEmailError" style='color:#880000;'></span>
 						        </form>	
