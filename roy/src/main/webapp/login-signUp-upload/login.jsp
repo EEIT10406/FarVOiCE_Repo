@@ -241,13 +241,14 @@ h3{
 									<div class="col-md-6">
 										<button class="btn btn-primary pull-right" type="submit">登入</button>
 									</div>
-                        <!-- 	fb登入  begin -->
-                        <div class="fb-login-button" style="margin-bottom:10px;margin-left:20px;" data-scope="public_profile,email" data-onlogin="FBLogin()" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-                        <!-- 	fb登入  end -->
-                        <!-- 	google登入  begin -->
-                        <div style="margin-left:0px;float:right;cursor: pointer;">
-                         <img src="../img/google.png" onclick="GoogleLogin()" width="200px" height="30px"/></div>
-                         <!-- 	google登入  end -->
+									
+                           <!-- 第三方登入 begin -->
+                        <div style="margin-left:17px;margin-bottom:10px;margin-top:5px;float:left;cursor: pointer;">
+                         <img src="../img/facebook.png" onclick="FBLogin()" width="190px" height="35px"/>
+                         <img src="../img/google.png" onclick="GoogleLogin()" width="190px" height="35px"/>
+                         </div>
+                           <!-- 第三方登入登入 end -->
+                         
 								</div>
 								<hr>
 								<h5>
