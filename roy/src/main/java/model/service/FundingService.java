@@ -39,6 +39,20 @@ public class FundingService {
 		return null;
 	}
 
+//根據專案id找專案內容
+	public FundingBean findFundingById(Integer funding_id) {
+		if (funding_id != null) {
+			return fundingDAO.findByPrimaryKey(funding_id);
+		}
+		return null;
+	}
+
+//找出所有專案
+	public List<FundingBean> allProject() {
+		List<FundingBean> bean = fundingDAO.findAll();
+		return bean;
+	}
+
 	public List<FundingBean> select(FundingBean bean) {
 		List<FundingBean> result = null;
 		if (bean != null && bean.getFunding_id() != 0) {

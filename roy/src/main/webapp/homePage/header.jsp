@@ -130,7 +130,7 @@
 <!-- 									<li><a href="blog-list.html">Blog</a></li> -->
 <!-- 									<li><a href="blog-single.html">Blog Single Item</a></li> -->
 <!-- 								</ul></li> -->
-							<li><a href="/roy/funding/explore.jsp"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
+							<li><a href="/roy/funding/allFunding.jsp"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
 							<li><a href="contact.html"><i class="fas fa-envelope fa-lg"></i>   即時客服</a></li>
 						</ul>
