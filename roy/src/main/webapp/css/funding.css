@@ -1,21 +1,22 @@
-
 .blockHead {
 	width: 57%;
-    position: relative;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin: auto;
-    padding-left: 20px;
+	position: relative;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin: auto;
+	padding-left: 20px;
 }
-.week-count{
+
+.week-count {
 	font-family: Microsoft JhengHei;
 	width: 57%;
-    position: relative;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin: auto;
-    padding-left: 20px;
+	position: relative;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin: auto;
+	padding-left: 20px;
 }
+
 .blockHead a.pull-right {
 	padding-bottom: 5px;
 	border-bottom: 3px solid transparent;
@@ -29,7 +30,7 @@
 
 .catNav li {
 	font-weight: bold;
-    font-size: 15px;
+	font-size: 15px;
 	font-family: Microsoft JhengHei;
 	display: inline-block;
 	padding-bottom: 5px;
@@ -54,12 +55,14 @@
 	font-weight: bold;
 	padding-left: 40px;
 }
-.thisweek{
-    font-weight: bold;
-    padding-left: 48px;
-    font-size: 15px;
-    margin-top: 25px;
+
+.thisweek {
+	font-weight: bold;
+	padding-left: 48px;
+	font-size: 15px;
+	margin-top: 25px;
 }
+
 .title {
 	font-weight: 400;
 	margin-bottom: 1.8rem;
@@ -276,7 +279,8 @@ progress {
 	border-radius: 2px;
 	background: #00bbd6;
 }
-.thisweek:before{
+
+.thisweek:before {
 	position: relative;
 	left: -5px;
 	top: 1px;
@@ -478,4 +482,54 @@ input[type="file"] {
 	width: 27%;
 	height: 420px;
 	margin: 15px 22px;
+}
+/* 募資詳細資訊 */
+.fundingDetail {
+	border: solid 2px black;
+	margin: auto;
+	width: 57%;
+}
+
+.detailHead {
+	border: solid 1px red;
+	text-align: center;
+}
+
+.detailImg {
+	border: solid 1px red;
+}
+
+.info {
+	border: solid 1px red;
+}
+
+.schedule {
+	border: solid 1px red;
+}
+
+.content-sup {
+	border: solid 1px red;
+}
+
+.create-man {
+	border: solid 1px red;
+}
+
+.ajax-content {
+	border: solid 1px red;
+}
+
+.reward-card {
+	border: solid 1px red;
+}
+
+.blockquote:before {
+	ontent: '';
+	position: absolute;
+	height: 90%;
+	width: 4px;
+	left: 0;
+	top: 5%;
+	background-color: #9b9b9b;
+	border-radius: 1.5px;
 }
