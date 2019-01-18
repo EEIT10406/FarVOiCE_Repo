@@ -154,7 +154,7 @@ public class MemberController {
 		}
 		
 	
-		
+	//登出	
 	@RequestMapping(path="/login-signUp-upload/MemberLogOut.controller")
 	public String logOut(Model model,
 			HttpSession session) {
