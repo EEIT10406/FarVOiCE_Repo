@@ -163,12 +163,16 @@
 									歌曲分類 : <select class="form-control" id="songType"
 										style="padding: 7px; width: 380px;" name="music_styleName">
 										<option value="未分類">未分類</option>
+										<option value="古典">古典</option>
+										<option value="爵士">爵士</option>
+										<option value="嘻哈">嘻哈</option>
 										<option value="抒情">抒情</option>
 										<option value="搖滾">搖滾</option>
-										<option value="雷鬼">雷鬼</option>
+										<option value="金屬">金屬</option>
 										<option value="藍調">藍調</option>
-										<option value="動感">動感</option>
-										<option value="古典">古典</option>
+										<option value="放克">放克</option>
+										<option value="流行">流行</option>
+										<option value="電音">電音</option>
 									</select>
 								</div>
 								<div class="row">

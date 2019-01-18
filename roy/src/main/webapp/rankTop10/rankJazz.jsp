@@ -123,7 +123,7 @@ color:#FF3333;
 </script>
 <script>
 $(document).ready(function() {
-		loadrankTopTen('雷鬼')
+		loadrankTopTen('爵士')
 
 //按加入歌單時載入有哪些歌單
 	$('#rankTopTen').on('click','.btnAddList',function() {
@@ -196,13 +196,12 @@ $(document).ready(function() {
 	$('#rankTopTen').on('mouseout','.music',function(){
 		var row = $(this).parents('#row');
         var musicId =row.find('td[name="music_id"]').text();
-    	loadrankTopTen('雷鬼')
+    	loadrankTopTen('爵士')
          
 	})
 	
 	
 })
-
 
 //載入該類型音樂top10
 function loadrankTopTen(type) {
@@ -265,10 +264,14 @@ function loadrankTopTen(type) {
 								<li><a href="rankAllType.jsp"> 所有類型 </a></li>
 								<li><a href="rankEmotion.jsp"> 抒情 </a></li>
 								<li><a href="rankRock.jsp"> 搖滾 </a></li>
-								<li class="active"><a href="#reggae"> 雷鬼 </a></li>
-								<li><a href="rankBlue.jsp"> 藍調 </a></li>
-								<li><a href="rankDynamic.jsp"> 動感 </a></li>
-								<li><a href="rankClassic.jsp"> 古典 </a></li>
+								<li><a href="rankHiphop.jsp"> 嘻哈 </a></li>
+								<li><a href="rankBlue.jsp" > 藍調 </a></li>
+								<li class="active"><a href="#jazz"> 爵士 </a></li>
+								<li><a href="rankClassic.jsp" > 古典 </a></li>
+								<li><a href="rankMetal.jsp" > 金屬 </a></li>
+								<li><a href="rankFunk.jsp" > 放克 </a></li>
+								<li><a href="rankPopular.jsp" > 流行 </a></li>
+								<li><a href="rankElectronic.jsp" > 電音 </a></li>
 
 							</ul>
 						</div>
@@ -287,10 +290,16 @@ function loadrankTopTen(type) {
 								<div class="tab-pane fade in" id="rock">
 								</div>
 
-								<div class="tab-pane fade in active" id="reggae">
-													<div class="row">
+								<div class="tab-pane fade in" id="hiphop">
+								</div>
+
+								<div class="tab-pane fade in" id="blue">
+								</div>
+
+								<div class="tab-pane fade in active" id="jazz">
+								<div class="row">
 										<div class="col-md-7">
-											<div style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">雷鬼</div>
+											<div style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">爵士</div>
 											<table id="rankTopTen" style="height: auto;">
 												<thead>
 													<tr>
@@ -339,13 +348,19 @@ function loadrankTopTen(type) {
 									</div>
 								</div>
 
-								<div class="tab-pane fade in" id="blue">
-								</div>
-
-								<div class="tab-pane fade in" id="dynamic">
-								</div>
-
 								<div class="tab-pane fade in" id="classic">
+								</div>
+								
+								<div class="tab-pane fade in" id="metal">
+								</div>
+								
+								<div class="tab-pane fade in" id="funk">
+								</div>
+								
+								<div class="tab-pane fade in" id="popular">
+								</div>
+								
+								<div class="tab-pane fade in" id="electronic">
 								</div>
 
 							</div>
@@ -375,7 +390,7 @@ function loadrankTopTen(type) {
 					<div id="displayShareMusic">
 						<img src="../img/300x300.jpg"
 							style="margin-left: 20px; width: 50px; height: 50px;" /><a
-							href=""><span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a> 
+							href=""> <span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
 					</div>
 					<div class="modal-footer">
 						<div style="float: left">
@@ -452,7 +467,7 @@ $('body').on('click','.btnShare',function() {
 	console.log(music_name+","+music_id+","+music_image);
     $("#addshareMusicname").text(""+music_name+"");
     $("#addshareMusicid").text(""+music_id+"");
-    $("#displayShareMusic a").text(""+music_name+"");
+    $("#displayShareMusic a").attr("href",music_href);
     $("#displayShareMusic a").text(""+music_name+"");
     $("#displayShareMusic img").attr("src",music_image);
 })	

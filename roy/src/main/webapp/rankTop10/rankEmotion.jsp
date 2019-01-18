@@ -265,10 +265,14 @@ function loadrankTopTen(type) {
 								<li><a href="rankAllType.jsp"> 所有類型 </a></li>
 								<li class="active"><a href="#emotion"> 抒情 </a></li>
 								<li><a href="rankRock.jsp"> 搖滾 </a></li>
-								<li><a href="rankReggae.jsp"> 雷鬼 </a></li>
+								<li><a href="rankHiphop.jsp"> 嘻哈 </a></li>
 								<li><a href="rankBlue.jsp"> 藍調 </a></li>
-								<li><a href="rankDynamic.jsp"> 動感 </a></li>
+								<li><a href="rankJazz.jsp"> 爵士 </a></li>
 								<li><a href="rankClassic.jsp"> 古典 </a></li>
+								<li><a href="rankMetal.jsp" > 金屬 </a></li>
+								<li><a href="rankFunk.jsp" > 放克 </a></li>
+								<li><a href="rankPopular.jsp" > 流行 </a></li>
+								<li><a href="rankElectronic.jsp" > 電音 </a></li>
 
 							</ul>
 						</div>
@@ -336,16 +340,28 @@ function loadrankTopTen(type) {
 								<div class="tab-pane fade in" id="rock">
 								</div>
 
-								<div class="tab-pane fade in" id="reggae">
+								<div class="tab-pane fade in" id="hiphop">
 								</div>
 
 								<div class="tab-pane fade in" id="blue">
 								</div>
 
-								<div class="tab-pane fade in" id="dynamic">
+								<div class="tab-pane fade in" id="jazz">
 								</div>
 
 								<div class="tab-pane fade in" id="classic">
+								</div>
+								
+								<div class="tab-pane fade in" id="metal">
+								</div>
+								
+								<div class="tab-pane fade in" id="funk">
+								</div>
+								
+								<div class="tab-pane fade in" id="popular">
+								</div>
+								
+								<div class="tab-pane fade in" id="electronic">
 								</div>
 
 							</div>
