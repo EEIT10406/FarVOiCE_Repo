@@ -158,6 +158,22 @@ word-wrap:break-word;
 word-break:break-all;
 opacity:0.4
 }
+.readmore{
+ 	background-color: white;
+    color: black;
+/*     border: 2px solid black; */
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.readmore:hover {
+    background-color: #9f5000; /* Green */
+    color: white;
+}
 </style>
 
 <script>
@@ -597,7 +613,7 @@ function loadMemberLikeMusic(username) {
 							
 							<div id="test"><br>
 							</div>
-					
+					        <a class='readmore' onclick='return showData()'>查看更多文章</a>
 					
 						</div>
 						<!-- End dynamic -->
@@ -737,100 +753,9 @@ function loadMemberLikeMusic(username) {
 
 	//start 背景ajax
 	//showArticleFromMember
-        $(function () {       
-            $.ajax({
-                url: "/roy/personalPage/showArticleFromMember.controller",   //存取Json的網址             
-                type: "POST",
-                cache:false,
-                dataType:'json',
-                data:{username:$('#username').text()},
-                //contentType: "application/json",              
-				success : function(list)
-				 {   
-					list.forEach(function(obj, index) {
-						if(index == 5){
-						  	$('#test').append(" <a class='btn btn-primary'>閱讀更多</a>");
-
-							index=list.length();
-						}
-						function timeFn(d1) {//di作为一个变量传进来
-						    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
-						    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
-						    var dateEnd = new Date();//获取当前时间
-						    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
-						    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
-						    //计算出相差天数
-						    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
-						    var hours=Math.floor( leave1 /(3600*1000))
-						    //计算出小时数
-						    //计算相差分钟数
-						    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
-						    var minutes=Math.floor(leave2 /(60*1000))
-						    //计算相差分钟数
-						    //计算相差秒数
-						    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
-						    var seconds=Math.round(leave3/1000)
-						    console.log(" 相差 "+dayDiff+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
-						    if(dayDiff>1){
-						    	timediff += dayDiff+"天前";
-						    }else if(hours>1){
-						    	timediff += hours+"小時前";
-						    }else if(minutes>1){
-						    	timediff += minutes+"分鐘前";
-						    }else{
-						    	timediff+="剛剛";
-						    }
-
-						}
-						
-						var timediff ="";
-						timeFn(obj.post_time);
-						var imgPath=$('#profile').attr('src');
-						var music_id = obj.post_musicid;
-						var music_name = obj.post_musicname;
-						var postorshare = obj.post_postorshare;
-						var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
-						var privacy = obj.post_privacy;
-						var contentPrivacy = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章<i class='fas fa-lock'></i></h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-						var testPrivacy = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂<i class='fas fa-lock'></i></h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-
-						
-						
-						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-						var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='http://localhost:8080/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
-// 						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-						var test = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
-				        
-						//發佈動態的內容		
-						var Post_content =  "<div style='margin-bottom:45px'>"+img+content+button +"<br></br></div>";
-						var Post_contentPrivacy =  "<div style='margin-bottom:45px'>"+img+contentPrivacy+button +"<br></br></div>";
-
-						//分享的內容
-				        var Share_content = "<div style='margin-bottom:45px'>"+img+test + musiccontent+"<br></br></div>";
-				        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + musiccontent+"<br></br></div>";
-
-				        if(postorshare==true && privacy==false){
-				        	$('#test').append(Post_content);
-				        }else if(postorshare==false && privacy==false){
-				        	$('#test').append(Share_content);
-				        } if(postorshare==true && privacy==true){
-				        	$('#test').append(Post_contentPrivacy);
-				        }else if(postorshare==false && privacy==true){
-				        	$('#test').append(Share_contentPrivacy);
-				        } 
-				  	})
-				  },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status+"--->showArticleFromMember");
-                    alert(thrownError);
-                }
-            });
-            
-          	
-            
-            
-				 
+        $(function () {  
+        showData();
+       //        offset,   size
 		//顯示歷史紀錄
 		$.ajax({
                 url: "/roy/personalPage/showAllHistoryTimeFromHstory.controller",   //存取Json的網址             
@@ -880,14 +805,286 @@ function loadMemberLikeMusic(username) {
                 }
             });	 
 			//顯示歷史紀錄END
-			
-			
-			
-
-
-			
-
 });//end 背景處理
+
+
+var counter=0;
+var pagestart=0;
+var sum ;
+var size1=5;
+function showData(){
+	 counter++;
+	 $.ajax({
+         url: "/roy/personalPage/showArticleFromMember.controller",   //存取Json的網址             
+         type: "POST",
+         cache:false,
+         dataType:'json',
+         data:{username:$('#username').text()},
+         //contentType: "application/json",              
+			success : function(list)
+			 {   
+				 if(counter!=0){
+					
+					 pagestart =(counter*5)-5;
+		             sum = list.length;
+		             
+		             if(sum - pagestart < size1 ){
+			                size1 = sum - pagestart;
+
+			                for(   var i=pagestart; i< pagestart+size1; i++){
+			            	 	
+								function timeFn(d1) {//di作为一个变量传进来
+								    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+								    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
+								    var dateEnd = new Date();//获取当前时间
+								    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+								    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
+								    //计算出相差天数
+								    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
+								    var hours=Math.floor( leave1 /(3600*1000))
+								    //计算出小时数
+								    //计算相差分钟数
+								    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
+								    var minutes=Math.floor(leave2 /(60*1000))
+								    //计算相差分钟数
+								    //计算相差秒数
+								    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+								    var seconds=Math.round(leave3/1000)
+								    console.log(" 相差 "+dayDiff+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
+								    if(dayDiff>1){
+								    	timediff += dayDiff+"天前";
+								    }else if(hours>1){
+								    	timediff += hours+"小時前";
+								    }else if(minutes>1){
+								    	timediff += minutes+"分鐘前";
+								    }else{
+								    	timediff+="剛剛";
+								    }
+
+								}
+								
+								var timediff ="";
+								timeFn(list[i].post_time);
+								var imgPath=$('#profile').attr('src');
+								var music_id = list[i].post_musicid;
+								var music_name =list[i].post_musicname;
+								var postorshare =list[i].post_postorshare;
+								
+								var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
+								var privacy =  list[i].post_privacy;
+								var contentPrivacy = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章<i class='fas fa-lock'></i></h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+								var testPrivacy = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂<i class='fas fa-lock'></i></h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+
+								
+								
+								var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+								var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='http://localhost:8080/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
+//								var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+								var test = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+								var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" +  list[i].post_idS + "'>查看全文</a>"
+						        
+								//發佈動態的內容		
+								var Post_content =  "<div style='margin-bottom:45px'>"+img+content+button +"<br></br></div>";
+								var Post_contentPrivacy =  "<div style='margin-bottom:45px'>"+img+contentPrivacy+button +"<br></br></div>";
+
+								//分享的內容
+						        var Share_content = "<div style='margin-bottom:45px'>"+img+test + musiccontent+"<br></br></div>";
+						        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + musiccontent+"<br></br></div>";
+
+						        if(postorshare==true && privacy==false){
+						        	$('#test').append(Post_content);
+						        }else if(postorshare==false && privacy==false){
+						        	$('#test').append(Share_content);
+						        } if(postorshare==true && privacy==true){
+						        	$('#test').append(Post_contentPrivacy);
+						        }else if(postorshare==false && privacy==true){
+						        	$('#test').append(Share_contentPrivacy);
+						        } 
+						       
+						        if ( (pagestart + size1) >= sum){
+					                $(".readmore").hide();
+					            }else{
+					            	$(".readmore").show();
+					            }
+						        
+							}
+			                
+			                
+		             
+		             }
+									
+		             else{
+			       		
+		             for(   var i=pagestart; i< (pagestart+size1); i++){
+		            	 
+							function timeFn(d1) {//di作为一个变量传进来
+							    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+							    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
+							    var dateEnd = new Date();//获取当前时间
+							    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+							    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
+							    //计算出相差天数
+							    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
+							    var hours=Math.floor( leave1 /(3600*1000))
+							    //计算出小时数
+							    //计算相差分钟数
+							    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
+							    var minutes=Math.floor(leave2 /(60*1000))
+							    //计算相差分钟数
+							    //计算相差秒数
+							    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+							    var seconds=Math.round(leave3/1000)
+							    console.log(" 相差 "+dayDiff+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
+							    if(dayDiff>1){
+							    	timediff += dayDiff+"天前";
+							    }else if(hours>1){
+							    	timediff += hours+"小時前";
+							    }else if(minutes>1){
+							    	timediff += minutes+"分鐘前";
+							    }else{
+							    	timediff+="剛剛";
+							    }
+
+							}
+							
+							var timediff ="";
+							timeFn(list[i].post_time);
+							var imgPath=$('#profile').attr('src');
+							var music_id = list[i].post_musicid;
+							var music_name =list[i].post_musicname;
+							var postorshare =list[i].post_postorshare;
+							
+							var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
+							var privacy =  list[i].post_privacy;
+							var contentPrivacy = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章<i class='fas fa-lock'></i></h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+							var testPrivacy = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂<i class='fas fa-lock'></i></h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+
+							
+							
+							var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+							var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='http://localhost:8080/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
+//							var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+							var test = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+							var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" +  list[i].post_idS + "'>查看全文</a>"
+					        
+							//發佈動態的內容		
+							var Post_content =  "<div style='margin-bottom:45px'>"+img+content+button +"<br></br></div>";
+							var Post_contentPrivacy =  "<div style='margin-bottom:45px'>"+img+contentPrivacy+button +"<br></br></div>";
+
+							//分享的內容
+					        var Share_content = "<div style='margin-bottom:45px'>"+img+test + musiccontent+"<br></br></div>";
+					        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + musiccontent+"<br></br></div>";
+
+					        if(postorshare==true && privacy==false){
+					        	$('#test').append(Post_content);
+					        }else if(postorshare==false && privacy==false){
+					        	$('#test').append(Share_content);
+					        } if(postorshare==true && privacy==true){
+					        	$('#test').append(Post_contentPrivacy);
+					        }else if(postorshare==false && privacy==true){
+					        	$('#test').append(Share_contentPrivacy);
+					        } 
+					       
+					        if ( (pagestart + size1) >= sum){
+				                $(".readmore").hide();
+				            }else{
+				            	$(".readmore").show();
+				            }
+					        
+						}
+		            
+  
+				}
+				
+		             
+				}
+				
+
+// 				for(var i=pagestart; i< (pagestart+size); i++){
+					
+// 					function timeFn(d1) {//di作为一个变量传进来
+// 					    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+// 					    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
+// 					    var dateEnd = new Date();//获取当前时间
+// 					    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+// 					    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
+// 					    //计算出相差天数
+// 					    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
+// 					    var hours=Math.floor( leave1 /(3600*1000))
+// 					    //计算出小时数
+// 					    //计算相差分钟数
+// 					    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
+// 					    var minutes=Math.floor(leave2 /(60*1000))
+// 					    //计算相差分钟数
+// 					    //计算相差秒数
+// 					    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+// 					    var seconds=Math.round(leave3/1000)
+// 					    console.log(" 相差 "+dayDiff+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
+// 					    if(dayDiff>1){
+// 					    	timediff += dayDiff+"天前";
+// 					    }else if(hours>1){
+// 					    	timediff += hours+"小時前";
+// 					    }else if(minutes>1){
+// 					    	timediff += minutes+"分鐘前";
+// 					    }else{
+// 					    	timediff+="剛剛";
+// 					    }
+
+// 					}
+					
+// 					var timediff ="";
+// 					timeFn(list[i].post_time);
+// 					var imgPath=$('#profile').attr('src');
+// 					var music_id = list[i].post_musicid;
+// 					var music_name =list[i].post_musicname;
+// 					var postorshare =list[i].post_postorshare;
+					
+// 					var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
+// 					var privacy =  list[i].post_privacy;
+// 					var contentPrivacy = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章<i class='fas fa-lock'></i></h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+// 					var testPrivacy = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂<i class='fas fa-lock'></i></h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+
+					
+					
+// 					var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+// 					var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='http://localhost:8080/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
+// //					var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+// 					var test = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
+// 					var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" +  list[i].post_idS + "'>查看全文</a>"
+			        
+// 					//發佈動態的內容		
+// 					var Post_content =  "<div style='margin-bottom:45px'>"+img+content+button +"<br></br></div>";
+// 					var Post_contentPrivacy =  "<div style='margin-bottom:45px'>"+img+contentPrivacy+button +"<br></br></div>";
+
+// 					//分享的內容
+// 			        var Share_content = "<div style='margin-bottom:45px'>"+img+test + musiccontent+"<br></br></div>";
+// 			        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + musiccontent+"<br></br></div>";
+
+// 			        if(postorshare==true && privacy==false){
+// 			        	$('#test').append(Post_content);
+// 			        }else if(postorshare==false && privacy==false){
+// 			        	$('#test').append(Share_content);
+// 			        } if(postorshare==true && privacy==true){
+// 			        	$('#test').append(Post_contentPrivacy);
+// 			        }else if(postorshare==false && privacy==true){
+// 			        	$('#test').append(Share_contentPrivacy);
+// 			        } 
+					
+					
+// 				}
+				
+			  }
+         
+         ,
+         error: function (xhr, ajaxOptions, thrownError) {
+             alert(xhr.status+"--->showArticleFromMember");
+             alert(thrownError);
+         }
+     });	
+}
+
+
+
     </script>
 	<!-- 	showArticleFromMember end-->
 	<!-- === END CONTENT === -->
