@@ -281,10 +281,8 @@ public class MemberController {
 		System.out.println(userPassword);
 		MemberBean bean = memberService.login(userAccount, userAccount);
 		bean.setMember_state(1);
-		;
 		memberService.update(bean);
 		session.setAttribute("user", bean);
-
 		return "/personalPage/personalDetail.jsp";
 	}
 	
