@@ -74,7 +74,7 @@ public class ShareMusicController {
 			return "/homePage/index.jsp";
 		}else{
 			model.addAttribute("insert", bean);
-			return "/rankTop10/rankTopTen.jsp";
+			return "/personalPage/personalPage.jsp";
 			
 		}
 	

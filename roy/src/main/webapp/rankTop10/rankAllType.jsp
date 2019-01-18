@@ -5,7 +5,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -102,6 +102,8 @@ color:#FF3333;
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js"></script>
+<script src="1.js?ver=1"></script>
+
 <!-- End JS -->
 
 <script>
@@ -119,9 +121,7 @@ color:#FF3333;
 		changeCheckBoxs();
 		$("#addshare").submit();
 	}
-	
-</script>
-<script>
+
 $(document).ready(function() {
 		loadrankTopTen('')
 
@@ -213,7 +213,7 @@ function loadrankTopTen(type) {
 				content+='<tr id="row">'+
 					     '<td>'+rank+'</td>'+
 					     '<td name="music_id">'+list.music_id+'</td>'+
-					     '<td>'+
+					     '<td name="music_image">'+
 					        '<img src="'+list.music_Image+'" class="music" />'+
 					        '<span id="musicPage" class="musicName">'+list.music_name+'</span>'+
 					        '<div>';
@@ -266,10 +266,14 @@ function loadrankTopTen(type) {
 								<li class="active"><a href="#allType"> 所有類型 </a></li>
 								<li><a href="rankEmotion.jsp"> 抒情 </a></li>
 								<li><a href="rankRock.jsp"> 搖滾 </a></li>
-								<li><a href="rankReggae.jsp"> 雷鬼 </a></li>
+								<li><a href="rankHiphop.jsp"> 嘻哈 </a></li>
 								<li><a href="rankBlue.jsp" > 藍調 </a></li>
-								<li><a href="rankDynamic.jsp"> 動感 </a></li>
+								<li><a href="rankJazz.jsp"> 爵士 </a></li>
 								<li><a href="rankClassic.jsp" > 古典 </a></li>
+								<li><a href="rankMetal.jsp" > 金屬 </a></li>
+								<li><a href="rankFunk.jsp" > 放克 </a></li>
+								<li><a href="rankPopular.jsp" > 流行 </a></li>
+								<li><a href="rankElectronic.jsp" > 電音 </a></li>
 
 							</ul>
 						</div>
@@ -337,16 +341,28 @@ function loadrankTopTen(type) {
 								<div class="tab-pane fade in" id="rock">
 								</div>
 
-								<div class="tab-pane fade in" id="reggae">
+								<div class="tab-pane fade in" id="hiphop">
 								</div>
 
 								<div class="tab-pane fade in" id="blue">
 								</div>
 
-								<div class="tab-pane fade in" id="dynamic">
+								<div class="tab-pane fade in" id="jazz">
 								</div>
 
 								<div class="tab-pane fade in" id="classic">
+								</div>
+								
+								<div class="tab-pane fade in" id="metal">
+								</div>
+								
+								<div class="tab-pane fade in" id="funk">
+								</div>
+								
+								<div class="tab-pane fade in" id="popular">
+								</div>
+								
+								<div class="tab-pane fade in" id="electronic">
 								</div>
 
 							</div>
@@ -373,10 +389,12 @@ function loadrankTopTen(type) {
 							onFocus="if(this.value==this.defaultValue) this.value=''"
 							onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
 					</div>
+					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
+					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
 					<div id="displayShareMusic">
 						<img src="../img/300x300.jpg"
 							style="margin-left: 20px; width: 50px; height: 50px;" /><a
-							href=""></a> <span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span>
+							href=""> <span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
 					</div>
 					<div class="modal-footer">
 						<div style="float: left">
@@ -417,7 +435,6 @@ function loadrankTopTen(type) {
 															data-dismiss="modal">取消</button>
 														<buttin id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
 													</div>
-												
 											</div>
 										</div>
 									</div>							
@@ -442,6 +459,21 @@ function loadrankTopTen(type) {
 	<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
 	<!-- 	</div> -->
 
-
+<script>
+//按分享時載入哪首音樂
+$('body').on('click','.btnShare',function() {
+	var row = $(this).parents('#row');
+	var music_name =row.find('#musicPage').text();
+	var music_id =row.find('td[name="music_id"]').text();
+	var music_image =row.find('td[name="music_image"] img').attr("src");
+	var music_href= "/roy/musicPage/findMusicById?musicId="+music_id;
+	console.log(music_name+","+music_id+","+music_image);
+    $("#addshareMusicname").text(""+music_name+"");
+    $("#addshareMusicid").text(""+music_id+"");
+    $("#displayShareMusic a").attr("href",music_href);
+    $("#displayShareMusic a").text(""+music_name+"");
+    $("#displayShareMusic img").attr("src",music_image);
+})	
+</script>
 </body>
 </html>

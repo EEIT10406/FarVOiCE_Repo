@@ -5,7 +5,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -138,7 +138,7 @@
 						
 	                	<form class="login-page" action="<c:url value="/login-signUp-upload/uploadMusic" />" enctype="multipart/form-data" method="post" >
 								<div class="input-group margin-bottom-20">
-									音樂 (mp3格式): <input type="file" id="musicFile" accept=".mp3" name="musicFile">
+									音樂 (mp3格式): <input type="file" id="musicFile" accept=".mp3" name="musicFile" required>
 								</div>
 								<div class="input-group margin-bottom-20">
 									<label for="musicNam">歌曲名稱:</label> <input id="musicName"
@@ -163,12 +163,16 @@
 									歌曲分類 : <select class="form-control" id="songType"
 										style="padding: 7px; width: 380px;" name="music_styleName">
 										<option value="未分類">未分類</option>
+										<option value="古典">古典</option>
+										<option value="爵士">爵士</option>
+										<option value="嘻哈">嘻哈</option>
 										<option value="抒情">抒情</option>
 										<option value="搖滾">搖滾</option>
-										<option value="雷鬼">雷鬼</option>
+										<option value="金屬">金屬</option>
 										<option value="藍調">藍調</option>
-										<option value="動感">動感</option>
-										<option value="古典">古典</option>
+										<option value="放克">放克</option>
+										<option value="流行">流行</option>
+										<option value="電音">電音</option>
 									</select>
 								</div>
 								<div class="row">

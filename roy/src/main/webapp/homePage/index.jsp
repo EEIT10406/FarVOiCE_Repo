@@ -40,7 +40,154 @@
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <script src="1.js?ver=1"></script>
 <!-- End JS -->
+<style>
+#musicPage{
+cursor: pointer;
+}
+#yoyo{
+	color:white;
+	margin-top:0px;
+    font-size:17px;
+}
+.likeCoint{
+margin:0;padding:0;color:#a4a4a4;
 
+}
+.player{
+cursor: pointer;
+margin-top:60px;
+}
+.heart{
+width:25px;
+cursor: pointer;
+}
+/* .clickHeart{ */
+/* width:22px; */
+/* margin-right:3px; */
+/* cursor: pointer; */
+/* } */
+.heartTeam{
+float:right;width:50px;margin-top:25px;margin-right:50px;
+}
+
+</style>
+<script>
+$(document).ready(function(){
+	loadLikeMusic('${user.member_username}');
+
+	//按愛心
+      $('#likes').on('click','.heart',function(){
+		    if('${user.member_username}'!=""){
+		   	  var row = $(this).parents('#row');
+		 	  var musicId = row.children('span[name="musicId"]').text();
+		 		if ($(this).attr("alt")=="true") {
+		 			
+		 			$.get('/roy/personalPage/memberTakeBackLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+		 				row.find('#likeCount').text(data);
+		 			})
+		 			this.src = "../img/indexHeart.png";
+		 			$(this).parent('.heartTeam').children('#likeCount').attr("style","font-size:20px;margin:0;padding:0;color:#a4a4a4;");
+		 			$(this).attr("alt","false");
+		 			
+		 		} else {
+		 			
+		 			$.get('/roy/personalPage/memberClickLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+		 				row.find('#likeCount').text(data);
+		 			})
+		 			this.src = "../img/indexClickHeart.png";
+		 			$(this).parent('.heartTeam').children('#likeCount').attr("style","font-size:20px;margin:0;padding:0;color:red");
+		 			$(this).attr("alt","true");
+		 		}
+		   }else{
+		      	window.location.href = "/roy/login-signUp-upload/login.jsp";
+		   }	
+      })
+
+      
+      $('#likes').on('mouseover','.heart',function(){
+    	if($(this).attr("alt")=="false"){
+    	   this.src="../img/indexClickHeart.png";
+    	   $(this).parent('.heartTeam').children('#likeCount').attr("style","font-size:20px;margin:0;padding:0;color:red");
+    	}
+      })
+      
+       $('#likes').on('mouseout','.heart',function(){
+    	 
+    	 if($(this).attr("alt")=="false"){
+    	   this.src="../img/indexHeart.png";
+    	   $(this).parent('.heartTeam').children('#likeCount').attr("style","font-size:20px;margin:0;padding:0;color:#a4a4a4;");
+    	 }
+      })
+      
+      
+      //點音樂去音樂頁面
+	$('#likes').on('click','#musicPage',function(){
+		var row = $(this).parents('#row');
+		var musicId = row.children('span[name="musicId"]').text();
+		
+		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
+		
+	})
+	
+	
+})
+
+function loadLikeMusic(username){
+	$.getJSON('/roy/homePage/indexLikeMusic',{'username': username},function(data) {
+		var content="";
+		var number=1;
+		$.each(data,function(index, list) {
+			if(number>1){
+				var begin='<div class="item">'
+			}else{
+				var begin='<div class="item active">'
+			}
+			content+=begin+
+	                      '<div class="col-md-12">'+
+			                  '<div id="row" style="border-radius: 5px;align:center; height: 231px; margin-top: 30px; margin-bottom: 30px; background: linear-gradient(to right,#444444,#DDDDDD);">'+
+			                      '<span name="musicId">'+list.music_id+'</span>'+
+                                  '<div id="heartTeam" class="heartTeam" style="text-align:center">';
+                                  if(list.memberLikeMusic=="/roy/img/indexClickHeart.png"){
+                                	  var heart='<img class="heart" src="'+list.memberLikeMusic+'" style="width:45px;height:45px" alt="true" />'+
+                                	            '<span id="likeCount" style="font-size:20px;margin:0;padding:0;color:red;" class="likeCount">'+list.music_likeCount+'</span>';
+                                  }else{
+                                	  var heart='<img class="heart" src="'+list.memberLikeMusic+'" style="width:45px;height:45px" alt="false" />'+
+                                	            '<span id="likeCount" style="font-size:20px;margin:0;padding:0;color:#a4a4a4" class="likeCount">'+list.music_likeCount+'</span>';
+                                  }
+				    content+=heart+
+				                   '</div>'+
+				                   '<div id="message" style="border-radius:5px; width: 400px;height: 140px;margin-top: 74px;margin-right: 25px;float: right;background-color:#AAAAAA">'+
+// 				                   ----------------------
+				                   "<div style='margin-bottom:45px'>"+
+				                  " <div style='margin-bottom:15px'>"+
+				                   "<img src='/roy/image/profile/1547190442734.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px'>"+
+				                   "<h5 style='margin-bottom:0px;margin-top:15px;letter-spacing:0.5px;display:inline;vertical-align: middle;'>fofo</h5>"+
+				                   "<small style='vertical-align: middle;margin-top:15px;'>15天前</small>"+
+				                   "</div>"+
+				                   "<div class='clearfix'></div>"+
+				                   "<div style='margin-bottom:15px'>大家好啊歡迎來到發聲這個大家庭</div>"+
+				                   "<br><br></div>"+
+				                   '</div>'+
+// 				                   -----------------
+			    	               '<img src="'+list.music_Image+'" style="float: left; height: 200px; width: 200px;margin:16px 16px auto 20px;border-radius: 5px; border: solid 1px #DDDDDD;" />'+
+			                       '<div style="padding-left:0px;padding-top:30px;color:white;float:left;width:150px;">'+
+						               '<div id="musicPage" style="font-size:20px;width:200px;">'+list.music_name+'</div>'+
+						               '<div><a id="yoyo" href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></div>'+
+					                   '<img src="../img/indexPlayer.png" width="60px" height="60px" class="player"/>'+
+			                       '</div>'+       
+                               '</div>'+                                   
+                          '</div>'+
+                        '</div>';
+                     number=number+1;
+           })
+           $('#likes').html(content);
+		 
+		$('span[name="musicId"]').hide();
+	})
+	
+	
+}
+</script>
 </head>
 <body>
 	<div id="body_bg">
@@ -48,86 +195,124 @@
 		<jsp:include page="header.jsp" />
 		<!-- === BEGIN CONTENT === -->
 		<div id="content">
-			<div class="container no-padding">
-				<div class="row"></div>
-				<!-- Carousel Slideshow -->
-				<div id="carousel-example" class="carousel slide"
-					data-ride="carousel">
-					<!-- Carousel Indicators -->
-					<ol class="carousel-indicators">
-						<li data-target="#carousel-example" data-slide-to="0"
-							class="active"></li>
-						<li data-target="#carousel-example" data-slide-to="1"></li>
-						<li data-target="#carousel-example" data-slide-to="2"></li>
-					</ol>
-					<div class="clearfix"></div>
-					<!-- End Carousel Indicators -->
-					<!-- 					Carousel Images -->
-					<div class="carousel-inner">
-						<div class="item active">
-							<img src="../img/slideshow/slide1.jpg">
-						</div>
-						<div class="item">
-							<img src="../img/slideshow/slide2.jpg">
-						</div>
-						<div class="item">
-							<img src="../img/slideshow/slide3.jpg">
-						</div>
-						<div class="item">
-							<img src="../img/slideshow/slide4.jpg">
-						</div>
-					</div>
-					<!-- End Carousel Images -->
-					<!-- Carousel Controls -->
-					<a class="left carousel-control" href="#carousel-example"
-						data-slide="prev"> <img src="../img/left.JPG" />
-					</a> <a class="right carousel-control" href="#carousel-example"
-						data-slide="next"> <img src="../img/right.JPG" />
-					</a>
+			<div class="container" >
+			<div class="row">
+				<div class="row">
+                     <!-- 大家都喜歡 - Default Full Width -->
+                     <div style="width: 92%;margin: auto;">
+                          <div style="font-family: 微軟正黑體;display: inline-block;width: 40%;float: left;font-size: 20px;font-weight: bold;margin-top:15px;">
+                              
+                              <p><img src="../img/earphone.png" width="20px;" style="margin-right:7px;"/> 大家都喜歡</p>
+                          </div>
+                          
+                     </div>
+                         
+                     
+<div class="col-md-12" style="margin-top: -30px">
+     <div class="carousel slide testimonials" id="testimonials1">
 
-					<!-- End Carousel Controls -->
-				</div>
-				<!-- End Carousel Slideshow -->
+        <div id="likes" class="carousel-inner">
+
+			<div class="item active">
+                <div class="col-md-12">       
+                 </div>                                   
+            </div>
+                    
+                              
+            <div class="item">
+                  <div class="col-md-12">                   
+                  </div>
+            </div>
+                          
+            <div class="item">
+                  <div class="col-md-12">
+                  </div>
+            </div>
+                    
+       </div>
+       
+       <div style="width:40%;float:right;text-align: right;position: absolute;margin-left: 550px;margin-top:0px;">
+                                 <a  href="#testimonials1" data-slide="prev"  style="margin-right:15px;text-decoration:none;" >
+                                   <i style="color:#666666;" class="fas fa-angle-double-left fa-2x"></i>
+                                 </a>
+                                 <a href="#testimonials1" data-slide="next">
+                                     <i style="color:#666666;" class="fas fa-angle-double-right fa-2x" style="text-decoration:none;"></i>
+                                 </a>
+                          </div>
+       
+       
+      </div>
+                         
+</div>
+                     <!-- End 大家都喜歡 - default full width -->
+                 </div>
+                 
+              
 			</div>
+		</div>
 		</div>
 	
 		<div class="container">
 			<div class="row margin-vert-30">
 				<!-- Main Text -->
-				<div class="col-md-9" style="float: left; width: 380px;">
-					<h2>本日精選</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-						sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-						aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-						exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-						commodo consequat.</p>
-					<p>Duis autem vel eum iriure dolor in hendrerit in vulputate
-						velit esse molestie consequat, vel illum dolore eu feugiat nulla
-						facilisis at vero eros et accumsan et iusto odio dignissim qui
-						blandit praesent luptatum zzril delenit augue duis dolore te
-						feugait nulla facilisi. Cras non sem sem, at eleifend mi. Nam
-						liber tempor cum soluta nobis eleifend option congue nihil
-						imperdiet doming id quod mazim placerat facer possim assum.
-						Curabitur eget nisl a risus.</p>
-					
-				</div>
-				<div class="col-md-9" style="float: left; width: 380px;">
-					<h2>熱門募資活動</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-						sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-						aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-						exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-						commodo consequat.</p>
-					<p>Duis autem vel eum iriure dolor in hendrerit in vulputate
-						velit esse molestie consequat, vel illum dolore eu feugiat nulla
-						facilisis at vero eros et accumsan et iusto odio dignissim qui
-						blandit praesent luptatum zzril delenit augue duis dolore te
-						feugait nulla facilisi. Cras non sem sem, at eleifend mi. Nam
-						liber tempor cum soluta nobis eleifend option congue nihil
-						imperdiet doming id quod mazim placerat facer possim assum.
-						Curabitur eget nisl a risus.</p>
 				
-				</div>
+				 <!-- 募資輪播 - Default Full Width -->
+                     <div style="width: 92%;margin: auto;">
+                          <div style="font-family: 微軟正黑體;display: inline-block;width: 40%;float: left;font-size: 20px;font-weight: bold;">
+                              
+                              <p> 熱門募資活動</p>
+                          </div>
+                          <div style="width:40%;float:right;text-align: right;position: absolute;margin-left: 140px;">
+                                 <a  href="#testimonials2" data-slide="prev"  style="margin-right:10px;text-decoration:none;" >
+                                   <i style="color:#666666;" class="fas fa-chevron-circle-left fa-2x"></i>
+                                 </a>
+                                 <a href="#testimonials2" data-slide="next">
+                                     <i style="color:#666666;" class="fas fa-chevron-circle-right fa-2x" style="text-decoration:none;"></i>
+                                 </a>
+                          </div>
+                     </div>
+                         
+                     
+                     <div class="col-md-12" style="margin-top: -30px">
+            <div class="carousel slide testimonials" id="testimonials2">
+
+        <div class="carousel-inner" style="width:200px;">
+
+
+			<div class="item active">
+               <div class="col-md-12">
+                    
+<!-- 				 <div style="border-radius: 5px;align:center; height: 200px; margin-top: 30px; margin-bottom: 30px; background: linear-gradient(to right,#444444,#DDDDDD);width:800px;">                          -->
+<!--                  </div>     -->
+                                                      
+               </div>
+            </div>
+                                 
+                                 <div class="item">
+                                     <div class="col-md-12">
+                                         
+                                         
+                                         
+                                         
+                                     </div>
+                                 </div>
+                                 
+                                 
+                                 
+                                 <div class="item">
+                                     <div class="col-md-12">
+   
+                                         
+                                     </div>
+                                 </div>
+                                 
+                                 
+                                 
+                             </div>
+                         </div>
+                         
+                     </div>
+                     <!-- End 募資輪播 - default full width -->
 				<!-- End Main Text -->
 				<!-- Side Column -->
 				<div  id="hottest" class="col-md-3" style="float: right">
@@ -142,101 +327,19 @@
 				</div>
 				<!-- End Side Column -->
 			</div>
-				<div class="container background-gray-lighter">
+			
+			
+				<div class="container" >
 			<div class="row">
-				<h2 class="animate fadeIn text-center margin-top-50">大家都在聽</h2>
-				<hr class="margin-top-15">
-				<p class="animate fadeIn text-center">
-					Enlighten offers you the canvas to turn your imagination in to a
-					reality <br>giving you the perfect framework for your project!
-				</p>
-				<p class="text-center animate fadeInUp margin-bottom-50">
-					<button type="button" class="btn btn-lg btn-primary">View
-						Details</button>
-				</p>
-				          <div class="row">
-                     <!-- 小輪播 - Default Full Width -->
-                     <div class="col-md-12">
-                         <div class="carousel slide testimonials" id="testimonials1">
-                             <ol class="carousel-indicators">
-                                 <li class="active" data-slide-to="0" data-target="#testimonials-rotate">
-                                 </li>
-                                 <li data-slide-to="1" data-target="#testimonials1">
-                                 </li>
-                                 <li data-slide-to="2" data-target="#testimonials1">
-                                 </li>
-                             </ol>
-                             <div class="carousel-inner">
-                                 <div class="item active">
-                                     <div class="col-md-12">
-                                         <p>
-                                             Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
-                                             porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                                         </p>
-                                         <div class="testimonial-info">
-                                             <img alt="" src="assets/img/profiles/53.jpg" class="img-circle img-responsive" />
-                                             <span class="testimonial-author">
-                                                 Cristina Hall
-                                                 <em>
-                                                     Javascript Developer, Business Inc.
-                                                 </em>
-                                             </span>
-                                         </div>
-                                     </div>
-                                     <div class="clearfix"></div>
-                                 </div>
-                                 <div class="item">
-                                     <div class="col-md-12">
-                                         <p>
-                                             Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem.
-                                             Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
-                                         </p>
-                                         <div class="testimonial-info">
-                                             <img alt="" src="assets/img/profiles/99.jpg" class="img-circle img-responsive" />
-                                             <span class="testimonial-author">
-                                                 Anthony Watkins
-                                                 <em>
-                                                     Web Developer, Amazing Designs Ltd.
-                                                 </em>
-                                             </span>
-                                         </div>
-                                     </div>
-                                     <div class="clearfix"></div>
-                                 </div>
-                                 <div class="item">
-                                     <div class="col-md-12">
-                                         <p>
-                                             Cras justo odio, dapibus ac facilisis in, egestas eget quam. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Donec id elit non mi
-                                             porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                                         </p>
-                                         <div class="testimonial-info">
-                                             <img alt="" src="assets/img/profiles/78.jpg" class="img-circle img-responsive" />
-                                             <span class="testimonial-author">
-                                                 Jonathan Baker
-                                                 <em>
-                                                     CEO  Founder, Virtuoso Inc.
-                                                 </em>
-                                             </span>
-                                         </div>
-                                     </div>
-                                     <div class="clearfix"></div>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="testimonials-arrows pull-right">
-                             <a class="left" href="#testimonials1" data-slide="prev">
-                                 <span class="fa fa-arrow-left"></span>
-                             </a>
-                             <a class="right" href="#testimonials1" data-slide="next">
-                                 <span class="fa fa-arrow-right"></span>
-                             </a>
-                             <div class="clearfix"></div>
-                         </div>
-                     </div>
-                     <!-- End 小輪播 - default full width -->
+				<div class="row">
+                    
                  </div>
+                 
+              
 			</div>
 		</div>
+		
+		
 		</div>
 
 	</div>
@@ -265,7 +368,7 @@ $(function () {
         type: "POST",
         cache:false,
         dataType:'json',
-        data:{user:$('#userName').text()},
+//         data:{user:$('#userName').text()},
 		success : function(list){	
 			list.forEach(function(obj, index) {
 // 	這邊的username是nickname
@@ -286,18 +389,6 @@ $(function () {
      });
 })
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

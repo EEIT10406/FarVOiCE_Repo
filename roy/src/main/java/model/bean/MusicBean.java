@@ -60,7 +60,8 @@ public class MusicBean {
 	private String music_name;	
 	@Expose
 	private String member_username;
-	@Column(updatable=false)@Expose
+//	@Column(updatable=false)
+	@Expose
 	private String music_music;
 	@Expose
 	private String music_caption;

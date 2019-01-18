@@ -21,6 +21,7 @@ import model.bean.FollowBean;
 import model.bean.FundingBean;
 import model.bean.ListMusicBean;
 import model.bean.MemberBean;
+import model.bean.MemberCommentMusicBean;
 import model.bean.MemberLikeMusicBean;
 import model.bean.MusicBean;
 import model.bean.PlaylistBean;
@@ -53,7 +54,7 @@ public class RootAppConfig {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
 
 
-		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,
+		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,MemberCommentMusicBean.class,
 				FollowBean.class, BackerBean.class, FundingBean.class, RewardBean.class,StoryBean.class,MemberLikeMusicBean.class,ReportBean.class);
 
 		Properties props = new Properties();

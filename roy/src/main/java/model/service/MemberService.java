@@ -3,6 +3,7 @@ package model.service;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -42,6 +43,19 @@ public class MemberService {
 		super();
 		this.memberDAO = memberDAO;
 	}
+	
+	//找看看之前有沒有第三方登入
+	public MemberBean findThirdId(String member_third_id) {
+		List<MemberBean> bean = memberDAO.findByThirdId(member_third_id);
+		if(bean!=null) {
+			for(MemberBean memberBean:bean) {
+				return memberBean;
+			}
+		}
+		return null;
+	}
+	
+	
 	public MemberBean login(String username, String password) {
 		//0103 OK
 		MemberBean bean = memberDAO.findByPrimaryKey(username);
@@ -103,5 +117,15 @@ public class MemberService {
 			return memberDAO.findByPrimaryKey(username);
 		}
 		return null;
+	}
+	//給username得nickname
+	public String usernameToNickname(String username) {
+		MemberBean bean = memberDAO.findByPrimaryKey(username);
+		return bean.getMember_nickname();
+	}
+	//給nickname得username
+	public String nicenameToUsername(String username) {
+		return memberDAO.nicenameToUsername(username);
+		
 	}
 }

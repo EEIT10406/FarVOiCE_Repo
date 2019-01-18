@@ -59,6 +59,8 @@
 	charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<script src="1.js?ver=1"></script>
+
 <!-- End JS -->
 
 </head>
@@ -94,32 +96,22 @@
 								<div class="clearfix"></div>
 								<!-- End Title -->
 							</div>
-							
-							<div id="articlePutHere">
-							
-							
-							
-							
-							
-							
-							
-							
-							</div>
-						
-							
-							
-							
+							<div id="articlePutHere"></div>
 						</div>
 						<!-- Pagination -->
-						<ul class="pagination">
-							<li><a href="#">&laquo;</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li class="disabled"><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">&raquo;</a></li>
-						</ul>
+						
+						<ul class="pagination" id="ul1" style="cursor:pointer"></ul>
+							<div id="div1">
+<!-- 							<li class="" onclick=""><a>&laquo;</a></li> -->
+<!-- 							<li class="active"><a>1</a></li> -->
+<!-- 							<li class=""><a>2</a></li> -->
+<!-- 							<li class="" ><a>3</a></li> -->
+<!-- 							<li class="" ><a>4</a></li> -->
+<!-- 							<li class=""><a>5</a></li> -->
+<!-- 							<li class=""><a>&raquo;</a></li> -->
+							</div>
+						
+						
 						<!-- End Pagination -->
 					</div>
 					<br> <br>
@@ -132,10 +124,10 @@
 
 								<!-- 搜尋文章 -->
 								<div id="search-div">
-								<form class="form-inline">
-									<input class="form-control mr-sm-2" type="search"
+								<form class="form-inline"  action="">
+									<input class="form-control mr-sm-2" type="search" id="search_new"
 										placeholder="搜尋" aria-label="Search">
-									<button class="btn btn-outline-success" type="submit">搜尋</button>
+									<button class="btn btn-outline-success" type="button">搜尋</button>
 								</form>
 								</div>
 							</ul>
@@ -167,79 +159,251 @@
 <!-- 	</div> -->
 
 <script>
-// $('#search-div button').click(function(){
-// 	var searchString = $('#search-div input').val();
-// 	alert(searchString);
-// 	loadArticle("",searchString,"","");
-// 	    })
+var allArticle; //放資料
+var start; //從第幾筆開始
+var currentPage=1;//目前頁數
+var ShowPage;//總頁數
+var count = 3;//一次幾筆
+var NumOfJData;//總筆數
+
+function doPage(){
+	console.log(event.currentTarget);
+	page=event.currentTarget.innerHTML;//當前頁數
+	currentPage = event.currentTarget.innerHTML;//把當前頁數存到 currentPage
+	$(".pagination li").attr("class","");
+	$(event.currentTarget).parents('li').attr("class","active");
+	start = page*count-count;
+	showData(start);
+}
+function preP(){
+// 	console.log(ShowPage);
+// 	console.log(count);
+// 	console.log(NumOfJData);
+	if(currentPage!=1){
+		console.log(currentPage);
+		start=currentPage-1;
+		showData(start);
+		currentPage=currentPage-1;
+	}else{
+		
+		alert("已經是第一頁囉~");
+	}
+	
+}
+function NextP(){
+	
+	if(currentPage!=ShowPage){
+		start=parseInt(currentPage)+1;
+		showData(start);
+		currentPage=parseInt(currentPage)+1;
+	}else{
+		
+		alert("已經最後一頁~");
+		
+	}
+	
+}
+function showData(token){
+	console.log(token);
+	$("#articlePutHere").html("");
+	var div ="";
+	for(var i=token;i<token+count;i++){
+			var Blog_Item_Details = 
+			"<div class='blog-post-details'>"+
+			"<div class='blog-post-details-item blog-post-details-item-left'>"+
+				"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+allArticle[i].member_nickname+"</a>"+
+			"</div>"+
+			"<div class='blog-post-details-item blog-post-details-item-left'>"+
+				"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+allArticle[i].post_time+"</a>"+
+			"</div>"+
+			"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
+				"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
+				
+			var Blog_Content = "<div class='blog'>"+
+								 "<div class='clearfix'></div>"+
+									"<div class='blog-post-body row margin-top-15'>"+
+									   "<div class='col-md-7'>"+"<p>"+allArticle[i].post_content+"</p>"+
+										"<a href='/roy/personalPage/singleArticle.controller?post_idS="+allArticle[i].post_idS+"'"+
+						"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
+					"</a></div></div></div></div><br><br><br><br>";
+			$("#articlePutHere").append(Blog_Item_Details+Blog_Content);
+	}
+}
+$(document).ready(function() {
+	loadArticle();
+	$("#search_new").keypress(function (event) {
+		if (event.keyCode == 13) {
+			$("form").submit(function () {
+				return false;
+			});
+			var searchString = $("#search_new").val();
+			loadArticle(searchString);
+		}
+	});
+	
+})
+
+
+
+$('#search-div button').click(function(){
+	var searchString = $('#search-div input').val();
+	loadArticle(searchString);
+})
 
 //顯示畫面
- $(function loadArticle () {
-	 $.ajax({
-         url: "/roy/findArticle/findArticle.controller",   //存取Json的網址             
-         type: "POST",
-         cache:false,
-         dataType:'json',
-         data:{user:$('#userName').text()},
-         //contentType: "application/json",              
-			success : function(list)
-			 { 
-				list.forEach(function(obj, index) {
-					
-					var author = obj.member_username;
-					var time =obj.post_time;
-					var content =obj.post_content
-					var postnumber = obj.post_idS;
-					
-					//顯示內容
-					var Blog_Item_Details = 
+function loadArticle (searchString) {
+	$("#articlePutHere").html("");
+	$("#newArticle").html("");
+	var searchString = searchString ;
+	
+	$.ajax({
+		url: "/roy/findArticle/findArticle.controller",       
+		type: "POST",
+		cache:false,
+		dataType:'json',
+		data:{'searchString':searchString},            
+		success : function(list)
+		{	
+			allArticle=list;
+			NumOfJData = list.length; //NumOfJData=4 總筆數
+			ShowPage = Math.ceil((NumOfJData/count));  
+			//總頁數 
+			
+			//顯示總頁數
+			$("#ul1").append("<li class=''><a onclick='return preP()';>&laquo;</a></li>");	
+			for(var i=1;i<=ShowPage;i++){
+				var pages ="<li class=''><a onclick='return doPage(this);'>"+i+"</a></li>"
+				if(i==1){
+				var pages ="<li class='active'><a onclick='return doPage(this);'>"+i+"</a></li>"
+				}
+				$("#ul1").append(pages);	
+			}
+			$("#ul1").append("<li class=''><a onclick='return NextP()'>&raquo;</a></li>");
+			
+			//顯示首頁
+			for(var i=0;i<count;i++){
+				
+				var Blog_Item_Details = 
 					"<div class='blog-post-details'>"+
 					"<div class='blog-post-details-item blog-post-details-item-left'>"+
-						"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+author+"</a>"+
+						"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+allArticle[i].member_nickname+"</a>"+
 					"</div>"+
 					"<div class='blog-post-details-item blog-post-details-item-left'>"+
-						"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+time+"</a>"+
+						"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+allArticle[i].post_time+"</a>"+
 					"</div>"+
 					"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
 						"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
-							
+						
 					var Blog_Content = "<div class='blog'>"+
 										 "<div class='clearfix'></div>"+
 											"<div class='blog-post-body row margin-top-15'>"+
-											   "<div class='col-md-7'>"+"<p>"+content+"</p>"+
-												"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
+											   "<div class='col-md-7'>"+"<p>"+allArticle[i].post_content+"</p>"+
+												"<a href='/roy/personalPage/singleArticle.controller?post_idS="+allArticle[i].post_idS+"'"+
 								"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
 							"</a></div></div></div></div><br><br><br><br>";
-					
-
-					content = ""
 					$("#articlePutHere").append(Blog_Item_Details+Blog_Content);
 					
-					
-					//顯示最近文章
-					var newArticleContent = "<li>"+
-						"<div class='recent-post'>"+
-						"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'>"+"<img class='pull-left' src='imgs/mouse.PNG'"+
-						"style='width: 100px; height: 90px' alt='thumb1'>"+
-						"</a> <a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
-						"class='posts-list-title'>"+author+"</a> <br> <span class='recent-post-date'>"+time+"</span>"+
-						"</div><div class='clearfix'></div></li><br><br>";
-						$("#newArticle").append(newArticleContent);
-					
-				})
+				
+			}
+			//顯示最近新增
+			for(var i=0;i<5;i++){
+				var author = allArticle[i].member_nickname;
+				var time = allArticle[i].post_time;
+				var content = allArticle[i].post_content;
+				var postnumber = allArticle[i].post_idS;
+				var profile = allArticle[i].member_profileImage;
+				var newArticleContent = "<li>"+
+				"<div class='recent-post'>"+
+				"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'>"+"<img class='pull-left' src='"+profile+"'"+
+				"style='width: 100px; height: 90px' alt='thumb1'>"+
+				"</a> <a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
+				"class='posts-list-title'>"+author+"</a> <br> <span class='recent-post-date'>"+time+"</span>"+
+				"</div><div class='clearfix'></div></li><br><br>";
+				$("#newArticle").append(newArticleContent);
+				
+			}
+				
+				
+				
+				
+				
+			
+			
+			//顯示內容
+// 				var Blog_Item_Details = 
+// 				"<div class='blog-post-details'>"+
+// 				"<div class='blog-post-details-item blog-post-details-item-left'>"+
+// 					"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+author+"</a>"+
+// 				"</div>"+
+// 				"<div class='blog-post-details-item blog-post-details-item-left'>"+
+// 					"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+time+"</a>"+
+// 				"</div>"+
+// 				"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
+// 					"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
+						
+// 				var Blog_Content = "<div class='blog'>"+
+// 									 "<div class='clearfix'></div>"+
+// 										"<div class='blog-post-body row margin-top-15'>"+
+// 										   "<div class='col-md-7'>"+"<p>"+content+"</p>"+
+// 											"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
+// 							"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
+// 						"</a></div></div></div></div><br><br><br><br>";
+// 				content = "" ;
+// 				$("#articlePutHere").append(Blog_Item_Details+Blog_Content);
+			
 
-			  },
-			  
-         error: function (xhr, ajaxOptions, thrownError) {
-             alert(xhr.status);
-             alert(thrownError);
-         }
-     });	 
+		  },
+	      error: function (xhr, ajaxOptions, thrownError) {
+	           alert(xhr.status);
+	           alert(thrownError);
+	      }
+	   });
+	}
+	
+</script>
 
- });
+<script>
+//分頁	
+// $(".pagination li").click(function(){
+	
+	
+// })
+// 當前頁
+//  function pageClick(this){
+// 	 alert("pageClick");
+// 	var Father = $(this).parents('.pagination');
+// 	var Fathers =$(".pagination>li").length;
+// 	for(var i=0;i<=Fathers;i++){
+// 		$(".pagination li").attr("class","");
+// 	}
+// 	alert($(this).text());
+// // 	$(this).attr("class","active");	
+	
+// }
 
+// function prepage(){
+// 	alert("prepage");
+// 	var nowPage = $(".pagination li.active").text();
+// 	var newPage = parseInt(nowPage);
+// 	var Fathers =$(".pagination>li").length;
+// 	for(var i=1;i<=Fathers-1;i++){
+// 		$(".pagination li").attr("class","");
+// 	}
+// 	$(".pagination li").eq(newPage).text();
+// 	alert($(".pagination li").eq(newPage).text());
+// 	$(".pagination li").eq(newPage).attr("class","active");
+	
+// }
 
-
+// function nextpage(){
+// 	alert("nextpage");
+// 	var nowPage = $(".pagination li.active").text();
+// 	var newPage = parseInt(nowPage)+1;
+// 	for(var i=1;i<=Fathers-1;i++){
+// 		$(".pagination li").attr("class","");
+// 	}
+// 	$(".pagination li").eq(newPage).attr("class","active");
+// }
 
 </script>
 </body>

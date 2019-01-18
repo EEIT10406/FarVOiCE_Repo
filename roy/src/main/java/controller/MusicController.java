@@ -38,6 +38,10 @@ public class MusicController {
 		String musicPath = "";
 		String imagePath = "";
 		
+//		0117
+		musicService.uploadMusic(bean);
+		String idForPath = ""+bean.getMusic_id();
+//		0117
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("errors", errors);
 
@@ -53,7 +57,7 @@ public class MusicController {
 		if (!musicFile.isEmpty()) {
 			try {
 				byte[] musicByte = musicFile.getBytes();
-				musicPath = musicService.musicFilePath(musicByte);
+				musicPath = musicService.musicFilePath(musicByte,idForPath);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -72,7 +76,10 @@ public class MusicController {
 		bean.setMusic_Image(imagePath);
 		bean.setMusic_uploadTime(new java.util.Date());
 
-		MusicBean uploadMusicBean = musicService.uploadMusic(bean);
+//		0117
+		musicService.editMusic(bean);
+		MusicBean uploadMusicBean = bean;
+//		0117
 		if (uploadMusicBean != null) {
 			model.addAttribute("musicBean", uploadMusicBean);
 			model.addAttribute("uploadresult", "發佈成功");
@@ -88,7 +95,7 @@ public class MusicController {
 	@RequestMapping(value = "/personalPage/readMusic", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String readMusic(String username) {
-		if (username != null && username.trim() != "") {
+		if (username != null && !username.trim().equals("")) {
 			// 使用者上傳的所有沒被下架的歌
 			List<MusicBean> musicBean = musicService.findMusicByUser(username);
 
@@ -131,7 +138,7 @@ public class MusicController {
 	@RequestMapping(value = "/personalPage/readSomebodyMusic", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String readSomebodyMusic(String username, HttpSession session) {
-		if (username != null && username.trim() != "") {
+		if (username != null && !username.trim().equals("")) {
 			// somebody上傳的所有沒被下架的歌
 			List<MusicBean> musicBean = musicService.findMusicByUser(username);
 
@@ -176,7 +183,7 @@ public class MusicController {
 	@RequestMapping(value = "/personalPage/uploadMusicCount", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String uploadMusicCount(String username) {
-		if (username != null && username.trim() != "") {
+		if (username != null && !username.trim().equals("")) {
 			List<MusicBean> musicBean = musicService.findMusicByUser(username);
 			if (musicBean != null) {
 				return String.valueOf(musicBean.size());
@@ -187,11 +194,11 @@ public class MusicController {
 
 	// 找音樂用音樂id
 	@RequestMapping(value = "/musicPage/findMusicById")
-	public String findMusicByMusicId(String musicId, Model model) {
+	public String findMusicByMusicId(String musicId, Model model,HttpSession session) {
 		MusicBean musicBean = musicService.findAvailableMusic(Integer.valueOf(musicId));
 		if (musicBean != null) {
-			model.addAttribute("musicPageBean", musicBean);
-			model.addAttribute("nickname", musicService.usernameToNickname(musicBean.getMember_username()));
+			session.setAttribute("musicPageBean", musicBean);
+			session.setAttribute("nickname", musicService.usernameToNickname(musicBean.getMember_username()));
 
 			return "/musicPage/musicPage.jsp";
 		} else {
@@ -213,17 +220,14 @@ public class MusicController {
 		}
 		
 		
-		// 編輯音樂或刪除音樂
+		// 編輯音樂
 		@RequestMapping(value = "/musicPage/editOrDeleteMusic")
 		public String editOrDeleteMusic(Model model,@RequestParam("imageFile") MultipartFile imageFile,String editMusic,
 				String musicId,String musicCaption,String musicLyric) {
-			System.out.println("..........................................................................");
-			System.out.println(musicId);
+
 			String imagePath="";
 			if(editMusic.equals("儲存")) {
-				System.out.println("近來xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
-					System.out.println("近來---------------------------------------------------------------------------");
 					MusicBean music=musicService.findMusic(Integer.valueOf(musicId));
 					music.setMusic_caption(musicCaption);
 					music.setMusic_lyric(musicLyric);
@@ -240,20 +244,24 @@ public class MusicController {
 					System.out.println(music);
 					model.addAttribute("result","更新成功");
 					return "/personalPage/personalPage.jsp";
-			}else if(editMusic.equals("刪除音樂")) {
-				boolean delete=musicService.deleteMusic(Integer.valueOf(musicId));
-				if(delete==true) {
-					model.addAttribute("result","刪除成功");
-					return "/personalPage/personalPage.jsp";
-				}else {
-					model.addAttribute("result","刪除失敗");
-					return "/personalPage/personalPage.jsp";
-				}
 			}
+
 			return "";
 		}
+			
+		// 刪音樂
+		@RequestMapping(value = "/musicPage/deleteMusic")
+		public String deleteMusic(String musicId,Model model) {
+			boolean result = musicService.deleteMusic(Integer.valueOf(musicId));
+			if (result) {
+				model.addAttribute("result", "刪除成功");
+				return "/personalPage/personalPage.jsp";
+			} else {
+				model.addAttribute("result", "刪除失敗");
+				return "/personalPage/personalPage.jsp";
+			}
+		}
 		
-
 
 	// 依類型搜尋音樂
 	@RequestMapping(value = "/rankTop10/findMusicByType", produces = "application/json;charset=utf-8")
@@ -306,5 +314,7 @@ public class MusicController {
 		}
 		return null;
 	}
+	
+
 
 }

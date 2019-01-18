@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
@@ -56,11 +56,13 @@ td {
 <body>
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
-		<div id="content" style="">
+		<div id="content">
 		<div class="container">
+
 			<!-- 每頁不同的內容從這裡開始 -->
-			<table id="playListTable" class="table table-bordered"
-				style="width: 800px;margin:auto;margin-top: 50px;">
+		<form action="<c:url value="/list/createPlayList" />"
+		enctype="multipart/form-data" method="post">
+			<table id="playListTable" class="table table-bordered" style="width: 800px;margin:auto;margin-top: 50px;">
 				<thead>
 					<tr>
 						<th>圖片</th>
@@ -81,12 +83,11 @@ td {
 <!-- 						<td><button class="btn btn-primary pull-right">刪除</button></td> -->
 <!-- 					</tr> -->
 				</tbody>
+
 				<tfoot>
 
 					<tr>
-						<form action="<c:url value="/list/createPlayList" />"
-							enctype="multipart/form-data" method="post">
-							<input type="hidden" id="playListId"><span></span>
+							<input type="hidden" id="playListId">
 							<td><input type="file" id="imageFile" accept="image/*"
 								name="imageFile"></td>
 							<td><input type="text" style="width: 100px"
@@ -99,11 +100,12 @@ td {
 							<td><input type="hidden" name=""><span></span></td>
 							<td><input class="btn btn-primary pull-right" type="submit"
 								value="新增"></td>
-						</form>
 					</tr>
+			
+					
 				</tfoot>
 			</table>
-
+</form>
 			<!-- 編輯歌單 begin-->
 			<div class="modal fade" id="editPLayList" aria-hidden="true">
 				<div class="modal-dialog" style="width: 795px;">
@@ -129,28 +131,21 @@ td {
 									</tr>
 								</thead>
 								<tbody>
-<!-- 									<tr> -->
-<!-- 										<td name="music_id"></td> -->
-<!-- 										<td><img src="../img/left.JPG" -->
-<!-- 											style="width: 100px; height: 100px;" /></td> -->
-<!-- 										<td style="font-size: 15px;">買綁</td> -->
-<!-- 										<td style="font-size: 15px;">julia</td> -->
-<!-- 										<td style="font-size: 15px;">2018-12-12</td> -->
-<!-- 										<td><button class="btn btn-primary pull-right">刪除</button></td> -->
-<!-- 									</tr> -->
+
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-
+		</div>
 			<!-- 編輯歌單 end-->
 
 			<!-- 每頁不同的內容到這裡結束 -->
+
 		</div>
-	</div>
-	</div>
+		</div>
+
 
 
 	<jsp:include page="../homePage/footer.jsp" />

@@ -49,6 +49,12 @@ public class PlayListService {
 		return "/roy/image/music" + imageFilePath.substring(27);
 	}
 
+	//01/14
+	public List<PlaylistBean> loadAllPlayList(String sort) {
+			List<PlaylistBean> beans = playlistDao.findAll(sort);
+		return beans;
+	}
+	
 	// 載入該使用者所有歌單
 	public List<PlaylistBean> loadPlayList(String member_username) {
 		if (member_username != null && member_username.trim() != "") {

@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>FarVoice</title>
+<title>FarVOiCE</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -39,10 +39,15 @@
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <!-- End JS -->
 <style>
-.reportButton {
-	position: absolute;
-	bottom: 15%;
-	right: 15%;
+.shareAndAddbtn,.btnAddList,.reportButton{
+	color: black;
+	background-color: white;
+	border: 0px;
+}
+.heart {
+	width: 17px;
+	margin-right:5px;
+	cursor: pointer;
 }
 /* * { */
 /* 	animation: spin 20000s linear infinite; */
@@ -142,8 +147,135 @@
 		<jsp:include page="../homePage/player.jsp" />
 	</div>
 	
+	<!-- addPlayList begin-->		
+							<div class="modal fade" id="addList" aria-hidden="true">
+										<div class="modal-dialog" style="width: 300px;">
+											<div class="modal-content">
+												<h5 style="margin: 10px;">加入歌單</h5>
+	
+													<div class="modal-body">
+
+														<div class="form-group">
+															<select name="selectPlayList" id="selectPlayList" class="form-control">
+																<option value="playListId">請選擇歌單</option>
+															</select>
+														</div>
+														<div style="float:right;">
+														<a href="../list/createList.jsp" >新增歌單</a>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-primary"
+															data-dismiss="modal">取消</button>
+														<buttin id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
+													</div>
+												
+											</div>
+										</div>
+									</div>							
+							<!-- addPlayList end-->
+							
+						<!-- addshare begin-->
+	<div class="modal fade" id="addshare" aria-hidden="true">
+		<div class="modal-dialog" style="width: 300px;">
+			<div class="modal-content">
+				<h5 style="margin: 20px;">分享歌曲</h5>
+				<form action="<c:url value="/personalPage/ShareMusic.controller"/>"
+					method="get"
+					id="addshareV">
+					<div class="modal-body">
+						<div class="form-group"></div>
+						<textarea name="shareContent" style="width: 250px; height: 270px" onFocus="if(this.value==this.defaultValue) this.value=''" onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
+					</div>
+					<div id="displayShareMusic">
+						<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
+						<img src="../img/300x300.jpg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
+						<textarea hidden="true" id="realaddshareMusicname" name="shareMusicname"></textarea>
+						<span style="margin-left: 10px; font-size: 15px;" id="addshareMusicname" >讓我為你唱情歌</span>
+					</div>
+					<div class="modal-footer">
+						<div style="float:left"><input type="checkbox" name="isprivacy" value="true">不公開</div>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" onclick="submitBtnClick()" >確定</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	
+	
 	<script>
 	$(document).ready(function() {
+		//愛心
+		$('#music-container').on('click','.heart',function(){
+			<%if (session.getAttribute("user") == null) {%>
+ 			alert('請先登入');
+		<%} else {%>
+			var musicId = $(this).attr("music_id");
+			var count = $(this).parent('div').find('.heartCount');
+			if (this.src.indexOf("love.png") != -1) {
+				$.get('/roy/personalPage/memberTakeBackLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+					count.text(data);
+				})
+				this.src = "../img/emptyLove.png";
+			} else {
+				$.get('/roy/personalPage/memberClickLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+					count.text(data);
+				})
+				this.src = "../img/love.png";
+			}
+			<%}%>
+		})
+		//愛心
+		
+		//加入歌單
+	$('body').on('click','.btnAddList',function() {
+		<%if (session.getAttribute("user") == null) {%>
+		window.location.href = "/roy/login-signUp-upload/login.jsp";
+	<%} else {%>
+		var music_id = $(this).attr("music_id");
+		$.getJSON('/roy/list/readPlayList',{'username' : '${user.member_username}'},function(data) {
+			var html='<option value="'+music_id+'">請選擇歌單</option>';
+			$.each(data,function(index, list) {
+				
+			    html+='<option value="'+list.playlist_id+'">'+list.playlist_name+'</option>';
+			         
+	              })
+	         $('#selectPlayList').html(html);
+		})
+		<%}%>
+	})		
+		//加入歌單
+		
+		//加入歌單-確定
+	$('body').on('click','#addMusicToList',function() {
+ 		var row = $(this).parents('#addList');
+ 		var musicId =row.find('#selectPlayList').children().val();
+		var playListId=$('#selectPlayList').val();
+		$.get('/roy/list/addMusicToPlayList',{'musicId' : musicId,'playListId':playListId},function(data) {
+			alert(data)
+			loadPlayList('${user.member_username}')
+		})
+			
+	})
+	//加入歌單-確定
+	
+	// 		檢舉
+		$('#music-container').on('click','.reportButton',function() {
+			<%if (session.getAttribute("user") == null) {%>
+	 			alert('請先登入');
+			<%} else {%>
+				if(confirm("確定檢舉嗎?")){
+					$.get("report.create", {'music_id':$(this).attr('music_id'),'member_username':$(this).attr('member_username')}, function(message) {
+						alert(message);
+					})
+			  	} else {
+			  	}
+			<%}%>
+		})
+		// 		檢舉
+		
 		var type = '';
 		var before = '';
 		var sort = 'music_uploadTime';
@@ -212,11 +344,16 @@
 				    		var row = $("<div></div>").html(
 				    				'<div class="col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box">'+
 				    				'<div class="work-block m-bottom-2"><a class="play-link" href="#">'+
-				    				'<img class="img-full" height="100%" width="100%" src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
-				    				'</a><input class="reportButton" type="image" src="../img/檢舉.png" onmouseover="report()" height="50" width="50" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'">'+
+				    				'<img class="img-full" height="220px" width="220px" src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
 				    				'</div>	<div class="song-info">'+
-				    				'<h4 class="text-ellipsis"><a href="/roy/personalPage/somebodyPersonalPage.controller?somebody='+music.Member_username+'&nickname=fifi">'+music.Member_username+'</a></h4>'+	
-				    				'<h4 class="text-ellipsis"><a class="play-link" href="#" onclick="play(this)" src="'+music.Music_Image+'" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+music.Music_name+'</a></h4></div></div>');
+				    				'<h5 class="text-ellipsis"><a class="play-link" href = "/roy/musicPage/findMusicById?musicId='+music.Music_id+'" src="'+music.Music_Image+'">'+music.Music_name+'</a></h5>'+
+				    				'<h5 class="text-ellipsis"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+music.Member_nickname+'">'+music.Member_nickname+'</a></h5>'+
+				    				'<div><img src="'+music.memberLikeMusic+'" class="heart" music_id="'+music.Music_id+'"><span class="heartCount">'+music.Music_likeCount+'</span><span id="add">'+
+				    				'<button type="button" class="btnAddList" music_id="'+music.Music_id+'" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button></span></a>'+
+				    				'<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare"style="outline: none;" ><img src="../img/share.png" width="13px">分享</button></span>'+
+				    				'<span><button class="reportButton" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'"><img src="../img/exclamation.png" width="15px">檢舉</button></span>'+
+				    				'</div></div></div>');
+// 				    		onmouseover="report()"
 				    		docFrag.append(row);
 				    	});
 				    $('#music-container').html(docFrag);
@@ -243,31 +380,9 @@
 					url : $(e).attr('music_music'),
 					pic : $(e).attr('src')
 				}]);
-				$.get("report.addMusic_playCount", {'music_id':$(e).attr('music_id')}, function(message) {
-				})
+				$(ap.audio).attr('music_id',$(e).attr('music_id'));
 	}
 	//播放
-	
-	// 		檢舉
-	function report(){
-		$('.reportButton').attr("onmouseover",'');
-		$('.reportButton').hover(function() {
-			src = $(this).attr("src");
-			$(this).attr("src", "../img/檢舉 2.png");
-		}, function() {
-			$(this).attr("src", src);
-		})
-		$('.reportButton').click(function() {
-			<%if (session.getAttribute("user") == null) {%>
-	 			alert('請先登入');
-			<%} else {%>
-				$.get("report.create", {'music_id':$(this).attr('music_id'),'member_username':$(this).attr('member_username')}, function(message) {
-					alert(message);
-				})
-			<%}%>
-		})
-		}
-		//	檢舉
 		
 </script>
 	
