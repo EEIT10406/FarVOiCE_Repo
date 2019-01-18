@@ -19,11 +19,7 @@
 			<!-- Contact Details -->
 			<div class="col-md-3 margin-bottom-20">
 				<h3 class="margin-bottom-10">商務</h3>
-<!-- 				<p> -->
-<!-- 					<span class="fa-phone">連絡電話:</span>(02)6631-6666<br>  -->
-<!-- 					<span class="fa-envelope">Email:</span><a href="mailto:info@joomla51.com">info@joomla51.com</a> <br>  -->
-<!-- 					<span class="fa-link">Website:</span><a href="http://www.joomla51.com">www.joomla51.com</a> -->
-<!-- 				</p> -->
+
 				
 					<p>
 						<span>行銷合作</span>
@@ -36,7 +32,7 @@
 				<h3 class="margin-bottom-10">這裡不知道要放甚麼</h3>
 				<div class="thumbs-gallery">
 					<a  id="yoga"
-						href="#yoga" onclick="alert('點屁阿')"> 
+						href="#yoga" onclick="alert('只要是石頭到哪都不會發光~')"> 
 						<img src="../img/how.jpg" alt="how.jpg">
 					</a>
 				</div>
@@ -60,7 +56,7 @@
 	<div class="container">
 		<div class="row">
 			<div id="copyright" class="col-md-4">
-				<p>(c) 2014 Your Copyright Info</p>
+				<p>(c) 2019 Your Copyright Info</p>
 			</div>
 			<div id="footermenu" class="col-md-8">
 				<ul class="list-unstyled list-inline pull-right">
