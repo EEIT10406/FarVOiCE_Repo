@@ -908,8 +908,6 @@ function showData(){
 					            }
 						        
 							}
-			                
-			                
 		             
 		             }
 									
