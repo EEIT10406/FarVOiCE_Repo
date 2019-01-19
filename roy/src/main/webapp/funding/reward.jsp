@@ -75,38 +75,77 @@
 											}
 										})
 						//預覽標題輸入框
-						$('input[name="funding_title"]')
+						$('input[name="reward_amount"]')
 								.bind(
 										'input propertychange',
 										function() {
 
 											var title = $(
-													'input[name="funding_title"]')
+													'input[name="reward_amount"]')
 													.val();
-											$('#pre-title').text(title);
+											$('#pre-amount').text(title);
 											if (title == "") {
-												$('#pre-title').text(
-														"例：30 個字以內的專案標題");
+												$('#pre-amount').text("100");
 											}
 
 										})
 						//預覽專案描述
-						$('textarea[name="funding_description"]')
+						$('textarea[name="reward_description"]')
 								.bind(
 										'input propertychange',
 										function() {
 
 											var title = $(
-													'textarea[name="funding_description"]')
+													'textarea[name="reward_description"]')
 													.val();
 											$('#pre-content').text(title);
 											if (title == "") {
-												$('#pre-content')
-														.text(
-																"例：簡短描述專案內容，吸引瀏覽者在 FarVoice 首頁上點擊你的專案。");
+												$('#pre-content').text(
+														"例：單純贊助，不需回饋");
 											}
 
 										})
+						//預覽寄送年
+						$('select[name="reward_estimatedYear"]')
+								.bind(
+										'input propertychange',
+										function() {
+
+											var year = $(
+													'select[name="reward_estimatedYear"]')
+													.val();
+											$('#estimated-year').text(year);
+											if (title == "") {
+												$('#estimated-year').text(
+														"2019年");
+											}
+
+										})
+						//預覽寄送月
+						$('select[name="reward_estimatedMonth"]')
+								.bind(
+										'input propertychange',
+										function() {
+
+											var month = $(
+													'select[name="reward_estimatedMonth"]')
+													.val();
+											$('#estimated-month').text(month);
+											if (title == "") {
+												$('#estimated-month')
+														.text("1月");
+											}
+
+										})
+						//點擊上一步不檢查編輯專案內容
+						$('input[value="編輯專案內容"]').click(
+								function() {
+									$('textarea[name="reward_description"]')
+											.removeAttr("required");
+									$('input[name="imageFile"]').removeAttr(
+											"required");
+									$('input[value="編輯專案內容"]').submit();
+								})
 
 					})
 </script>
@@ -141,7 +180,7 @@
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
 		<div class="create-content">
-			<form action="<c:url value="funding.controller" />" method="post"
+			<form action="<c:url value="reward.controller" />" method="post"
 				enctype="multipart/form-data">
 				<div
 					style="text-align: center; margin-bottom: 15px; margin-top: 15px;">
@@ -152,31 +191,34 @@
 					<div class="a">
 						<p class="bluequote blue-pre">回饋卡預覽</p>
 						<div class="project-pre">
+							<div class="pcontent-pre"
+								style="height: 40px; font-size: 2.5rem; margin-bottom: 0px;">
+								<p id="pre-amount" class="title-content">100</p>
+							</div>
 							<div class="img-pres">
 								<img class="img-in" id="preview_progressbarTW_img"
-									src="/roy/img/default.jpg">
+									style="border-radius: 0" src="/roy/img/default.jpg">
 							</div>
-							<div class="pcontent-pre">
-								<p id="pre-title" class="title-content"
-									style="margin-bottom: -18px">例：30 個字以內的專案標題</p>
-								<p class="small creator">
-								<p id="pre-name">${nickname}</p>
+							<div class="pcontent-pre"
+								style="height: 135px; margin-bottom: 0px;">
 
 								<p id="pre-content" class="excerpt"
-									style="font-weight: bold; font-size: 0.85rem">例：簡短描述專案內容，吸引瀏覽者在
-									FarVoice 首頁上點擊你的專案。</p>
+									style="font-weight: bold; font-size: 0.85rem">單純贊助，不需回饋</p>
 							</div>
-							<div class="downMeta-pre">
-								<progress class="progress-pre"
-									style="margin-bottom: 0px; margin-top: 0px;" value="0"
-									max="100"></progress>
-								<span class="goalMoney osmfont">0</span>&nbsp; <span
-									class="hidden-md goalpercent goal"> 0%</span> <span
-									style="font-size: 13px; letter-spacing: 1px"
-									class="date pull-right small"> 還剩 <strong class="days"
-									style="font-size: 13px; font-weight: 1000; letter-spacing: 1px">0</strong><span
-									style="font-size: 13px; letter-spacing: 1px"> 天</span>
-								</span>
+							<div class="downMeta-pre estimated-font">
+								<div style="width: 50%; display: inline-block;">
+									<p class="locate">寄送地點</p>
+									<p
+										style="margin-bottom: 0px; font-size: 13px; letter-spacing: 0.5px;">只寄送台灣本島</p>
+								</div>
+								<div
+									style="width: 50%; display: inline-block; float: right; text-align: right;">
+									<p class="estimated">預計寄送時間</p>
+									<span id="estimated-year"
+										style="font-size: 13px; letter-spacing: 0.5px;">2019</span> /
+									<span id="estimated-month"
+										style="font-size: 13px; letter-spacing: 0.5px;">1</span>
+								</div>
 
 							</div>
 						</div>
@@ -191,11 +233,11 @@
 								<!---->
 								<div class="inputWordCount">
 									<input oninput="title" onpropertychange="title"
-										style="font-weight: 400" name="funding_title" type="number"
-										min="100" value="100" step="100"
-										class="form-control fc" >
+										style="font-weight: 400" name="reward_amount" type="number"
+										min="100" value="100" step="100" class="form-control fc">
 								</div>
-								<label for="" class="input-label" style="text-align: left;">最低金額為 $100。</label>
+								<label for="" class="input-label" style="float: left;">最低金額為
+									$100。</label>
 							</div>
 						</div>
 						<div class="c">
@@ -206,9 +248,9 @@
 
 									<textarea style="font-weight: 400" class="form-control fc"
 										oninput="title" onpropertychange="title"
-										name="funding_description" placeholder="500個字以內的專案描述"
+										name="reward_description" placeholder="單純贊助，不需回饋"
 										maxlength="500" rows="11" required
-										oninvalid="setCustomValidity('請輸入專案描述');"
+										oninvalid="setCustomValidity('請輸入回饋描述');"
 										oninput="setCustomValidity('');"></textarea>
 								</div>
 								<label for="" class="input-label">請在此描述這個回饋項目所包含的品項，您也可以為每一個回饋組合創造名稱以利推廣。</label>
@@ -244,37 +286,48 @@
 				</div>
 
 				<div class="create-type" style="margin: auto;">
-					<p  class="bluequote">預計寄送時間</p>
-					<select name="reward_estimatedYear" class="form-control fc"
-						style="width: 48%; display: inline;"><option
-							value="2019年" selected="selected">2019年</option>
-						<option value="2020年">2020年</option>
-						<option value="2021年">2021年</option>
-						<option value="2022年">2022年</option>
-						<option value="2023年">2023年</option>
-						<option value="2024年">2024年</option>
-					</select> <select name="reward_estimatedMonth" class="form-control fc"
-						style="width: 48%; float: right;"><option value="1月"
+					<p class="bluequote">預計寄送時間</p>
+					<select oninput="pickYear" onpropertychange="pickYear"
+						name="reward_estimatedYear" class="form-control fc"
+						style="width: 48%; display: inline;"><option value="2019"
+							selected="selected">2019年</option>
+						<option value="2020">2020年</option>
+						<option value="2021">2021年</option>
+						<option value="2022">2022年</option>
+						<option value="2023">2023年</option>
+						<option value="2024">2024年</option>
+					</select> <select oninput="pickDay" onpropertychange="pickDay"
+						name="reward_estimatedMonth" class="form-control fc"
+						style="width: 48%; float: right;"><option value="1"
 							selected="selected">1月</option>
-						<option value="2月">2月</option>
-						<option value="3月">3月</option>
-						<option value="4月">4月</option>
-						<option value="5月">5月</option>
-						<option value="6月">6月</option>
-						<option value="7月">7月</option>
-						<option value="8月">8月</option>
-						<option value="9月">9月</option>
-						<option value="10月">10月</option>
-						<option value="11月">11月</option>
-						<option value="12月">12月</option>
+						<option value="2">2月</option>
+						<option value="3">3月</option>
+						<option value="4">4月</option>
+						<option value="5">5月</option>
+						<option value="6">6月</option>
+						<option value="7">7月</option>
+						<option value="8">8月</option>
+						<option value="9">9月</option>
+						<option value="10">10月</option>
+						<option value="11">11月</option>
+						<option value="12">12月</option>
 
-					</select> 
-					<label for="" class="input-label">此項回饋預計送達時程。</label>
+					</select> <label for="" class="input-label">此項回饋預計送達時程。</label>
 				</div>
-
+				<div class="create-reward">
+					<input class="form-control next fc" type="submit" name="reward"
+						value="編輯專案內容"> <input class="form-control next fc"
+						type="submit" name="reward" value="新增一個回饋"> <input
+						class="form-control next fc" type="submit" name="reward"
+						value="提交專案">
+				</div>
+				<input style="display: none;" name="funding_id" type=text
+					value="${fundingBean.funding_id}">
 			</form>
 
 		</div>
+		
+<!-- 	
 		<!-- 	=== END CONTENT === -->
 
 		<jsp:include page="../homePage/footer.jsp" />

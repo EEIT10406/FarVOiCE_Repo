@@ -203,11 +203,9 @@ function loadLikeMusic(username){
                           <div style="font-family: 微軟正黑體;display: inline-block;width: 40%;float: left;font-size: 20px;font-weight: bold;margin-top:15px;">
                               
                               <p><img src="../img/earphone.png" width="20px;" style="margin-right:7px;"/> 大家都喜歡</p>
-                          </div>
-                          
+                          </div>         
                      </div>
-                         
-                     
+                                            
 <div class="col-md-12" style="margin-top: -30px">
      <div class="carousel slide testimonials" id="testimonials1">
 
@@ -239,11 +237,8 @@ function loadLikeMusic(username){
                                      <i style="color:#666666;" class="fas fa-angle-double-right fa-2x" style="text-decoration:none;"></i>
                                  </a>
                           </div>
-       
-       
-      </div>
-                         
-</div>
+      			</div>                   
+			</div>
                      <!-- End 大家都喜歡 - default full width -->
                  </div>
                  
@@ -282,29 +277,20 @@ function loadLikeMusic(username){
 			<div class="item active">
                <div class="col-md-12">
                     
-<!-- 				 <div style="border-radius: 5px;align:center; height: 200px; margin-top: 30px; margin-bottom: 30px; background: linear-gradient(to right,#444444,#DDDDDD);width:800px;">                          -->
-<!--                  </div>     -->
                                                       
                </div>
-            </div>
-                                 
+            </div>                
                                  <div class="item">
                                      <div class="col-md-12">
-                                         
                                      </div>
                                  </div>
-                                 
-                                 
-                                 
+
                                  <div class="item">
                                      <div class="col-md-12">
    
                                          
                                      </div>
                                  </div>
-                                 
-                                 
-                                 
                              </div>
                          </div>
                          
@@ -314,13 +300,7 @@ function loadLikeMusic(username){
 				<!-- Side Column -->
 				<div  id="hottest" class="col-md-3" style="float: right">
 					<h3 class="title">即時熱門排行</h3>
-<!-- 					<h6 style="margin: 0;">Mon - Wed</h6> -->
-<!-- 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4> -->
-<!-- 					<p> -->
-<!-- 						<small>* Lorem ipsum dolor sit amet</small> -->
-<!-- 					</p> -->
-<!-- 					<hr> -->
-<!-- 					<button type="button" class="btn btn-primary" style="width:100%" onclick="window.location.href ='/roy/rank/rank.jsp'">媽的看排行喔</button> -->
+
 				</div>
 				<!-- End Side Column -->
 			</div>

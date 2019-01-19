@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -93,15 +94,16 @@ public class FundingDAO {
 
 //找出使用者所有的募資專案
 	public List<FundingBean> findByUsername(String member_username) {
+
 		return this.getSession()
 				.createQuery("from FundingBean where member_username='" + member_username + "'", FundingBean.class)
 				.list();
 	}
+
 	public FundingBean findByPrimaryKey(Integer funding_id) {
 		// 0103 OK
 		return this.getSession().get(FundingBean.class, funding_id);
 	}
-
 
 	public List<FundingBean> findAll() {
 		// 0103 OK
