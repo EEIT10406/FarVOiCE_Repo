@@ -214,7 +214,8 @@ function loadrankTopTen(type) {
 					     '<td>'+rank+'</td>'+
 					     '<td name="music_id">'+list.music_id+'</td>'+
 					     '<td name="music_image">'+
-					        '<img src="'+list.music_Image+'" class="music" />'+
+					        '<img src="'+list.music_Image+'" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)"/>'+
 					        '<span id="musicPage" class="musicName">'+list.music_name+'</span>'+
 					        '<div>';
 				        if('${user.member_username}'!=""){
@@ -475,5 +476,21 @@ $('body').on('click','.btnShare',function() {
     $("#displayShareMusic img").attr("src",music_image);
 })	
 </script>
+<!-- 播放器 -->
+	<div id="player">
+		<jsp:include page="../homePage/player.jsp" />
+	</div>
+	<script>
+	function play(e) {
+				ap.list.add([{
+					title : $(e).attr('music_name'),
+					author : $(e).attr('nickname'),
+					url : $(e).attr('music_music'),
+					pic : $(e).attr('music_Image')
+				}]);
+				$(ap.audio).attr('music_id',$(e).attr('music_id'));
+	}
+	</script>
+	<!-- 播放器 -->
 </body>
 </html>
