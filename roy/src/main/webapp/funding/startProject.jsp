@@ -7,10 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>專案內容</title>
-<script type="text/javascript" src="../js/scripts.js"></script>
+
+<!-- JS -->
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<!-- Isotope - Portfolio Sorting -->
+<script type="text/javascript" src="../js/jquery.isotope.js"></script>
+<!-- Mobile Menu - Slicknav -->
+<script type="text/javascript" src="../js/jquery.slicknav.js"></script>
+<!-- Animate on Scroll-->
+<script type="text/javascript" src="../js/jquery.visible.js"
+	charset="utf-8"></script>
+<!-- Sticky Div -->
+<script type="text/javascript" src="../js/jquery.sticky.js"
+	charset="utf-8"></script>
+<!-- Slimbox2-->
+<script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
+<!-- Modernizr -->
+<script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<script src="1.js?ver=1"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script> -->
 
+<!-- End JS -->
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -26,7 +45,6 @@
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/custom.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 
 

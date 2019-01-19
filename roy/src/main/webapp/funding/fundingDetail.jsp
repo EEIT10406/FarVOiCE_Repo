@@ -7,10 +7,28 @@
 <head>
 <meta charset="UTF-8">
 <title>募資詳細頁面</title>
-<script type="text/javascript" src="../js/scripts.js"></script>
+<!-- JS -->
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<!-- Isotope - Portfolio Sorting -->
+<script type="text/javascript" src="../js/jquery.isotope.js"></script>
+<!-- Mobile Menu - Slicknav -->
+<script type="text/javascript" src="../js/jquery.slicknav.js"></script>
+<!-- Animate on Scroll-->
+<script type="text/javascript" src="../js/jquery.visible.js"
+	charset="utf-8"></script>
+<!-- Sticky Div -->
+<script type="text/javascript" src="../js/jquery.sticky.js"
+	charset="utf-8"></script>
+<!-- Slimbox2-->
+<script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
+<!-- Modernizr -->
+<script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<script src="1.js?ver=1"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script> -->
 
+<!-- End JS -->
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -26,7 +44,6 @@
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/custom.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 <!-- js -->
 <script type="text/javascript">
@@ -45,10 +62,25 @@
 
 			$('#incontent').removeClass('active');
 			$('#sup').addClass('active');
-
+		})
+		//切換捐贈+focus
+		$('.card-toggle').click(function() {
+			$('.donate').slideDown(300);
+			$('.pick-lock').focus();
+			
+			
 		})
 	})
 </script>
+<style type="text/css">
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+</style>
 </head>
 <body>
 	<div id="body_bg">
@@ -128,60 +160,69 @@
 				</div>
 
 				<div class="reward-card">
-
-					<div class="a">
-						<div class="project-pre">
-							<div class="pcontent-pre"
-								style="height: 40px; font-size: 2.5rem; margin-bottom: 0px;">
-								<p id="pre-amount" class="title-content detail-money">100</p>
-								<p class="detail-man">41人</p>
-							</div>
-							<div class="img-detail">
-								<img class="img-in" id="preview_progressbarTW_img"
-									style="border-radius: 0" src="/roy/img/default.jpg">
-							</div>
-							<div class="pcontent-pre"
-								style="height: 135px; margin-bottom: 0px;">
-
-								<p id="pre-content" class="excerpt"
-									style="font-weight: bold; font-size: 0.85rem">單純贊助，不需回饋</p>
-							</div>
-							<div class="downMeta-pre estimated-font">
-								<div style="width: 50%; display: inline-block;">
-									<p class="locate">寄送地點</p>
-									<p
-										style="margin-bottom: 0px; font-size: 13px; letter-spacing: 0.5px;">只寄送台灣本島</p>
+					<div class="card-toggle">
+						<div class="a">
+							<div class="project-pre">
+								<div class="pcontent-pre"
+									style="height: 40px; font-size: 2.5rem; margin-bottom: 0px;">
+									<p id="pre-amount" class="title-content detail-money">100</p>
+									<p class="detail-man">41人</p>
 								</div>
-								<div
-									style="width: 50%; display: inline-block; float: right; text-align: right;">
-									<p class="estimated">預計寄送時間</p>
-									<span id="estimated-year"
-										style="font-size: 13px; letter-spacing: 0.5px;">2019</span> /
-									<span id="estimated-month"
-										style="font-size: 13px; letter-spacing: 0.5px;">1</span>
+								<div class="img-detail">
+									<img class="img-in" id="preview_progressbarTW_img"
+										style="border-radius: 0" src="/roy/img/default.jpg">
 								</div>
+								<div class="pcontent-pre"
+									style="height: 135px; margin-bottom: 0px;">
 
-								<div class="donate">
-									<p>
-										<span>你的支持將使專案達到</span>150%
-									</p>
-									<form method="post" action=""></form>
+									<p id="pre-content" class="excerpt"
+										style="font-weight: bold; font-size: 0.85rem">單純贊助，不需回饋</p>
+								</div>
+								<div class="downMeta-pre estimated-font">
+									<div style="width: 50%; display: inline-block;">
+										<p class="locate">寄送地點</p>
+										<p
+											style="margin-bottom: 0px; font-size: 13px; letter-spacing: 0.5px;">只寄送台灣本島</p>
+									</div>
+									<div
+										style="width: 50%; display: inline-block; float: right; text-align: right;">
+										<p class="estimated">預計寄送時間</p>
+										<span id="estimated-year"
+											style="font-size: 13px; letter-spacing: 0.5px;">2019</span> /
+										<span id="estimated-month"
+											style="font-size: 13px; letter-spacing: 0.5px;">1</span>
+									</div>
 
-									<div>
-										<div></div>
-										<div></div>
+									<div class="donate">
+										<p class="donate-p">
+											<span>你的支持將使專案達到</span>150%
+										</p>
+
+										<form method="post" action="">
+											<div class="sup-money-0">
+
+												<div class="sup-money-1">
+													<label class="sup-money-2">贊助金額</label>
+													<h1 class="sup-money-3">$100</h1>
+												</div>
+												<div class="plus"></div>
+												<div class="extra-sup-1">
+													<label class="extra-sup-2">額外支持</label> <br> <input class="pick-lock"
+														type="number" placeholder="$0">
+												</div>
+												<input type="submit" class=btn-submit value="贊助此回饋">
+											</div>
+										</form>
+
 									</div>
 
 
 								</div>
-
-
 							</div>
+
 						</div>
 
 					</div>
-
-
 
 
 
