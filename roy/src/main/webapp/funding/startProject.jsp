@@ -173,11 +173,9 @@
 										$('strong[class="days"]').text('0')
 									}
 								})
-						
-						
 
 					})
-//超過50字以...表示
+	//超過50字以...表示
 	function limitText() {
 
 		var len = 70; // 超過50個字以"..."取代
@@ -230,7 +228,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
-		<div class="create-content">
+		<div class="create-content" style="font-family: Microsoft JhengHei;">
 			<form action="<c:url value="funding.controller" />" method="post"
 				enctype="multipart/form-data">
 				<div
@@ -248,7 +246,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 										style="font-weight: 400" name="funding_title" type="text"
 										placeholder="30 個字以內的專案標題" maxlength="20"
 										class="form-control fc" required
-										oninvalid="setCustomValidity('請输入專案標題');">
+										oninvalid="setCustomValidity('請输入專案標題');"
+										oninput="setCustomValidity('');">
 								</div>
 								<label for="" class="input-label">一個好的標題應該要好記、好搜尋、吸引人想點進去看，並讓瀏覽者能在最短的時間內瞭解專案的核心理念。</label>
 							</div>
