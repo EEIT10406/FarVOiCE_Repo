@@ -20,26 +20,26 @@
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
-	<!-- JS -->
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/scripts.js"></script>
-	<!-- Isotope - Portfolio Sorting -->
-	<script type="text/javascript" src="../js/jquery.isotope.js"></script>
-	<!-- Mobile Menu - Slicknav -->
-	<script type="text/javascript" src="../js/jquery.slicknav.js"></script>
-	<!-- Animate on Scroll-->
-	<script type="text/javascript" src="../js/jquery.visible.js"
-		charset="utf-8"></script>
-	<!-- Sticky Div -->
-	<script type="text/javascript" src="../js/jquery.sticky.js"
-		charset="utf-8"></script>
-	<!-- Slimbox2-->
-	<script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
-	<!-- Modernizr -->
-	<script src="../js/modernizr.custom.js" type="text/javascript"></script>
-	<!-- End JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"  ></script>
+<!-- JS -->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<!-- Isotope - Portfolio Sorting -->
+<script type="text/javascript" src="../js/jquery.isotope.js"></script>
+<!-- Mobile Menu - Slicknav -->
+<script type="text/javascript" src="../js/jquery.slicknav.js"></script>
+<!-- Animate on Scroll-->
+<script type="text/javascript" src="../js/jquery.visible.js"
+	charset="utf-8"></script>
+<!-- Sticky Div -->
+<script type="text/javascript" src="../js/jquery.sticky.js"
+	charset="utf-8"></script>
+<!-- Slimbox2-->
+<script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
+<!-- Modernizr -->
+<script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<!-- End JS -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"  ></script> -->
 <!--Google登入-->
     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};HandleGoogleApiLibrary()"
             onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
@@ -97,8 +97,9 @@
             );
         }
 
-<!--Google登入 end-->
-<!-- fb登入 begin -->
+         
+// <!--Google登入 end-->
+// <!-- fb登入 begin -->
 
 
   window.fbAsyncInit = function() {
@@ -144,7 +145,7 @@ function FBLogin() {
 }
 
 
-<!--fb登入 end-->
+// <!--fb登入 end-->
 
 	function IsEmail(email) {
 	    var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -155,13 +156,29 @@ function FBLogin() {
 	    }
 	}
 	function submit_frm(){
+		 if(!emailValue){
+	        	alert("請輸入信箱");
+	        	return;
+	        }
 		 alert("記得去收驗證信喔!");
-        var frm = document.getElementById("sendEmail");  
+        var frm = document.getElementById("sendEmail");
+        var emailValue = $('#emailCheck').val();
         frm.action = "/roy/register/sendMail";  
         frm.method = "post";                 
         frm.submit();                        
     }
-
+	function submit_frm_pass(){
+		var accValue = $('#userAccount').val();
+	       if(!accValue){
+	       	alert("請輸入帳號");
+	       	return;
+	       }
+		alert("記得去收新密碼喔!");
+       var frm = document.getElementById("sendPassword");  
+       frm.action = "/roy/register/sendPass";  
+       frm.method = "post";                 
+       frm.submit();                        
+   	}
 	$(document).ready(function() {
 		$('#login').click(function() {
 			window.location.href = "login.jsp";
@@ -181,6 +198,10 @@ function FBLogin() {
 
 			})
 		}
+		if($('#noThisAccount').html() == "noThisAccount"){
+			alert("此帳號未註冊喔!");
+		}
+		
 		
 	})
 	
@@ -193,6 +214,8 @@ function FBLogin() {
 *{
  font-family:"微軟正黑體";
 }
+
+
 h3{
  font-family:"微軟正黑體";
 }
@@ -252,14 +275,11 @@ h3{
 								</div>
 								<hr>
 								<h5>
-									還沒註冊嗎 ?<a href="#" style="float: right;">忘記密碼</a>
+									還沒註冊嗎 ?<a href="#"data-toggle='modal' data-target='#forgetPassword'  style="float: right;">忘記密碼</a>
 								</h5>
 								<a href="signUp.jsp">按這裡</a>註冊帳號
 							</form>
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-							  Launch demo modal
-							</button>
+
 							</div>
 					
 						
@@ -280,7 +300,7 @@ h3{
 						        	在此輸入新的Email為您再寄一次驗證信喔。<br>
 						        	<input hidden="true" type="text" name="userAccount" value="${param.username}">
 						        	<input hidden="true" type="text" name="userPassword" value="${param.password}" >
-						        	 <input id="emailCheck" type="text" placeholder="新的信箱" name="userEmail" style="width:230px">
+						        	 <input id="emailCheck" type="text" placeholder="新的信箱" name="userEmail" style="width:230px" required>
 						        	 <span id="emailError" style='color:#880000;'></span>
 						        </form>	
 						        
@@ -297,6 +317,39 @@ h3{
 						  </div>
 						</div>
 						<!-- End 點我開通 -->
+						
+						<!-- 點我忘記密碼 -->
+						<div class="modal fade" id="forgetPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalCenterTitle">忘記密碼了嗎?</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body" >
+						         <form id="sendPassword">
+						      		Hi~ <br>
+						        	是不是忘記密碼了呢?<br>
+						        	在此輸入帳號為您寄出密碼喔。<br>
+						        	<input  type="text"  id="userAccount" name="userAccount" style="width:230px" required >
+						        	<span id="noThisAccount" style="display:none"> ${noThisAccount}</span>
+						        </form>	
+						        
+						      </div>
+						      <div class="modal-footer">
+						   
+						       
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">想起來了</button>
+						        <button type="button" class="btn btn-primary" onclick="submit_frm_pass()">寄出新密碼</button>
+						     
+						      </div>
+						      
+						    </div>
+						  </div>
+						</div>
+						<!-- End 點我忘記密碼 -->
 						
 						<!-- End Login Box -->
 					</div>

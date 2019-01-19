@@ -39,6 +39,15 @@
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <script src="1.js?ver=1"></script>
+
+
+
+
+
+
+
+
+
 <!-- End JS -->
 <style>
 #musicPage{
@@ -163,7 +172,18 @@ function loadLikeMusic(username){
 				    content+=heart+
 				                   '</div>'+
 				                   '<div id="message" style="border-radius:5px; width: 400px;height: 140px;margin-top: 74px;margin-right: 25px;float: right;background-color:#AAAAAA">'+
+// 				                   ----------------------
+				                   "<div style='margin-bottom:45px'>"+
+				                  " <div style='margin-bottom:15px'>"+
+				                   "<img src='/roy/image/profile/1547190442734.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px'>"+
+				                   "<h5 style='margin-bottom:0px;margin-top:15px;letter-spacing:0.5px;display:inline;vertical-align: middle;'>fofo</h5>"+
+				                   "<small style='vertical-align: middle;margin-top:15px;'>15天前</small>"+
+				                   "</div>"+
+				                   "<div class='clearfix'></div>"+
+				                   "<div style='margin-bottom:15px'>大家好啊歡迎來到發聲這個大家庭</div>"+
+				                   "<br><br></div>"+
 				                   '</div>'+
+// 				                   -----------------
 			    	               '<img src="'+list.music_Image+'" style="float: left; height: 200px; width: 200px;margin:16px 16px auto 20px;border-radius: 5px; border: solid 1px #DDDDDD;" />'+
 			                       '<div style="padding-left:0px;padding-top:30px;color:white;float:left;width:150px;">'+
 						               '<div id="musicPage" style="font-size:20px;width:200px;">'+list.music_name+'</div>'+
@@ -199,11 +219,9 @@ function loadLikeMusic(username){
                           <div style="font-family: 微軟正黑體;display: inline-block;width: 40%;float: left;font-size: 20px;font-weight: bold;margin-top:15px;">
                               
                               <p><img src="../img/earphone.png" width="20px;" style="margin-right:7px;"/> 大家都喜歡</p>
-                          </div>
-                          
+                          </div>         
                      </div>
-                         
-                     
+                                            
 <div class="col-md-12" style="margin-top: -30px">
      <div class="carousel slide testimonials" id="testimonials1">
 
@@ -235,11 +253,8 @@ function loadLikeMusic(username){
                                      <i style="color:#666666;" class="fas fa-angle-double-right fa-2x" style="text-decoration:none;"></i>
                                  </a>
                           </div>
-       
-       
-      </div>
-                         
-</div>
+      			</div>                   
+			</div>
                      <!-- End 大家都喜歡 - default full width -->
                  </div>
                  
@@ -278,32 +293,20 @@ function loadLikeMusic(username){
 			<div class="item active">
                <div class="col-md-12">
                     
-<!-- 				 <div style="border-radius: 5px;align:center; height: 200px; margin-top: 30px; margin-bottom: 30px; background: linear-gradient(to right,#444444,#DDDDDD);width:800px;">                          -->
-<!--                  </div>     -->
                                                       
                </div>
-            </div>
-                                 
+            </div>                
                                  <div class="item">
                                      <div class="col-md-12">
-                                         
-                                         
-                                         
-                                         
                                      </div>
                                  </div>
-                                 
-                                 
-                                 
+
                                  <div class="item">
                                      <div class="col-md-12">
    
                                          
                                      </div>
                                  </div>
-                                 
-                                 
-                                 
                              </div>
                          </div>
                          
@@ -313,29 +316,19 @@ function loadLikeMusic(username){
 				<!-- Side Column -->
 				<div  id="hottest" class="col-md-3" style="float: right">
 					<h3 class="title">即時熱門排行</h3>
-<!-- 					<h6 style="margin: 0;">Mon - Wed</h6> -->
-<!-- 					<h4 style="margin: 0;">7:00 am - 1:30 pm</h4> -->
-<!-- 					<p> -->
-<!-- 						<small>* Lorem ipsum dolor sit amet</small> -->
-<!-- 					</p> -->
-<!-- 					<hr> -->
-<!-- 					<button type="button" class="btn btn-primary" style="width:100%" onclick="window.location.href ='/roy/rank/rank.jsp'">媽的看排行喔</button> -->
+
 				</div>
 				<!-- End Side Column -->
 			</div>
-			
-			
-				<div class="container" >
-			<div class="row">
+
+
+			<div class="container">
 				<div class="row">
-                    
-                 </div>
-                 
-              
+					<div class="row"></div>
+				</div>
 			</div>
-		</div>
-		
-		
+
+
 		</div>
 
 	</div>
@@ -364,7 +357,7 @@ $(function () {
         type: "POST",
         cache:false,
         dataType:'json',
-        data:{user:$('#userName').text()},
+//         data:{user:$('#userName').text()},
 		success : function(list){	
 			list.forEach(function(obj, index) {
 // 	這邊的username是nickname
@@ -385,6 +378,7 @@ $(function () {
      });
 })
 </script>
+<<<<<<< HEAD
 
 
 
@@ -413,5 +407,8 @@ $(function () {
 
 
 
+=======
+
+>>>>>>> branch 'branch1' of https://github.com/EEIT10406/FarVOiCE_Repo.git
 </body>
 </html>

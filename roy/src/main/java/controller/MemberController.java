@@ -17,12 +17,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import model.bean.MemberBean;
 import model.service.MemberService;
+import util.mail.JavaEmailPass;
 import util.mail.JavaEmailTest;
+import util.uuid.UUIDGenerator;
 
 @Controller
 public class MemberController {
 	@Autowired
 	MemberService memberService;
+
 
 	//登入
 	@RequestMapping(path="/login-signUp-upload/MemberLogin.controller")
@@ -154,7 +157,7 @@ public class MemberController {
 		}
 		
 	
-		
+	//登出	
 	@RequestMapping(path="/login-signUp-upload/MemberLogOut.controller")
 	public String logOut(Model model,
 			HttpSession session) {
@@ -298,6 +301,25 @@ public class MemberController {
 		bean.setMember_email(userEmail);
 		memberService.update(bean);
 		new Thread(new JavaEmailTest(userEmail, userAccount,userPassword)).start();
+		return "redirect:/homePage/index.jsp";
+	}
+	// 再次寄出Password
+	@RequestMapping(path = "/register/sendPass")
+	public String sendPass(Model model, HttpSession session, String userAccount) {
+		System.out.println("/register/sendPass------->帳號:"+userAccount);
+		MemberBean bean = memberService.HiMethod(userAccount);
+		if(bean==null) {
+			//這個帳號沒註冊過
+			model.addAttribute("sendPass", "noThisAccount");
+			return "/login-signUp-upload/login.jsp";
+		}
+		//帳號有註冊
+		String userEmail = bean.getMember_email();
+		String userPassword = UUIDGenerator.getUUID().substring(0, 25);
+		System.out.println("/register/sendPass------->新密碼 : "+userPassword);
+		bean.setMember_password(userPassword);
+		memberService.update(bean);
+		new Thread(new JavaEmailPass(userEmail, userAccount,userPassword)).start();
 		return "redirect:/homePage/index.jsp";
 	}
 }
