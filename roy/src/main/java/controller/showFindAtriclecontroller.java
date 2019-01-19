@@ -40,6 +40,5 @@ public class showFindAtriclecontroller {
 			String jsonList = gson.toJson(posts);
 			return jsonList;
 
-		
 	}
 }

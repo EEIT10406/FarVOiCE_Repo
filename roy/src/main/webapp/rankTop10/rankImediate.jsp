@@ -117,6 +117,7 @@ color:#FF3333;
 			}
 		}
 	}
+	
 	function submitBtnClick() {
 		changeCheckBoxs();
 		$("#addshare").submit();
@@ -353,11 +354,9 @@ function loadrankTopTen(type) {
 		<div class="modal-dialog" style="width: 300px;">
 			<div class="modal-content">
 				<h5 style="margin: 20px;">分享歌曲</h5>
-				<form action="<c:url value="/rankTop10/ShareMusic.controller"/>"
-					method="get" id="addshare">
+				<form action="<c:url value="/rankTop10/ShareMusic.controller"/>" method="get" id="addshare">
 					<div class="modal-body">
 						<div class="form-group"></div>
-						
 						<textarea name="shareContent" style="width: 250px; height: 270px"
 							onFocus="if(this.value==this.defaultValue) this.value=''"
 							onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
@@ -365,20 +364,15 @@ function loadrankTopTen(type) {
 					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
 					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
 					<div id="displayShareMusic">
-						<img src="../img/300x300.jpg"
-							style="margin-left: 20px; width: 50px; height: 50px;" />
-							<a href=""><span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a> 
+						<img src="../img/300x300.jpg" style="margin-left: 20px; width: 50px; height: 50px;" />
+						<a href=""><span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a> 
 					</div>
 					<div class="modal-footer">
-						<div style="float: left">
-							<input type="checkbox" name="isprivacy" value="true">不公開
-						</div>
+						<div style="float: left"> <input type="checkbox" name="isprivacy" value="true">不公開</div>
 						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
-						<button type="button" class="btn btn-primary"
-							onclick="submitBtnClick()">確定</button>
+						<button type="button" class="btn btn-primary" onclick="submitBtnClick()">確定</button>
 					</div>
 				</form>
-
 			</div>
 		</div>
 	</div>
@@ -442,6 +436,7 @@ $('body').on('click','.btnShare',function() {
 	var music_image =row.find('td[name="music_image"] img').attr("src");
 	var music_href= "/roy/musicPage/findMusicById?musicId="+music_id;
 	console.log(music_name+","+music_id+","+music_image);
+
     $("#addshareMusicname").text(""+music_name+"");
     $("#addshareMusicid").text(""+music_id+"");
     $("#displayShareMusic a").text(""+music_name+"");

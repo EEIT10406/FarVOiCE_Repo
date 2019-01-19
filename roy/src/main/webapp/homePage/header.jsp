@@ -114,12 +114,16 @@
 							<%-- 									<li><a href="${request.contextPath}/rank.jsp" class="far fa-trophy">看排行</a> --%>
 							<li><a href="/roy/rank/rank.jsp" ><i class="fas fa-trophy fa-lg"></i>   看排行</a>
 								<ul>
-									<li><a href="pages-about-us.html">搖滾</a></li>
-									<li><a href="pages-services.html">抒情</a></li>
-									<li><a href="pages-faq.html">金屬</a></li>
-									<li><a href="pages-about-me.html">爵士</a></li>
-									<li><a href="pages-full-width.html">古典</a></li>
-									
+									<li><a href="/roy/rankTop10/rankClassic.jsp">古典</a></li>
+									<li><a href="/roy/rankTop10/rankJazz.jsp">爵士</a></li>
+									<li><a href="/roy/rankTop10/rankHiphop.jsp">嘻哈</a></li>
+									<li><a href="/roy/rankTop10/rankEmotion.jsp">抒情</a></li>
+									<li><a href="/roy/rankTop10/rankRock.jsp">搖滾</a></li>
+									<li><a href="/roy/rankTop10/rankMetal.jsp">金屬</a></li>
+									<li><a href="/roy/rankTop10/rankBlue.jsp">藍調</a></li>
+									<li><a href="/roy/rankTop10/rankFunk.jsp">放克</a></li>
+									<li><a href="/roy/rankTop10/rankPopular.jsp">流行</a></li>
+									<li><a href="/roy/rankTop10/rankElectronic.jsp">電音</a></li>
 								</ul>
 							<li><a href="../searchMusic/searchLists.jsp"><i class="fas fa-list-ol fa-lg"></i>   聽歌單</a>
 								</li>
