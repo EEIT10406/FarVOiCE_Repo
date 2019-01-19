@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +11,7 @@
 <meta name="author" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link href="favicon.ico" rel="shortcut icon">
+<!-- <link href="favicon.ico" rel="shortcut icon"> -->
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
@@ -44,7 +43,6 @@
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
-<script src="1.js?ver=1"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
 
 <!-- End JS -->
@@ -63,12 +61,12 @@
                                         <h3>The page can not be found</h3>
                                         <p>The page you are looking for might have been removed,
                                             <br>had its name changed or is temporarily unavailable.</p>
-                                        <form class="form-search search-404">
-                                            <div class="input-append">
-                                                <input type="text" class="span2 search-query">
-                                                <button type="submit" class="btn btn-primary">Search</button>
-                                            </div>
-                                        </form>
+<!--                                         <form class="form-search search-404"> -->
+<!--                                             <div class="input-append"> -->
+<!--                                                 <input type="text" class="span2 search-query"> -->
+<!--                                                 <button type="submit" class="btn btn-primary">Search</button> -->
+<!--                                             </div> -->
+<!--                                         </form> -->
                                     </div>
                                 </div>
                             </div>

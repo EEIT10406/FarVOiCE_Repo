@@ -33,8 +33,8 @@
         var s = sticked[i],
           elementTop = s.stickyWrapper.offset().top,
           etse = elementTop - s.topSpacing - extra;
-
-        if (scrollTop <= etse) {
+        //原本<=etse
+        if (scrollTop <= 0) {
           if (s.currentTop !== null) {
             s.stickyElement
               .css('position', '')
@@ -54,8 +54,8 @@
           if (s.currentTop != newTop) {
             s.stickyElement
               .css('position', 'fixed')
-              .css('top', newTop);
-
+//              .css('top', newTop);原本沒註解
+              
             if (typeof s.getWidthFrom !== 'undefined') {
               s.stickyElement.css('width', $(s.getWidthFrom).width());
             }

@@ -46,7 +46,7 @@
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <script src="1.js?ver=1"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script> -->
 
 <!-- End JS -->
 
@@ -1026,7 +1026,7 @@ function showData(){
 					</div>
 					<div id="displayShareMusic">
 						<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
-						<img src="../img/300x300.jpg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
+						<img src="../img/gun.jpg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
 						<textarea hidden="true" id="realaddshareMusicname" name="shareMusicname"></textarea>
 						<span style="margin-left: 10px; font-size: 15px;" id="addshareMusicname" >讓我為你唱情歌</span>
 					</div>
