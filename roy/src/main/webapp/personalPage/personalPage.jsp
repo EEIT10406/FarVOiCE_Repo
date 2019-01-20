@@ -345,15 +345,15 @@ function loadMusic(username) {
 			content +=  '<div id="musics" class="col-md-5" style="float: left; width: 242px;margin-bottom:10px;">'+
 			            '<span name="music_id" id="musicid">'+list.music_id+'</span>'+
 			            '<span id="musicPage" style="cursor: pointer;">'+
-			               '<img src="'+list.music_Image+'" style="width: 120px; height: 120px;" name="music_Image" />'+
+			               '<img src="'+list.music_Image+'" style="width: 140px; height: 140px;" name="music_Image" />'+
 			            '</span>'+
 			       		'<div name="music_name" style="font-size: 16px;">'+list.music_name+'</div>'+
-                   		'<div style="font-size:13px">'+
+                   		'<div style="font-size:14px">'+
 			       		'<img src="'+list.memberLikeMusic+'" class="heart">'+
                    		'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
                       	'<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare"style="outline: none;" ><img src="../img/share.png" width="13px">分享</button></span>'+
                       	'<span id="add" style="margin-left:0px;">'+
-                      	'<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="13px">加入歌單</button>'+
+                      	'<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="13px">加入歌單</button><br>'+
 					  	'</span>'+
 					  	'<span class="editClick"><img src="../img/edit.png" width="15px" />編輯</span>'+
                    		'</div>'+
@@ -398,11 +398,10 @@ function loadMemberLikeMusic(username) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 240px;">'+
                              '<span name="music_id">'+list.music_id+'</span>'+
 				             '<span id="musicPage" style="cursor: pointer;">'+
-                                  '<img src="'+list.music_Image+'" style="width: 120px; height: 120px;" />'+
+                                  '<img src="'+list.music_Image+'" style="width: 140px; height: 140px;" />'+
                              '</span>'+
                              '<div style="font-size: 16px;">'+list.music_name+'</div>'+
-
-				             '<div>'+
+				             '<div style="margin-bottom:10px;">'+
                                   '<img src="../img/love.png" class="heart">'+
 				                  '<span class="heartCount">'+list.music_likeCount+'</span>'+ 
 				                  '<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare"style="outline: none;" ><img src="../img/share.png" width="15px">分享</button></span>'+

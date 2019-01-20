@@ -18,7 +18,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import model.bean.MemberBean;
+import model.bean.MemberCommentMusicBean;
 import model.bean.MusicBean;
+import model.service.MemberCommentMusicService;
 import model.service.MemberLikeMusicService;
 import model.service.MusicService;
 
@@ -28,6 +30,8 @@ public class IndexController {
 	MusicService musicService;
 	@Autowired
 	private MemberLikeMusicService memberLikeMusicService;
+	@Autowired
+	private MemberCommentMusicService memberCommentMusicService;
 
 	@RequestMapping(path = "/homePage/indexFindAllTimePlayCountTop5Music.controller", produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -62,6 +66,7 @@ public class IndexController {
 			List<Map<String, String>> musics = new LinkedList<Map<String, String>>();
 			for (MusicBean bean : topThree) {
 				Map<String, String> jsonMap = new HashMap<>();
+				MemberCommentMusicBean comment = memberCommentMusicService.showLatestCommentFromMusic(bean.getMusic_id());
 				if (memberLikeMusics != null) {
 					for (Integer likeMusics : memberLikeMusics) {
 						if (bean.getMusic_id() == likeMusics) {
@@ -73,6 +78,12 @@ public class IndexController {
 				}
 				if (flag) {
 					jsonMap.put("memberLikeMusic", "/roy/img/indexHeart.png");
+				}
+				if(comment!=null) {
+					jsonMap.put("member_profileImage", String.valueOf(comment.getMember_profileImage()));
+					jsonMap.put("member_nickname", String.valueOf(comment.getMember_nickname()));
+					jsonMap.put("memberCommentMusic_time", String.valueOf(comment.getMemberCommentMusic_time()));
+					jsonMap.put("memberCommentMusic_content", String.valueOf(comment.getMemberCommentMusic_content()));
 				}
 				jsonMap.put("music_id", String.valueOf(bean.getMusic_id()));
 				jsonMap.put("music_Image", bean.getMusic_Image());
