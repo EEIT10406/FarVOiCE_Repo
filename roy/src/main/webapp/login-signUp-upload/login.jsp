@@ -20,26 +20,26 @@
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
-	<!-- JS -->
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/scripts.js"></script>
-	<!-- Isotope - Portfolio Sorting -->
-	<script type="text/javascript" src="../js/jquery.isotope.js"></script>
-	<!-- Mobile Menu - Slicknav -->
-	<script type="text/javascript" src="../js/jquery.slicknav.js"></script>
-	<!-- Animate on Scroll-->
-	<script type="text/javascript" src="../js/jquery.visible.js"
-		charset="utf-8"></script>
-	<!-- Sticky Div -->
-	<script type="text/javascript" src="../js/jquery.sticky.js"
-		charset="utf-8"></script>
-	<!-- Slimbox2-->
-	<script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
-	<!-- Modernizr -->
-	<script src="../js/modernizr.custom.js" type="text/javascript"></script>
-	<!-- End JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"  ></script>
+<!-- JS -->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<!-- Isotope - Portfolio Sorting -->
+<script type="text/javascript" src="../js/jquery.isotope.js"></script>
+<!-- Mobile Menu - Slicknav -->
+<script type="text/javascript" src="../js/jquery.slicknav.js"></script>
+<!-- Animate on Scroll-->
+<script type="text/javascript" src="../js/jquery.visible.js"
+	charset="utf-8"></script>
+<!-- Sticky Div -->
+<script type="text/javascript" src="../js/jquery.sticky.js"
+	charset="utf-8"></script>
+<!-- Slimbox2-->
+<script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
+<!-- Modernizr -->
+<script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<!-- End JS -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"  ></script> -->
 <!--Google登入-->
     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};HandleGoogleApiLibrary()"
             onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
@@ -156,14 +156,24 @@ function FBLogin() {
 	    }
 	}
 	function submit_frm(){
+		 if(!emailValue){
+	        	alert("請輸入信箱");
+	        	return;
+	        }
 		 alert("記得去收驗證信喔!");
-        var frm = document.getElementById("sendEmail");  
+        var frm = document.getElementById("sendEmail");
+        var emailValue = $('#emailCheck').val();
         frm.action = "/roy/register/sendMail";  
         frm.method = "post";                 
         frm.submit();                        
     }
 	function submit_frm_pass(){
-		 alert("記得去收新密碼喔!");
+		var accValue = $('#userAccount').val();
+	       if(!accValue){
+	       	alert("請輸入帳號");
+	       	return;
+	       }
+		alert("記得去收新密碼喔!");
        var frm = document.getElementById("sendPassword");  
        frm.action = "/roy/register/sendPass";  
        frm.method = "post";                 
@@ -188,6 +198,10 @@ function FBLogin() {
 
 			})
 		}
+		if($('#noThisAccount').html() == "noThisAccount"){
+			alert("此帳號未註冊喔!");
+		}
+		
 		
 	})
 	
@@ -286,7 +300,7 @@ h3{
 						        	在此輸入新的Email為您再寄一次驗證信喔。<br>
 						        	<input hidden="true" type="text" name="userAccount" value="${param.username}">
 						        	<input hidden="true" type="text" name="userPassword" value="${param.password}" >
-						        	 <input id="emailCheck" type="text" placeholder="新的信箱" name="userEmail" style="width:230px">
+						        	 <input id="emailCheck" type="text" placeholder="新的信箱" name="userEmail" style="width:230px" required>
 						        	 <span id="emailError" style='color:#880000;'></span>
 						        </form>	
 						        
@@ -319,9 +333,8 @@ h3{
 						      		Hi~ <br>
 						        	是不是忘記密碼了呢?<br>
 						        	在此輸入帳號為您寄出密碼喔。<br>
-						    
-						        	<input id="accountOrEmailCheck" type="text"  name="userEmail" style="width:230px">
-						        	<span id="accountOrEmailError" style='color:#880000;'></span>
+						        	<input  type="text"  id="userAccount" name="userAccount" style="width:230px" required >
+						        	<span id="noThisAccount" style="display:none"> ${noThisAccount}</span>
 						        </form>	
 						        
 						      </div>

@@ -388,6 +388,8 @@ function loadrankTopTen(type) {
 							onFocus="if(this.value==this.defaultValue) this.value=''"
 							onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
 					</div>
+					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
+					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
 					<div id="displayShareMusic">
 						<img src="../img/300x300.jpg"
 							style="margin-left: 20px; width: 50px; height: 50px;" /><a

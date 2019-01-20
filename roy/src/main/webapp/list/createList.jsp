@@ -58,11 +58,11 @@ td {
 		<jsp:include page="../homePage/header.jsp" />
 		<div id="content">
 		<div class="container">
-			<!-- 每頁不同的內容從這裡開始 -->
-							<form action="<c:url value="/list/createPlayList" />"
-							enctype="multipart/form-data" method="post">
-			<table id="playListTable" class="table table-bordered" style="width: 800px;margin:auto;margin-top: 50px;">
 
+			<!-- 每頁不同的內容從這裡開始 -->
+		<form action="<c:url value="/list/createPlayList" />"
+		enctype="multipart/form-data" method="post">
+			<table id="playListTable" class="table table-bordered" style="width: 800px;margin:auto;margin-top: 50px;">
 				<thead>
 					<tr>
 						<th>圖片</th>
@@ -131,15 +131,7 @@ td {
 									</tr>
 								</thead>
 								<tbody>
-<!-- 									<tr> -->
-<!-- 										<td name="music_id"></td> -->
-<!-- 										<td><img src="../img/left.JPG" -->
-<!-- 											style="width: 100px; height: 100px;" /></td> -->
-<!-- 										<td style="font-size: 15px;">買綁</td> -->
-<!-- 										<td style="font-size: 15px;">julia</td> -->
-<!-- 										<td style="font-size: 15px;">2018-12-12</td> -->
-<!-- 										<td><button class="btn btn-primary pull-right">刪除</button></td> -->
-<!-- 									</tr> -->
+
 								</tbody>
 							</table>
 						</div>
@@ -153,6 +145,7 @@ td {
 
 		</div>
 		</div>
+
 
 
 	<jsp:include page="../homePage/footer.jsp" />

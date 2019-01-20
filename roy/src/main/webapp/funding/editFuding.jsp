@@ -6,30 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>專案內容</title>
-
-<!-- JS -->
+<title>編輯專案內容</title>
+<script type="text/javascript" src="../js/scripts.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/scripts.js"></script>
-<!-- Isotope - Portfolio Sorting -->
-<script type="text/javascript" src="../js/jquery.isotope.js"></script>
-<!-- Mobile Menu - Slicknav -->
-<script type="text/javascript" src="../js/jquery.slicknav.js"></script>
-<!-- Animate on Scroll-->
-<script type="text/javascript" src="../js/jquery.visible.js"
-	charset="utf-8"></script>
-<!-- Sticky Div -->
-<script type="text/javascript" src="../js/jquery.sticky.js"
-	charset="utf-8"></script>
-<!-- Slimbox2-->
-<script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
-<!-- Modernizr -->
-<script src="../js/modernizr.custom.js" type="text/javascript"></script>
-<script src="1.js?ver=1"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script> -->
 
-<!-- End JS -->
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -45,6 +26,7 @@
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/custom.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 
 
@@ -88,7 +70,32 @@
 		$('#bookdate').attr('min', year + '-' + month + '-' + date)
 
 	}
+	//已選擇的音樂類型
+	function pickedType() {
+		var type = '${fundingBean.funding_styleName}';
+		$('option[value="' + type + '"]').attr("selected", "selected");
+	}
+	//已選擇的城市
+	function pickedCity() {
+		var city = '${fundingBean.funding_city}';
+		$('option[value="' + city + '"]').attr("selected", "selected");
+	}
+	//已選擇的音樂
+	function pickedMusic() {
+		var music = '${fundingBean.music_id}';
+		$('option[value="' + music + '"]').attr("selected", "selected");
+	}
+	//已選擇的日期
+	function pickedDate() {
 
+		var pickdate = '${fundingBean.funding_duration}'
+		var enddate = new Date(pickdate);
+		var nowdate = new Date();
+		var deadline = enddate.getTime() - nowdate.getTime();
+		var days = parseInt(deadline / (1000 * 60 * 60 * 24)) + 1;
+		$('strong[class="days"]').text(days)
+
+	}
 	$(document)
 			.ready(
 					function() {
@@ -138,6 +145,13 @@
 						// 呼叫設置日期max屬性方法 
 						getMinDay();
 						getMaxDay();
+						//呼叫所有select
+						pickedCity();
+						pickedType();
+						pickedDate();
+						pickedMusic();
+						//超過50字以...表示
+						limitText();
 						//預覽標題輸入框
 						$('input[name="funding_title"]')
 								.bind(
@@ -163,8 +177,8 @@
 											var title = $(
 													'textarea[name="funding_description"]')
 													.val();
-											$('#pre-content').text(title);
 											limitText();
+											$('#pre-content').text(title);
 											if (title == "") {
 												$('#pre-content')
 														.text(
@@ -191,12 +205,11 @@
 										$('strong[class="days"]').text('0')
 									}
 								})
-
 					})
 	//超過50字以...表示
 	function limitText() {
 
-		var len = 70; // 超過50個字以"..."取代
+		var len = 75; // 超過50個字以"..."取代
 		$(".JQellipsis").each(function(i) {
 			if ($(this).text().length > len) {
 				$(this).attr("title", $(this).text());
@@ -246,9 +259,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
-		<div class="create-content" style="font-family: Microsoft JhengHei;">
-			<form action="<c:url value="funding.controller" />" method="post"
-				enctype="multipart/form-data">
+		<div class="create-content">
+			<form action="<c:url value="editFundingContent.controller" />"
+				method="post" enctype="multipart/form-data">
 				<div
 					style="text-align: center; margin-bottom: 15px; margin-top: 15px;">
 					<label class="top-title">專案內容</label>
@@ -260,12 +273,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 								<p class="bluequote">專案標題</p>
 								<!---->
 								<div class="inputWordCount">
-									<input oninput="title" onpropertychange="title"
-										style="font-weight: 400" name="funding_title" type="text"
-										placeholder="30 個字以內的專案標題" maxlength="20"
-										class="form-control fc" required
-										oninvalid="setCustomValidity('請输入專案標題');"
-										oninput="setCustomValidity('');">
+									<input value="${fundingBean.funding_title}" oninput="title"
+										onpropertychange="title" style="font-weight: 400"
+										name="funding_title" type="text" placeholder="30 個字以內的專案標題"
+										maxlength="20" class="form-control fc" required
+										oninvalid="setCustomValidity('請输入專案標題');">
 								</div>
 								<label for="" class="input-label">一個好的標題應該要好記、好搜尋、吸引人想點進去看，並讓瀏覽者能在最短的時間內瞭解專案的核心理念。</label>
 							</div>
@@ -281,7 +293,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 										name="funding_description" placeholder="500個字以內的專案描述"
 										maxlength="450" rows="11" required
 										oninvalid="setCustomValidity('請輸入專案描述');"
-										oninput="setCustomValidity('');"></textarea>
+										oninput="setCustomValidity('');">${fundingBean.funding_description}</textarea>
 								</div>
 								<label for="" class="input-label">使用吸引人的文字說明你的目標以及理念，強調你的獨一無二，讓贊助人對你或你的專案好奇，願意更進一步贊助專案。</label>
 							</div>
@@ -293,17 +305,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 						<div class="project-pre">
 							<div class="img-pres">
 								<img class="img-in" id="preview_progressbarTW_img"
-									src="/roy/img/gun.jpg">
+									src="${fundingBean.funding_image}">
 							</div>
 							<div class="pcontent-pre">
 								<p id="pre-title" class="title-content"
-									style="margin-bottom: -18px">例：30 個字以內的專案標題</p>
+									style="margin-bottom: -18px">${fundingBean.funding_title}</p>
 								<p class="small creator">
-								<p id="pre-name">${nickname}</p>
+								<p id="pre-name">${fundingBean.member_username}</p>
 
 								<p id="pre-content" class="excerpt JQellipsis"
-									style="font-weight: bold; font-size: 0.85rem">例：簡短描述專案內容，吸引瀏覽者在
-									FarVoice 首頁上點擊你的專案。</p>
+									style="font-weight: bold; font-size: 0.85rem">${fundingBean.funding_description}</p>
 							</div>
 							<div class="downMeta-pre">
 								<progress class="progress-pre"
@@ -337,9 +348,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 					<a href="javascript:;" class="a-upload"> <input
 						onchange="readURL(this)" targetID="preview_progressbarTW_img"
 						id="file-upload" type="file" accept="image/jpeg, image/png"
-						name="imageFile" required
-						oninvalid="setCustomValidity('請選擇上傳圖片');"
-						oninput="setCustomValidity('');">
+						name="imageFile">
 					</a>
 					<!-- 					<i id='spin' class="fas fa-spinner fa-spin" style="display: none"></i> -->
 					<p class="showFileName"></p>
@@ -350,8 +359,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 				<div class="limit-date" style="margin: auto;">
 
 					<p class="bluequote">選擇專案期限</p>
-					<input onchange="enddate" class="form-control fc" type="date"
-						id="bookdate" name="funding_duration"
+					<input value="${fundingBean.funding_duration}" onchange="enddate"
+						class="form-control fc" type="date" id="bookdate"
+						name="funding_duration"
 						min=<%out.println(new java.sql.Date(new Date().getTime()));%>
 						required oninvalid="setCustomValidity('請選擇專案期限');"
 						oninput="setCustomValidity('');"> <label for=""
@@ -364,7 +374,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 				<div class="create-goal" style="margin: auto;">
 					<p class="bluequote">募資目標</p>
 					<input type="number" style="font-weight: 400" name="funding_goal"
-						min="5000" value="5000" step="1000" class="form-control fc">
+						min="5000" value="${fundingBean.funding_goal}" step="1000"
+						class="form-control fc">
 					<!--------------------------------- -->
 					<label for="" class="input-label">募資目標金額最低為 $5,000
 						元。設定目標金額時，除了考量專案執行的成本支出外，也必須考慮回饋項目的成本，總體而言必須滿足「最低計畫可執行資金」的門檻，才是合理的募資目標。</label>
@@ -372,8 +383,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 				<div class="create-type" style="margin: auto;">
 					<p class="bluequote">音樂類型</p>
-					<select name="funding_styleName" class="form-control fc"><option
-							value="null" disabled="disabled" selected="selected">選擇類型</option>
+					<select name="funding_styleName" class="form-control fc">
+						<option value="null" disabled="disabled" selected="selected">選擇類型</option>
 						<option value="爵士">爵士</option>
 						<option value="藍調">藍調</option>
 						<option value="雷鬼">雷鬼</option>
@@ -388,8 +399,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 				<div class="create-city" style="margin: auto;">
 					<p class="bluequote">提案所在城市</p>
-					<select name="funding_city" class="form-control fc"><option
-							value="null" disabled="disabled" selected="selected">選擇城市</option>
+					<select name="funding_city" class="form-control fc">
+
+						<option value="null" disabled="disabled" selected="selected">選擇城市</option>
+
 						<option value="台北市">台北市</option>
 						<option value="新北市">新北市</option>
 						<option value="桃園市">桃園市</option>
@@ -433,12 +446,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 
-				<div class="next-reward">
-					<input class="form-control next fc" type="submit"
-						name="start-project" value="回饋設定">
-
+				<div class="editProject">
+					    <input class="form-control next fc" type="submit"
+						name="editFunding" value="儲存修改"> 
+						<input
+						class="form-control next fc" type="submit" name="editFunding"
+						value="回饋設定">
 				</div>
-
+				<input style="display: none;" type="text" name="oImage"
+					value="${fundingBean.funding_image}">
 			</form>
 
 		</div>
