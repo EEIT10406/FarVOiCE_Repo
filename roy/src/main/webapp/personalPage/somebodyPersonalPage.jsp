@@ -55,8 +55,6 @@
 .post {
 	float: left;
 
-	/* 	margin-top:30px; */
-	/* 	margin-bottom:150px; */
 }
 
 * {
