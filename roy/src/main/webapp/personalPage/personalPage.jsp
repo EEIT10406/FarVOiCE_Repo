@@ -601,19 +601,8 @@ function loadMemberLikeMusic(username) {
 													
 													  </tbody>
 													</table>
-<!-- 															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> -->
-<!-- 																	<div style="float:left"> -->
-
-<!-- 																		<a href="/angry_youth/songs/558439/"> -->
-																		
-<!-- 																		</a> -->
-<!-- 																	</div>/work-block img-xxs -->
-<!-- 																	<div style="margin-left:250px"> -->
-<!-- 																		<h4><a>歌名</a><a style="margin-left:100px;color:gray;">時間</a></h4> -->
-<!-- 																	</div> -->
-<!-- 														  		</div> -->
 														  		
-															</div>	
+												</div>	
 <!-- 												/media-body -->
 											</div>
 <!-- 											/media -->
