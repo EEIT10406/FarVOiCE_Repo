@@ -149,8 +149,6 @@
 		<div id='music-container' class="row margin-vert-30"></div>
 	</div>
 	<!-- 歌	 -->
-
-
 	<jsp:include page="../homePage/footer.jsp" />
 	<div id="player">
 		<jsp:include page="../homePage/player.jsp" />
@@ -198,7 +196,7 @@
 					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
 					<div id="displayShareMusic">
 						<img src="../img/300x300.jpg" id="addshareMusicImg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
-						<span style="margin-left: 10px; font-size: 15px;" id="addshareMusicnameSpan" >讓我為你唱情歌</span>
+						<span style="margin-left: 10px; font-size: 15px;"><a id="addshareMusicnamea" href="">讓我為你唱情歌</a></span>
 					</div>
 					<div class="modal-footer">
 						<div style="float:left"><input type="checkbox" name="isprivacy" value="true">不公開</div>
@@ -399,8 +397,7 @@
 				}]);
 				$(ap.audio).attr('music_id',$(e).attr('music_id'));
 	}
-	//播放
-		
+	//播放	
 </script>
 	
 <script>
@@ -410,18 +407,16 @@ function sharePeter(e) {
 	var music_name = $(e).attr('music_name');
 	var music_id = $(e).attr('music_id');
 	var music_image =$(e).attr('src');
-	
-	console.log(music_name+","+music_id);
-
+	var music_href ="/roy/musicPage/findMusicById?musicId="+music_id;
+    		
     $("#addshareMusicname").text(""+music_name+"");
     $("#addshareMusicid").text(""+music_id+"");
- 	$('#addshareMusicnameSpan').text(music_name);
- 	$('#addshareMusicImg').attr("src",music_image);
-
     
+    //顯示
+ 	$('#addshareMusicnamea').text(music_name);
+ 	$('#addshareMusicnamea').attr("href",music_href);
+ 	$('#addshareMusicImg').attr("src",music_image);
 }
-
-
 </script>	
 	
 	

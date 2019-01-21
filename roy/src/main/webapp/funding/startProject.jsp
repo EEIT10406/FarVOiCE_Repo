@@ -7,10 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>專案內容</title>
-<script type="text/javascript" src="../js/scripts.js"></script>
+
+<!-- JS -->
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<!-- Isotope - Portfolio Sorting -->
+<script type="text/javascript" src="../js/jquery.isotope.js"></script>
+<!-- Mobile Menu - Slicknav -->
+<script type="text/javascript" src="../js/jquery.slicknav.js"></script>
+<!-- Animate on Scroll-->
+<script type="text/javascript" src="../js/jquery.visible.js"
+	charset="utf-8"></script>
+<!-- Sticky Div -->
+<script type="text/javascript" src="../js/jquery.sticky.js"
+	charset="utf-8"></script>
+<!-- Slimbox2-->
+<script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
+<!-- Modernizr -->
+<script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<script src="1.js?ver=1"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script> -->
 
+<!-- End JS -->
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -26,7 +45,6 @@
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/custom.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 
 
@@ -173,11 +191,9 @@
 										$('strong[class="days"]').text('0')
 									}
 								})
-						
-						
 
 					})
-//超過50字以...表示
+	//超過50字以...表示
 	function limitText() {
 
 		var len = 70; // 超過50個字以"..."取代
@@ -230,7 +246,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
-		<div class="create-content">
+		<div class="create-content" style="font-family: Microsoft JhengHei;">
 			<form action="<c:url value="funding.controller" />" method="post"
 				enctype="multipart/form-data">
 				<div
@@ -248,7 +264,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 										style="font-weight: 400" name="funding_title" type="text"
 										placeholder="30 個字以內的專案標題" maxlength="20"
 										class="form-control fc" required
-										oninvalid="setCustomValidity('請输入專案標題');">
+										oninvalid="setCustomValidity('請输入專案標題');"
+										oninput="setCustomValidity('');">
 								</div>
 								<label for="" class="input-label">一個好的標題應該要好記、好搜尋、吸引人想點進去看，並讓瀏覽者能在最短的時間內瞭解專案的核心理念。</label>
 							</div>

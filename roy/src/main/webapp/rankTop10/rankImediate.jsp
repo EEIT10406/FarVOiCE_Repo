@@ -202,8 +202,6 @@ $(document).ready(function() {
     	loadrankTopTen('time')
          
 	})
-	
-	
 })
 
 
@@ -350,21 +348,21 @@ function loadrankTopTen(type) {
 
 
 	<!-- addshare begin-->
-	<div class="modal fade" id="sharebox" aria-hidden="true">
+	<div class="modal fade" id="sharebox" aria-hidden="true" style="maegin:auto;">
 		<div class="modal-dialog" style="width: 300px;">
 			<div class="modal-content">
 				<h5 style="margin: 20px;">分享歌曲</h5>
 				<form action="<c:url value="/rankTop10/ShareMusic.controller"/>" method="get" id="addshare">
 					<div class="modal-body">
 						<div class="form-group"></div>
-						<textarea name="shareContent" style="width: 250px; height: 270px"
+						<textarea name="shareContent" style="width: 250px; height: 270px;"
 							onFocus="if(this.value==this.defaultValue) this.value=''"
 							onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
 					</div>
 					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
 					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
-					<div id="displayShareMusic">
-						<img src="../img/300x300.jpg" style="margin-left: 20px; width: 50px; height: 50px;" />
+					<div id="displayShareMusic" style="border:1px solid #AAAAAA; width:250px;margin-left:20px;">
+						<img src="../img/300x300.jpg" style=" width: 50px; height: 50px;" />
 						<a href=""><span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a> 
 					</div>
 					<div class="modal-footer">
@@ -423,9 +421,9 @@ function loadrankTopTen(type) {
 
 
 	<jsp:include page="../homePage/footer.jsp" />
-	<!-- 	<div id="player"> -->
-	<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
-	<!-- 	</div> -->
+		<div id="player">
+			<jsp:include page="../homePage/player.jsp" />
+		</div>
 
 <script>
 //按分享時載入哪首音樂
