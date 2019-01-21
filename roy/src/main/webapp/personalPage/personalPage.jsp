@@ -953,6 +953,7 @@ function showData(){
 							var music_id = list[i].post_musicid;
 							var music_name =list[i].post_musicname;
 							var postorshare =list[i].post_postorshare;
+							var musicImage =list[i].post_musicImage;
 							
 							var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 							var privacy =  list[i].post_privacy;
@@ -972,7 +973,7 @@ function showData(){
 							var Post_contentPrivacy =  "<div style='margin-bottom:45px'>"+img+contentPrivacy+button +"<br></br></div>";
 
 							//分享的內容
-					        var Share_content = "<div style='margin-bottom:45px'>"+img+test + musiccontent+"<br></br></div>";
+					        var Share_content = "<div style='margin-bottom:45px'>"+img+test +"<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
 					        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + musiccontent+"<br></br></div>";
 
 					        if(postorshare==true && privacy==false){

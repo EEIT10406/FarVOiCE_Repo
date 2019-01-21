@@ -194,6 +194,7 @@
 					</div>
 					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
 					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
+					<textarea  hidden="true" id="addshareMusicimg" name="shareMusicimg"></textarea>
 					<div id="displayShareMusic">
 						<img src="../img/300x300.jpg" id="addshareMusicImg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
 						<span style="margin-left: 10px; font-size: 15px;"><a id="addshareMusicnamea" href="">讓我為你唱情歌</a></span>
@@ -402,7 +403,7 @@ function sharePeter(e) {
     		
     $("#addshareMusicname").text(""+music_name+"");
     $("#addshareMusicid").text(""+music_id+"");
-    
+    $("#addshareMusicimg").text(""+music_image+"");
     //顯示
  	$('#addshareMusicnamea').text(music_name);
  	$('#addshareMusicnamea').attr("href",music_href);
