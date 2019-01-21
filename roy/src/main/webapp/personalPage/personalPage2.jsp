@@ -176,6 +176,7 @@ opacity:0.4
 }
 </style>
 
+
 <script>
 <c:if test="${not empty result}">
 alert("${result}")
@@ -205,7 +206,7 @@ alert("${result}")
 	}
 	function submitBtnClick(){
 		changeCheckBoxs();
-		 $("#addshareV").submit();
+		 $("#addshareform").submit();
 		 
 	}
 	function followClick() {
@@ -285,13 +286,25 @@ $(document).ready(function() {
 	
 	//按分享時載入哪首音樂
 	$('body').on('click','.shareAndAddbtn',function() {
- 		var row = $(this).parents('#musics');
-        var music_id =row.children('span[name="music_id"]').text();
-        var music_name =row.children('div[name="music_name"]').text();
-        var music_Image =row.children('img[name="music_Image"]').text();
-        $("#addshareMusicname").text(""+music_name+"");
-        $("#realaddshareMusicname").text(""+music_name+"");
-        $("#addshareMusicid").text(""+music_id+"");
+        var music_name =$(this).attr('music_name');
+    	var music_id = $(this).attr('music_id');
+    	var music_image =$(this).attr('music_image');
+    	var music_href ="/roy/musicPage/findMusicById?musicId="+music_id;
+    	
+    	 $("#addshareMusicname").text(""+music_name+"");
+    	 $("#addshareMusicid").text(""+music_id+"");
+    	 
+    	 console.log(music_name+","+music_id+","+music_image);
+    	 //顯示
+    	 $('#addshareMusicnameSpan > a').text(music_name);
+    	 $('#addshareMusicnameSpan > a').attr("href",music_href);
+    	 
+    	 
+    	 
+    	 $('#addshareMusicImg').attr("src",music_image);
+       	 console.log(music_image);
+
+        
 		})
 			
 	//把音樂加進歌單裡
@@ -351,7 +364,7 @@ function loadMusic(username) {
                    		'<div style="font-size:13px">'+
 			       		'<img src="'+list.memberLikeMusic+'" class="heart">'+
                    		'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
-                      	'<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare"style="outline: none;" ><img src="../img/share.png" width="13px">分享</button></span>'+
+                      	'<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare" style="outline: none;" music_id="'+list.music_id+'" music_image="'+list.music_Image+'" music_name="'+list.music_name+'"><img src="../img/share.png" width="13px">分享</button></span>'+
                       	'<span id="add" style="margin-left:0px;">'+
                       	'<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="13px">加入歌單</button>'+
 					  	'</span>'+
@@ -395,7 +408,7 @@ function loadMemberLikeMusic(username) {
 	$.getJSON('/roy/personalPage/memberLikeMusic',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
-			content += '<div id="musics" class="col-md-5" style="float: left; width: 240px;">'+
+			content += '<div id="musics" class="col-md-5" style="float: left; width: 240px; music_id="'+list.music_id+'"  music_name="'+list.music_name+'" music_music="'+music.Music_music+'">'+
                              '<span name="music_id">'+list.music_id+'</span>'+
 				             '<span id="musicPage" style="cursor: pointer;">'+
                                   '<img src="'+list.music_Image+'" style="width: 120px; height: 120px;" />'+
@@ -405,7 +418,7 @@ function loadMemberLikeMusic(username) {
 				             '<div>'+
                                   '<img src="../img/love.png" class="heart">'+
 				                  '<span class="heartCount">'+list.music_likeCount+'</span>'+ 
-				                  '<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare"style="outline: none;" ><img src="../img/share.png" width="15px">分享</button></span>'+
+				                  '<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare" style="outline: none;" music_id="'+list.music_id+'" music_image="'+list.music_Image+'" music_name="'+list.music_name+'"><img src="../img/share.png" width="13px">分享</button></span>'+
 					              '</span>'+
 					              '<span id="add">'+
 			                      '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
@@ -585,26 +598,14 @@ function loadMemberLikeMusic(username) {
 											<div>
 												<div>
 													<img id="profile" src="${user.member_profileImage}"  class="img-circle" style="width:45px;height:45px;"  />												</div><!-- /media-left -->
-												<div >
-													<h4><span></span>最近聆聽歌曲</h4>		
+												<div>
+													<h4><span></span>最近聆聽歌曲</h4>	
+													
+														
 												</div>	
-<!-- 													<table class="table vertical-m" style="margin-bottom:20px" > -->
-													<div id="history">
-															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> 														
-																	<div style="float:left">
-<!-- 																		<button  -->
-														                  
-<!-- 																		</button> -->
-																		<a href="/angry_youth/songs/558439/">
-																		
-																		</a>
-																	</div><!-- /work-block img-xxs -->
-																	<div style="margin-left:250px">
-																		<h4><a>歌名</a><a style="margin-left:100px;color:gray;">時間</a></h4>						
-																	</div>
-														  		</div>
-															</div>	
-												<!-- /media-body -->
+												 										
+													
+												
 											</div><!-- /media -->
 										</div>
 
@@ -786,7 +787,6 @@ function loadMemberLikeMusic(username) {
 				 			}
 						});
 				 		//------------endObj
-				 	
 						var content="<div style='border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px'>";
 						var content2="<div style='float:left'>";
 						var content3="<a href='/angry_youth/songs/558439/'><img class='img-circle' src='"+music_img+"' style='width:45px;height:45px;'></a></div>";
@@ -996,82 +996,7 @@ function showData(){
 				
 		             
 				}
-				
-
-// 				for(var i=pagestart; i< (pagestart+size); i++){
-					
-// 					function timeFn(d1) {//di作为一个变量传进来
-// 					    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
-// 					    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
-// 					    var dateEnd = new Date();//获取当前时间
-// 					    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
-// 					    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
-// 					    //计算出相差天数
-// 					    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
-// 					    var hours=Math.floor( leave1 /(3600*1000))
-// 					    //计算出小时数
-// 					    //计算相差分钟数
-// 					    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
-// 					    var minutes=Math.floor(leave2 /(60*1000))
-// 					    //计算相差分钟数
-// 					    //计算相差秒数
-// 					    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
-// 					    var seconds=Math.round(leave3/1000)
-// 					    console.log(" 相差 "+dayDiff+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
-// 					    if(dayDiff>1){
-// 					    	timediff += dayDiff+"天前";
-// 					    }else if(hours>1){
-// 					    	timediff += hours+"小時前";
-// 					    }else if(minutes>1){
-// 					    	timediff += minutes+"分鐘前";
-// 					    }else{
-// 					    	timediff+="剛剛";
-// 					    }
-
-// 					}
-					
-// 					var timediff ="";
-// 					timeFn(list[i].post_time);
-// 					var imgPath=$('#profile').attr('src');
-// 					var music_id = list[i].post_musicid;
-// 					var music_name =list[i].post_musicname;
-// 					var postorshare =list[i].post_postorshare;
-					
-// 					var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
-// 					var privacy =  list[i].post_privacy;
-// 					var contentPrivacy = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章<i class='fas fa-lock'></i></h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
-// 					var testPrivacy = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂<i class='fas fa-lock'></i></h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
-
-					
-					
-// 					var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
-// 					var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='http://localhost:8080/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
-// //					var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-// 					var test = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
-// 					var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" +  list[i].post_idS + "'>查看全文</a>"
-			        
-// 					//發佈動態的內容		
-// 					var Post_content =  "<div style='margin-bottom:45px'>"+img+content+button +"<br></br></div>";
-// 					var Post_contentPrivacy =  "<div style='margin-bottom:45px'>"+img+contentPrivacy+button +"<br></br></div>";
-
-// 					//分享的內容
-// 			        var Share_content = "<div style='margin-bottom:45px'>"+img+test + musiccontent+"<br></br></div>";
-// 			        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + musiccontent+"<br></br></div>";
-
-// 			        if(postorshare==true && privacy==false){
-// 			        	$('#test').append(Post_content);
-// 			        }else if(postorshare==false && privacy==false){
-// 			        	$('#test').append(Share_content);
-// 			        } if(postorshare==true && privacy==true){
-// 			        	$('#test').append(Post_contentPrivacy);
-// 			        }else if(postorshare==false && privacy==true){
-// 			        	$('#test').append(Share_contentPrivacy);
-// 			        } 
-					
-					
-// 				}
-				
-			  }
+		  }
          
          ,
          error: function (xhr, ajaxOptions, thrownError) {
@@ -1116,23 +1041,20 @@ function showData(){
 							
 							
 	<!-- addshare begin-->
-	<script> </script>
 	<div class="modal fade" id="addshare" aria-hidden="true">
 		<div class="modal-dialog" style="width: 300px;">
 			<div class="modal-content">
 				<h5 style="margin: 20px;">分享歌曲</h5>
-				<form action="<c:url value="/personalPage/ShareMusic.controller"/>"
-					method="get"
-					id="addshareV">
+				<form action="<c:url value='/personalPage/ShareMusic.controller'/>" method="get" id="addshareform">
 					<div class="modal-body">
 						<div class="form-group"></div>
 						<textarea name="shareContent" style="width: 250px; height: 270px" onFocus="if(this.value==this.defaultValue) this.value=''" onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
 					</div>
+					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
+					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
 					<div id="displayShareMusic">
-						<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
-						<img src="../img/300x300.jpg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
-						<textarea hidden="true" id="realaddshareMusicname" name="shareMusicname"></textarea>
-						<span style="margin-left: 10px; font-size: 15px;" id="addshareMusicname" >讓我為你唱情歌</span>
+						<img src="../img/300x300.jpg" id="addshareMusicImg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
+						<span style="margin-left: 10px; font-size: 15px;" id="addshareMusicnameSpan"><a href="#">123讓我為你唱情歌</a></span>
 					</div>
 					<div class="modal-footer">
 						<div style="float:left"><input type="checkbox" name="isprivacy" value="true">不公開</div>
@@ -1140,10 +1062,9 @@ function showData(){
 						<button type="button" class="btn btn-primary" onclick="submitBtnClick()" >確定</button>
 					</div>
 				</form>
-
 			</div>
 		</div>
-	</div>		
+	</div>	
 				
 	<c:if test="${not empty insert}">
 		<script>
