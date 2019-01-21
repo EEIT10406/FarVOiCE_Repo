@@ -46,12 +46,7 @@
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <script src="1.js?ver=1"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
-
 <!-- End JS -->
-
-
-
 <style>
 .post{
 	float: left;
@@ -554,7 +549,7 @@ function loadMemberLikeMusic(username) {
 							data-toggle="modal" data-target="#sharebox" value="發佈新動態">
 <!-- 										style="outline: none;"> -->
 					</form>
-					<table>
+					<table style="margin-top:100px">
 						<tr>
 							<td>音樂</td>
 							<td>追蹤中</td>
@@ -602,13 +597,14 @@ function loadMemberLikeMusic(username) {
 													      <th scope="col">時間</th>
 													    </tr>
 													  </thead>
-													  <tbody>
-													  </tbody>
-													</table>
-												</div>											
-													
-												
-											</div><!-- /media -->
+													  <tbody>												
+													  </tbody>	
+													  </table>									  		
+												</div>	
+<!-- 												/media-body -->
+											</div>
+
+
 										</div>
 
 							</div><!-- ===END of HISTORY === -->
@@ -1034,7 +1030,7 @@ function showData(){
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary"
 									data-dismiss="modal">取消</button>
-								<buttin id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
+								<button id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
 							</div>
 						
 					</div>
