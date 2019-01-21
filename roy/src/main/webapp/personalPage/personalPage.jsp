@@ -46,12 +46,7 @@
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <script src="1.js?ver=1"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
-
 <!-- End JS -->
-
-
-
 <style>
 .post{
 	float: left;
@@ -554,7 +549,7 @@ function loadMemberLikeMusic(username) {
 							data-toggle="modal" data-target="#sharebox" value="發佈新動態">
 <!-- 										style="outline: none;"> -->
 					</form>
-					<table>
+					<table style="margin-top:100px">
 						<tr>
 							<td>音樂</td>
 							<td>追蹤中</td>
