@@ -67,9 +67,9 @@ td {
 	padding: 2px;
 }
 
-table {
-	margin-top: 100px;
-}
+/* table { */
+/* 	margin-top: 100px; */
+/* } */
 
 .number {
 	color: #FF3333;
@@ -588,24 +588,35 @@ function loadMemberLikeMusic(username) {
 												<div >
 													<h4><span></span>最近聆聽歌曲</h4>		
 												</div>	
-<!-- 													<table class="table vertical-m" style="margin-bottom:20px" > -->
 													<div id="history">
-															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> 														
-																	<div style="float:left">
-<!-- 																		<button  -->
-														                  
-<!-- 																		</button> -->
-																		<a href="/angry_youth/songs/558439/">
+													<table class="table" id="historyTable">
+													  <thead>
+													    <tr>
+													      <th scope="col"></th>
+													      <th scope="col">歌名</th>
+													      <th scope="col">時間</th>
+													    </tr>
+													  </thead>
+													  <tbody>
+													
+													  </tbody>
+													</table>
+<!-- 															 	<div style="border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px"> -->
+<!-- 																	<div style="float:left"> -->
+
+<!-- 																		<a href="/angry_youth/songs/558439/"> -->
 																		
-																		</a>
-																	</div><!-- /work-block img-xxs -->
-																	<div style="margin-left:250px">
-																		<h4><a>歌名</a><a style="margin-left:100px;color:gray;">時間</a></h4>						
-																	</div>
-														  		</div>
+<!-- 																		</a> -->
+<!-- 																	</div>/work-block img-xxs -->
+<!-- 																	<div style="margin-left:250px"> -->
+<!-- 																		<h4><a>歌名</a><a style="margin-left:100px;color:gray;">時間</a></h4> -->
+<!-- 																	</div> -->
+<!-- 														  		</div> -->
+														  		
 															</div>	
-												<!-- /media-body -->
-											</div><!-- /media -->
+<!-- 												/media-body -->
+											</div>
+<!-- 											/media -->
 										</div>
 
 							</div><!-- ===END of HISTORY === -->
@@ -730,7 +741,6 @@ function loadMemberLikeMusic(username) {
 	//showArticleFromMember
         $(function () {  
         showData();
-       //        offset,   size
 		//顯示歷史紀錄
 		$.ajax({
                 url: "/roy/personalPage/showAllHistoryTimeFromHstory.controller",   //存取Json的網址             
@@ -740,8 +750,7 @@ function loadMemberLikeMusic(username) {
                 data:{user:$('#username').text()},
                 //contentType: "application/json",              
 				success : function(list)
-				 {  
-				 	//------------List
+				 {  //------------List
 				 	var imgPath=$('#profile').attr('src');
 				 	list.forEach(function(obj, index) {
 				 		var music_name ;
@@ -761,15 +770,15 @@ function loadMemberLikeMusic(username) {
 				 			}
 						});
 				 		//------------endObj
-				 	
-						var content="<div style='border-bottom:solid 1px #DDDDDD;padding-bottom:10px;width:758px'>";
-						var content2="<div style='float:left'>";
-						var content3="<a href='/angry_youth/songs/558439/'><img class='img-circle' src='"+music_img+"' style='width:45px;height:45px;'></a></div>";
-						var content4="<div style='margin-left:250px'>";
-						var content5="<h4><a href='/angry_youth/songs/558439/'>"+music_name+"</a><a style='margin-left:100px;color:gray;'>"+story_time+"</a></h4>";
-						var content6="</div></div>";
-						var div3 = content+content2+content3+content4+content5+content6;
-						$('#history').append(div3);
+
+						
+						var cc="<tr>"+
+						     " <td><img class='img-circle' src='"+music_img+"' style='width:45px;height:45px;'></td>"+
+						      "<td>"+music_name+"</td>"+
+						     " <td>"+story_time+"</td>"+
+						    "</tr>";
+						$('#historyTable').append(cc);
+
 				  	})
 				  	//-------------endList
 				  },
