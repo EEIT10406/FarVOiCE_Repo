@@ -46,12 +46,7 @@
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
 <script src="1.js?ver=1"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
-
 <!-- End JS -->
-
-
-
 <style>
 .post{
 	float: left;
@@ -554,7 +549,7 @@ function loadMemberLikeMusic(username) {
 							data-toggle="modal" data-target="#sharebox" value="發佈新動態">
 <!-- 										style="outline: none;"> -->
 					</form>
-					<table>
+					<table style="margin-top:100px">
 						<tr>
 							<td>音樂</td>
 							<td>追蹤中</td>
@@ -602,14 +597,14 @@ function loadMemberLikeMusic(username) {
 													      <th scope="col">時間</th>
 													    </tr>
 													  </thead>
-													  <tbody>
-													
-													  </tbody>
-													</table>
-												</div>											
-													
-												
-											</div><!-- /media -->
+													  <tbody>												
+													  </tbody>	
+													  </table>									  		
+												</div>	
+<!-- 												/media-body -->
+											</div>
+
+
 										</div>
 
 							</div><!-- ===END of HISTORY === -->
@@ -869,6 +864,7 @@ function showData(){
 								var music_id = list[i].post_musicid;
 								var music_name =list[i].post_musicname;
 								var postorshare =list[i].post_postorshare;
+								var musicImage =list[i].post_musicImage;
 								
 								var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 								var privacy =  list[i].post_privacy;
@@ -879,7 +875,9 @@ function showData(){
 								
 								var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
 								var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='http://localhost:8080/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
-//								var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+
+								
+								//								var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 								var test = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
 								var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" +  list[i].post_idS + "'>查看全文</a>"
 						        
@@ -888,8 +886,8 @@ function showData(){
 								var Post_contentPrivacy =  "<div style='margin-bottom:45px'>"+img+contentPrivacy+button +"<br></br></div>";
 
 								//分享的內容
-						        var Share_content = "<div style='margin-bottom:45px'>"+img+test + musiccontent+"<br></br></div>";
-						        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + musiccontent+"<br></br></div>";
+						        var Share_content = "<div style='margin-bottom:45px '>"+img+test + "<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
+						        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy +"<span style='border:1px solid gray'>"+ musiccontent+"</span><br></br></div>";
 
 						        if(postorshare==true && privacy==false){
 						        	$('#test').append(Post_content);
@@ -951,6 +949,7 @@ function showData(){
 							var music_id = list[i].post_musicid;
 							var music_name =list[i].post_musicname;
 							var postorshare =list[i].post_postorshare;
+							var musicImage =list[i].post_musicImage;
 							
 							var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
 							var privacy =  list[i].post_privacy;
@@ -970,7 +969,7 @@ function showData(){
 							var Post_contentPrivacy =  "<div style='margin-bottom:45px'>"+img+contentPrivacy+button +"<br></br></div>";
 
 							//分享的內容
-					        var Share_content = "<div style='margin-bottom:45px'>"+img+test + musiccontent+"<br></br></div>";
+					        var Share_content = "<div style='margin-bottom:45px'>"+img+test +"<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
 					        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + musiccontent+"<br></br></div>";
 
 					        if(postorshare==true && privacy==false){
@@ -1031,7 +1030,7 @@ function showData(){
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary"
 									data-dismiss="modal">取消</button>
-								<buttin id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
+								<button id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
 							</div>
 						
 					</div>

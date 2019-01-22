@@ -392,6 +392,7 @@ function loadrankTopTen(type) {
 					</div>
 					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
 					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
+					<textarea  hidden="true" id="addshareMusicimg" name="shareMusicimg"></textarea>
 					<div id="displayShareMusic" style="border:1px solid #AAAAAA; width:250px;margin-left:20px;">
 						<img src="../img/300x300.jpg"
 							style="width: 50px; height: 50px;" /><a
@@ -471,6 +472,7 @@ $('body').on('click','.btnShare',function() {
 	console.log(music_name+","+music_id+","+music_image);
     $("#addshareMusicname").text(""+music_name+"");
     $("#addshareMusicid").text(""+music_id+"");
+    $("#addshareMusicimg").text(""+music_image+"");
     $("#displayShareMusic a").attr("href",music_href);
     $("#displayShareMusic a").text(""+music_name+"");
     $("#displayShareMusic img").attr("src",music_image);
