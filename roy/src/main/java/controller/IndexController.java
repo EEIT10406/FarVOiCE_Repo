@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -18,7 +19,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import model.bean.MemberBean;
+import model.bean.MemberCommentMusicBean;
 import model.bean.MusicBean;
+import model.service.MemberCommentMusicService;
 import model.service.MemberLikeMusicService;
 import model.service.MusicService;
 
@@ -28,6 +31,8 @@ public class IndexController {
 	MusicService musicService;
 	@Autowired
 	private MemberLikeMusicService memberLikeMusicService;
+	@Autowired
+	private MemberCommentMusicService memberCommentMusicService;
 
 	@RequestMapping(path = "/homePage/indexFindAllTimePlayCountTop5Music.controller", produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -88,5 +93,23 @@ public class IndexController {
 			return JSONValue.toJSONString(musics);
 		}
 		return null;
+	}
+	//首頁輪播留言
+	@RequestMapping(value = "/homePage/indexLikeMusicComment", produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String indexLikeMusicComment(HttpSession session) {
+		List<MusicBean> topThree = musicService.likeIn7Day();
+		Iterator<MusicBean> topThreeMusic = topThree.iterator();
+		List<MemberCommentMusicBean> returnValue = new ArrayList<MemberCommentMusicBean>();
+		while(topThreeMusic.hasNext()) {
+			MusicBean temp = topThreeMusic.next();
+			List<MemberCommentMusicBean> comments = memberCommentMusicService.showAllCommentFromMusic(temp.getMusic_id());
+			if(comments!=null&&!comments.isEmpty()) {
+				returnValue.add(comments.get(0));
+			}
+		}
+		Gson gson = new Gson();
+		String json = gson.toJson(returnValue);
+		return json;
 	}
 }

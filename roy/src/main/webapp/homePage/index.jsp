@@ -160,9 +160,9 @@ function loadLikeMusic(username){
                                 	  var heart='<img class="heart" src="'+list.memberLikeMusic+'" style="width:45px;height:45px" alt="false" />'+
                                 	            '<span id="likeCount" style="font-size:20px;margin:0;padding:0;color:#a4a4a4" class="likeCount">'+list.music_likeCount+'</span>';
                                   }
-				    content+=heart+
+				    				content+=heart+
 				                   '</div>'+
-				                   '<div id="message" style="border-radius:5px; width: 400px;height: 140px;margin-top: 74px;margin-right: 25px;float: right;background-color:#AAAAAA">'+
+				                   '<div id="message'+list.music_id+'" style="border-radius:5px; width: 400px;height: 140px;margin-top: 74px;margin-right: 25px;float: right;background-color:#AAAAAA">'+
 // 				                   ----------------------
 				                   "<div style='margin-bottom:45px'>"+
 				                  " <div style='margin-bottom:15px'>"+
@@ -185,15 +185,69 @@ function loadLikeMusic(username){
                                '</div>'+                                   
                           '</div>'+
                         '</div>';
+                        
                      number=number+1;
            })
            $('#likes').html(content);
 		 
 		$('span[name="musicId"]').hide();
-	})
+	});
+	
+	for(var i=0;i<999999999;i++){}
+	
+	$.getJSON('/roy/homePage/indexLikeMusicComment',{'username': username},function(data) {
+		$.each(data,function(index, obj) {
+			console.log(obj);
+			var id = "#message"+obj.music_id;
+			var content = 
+		     	"<div style='margin-bottom:45px'>"+
+	           	"<div style='margin-bottom:15px'>"+
+	            "<img src='"+obj.member_profileImage+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px'>"+
+	            "<h5 style='margin-bottom:0px;margin-top:15px;letter-spacing:0.5px;display:inline;vertical-align: middle;'>"+obj.member_nickname+"</h5>"+
+	            "<small style='vertical-align:middle;margin-top:15px;margin-left:15px'>"+timeFn(obj.memberCommentMusic_time)+"</small>"+
+	            "</div>"+
+	            "<div class='clearfix'></div>"+
+	            "<div style='margin-bottom:15px'>"+obj.memberCommentMusic_content+"</div>"+
+	            "<br><br></div>"+
+	            '</div>';
+	        $(id).html(content);
+              
+		})	
+	});
 	
 	
 }
+
+	function timeFn(d1) {//di作为一个变量传进来
+	    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+	    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
+	    var dateEnd = new Date();//获取当前时间
+	    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+	    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
+	    //计算出相差天数
+	    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
+	    var hours=Math.floor( leave1 /(3600*1000))
+	    //计算出小时数
+	    //计算相差分钟数
+	    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
+	    var minutes=Math.floor(leave2 /(60*1000))
+	    //计算相差分钟数
+	    //计算相差秒数
+	    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+	    var seconds=Math.round(leave3/1000)
+	    console.log(" 相差 "+dayDiff+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒");
+	    var timediff = "";
+	    if(dayDiff>1){
+	    	timediff += dayDiff+"天前";
+	    }else if(hours>1){
+	    	timediff += hours+"小時前";
+	    }else if(minutes>1){
+	    	timediff += minutes+"分鐘前";
+	    }else{
+	    	timediff+="剛剛";
+	    }
+		return timediff;
+	}
 </script>
 </head>
 <body>
@@ -346,7 +400,7 @@ $(function () {
 		success : function(list){	
 			list.forEach(function(obj, index) {
 // 	這邊的username是nickname
-				console.log(obj) ; 
+// 				console.log(obj) ; 
 				var content = "<h6 style='margin: 0;'><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'><small>"+obj.member_username+"</small></a></h6>";
 				var content1 = "<h5 style='margin: 0;'><a href='/roy/musicPage/findMusicById?musicId="+obj.music_id+"'>"+obj.music_name+"</a></h5>";
 				var div=content1+content+"<hr>";
