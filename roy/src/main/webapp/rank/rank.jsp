@@ -44,7 +44,9 @@
 	cursor: pointer;
 	margin-left: 10px;
 }
-
+#musicPage{
+	margin-bottom: 0;
+}
 </style>
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
@@ -160,7 +162,7 @@ function loadEmotion(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
@@ -186,7 +188,7 @@ function loadJazz(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
@@ -212,7 +214,7 @@ function loadBlue(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
@@ -238,7 +240,7 @@ function loadHiphop(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
@@ -264,7 +266,7 @@ function loadClassic(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
@@ -290,7 +292,7 @@ function loadRock(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
@@ -316,7 +318,7 @@ function loadMetal(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
@@ -342,7 +344,7 @@ function loadFunk(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
@@ -368,7 +370,7 @@ function loadPopular(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
@@ -394,7 +396,7 @@ function loadElectronic(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
@@ -420,7 +422,7 @@ function loadAllType(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
@@ -446,7 +448,7 @@ function loadImediate(type) {
 				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
