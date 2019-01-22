@@ -135,7 +135,7 @@ public class MemberCommentMusicDAO {
 	}
 	//給music_id 抓留言
 	public List<MemberCommentMusicBean> showAllCommentFromMusic (Integer music_id){
-		String hql = "from MemberCommentMusicBean WHERE music_id=:music_id ";
+		String hql = "from MemberCommentMusicBean WHERE music_id=:music_id Order By memberCommentMusic_time Desc";
 		Query<MemberCommentMusicBean> query = this.getSession().createQuery(hql);
 		query.setParameter("music_id", music_id);
 		List<MemberCommentMusicBean> memberCommentMusicBeanList = query.list();
