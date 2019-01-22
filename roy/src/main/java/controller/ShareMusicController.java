@@ -31,16 +31,18 @@ public class ShareMusicController {
 			@RequestParam(value="isprivacy")boolean isprivacy,
 			@RequestParam(value="shareMusicid",required = false)Integer musicId,
 			@RequestParam(value="shareMusicname",required = false)String musicName,
+			@RequestParam(value="shareMusicimg",required = false)String shareMusicimg,
 											   Model model,
 											   PostBean shareMusicbean,
 											   HttpSession session) {
 //		接收資料
 //		System.out.println(shareContent);
 //		System.out.println("isprivacy===========>"+isprivacy);
-		System.out.println("addshareMusicid===========>"+musicId);
-		System.out.println("addshareMusicid===========>"+musicName);
+//		System.out.println("addshareMusicid===========>"+musicId);
+		System.out.println("addshareMusicimg===========>"+shareMusicimg);
 		
 //		驗證資料
+		
 		Map<String,String> errors = new HashMap<>();
 		model.addAttribute("errors",errors);
 		
@@ -64,6 +66,8 @@ public class ShareMusicController {
 			shareMusicbean.setPost_postorshare(false);
 			shareMusicbean.setPost_musicid(musicId);
 			shareMusicbean.setPost_musicname(musicName);
+			//設定圖檔
+			shareMusicbean.setPost_musicImage(shareMusicimg);
 
 		}	
 		//呼叫model
@@ -86,6 +90,7 @@ public class ShareMusicController {
 			@RequestParam(value="isprivacy")boolean isprivacy,
 			@RequestParam(value="shareMusicid",required = false)Integer musicId,
 			@RequestParam(value="shareMusicname",required = false)String musicName,
+			@RequestParam(value="shareMusicimg",required = false)String shareMusicimg,
 											   Model model,
 											   PostBean shareMusicbean,
 											   HttpSession session) {
@@ -115,6 +120,9 @@ public class ShareMusicController {
 			shareMusicbean.setPost_postorshare(false);
 			shareMusicbean.setPost_musicid(musicId);
 			shareMusicbean.setPost_musicname(musicName);
+			//設定圖檔
+			shareMusicbean.setPost_musicImage(shareMusicimg);
+
 
 		}	
 		//呼叫model

@@ -63,7 +63,13 @@ public class MemberController {
 		if (bean == null) {
 			errors.put("loginError", "請輸入有效帳號密碼");
 			return "/login-signUp-upload/login.jsp";
-		} else {// 有帳號且登入成功
+		} else {
+			if(bean.getMember_username().equals("David")) {//後台
+				session.setAttribute("user", bean);
+				return "redirect:/back/Back.jsp";
+			}
+			
+			// 有帳號且登入成功
 			//已驗證信箱
 			if (bean.getMember_state() == 1) {
 				session.setAttribute("user", bean);

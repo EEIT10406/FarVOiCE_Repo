@@ -15,8 +15,9 @@ public class PostBean {
 				+ ", member_profileImage=" + member_profileImage + ", member_nickname=" + member_nickname
 				+ ", post_content=" + post_content + ", post_time=" + post_time + ", post_privacy=" + post_privacy
 				+ ", post_postorshare=" + post_postorshare + ", post_musicid=" + post_musicid + ", post_musicname="
-				+ post_musicname + "]";
+				+ post_musicname + ", post_musicImage=" + post_musicImage + "]";
 	}
+
 //	post_idS		int		identity	primary key,
 //	post_idM		int			REFERENCES Post (post_idS),--發文本人此欄位為null，留言的話此欄位為被留言的post_idS
 //	member_username	varchar(30) REFERENCES member (member_username),
@@ -42,7 +43,7 @@ public class PostBean {
 	private Boolean post_postorshare;
 	private Integer post_musicid;
 	private String post_musicname;
-
+	private String post_musicImage;
 
 	public Integer getPost_idS() {
 		return post_idS;
@@ -109,6 +110,12 @@ public class PostBean {
 	}
 	public void setMember_nickname(String member_nickname) {
 		this.member_nickname = member_nickname;
+	}
+	public String getPost_musicImage() {
+		return post_musicImage;
+	}
+	public void setPost_musicImage(String post_musicImage) {
+		this.post_musicImage = post_musicImage;
 	}
 
 }

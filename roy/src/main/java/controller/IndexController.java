@@ -90,6 +90,9 @@ public class IndexController {
 				jsonMap.put("music_name", bean.getMusic_name());
 				jsonMap.put("music_likeCount", String.valueOf(bean.getMusic_likeCount()));
 				jsonMap.put("nickname", musicService.usernameToNickname(bean.getMember_username()));
+				//0121
+				jsonMap.put("music_music", bean.getMusic_music());
+				//0121
 				musics.add(jsonMap);
 				flag = true;
 			}

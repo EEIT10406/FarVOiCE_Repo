@@ -36,9 +36,9 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		HiddenHttpMethodFilter  hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
 		return new Filter[] {characterEncodingFilter, hiddenHttpMethodFilter};
 	}
-	  @Override
-	    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
-	        boolean done = registration.setInitParameter("throwExceptionIfNoHandlerFound", "true"); // -> true
-	        if(!done) throw new RuntimeException();
-	    }
+	@Override
+	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+	    boolean done = registration.setInitParameter("throwExceptionIfNoHandlerFound", "true"); // -> true
+	    if(!done) throw new RuntimeException();
+	}
 }

@@ -90,15 +90,16 @@
 									<label class="col-sm-1 control-label text-muted"><small>類型</small></label>
 									<div class="col-sm-11">
 										<ul id="music_type" class="nav nav-pills nav-sm">
-											<li type="'Rock'"><a class="dynamic" href="#">Rock</a></li>
-											<li type="'Metal'"><a class="dynamic" href="#">Metal</a></li>
-											<li type="'Jazz'"><a class="dynamic" href="#">Jazz</a></li>
-											<li type="'classic'"><a class="dynamic" href="#">classic</a></li>
-											<li type="'dynamic'"><a class="dynamic" href="#">dynamic</a></li>
-											<li type="'blue'"><a class="dynamic" href="#">blue</a></li>
-											<li type="'reggae'"><a class="dynamic" href="#">reggae</a></li>
-											<li type="'emotion'"><a class="dynamic" href="#">emotion</a></li>
-											<li type="'noType'"><a class="dynamic" href="#">noType</a></li>
+											<li type="'抒情'"><a class="dynamic" href="#">抒情</a></li>
+											<li type="'爵士'"><a class="dynamic" href="#">爵士</a></li>
+											<li type="'藍調'"><a class="dynamic" href="#">藍調</a></li>
+											<li type="'嘻哈'"><a class="dynamic" href="#">嘻哈</a></li>
+											<li type="'古典'"><a class="dynamic" href="#">古典</a></li>
+											<li type="'搖滾'"><a class="dynamic" href="#">搖滾</a></li>
+											<li type="'金屬'"><a class="dynamic" href="#">金屬</a></li>
+											<li type="'放克'"><a class="dynamic" href="#">放克</a></li>
+											<li type="'流行'"><a class="dynamic" href="#">流行</a></li>
+											<li type="'電音'"><a class="dynamic" href="#">電音</a></li>
 										</ul>
 									</div>
 								</div>
@@ -149,8 +150,6 @@
 		<div id='music-container' class="row margin-vert-30"></div>
 	</div>
 	<!-- 歌	 -->
-
-
 	<jsp:include page="../homePage/footer.jsp" />
 	<div id="player">
 		<jsp:include page="../homePage/player.jsp" />
@@ -196,9 +195,10 @@
 					</div>
 					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
 					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
+					<textarea  hidden="true" id="addshareMusicimg" name="shareMusicimg"></textarea>
 					<div id="displayShareMusic">
 						<img src="../img/300x300.jpg" id="addshareMusicImg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
-						<span style="margin-left: 10px; font-size: 15px;" id="addshareMusicnameSpan" >讓我為你唱情歌</span>
+						<span style="margin-left: 10px; font-size: 15px;"><a id="addshareMusicnamea" href="">讓我為你唱情歌</a></span>
 					</div>
 					<div class="modal-footer">
 						<div style="float:left"><input type="checkbox" name="isprivacy" value="true">不公開</div>
@@ -352,7 +352,7 @@
 				    				'<div>'+
 				    				'<div class="col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box">'+
 				    				'<div class="work-block m-bottom-2"><a class="play-link" href="#">'+
-				    				'<img class="img-full" height="220px" width="220px" src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
+				    				'<img class="img-full" height="180px" width="180px" src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
 				    				'</div>	<div  id="row" class="song-info">'+
 				    				'<h5 class="text-ellipsis"><a class="play-link" href = "/roy/musicPage/findMusicById?musicId='+music.Music_id+'" src="'+music.Music_Image+'">'+music.Music_name+'</a></h5>'+
 				    				'<h5 class="text-ellipsis"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+music.Member_nickname+'">'+music.Member_nickname+'</a></h5>'+
@@ -369,6 +369,15 @@
 				}
 				//載音樂
 				
+		//播圖
+		$('#music-container').on('mouseover','img',function(){
+			tempSrc = this.src;
+			this.src = "../img/player.png";
+		})
+		$('#music-container').on('mouseout','img',function(){
+			this.src = tempSrc;
+		})
+		//播圖
 	})
 	
 	//取消a默認
@@ -390,8 +399,7 @@
 				}]);
 				$(ap.audio).attr('music_id',$(e).attr('music_id'));
 	}
-	//播放
-		
+	//播放	
 </script>
 	
 <script>
@@ -401,18 +409,16 @@ function sharePeter(e) {
 	var music_name = $(e).attr('music_name');
 	var music_id = $(e).attr('music_id');
 	var music_image =$(e).attr('src');
-	
-	console.log(music_name+","+music_id);
-
+	var music_href ="/roy/musicPage/findMusicById?musicId="+music_id;
+    		
     $("#addshareMusicname").text(""+music_name+"");
     $("#addshareMusicid").text(""+music_id+"");
- 	$('#addshareMusicnameSpan').text(music_name);
+    $("#addshareMusicimg").text(""+music_image+"");
+    //顯示
+ 	$('#addshareMusicnamea').text(music_name);
+ 	$('#addshareMusicnamea').attr("href",music_href);
  	$('#addshareMusicImg').attr("src",music_image);
-
-    
 }
-
-
 </script>	
 	
 	

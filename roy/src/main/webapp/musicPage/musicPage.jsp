@@ -214,9 +214,21 @@
 
 
 	<jsp:include page="../homePage/footer.jsp" />
-	<!-- 	<div id="player"> -->
-	<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
-	<!-- 	</div> -->
-	
+	<!-- 播放器 -->
+	<div id="player">
+		<jsp:include page="../homePage/player.jsp" />
+	</div>
+	<script>
+	$('img.play').click(function(){
+		ap.list.add([{
+			title : '${musicPageBean.music_name}',
+			author : '${nickname}',
+			url : '${musicPageBean.music_music}',
+			pic : '${musicPageBean.music_Image}'
+		}]);
+		$(ap.audio).attr('music_id','${musicPageBean.music_id}');
+	})
+	</script>
+	<!-- 播放器 -->
 </body>
 </html>

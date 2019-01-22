@@ -214,7 +214,8 @@ function loadrankTopTen(type) {
 					     '<td>'+rank+'</td>'+
 					     '<td name="music_id">'+list.music_id+'</td>'+
 					     '<td name="music_image">'+
-					        '<img src="'+list.music_Image+'" class="music" />'+
+					        '<img src="'+list.music_Image+'" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)"/>'+
 					        '<span id="musicPage" class="musicName">'+list.music_name+'</span>'+
 					        '<div>';
 				        if('${user.member_username}'!=""){
@@ -391,9 +392,10 @@ function loadrankTopTen(type) {
 					</div>
 					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
 					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
-					<div id="displayShareMusic">
+					<textarea  hidden="true" id="addshareMusicimg" name="shareMusicimg"></textarea>
+					<div id="displayShareMusic" style="border:1px solid #AAAAAA; width:250px;margin-left:20px;">
 						<img src="../img/300x300.jpg"
-							style="margin-left: 20px; width: 50px; height: 50px;" /><a
+							style="width: 50px; height: 50px;" /><a
 							href=""> <span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a>
 					</div>
 					<div class="modal-footer">
@@ -470,10 +472,27 @@ $('body').on('click','.btnShare',function() {
 	console.log(music_name+","+music_id+","+music_image);
     $("#addshareMusicname").text(""+music_name+"");
     $("#addshareMusicid").text(""+music_id+"");
+    $("#addshareMusicimg").text(""+music_image+"");
     $("#displayShareMusic a").attr("href",music_href);
     $("#displayShareMusic a").text(""+music_name+"");
     $("#displayShareMusic img").attr("src",music_image);
 })	
 </script>
+<!-- 播放器 -->
+	<div id="player">
+		<jsp:include page="../homePage/player.jsp" />
+	</div>
+	<script>
+	function play(e) {
+				ap.list.add([{
+					title : $(e).attr('music_name'),
+					author : $(e).attr('nickname'),
+					url : $(e).attr('music_music'),
+					pic : $(e).attr('music_Image')
+				}]);
+				$(ap.audio).attr('music_id',$(e).attr('music_id'));
+	}
+	</script>
+	<!-- 播放器 -->
 </body>
 </html>
