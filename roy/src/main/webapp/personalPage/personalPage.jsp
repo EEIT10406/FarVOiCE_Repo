@@ -667,17 +667,7 @@ function loadMemberLikeMusic(username) {
 											<h3 class="no-margin no-padding"
 												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px;font-family: 微軟正黑體;padding-bottom:15px">追蹤名單</h3>
 											
-<!-- 											<div class="row"> -->
-<!-- 												<div class="col-md-5"> -->
-<!-- 													<img src="../img/left.JPG" -->
-<!-- 														style="margin-top: 15px; width: 100px; height: 100px;" /> -->
-<!-- 													<span -->
-<!-- 														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span> -->
-<!-- 												</div> -->
-<!-- 												<div class="col-md-7"> -->
-<!-- 													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div> -->
-<!-- 												</div> -->
-<!-- 											</div> -->
+
 										</div>
 
 
@@ -887,7 +877,7 @@ function showData(){
 
 								//分享的內容
 						        var Share_content = "<div style='margin-bottom:45px '>"+img+test + "<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
-						        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy +"<span style='border:1px solid gray'>"+ musiccontent+"</span><br></br></div>";
+						        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy +"<span style='border:1px solid gray'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</span><br></br></div>";
 
 						        if(postorshare==true && privacy==false){
 						        	$('#test').append(Post_content);

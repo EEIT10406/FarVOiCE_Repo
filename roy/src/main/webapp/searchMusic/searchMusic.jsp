@@ -196,8 +196,8 @@
 					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
 					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
 					<textarea  hidden="true" id="addshareMusicimg" name="shareMusicimg"></textarea>
-					<div id="displayShareMusic">
-						<img src="../img/300x300.jpg" id="addshareMusicImg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
+					<div id="displayShareMusic" style="border:1px solid #AAAAAA; width:250px;margin-left:20px;">
+						<img src="../img/300x300.jpg" id="addshareMusicImg"  style="width:50px;height:50px;"/><a href=""></a>
 						<span style="margin-left: 10px; font-size: 15px;"><a id="addshareMusicnamea" href="">讓我為你唱情歌</a></span>
 					</div>
 					<div class="modal-footer">
