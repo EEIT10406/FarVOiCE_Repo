@@ -194,7 +194,6 @@ function loadLikeMusic(username){
 	});
 	
 	for(var i=0;i<999999999;i++){}
-	
 	$.getJSON('/roy/homePage/indexLikeMusicComment',{'username': username},function(data) {
 		$.each(data,function(index, obj) {
 			console.log(obj);
