@@ -12,10 +12,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <style>
-/* * { */
-/* 	font-family: 微軟正黑體; */
-/* } */
-
 .play {
 	width: 40px;
 	-webkit-filter: invert(100%);
@@ -28,19 +24,18 @@
 }
 
 .topTen {
-	border: 0.5px solid gray;
-	margin-left: 35px;
+	border: 0.5px solid #AAAAAA;
+/*  	margin-left: 35px;  */
 	margin-bottom: 10px;
 	width: 140px;
-	text-align: center;
 	padding: 1px;
 	font-size: 15px;
 	font-weight: 400;
-	background-color: #DDDDDD;
+	background-color: white;
 }
 .music {
-	width: 70px;
-	height: 70px;
+	width: 120px;
+	height: 120px;
 	cursor: pointer;
 	margin-left: 10px;
 }
@@ -163,7 +158,7 @@ function loadEmotion(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -189,7 +184,7 @@ function loadJazz(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -215,7 +210,7 @@ function loadBlue(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -241,7 +236,7 @@ function loadHiphop(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -267,7 +262,7 @@ function loadClassic(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -293,7 +288,7 @@ function loadRock(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -319,7 +314,7 @@ function loadMetal(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -345,7 +340,7 @@ function loadFunk(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -371,7 +366,7 @@ function loadPopular(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -397,7 +392,7 @@ function loadElectronic(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -423,7 +418,7 @@ function loadAllType(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -449,7 +444,7 @@ function loadImediate(type) {
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
@@ -483,7 +478,7 @@ function loadImediate(type) {
 				style="margin: 20px auto; margin-left: 7px">
 				<!-- Main Text -->
 				
-				<div class="col-md-3" id="imediate" style="border: 1px #AAAAAA solid; margin-left: 50px;margin-bottom:10px;">
+				<div class="col-md-3" id="imediate" style="border: 1px 	#DDDDDD solid; margin-left: 50px;margin-bottom:10px;">
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
 							即時熱門</span>
@@ -506,7 +501,7 @@ function loadImediate(type) {
 
 
 				<div class="col-md-3" id="allType"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -530,7 +525,7 @@ function loadImediate(type) {
 
 
 				<div class="col-md-3" id="emotion"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -553,7 +548,7 @@ function loadImediate(type) {
 					</div>
 					
 				<div class="col-md-3" id="rock"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -576,7 +571,7 @@ function loadImediate(type) {
 					</div>
 					
 					<div class="col-md-3" id="hiphop"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -599,7 +594,7 @@ function loadImediate(type) {
 					</div>
 					
 					<div class="col-md-3" id="blue"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -622,7 +617,7 @@ function loadImediate(type) {
 					</div>
 					
 					<div class="col-md-3" id="jazz"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -645,7 +640,7 @@ function loadImediate(type) {
 				    </div>
 				    
 				    <div class="col-md-3" id="classic"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -668,7 +663,7 @@ function loadImediate(type) {
 				    </div>
 				    
 				     <div class="col-md-3" id="metal"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -691,7 +686,7 @@ function loadImediate(type) {
 				    </div>
 				    
 				     <div class="col-md-3" id="funk"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -714,7 +709,7 @@ function loadImediate(type) {
 				    </div>
 				    
 				     <div class="col-md-3" id="popular"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -737,7 +732,7 @@ function loadImediate(type) {
 				    </div>
 				    
 				     <div class="col-md-3" id="electronic"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
