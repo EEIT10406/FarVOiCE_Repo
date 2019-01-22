@@ -208,37 +208,30 @@ function loadLikeMusic(username){
                                             
 <div class="col-md-12" style="margin-top: -30px">
      <div class="carousel slide testimonials" id="testimonials1">
-
         <div id="likes" class="carousel-inner">
-
 			<div class="item active">
                 <div class="col-md-12">       
                  </div>                                   
             </div>
-                    
-                              
             <div class="item">
                   <div class="col-md-12">                   
                   </div>
             </div>
-                          
             <div class="item">
                   <div class="col-md-12">
                   </div>
             </div>
-                    
        </div>
-       
        <div style="width:40%;float:right;text-align: right;position: absolute;margin-left: 550px;margin-top:0px;">
-                                 <a  href="#testimonials1" data-slide="prev"  style="margin-right:15px;text-decoration:none;" >
-                                   <i style="color:#666666;" class="fas fa-angle-double-left fa-2x"></i>
-                                 </a>
-                                 <a href="#testimonials1" data-slide="next">
-                                     <i style="color:#666666;" class="fas fa-angle-double-right fa-2x" style="text-decoration:none;"></i>
-                                 </a>
-                          </div>
-      			</div>                   
-			</div>
+         <a  href="#testimonials1" data-slide="prev"  style="margin-right:15px;text-decoration:none;">
+           <i style="color:#666666;" class="fas fa-angle-double-left fa-2x"></i>
+         </a>
+         <a href="#testimonials1" data-slide="next">
+             <i style="color:#666666;text-decoration:none;" class="fas fa-angle-double-right fa-2x" ></i>
+         </a>
+      </div>
+	</div>                   
+</div>
                      <!-- End 大家都喜歡 - default full width -->
                  </div>
                  
@@ -346,13 +339,12 @@ $(function () {
 			list.forEach(function(obj, index) {
 // 	這邊的username是nickname
 				console.log(obj) ; 
-				var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a>";
-				var content = "<h6 style='margin: 0;'><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'>"+obj.member_username+"</a></h6>";
-				var content1 = "<h4 style='margin: 0;'>"+obj.music_name+"</h4><hr>";
-				var div=content+content1;
+				var content = "<h6 style='margin: 0;'><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_username+"'><small>"+obj.member_username+"</small></a></h6>";
+				var content1 = "<h5 style='margin: 0;'><a href='/roy/musicPage/findMusicById?musicId="+obj.music_id+"'>"+obj.music_name+"</a></h5>";
+				var div=content1+content+"<hr>";
 				$('#hottest').append(div);
 		  	})
-		  	var button = "<button type='button' class='btn btn-primary' style='width:100%' onclick='rank()' >媽的看排行喔</button>";
+		  	var button = "<button type='button' class='btn btn-primary' style='width:100%' onclick='rank()' >看排行</button>";
 			$('#hottest').append(button);
 		},
         error: function (xhr, ajaxOptions, thrownError) {
