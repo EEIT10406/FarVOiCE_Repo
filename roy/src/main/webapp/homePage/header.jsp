@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
+<!-- <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script> -->
 	
 <script>
 	$(document).ready(function() {
@@ -26,6 +26,9 @@
 		})
 		$('#project').click(function(){
 			window.location.href="/roy/funding/showMusic.controller"
+		})
+		$('#back').click(function(){
+			window.location.href="/roy/back/Back.jsp"
 		})
 	})
 </script>
@@ -68,37 +71,38 @@
 						<button id="project" type="button" class="btn btn-outline-danger">
 							開始提案</button>
 					</li>
-					<li>
-						<form class="form-inline">
-							<input class="form-control mr-sm-2" type="search"
-								placeholder="搜尋" aria-label="Search">
-							<button class="btn btn-outline-success" type="submit">搜尋</button>
-						</form>
-					</li>
+					<c:choose>
+					    <c:when test="${empty user}">
+						</c:when>
+					    <c:otherwise>
+					    	<c:if test="${user.member_username == 'David'}">
+								<li>	 
+									<button id="back" type="button" class="btn btn-outline-danger">
+									後台</button>
+								</li>	
+							</c:if>						
+						</c:otherwise>
+					</c:choose>
+				
+				
+				
+				
 					<c:choose>
 					    <c:when test="${empty user}">
 					    </c:when>
 					    <c:otherwise>
-					    
-					    
 						    <c:choose>
-						    <c:when test="${empty user.member_profileImage}">
-								<li>	 
-									<img id="profile" src="../personalPage/imgs/noProfile.gif"  class="img-circle" style="width:45px;height:45px;"  />
-								</li>							    
-							</c:when>
-						    <c:otherwise>
-								<li>	 
-									<img id="profile" src="${user.member_profileImage}"  class="img-circle" style="width:45px;height:45px;"  />
-								</li>							
-							</c:otherwise>
+							    <c:when test="${empty user.member_profileImage}">
+									<li>	 
+										<img id="profile" src="../personalPage/imgs/noProfile.gif"  class="img-circle" style="width:45px;height:45px;"  />
+									</li>							    
+								</c:when>
+							    <c:otherwise>
+									<li>	 
+										<img id="profile" src="${user.member_profileImage}"  class="img-circle" style="width:45px;height:45px;"  />
+									</li>							
+								</c:otherwise>
 							</c:choose>
-							
-							
-							
-<!-- 							<li>	 -->
-<%-- 								<img id="profile" src="${user.member_profileImage}"  class="img-circle" style="width:45px;height:45px;"  /> --%>
-<!-- 							</li> -->
 						</c:otherwise>
 					</c:choose>
 				</ul>
@@ -136,7 +140,8 @@
 <!-- 								</ul></li> -->
 							<li><a href="/roy/funding/allFunding.jsp"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
-							<li><a href="contact.html"><i class="fas fa-envelope fa-lg"></i>   即時客服</a></li>
+
+							<li><a href="/roy/contact/contact.jsp"><i class="fas fa-envelope fa-lg"></i>   聯絡客服</a></li>
 						</ul>
 					</div>
 				</div>
