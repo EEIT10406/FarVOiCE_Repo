@@ -599,7 +599,7 @@ function loadMemberLikeMusic(username) {
 																		</a>
 																	</div><!-- /work-block img-xxs -->
 																	<div style="margin-left:250px">
-																		<h4><a>歌名</a><a style="margin-left:100px;color:gray;">時間</a></h4>						
+																		<h4><a>歌名</a><a style="margin-left:300px;color:gray;">時間</a></h4>						
 																	</div>
 														  		</div>
 															</div>	
@@ -765,7 +765,7 @@ function loadMemberLikeMusic(username) {
 						var content2="<div style='float:left'>";
 						var content3="<a href='/angry_youth/songs/558439/'><img class='img-circle' src='"+music_img+"' style='width:45px;height:45px;'></a></div>";
 						var content4="<div style='margin-left:250px'>";
-						var content5="<h4><a href='/angry_youth/songs/558439/'>"+music_name+"</a><a style='margin-left:100px;color:gray;'>"+story_time+"</a></h4>";
+						var content5="<h4><a href='/angry_youth/songs/558439/'>"+music_name+"</a><a style='margin-left:200px;color:gray;'>"+story_time+"</a></h4>";
 						var content6="</div></div>";
 						var div3 = content+content2+content3+content4+content5+content6;
 						$('#history').append(div3);
