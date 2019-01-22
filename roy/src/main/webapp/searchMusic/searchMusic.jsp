@@ -370,11 +370,11 @@
 				//載音樂
 				
 		//播圖
-		$('#music-container').on('mouseover','img',function(){
+		$('#music-container').on('mouseover','img.img-full',function(){
 			tempSrc = this.src;
 			this.src = "../img/player.png";
 		})
-		$('#music-container').on('mouseout','img',function(){
+		$('#music-container').on('mouseout','img.img-full',function(){
 			this.src = tempSrc;
 		})
 		//播圖
