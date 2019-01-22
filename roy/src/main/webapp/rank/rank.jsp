@@ -115,27 +115,39 @@ $(document).ready(function() {
 	})
 	
 	//滑鼠移入顯示播放圖片
-	$('body').on('mouseover','.music',function(){
-		 this.src = "../img/player.png";
+	$('body').on('mouseover','img.music',function(){
+		//0122有問題找孔
+		tempSrc = this.src;
+		this.src = "../img/player.png";
 	})
     //滑鼠移出重新載入圖片
-	$('body').on('mouseout','.music',function(){
-		var row = $(this).parents('#row');
-        var musicId =row.find('td[name="music_id"]').text();
-        loadEmotion('抒情')
-        loadJazz('爵士')
-        loadBlue('藍調')
-        loadHiphop('嘻哈')
-        loadClassic('古典')
-        loadRock('搖滾')
-        loadAllType('')
-        loadImediate('time')
-        loadMetal('金屬')
-        loadFunk('放克')
-        loadPopular('流行')
-        loadElectronic('電音')
+	$('body').on('mouseout','img.music',function(){
+// 		var row = $(this).parents('#row');
+//         var musicId =row.find('td[name="music_id"]').text();
+//         loadEmotion('抒情')
+//         loadJazz('爵士')
+//         loadBlue('藍調')
+//         loadHiphop('嘻哈')
+//         loadClassic('古典')
+//         loadRock('搖滾')
+//         loadAllType('')
+//         loadImediate('time')
+//         loadMetal('金屬')
+//         loadFunk('放克')
+//         loadPopular('流行')
+//         loadElectronic('電音')
+//0122有問題找孔
+		this.src = tempSrc;
 	})
-	
+	$('body').on('click','#playerPic',function(){
+		a = $(this).next('span').text();
+		if(a=='FarVoice 即時熱門'){
+			a='time';
+		}else if(a=='所有類型'){
+			a="";
+		}
+		addList(a);
+	})
 })
 
 //載入抒情歌
@@ -145,7 +157,8 @@ function loadEmotion(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -170,7 +183,8 @@ function loadJazz(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -195,7 +209,8 @@ function loadBlue(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -220,7 +235,8 @@ function loadHiphop(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -245,7 +261,8 @@ function loadClassic(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -270,7 +287,8 @@ function loadRock(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -295,7 +313,8 @@ function loadMetal(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -320,7 +339,8 @@ function loadFunk(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -345,7 +365,8 @@ function loadPopular(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -370,7 +391,8 @@ function loadElectronic(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -395,7 +417,8 @@ function loadAllType(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -420,7 +443,8 @@ function loadImediate(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
 			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
 			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
@@ -742,9 +766,33 @@ function loadImediate(type) {
 	<!-- === END CONTENT === -->
 
 	<jsp:include page="../homePage/footer.jsp" />
+<!-- 播放器 -->
 	<div id="player">
 		<jsp:include page="../homePage/player.jsp" />
 	</div>
-
+	<script>
+	function play(e) {
+				ap.list.add([{
+					title : $(e).attr('music_name'),
+					author : $(e).attr('nickname'),
+					url : $(e).attr('music_music'),
+					pic : $(e).attr('music_Image')
+				}]);
+				$(ap.audio).attr('music_id',$(e).attr('music_id'));
+	}
+	function addList(type){
+		$.getJSON('/roy/rankTop10/findMusicByType',{'type':type},function(data){
+	    $.each(data,function(index,music){
+	    	ap.list.add([{
+				title : music.music_name,
+				author : music.nickname,
+				url : music.music_music,
+				pic : music.music_Image
+			}])
+	    	});
+	    })
+	}
+	</script>
+	<!-- 播放器 -->
 </body>
 </html>

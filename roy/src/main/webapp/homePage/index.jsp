@@ -73,6 +73,12 @@ float:right;width:50px;margin-top:25px;margin-right:50px;
 </style>
 <script>
 $(document).ready(function(){
+	//取消a默認
+	$('a.arrow').on('click',function(event){
+		event.preventDefault();
+		});
+	//取消a默認
+	
 	loadLikeMusic('${user.member_username}');
 
 	//按愛心
@@ -173,7 +179,8 @@ function loadLikeMusic(username){
 			                       '<div style="padding-left:0px;padding-top:30px;color:white;float:left;width:150px;">'+
 						               '<div id="musicPage" style="font-size:20px;width:200px;">'+list.music_name+'</div>'+
 						               '<div><a id="yoyo" href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></div>'+
-					                   '<img src="../img/indexPlayer.png" width="60px" height="60px" class="player"/>'+
+					                   '<img src="../img/indexPlayer.png" width="60px" height="60px" class="player"  music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+								        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)"/>'+
 			                       '</div>'+       
                                '</div>'+                                   
                           '</div>'+
@@ -223,15 +230,16 @@ function loadLikeMusic(username){
             </div>
        </div>
        <div style="width:40%;float:right;text-align: right;position: absolute;margin-left: 550px;margin-top:0px;">
-         <a  href="#testimonials1" data-slide="prev"  style="margin-right:15px;text-decoration:none;">
-           <i style="color:#666666;" class="fas fa-angle-double-left fa-2x"></i>
-         </a>
-         <a href="#testimonials1" data-slide="next">
-             <i style="color:#666666;text-decoration:none;" class="fas fa-angle-double-right fa-2x" ></i>
-         </a>
-      </div>
-	</div>                   
-</div>
+			
+                                 <a class='arrow' href="#testimonials1" data-slide="prev"  style="margin-right:15px;text-decoration:none;" >
+                                   <i style="color:#666666;" class="fas fa-angle-double-left fa-2x"></i>
+                                 </a>
+                                 <a class='arrow' href="#testimonials1" data-slide="next">
+                                     <i style="color:#666666;" class="fas fa-angle-double-right fa-2x" style="text-decoration:none;"></i>
+                                 </a>
+                          </div>
+      			</div>                   
+			</div>
                      <!-- End 大家都喜歡 - default full width -->
                  </div>
                  
@@ -354,6 +362,33 @@ $(function () {
      });
 })
 </script>
+
+
+
+
+
+<!-- 播放器 -->
+	<div id="player">
+		<jsp:include page="../homePage/player.jsp" />
+	</div>
+	<script>
+	function play(e) {
+				ap.list.add([{
+					title : $(e).attr('music_name'),
+					author : $(e).attr('nickname'),
+					url : $(e).attr('music_music'),
+					pic : $(e).attr('music_Image')
+				}]);
+				$(ap.audio).attr('music_id',$(e).attr('music_id'));
+	}
+	</script>
+	<!-- 播放器 -->
+
+
+
+
+
+
 
 </body>
 </html>
