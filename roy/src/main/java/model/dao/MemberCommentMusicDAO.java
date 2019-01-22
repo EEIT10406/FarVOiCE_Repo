@@ -135,10 +135,19 @@ public class MemberCommentMusicDAO {
 	}
 	//給music_id 抓留言
 	public List<MemberCommentMusicBean> showAllCommentFromMusic (Integer music_id){
-		String hql = "from MemberCommentMusicBean WHERE music_id=:music_id ";
+		String hql = "from MemberCommentMusicBean WHERE music_id=:music_id Order By memberCommentMusic_time Desc";
 		Query<MemberCommentMusicBean> query = this.getSession().createQuery(hql);
 		query.setParameter("music_id", music_id);
 		List<MemberCommentMusicBean> memberCommentMusicBeanList = query.list();
 		return memberCommentMusicBeanList;
 	}
+	
+	//給music_id 抓最新的留言
+		public List<MemberCommentMusicBean> showLatestCommentFromMusic (Integer music_id){
+			String hql = "from MemberCommentMusicBean WHERE music_id=:music_id order by memberCommentMusic_time desc";
+			Query<MemberCommentMusicBean> query = this.getSession().createQuery(hql);
+			query.setParameter("music_id", music_id);
+			List<MemberCommentMusicBean> memberCommentMusicBeanList = query.list();
+			return memberCommentMusicBeanList;
+		}
 }

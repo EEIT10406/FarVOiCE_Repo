@@ -426,10 +426,10 @@ function loadMusic(username) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 240px;margin-bottom:10px;">'+
 			          '<span name="music_id">'+list.music_id+'</span>'+
 			          '<span id="musicPage" style="cursor: pointer;">'+
-			               '<img src="'+list.music_Image+'" style="width: 100px; height: 100px;" />'+
+			               '<img src="'+list.music_Image+'" style="width: 140px; height: 140px;" />'+
 			          '</span>'+
 			       '<div style="font-size: 16px;">'+list.music_name+'</div>'+
-                   '<div>';
+                   '<div style="margin-bottom:5px;">';
 			if('${user.member_username}'!=""){
 				var like='<img src="'+list.memberLikeMusic+'" class="heart">';
 			}else{
@@ -476,10 +476,10 @@ function loadMemberLikeMusic(username) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 230px;">'+
                              '<span name="music_id">'+list.music_id+'</span>'+
                              '<span id="musicPage" style="cursor: pointer;">'+
-  			                     '<img src="'+list.music_Image+'" style="width: 100px; height: 100px;" />'+
+  			                     '<img src="'+list.music_Image+'" style="width: 140px; height: 140px;" />'+
   			                 '</span>'+
                              '<div style="font-size: 16px;">'+list.music_name+'</div>'+
-				             '<div>'; 
+				             '<div style="margin-bottom:5px;">'; 
 				             if('${user.member_username}'!=""){
 				 				var like='<img src="'+list.userLikeMusic+'" class="heart">';
 				 			}else{
@@ -790,8 +790,7 @@ function loadMusicCount(username) {
 
 	<!-- === END CONTENT === -->
 
-	<!-- addPlayList begin-->
-								
+	<!-- addPlayList begin-->				
 							<div class="modal fade" id="addList" aria-hidden="true">
 										<div class="modal-dialog" style="width: 300px;">
 											<div class="modal-content">

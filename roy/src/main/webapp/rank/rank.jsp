@@ -12,10 +12,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <style>
-/* * { */
-/* 	font-family: 微軟正黑體; */
-/* } */
-
 .play {
 	width: 40px;
 	-webkit-filter: invert(100%);
@@ -28,19 +24,18 @@
 }
 
 .topTen {
-	border: 0.5px solid gray;
-	margin-left: 35px;
+	border: 0.5px solid #AAAAAA;
+/*  	margin-left: 35px;  */
 	margin-bottom: 10px;
 	width: 140px;
-	text-align: center;
 	padding: 1px;
 	font-size: 15px;
 	font-weight: 400;
-	background-color: #DDDDDD;
+	background-color: white;
 }
 .music {
-	width: 70px;
-	height: 70px;
+	width: 120px;
+	height: 120px;
 	cursor: pointer;
 	margin-left: 10px;
 }
@@ -115,27 +110,39 @@ $(document).ready(function() {
 	})
 	
 	//滑鼠移入顯示播放圖片
-	$('body').on('mouseover','.music',function(){
-		 this.src = "../img/player.png";
+	$('body').on('mouseover','img.music',function(){
+		//0122有問題找孔
+		tempSrc = this.src;
+		this.src = "../img/player.png";
 	})
     //滑鼠移出重新載入圖片
-	$('body').on('mouseout','.music',function(){
-		var row = $(this).parents('#row');
-        var musicId =row.find('td[name="music_id"]').text();
-        loadEmotion('抒情')
-        loadJazz('爵士')
-        loadBlue('藍調')
-        loadHiphop('嘻哈')
-        loadClassic('古典')
-        loadRock('搖滾')
-        loadAllType('')
-        loadImediate('time')
-        loadMetal('金屬')
-        loadFunk('放克')
-        loadPopular('流行')
-        loadElectronic('電音')
+	$('body').on('mouseout','img.music',function(){
+// 		var row = $(this).parents('#row');
+//         var musicId =row.find('td[name="music_id"]').text();
+//         loadEmotion('抒情')
+//         loadJazz('爵士')
+//         loadBlue('藍調')
+//         loadHiphop('嘻哈')
+//         loadClassic('古典')
+//         loadRock('搖滾')
+//         loadAllType('')
+//         loadImediate('time')
+//         loadMetal('金屬')
+//         loadFunk('放克')
+//         loadPopular('流行')
+//         loadElectronic('電音')
+//0122有問題找孔
+		this.src = tempSrc;
 	})
-	
+	$('body').on('click','#playerPic',function(){
+		a = $(this).next('span').text();
+		if(a=='FarVoice 即時熱門'){
+			a='time';
+		}else if(a=='所有類型'){
+			a="";
+		}
+		addList(a);
+	})
 })
 
 //載入抒情歌
@@ -145,11 +152,12 @@ function loadEmotion(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -170,11 +178,12 @@ function loadJazz(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -195,11 +204,12 @@ function loadBlue(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -220,11 +230,12 @@ function loadHiphop(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -245,11 +256,12 @@ function loadClassic(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -270,11 +282,12 @@ function loadRock(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -295,11 +308,12 @@ function loadMetal(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -320,11 +334,12 @@ function loadFunk(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -345,11 +360,12 @@ function loadPopular(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -370,11 +386,12 @@ function loadElectronic(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -395,11 +412,12 @@ function loadAllType(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -420,11 +438,12 @@ function loadImediate(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
+				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;">'+list.music_name+'</h4>'+
-			             '<p><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-			             '<hr>'+
+			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
+// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -457,7 +476,7 @@ function loadImediate(type) {
 				style="margin: 20px auto; margin-left: 7px">
 				<!-- Main Text -->
 				
-				<div class="col-md-3" id="imediate" style="border: 1px #AAAAAA solid; margin-left: 50px;margin-bottom:10px;">
+				<div class="col-md-3" id="imediate" style="border: 1px 	#DDDDDD solid; margin-left: 50px;margin-bottom:10px;">
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
 							即時熱門</span>
@@ -480,7 +499,7 @@ function loadImediate(type) {
 
 
 				<div class="col-md-3" id="allType"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -504,7 +523,7 @@ function loadImediate(type) {
 
 
 				<div class="col-md-3" id="emotion"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -527,7 +546,7 @@ function loadImediate(type) {
 					</div>
 					
 				<div class="col-md-3" id="rock"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -550,7 +569,7 @@ function loadImediate(type) {
 					</div>
 					
 					<div class="col-md-3" id="hiphop"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -573,7 +592,7 @@ function loadImediate(type) {
 					</div>
 					
 					<div class="col-md-3" id="blue"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -596,7 +615,7 @@ function loadImediate(type) {
 					</div>
 					
 					<div class="col-md-3" id="jazz"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -619,7 +638,7 @@ function loadImediate(type) {
 				    </div>
 				    
 				    <div class="col-md-3" id="classic"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -642,7 +661,7 @@ function loadImediate(type) {
 				    </div>
 				    
 				     <div class="col-md-3" id="metal"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -665,7 +684,7 @@ function loadImediate(type) {
 				    </div>
 				    
 				     <div class="col-md-3" id="funk"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -688,7 +707,7 @@ function loadImediate(type) {
 				    </div>
 				    
 				     <div class="col-md-3" id="popular"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -711,7 +730,7 @@ function loadImediate(type) {
 				    </div>
 				    
 				     <div class="col-md-3" id="electronic"
-					style="border: 1px #AAAAAA solid; margin-left: 50px; margin-bottom:20px;">
+					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
 					<h3 class="title">
 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
@@ -742,9 +761,33 @@ function loadImediate(type) {
 	<!-- === END CONTENT === -->
 
 	<jsp:include page="../homePage/footer.jsp" />
+<!-- 播放器 -->
 	<div id="player">
 		<jsp:include page="../homePage/player.jsp" />
 	</div>
-
+	<script>
+	function play(e) {
+				ap.list.add([{
+					title : $(e).attr('music_name'),
+					author : $(e).attr('nickname'),
+					url : $(e).attr('music_music'),
+					pic : $(e).attr('music_Image')
+				}]);
+				$(ap.audio).attr('music_id',$(e).attr('music_id'));
+	}
+	function addList(type){
+		$.getJSON('/roy/rankTop10/findMusicByType',{'type':type},function(data){
+	    $.each(data,function(index,music){
+	    	ap.list.add([{
+				title : music.music_name,
+				author : music.nickname,
+				url : music.music_music,
+				pic : music.music_Image
+			}])
+	    	});
+	    })
+	}
+	</script>
+	<!-- 播放器 -->
 </body>
 </html>

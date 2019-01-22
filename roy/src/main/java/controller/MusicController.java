@@ -307,6 +307,9 @@ public class MusicController {
 				jsonMap.put("music_likeCount", String.valueOf(bean.getMusic_likeCount()));
 				jsonMap.put("nickname", musicService.usernameToNickname(bean.getMember_username()));
 				jsonMap.put("music_uploadTime", String.valueOf(bean.getMusic_uploadTime()).substring(0, 10));
+				//0118
+				jsonMap.put("music_music",bean.getMusic_music());
+				//0118
 				musics.add(jsonMap);
 				flag = true;
 			}
@@ -314,7 +317,4 @@ public class MusicController {
 		}
 		return null;
 	}
-	
-
-
 }

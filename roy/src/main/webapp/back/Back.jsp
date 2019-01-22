@@ -171,7 +171,6 @@ table {
 							<ul class="nav nav-pills nav-stacked">
 								<li class="active"><a href="#imediate" data-toggle="tab">主控台 </a></li>
 								<li><a href="#allType" data-toggle="tab">募資管理 </a></li>
-								<li><a href="#emotion" data-toggle="tab">輪播管理</a></li>
 								<li><a href="#rock" data-toggle="tab">檢舉管理</a></li>
 							 </ul>
 					</div>
@@ -257,19 +256,7 @@ table {
 								</div> 
 								<!--=-----allType 募資管理 END -->
 								
-								<!--=-----emotion Begin 輪播控管 -->
-								<div class="tab-pane fade in" id="emotion">
-									<div class="row">
-										<div class="col-md-5">
-											<div
-												style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">輪播控管</div>
-											
-										</div>
-										<div class="col-md-7">
-										</div>
-									</div>
-								</div>
-								<!--=-----emotion END 輪播控管 -->
+							
 								
 								
 								<!--=-----rock Begin 檢舉管理 -->
