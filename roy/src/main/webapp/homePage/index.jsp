@@ -378,7 +378,6 @@ $(function () {
      });
 })
 </script>
-<<<<<<< HEAD
 
 
 
@@ -407,8 +406,5 @@ $(function () {
 
 
 
-=======
-
->>>>>>> branch 'branch1' of https://github.com/EEIT10406/FarVOiCE_Repo.git
 </body>
 </html>

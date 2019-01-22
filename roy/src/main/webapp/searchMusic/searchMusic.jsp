@@ -90,15 +90,16 @@
 									<label class="col-sm-1 control-label text-muted"><small>類型</small></label>
 									<div class="col-sm-11">
 										<ul id="music_type" class="nav nav-pills nav-sm">
-											<li type="'Rock'"><a class="dynamic" href="#">Rock</a></li>
-											<li type="'Metal'"><a class="dynamic" href="#">Metal</a></li>
-											<li type="'Jazz'"><a class="dynamic" href="#">Jazz</a></li>
-											<li type="'classic'"><a class="dynamic" href="#">classic</a></li>
-											<li type="'dynamic'"><a class="dynamic" href="#">dynamic</a></li>
-											<li type="'blue'"><a class="dynamic" href="#">blue</a></li>
-											<li type="'reggae'"><a class="dynamic" href="#">reggae</a></li>
-											<li type="'emotion'"><a class="dynamic" href="#">emotion</a></li>
-											<li type="'noType'"><a class="dynamic" href="#">noType</a></li>
+											<li type="'抒情'"><a class="dynamic" href="#">抒情</a></li>
+											<li type="'爵士'"><a class="dynamic" href="#">爵士</a></li>
+											<li type="'藍調'"><a class="dynamic" href="#">藍調</a></li>
+											<li type="'嘻哈'"><a class="dynamic" href="#">嘻哈</a></li>
+											<li type="'古典'"><a class="dynamic" href="#">古典</a></li>
+											<li type="'搖滾'"><a class="dynamic" href="#">搖滾</a></li>
+											<li type="'金屬'"><a class="dynamic" href="#">金屬</a></li>
+											<li type="'放克'"><a class="dynamic" href="#">放克</a></li>
+											<li type="'流行'"><a class="dynamic" href="#">流行</a></li>
+											<li type="'電音'"><a class="dynamic" href="#">電音</a></li>
 										</ul>
 									</div>
 								</div>
