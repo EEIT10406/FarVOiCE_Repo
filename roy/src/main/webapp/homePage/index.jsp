@@ -39,7 +39,6 @@
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
-<script src="1.js?ver=1"></script>
 <!-- End JS -->
 <style>
 #musicPage{

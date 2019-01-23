@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script> -->
+<script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" ></script>
 	
 <script>
 	$(document).ready(function() {
@@ -134,10 +134,6 @@
 							<li><a href="/roy/searchMusic/searchMusic.jsp"><i class="fas fa-headphones fa-lg"></i>  找音樂</a>
 								</li>
 							<li><a href="/roy/findArticle/findArticle.jsp"><i class="fas fa-pencil-alt fa-lg"></i>   找文章</a>
-<!-- 								<ul> -->
-<!-- 									<li><a href="blog-list.html">Blog</a></li> -->
-<!-- 									<li><a href="blog-single.html">Blog Single Item</a></li> -->
-<!-- 								</ul></li> -->
 							<li><a href="/roy/funding/allFunding.jsp"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
 

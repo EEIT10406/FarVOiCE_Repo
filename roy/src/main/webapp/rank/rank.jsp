@@ -39,7 +39,9 @@
 	cursor: pointer;
 	margin-left: 10px;
 }
-
+#musicPage{
+	margin-bottom: 0;
+}
 </style>
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
@@ -152,12 +154,11 @@ function loadEmotion(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -178,12 +179,11 @@ function loadJazz(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -204,12 +204,11 @@ function loadBlue(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -230,12 +229,11 @@ function loadHiphop(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -256,12 +254,11 @@ function loadClassic(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -282,12 +279,11 @@ function loadRock(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -308,12 +304,11 @@ function loadMetal(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -334,12 +329,11 @@ function loadFunk(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -360,12 +354,11 @@ function loadPopular(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -386,12 +379,11 @@ function loadElectronic(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -412,12 +404,11 @@ function loadAllType(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
@@ -438,12 +429,11 @@ function loadImediate(type) {
 			var rank = 1;
 			$.each(data,function(index, list) {
 			    content+='<div id=rank>'+
-				         '<h6 style="margin: 0;" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
+				         '<h6 style="margin: 0;display:inline" music_Image="'+list.music_Image+'" class="music" music_name="'+list.music_name+'" '+
 					        'music_id = "'+list.music_id+'" nickname="'+list.nickname+'" music_music="'+list.music_music+'" onclick="play(this)">'+rank+'<img src="'+list.music_Image+'" class="music" /></h6>'+
 			             '<span name="music_id">'+list.music_id+'</span>'+
-			             '<h4 id="musicPage" style="margin: 0;color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
+			             '<h4 id="musicPage" style="color:#FF3333;cursor: pointer;margin-left:16px;">'+list.music_name+'</h4>'+
 			             '<p style="margin-left:16px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nickname+'">'+list.nickname+'</a></p>'+
-// 			             '<hr>'+
 			             '</div>';
 				    rank=rank+1;
 				    if(rank==4){
