@@ -14,15 +14,14 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <style>
 th, td {
-	border-collapse: collapse;
+	border-collapse: collapse; 
 	font-size: 14px;
 	border-bottom: 0.5px solid lightgrey;
 }
 
-table {
-	width: 750px;
-	height: 820px;
-}
+ table {
+ 	width: 750px; 
+ } 
 
 .btn {
 	color: black;
@@ -88,73 +87,50 @@ table {
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="1.js?ver=1"></script>
+
 <!-- End JS -->
 <script >
-
-// 	var randomScalingFactor = function() {
-// 		return Math.round(Math.random() * 100);
-// 	};
-
-// 	var config = {
-// 		type : 'pie',
-// 		data : {
-// 			datasets : [ {
-// 				data : [ randomScalingFactor(), randomScalingFactor(),
-// 						randomScalingFactor(), randomScalingFactor(),
-// 						randomScalingFactor(), ],
-// 				backgroundColor : [ window.chartColors.red,
-// 						window.chartColors.orange, window.chartColors.yellow,
-// 						window.chartColors.green, window.chartColors.blue, ],
-// 				label : 'Dataset 1'
-// 			} ],
-// 			labels : [ 'Red', 'Orange', 'Yellow', 'Green', 'Blue' ]
-// 		},
-// 		options : {
-// 			responsive : true
-// 		}
-// 	};
-
-// 	window.onload = function() {
-// 		var ctx = document.getElementById('chart-area').getContext('2d');
-// 		window.myPie = new Chart(ctx, config);
-// 	};
-
-// 	document.getElementById('randomizeData').addEventListener('click',
-// 			function() {
-// 				config.data.datasets.forEach(function(dataset) {
-// 					dataset.data = dataset.data.map(function() {
-// 						return randomScalingFactor();
-// 					});
-// 				});
-
-// 				window.myPie.update();
-// 			});
-
-// 	var colorNames = Object.keys(window.chartColors);
-// 	document.getElementById('addDataset').addEventListener('click', function() {
-// 		var newDataset = {
-// 			backgroundColor : [],
-// 			data : [],
-// 			label : 'New dataset ' + config.data.datasets.length,
-// 		};
-
-// 		for (var index = 0; index < config.data.labels.length; ++index) {
-// 			newDataset.data.push(randomScalingFactor());
-
-// 			var colorName = colorNames[index % colorNames.length];
-// 			var newColor = window.chartColors[colorName];
-// 			newDataset.backgroundColor.push(newColor);
-// 		}
-
-// 		config.data.datasets.push(newDataset);
-// 		window.myPie.update();
-// 	});
-
-// 	document.getElementById('removeDataset').addEventListener('click',
-// 			function() {
-// 				config.data.datasets.splice(0, 1);
-// 				window.myPie.update();
-// 			});
+$(document).ready(function() {
+	refreshContact();
+})
+function submitBtnClick() {
+		console.log("123");
+		$("#form").submit();
+	}
+function refreshContact(){
+	$.ajax({
+	    url: "/roy/back/showAllCustomerService.controller",
+	    type: "POST",
+	    cache:false,
+	    dataType:'json',
+	    data:{username:$('#username').text()},
+		success : function(list)
+		 {  
+			console.log(list);
+		 	list.forEach(function(obj, index) {
+		 	    var content = "<tr>"+
+							      "<td >"+obj.CustomerService_email+"</td>"+
+							      "<td >"+obj.CustomerService_title+"</td>"+
+							      "<td >"+obj.CustomerService_content+"</td>"+
+							      "<td >"+obj.CustomerService_time+"</td>"+
+							      "<td >"+obj.CustomerService_fixed+"</td>"+
+							      "<td ><a href='#' data-toggle='modal' data-target='#edit' CustomerService_id='"+obj.CustomerService_id+"' onclick='giveFormId(this)'><i class='fas fa-pencil-alt fa-lg'></i></a></td>"+
+							  "</tr>";
+				$('#contactTable').append(content);
+		  	});
+		},  
+	    error: function (xhr, ajaxOptions, thrownError) {
+	        alert(xhr.status+"-->showAllCustomerService");
+	        alert(thrownError);
+	    }
+	});	
+}
+function giveFormId(e){
+	var id = $(e).attr('CustomerService_id');
+	console.log(id);
+	$('#CustomerService_id').val(id);
+}
 </script>
 </head>
 <body>
@@ -172,6 +148,7 @@ table {
 								<li class="active"><a href="#imediate" data-toggle="tab">主控台 </a></li>
 								<li><a href="#allType" data-toggle="tab">募資管理 </a></li>
 								<li><a href="#rock" data-toggle="tab">檢舉管理</a></li>
+								<li><a href="#contact" data-toggle="tab">客服管理</a></li>
 							 </ul>
 					</div>
 					<!--目錄-->
@@ -228,15 +205,15 @@ table {
 													window.myPie = new Chart(ctx, config);
 												};
 										
-												document.getElementById('randomizeData').addEventListener('click', function() {
-													config.data.datasets.forEach(function(dataset) {
-														dataset.data = dataset.data.map(function() {
-															return randomScalingFactor();
-														});
-													});
+// 												document.getElementById('randomizeData').addEventListener('click', function() {
+// 													config.data.datasets.forEach(function(dataset) {
+// 														dataset.data = dataset.data.map(function() {
+// 															return randomScalingFactor();
+// 														});
+// 													});
 										
-													window.myPie.update();
-												});
+// 													window.myPie.update();
+// 												});
 										
 											</script>
 											</div>
@@ -273,9 +250,55 @@ table {
 								</div>
 								<!--=-----rock END 檢舉管理管 -->
 								
+								<!-------contact Begin 客服管理 -->
+								<div class="tab-pane fade in" id="contact">
+									<div class="row">
+										<div class="col-md-12">
+											<div style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">客服管理</div>
+											<table  id="contactTable">
+											  <thead>
+											    <tr>
+											      <th scope="col">信箱</th>
+											      <th scope="col">標題</th>
+											      <th scope="col">內容</th>
+											      <th scope="col">時間</th>
+											      <th scope="col">已處理</th>
+											      <th scope="col">編輯</th>
+											    </tr>
+											  </thead>
+											  <tbody>
+											   											
+											  </tbody>	
+											 </table>	
+										 </div>
+									</div>
+								</div>
+								<!--------contact END 客服管理 -->
 								
-								
-								
+									<!-- 編輯單筆客服 begin-->		
+									<div class="modal fade" id="edit" aria-hidden="true">
+												<div class="modal-dialog" style="width: 300px;">
+													<div class="modal-content">
+														<h5 style="margin: 10px;">編輯</h5>
+														<form action="/roy/back/edit.controller" method="get" id="form">
+															<div class="modal-body">
+																<input hidden="true" value="" id="CustomerService_id" name="CustomerService_id">
+																<div class="form-group">
+																	<select name="fixed" id="selectPlayList" class="form-control">
+																		<option value="true">已處理</option>
+																	</select>
+																</div>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-primary"
+																	data-dismiss="modal">取消</button>
+																<button  type="button" class="btn btn-primary" data-dismiss="modal" onclick='submitBtnClick();'>確定</button>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>							
+									<!-- 編輯單筆客服 end-->
 								
 							</div>
 						</div>

@@ -134,10 +134,6 @@
 							<li><a href="/roy/searchMusic/searchMusic.jsp"><i class="fas fa-headphones fa-lg"></i>  找音樂</a>
 								</li>
 							<li><a href="/roy/findArticle/findArticle.jsp"><i class="fas fa-pencil-alt fa-lg"></i>   找文章</a>
-<!-- 								<ul> -->
-<!-- 									<li><a href="blog-list.html">Blog</a></li> -->
-<!-- 									<li><a href="blog-single.html">Blog Single Item</a></li> -->
-<!-- 								</ul></li> -->
 							<li><a href="/roy/funding/allFunding.jsp"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
 
