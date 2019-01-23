@@ -39,7 +39,7 @@ public class ShareMusicController {
 //		System.out.println(shareContent);
 //		System.out.println("isprivacy===========>"+isprivacy);
 //		System.out.println("addshareMusicid===========>"+musicId);
-		System.out.println("addshareMusicimg===========>"+shareMusicimg);
+		
 		
 //		驗證資料
 		
@@ -94,8 +94,8 @@ public class ShareMusicController {
 											   Model model,
 											   PostBean shareMusicbean,
 											   HttpSession session) {
-
 		
+		System.out.println("222addshareMusicimg===========>"+shareMusicimg);
 //		驗證資料
 		Map<String,String> errors = new HashMap<>();
 		model.addAttribute("errors",errors);

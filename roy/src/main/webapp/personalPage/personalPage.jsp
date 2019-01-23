@@ -887,8 +887,7 @@ function showData(){
 
 								//分享的內容
 						        var Share_content = "<div style='margin-bottom:45px '>"+img+test + "<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
-						        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy +"<span style='border:1px solid gray'>"+ musiccontent+"</span><br></br></div>";
-
+						        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + "<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
 						        if(postorshare==true && privacy==false){
 						        	$('#test').append(Post_content);
 						        }else if(postorshare==false && privacy==false){
@@ -970,7 +969,7 @@ function showData(){
 
 							//分享的內容
 					        var Share_content = "<div style='margin-bottom:45px'>"+img+test +"<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
-					        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + musiccontent+"<br></br></div>";
+					        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + "<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
 
 					        if(postorshare==true && privacy==false){
 					        	$('#test').append(Post_content);

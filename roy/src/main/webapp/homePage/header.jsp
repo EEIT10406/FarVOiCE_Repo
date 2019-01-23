@@ -140,7 +140,8 @@
 <!-- 								</ul></li> -->
 							<li><a href="/roy/funding/allFunding.jsp"><i class="fas fa-search-dollar fa-lg"></i>  找募資</a>
 							</li>
-							<li><a href="contact.html"><i class="fas fa-envelope fa-lg"></i>   聯絡客服</a></li>
+
+							<li><a href="/roy/contact/contact.jsp"><i class="fas fa-envelope fa-lg"></i>   聯絡客服</a></li>
 						</ul>
 					</div>
 				</div>
