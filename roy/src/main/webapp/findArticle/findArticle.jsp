@@ -101,15 +101,7 @@
 						<!-- Pagination -->
 						
 						<ul class="pagination" id="ul1" style="cursor:pointer"></ul>
-							<div id="div1">
-<!-- 							<li class="" onclick=""><a>&laquo;</a></li> -->
-<!-- 							<li class="active"><a>1</a></li> -->
-<!-- 							<li class=""><a>2</a></li> -->
-<!-- 							<li class="" ><a>3</a></li> -->
-<!-- 							<li class="" ><a>4</a></li> -->
-<!-- 							<li class=""><a>5</a></li> -->
-<!-- 							<li class=""><a>&raquo;</a></li> -->
-							</div>
+							
 						
 						
 						<!-- End Pagination -->
@@ -136,9 +128,7 @@
 						<br>
 						<div class="recent-posts">
 							<h3>最近新增文章</h3>
-							<ul class="posts-list margin-top-10" id="newArticle">
-								
-								
+							<ul class="posts-list margin-top-10" id="newArticle">	
 							</ul>
 						</div>
 						<!-- End Recent Posts -->
@@ -176,33 +166,25 @@ function doPage(){
 	showData(start);
 }
 function preP(){
-// 	console.log(ShowPage);
-// 	console.log(count);
-// 	console.log(NumOfJData);
 	if(currentPage!=1){
 		console.log(currentPage);
 		start=currentPage-1;
 		showData(start);
 		currentPage=currentPage-1;
-	}else{
-		
+	}else{	
 		alert("已經是第一頁囉~");
-	}
-	
+	}	
 }
-function NextP(){
-	
+function NextP(){	
 	if(currentPage!=ShowPage){
 		start=parseInt(currentPage)+1;
 		showData(start);
 		currentPage=parseInt(currentPage)+1;
-	}else{
-		
-		alert("已經最後一頁~");
-		
-	}
-	
+	}else{		
+		alert("已經最後一頁~");		
+	}	
 }
+
 function showData(token){
 	console.log(token);
 	$("#articlePutHere").html("");
@@ -265,20 +247,30 @@ function loadArticle (searchString) {
 		success : function(list)
 		{	
 			allArticle=list;
-			NumOfJData = list.length; //NumOfJData=4 總筆數
-			ShowPage = Math.ceil((NumOfJData/count));  
+			NumOfJData = list.length; //NumOfJData=7 總筆數
 			//總頁數 
+			ShowPage = Math.ceil((NumOfJData/count));  
 			
 			//顯示總頁數
-			$("#ul1").append("<li class=''><a onclick='return preP()';>&laquo;</a></li>");	
-			for(var i=1;i<=ShowPage;i++){
-				var pages ="<li class=''><a onclick='return doPage(this);'>"+i+"</a></li>"
-				if(i==1){
-				var pages ="<li class='active'><a onclick='return doPage(this);'>"+i+"</a></li>"
-				}
-				$("#ul1").append(pages);	
+			if(typeof searchString =='undefined')
+			{	
+				
+				$("#ul1").append("<li class=''><a onclick='return preP()';>&laquo;</a></li>");	
+					for(var i=1;i<=ShowPage;i++){
+						var pages ="<li class=''><a onclick='return doPage(this);'>"+i+"</a></li>"
+						if(i==1){
+						var pages ="<li class='active'><a onclick='return doPage(this);'>"+i+"</a></li>"
+						}
+						$("#ul1").append(pages);	
+					}
+					$("#ul1").append("<li class=''><a onclick='return NextP()'>&raquo;</a></li>");
+			}else{
+				$("#ul1").empty();
+				count = NumOfJData;
 			}
-			$("#ul1").append("<li class=''><a onclick='return NextP()'>&raquo;</a></li>");
+				
+			
+			
 			
 			//顯示首頁
 			for(var i=0;i<count;i++){
@@ -362,50 +354,6 @@ function loadArticle (searchString) {
 	
 </script>
 
-<script>
-//分頁	
-// $(".pagination li").click(function(){
-	
-	
-// })
-// 當前頁
-//  function pageClick(this){
-// 	 alert("pageClick");
-// 	var Father = $(this).parents('.pagination');
-// 	var Fathers =$(".pagination>li").length;
-// 	for(var i=0;i<=Fathers;i++){
-// 		$(".pagination li").attr("class","");
-// 	}
-// 	alert($(this).text());
-// // 	$(this).attr("class","active");	
-	
-// }
-
-// function prepage(){
-// 	alert("prepage");
-// 	var nowPage = $(".pagination li.active").text();
-// 	var newPage = parseInt(nowPage);
-// 	var Fathers =$(".pagination>li").length;
-// 	for(var i=1;i<=Fathers-1;i++){
-// 		$(".pagination li").attr("class","");
-// 	}
-// 	$(".pagination li").eq(newPage).text();
-// 	alert($(".pagination li").eq(newPage).text());
-// 	$(".pagination li").eq(newPage).attr("class","active");
-	
-// }
-
-// function nextpage(){
-// 	alert("nextpage");
-// 	var nowPage = $(".pagination li.active").text();
-// 	var newPage = parseInt(nowPage)+1;
-// 	for(var i=1;i<=Fathers-1;i++){
-// 		$(".pagination li").attr("class","");
-// 	}
-// 	$(".pagination li").eq(newPage).attr("class","active");
-// }
-
-</script>
 </body>
 </html>
 <!-- === END FOOTER === -->
