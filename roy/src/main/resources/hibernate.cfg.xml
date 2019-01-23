@@ -28,5 +28,6 @@
 		<mapping class="model.bean.ReportBean"/>
 		<mapping class="model.bean.RewardBean"/>
 		<mapping class="model.bean.StoryBean"/>
+		<mapping class="model.bean.CustomerServiceBean"/>
     </session-factory>
 </hibernate-configuration>
