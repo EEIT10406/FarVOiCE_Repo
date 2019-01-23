@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- Title -->
-<title>Enlighten - Professional Bootstrap Template</title>
+<title>FarVOiCE</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -37,8 +37,30 @@
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
-<!-- End JS -->
 
+<!-- End JS -->
+<script type="text/javascript">	
+function IsEmail(email) {
+    var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(!regex.test(email)) {
+        return false;
+    }else{
+        return true;
+    }
+}
+	$(document).ready(function() {
+		$('#email').blur(function() {
+			if(!IsEmail($('#email').val())){
+				console.log('wrong')
+				$('#emailCheck').html("信箱格式錯誤!");
+			}else{
+				console.log('good')
+				$('#emailCheck').html("");
+			}
+
+		})
+	})
+</script>
 </head>
 <body>
 	<div id="body_bg">
@@ -55,24 +77,24 @@
 							<br>
 						</div>
 						<!-- Contact Form -->
-						<form>
-							<label>電子郵件</label>
+						<form action="/roy/contact/new" method="get">
+							<label>電子郵件</label><span id="emailCheck" style='color:#880000;margin-left:20px'></span>
 							<div class="row margin-bottom-20">
 								<div class="col-md-6 col-md-offset-0">
-									<input class="form-control" type="text">
+									<input class="form-control" type="text" name="email" required id="email">
 								</div>
 							</div>
 							<label>標題<span class="color-red"></span>
 							</label>
 							<div class="row margin-bottom-20">
 								<div class="col-md-6 col-md-offset-0">
-									<input class="form-control" type="text">
+									<input class="form-control" type="text" name="title" required>
 								</div>
 							</div>
 							<label>留言</label>
 							<div class="row margin-bottom-20">
 								<div class="col-md-8 col-md-offset-0">
-									<textarea rows="8" class="form-control"></textarea>
+									<textarea rows="8" class="form-control" name="content" required></textarea>
 								</div>
 							</div>
 							<p>
