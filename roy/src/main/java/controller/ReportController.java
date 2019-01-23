@@ -123,12 +123,14 @@ public class ReportController {
 		for(Integer music_id : musicIds)
 		{
 			MusicBean bean = musicService.findMusic(music_id);
+			if(!bean.getMusic_unavailable()) {
 			HashMap<String,String>  m1 = new HashMap<String,String>();       
 			 m1.put("Music_name",bean.getMusic_name());
 			 m1.put("Member_username",bean.getMember_username());
 			 m1.put("Music_music",bean.getMusic_music());
 			 m1.put("Music_Image",bean.getMusic_Image());
 			 l1.add(m1);
+			}
 		}
 		return JSONValue.toJSONString(l1);
 	}
