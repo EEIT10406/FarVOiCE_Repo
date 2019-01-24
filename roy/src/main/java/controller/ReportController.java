@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import model.bean.MemberBean;
 import model.bean.MusicBean;
 import model.bean.PlaylistBean;
@@ -49,9 +51,9 @@ public class ReportController {
 
 	//查檢舉
 	@RequestMapping(value = "**/report.get")
+	@ResponseBody
 	public String get(Model model, Integer report_id) {
-		model.addAttribute("reportBean", reportService.findByPrimaryKey(report_id));
-		return "testSpring2";
+		return new Gson().toJson(reportService.findAll());
 	}
 	//
 		@RequestMapping(value = "**/report.update")
