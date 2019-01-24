@@ -70,7 +70,12 @@ public class LoginCheckingFilter implements Filter {
 					// 原本要執行的程式。
 					System.out.println("放requestURI"+requestURI);
 					if(!requestURI.endsWith("jsp")) {
-						requestURI = "/roy/homePage/index.jsp" ;
+						if(requestURI.endsWith("turnToDonatePage.controller")) {
+//							requestURI="/roy/funding/fundingDetail.jsp";
+							requestURI="/roy/funding/allFunding.jsp";
+						} else {
+							requestURI = "/roy/homePage/index.jsp" ;
+						}
 					}
 					session.setAttribute("requestURI", requestURI);
 					if ( ! isRequestedSessionIdValid ) {

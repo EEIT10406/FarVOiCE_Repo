@@ -173,7 +173,27 @@ table {
 }
 </style>
 <script>
+//點擊預覽小卡跳轉詳細頁面
+function detailhref(e){
+	var webhref=$(e).attr("href");
+	window.location.href=webhref;
+}
+//抓取選取日期計算到期天數
+function limitDay(day) {
+	var pickdate = day;
+	var enddate = new Date(pickdate);
+	var nowdate = new Date();
 
+	var deadline = enddate.getTime()
+			- nowdate.getTime();
+	var days = parseInt(deadline
+			/ (1000 * 60 * 60 * 24)) + 1;
+	if (isNaN(days)) {
+		return 0;
+	}else{
+		return days;
+	}
+}
 	$(document).ready(function() {
 		loadFanCount('${somebody}')
 		loadStarCount('${somebody}')
@@ -526,9 +546,11 @@ function loadMusicCount(username) {
 }
 //	列出使用者所有專案
 function showAllFunding(username){
+	alert('1111111111')
 	$.getJSON('/roy/personalPage/findProjectByUsername',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
+			alert('1111111111')
 			console.log(list);
 			content += 
 				'<div class="project-pre allproject" style="cursor:pointer" href="/roy/funding/detail.controller?funding_id='+list.funding_id+'&day='+limitDay(list.funding_duration)+'&nickname='+list.nick_name+'" onclick="detailhref(this)">'+
@@ -978,28 +1000,12 @@ var size1=5;
                 }
             })
  	}) 
-				 	//點擊預覽小卡跳轉詳細頁面
-				function detailhref(e){
-					var webhref=$(e).attr("href");
-					window.location.href=webhref;
 				}
-				//抓取選取日期計算到期天數
-				function limitDay(day) {
-					var pickdate = day;
-					var enddate = new Date(pickdate);
-					var nowdate = new Date();
+				 	
 				
-					var deadline = enddate.getTime()
-							- nowdate.getTime();
-					var days = parseInt(deadline
-							/ (1000 * 60 * 60 * 24)) + 1;
-					if (isNaN(days)) {
-						return 0;
-					}else{
-						return days;
-					}
-				}
-
+				
+				
+				
 </script>
 
 	<!-- 	showArticleFromMember end-->

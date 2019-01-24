@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,6 +47,15 @@
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 <script type="text/javascript">
+
+//	判斷贊助成功跳回所有專案畫面
+<c:if test="${not empty newDonateBean}">
+
+alert('${result}');
+
+</c:if>
+
+
 	$(document).ready(function() {
 		showAllFunding();
 
@@ -242,6 +252,7 @@
 		var webhref = $(e).attr("href");
 		window.location.href = webhref;
 	}
+
 </script>
 </head>
 <body>

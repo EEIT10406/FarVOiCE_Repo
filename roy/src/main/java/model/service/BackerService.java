@@ -38,4 +38,13 @@ public class BackerService {
 		}
 		return null;
 	}
+
+//建一筆贊助
+	public BackerBean create(BackerBean bean) {
+		if (bean != null) {
+
+			return backerDAO.create(bean);
+		}
+		return null;
+	}
 }

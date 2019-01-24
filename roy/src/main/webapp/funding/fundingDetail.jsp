@@ -76,6 +76,7 @@
 				$(this).find('.pick-lock').focus();
 			}
 		})
+		
 
 		//無法贊助自己的專案
 		if ('${selfusername}' == '${funding.member_username}') {
@@ -131,7 +132,7 @@ input[type="number"] {
 				<div class="detailImg">
 					<img src="${funding.funding_image}">
 				</div>
-				<div class="schedule">
+				<div class="schedule" id="move">
 					<span class="s-number">$0</span> <span
 						class="schedule-span s-number">$${funding.funding_goal}</span>
 					<progress value="${percent}" max="100"></progress>
@@ -159,7 +160,7 @@ input[type="number"] {
 				<blockquote class="blockquote-d">
 					專案募資成功！<br>在 2019/01/31 00:00 募資結束前，您都可以持續贊助此計畫。
 				</blockquote>
-				<a href="" id="entry" class="btn-sup">贊助專案</a>
+				<a href="#move" id="entry" class="btn-sup">贊助專案</a>
 
 
 			</div>
@@ -191,7 +192,7 @@ input[type="number"] {
 					<p class="content-s3">${funding.funding_description}</p>
 				</div>
 
-				<div class="reward-card ban-text">
+				<div class="reward-card ban-text" ">
 
 
 					<c:forEach var='reward'  items="${reward}">
@@ -237,7 +238,6 @@ input[type="number"] {
 											<form method="post"
 												action="<c:url value="turnToDonatePage.controller?reward_id=${reward.reward_id}&funding_id=${reward.funding_id}&funding_title=${funding.funding_title}&nickname=${nickname}"/> ">
 												<div class="sup-money-0">
-<p>${reward.reward_id}</p>
 													<div class="sup-money-1">
 														<label class="sup-money-2">贊助金額</label>
 														<h1 class="sup-money-3">$${reward.reward_amount}</h1>
@@ -245,7 +245,7 @@ input[type="number"] {
 													<div class="plus"></div>
 													<div class="extra-sup-1">
 														<label class="extra-sup-2">額外支持</label> <br> <input
-															value="0" name="sup_money" class="pick-lock" type="number"
+															 name="sup_money" class="pick-lock" type="number"
 															placeholder="$0">
 													</div>
 <!-- 													<input style="display: none" type="text" -->

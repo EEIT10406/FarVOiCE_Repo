@@ -34,7 +34,7 @@ public class BackerBean {
 	private String backer_email;
 	private Integer sup_money;
 	private java.util.Date backer_time;
-	private Integer postal_code;
+	private String postal_code;
 	private String backer_address;
 	private Boolean back_status;
 
@@ -118,11 +118,11 @@ public class BackerBean {
 		this.sup_money = sup_money;
 	}
 
-	public Integer getPostal_code() {
+	public String getPostal_code() {
 		return postal_code;
 	}
 
-	public void setPostal_code(Integer postal_code) {
+	public void setPostal_code(String postal_code) {
 		this.postal_code = postal_code;
 	}
 

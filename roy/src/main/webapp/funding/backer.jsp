@@ -67,8 +67,22 @@ input::-webkit-input-placeholder {
 }
 }
 </style>
+<script type="text/javascript">
+
+
+<c:if test="${not empty newDonateBean}">
+
+alert('${result}');
+
+</c:if>
+
+</script>
 </head>
 <body>
+
+
+
+
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
@@ -83,7 +97,7 @@ input::-webkit-input-placeholder {
 				</p>
 			</div>
 			<div class="c-1" style="padding-left: 20px">
-				<form action="<c:url value="" />" method="post">
+				<form action="<c:url value="createBack.controller" />" method="post">
 					<p class="thisweek" style="padding-left: 5px">寄送資訊</p>
 					<div class="form-group">
 
@@ -97,7 +111,7 @@ input::-webkit-input-placeholder {
 
 							<div class="input-form-wrapper submit-error" id="name">
 								<input class="form-control-b live-error-track"
-									placeholder="請填寫真實姓名，以利提案團隊聯繫及寄送回饋" required name="name"
+									placeholder="請填寫真實姓名，以利提案團隊聯繫及寄送回饋" required name="member_realname"
 									type="text">
 							</div>
 
@@ -113,7 +127,7 @@ input::-webkit-input-placeholder {
 
 							<div class="input-form-wrapper submit-error" id="name">
 								<input class="form-control-b live-error-track"
-									placeholder="請填寫希望的收件地址，提案團隊會將回饋寄送至此" required name="name"
+									placeholder="請填寫希望的收件地址，提案團隊會將回饋寄送至此" required name="backer_address"
 									type="text">
 							</div>
 
@@ -129,7 +143,7 @@ input::-webkit-input-placeholder {
 
 							<div class="input-form-wrapper submit-error" id="name">
 								<input class="form-control-b live-error-track"
-									placeholder="郵遞區號" required name="name" type="text">
+									placeholder="郵遞區號" required name=postal_code type="text">
 							</div>
 
 						</div>
@@ -144,13 +158,13 @@ input::-webkit-input-placeholder {
 
 							<div class="input-form-wrapper submit-error" id="name">
 								<input class="form-control-b live-error-track"
-									placeholder="請填寫常用手機號碼，以利提案團隊聯繫" required name="name"
-									type="text">
+									placeholder="請填寫常用手機號碼，以利提案團隊聯繫" required name="phone_number"
+									type="tel">
 							</div>
 
 						</div>
 
-						<div class="input-group">
+						<div class="input-group" >
 							<div class="input-group-addon clabel hidden-xs">
 								<div class="justify-helper" style="width: 100px">
 									<span>聯</span> <span>絡</span> <span>信</span> <span>箱</span>
@@ -160,13 +174,13 @@ input::-webkit-input-placeholder {
 
 							<div class="input-form-wrapper submit-error" id="name">
 								<input class="form-control-b live-error-track"
-									placeholder="請填寫常用電子信箱，以利提案團隊聯繫" required name="name"
-									type="text" value='${memberBean.member_email}'>
+									placeholder="請填寫常用電子信箱，以利提案團隊聯繫" required name="backer_email"
+									type="email" value='${memberBean.member_email}'>
 							</div>
 
 						</div>
 
-						<div class="input-group">
+						<div class="input-group" style="display: none;">
 							<div class="input-group-addon clabel hidden-xs">
 								<div class="justify-helper" style="width: 100px">
 									<span>贊</span> <span>助</span> <span>人</span> <span>名</span> <span>稱</span>
@@ -176,12 +190,12 @@ input::-webkit-input-placeholder {
 
 							<div class="input-form-wrapper submit-error" id="name">
 								<input class="form-control-b live-error-track"
-									placeholder="贊助人名稱" required name="name" type="text" value='${memberBean.member_username}'>
+									placeholder="贊助人名稱" required name="member_username" type="text" value='${memberBean.member_username}'>
 							</div>
 
 						</div>
 
-						<div class="input-group">
+						<div class="input-group" style="display: none;">
 							<div class="input-group-addon clabel hidden-xs">
 								<div class="justify-helper" style="width: 100px">
 									<span>贊</span> <span>助</span> <span>金</span> <span>額</span>
@@ -191,11 +205,11 @@ input::-webkit-input-placeholder {
 
 							<div class="input-form-wrapper submit-error" id="name">
 								<input class="form-control-b live-error-track"
-									placeholder="贊助金額" required name="name" type="text" value='${total_sup}'>
+									placeholder="贊助金額" required name="sup_money" type="text" value='${total_sup}'>
 							</div>
 
 						</div>
-						<div class="input-group">
+						<div class="input-group" style="display: none;">
 							<div class="input-group-addon clabel hidden-xs">
 								<div class="justify-helper" style="width: 100px">
 									<span>回</span> <span>饋</span> <span>I</span> <span>D</span>
@@ -205,12 +219,12 @@ input::-webkit-input-placeholder {
 
 							<div class="input-form-wrapper submit-error" id="name">
 								<input class="form-control-b live-error-track"
-									placeholder="回饋ID" required name="name" type="text" value='${rewardBean.reward_id}'>
+									placeholder="回饋ID" required name="reward_id" type="text" value='${rewardBean.reward_id}'>
 							</div>
 
 						</div>
 
-						<div class="input-group">
+						<div class="input-group" style="display: none;">
 							<div class="input-group-addon clabel hidden-xs">
 								<div class="justify-helper" style="width: 100px">
 									<span>專</span> <span>案</span> <span>I</span> <span>D</span>
@@ -218,9 +232,9 @@ input::-webkit-input-placeholder {
 
 							</div>
 
-							<div class="input-form-wrapper submit-error" id="name">
+							<div class="input-form-wrapper submit-error" id="name" >
 								<input class="form-control-b live-error-track"
-									placeholder="專案ID" required name="name" type="text" value='${rewardBean.funding_id}'>
+									placeholder="專案ID" required name="funding_id" type="text" value='${rewardBean.funding_id}'>
 							</div>
 
 						</div>
@@ -239,7 +253,7 @@ input::-webkit-input-placeholder {
 							</div>
 						</div>
 						<!-- 提交 -->
-						<input type="submit" class="btn-submit sent-money" value="確認贊助">
+						<input type="submit" class="btn-submit sent-money" value="確認贊助" >
 					</div>
 				</form>
 			</div>
