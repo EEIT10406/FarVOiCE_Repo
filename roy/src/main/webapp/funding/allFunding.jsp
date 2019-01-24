@@ -129,6 +129,11 @@ alert('${result}');
 			return days;
 		}
 	}
+	//贊助%數取到整數
+	function parseInt(percent){
+		var newpercent=Math.ceil(percent);
+		return newpercent
+	}
 	// 		function limitDay(s) {
 
 	// 			m = s.substring(s.indexOf('月')-1,s.indexOf('月'));
@@ -155,7 +160,7 @@ alert('${result}');
 	function showAllFunding() {
 		
 				$.getJSON(
-						'allFundingProject.controller',
+						'findAllByPass.controller',
 						function(data) {
 							var content = "";
 							$
@@ -201,13 +206,11 @@ alert('${result}');
 														+ list.funding_currentAmount
 														+ '</span><span'+
 					' class="hidden-md goalpercent goal"> '
-														+ list.funding_currentAmount
-														/ list.funding_goal
-														* 100
+														+ parseInt(list.funding_currentAmount/list.funding_goal*100)
 														+ '%</span><span'+
-					' style="font-size: 13px; letter-spacing: 1px"'+
+					' style="font-size: 13px; letter-spacing: 1px;font-family: Microsoft JhengHei"'+
 					'class="date pull-right small"> 還剩 <strong class="days"'+
-					'style="font-size: 13px; font-weight: 1000; letter-spacing: 1px">'
+					'style="font-size: 13px; font-weight: 1000; letter-spacing: 1px;">'
 														+ limitDay(list.funding_duration)
 														+ '</strong><span'+
 					' style="font-size: 13px; letter-spacing: 1px"> 天</span>'
