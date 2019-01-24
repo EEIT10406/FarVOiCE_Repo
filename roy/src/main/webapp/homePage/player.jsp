@@ -87,6 +87,5 @@ currentSrc = "";
 			audio : [ 
 			]
 		});
-		ap.init();
 	</script>
 </html>
