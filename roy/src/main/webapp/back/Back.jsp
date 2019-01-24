@@ -93,11 +93,42 @@ th, td {
 <script >
 $(document).ready(function() {
 	refreshContact();
+	refreshFunding();
 })
-function submitBtnClick() {
-		console.log("123");
-		$("#form").submit();
-	}
+function refreshFunding(){
+	$('#fundingTable').html("");
+	$.ajax({
+	    url: "/roy/funding/allFundingProject.controller",
+	    type: "POST",
+	    cache:false,
+	    dataType:'json',
+	    data:{},
+		success : function(list)
+		 {  
+			console.log(list);
+		 	list.forEach(function(obj, index) {
+		 		var fix = "未通過";
+		 		if(obj.funding_status=="true"){
+		 			fix = "已通過";
+		 		}
+		 	    var content = "<tr>"+
+							      "<td >"+obj.member_username+"</td>"+
+							      "<td ><a href='/roy/funding/detail.controller?funding_id="+ 
+							    		  obj.funding_id+"&day="+ limitDay(obj.funding_duration)+"&nickname="+obj.nick_name+"'>"
+											+obj.funding_title+"</a></td>"+
+							      "<td >"+obj.funding_createTime+"</td>"+
+							      "<td >"+fix+"</td>"+
+							      "<td ><a href='#'  funding_id='"+obj.funding_id+"' onclick='passCurrentFunding(this)'><i class='fas fa-pencil-alt fa-lg'></i></a></td>"+
+							  "</tr>";
+				$('#fundingTable').append(content);
+		  	});
+		},  
+	    error: function (xhr, ajaxOptions, thrownError) {
+	        alert(xhr.status+"-->showAllfundingTable");
+	        alert(thrownError);
+	    }
+	});	
+}
 function refreshContact(){
 	$('#contactTable').html("");
 	$.ajax({
@@ -110,13 +141,17 @@ function refreshContact(){
 		 {  
 			console.log(list);
 		 	list.forEach(function(obj, index) {
+		 		var fix = "未完成";
+		 		if(obj.CustomerService_fixed){
+		 			fix = "已處理"
+		 		}
 		 	    var content = "<tr>"+
 							      "<td >"+obj.CustomerService_email+"</td>"+
 							      "<td >"+obj.CustomerService_title+"</td>"+
 							      "<td >"+obj.CustomerService_content+"</td>"+
 							      "<td >"+obj.CustomerService_time+"</td>"+
-							      "<td >"+obj.CustomerService_fixed+"</td>"+
-							      "<td ><a href='#' data-toggle='modal' data-target='#edit' CustomerService_id='"+obj.CustomerService_id+"' onclick='giveFormId(this)'><i class='fas fa-pencil-alt fa-lg'></i></a></td>"+
+							      "<td >"+fix+"</td>"+
+							      "<td ><a href='#'  CustomerService_id='"+obj.CustomerService_id+"' onclick='edit(this)'><i class='fas fa-pencil-alt fa-lg'></i></a></td>"+
 							  "</tr>";
 				$('#contactTable').append(content);
 		  	});
@@ -138,7 +173,8 @@ function edit(e){
 	    type: "POST",
 	    cache:false,
 	    dataType:'json',
-	    data:{CustomerService_id:$('#CustomerService_id').val()},
+	    data:{CustomerService_id:$(e).attr('CustomerService_id')},
+
 		success : function(list)
 		{  
 			$('#contactTable').html("");
@@ -154,7 +190,43 @@ function edit(e){
 	});	
 	
 }
+function passCurrentFunding(e){
+	$.ajax({
+	    url: "/roy/back/passCurrentFunding.controller",
+	    type: "POST",
+	    cache:false,
+	    dataType:'json',
+	    data:{funding_id:$(e).attr("funding_id")},
 
+		success : function(list)
+		{  
+			$('#fundingTable').html("");
+			refreshFunding();
+			console.log("suc");
+		},  
+	    error: function (xhr, ajaxOptions, thrownError) {
+	    	$('#fundingTable').html("");
+	    	refreshFunding();
+			console.log("error");
+
+	    }
+	});	
+	
+}
+//抓取選取日期計算到期天數
+function limitDay(day) {
+	var pickdate = day;
+	var enddate = new Date(pickdate);
+	var nowdate = new Date();
+
+	var deadline = enddate.getTime() - nowdate.getTime();
+	var days = parseInt(deadline / (1000 * 60 * 60 * 24)) + 1;
+	if (isNaN(days)) {
+		return 0;
+	} else {
+		return days;
+	}
+}
 </script>
 </head>
 <body>
@@ -250,18 +322,17 @@ function edit(e){
 									<div class="row">
 										<div class="col-md-12">
 											<div style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">募資管理</div>
-											<table  >
+											<table  style="word-break: keep-all" >
 											  <thead>
 											    <tr>
-											      <th scope="col">提案人(暱稱)</th>
+											      <th scope="col">提案人(帳號)</th>
 											      <th scope="col">標題</th>
-											      <th scope="col">內容</th>
 											      <th scope="col">時間</th>
-											      <th scope="col">已處理</th>
+											      <th scope="col">審核</th>
 											      <th scope="col">編輯</th>
 											    </tr>
 											  </thead>
-											  <tbody id="contactTable">
+											  <tbody id="fundingTable">
 											   											
 											  </tbody>	
 											 </table>	
@@ -299,7 +370,7 @@ function edit(e){
 											      <th scope="col">標題</th>
 											      <th scope="col">內容</th>
 											      <th scope="col">時間</th>
-											      <th scope="col">已處理</th>
+											      <th scope="col">狀態</th>
 											      <th scope="col">編輯</th>
 											    </tr>
 											  </thead>

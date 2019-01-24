@@ -185,6 +185,7 @@ public class FundingController {
 			jsonMap.put("funding_id", "" + bean.getFunding_id());
 			jsonMap.put("funding_createTime", "" + bean.getFunding_createTime());
 			jsonMap.put("funding_browseCount", "" + bean.getFunding_browseCount());
+			jsonMap.put("funding_status", "" + bean.getFunding_status());
 			fundings.add(jsonMap);
 		}
 
@@ -217,5 +218,12 @@ public class FundingController {
 
 		}
 		return JSONValue.toJSONString(fundings);
+	}
+	
+	@RequestMapping(path="/back/passCurrentFunding.controller")
+	public void edit(Integer funding_id) {	
+		FundingBean bean = fundingService.findFundingById(funding_id);
+		bean.setFunding_status(true);
+		fundingService.update(bean);
 	}
 }
