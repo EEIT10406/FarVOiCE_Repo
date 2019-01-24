@@ -248,11 +248,24 @@ function edit(e){
 								<!--=-----allType 募資管理 Begin -->
 								<div class="tab-pane fade in" id="allType">
 									<div class="row">
-										<div class="col-md-7">
-											<div
-												style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">募資管理</div>
-										
-										</div>
+										<div class="col-md-12">
+											<div style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">募資管理</div>
+											<table  >
+											  <thead>
+											    <tr>
+											      <th scope="col">提案人(暱稱)</th>
+											      <th scope="col">標題</th>
+											      <th scope="col">內容</th>
+											      <th scope="col">時間</th>
+											      <th scope="col">已處理</th>
+											      <th scope="col">編輯</th>
+											    </tr>
+											  </thead>
+											  <tbody id="contactTable">
+											   											
+											  </tbody>	
+											 </table>	
+										 </div>
 									</div>
 								</div> 
 								<!--=-----allType 募資管理 END -->
