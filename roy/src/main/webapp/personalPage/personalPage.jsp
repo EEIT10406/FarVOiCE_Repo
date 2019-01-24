@@ -613,7 +613,6 @@ function loadMemberLikeMusic(username) {
 							<div id="test"><br>
 							</div>
 					        <a class='readmore' onclick='return showData()'>查看更多文章</a>
-					
 						</div>
 						<!-- End dynamic -->
 						<div class="tab-pane fade in" style="overflow: auto;" id="music">								
@@ -886,8 +885,10 @@ function showData(){
 								var Post_contentPrivacy =  "<div style='margin-bottom:45px'>"+img+contentPrivacy+button +"<br></br></div>";
 
 								//分享的內容
-						        var Share_content = "<div style='margin-bottom:45px '>"+img+test + "<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
-						        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + "<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
+								var Share_content = "<div style='margin-bottom:45px '>"+img+test + "<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
+						        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy +"<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
+
+
 						        if(postorshare==true && privacy==false){
 						        	$('#test').append(Post_content);
 						        }else if(postorshare==false && privacy==false){
@@ -910,7 +911,7 @@ function showData(){
 									
 		             else{
 			       		
-		             for(   var i=pagestart; i< (pagestart+size1); i++){
+		             for(  var i=pagestart; i< (pagestart+size1); i++){
 		            	 
 							function timeFn(d1) {//di作为一个变量传进来
 							    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
@@ -968,8 +969,8 @@ function showData(){
 							var Post_contentPrivacy =  "<div style='margin-bottom:45px'>"+img+contentPrivacy+button +"<br></br></div>";
 
 							//分享的內容
-					        var Share_content = "<div style='margin-bottom:45px'>"+img+test +"<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
-					        var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy + "<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
+					        var Share_content = "<div style='margin-bottom:45px '>"+img+test + "<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
+						    var Share_contentPrivacy = "<div style='margin-bottom:45px'>"+img+testPrivacy +"<div style='border:1px solid #AAAAAA; width:250px'>"+"<img style='width:70px;height:70px'src='"+musicImage+"'>"+ musiccontent+"</div><br></br></div>";
 
 					        if(postorshare==true && privacy==false){
 					        	$('#test').append(Post_content);

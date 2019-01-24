@@ -100,4 +100,34 @@ public class PostController {
 		postService.removePost(post_idS);
 		return "redirect:/personalPage/personalPage.jsp";
 	}
+	
+	
+
+	@RequestMapping(path="/somebodypersonalPage/showArticleFromMember.controller",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showsomebodyArticleFromMember(Model model,HttpSession session,String username) {
+		//取得登陸的人
+		MemberBean loginmember = (MemberBean)session.getAttribute("user");
+		System.out.println("somebody" + loginmember.getMember_username());
+		
+		if(
+			username.equals(loginmember.getMember_username())) {
+			
+			List<PostBean> posts = postService.showAllArticleFromMember(username);
+			//用gson包成json送回前端
+			Gson gson = new Gson();
+			String jsonList = gson.toJson(posts);
+			return jsonList;
+			
+		}else {
+			List<PostBean> posts = postService.showsomebodyprivacyArticleInFindArticle(username);
+			//用gson包成json送回前端
+			Gson gson = new Gson();
+			String jsonList = gson.toJson(posts);
+			return jsonList;
+			
+		}
+		
+	}
+
 }

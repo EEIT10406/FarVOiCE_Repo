@@ -166,4 +166,12 @@ public List<PostBean> showSearchArticleInFindArticle (String searchString){
 	List<PostBean> PostList = query.list();
 	return PostList;
 }
+//顯示公開文章及分享
+public List<PostBean> showAllprivacyArticleInFindArticle (String username){
+	String hql = "from PostBean WHERE member_username=:member_username and post_privacy=False Order By post_time Desc";
+	Query<PostBean> query = this.getSession().createQuery(hql);
+	query.setParameter("member_username", username);
+	List<PostBean> PostList = query.list();
+	return PostList;
+}
 }
