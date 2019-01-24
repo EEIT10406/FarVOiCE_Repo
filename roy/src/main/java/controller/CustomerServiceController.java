@@ -39,12 +39,13 @@ public class CustomerServiceController {
 		List<CustomerServiceBean> CustomerServiceBeans = customerServiceService.showAllCustomerService();
 		Gson gson = new Gson();
 		String jsonList = gson.toJson(CustomerServiceBeans);
+			System.out.println(jsonList);
+		
 		return jsonList;
 	}
 	
 	@RequestMapping(path="/back/edit.controller")
-	public String edit(Boolean fixed,Integer CustomerService_id) {	
+	public void edit(Boolean fixed,Integer CustomerService_id) {	
 		customerServiceService.fix(CustomerService_id, new Date());
-		return "redirect:/back/Back.jsp";
 	}
 }
