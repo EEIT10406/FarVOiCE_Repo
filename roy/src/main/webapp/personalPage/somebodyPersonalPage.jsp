@@ -48,7 +48,6 @@
 <script src="1.js?ver=1"></script>
 <!-- End JS -->
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 
 <style>
