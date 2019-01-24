@@ -279,7 +279,7 @@ function edit(e){
 									<div class="row">
 										<div class="col-md-12">
 											<div style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">客服管理</div>
-											<table  id="contactTable">
+											<table  >
 											  <thead>
 											    <tr>
 											      <th scope="col">信箱</th>
@@ -290,7 +290,7 @@ function edit(e){
 											      <th scope="col">編輯</th>
 											    </tr>
 											  </thead>
-											  <tbody>
+											  <tbody id="contactTable">
 											   											
 											  </tbody>	
 											 </table>	
