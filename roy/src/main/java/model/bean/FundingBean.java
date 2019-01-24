@@ -16,7 +16,7 @@ public class FundingBean {
 				+ funding_title + ", funding_styleName=" + funding_styleName + ", funding_image=" + funding_image
 				+ ", music_id=" + music_id + ", funding_goal=" + funding_goal + ", funding_currentAmount="
 				+ funding_currentAmount + ", funding_duration=" + funding_duration + ", funding_createTime="
-				+ funding_createTime + ", funding_browseCount=" + funding_browseCount + "]";
+				+ funding_createTime + ", funding_browseCount=" + funding_browseCount + ",funding_status="+funding_status+"]";
 	}
 
 	/*
@@ -43,6 +43,7 @@ public class FundingBean {
 	private java.sql.Date funding_duration;
 	private java.util.Date funding_createTime;
 	private Integer funding_browseCount;
+	private Boolean funding_status;  
 
 	public Integer getFunding_currentAmount() {
 		return funding_currentAmount;
@@ -147,6 +148,14 @@ public class FundingBean {
 
 	public void setFunding_browseCount(Integer funding_browseCount) {
 		this.funding_browseCount = funding_browseCount;
+	}
+
+	public Boolean getFunding_status() {
+		return funding_status;
+	}
+
+	public void setFunding_status(Boolean funding_status) {
+		this.funding_status = funding_status;
 	}
 
 }

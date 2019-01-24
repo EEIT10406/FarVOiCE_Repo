@@ -100,16 +100,19 @@ public class FundingDAO {
 				.list();
 	}
 
+//找出專案byFundingId
 	public FundingBean findByPrimaryKey(Integer funding_id) {
 		// 0103 OK
 		return this.getSession().get(FundingBean.class, funding_id);
 	}
 
+//找出全部專案
 	public List<FundingBean> findAll() {
 		// 0103 OK
 		return this.getSession().createQuery("from FundingBean", FundingBean.class).setMaxResults(50).list();
 	}
 
+//創一個專案
 	public FundingBean create(FundingBean bean) {
 		// 0103 OK
 //		if(bean!=null) {
@@ -122,12 +125,14 @@ public class FundingDAO {
 //		return null;
 	}
 
+//更新一筆專案
 	public void update(FundingBean bean) {
 		// 0103 OK
 		getSession().clear();
 		getSession().update(bean);
 	}
 
+//刪除一筆專案byF_IdId
 	public boolean remove(Integer funding_id) {
 		// 0103 OK
 		FundingBean result = this.getSession().get(FundingBean.class, funding_id);

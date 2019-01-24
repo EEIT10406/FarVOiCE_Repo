@@ -47,9 +47,8 @@
 <link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 <!-- js -->
 <script type="text/javascript">
-	// 替換專案內容&支持者
-	//瀏覽次數降序排列
 	$(document).ready(function() {
+
 		//替換專案內容
 		$('#incontent').on('click', function() {
 
@@ -65,12 +64,44 @@
 		})
 		//切換捐贈+focus
 		$('.card-toggle').click(function() {
-			$('.donate').slideDown(300);
-			$('.pick-lock').focus();
-			
-			
+			var query = $(this).find('.donate');
+			var isVisible = query.is(':visible');
+			if (isVisible === true) {
+				// element is Visible
+				$(this).find('.pick-lock').focus();
+			} else {
+				// element is Hidden
+				$('.donate').hide();
+				$(this).find('.donate').slideDown(300);
+				$(this).find('.pick-lock').focus();
+			}
 		})
+		
+
+		//無法贊助自己的專案
+		if ('${selfusername}' == '${funding.member_username}') {
+
+			$('#entry').attr("disabled", true);
+			$('#entry').css("pointer-events", "none");
+			$('#entry').css("background-color", "#bebebe");
+			$('#entry').html("<i class='fas fa-ban'></i>  您無法贊助自己的專案");
+			$('.ban-donate').attr("disabled", true);
+			$('.ban-donate').css("pointer-events", "none");
+			$('.ban-color').css("background-color", "#e0e0e0");
+		}
+		
 	})
+	//得出每個回饋贊助人數
+	// 		function donatecounts(count){
+	// 			alert(..............)
+	// 		$.get("donateCount_reward.controller",{reward_id:count}).done(function(result){
+
+	// 			alert(result);
+
+	// 		})
+
+	// 	}
+	
 </script>
 <style type="text/css">
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -89,20 +120,22 @@ input[type="number"] {
 		<div class="fundingDetail">
 
 			<div class="detailHead">
-				<h1 style="font-weight: bold;">『the ONE table 一張桌子』為孩子開張團圓桌</h1>
+				<h1 style="font-weight: bold">${funding.funding_title}</h1>
 				<p>
-					由 <a href="">the ONE table 一張桌子扶助計畫</a> 提案
+					由 <a
+						href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${nickname}">${nickname}</a>
+					提案
 				</p>
 			</div>
 
 			<div class="c-1">
 				<div class="detailImg">
-					<img src="/roy/image/funding/hon.jpg">
+					<img src="${funding.funding_image}">
 				</div>
-				<div class="schedule">
+				<div class="schedule" id="move">
 					<span class="s-number">$0</span> <span
-						class="schedule-span s-number">$15000</span>
-					<progress value="50" max="100"></progress>
+						class="schedule-span s-number">$${funding.funding_goal}</span>
+					<progress value="${percent}" max="100"></progress>
 					<span style="font-family: Microsoft JhengHei;">募資開始</span><span
 						class="schedule-span" style="font-family: Microsoft JhengHei;">募資成功</span>
 				</div>
@@ -111,23 +144,25 @@ input[type="number"] {
 
 			<div class="c-2">
 				<div class="info-1">
-					<h1>$153980</h1>
+					<h1>$${funding.funding_currentAmount}</h1>
 					<span>目標</span>
-					<p>$150000</p>
+					<p>$${funding.funding_goal}</p>
 				</div>
 				<div class="info-2">
-					<h1>167</h1>
+					<h1>${donateCount_funding}</h1>
 					<p>人贊助</p>
 				</div>
 				<div class="info-3">
-					<h1>12</h1>
+					<h1>${day}</h1>
 					<p>天結束</p>
 				</div>
 
 				<blockquote class="blockquote-d">
 					專案募資成功！<br>在 2019/01/31 00:00 募資結束前，您都可以持續贊助此計畫。
 				</blockquote>
-				<a href="" class="btn-sup">贊助專案</a>
+				<a href="#move" id="entry" class="btn-sup">贊助專案</a>
+
+
 			</div>
 
 			<div class="c-3">
@@ -139,7 +174,7 @@ input[type="number"] {
 				</div>
 				<div class="create-man">
 					<p style="display: inline-block;">
-						<span>提案者:</span>the ONE table 一張桌子扶助計畫
+						<span>提案者:</span>${nickname}
 					</p>
 					<a> <img src="">
 					</a>
@@ -153,78 +188,86 @@ input[type="number"] {
 			<div class="c-4">
 				<div class="ajax-content">
 					<h1 class="content-s1">專案內容</h1>
-					<h1 class="content-s2">『the ONE table 一張桌子』為孩子開張團圓桌</h1>
-					<p class="content-s3">一張桌子，看似只有三支桌腳支撐著，分別代表著一起合作的三位女孩，另外一支隱形的桌腳，代表著社會上支持公益與傳遞愛心的人；『the
-						ONE table
-						一張桌子』扶助計畫，已順利推動善的循環，無論是寒冬的艱苦人尾牙，抑或是拾荒長輩的支助，都讓迫切需要幫助的人，在那當下，倚著一張桌子，找到希望。無論是捐贈者或是受贈者，都因著這樣的善行，在桌子上呈現最好的互助，也讓彼此的生命大大被改變。</p>
+					<h1 class="content-s2">${funding.funding_title}</h1>
+					<p class="content-s3">${funding.funding_description}</p>
 				</div>
 
-				<div class="reward-card">
-					<div class="card-toggle">
-						<div class="a">
-							<div class="project-pre">
-								<div class="pcontent-pre"
-									style="height: 40px; font-size: 2.5rem; margin-bottom: 0px;">
-									<p id="pre-amount" class="title-content detail-money">100</p>
-									<p class="detail-man">41人</p>
-								</div>
-								<div class="img-detail">
-									<img class="img-in" id="preview_progressbarTW_img"
-										style="border-radius: 0" src="/roy/img/default.jpg">
-								</div>
-								<div class="pcontent-pre"
-									style="height: 135px; margin-bottom: 0px;">
+				<div class="reward-card ban-text" ">
 
-									<p id="pre-content" class="excerpt"
-										style="font-weight: bold; font-size: 0.85rem">單純贊助，不需回饋</p>
-								</div>
-								<div class="downMeta-pre estimated-font">
-									<div style="width: 50%; display: inline-block;">
-										<p class="locate">寄送地點</p>
-										<p
-											style="margin-bottom: 0px; font-size: 13px; letter-spacing: 0.5px;">只寄送台灣本島</p>
+
+					<c:forEach var='reward'  items="${reward}">
+
+						<div class="card-toggle ban-donate">
+							<div class="a">
+								<div class="project-pre pre-hover ban-color">
+									<div class="pcontent-pre"
+										style="height: 40px; font-size: 2.5rem; margin-bottom: 0px;">
+										<p id="pre-amount" class="title-content detail-money">${reward.reward_amount}</p>
+										<p class="detail-man">${reward.reward_donateCount}</p>
 									</div>
-									<div
-										style="width: 50%; display: inline-block; float: right; text-align: right;">
-										<p class="estimated">預計寄送時間</p>
-										<span id="estimated-year"
-											style="font-size: 13px; letter-spacing: 0.5px;">2019</span> /
-										<span id="estimated-month"
-											style="font-size: 13px; letter-spacing: 0.5px;">1</span>
+									<div class="img-detail">
+										<img class="img-in" id="preview_progressbarTW_img"
+											style="border-radius: 0" src="${reward.reward_image}">
 									</div>
+									<div class="pcontent-pre"
+										style="height: auto; margin-bottom: 0px;">
 
-									<div class="donate">
-										<p class="donate-p">
-											<span>你的支持將使專案達到</span>150%
-										</p>
+										<p id="pre-content" class="excerpt"
+											style="font-weight: bold; font-size: 0.85rem">${reward.reward_description}</p>
+									</div>
+									<div class="downMeta-pre estimated-font">
+										<div style="width: 50%; display: inline-block;">
+											<p class="locate">寄送地點</p>
+											<p
+												style="margin-bottom: 0px; font-size: 13px; letter-spacing: 0.5px;">只寄送台灣本島</p>
+										</div>
+										<div
+											style="width: 50%; display: inline-block; float: right; text-align: right;">
+											<p class="estimated">預計寄送時間</p>
+											<span id="estimated-year"
+												style="font-size: 13px; letter-spacing: 0.5px;">${reward.reward_estimatedYear}</span>
+											/ <span id="estimated-month"
+												style="font-size: 13px; letter-spacing: 0.5px;">${reward.reward_estimatedMonth}</span>
+										</div>
 
-										<form method="post" action="">
-											<div class="sup-money-0">
+										<div class="donate">
+											<p class="donate-p">
+												<span>你的支持將使專案達到</span>150%
+											</p>
 
-												<div class="sup-money-1">
-													<label class="sup-money-2">贊助金額</label>
-													<h1 class="sup-money-3">$100</h1>
+											<form method="post"
+												action="<c:url value="turnToDonatePage.controller?reward_id=${reward.reward_id}&funding_id=${reward.funding_id}&funding_title=${funding.funding_title}&nickname=${nickname}"/> ">
+												<div class="sup-money-0">
+													<div class="sup-money-1">
+														<label class="sup-money-2">贊助金額</label>
+														<h1 class="sup-money-3">$${reward.reward_amount}</h1>
+													</div>
+													<div class="plus"></div>
+													<div class="extra-sup-1">
+														<label class="extra-sup-2">額外支持</label> <br> <input
+															 name="sup_money" class="pick-lock" type="number"
+															placeholder="$0">
+													</div>
+<!-- 													<input style="display: none" type="text" -->
+<%-- 														value="${reward.reward_id}"> <input --%>
+<!-- 														style="display: none" type="text" -->
+<%-- 														value="${reward.funding_id}">  --%>
+														<input type="submit"
+														class=btn-submit value="贊助此回饋">
 												</div>
-												<div class="plus"></div>
-												<div class="extra-sup-1">
-													<label class="extra-sup-2">額外支持</label> <br> <input class="pick-lock"
-														type="number" placeholder="$0">
-												</div>
-												<input type="submit" class=btn-submit value="贊助此回饋">
-											</div>
-										</form>
+											</form>
+
+										</div>
+
 
 									</div>
-
-
 								</div>
+
 							</div>
 
 						</div>
 
-					</div>
-
-
+					</c:forEach>
 
 
 				</div>
