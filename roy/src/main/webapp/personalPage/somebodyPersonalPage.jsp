@@ -52,6 +52,22 @@
 
 
 <style>
+.readmore{
+ 	background-color: white;
+    color: black;
+/*     border: 2px solid black; */
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.readmore:hover {
+    background-color: #9f5000; /* Green */
+    color: white;
+}
 .post {
 	float: left;
 
@@ -154,8 +170,28 @@ table {
 	word-break: break-all;
 	opacity:0.4
 }
+
+.shareAndAddbtn {
+	color: black;
+	background-color: white;
+	border: 0px;
+}
 </style>
 <script>
+function changeCheckBoxs() {
+	var checkboxs = document.getElementsByName("isprivacy");
+	for (var i = 0; i < checkboxs.length; i++) {
+		if (checkboxs[i].checked == false) {
+				checkboxs[i].checked = true;
+				checkboxs[i].value = "false";
+		}
+	}
+}
+function submitBtnClick(){
+	changeCheckBoxs();
+	 $("#addshareform").submit();
+	 
+}
 
 	$(document).ready(function() {
 		loadFanCount('${somebody}')
@@ -191,6 +227,22 @@ table {
 		for (var i = 0; i < unfollows.length; i++) {
 			unfollows[i].addEventListener("click", followClick);
 		}
+		//按分享時載入哪首音樂shareAndAddbtn
+		$('body').on('click','.shareAndAddbtn',function() {
+	        var music_name =$(this).attr('music_name');
+	    	var music_id = $(this).attr('music_id');
+	    	var music_image =$(this).attr('music_image');
+	    	var music_href ="/roy/musicPage/findMusicById?musicId="+music_id;
+	    	
+	    	 $("#addshareMusicname").text(""+music_name+"");
+	    	 $("#addshareMusicid").text(""+music_id+"");
+	    	 
+	    	 console.log(music_name+","+music_id+","+music_image);
+	    	 //顯示
+	    	 $('#addshareMusicnameSpan > a').text(music_name);
+	    	 $('#addshareMusicnameSpan > a').attr("href",music_href);
+	    	 $('#addshareMusicImg').attr("src",music_image);
+			})
 	})
 
 
@@ -436,7 +488,7 @@ function loadMusic(username) {
 				var like='<img src="/roy/img/emptyLove.png" class="heart">';
 			}   
 	    content+=like+'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
-                      '<span id="share" class="shareAndAdd"><a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a></span>'+
+	    '<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare" style="outline: none;" music_id="'+list.music_id+'" music_image="'+list.music_Image+'" music_name="'+list.music_name+'"><img src="../img/share.png" width="13px">分享</button></span>'+
                       '<span id="add">'+
                       '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
 					  '</span>'+
@@ -487,7 +539,7 @@ function loadMemberLikeMusic(username) {
 				 			}  
 				    content+=like+'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
 					              '<span id="share" class="shareAndAdd">'+
-				                       '<a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a>'+
+					              '<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare" style="outline: none;" music_id="'+list.music_id+'" music_image="'+list.music_Image+'" music_name="'+list.music_name+'"><img src="../img/share.png" width="13px">分享</button></span>'+
 					              '</span>'+
 					              '<span id="add">'+
 			                      '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
@@ -555,8 +607,8 @@ function loadMusicCount(username) {
 					<div class="tab-content" style="height: auto;">
 
 						<div class="tab-pane fade in active" id="dynamic">
-							<div id="test"></div>
-
+						<div id="test"></div>
+						<a class='readmore' onclick='return showData()'>查看更多文章</a>
 						</div>
 						<!-- End dynamic -->
 						<!-- 						<div class="tab-pane fade in active" id="dynamic"> -->
@@ -710,82 +762,100 @@ function loadMusicCount(username) {
 	<!-- 	showArticleFromMember start-->
 	<script>
 
- $(function () {            
-            $.ajax({
-                url: "/roy/personalPage/showArticleFromMember.controller",   //存取Json的網址             
-                type: "POST",
-                cache:false,
-                dataType:'json',
-                data:{username:$('#userName').text()},
-                //contentType: "application/json",              
-				success : function(list)
-				 {   
-					list.forEach(function(obj, index) {
-						
-						function timeFn(d1) {//di作为一个变量传进来
-						    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
-						    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
-						    var dateEnd = new Date();//获取当前时间
-						    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
-						    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
-						    //计算出相差天数
-						    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
-						    var hours=Math.floor( leave1 /(3600*1000))
-						    //计算出小时数
-						    //计算相差分钟数
-						    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
-
-						    var minutes=Math.floor(leave2 /(60*1000))
-						    //计算相差分钟数
-						    //计算相差秒数
-						    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
-						    var seconds=Math.round(leave3/1000)
-						    console.log(" 相差 "+dayDiff+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
-						    if(dayDiff>1){
-						    	timediff += dayDiff+"天前";
-						    }else if(hours>1){
-						    	timediff += hours+"小時前";
-						    }else if(minutes>1){
-						    	timediff += minutes+"分鐘前";
-						    }else{
-						    	timediff+="剛剛";
-						    }
-						}
-						
-						var timediff ="";
-						timeFn(obj.post_time);
-						var imgPath=$('#somebodyProfile').attr('src');
-
-						var postorshare = obj.post_postorshare;
-						var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
-						var privacy = obj.post_privacy;
-						var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+obj.post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-						var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
-						var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
-				        var div =  "<div style='margin-bottom:45px'>"+img+content + button +"<br></br></div>";
-				       
-						//分享的內容
-				        var div2 = "<div style='margin-bottom:45px'>"+img+content2 + "<br></br></div>";
-				       
-				        if(postorshare==true && privacy==false){
-				        	$('#test').append(div);
-				        }else if(postorshare==false && privacy==false){
-				        			$('#test').append(div2);
-				        		}				        
-
-				  	})
-				  },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status);
-                    alert(thrownError);
-                }
-            })
+ $(function () {  
+	 //放showData   showData();
+	 showData();
+	 
+            
  	})         
 </script>
 
 	<!-- 	showArticleFromMember end-->
 
+<script>
+//sohwdata
+var counter=0;
+var pagestart=0;
+var sum ;
+var size1=5;
+function showData(){
+	counter++;
+	$.ajax({
+        url: "roy/somebodyPersonalPage/showArticleFromMember.controller",   //存取Json的網址             
+        type: "POST",
+        cache:false,
+        dataType:'json',
+        data:{username:$('#userName').text()},
+        //contentType: "application/json",              
+		success : function(list)
+		 {   
+			list.forEach(function(obj, index) {
+				
+				function timeFn(d1) {//di作为一个变量传进来
+				    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+				    var dateBegin = new Date(d1.replace(/-/g, "/"));//将-转化为/，使用new Date
+				    var dateEnd = new Date();//获取当前时间
+				    var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+				    var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
+				    //计算出相差天数
+				    var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
+				    var hours=Math.floor( leave1 /(3600*1000))
+				    //计算出小时数
+				    //计算相差分钟数
+				    var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
 
+				    var minutes=Math.floor(leave2 /(60*1000))
+				    //计算相差分钟数
+				    //计算相差秒数
+				    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+				    var seconds=Math.round(leave3/1000)
+				    console.log(" 相差 "+dayDiff+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
+				    if(dayDiff>1){
+				    	timediff += dayDiff+"天前";
+				    }else if(hours>1){
+				    	timediff += hours+"小時前";
+				    }else if(minutes>1){
+				    	timediff += minutes+"分鐘前";
+				    }else{
+				    	timediff+="剛剛";
+				    }
+				}
+				
+				var timediff ="";
+				timeFn(obj.post_time);
+				var imgPath=$('#somebodyProfile').attr('src');
+
+				var postorshare = obj.post_postorshare;
+				var img = "<img src='"+imgPath+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px' >";
+				var privacy = obj.post_privacy;
+				var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+				var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><span style='margin-right:4px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
+				var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" + obj.post_idS + "'>查看全文</a>"
+		        var div =  "<div style='margin-bottom:45px'>"+img+content + button +"<br></br></div>";
+		       
+				//分享的內容
+		        var div2 = "<div style='margin-bottom:45px'>"+img+content2 + "<br></br></div>";
+		       
+		        if(postorshare==true && privacy==false){
+		        	$('#test').append(div);
+		        }else if(postorshare==false && privacy==false){
+		        			$('#test').append(div2);
+		        		}				        
+
+		  	})
+		  },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+        }
+    })
+	
+	
+}
+	 
+
+
+</script>
 
 
 	<!-- === END CONTENT === -->
@@ -818,6 +888,32 @@ function loadMusicCount(username) {
 									</div>							
 							
 							<!-- addPlayList end-->
+							
+								<!-- addshare begin-->
+	<div class="modal fade" id="addshare" aria-hidden="true">
+		<div class="modal-dialog" style="width: 300px;">
+			<div class="modal-content">
+				<h5 style="margin: 20px;">分享歌曲</h5>
+				<form action="<c:url value='/personalPage/ShareMusic.controller'/>" method="get" id="addshareform">
+					<div class="modal-body">
+						<div class="form-group"></div>
+						<textarea name="shareContent" style="width: 250px; height: 270px" onFocus="if(this.value==this.defaultValue) this.value=''" onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
+					</div>
+					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
+					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
+					<div id="displayShareMusic">
+						<img src="../img/300x300.jpg" id="addshareMusicImg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
+						<span style="margin-left: 10px; font-size: 15px;" id="addshareMusicnameSpan"><a href="#">123讓我為你唱情歌</a></span>
+					</div>
+					<div class="modal-footer">
+						<div style="float:left"><input type="checkbox" name="isprivacy" value="true">不公開</div>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" onclick="submitBtnClick()" >確定</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
 							
 	<jsp:include page="../homePage/footer.jsp" />
 	<!-- 	<div id="player"> -->

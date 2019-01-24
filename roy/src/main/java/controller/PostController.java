@@ -100,4 +100,16 @@ public class PostController {
 		postService.removePost(post_idS);
 		return "redirect:/personalPage/personalPage.jsp";
 	}
+	
+	
+	@RequestMapping(path="/somebodyPersonalPage/showArticleFromMember.controller",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showsomebodyPersonalPageArticleFromMember(Model model,HttpSession session,String username) {
+		//show這個人的文章
+		List<PostBean> posts = postService.showAllArticleFromMember(username);
+		//用gson包成json送回前端
+		Gson gson = new Gson();
+		String jsonList = gson.toJson(posts);
+		return jsonList;
+	}
 }
