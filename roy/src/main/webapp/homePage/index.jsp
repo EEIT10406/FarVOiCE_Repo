@@ -18,9 +18,11 @@
 <link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
 <!-- Template CSS -->
 <link rel="stylesheet" href="../css/animate.css" rel="stylesheet">
+
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
+
 <!-- JS -->
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
@@ -39,6 +41,8 @@
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
+<script src="1.js?ver=1"></script>
+
 <!-- End JS -->
 <style>
 #musicPage{
@@ -69,6 +73,8 @@ float:right;width:50px;margin-top:25px;margin-right:50px;
 </style>
 <script>
 $(document).ready(function(){
+	showAllFunding();
+	
 	//取消a默認
 	$('a.arrow').on('click',function(event){
 		event.preventDefault();
@@ -283,6 +289,73 @@ function loadLikeMusic(username){
 	    }
 		return timediff;
 	}
+	
+	//抓取選取日期計算到期天數
+	function limitDay(s) {
+
+		m = s.substring(s.indexOf('月')-1,s.indexOf('月'));
+		d = s.substring(s.indexOf(',')-2,s.indexOf(','));
+		y = s.substring(s.length-4,s.length);
+		ss = y +'-'+m+'-'+d;
+		
+		var enddate = new Date(ss);
+		var nowdate = new Date();
+
+		var deadline = enddate.getTime()
+				- nowdate.getTime();
+		var days = parseInt(deadline
+				/ (1000 * 60 * 60 * 24)) + 1;
+		return days;
+	}	
+	
+	// 列出所有專案
+	function showAllFunding(){
+		$.getJSON('/roy/funding/allFundingProject.controller',function(data){
+		
+			$.each(data, function(idx, list){
+				var content="";
+				console.log(list);
+				if(idx == 0){
+					content += '<div class="item active">';
+				}else{
+					content += '<div class="item">';
+				}
+				content += 
+				'<div class="col-md-12" >'+
+				'<div class="project-pre allproject" >'+
+				'<div class="img-pres">'+
+				    '<img class="img-in" id="preview_progressbarTW_img"'+
+				    'src="'+list.funding_image+'">'+
+				'</div>'+
+				'<div class="pcontent-pre">'+
+					'<p id="pre-title" class="title-content"'+
+						'style="margin-bottom: -18px">'+list.funding_title+'</p>'+
+// 					'<p class="small creator">'+
+					'<p id="pre-name">'+list.member_nickname+'</p>'+
+					'<p id="pre-content" class="excerpt JQellipsis"'+
+						'style="font-weight: bold; font-size: 0.85rem">'+list.funding_description+'</p>'+
+				'</div>'+
+				'<div class="downMeta-pre">'+
+					 '<progress class="progress-pre"'+
+						'style="margin-bottom: 0px; margin-top: 0px;" value="'+list.funding_currentAmount/list.funding_goal*100+'" max="100"></progress>'+
+					 '<span class="goalMoney osmfont currentMoney">'+list.funding_currentAmount+'</span><span'+
+						' class="hidden-md goalpercent goal"> '+list.funding_currentAmount/list.funding_goal*100+'%</span><span'+
+						' style="font-size: 13px; letter-spacing: 1px"'+
+						'class="date pull-right small"> 還剩 <strong class="days"'+
+						'style="font-size: 13px; font-weight: 1000; letter-spacing: 1px">'+limitDay(list.funding_duration)+'</strong><span'+
+						' style="font-size: 13px; letter-spacing: 1px"> 天</span>'+
+					'</span>'+
+					'<span class="funding_id" style="display:none">'+list.funding_id+'</sapn>'+
+					'<span class="funding_goal" style="display:none">'+list.funding_goal+'</sapn>'+
+					'<span class="funding_createTime" style="display:none">'+list.funding_createTime+'</sapn>'+
+					'<span class="funding_duration" style="display:none">'+list.funding_duration+'</sapn>'+
+					'<span class="funding_browseCount" style="display:none">'+list.funding_browseCount+'</sapn>'+
+				'</div>'+
+			'</div> </div></div>';
+				$('#sortThis').append(content);
+			})
+		})
+	}
 </script>
 </head>
 <body>
@@ -342,49 +415,38 @@ function loadLikeMusic(username){
 				<!-- Main Text -->
 				
 				 <!-- 募資輪播 - Default Full Width -->
-                     <div style="width: 92%;margin: auto;">
-                          <div style="font-family: 微軟正黑體;display: inline-block;width: 40%;float: left;font-size: 20px;font-weight: bold;">
-                              
-                              <p> 熱門募資活動</p>
-                          </div>
-                          <div style="width:40%;float:right;text-align: right;position: absolute;margin-left: 140px;">
-                                 <a  href="#testimonials2" data-slide="prev"  style="margin-right:10px;text-decoration:none;" >
-                                   <i style="color:#666666;" class="fas fa-chevron-circle-left fa-2x"></i>
-                                 </a>
-                                 <a href="#testimonials2" data-slide="next">
-                                     <i style="color:#666666;" class="fas fa-chevron-circle-right fa-2x" style="text-decoration:none;"></i>
-                                 </a>
-                          </div>
-                     </div>
-                         
-                     
-                     <div class="col-md-12" style="margin-top: -30px">
-            <div class="carousel slide testimonials" id="testimonials2">
 
-        <div class="carousel-inner" style="width:200px;">
+    
 
-
-			<div class="item active">
-               <div class="col-md-12">
-                    
-                                                      
-               </div>
-            </div>                
-                                 <div class="item">
-                                     <div class="col-md-12">
-                                     </div>
-                                 </div>
-
-                                 <div class="item">
-                                     <div class="col-md-12">
-   
-                                         
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                         
-                     </div>
+	<div class="col-md-9" style="margin-top: -30px">
+		<div style="width: 92%;margin: auto;">
+			<div style="font-family: 微軟正黑體;display: inline-block;width: 40%;float: left;font-size: 20px;font-weight: bold;">
+	    	<p> 熱門募資活動</p>
+			</div>
+			<div style="width:40%;float:right;text-align: right;position: absolute;margin-left: 140px;">
+				<a  href="#testimonials2" data-slide="prev"  style="margin-right:10px;text-decoration:none;" >
+				<i style="color:#666666;" class="fas fa-chevron-circle-left fa-2x"></i></a>
+				<a href="#testimonials2" data-slide="next">
+	   			<i style="color:#666666;" class="fas fa-chevron-circle-right fa-2x" style="text-decoration:none;"></i></a>
+	        </div>
+	        <div class="clearfix"></div>
+	    <div class="carousel slide testimonials" id="testimonials2">
+			<div class="carousel-inner" id="sortThis" >
+<!-- 				<div class="item active" > -->
+<!-- 				   <div class="col-md-12" >	       -->
+<!-- 				   內容   -->
+<!-- 				   </div> -->
+<!-- 				</div>                 -->
+<!-- 	            <div class="item"> -->
+<!-- 	                <div class="col-md-12"></div> -->
+<!-- 	            </div> -->
+<!-- 	            <div class="item"> -->
+<!-- 	                <div class="col-md-12"></div> -->
+<!-- 	            </div> -->
+	        </div>
+	    </div>
+	</div>
+</div>
                      <!-- End 募資輪播 - default full width -->
 				<!-- End Main Text -->
 				<!-- Side Column -->

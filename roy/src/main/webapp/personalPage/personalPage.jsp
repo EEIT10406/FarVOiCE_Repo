@@ -663,7 +663,6 @@ function showAllFunding(username){
 							<div id="test"><br>
 							</div>
 					        <a class='readmore' onclick='return showData()'>查看更多文章</a>
-					
 						</div>
 						<!-- End dynamic -->
 						<div class="tab-pane fade in" style="overflow: auto;" id="music">								

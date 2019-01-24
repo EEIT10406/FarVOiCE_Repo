@@ -99,6 +99,7 @@ function submitBtnClick() {
 		$("#form").submit();
 	}
 function refreshContact(){
+	$('#contactTable').html("");
 	$.ajax({
 	    url: "/roy/back/showAllCustomerService.controller",
 	    type: "POST",
@@ -131,6 +132,29 @@ function giveFormId(e){
 	console.log(id);
 	$('#CustomerService_id').val(id);
 }
+function edit(e){
+	$.ajax({
+	    url: "/roy/back/edit.controller",
+	    type: "POST",
+	    cache:false,
+	    dataType:'json',
+	    data:{CustomerService_id:$('#CustomerService_id').val()},
+		success : function(list)
+		{  
+			$('#contactTable').html("");
+			refreshContact();
+			console.log("suc");
+		},  
+	    error: function (xhr, ajaxOptions, thrownError) {
+	    	$('#contactTable').html("");
+	    	refreshContact();
+			console.log("error");
+
+	    }
+	});	
+	
+}
+
 </script>
 </head>
 <body>
@@ -172,11 +196,11 @@ function giveFormId(e){
 													data: {
 														datasets: [{
 															data: [
-																130,
-																115,
-																150,
-																88,
-																120,
+																19,
+																10,
+																8,
+																25,
+																12,
 															],
 															backgroundColor: [
 																 "rgb(67,156,231)",//blue
@@ -255,7 +279,7 @@ function giveFormId(e){
 									<div class="row">
 										<div class="col-md-12">
 											<div style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">客服管理</div>
-											<table  id="contactTable">
+											<table  >
 											  <thead>
 											    <tr>
 											      <th scope="col">信箱</th>
@@ -266,7 +290,7 @@ function giveFormId(e){
 											      <th scope="col">編輯</th>
 											    </tr>
 											  </thead>
-											  <tbody>
+											  <tbody id="contactTable">
 											   											
 											  </tbody>	
 											 </table>	
@@ -292,7 +316,7 @@ function giveFormId(e){
 															<div class="modal-footer">
 																<button type="button" class="btn btn-primary"
 																	data-dismiss="modal">取消</button>
-																<button  type="button" class="btn btn-primary" data-dismiss="modal" onclick='submitBtnClick();'>確定</button>
+																<button  type="button" class="btn btn-primary" data-dismiss="modal" onclick='edit();'>確定</button>
 															</div>
 														</form>
 													</div>
