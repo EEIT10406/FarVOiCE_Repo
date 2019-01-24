@@ -14,7 +14,7 @@ public class RewardBean {
 		return "RewardBean [reward_id=" + reward_id + ", funding_id=" + funding_id + ", reward_amount=" + reward_amount
 				+ ", reward_description=" + reward_description + ",reward_image=" + reward_image
 				+ ",reward_estimatedYear=" + reward_estimatedYear + ", reward_estimatedMonth=" + reward_estimatedMonth
-				+ "]";
+				+ ",reward_donateCount=" + reward_donateCount + "]";
 	}
 
 	/*
@@ -31,6 +31,7 @@ public class RewardBean {
 	private String reward_image;
 	private String reward_estimatedYear;
 	private String reward_estimatedMonth;
+	private Integer reward_donateCount;
 
 	public Integer getReward_id() {
 		return reward_id;
@@ -86,6 +87,14 @@ public class RewardBean {
 
 	public void setReward_estimatedMonth(String reward_estimatedMonth) {
 		this.reward_estimatedMonth = reward_estimatedMonth;
+	}
+
+	public Integer getReward_donateCount() {
+		return reward_donateCount;
+	}
+
+	public void setReward_donateCount(Integer reward_donateCount) {
+		this.reward_donateCount = reward_donateCount;
 	}
 
 }

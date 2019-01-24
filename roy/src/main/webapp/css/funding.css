@@ -57,10 +57,23 @@
 }
 
 .thisweek {
+	font-family: Microsoft JhengHei;
+	color: #00bbd6;
 	font-weight: bold;
 	padding-left: 48px;
 	font-size: 15px;
 	margin-top: 25px;
+}
+
+.redweek {
+	margin-left: 120px;
+	font-family: Microsoft JhengHei;
+	color: #eb4b4b;
+	font-weight: bold;
+	padding-left: 48px;
+	font-size: 15px;
+	margin-top: 25px;
+	font-family: Microsoft JhengHei;
 }
 
 .title {
@@ -138,11 +151,13 @@ span strong {
 }
 
 .title-content {
+	font-family: Microsoft JhengHei;
 	color: #000;
 	font-weight: 700;
 }
 
 .excerpt {
+	font-family: Microsoft JhengHei;
 	font-size: .75rem;
 	margin-top: 10px;
 	word-break: break-all;
@@ -185,6 +200,7 @@ span strong {
 }
 
 #pre-amount {
+	font-family: Roboto, sans-serif;
 	padding-left: 10px;
 }
 
@@ -206,7 +222,7 @@ span strong {
 
 .small, small {
 	font-size: 85%;
-	font-family: Roboto, sans-serif;
+	font-family: Microsoft JhengHei;
 }
 
 .pull-right {
@@ -296,6 +312,20 @@ progress {
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
 	background: #00bbd6;
+}
+
+.redweek:before {
+	position: relative;
+	left: -5px;
+	top: 1px;
+	content: "";
+	display: inline-block;
+	height: 12px;
+	width: 3px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background: #eb4b4b;
 }
 /* create project   */
 .top-title {
@@ -489,28 +519,26 @@ input[type="file"] {
 }
 /* 募資詳細資訊 */
 .fundingDetail {
-	border: solid 2px black;
 	margin: auto;
 	width: 57%;
 }
 
 .detailHead {
 	margin-top: 25px;
-	border: solid 1px red;
 	text-align: center;
 }
 
 .detailImg {
-	border: solid 1px red;
+	padding-left: 3.2px;
 }
 
 .info {
-	border: solid 1px red;
+	
 }
 
 .schedule {
+	padding-left: 3.2px;
 	margin-top: 25px;
-	border: solid 1px red;
 }
 
 .content-sup {
@@ -521,7 +549,6 @@ input[type="file"] {
 	font-weight: bold;
 	font-family: Microsoft JhengHei;
 	padding-left: 35px;
-	border: solid 1px red;
 	float: right;
 	width: 34%;
 	font-size: 12px;
@@ -535,13 +562,11 @@ input[type="file"] {
 .ajax-content {
 	display: inline-block;
 	width: 66%;
-	border: solid 1px red;
 }
 
 .reward-card {
 	float: right;
 	width: 34%;
-	border: solid 1px red;
 	width: 34%;
 }
 
@@ -682,8 +707,9 @@ input[type="file"] {
 	user-select: none;
 	border-radius: 4px;
 }
+
 .btn-submit {
-	margin-top:15px;
+	margin-top: 15px;
 	font-family: Microsoft JhengHei;
 	background: #eb4b4b;
 	backface-visibility: hidden;
@@ -708,6 +734,7 @@ input[type="file"] {
 	user-select: none;
 	border-radius: 4px;
 }
+
 #incontent {
 	margin-right: 150px;
 }
@@ -722,6 +749,7 @@ input[type="file"] {
 }
 
 .content-s2 {
+	padding-left: 3.2px;
 	margin-bottom: 50px;
 	font-family: Microsoft JhengHei;
 	font-weight: bold;
@@ -732,6 +760,7 @@ input[type="file"] {
 }
 
 .content-s3 {
+	padding-left: 3.2px;
 	line-height: 1.58;
 	font-size: 18px;
 	font-weight: 400;
@@ -791,14 +820,16 @@ input[type="file"] {
 .sup-money-3 {
 	margin-top: 0px;
 }
-.donate{
+
+.donate {
 	display: none;
 }
+
 .donate-p {
 	margin-top: 15px;
 	padding-top: 15px;
-    border-top: solid 1px #c8cccf;
-    text-align: center;
+	border-top: solid 1px #c8cccf;
+	text-align: center;
 }
 
 .extra-sup-1 input {
@@ -808,7 +839,7 @@ input[type="file"] {
 	box-sizing: border-box;
 	border: 1px solid #c8cccf;
 	display: block;
-	outline:0;
+	outline: 0;
 	text-decoration: none;
 	border-radius: 5px;
 }
@@ -818,6 +849,138 @@ input[type="file"] {
 	box-shadow: 0 1px 1px rgba(0, 187, 214, .075) inset, 0 0 8px
 		rgba(235, 75, 75, .6);
 }
-.card-toggle{
+
+.card-toggle {
 	cursor: pointer;
+}
+
+.pre-hover:hover {
+	background: #f4f4f4;
+}
+
+#pre-name {
+	font-weight: bold;
+	font-family: Microsoft JhengHei;
+}
+
+.input-group {
+	position: relative;
+	display: table;
+	border-collapse: separate;
+}
+
+.form-group {
+	border: 1px solid #e4e4e4;
+	border-radius: 4px;
+}
+
+.input-group {
+	border-bottom: 1px solid #e4e4e4;
+}
+
+.form-group .input-group-addon {
+	white-space: normal;
+	border: none;
+	background: #fff;
+	height: 43px;
+	outline: 0;
+}
+
+.form-group .input-group-addon .justify-helper {
+	font-family: Microsoft JhengHei;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.input-form-wrapper {
+	position: relative;
+	height: 43px;
+}
+
+.form-group .form-control-b {
+	font-weight: bold;
+	font-family: Microsoft JhengHei;
+	padding-left: 20px;
+	outline: none;
+	width: 100%;
+	border: none;
+	border-left: 1px solid #e4e4e4;
+	box-shadow: none;
+	height: 43px;
+	padding-right: 25px;
+}
+
+.justify-helper {
+	font-size: 15px;
+	font-weight: bold;
+	font-family: Microsoft JhengHei;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.confirmData.transactionData {
+	position: relative;
+	padding: 20px 10px;
+	letter-spacing: 2px;
+}
+
+.whiteWell {
+	display: inline-block;
+	width: 126px;
+	padding: 20px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background: #fff;
+	border: 1px solid #e4e4e4;
+}
+
+.rewardData {
+	overflow: hidden;
+	position: relative;
+	font-size: 14px;
+}
+
+.confirmContent .confirmData.transactionData .col-xs-1, .confirmContent .confirmData.transactionData .col-xs-2,
+	.confirmContent .confirmData.transactionData .col-xs-3 {
+	text-align: center;
+}
+
+.col-xs-3 {
+	text-align: center;
+	width: 100%;
+}
+
+.grey {
+	font-size: 15px;
+	font-weight: 400;
+	color: grey;
+}
+
+.mathNum {
+	font-weight: bold;
+	font-family: Roboto, sans-serif;
+	font-size: 25px;
+	margin-top: 15px;
+	color: #000;
+	letter-spacing: 2px;
+}
+
+.mathNum:before {
+	content: "$";
+}
+
+.projectRewardContent .mathNum:before {
+	content: "$";
+	font-size: 20px;
+}
+
+.sent-money {
+	margin-top: 40px;
+	float: right;
+    width: 565px;
 }

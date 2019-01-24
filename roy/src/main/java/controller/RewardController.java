@@ -43,6 +43,8 @@ public class RewardController {
 		MemberBean memberBean = (MemberBean) session.getAttribute("user");
 		bean.setReward_image(imagepath);
 		bean.getFunding_id();
+		bean.setReward_donateCount(0);
+		
 //		找出音樂
 		List<MusicBean> musicbeans = fundingService.findMusicByUser(memberBean.getMember_username());
 //		上一步修改專案

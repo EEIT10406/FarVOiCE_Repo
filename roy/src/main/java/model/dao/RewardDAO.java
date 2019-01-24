@@ -85,7 +85,12 @@ public class RewardDAO {
 //	public Session getSession() {
 //		return session;
 //	}
-
+//根據funding_id找出回饋
+	public List<RewardBean> findByFundingId(Integer funding_id) {
+		return this.getSession().createQuery("from RewardBean where funding_id='" + funding_id + "'", RewardBean.class)
+				.list();
+	}
+//根據回饋ID找出該回饋
 	public RewardBean findByPrimaryKey(Integer reward_id) {
 		// 0103 OK
 		return this.getSession().get(RewardBean.class, reward_id);
