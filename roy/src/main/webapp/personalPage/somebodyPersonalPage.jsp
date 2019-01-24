@@ -236,7 +236,8 @@ function submitBtnClick(){
 	    	
 	    	 $("#addshareMusicname").text(""+music_name+"");
 	    	 $("#addshareMusicid").text(""+music_id+"");
-	    	 
+	    	 $("#addshareMusicimg").text(""+music_image+"");
+
 	    	 console.log(music_name+","+music_id+","+music_image);
 	    	 //顯示
 	    	 $('#addshareMusicnameSpan > a').text(music_name);
@@ -1017,6 +1018,8 @@ var size1=5;
 					</div>
 					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
 					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
+					<textarea  hidden="true" id="addshareMusicimg" name="shareMusicimg"></textarea>
+					
 					<div id="displayShareMusic">
 						<img src="../img/300x300.jpg" id="addshareMusicImg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
 						<span style="margin-left: 10px; font-size: 15px;" id="addshareMusicnameSpan"><a href="#">123讓我為你唱情歌</a></span>
