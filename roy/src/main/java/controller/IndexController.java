@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -18,7 +19,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import model.bean.MemberBean;
+import model.bean.MemberCommentMusicBean;
 import model.bean.MusicBean;
+import model.service.MemberCommentMusicService;
 import model.service.MemberLikeMusicService;
 import model.service.MusicService;
 
@@ -28,6 +31,8 @@ public class IndexController {
 	MusicService musicService;
 	@Autowired
 	private MemberLikeMusicService memberLikeMusicService;
+	@Autowired
+	private MemberCommentMusicService memberCommentMusicService;
 
 	@RequestMapping(path = "/homePage/indexFindAllTimePlayCountTop5Music.controller", produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -62,6 +67,7 @@ public class IndexController {
 			List<Map<String, String>> musics = new LinkedList<Map<String, String>>();
 			for (MusicBean bean : topThree) {
 				Map<String, String> jsonMap = new HashMap<>();
+				MemberCommentMusicBean comment = memberCommentMusicService.showLatestCommentFromMusic(bean.getMusic_id());
 				if (memberLikeMusics != null) {
 					for (Integer likeMusics : memberLikeMusics) {
 						if (bean.getMusic_id() == likeMusics) {
@@ -74,16 +80,43 @@ public class IndexController {
 				if (flag) {
 					jsonMap.put("memberLikeMusic", "/roy/img/indexHeart.png");
 				}
+				if(comment!=null) {
+					jsonMap.put("member_profileImage", String.valueOf(comment.getMember_profileImage()));
+					jsonMap.put("member_nickname", String.valueOf(comment.getMember_nickname()));
+					jsonMap.put("memberCommentMusic_time", String.valueOf(comment.getMemberCommentMusic_time()));
+					jsonMap.put("memberCommentMusic_content", String.valueOf(comment.getMemberCommentMusic_content()));
+				}
 				jsonMap.put("music_id", String.valueOf(bean.getMusic_id()));
 				jsonMap.put("music_Image", bean.getMusic_Image());
 				jsonMap.put("music_name", bean.getMusic_name());
 				jsonMap.put("music_likeCount", String.valueOf(bean.getMusic_likeCount()));
 				jsonMap.put("nickname", musicService.usernameToNickname(bean.getMember_username()));
+				//0121
+				jsonMap.put("music_music", bean.getMusic_music());
+				//0121
 				musics.add(jsonMap);
 				flag = true;
 			}
 			return JSONValue.toJSONString(musics);
 		}
 		return null;
+	}
+	//首頁輪播留言
+	@RequestMapping(value = "/homePage/indexLikeMusicComment", produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String indexLikeMusicComment(HttpSession session) {
+		List<MusicBean> topThree = musicService.likeIn7Day();
+		Iterator<MusicBean> topThreeMusic = topThree.iterator();
+		List<MemberCommentMusicBean> returnValue = new ArrayList<MemberCommentMusicBean>();
+		while(topThreeMusic.hasNext()) {
+			MusicBean temp = topThreeMusic.next();
+			List<MemberCommentMusicBean> comments = memberCommentMusicService.showAllCommentFromMusic(temp.getMusic_id());
+			if(comments!=null&&!comments.isEmpty()) {
+				returnValue.add(comments.get(0));
+			}
+		}
+		Gson gson = new Gson();
+		String json = gson.toJson(returnValue);
+		return json;
 	}
 }

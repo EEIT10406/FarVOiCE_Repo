@@ -390,10 +390,12 @@ function loadrankTopTen(type) {
 							onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
 					</div>
 					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
-					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
-					<div id="displayShareMusic">
+					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>					
+					<textarea  hidden="true" id="addshareMusicimg" name="shareMusicimg"></textarea>
+					
+					<div id="displayShareMusic" style="border:1px solid #AAAAAA; width:250px;margin-left:20px;">
 						<img src="../img/300x300.jpg"
-							style="margin-left: 20px; width: 50px; height: 50px;" /><a
+							style=" width: 50px; height: 50px;" /><a
 							href=""><span style="margin-left: 10px; font-size: 15px;">讓我為你唱情歌</span></a> 
 					</div>
 					<div class="modal-footer">
@@ -471,6 +473,7 @@ $('body').on('click','.btnShare',function() {
 	console.log(music_name+","+music_id+","+music_image);
     $("#addshareMusicname").text(""+music_name+"");
     $("#addshareMusicid").text(""+music_id+"");
+    $("#addshareMusicimg").text(""+music_image+"");
     $("#displayShareMusic a").attr("href",music_href);
     $("#displayShareMusic a").text(""+music_name+"");
     $("#displayShareMusic img").attr("src",music_image);

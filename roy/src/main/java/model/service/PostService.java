@@ -100,4 +100,8 @@ public class PostService {
 		return postDAO.showSearchArticleInFindArticle(searchString);
 	}
 	
+	public List<PostBean> showsomebodyprivacyArticleInFindArticle(String username){
+		return postDAO.showAllprivacyArticleInFindArticle(username);
+	}
+	
 }

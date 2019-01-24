@@ -129,7 +129,10 @@ cursor: pointer;
 								    <td name="musicId">${musicbean.music_id}</td>	
 									<td style="text-align: center;">
 									   <c:if test="${fn:indexOf(musicbean.music_name, ' (該歌曲已下架)') == -1}" >
-									    <img src="../img/player.png" class="play" />
+									    <img src="../img/player.png" class="play" 
+									    onclick="play('${musicbean.music_name}','${musicbean.member_username}',
+									    '${musicbean.music_music}','${musicbean.music_Image}','${musicbean.music_id}')"
+									     />
 									    </c:if>
 									</td>
 									<td>
@@ -169,10 +172,21 @@ cursor: pointer;
 
 
 	<jsp:include page="../homePage/footer.jsp" />
-	<!-- 	<div id="player"> -->
-	<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
-	<!-- 	</div> -->
-	
-
+	<!--播放器 -->
+	<div id="player">
+		<jsp:include page="../homePage/player.jsp" />
+	</div>
+	<script>
+	function play(music_name,member_username,music_music,music_Image,music_id){
+		ap.list.add([{
+			title : music_name,
+			author : member_username,
+			url : music_music,
+			pic : music_Image
+		}]);
+		$(ap.audio).attr('music_id',music_id);
+	}
+	</script>
+	<!--播放器 -->
 </body>
 </html>

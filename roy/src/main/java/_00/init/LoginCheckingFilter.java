@@ -20,7 +20,7 @@ import model.bean.MemberBean;
 @WebFilter(
 		urlPatterns = { "/*" }, 
 		initParams = { 
-				@WebInitParam(name = "mustLogin1", value = "/personalPage/personalDetail.jsp"),				
+				@WebInitParam(name = "mustLogin1", value = "/personalPage/*"),				
 				@WebInitParam(name = "mustLogin2", value = "/rankTop10/ShareMusic.controller"),				
 				@WebInitParam(name = "mustLogin3", value = "/login-signUp-upload/upload.jsp"),				
 				@WebInitParam(name = "mustLogin4", value = "/personalPage/personalPage.jsp"),				
@@ -28,6 +28,7 @@ import model.bean.MemberBean;
 				@WebInitParam(name = "mustLogin6", value = "/funding/startProject.jsp"),				
 				@WebInitParam(name = "mustLogin7", value = "/funding/showMusic.controller"),			
 				@WebInitParam(name = "mustLogin8", value = "/funding/turnToDonatePage.controller"),		
+
 		})
 public class LoginCheckingFilter implements Filter {
 	Collection<String> url = new ArrayList<String>();
@@ -68,6 +69,9 @@ public class LoginCheckingFilter implements Filter {
 				    // 記住原本的"requestURI"，稍後如果登入成功，系統可以自動轉入
 					// 原本要執行的程式。
 					System.out.println("放requestURI"+requestURI);
+					if(!requestURI.endsWith("jsp")) {
+						requestURI = "/roy/homePage/index.jsp" ;
+					}
 					session.setAttribute("requestURI", requestURI);
 					if ( ! isRequestedSessionIdValid ) {
 						System.out.println("使用逾時，請重新登入");

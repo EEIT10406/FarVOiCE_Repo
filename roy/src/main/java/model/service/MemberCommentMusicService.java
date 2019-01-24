@@ -25,4 +25,13 @@ public class MemberCommentMusicService {
 	public List<MemberCommentMusicBean> showAllCommentFromMusic (Integer music_id){
 		return memberCommentMusicDAO.showAllCommentFromMusic(music_id);
 	}
+	
+	//給music_id 抓最新留言
+		public MemberCommentMusicBean showLatestCommentFromMusic (Integer music_id){
+			List<MemberCommentMusicBean> beans=memberCommentMusicDAO.showLatestCommentFromMusic(music_id);
+			for(MemberCommentMusicBean bean:beans) {
+				return bean;
+			}
+			 return null;
+		}
 }
