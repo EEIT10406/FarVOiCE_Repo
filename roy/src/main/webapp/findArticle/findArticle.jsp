@@ -320,6 +320,7 @@ function loadArticle (searchString) {
 				"</div><div class='clearfix'></div></li>";
 				$("#newArticle").append(newArticleContent);
 				
+				
 			}
 				
 				
