@@ -190,7 +190,31 @@ public class FundingController {
 
 		return JSONValue.toJSONString(fundings);
 	}
+//找出審核通過的專案
+	@RequestMapping(value = "/funding/findAllByPass.controller", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String findAllByPass() {
+//		回傳所有專案
+		List<FundingBean> fundingBeans = fundingService.findAllByPass();
+		List<Map<String, String>> fundings = new LinkedList<Map<String, String>>();
+		for (FundingBean bean : fundingBeans) {
+			Map<String, String> jsonMap = new HashMap<>();
+			jsonMap.put("funding_title", bean.getFunding_title());
+			jsonMap.put("funding_image", bean.getFunding_image());
+			jsonMap.put("member_username", bean.getMember_username());
+			jsonMap.put("nick_name", "" + memberService.usernameToNickname(bean.getMember_username()));
+			jsonMap.put("funding_description", bean.getFunding_description());
+			jsonMap.put("funding_currentAmount", "" + bean.getFunding_currentAmount());
+			jsonMap.put("funding_goal", "" + bean.getFunding_goal());
+			jsonMap.put("funding_duration", "" + bean.getFunding_duration());
+			jsonMap.put("funding_id", "" + bean.getFunding_id());
+			jsonMap.put("funding_createTime", "" + bean.getFunding_createTime());
+			jsonMap.put("funding_browseCount", "" + bean.getFunding_browseCount());
+			fundings.add(jsonMap);
+		}
 
+		return JSONValue.toJSONString(fundings);
+	}
 //	根據username抓出所有專案
 	@RequestMapping(value = "/personalPage/findProjectByUsername", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -218,4 +242,7 @@ public class FundingController {
 		}
 		return JSONValue.toJSONString(fundings);
 	}
+	
+
+	
 }

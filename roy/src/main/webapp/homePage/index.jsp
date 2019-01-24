@@ -310,7 +310,7 @@ function loadLikeMusic(username){
 	
 	// 列出所有專案
 	function showAllFunding(){
-		$.getJSON('/roy/funding/allFundingProject.controller',function(data){
+		$.getJSON('/roy/funding/findAllByPass.controller',function(data){
 		
 			$.each(data, function(idx, list){
 				var content="";

@@ -214,7 +214,11 @@ alert("${result}")
 		}
 	}
 
-
+	//贊助%數取到整數
+	function parseInt(percent){
+		var newpercent=Math.ceil(percent);
+		return newpercent
+	}
 
 $(document).ready(function() {
 	loadMusic('${user.member_username}')
@@ -537,11 +541,11 @@ function showAllFunding(username){
 				'<div class="downMeta-pre">'+
 				'<progress class="progress-pre"'+
 				'style="margin-bottom: 0px; margin-top: 0px;" value="'+list.funding_currentAmount/list.funding_goal*100+'" max="100"></progress>'+
-			    '<span class="goalMoney osmfont currentMoney">'+list.funding_currentAmount+'</span><span'+
-				' class="hidden-md goalpercent goal"> '+list.funding_currentAmount/list.funding_goal*100+'%</span><span'+
-				' style="font-size: 13px; letter-spacing: 1px"'+
+			    '<span class="goalMoney osmfont currentMoney" style="font-family:Oswald, sans-serif;">'+list.funding_currentAmount+'</span><span'+
+				' class="hidden-md goalpercent goal" style="font-family: Oswald, sans-serif;"> '+parseInt(list.funding_currentAmount/list.funding_goal*100)+'%</span><span'+
+				' style="font-size: 13px; letter-spacing: 1px;font-family: Microsoft JhengHei"'+
 				'class="date pull-right small"> 還剩 <strong class="days"'+
-				'style="font-size: 13px; font-weight: 1000; letter-spacing: 1px">'+limitDay(list.funding_duration)+'</strong><span'+
+				'style="font-size: 13px; font-weight: 1000; letter-spacing: 1px;">'+limitDay(list.funding_duration)+'</strong><span'+
 				' style="font-size: 13px; letter-spacing: 1px"> 天</span>'+
 				'</span>'+
 				'<span class="funding_id" style="display:none">'+list.funding_id+'</sapn>'+

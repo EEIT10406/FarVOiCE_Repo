@@ -36,10 +36,16 @@ public class RewardService {
 
 //根據回饋id找出該筆回饋
 	public RewardBean findRewardByReward_id(Integer reward_id) {
-		RewardBean result =null;
-		if(reward_id!=null) {
-			result =rewardDAO.findByPrimaryKey(reward_id);
+		RewardBean result = null;
+		if (reward_id != null) {
+			result = rewardDAO.findByPrimaryKey(reward_id);
 		}
 		return result;
+	}
+
+//更新一筆回饋
+	public RewardBean update(RewardBean bean) {
+		rewardDAO.update(bean);
+		return rewardDAO.findByPrimaryKey(bean.getReward_id());
 	}
 }

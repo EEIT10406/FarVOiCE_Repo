@@ -91,7 +91,6 @@ public class FundingDAO {
 //	public Session getSession() {
 //		return session;
 //	}
-
 //找出使用者所有的募資專案
 	public List<FundingBean> findByUsername(String member_username) {
 
@@ -110,6 +109,12 @@ public class FundingDAO {
 	public List<FundingBean> findAll() {
 		// 0103 OK
 		return this.getSession().createQuery("from FundingBean", FundingBean.class).setMaxResults(50).list();
+	}
+
+//找出審核過的專案
+	public List<FundingBean> findAllByPass() {
+		return this.getSession().createQuery("from FundingBean where funding_status=1", FundingBean.class)
+				.setMaxResults(50).list();
 	}
 
 //創一個專案

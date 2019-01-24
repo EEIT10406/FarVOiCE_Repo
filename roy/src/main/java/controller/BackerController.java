@@ -65,7 +65,18 @@ public class BackerController {
 		bean.setBack_status(false);
 		bean.setBacker_time(date);
 		
-		BackerBean newDonateBean=backerService.create(bean);
+		FundingBean fundingBean = fundingService.findFundingById(bean.getFunding_id());//拿到這筆專案bean
+		Integer oldAmount= fundingBean.getFunding_currentAmount();//目前總募資金額
+		Integer newAmount=bean.getSup_money();//新增金額
+		fundingBean.setFunding_currentAmount(oldAmount+newAmount);//加總金額
+		fundingService.update(fundingBean);//更新募資金額
+		
+		RewardBean rewardBean =rewardService.findRewardByReward_id(bean.getReward_id());//拿到這筆回饋bean
+		Integer oldDonateCount=rewardBean.getReward_donateCount();//原本贊助人數
+		rewardBean.setReward_donateCount(oldDonateCount+1);//人數+1
+		rewardService.update(rewardBean);//更新贊助人數
+		
+		BackerBean newDonateBean=backerService.create(bean);//新增一筆贊助
 		
 		if(newDonateBean!=null) {
 			model.addAttribute("newDonateBean", newDonateBean);
