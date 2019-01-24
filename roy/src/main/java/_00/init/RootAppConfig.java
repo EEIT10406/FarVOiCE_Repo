@@ -30,8 +30,6 @@ import model.bean.ReportBean;
 import model.bean.RewardBean;
 import model.bean.StoryBean;
 
-
-
 @Configuration
 @ComponentScan(basePackages = "model")
 @EnableTransactionManagement
@@ -53,21 +51,17 @@ public class RootAppConfig {
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-
-
 		builder.addAnnotatedClasses(MemberBean.class,PostBean.class,MusicBean.class,PlaylistBean.class,ListMusicBean.class,MemberCommentMusicBean.class,
 				FollowBean.class, BackerBean.class, FundingBean.class, RewardBean.class,StoryBean.class,MemberLikeMusicBean.class,ReportBean.class,CustomerServiceBean.class);
-
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.setProperty("hibernate.show_sql", "true");
 //		props.setProperty("hibernate.current_session_context_class", "thread");
 		builder.addProperties(props);
-
 		return builder.buildSessionFactory();
 	}
 
-	@Bean(name = "transactionManager")
+	@Bean(name ="transactionManager")
 	@Autowired
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
