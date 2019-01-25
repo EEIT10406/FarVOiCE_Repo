@@ -56,6 +56,9 @@ th, td {
 	background-color: white;
 	border: 0px;
 }
+#report_td span:hover {
+  background-color: black;
+}
 </style>
 
 <!-- Favicon -->
@@ -93,6 +96,7 @@ th, td {
 <script >
 $(document).ready(function() {
 	refreshContact();
+	refreshReport();
 })
 function submitBtnClick() {
 		console.log("123");
@@ -154,7 +158,43 @@ function edit(e){
 	});	
 	
 }
-
+function refreshReport(){
+	$('#reportTable').html("");
+	$.ajax({
+	    url: "report.get",
+	    type: "POST",
+	    cache:false,
+	    dataType:'json',
+	    data:{username:$('#username').text()},
+		success : function(list)
+		 {  
+			console.log(list);
+		 	list.forEach(function(obj, index) {
+		 		var str = obj.report_time+'';
+		 	    var content = "<tr>"+
+							      "<td >"+obj.member_usernameReportS+"</td>"+
+							      "<td >"+obj.music_idReportM+"</td>"+
+							      "<td >"+str.replace('?','月')+"</td>"+
+							      "<td id='report_td' music_id="+obj.music_idReportM+" report_id="+obj.report_id+"><span style='cursor: pointer;' onclick='test(this)'><i class='fa fa-check'></i>可</span><span style='cursor: pointer;' onclick='test(this)'><i class='fa fa-times'></i>否</span></td>"+
+							  "</tr>";
+				$('#reportTable').append(content);
+		  	});
+		},  
+	    error: function (xhr, ajaxOptions, thrownError) {
+	        alert(xhr.status+"-->showAllCustomerService");
+	        alert(thrownError);
+	    }
+	});	
+}
+function test(e){
+	var s = $(e).text();
+	if(confirm(s+"嗎?")){
+		$.get("report.update", {"YON":s,"music_id":$(e).parent('td').attr('music_id'),"report_id":$(e).parent('td').attr('report_id')}, function(message) {
+			alert(message);
+		})
+		refreshReport();
+	}
+}
 </script>
 </head>
 <body>
@@ -249,9 +289,9 @@ function edit(e){
 								<div class="tab-pane fade in" id="allType">
 									<div class="row">
 										<div class="col-md-7">
-											<div
+											<div 
 												style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">募資管理</div>
-										
+																						
 										</div>
 									</div>
 								</div> 
@@ -264,9 +304,20 @@ function edit(e){
 								<div class="tab-pane fade in" id="rock">
 									<div class="row">
 										<div class="col-md-5">
-											<div
-												style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">檢舉管理</div>
-											
+											<div style="font-size: 25px; margin-bottom: 30px; margin-top: 20px; color: red;">檢舉管理</div>
+											<table  >
+											  <thead>
+											    <tr>
+											      <th scope="col">檢舉人</th>
+											      <th scope="col">音樂ID</th>
+											      <th scope="col">時間</th>
+											      <th scope="col">編輯</th>
+											    </tr>
+											  </thead>
+											  <tbody id="reportTable">
+											   											
+											  </tbody>	
+											 </table>	
 										</div>
 										<div class="col-md-7">
 										</div>
@@ -323,7 +374,6 @@ function edit(e){
 												</div>
 											</div>							
 									<!-- 編輯單筆客服 end-->
-								
 							</div>
 						</div>
 					</div>

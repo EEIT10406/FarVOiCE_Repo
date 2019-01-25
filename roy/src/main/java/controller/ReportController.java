@@ -50,17 +50,25 @@ public class ReportController {
 	StoryService storyService;
 
 	//查檢舉
-	@RequestMapping(value = "**/report.get")
+	@RequestMapping(value = "**/report.get", produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String get(Model model, Integer report_id) {
 		return new Gson().toJson(reportService.findAll());
 	}
 	//
-		@RequestMapping(value = "**/report.update")
-		public String update(Model model, ReportBean reportBean) {
-			System.out.println(reportBean.getReport_time());
-			model.addAttribute("reportBean", reportService.update(reportBean));
-			return "testSpring2";
+		@RequestMapping(value = "**/report.update",produces="text/html;charset=utf-8")
+		@ResponseBody
+		public String update(Model model, String YON,String music_id,String report_id) {
+			System.out.println(YON+music_id+report_id);
+			if("可".equals(YON)) {
+				musicService.deleteMusic(Integer.valueOf(music_id));
+				reportService.remove(Integer.valueOf(report_id));
+				return "音樂下架";
+			} else if("否".equals(YON)) {
+				reportService.remove(Integer.valueOf(report_id));
+				return "音樂不下架";
+			}
+			return "NOT是否";
 		}
 
 	//檢舉
