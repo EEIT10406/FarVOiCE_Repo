@@ -20,6 +20,7 @@ import model.bean.MusicBean;
 import model.bean.PlaylistBean;
 import model.bean.primarykey.ListMusicId;
 import model.service.ListMusicService;
+import model.service.MemberService;
 import model.service.MusicService;
 import model.service.PlayListService;
 
@@ -31,6 +32,8 @@ public class ListMusicController {
 	private MusicService musicService;
 	@Autowired
 	private PlayListService playListService;
+	@Autowired
+	private MemberService memberService;
 
 	// 讀歌單內的音樂
 	@RequestMapping(value = "/list/readPlayListMusic", produces = "text/plain;charset=UTF-8")
@@ -120,7 +123,8 @@ public class ListMusicController {
 				}
 				musicBeans.add(musicBean);
 			}
-				
+			
+			model.addAttribute("nickname", memberService.usernameToNickname(playListBean.getMember_username()));
 			model.addAttribute("playListBean", playListBean);
 			model.addAttribute("musicBeans", musicBeans);
 			

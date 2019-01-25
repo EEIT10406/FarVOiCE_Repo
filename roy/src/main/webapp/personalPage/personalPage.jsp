@@ -362,6 +362,7 @@ function loadMusic(username) {
                       	'<span id="add" style="margin-left:0px;">'+
                       	'<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="13px">加入歌單</button>'+
 					  	'</span>'+
+					  	'<br>'+
 					  	'<span class="editClick"><img src="../img/edit.png" width="15px" />編輯</span>'+
                    		'</div>'+
                    		'</div>';

@@ -36,13 +36,13 @@ public class PlayListController {
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("errors", errors);
 
-		if (bean.getPlaylist_name().equals("")) {
-			errors.put("emptyValue", "請輸入歌單名稱");
-		}
-
-		if (errors != null && !errors.isEmpty()) {
-			return "/list/createList.jsp";
-		}
+//		if (bean.getPlaylist_name().equals("")) {
+//			errors.put("emptyValue", "請輸入歌單名稱");
+//		}
+//
+//		if (errors != null && !errors.isEmpty()) {
+//			return "/list/createList.jsp";
+//		}
 
 		String imagePath = "";
 		if (!imageFile.isEmpty()) {
@@ -126,8 +126,8 @@ public class PlayListController {
 	//刪歌單
 		@RequestMapping(value="/list/deletePlayList",produces= "text/plain;charset=UTF-8")
 		@ResponseBody
-		public String createPlayList(PlaylistBean bean) {
-			boolean deleteList = playListService.deletePlayList(bean.getPlaylist_id());
+		public String createPlayList(Integer playlist_id) {
+			boolean deleteList = playListService.deletePlayList(playlist_id);
 			if (deleteList) {
 				return "刪除成功";
 			} else {
