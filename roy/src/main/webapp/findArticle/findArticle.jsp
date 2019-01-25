@@ -167,33 +167,39 @@ function doPage(){
 }
 function preP(){
 	if(currentPage!=1){
-		console.log(currentPage);
-		start=currentPage-1;
-		showData(start);
 		currentPage=currentPage-1;
+		console.log("page-->"+currentPage);
+		$(".pagination li").attr("class","");
+		$(".pagination li:nth-child("+(currentPage+1)+")").attr("class","active");
+		start = currentPage*count-count;
+		showData(start);
 	}else{	
 		alert("已經是第一頁囉~");
 	}	
 }
 function NextP(){	
 	if(currentPage!=ShowPage){
-		start=parseInt(currentPage)+1;
+		currentPage=currentPage+1;
+		console.log("page-->"+currentPage);
+		$(".pagination li").attr("class","");
+		$(".pagination li:nth-child("+(currentPage+1)+")").attr("class","active");
+		start = currentPage*count-count;
 		showData(start);
-		currentPage=parseInt(currentPage)+1;
 	}else{		
 		alert("已經最後一頁~");		
 	}	
 }
 
 function showData(token){
-	console.log(token);
+	console.log("從第幾筆抓--->"+token);
 	$("#articlePutHere").html("");
 	var div ="";
 	for(var i=token;i<token+count;i++){
 			var Blog_Item_Details = 
 			"<div class='blog-post-details'>"+
 			"<div class='blog-post-details-item blog-post-details-item-left'>"+
-				"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+allArticle[i].member_nickname+"</a>"+
+				"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+allArticle[i].member_nickname+
+				"</a>"+
 			"</div>"+
 			"<div class='blog-post-details-item blog-post-details-item-left'>"+
 				"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+allArticle[i].post_time+"</a>"+
@@ -247,6 +253,7 @@ function loadArticle (searchString) {
 		success : function(list)
 		{	
 			allArticle=list;
+			console.log(allArticle);
 			NumOfJData = list.length; //NumOfJData=7 總筆數
 			//總頁數 
 			ShowPage = Math.ceil((NumOfJData/count));  
