@@ -143,7 +143,7 @@
 								<div class="input-group margin-bottom-20">
 									<label for="musicNam">歌曲名稱:</label> <input id="musicName"
 										type="text" style="width: 380px;" class="form-control"
-										name="music_name">
+										name="music_name" required>
 								</div>
 								<div class="input-group margin-bottom-20">
 									封面照片: <input type="file" id="picFile" accept="image/*" name="imageFile">

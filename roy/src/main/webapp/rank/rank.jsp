@@ -467,47 +467,47 @@ function loadImediate(type) {
 				<!-- Main Text -->
 				
 				<div class="col-md-3" id="imediate" style="border: 1px 	#DDDDDD solid; margin-left: 50px;margin-bottom:10px;">
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
-					<a href="">
-						<button type="button" class="topTen">
-							看本榜 TOP 10
-						</button>
-					</a>
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
+<!-- 					<a href=""> -->
+<!-- 						<button type="button" class="topTen"> -->
+<!-- 							看本榜 TOP 10 -->
+<!-- 						</button> -->
+<!-- 					</a> -->
 				</div>
 
 
 				<div class="col-md-3" id="allType"
 					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
 					
-					<button type="button" class="topTen">
-						<a href="">看本榜 TOP 10</a>
-					</button>
+<!-- 					<button type="button" class="topTen"> -->
+<!-- 						<a href="">看本榜 TOP 10</a> -->
+<!-- 					</button> -->
 					
 				</div>
 
@@ -515,230 +515,230 @@ function loadImediate(type) {
 				<div class="col-md-3" id="emotion"
 					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
 					
-					<button type="button" class="topTen">
-						<a href="">看本榜 TOP 10</a>
-					</button>
+<!-- 					<button type="button" class="topTen"> -->
+<!-- 						<a href="">看本榜 TOP 10</a> -->
+<!-- 					</button> -->
 					
 					</div>
 					
 				<div class="col-md-3" id="rock"
 					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
 					
-					<button type="button" class="topTen">
-						<a href="">看本榜 TOP 10</a>
-					</button>
+<!-- 					<button type="button" class="topTen"> -->
+<!-- 						<a href="">看本榜 TOP 10</a> -->
+<!-- 					</button> -->
 					
 					</div>
 					
 					<div class="col-md-3" id="hiphop"
 					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
 					
-					<button type="button" class="topTen">
-						<a href="">看本榜 TOP 10</a>
-					</button>
+<!-- 					<button type="button" class="topTen"> -->
+<!-- 						<a href="">看本榜 TOP 10</a> -->
+<!-- 					</button> -->
 					
 					</div>
 					
 					<div class="col-md-3" id="blue"
 					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
 					
-					<button type="button" class="topTen">
-						<a href="">看本榜 TOP 10</a>
-					</button>
+<!-- 					<button type="button" class="topTen"> -->
+<!-- 						<a href="">看本榜 TOP 10</a> -->
+<!-- 					</button> -->
 					
 					</div>
 					
 					<div class="col-md-3" id="jazz"
 					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
 					
-					<button type="button" class="topTen">
-						<a href="">看本榜 TOP 10</a>
-					</button>
+<!-- 					<button type="button" class="topTen"> -->
+<!-- 						<a href="">看本榜 TOP 10</a> -->
+<!-- 					</button> -->
 					
 				    </div>
 				    
 				    <div class="col-md-3" id="classic"
 					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
 					
-					<button type="button" class="topTen">
-						<a href="">看本榜 TOP 10</a>
-					</button>
+<!-- 					<button type="button" class="topTen"> -->
+<!-- 						<a href="">看本榜 TOP 10</a> -->
+<!-- 					</button> -->
 					
 				    </div>
 				    
 				     <div class="col-md-3" id="metal"
 					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
 					
-					<button type="button" class="topTen">
-						<a href="">看本榜 TOP 10</a>
-					</button>
+<!-- 					<button type="button" class="topTen"> -->
+<!-- 						<a href="">看本榜 TOP 10</a> -->
+<!-- 					</button> -->
 					
 				    </div>
 				    
 				     <div class="col-md-3" id="funk"
 					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
 					
-					<button type="button" class="topTen">
-						<a href="">看本榜 TOP 10</a>
-					</button>
+<!-- 					<button type="button" class="topTen"> -->
+<!-- 						<a href="">看本榜 TOP 10</a> -->
+<!-- 					</button> -->
 					
 				    </div>
 				    
 				     <div class="col-md-3" id="popular"
 					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
 					
-					<button type="button" class="topTen">
-						<a href="">看本榜 TOP 10</a>
-					</button>
+<!-- 					<button type="button" class="topTen"> -->
+<!-- 						<a href="">看本榜 TOP 10</a> -->
+<!-- 					</button> -->
 					
 				    </div>
 				    
 				     <div class="col-md-3" id="electronic"
 					style="border: 1px #DDDDDD solid; margin-left: 50px; margin-bottom:20px;">
 					
-					<h3 class="title">
-						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice
-							即時熱門</span>
-					</h3>
+<!-- 					<h3 class="title"> -->
+<!-- 						<img id="playerPic" src="../img/player.png" class="play" /><span>FarVoice -->
+<!-- 							即時熱門</span> -->
+<!-- 					</h3> -->
 					
 					
-					<h6 style="margin: 0;">
-						1<img src="../img/left.JPG" style="margin-left: 10px;" />
-					</h6>
-					<span name="musicId"></span>
-					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4>
-					<p>老蕭</p>
-					<hr>		
+<!-- 					<h6 style="margin: 0;"> -->
+<!-- 						1<img src="../img/left.JPG" style="margin-left: 10px;" /> -->
+<!-- 					</h6> -->
+<!-- 					<span name="musicId"></span> -->
+<!-- 					<h4 style="margin: 0;color:#FF3333;">讓我為你唱情歌</h4> -->
+<!-- 					<p>老蕭</p> -->
+<!-- 					<hr>		 -->
 					
-					<button type="button" class="topTen">
-						<a href="">看本榜 TOP 10</a>
-					</button>
+<!-- 					<button type="button" class="topTen"> -->
+<!-- 						<a href="">看本榜 TOP 10</a> -->
+<!-- 					</button> -->
 					
 				    </div>
 				    
