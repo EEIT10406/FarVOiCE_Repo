@@ -22,6 +22,20 @@ public class FundingService {
 	@Autowired
 	private MusicDAO musicDAO;
 
+//找出審核通過的專案
+	public List<FundingBean> findAllByPass() {
+		List<FundingBean> bean = fundingDAO.findAllByPass();
+		return bean;
+	}
+
+//根據使用者名稱抓出提案
+	public List<FundingBean> findByUsername(String member_username) {
+		if (member_username != null) {
+			return fundingDAO.findByUsername(member_username);
+		}
+		return null;
+	}
+
 	// 給上傳的圖片檔一個儲存路徑
 	public String imageFilePath(byte[] file) throws IOException {
 		String imageFilePath = "C:/Roy_FarVoice/image/funding/" + System.currentTimeMillis() + ".jpg";
