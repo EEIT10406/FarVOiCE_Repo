@@ -17,7 +17,7 @@ import com.google.gson.annotations.Expose;
 @Entity
 @Table(name="Music")
 public class MusicBean {
-	@OneToMany(mappedBy="musicBean",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="musicBean",fetch=FetchType.LAZY)
 	private List<StoryBean> StoryBean;
 	
 	public List<StoryBean> getStoryBean() {

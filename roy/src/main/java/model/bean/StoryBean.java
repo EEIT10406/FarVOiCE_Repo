@@ -15,7 +15,7 @@ import com.google.gson.annotations.Expose;
 @Table(name="Story")
 public class StoryBean {
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="music_id",
 				referencedColumnName="music_id",
 				insertable=false,updatable=false)

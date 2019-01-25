@@ -952,8 +952,6 @@ var size1=5;
 						  	
 		            }//if
 		            else{
-		          
-		            	
 		            	for(var i=pagestart; i< (pagestart+size1); i++){ 
 							function timeFn(d1) {//di作为一个变量传进来
 							    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
@@ -1033,7 +1031,6 @@ var size1=5;
 					        
 						}	
 		            }//else
-		            
 		            
 				 },//suss
                 error: function (xhr, ajaxOptions, thrownError) {

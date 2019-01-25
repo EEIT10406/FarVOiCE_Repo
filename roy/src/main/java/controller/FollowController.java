@@ -28,7 +28,7 @@ public class FollowController {
 	// 追蹤or退追蹤
 	@RequestMapping(path = "personalPage/somebodyPersonalPageFollow.controller")
 	public String method(Model model, String somebody, HttpSession session) {
-		System.out.println(somebody);
+//		System.out.println(somebody);
 		MemberBean memberWhoS = (MemberBean) session.getAttribute("user");
 		if (memberWhoS != null) {
 			followService.followORCancelFollow(memberWhoS, somebody);
@@ -58,7 +58,7 @@ public class FollowController {
 	@RequestMapping(path = "personalPage/howMuchFollowMe.controller", produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String howMuchFollowMe(Model model, HttpSession session, String username) {
-		System.out.println("幾個follow 我" + username);
+//		System.out.println("幾個follow 我" + username);
 
 		return String.valueOf(followService.howMuchFollowMe(username));
 	}
@@ -67,7 +67,7 @@ public class FollowController {
 	@RequestMapping(path = "personalPage/iFollowHowMuch.controller", produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String iFollowHowMuch(Model model, HttpSession session, String username) {
-		System.out.println("我follow 幾個" + username);
+//		System.out.println("我follow 幾個" + username);
 		return String.valueOf(followService.iFollowHowMuch(username));
 	}
 
@@ -75,9 +75,9 @@ public class FollowController {
 	@RequestMapping(path = "personalPage/iFollowWho.controller", produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String iFollowWho(Model model, HttpSession session, String username) {
-		System.out.println("我follow 誰" + username);
+//		System.out.println("我follow 誰" + username);
 		List<FollowBean> stars = followService.iFollowWho(username);
-		System.out.println(stars);
+//		System.out.println(stars);
 		Gson gson = new Gson();
 		String jsonString = gson.toJson(stars);
 		return jsonString;
@@ -89,9 +89,9 @@ public class FollowController {
 	@RequestMapping(path = "personalPage/whoFollowMe.controller", produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String whoFollowMe(Model model, HttpSession session, String username) {
-		System.out.println("誰follow我-------我是" + username);
+//		System.out.println("誰follow我-------我是" + username);
 		List<FollowBean> stars = followService.whoFollowMe(username);
-		System.out.println(stars);
+//		System.out.println(stars);
 		Gson gson = new Gson();
 		String jsonString = gson.toJson(stars);
 		return jsonString;
