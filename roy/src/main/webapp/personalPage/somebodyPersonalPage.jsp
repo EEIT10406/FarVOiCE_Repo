@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link href="http://fonts.googleapis.com/css?family=Roboto:400,300"
 	rel="stylesheet" type="text/css">
@@ -51,6 +52,22 @@
 
 
 <style>
+.readmore{
+ 	background-color: white;
+    color: black;
+/*     border: 2px solid black; */
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.readmore:hover {
+    background-color: #9f5000; /* Green */
+    color: white;
+}
 .post {
 	float: left;
 
@@ -153,24 +170,55 @@ table {
 	word-break: break-all;
 	opacity:0.4
 }
-.readmore{
- 	background-color: white;
-    color: black;
-/*     border: 2px solid black; */
-    padding: 15px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+
+.shareAndAddbtn {
+	color: black;
+	background-color: white;
+	border: 0px;
 }
-.readmore:hover {
-    background-color: #9f5000; /* Green */
-    color: white;
-}
+
 </style>
 <script>
+//點擊預覽小卡跳轉詳細頁面
+function detailhref(e){
+	var webhref=$(e).attr("href");
+	window.location.href=webhref;
+}
+//抓取選取日期計算到期天數
+function limitDay(day) {
+	var pickdate = day;
+	var enddate = new Date(pickdate);
+	var nowdate = new Date();
+
+	var deadline = enddate.getTime()
+			- nowdate.getTime();
+	var days = parseInt(deadline
+			/ (1000 * 60 * 60 * 24)) + 1;
+	if (isNaN(days)) {
+		return 0;
+	}else{
+		return days;
+	}
+}
+//贊助%數取到整數
+function parseInt(percent){
+	var newpercent=Math.ceil(percent);
+	return newpercent
+}
+function changeCheckBoxs() {
+	var checkboxs = document.getElementsByName("isprivacy");
+	for (var i = 0; i < checkboxs.length; i++) {
+		if (checkboxs[i].checked == false) {
+				checkboxs[i].checked = true;
+				checkboxs[i].value = "false";
+		}
+	}
+}
+function submitBtnClick(){
+	changeCheckBoxs();
+	 $("#addshareform").submit();
+	 
+}
 
 	$(document).ready(function() {
 		loadFanCount('${somebody}')
@@ -206,6 +254,23 @@ table {
 		for (var i = 0; i < unfollows.length; i++) {
 			unfollows[i].addEventListener("click", followClick);
 		}
+		//按分享時載入哪首音樂shareAndAddbtn
+		$('body').on('click','.shareAndAddbtn',function() {
+	        var music_name =$(this).attr('music_name');
+	    	var music_id = $(this).attr('music_id');
+	    	var music_image =$(this).attr('music_image');
+	    	var music_href ="/roy/musicPage/findMusicById?musicId="+music_id;
+	    	
+	    	 $("#addshareMusicname").text(""+music_name+"");
+	    	 $("#addshareMusicid").text(""+music_id+"");
+	    	 $("#addshareMusicimg").text(""+music_image+"");
+
+	    	 console.log(music_name+","+music_id+","+music_image);
+	    	 //顯示
+	    	 $('#addshareMusicnameSpan > a').text(music_name);
+	    	 $('#addshareMusicnameSpan > a').attr("href",music_href);
+	    	 $('#addshareMusicImg').attr("src",music_image);
+			})
 	})
 
 
@@ -332,6 +397,7 @@ $(document).ready(function() {
 	loadMusicCount('${somebody}')
 	loadPlayList('${somebody}')
 	loadMemberLikeMusic('${somebody}')
+	showAllFunding('${somebody}');
 	
 	//按音樂重新載入音樂
 	$('#memberMusic').on('click',function(){
@@ -451,7 +517,7 @@ function loadMusic(username) {
 				var like='<img src="/roy/img/emptyLove.png" class="heart">';
 			}   
 	    content+=like+'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
-                      '<span id="share" class="shareAndAdd"><a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a></span>'+
+	    '<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare" style="outline: none;" music_id="'+list.music_id+'" music_image="'+list.music_Image+'" music_name="'+list.music_name+'"><img src="../img/share.png" width="13px">分享</button></span>'+
                       '<span id="add">'+
                       '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
 					  '</span>'+
@@ -502,7 +568,7 @@ function loadMemberLikeMusic(username) {
 				 			}  
 				    content+=like+'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
 					              '<span id="share" class="shareAndAdd">'+
-				                       '<a href="" style="color: black;"><img src="../img/share.png" width="15px" />分享</a>'+
+					              '<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare" style="outline: none;" music_id="'+list.music_id+'" music_image="'+list.music_Image+'" music_name="'+list.music_name+'"><img src="../img/share.png" width="13px">分享</button></span>'+
 					              '</span>'+
 					              '<span id="add">'+
 			                      '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
@@ -521,7 +587,49 @@ function loadMusicCount(username) {
 		$('#musicCount').html(data);
 	})
 }
+//	列出使用者所有專案
+function showAllFunding(username){
+	$.getJSON('/roy/personalPage/findProjectByUsername',{'username' : username},function(data) {
+		var content="";
+		$.each(data,function(index, list) {
+			console.log(list);
+			content += 
+				'<div class="project-pre allproject" style="cursor:pointer" href="/roy/funding/detail.controller?funding_id='+list.funding_id+'&day='+limitDay(list.funding_duration)+'&nickname='+list.nick_name+'" onclick="detailhref(this)">'+
+				'<div class="img-pres">'+
+				'<img class="img-in" id="preview_progressbarTW_img"'+
+				'src="'+list.funding_image+'">'+
+				'</div>'+
+				'<div class="pcontent-pre">'+
+				'<p id="pre-title" class="title-content"'+
+					'style="margin-bottom: -18px">'+list.funding_title+'</p>'+
+				'<p class="small creator">'+
+				'<a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nick_name+'"><p id="pre-name">'+list.nick_name+'</p></a>'+
 
+				'<p id="pre-content" class="excerpt JQellipsis"'+
+				'style="font-weight: bold; font-size: 0.85rem">'+list.funding_description+'</p>'+
+				'</div>'+
+				'<div class="downMeta-pre">'+
+				'<progress class="progress-pre"'+
+				'style="margin-bottom: 0px; margin-top: 0px;" value="'+list.funding_currentAmount/list.funding_goal*100+'" max="100"></progress>'+
+			    '<span class="goalMoney osmfont currentMoney" style="font-family: Oswald, sans-serif;">'+list.funding_currentAmount+'</span><span'+
+				' class="hidden-md goalpercent goal" style="font-family: Oswald, sans-serif;"> '+parseInt(list.funding_currentAmount/list.funding_goal*100)+'%</span><span'+
+				' style="font-size: 13px; letter-spacing: 1px;font-family: Microsoft JhengHei"'+
+				'class="date pull-right small"> 還剩 <strong class="days"'+
+				'style="font-size: 13px; font-weight: 1000; letter-spacing: 1px;">'+limitDay(list.funding_duration)+'</strong><span'+
+				' style="font-size: 13px; letter-spacing: 1px"> 天</span>'+
+				'</span>'+
+				'<span class="funding_id" style="display:none">'+list.funding_id+'</sapn>'+
+				'<span class="funding_goal" style="display:none">'+list.funding_goal+'</sapn>'+
+				'<span class="funding_createTime" style="display:none">'+list.funding_createTime+'</sapn>'+
+				'<span class="funding_duration" style="display:none">'+list.funding_duration+'</sapn>'+
+				'<span class="funding_browseCount" style="display:none">'+list.funding_browseCount+'</sapn>'+
+				'</div>'+
+			    '</div>';
+           })
+		$('#userproject').html(content);
+		
+	})
+}
 
 			
 </script>
@@ -564,12 +672,15 @@ function loadMusicCount(username) {
 						<li><a href="#music" data-toggle="tab" id="memberMusic">音樂</a></li>
 						<li><a href="#list" data-toggle="tab">歌單</a></li>
 						<li><a href="#like" data-toggle="tab" id="memberLikeMusic">喜歡</a></li>
+						<li><a href="#userproject" data-toggle="tab" id="memberProject">提案</a></li>
+						<li><a href="#reward" data-toggle="tab" id="memberReward">贊助</a></li>
 						<li><a href="#about" data-toggle="tab">關於</a></li>
 					</ul>
 
 					<div class="tab-content" style="height: auto;">
 
 						<div class="tab-pane fade in active" id="dynamic">
+
 							<div id="test"></div>
 							<a class='readmore' onclick='return showData()'>查看更多文章</a>
 						</div>
@@ -655,6 +766,11 @@ function loadMusicCount(username) {
 						</div>
 
 						<!-- 						end music -->
+
+						<div class="tab-pane fade in" style="overflow: auto;" id="userproject"></div>
+						<div class="tab-pane fade in" style="overflow: auto;" id="reward"></div>
+
+
 
 
 						<div class="tab-pane fade in" id="about">
@@ -921,21 +1037,20 @@ var size1=5;
 		            
 				 },//suss
                 error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status);
+                    alert(xhr.status+"-->showData");
                     alert(thrownError);
                 }
             })
- 
- }
-
-
-
-
+ 	}) 
+				}
+				 	
+				
+				
+				
+				
 </script>
 
 	<!-- 	showArticleFromMember end-->
-
-
 
 
 	<!-- === END CONTENT === -->
@@ -968,6 +1083,34 @@ var size1=5;
 									</div>							
 							
 							<!-- addPlayList end-->
+							
+								<!-- addshare begin-->
+	<div class="modal fade" id="addshare" aria-hidden="true">
+		<div class="modal-dialog" style="width: 300px;">
+			<div class="modal-content">
+				<h5 style="margin: 20px;">分享歌曲</h5>
+				<form action="<c:url value='/personalPage/ShareMusic.controller'/>" method="get" id="addshareform">
+					<div class="modal-body">
+						<div class="form-group"></div>
+						<textarea name="shareContent" style="width: 250px; height: 270px" onFocus="if(this.value==this.defaultValue) this.value=''" onBlur="if(this.value=='') this.value=this.defaultValue">分享一下感想吧...</textarea>
+					</div>
+					<textarea hidden="true" id="addshareMusicid" name="shareMusicid"></textarea>
+					<textarea  hidden="true" id="addshareMusicname" name="shareMusicname"></textarea>
+					<textarea  hidden="true" id="addshareMusicimg" name="shareMusicimg"></textarea>
+					
+					<div id="displayShareMusic">
+						<img src="../img/300x300.jpg" id="addshareMusicImg"  style="margin-left: 20px;width:50px;height:50px;"/><a href=""></a>
+						<span style="margin-left: 10px; font-size: 15px;" id="addshareMusicnameSpan"><a href="#">123讓我為你唱情歌</a></span>
+					</div>
+					<div class="modal-footer">
+						<div style="float:left"><input type="checkbox" name="isprivacy" value="true">不公開</div>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" onclick="submitBtnClick()" >確定</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
 							
 	<jsp:include page="../homePage/footer.jsp" />
 	<!-- 	<div id="player"> -->

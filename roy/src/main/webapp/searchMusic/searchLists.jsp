@@ -140,9 +140,9 @@
 									<label class="col-sm-1 control-label text-muted"><small>類型</small></label>
 									<div class="col-sm-11">
 										<ul id="type" class="nav nav-pills nav-sm">
-											<li class="active" sort="playlist_registerTime"><a class="dynamic" href="#">最多喜歡</a></li>
+											<li class="active" sort="playlist_name"><a class="dynamic" href="#">最多喜歡</a></li>
 											<li sort="playlist_musicCount"><a class="dynamic" href="#">最多播放</a></li>
-											<li sort="playlist_privacy"><a class="dynamic" href="#">最新上傳</a></li>
+											<li sort="playlist_registerTime"><a class="dynamic" href="#">最新上傳</a></li>
 										</ul>
 									</div>
 								</div>

@@ -248,7 +248,7 @@
 
 									<textarea style="font-weight: 400" class="form-control fc"
 										oninput="title" onpropertychange="title"
-										name="reward_description" placeholder="單純贊助，不需回饋"
+										name="reward_description"  placeholder="單純贊助，不需回饋"
 										maxlength="500" rows="11" required
 										oninvalid="setCustomValidity('請輸入回饋描述');"
 										oninput="setCustomValidity('');"></textarea>

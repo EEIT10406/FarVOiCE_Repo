@@ -26,7 +26,9 @@ import model.bean.MemberBean;
 				@WebInitParam(name = "mustLogin4", value = "/personalPage/personalPage.jsp"),				
 				@WebInitParam(name = "mustLogin5", value = "/personalPage/personalDetail.jsp"),			
 				@WebInitParam(name = "mustLogin6", value = "/funding/startProject.jsp"),				
-				@WebInitParam(name = "mustLogin7", value = "/funding/showMusic.controller")			
+				@WebInitParam(name = "mustLogin7", value = "/funding/showMusic.controller"),			
+				@WebInitParam(name = "mustLogin8", value = "/funding/turnToDonatePage.controller"),		
+
 		})
 public class LoginCheckingFilter implements Filter {
 	Collection<String> url = new ArrayList<String>();
@@ -68,7 +70,12 @@ public class LoginCheckingFilter implements Filter {
 					// 原本要執行的程式。
 					System.out.println("放requestURI"+requestURI);
 					if(!requestURI.endsWith("jsp")) {
-						requestURI = "/roy/homePage/index.jsp" ;
+						if(requestURI.endsWith("turnToDonatePage.controller")) {
+//							requestURI="/roy/funding/fundingDetail.jsp";
+							requestURI="/roy/funding/allFunding.jsp";
+						} else {
+							requestURI = "/roy/homePage/index.jsp" ;
+						}
 					}
 					session.setAttribute("requestURI", requestURI);
 					if ( ! isRequestedSessionIdValid ) {

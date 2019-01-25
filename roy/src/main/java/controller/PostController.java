@@ -102,6 +102,7 @@ public class PostController {
 	}
 	
 	
+
 	@RequestMapping(path="/somebodypersonalPage/showArticleFromMember.controller",produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String showsomebodyArticleFromMember(Model model,HttpSession session,String username) {
@@ -129,6 +130,4 @@ public class PostController {
 		
 	}
 
-		
-	
 }

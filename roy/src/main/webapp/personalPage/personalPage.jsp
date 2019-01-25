@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link href="http://fonts.googleapis.com/css?family=Roboto:400,300"
 	rel="stylesheet" type="text/css">
@@ -213,7 +214,11 @@ alert("${result}")
 		}
 	}
 
-
+	//贊助%數取到整數
+	function parseInt(percent){
+		var newpercent=Math.ceil(percent);
+		return newpercent
+	}
 
 $(document).ready(function() {
 	loadMusic('${user.member_username}')
@@ -222,6 +227,8 @@ $(document).ready(function() {
 	loadMemberLikeMusic('${user.member_username}')
 	loadFanCount('${user.member_username}')
 	loadStarCount('${user.member_username}')
+	showAllFunding('${user.member_username}');
+	
 	//按音樂重新載入喜歡的音樂
 	$('#memberMusic').on('click',function(){
 		loadMusic('${user.member_username}')
@@ -509,7 +516,52 @@ function loadMemberLikeMusic(username) {
 				//顯示追蹤名單END
 			}
 		})
-	}		
+	}
+	
+// 	列出使用者所有專案
+function showAllFunding(username){
+	$.getJSON('/roy/personalPage/findProjectByUsername',{'username' : username},function(data) {
+		var content="";
+		$.each(data,function(index, list) {
+			console.log(list);
+			content += 
+				'<div class="project-pre allproject" style="cursor:pointer" href="/roy/funding/detail.controller?funding_id='+list.funding_id+'&day='+limitDay(list.funding_duration)+'&nickname='+list.nick_name+'" onclick="detailhref(this)">'+
+				'<div class="img-pres">'+
+				'<img class="img-in" id="preview_progressbarTW_img"'+
+				'src="'+list.funding_image+'">'+
+				'</div>'+
+				'<div class="pcontent-pre">'+
+				'<p id="pre-title" class="title-content"'+
+					'style="margin-bottom: -18px">'+list.funding_title+'</p>'+
+				'<p class="small creator">'+
+				'<a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nick_name+'"><p id="pre-name">'+list.nick_name+'</p></a>'+
+
+				'<p id="pre-content" class="excerpt JQellipsis"'+
+				'style="font-weight: bold; font-size: 0.85rem">'+list.funding_description+'</p>'+
+				'</div>'+
+				'<div class="downMeta-pre">'+
+				'<progress class="progress-pre"'+
+				'style="margin-bottom: 0px; margin-top: 0px;" value="'+list.funding_currentAmount/list.funding_goal*100+'" max="100"></progress>'+
+			    '<span class="goalMoney osmfont currentMoney" style="font-family:Oswald, sans-serif;">'+list.funding_currentAmount+'</span><span'+
+				' class="hidden-md goalpercent goal" style="font-family: Oswald, sans-serif;"> '+parseInt(list.funding_currentAmount/list.funding_goal*100)+'%</span><span'+
+				' style="font-size: 13px; letter-spacing: 1px;font-family: Microsoft JhengHei"'+
+				'class="date pull-right small"> 還剩 <strong class="days"'+
+				'style="font-size: 13px; font-weight: 1000; letter-spacing: 1px;">'+limitDay(list.funding_duration)+'</strong><span'+
+				' style="font-size: 13px; letter-spacing: 1px"> 天</span>'+
+				'</span>'+
+				'<span class="funding_id" style="display:none">'+list.funding_id+'</sapn>'+
+				'<span class="funding_goal" style="display:none">'+list.funding_goal+'</sapn>'+
+				'<span class="funding_createTime" style="display:none">'+list.funding_createTime+'</sapn>'+
+				'<span class="funding_duration" style="display:none">'+list.funding_duration+'</sapn>'+
+				'<span class="funding_browseCount" style="display:none">'+list.funding_browseCount+'</sapn>'+
+				'</div>'+
+			    '</div>';
+           })
+		$('#userproject').html(content);
+		
+	})
+}
+	
 </script>
 
 </head>
@@ -574,6 +626,8 @@ function loadMemberLikeMusic(username) {
 						<li><a href="#music" data-toggle="tab" id="memberMusic">音樂</a></li>
 						<li><a href="#list" data-toggle="tab">歌單</a></li>
 						<li><a href="#like" data-toggle="tab" id="memberLikeMusic">喜歡</a></li>
+						<li><a href="#userproject" data-toggle="tab" id="memberProject">提案</a></li>
+						<li><a href="#reward" data-toggle="tab" id="memberDonate">贊助</a></li>
 						<li><a href="#about" data-toggle="tab">關於</a></li>
 					</ul>
 					
@@ -614,7 +668,6 @@ function loadMemberLikeMusic(username) {
 							<div id="test"><br>
 							</div>
 					        <a class='readmore' onclick='return showData()'>查看更多文章</a>
-					
 						</div>
 						<!-- End dynamic -->
 						<div class="tab-pane fade in" style="overflow: auto;" id="music">								
@@ -624,8 +677,11 @@ function loadMemberLikeMusic(username) {
 						<div class="tab-pane fade in" style="overflow: auto;" id="like">
 						</div>
 						<!-- end music -->
-
-
+                        <div class="tab-pane fade in" style="overflow: auto;" id="userproject">
+						</div>
+						<div class="tab-pane fade in" style="overflow: auto;" id="reward">
+						</div>
+                        <!-- end funding -->
 						<div class="tab-pane fade in" id="about">
 							<!-- about begin -->
 							<div class="row tabs">
@@ -739,6 +795,27 @@ function loadMemberLikeMusic(username) {
 	
 	<!-- 	showArticleFromMember start-->
 <script>
+//點擊預覽小卡跳轉詳細頁面
+function detailhref(e){
+	var webhref=$(e).attr("href");
+	window.location.href=webhref;
+}
+//抓取選取日期計算到期天數
+function limitDay(day) {
+	var pickdate = day;
+	var enddate = new Date(pickdate);
+	var nowdate = new Date();
+
+	var deadline = enddate.getTime()
+			- nowdate.getTime();
+	var days = parseInt(deadline
+			/ (1000 * 60 * 60 * 24)) + 1;
+	if (isNaN(days)) {
+		return 0;
+	}else{
+		return days;
+	}
+}
 //刪除Post或Share
 	function remove(post_idS)
 	{
