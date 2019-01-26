@@ -16,7 +16,8 @@ public class FundingBean {
 				+ funding_title + ", funding_styleName=" + funding_styleName + ", funding_image=" + funding_image
 				+ ", music_id=" + music_id + ", funding_goal=" + funding_goal + ", funding_currentAmount="
 				+ funding_currentAmount + ", funding_duration=" + funding_duration + ", funding_createTime="
-				+ funding_createTime + ", funding_browseCount=" + funding_browseCount + ",funding_status="+funding_status+"]";
+				+ funding_createTime + ", funding_browseCount=" + funding_browseCount + ",funding_status="
+				+ funding_status + ",member_nickname=" + member_nickname +"]";
 	}
 
 	/*
@@ -32,6 +33,7 @@ public class FundingBean {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer funding_id;
 	private String member_username;
+	private String member_nickname; 
 	private String funding_description;
 	private String funding_city;
 	private String funding_title;
@@ -156,6 +158,14 @@ public class FundingBean {
 
 	public void setFunding_status(Boolean funding_status) {
 		this.funding_status = funding_status;
+	}
+
+	public String getMember_nickname() {
+		return member_nickname;
+	}
+
+	public void setMember_nickname(String member_nickname) {
+		this.member_nickname = member_nickname;
 	}
 
 }

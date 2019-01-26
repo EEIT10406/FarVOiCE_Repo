@@ -72,6 +72,7 @@ public class MusicController {
 		}
 		MemberBean memberBean = (MemberBean) session.getAttribute("user");
 		bean.setMember_username(memberBean.getMember_username());
+		bean.setMember_nickname(memberBean.getMember_nickname());
 		bean.setMusic_music(musicPath);
 		bean.setMusic_Image(imagePath);
 		bean.setMusic_uploadTime(new java.util.Date());

@@ -32,10 +32,6 @@ public class FundingController {
 
 	@Autowired
 	private MemberService memberService;
-
-//創建專案
-//		public String method(String funding_title, String funding_description, Integer funding_goal,
-//				String funding_styleName, String funding_city, Model model) {
 //創建募資專案+上傳圖片
 	@RequestMapping("/funding/funding.controller")
 	public String createProject(FundingBean bean, Model model, HttpSession session,
@@ -53,10 +49,12 @@ public class FundingController {
 		}
 		MemberBean memberBean = (MemberBean) session.getAttribute("user");
 		String username = memberBean.getMember_username();
+		String nickname = memberBean.getMember_nickname();
 		Date date = new Date();
 		bean.setFunding_browseCount(0);
 		bean.setFunding_currentAmount(0);
 		bean.setMember_username(username);
+		bean.setMember_nickname(nickname);
 		bean.setFunding_image(imagepath);
 		bean.setFunding_createTime(date);
 		bean.setFunding_status(false);
