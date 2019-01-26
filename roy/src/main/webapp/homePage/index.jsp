@@ -41,7 +41,7 @@
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
-<script src="1.js?ver=1"></script>
+<!-- <script src="1.js?ver=1"></script> -->
 
 <!-- End JS -->
 <style>
@@ -298,13 +298,11 @@ function loadLikeMusic(username){
 		y = s.substring(s.length-4,s.length);
 		ss = y +'-'+m+'-'+d;
 		
-		var enddate = new Date(ss);
+		var enddate = new Date(s);
 		var nowdate = new Date();
 
-		var deadline = enddate.getTime()
-				- nowdate.getTime();
-		var days = parseInt(deadline
-				/ (1000 * 60 * 60 * 24)) + 1;
+		var deadline = enddate.getTime() - nowdate.getTime();
+		var days = parseInt(deadline / (1000 * 60 * 60 * 24)) + 1;
 		return days;
 	}	
 	

@@ -167,33 +167,39 @@ function doPage(){
 }
 function preP(){
 	if(currentPage!=1){
-		console.log(currentPage);
-		start=currentPage-1;
-		showData(start);
 		currentPage=currentPage-1;
+		console.log("page-->"+currentPage);
+		$(".pagination li").attr("class","");
+		$(".pagination li:nth-child("+(currentPage+1)+")").attr("class","active");
+		start = currentPage*count-count;
+		showData(start);
 	}else{	
 		alert("已經是第一頁囉~");
 	}	
 }
 function NextP(){	
 	if(currentPage!=ShowPage){
-		start=parseInt(currentPage)+1;
+		currentPage=currentPage+1;
+		console.log("page-->"+currentPage);
+		$(".pagination li").attr("class","");
+		$(".pagination li:nth-child("+(currentPage+1)+")").attr("class","active");
+		start = currentPage*count-count;
 		showData(start);
-		currentPage=parseInt(currentPage)+1;
 	}else{		
 		alert("已經最後一頁~");		
 	}	
 }
 
 function showData(token){
-	console.log(token);
+	console.log("從第幾筆抓--->"+token);
 	$("#articlePutHere").html("");
 	var div ="";
 	for(var i=token;i<token+count;i++){
 			var Blog_Item_Details = 
 			"<div class='blog-post-details'>"+
 			"<div class='blog-post-details-item blog-post-details-item-left'>"+
-				"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+allArticle[i].member_nickname+"</a>"+
+				"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+allArticle[i].member_nickname+
+				"</a>"+
 			"</div>"+
 			"<div class='blog-post-details-item blog-post-details-item-left'>"+
 				"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+allArticle[i].post_time+"</a>"+
@@ -247,6 +253,7 @@ function loadArticle (searchString) {
 		success : function(list)
 		{	
 			allArticle=list;
+			console.log(allArticle);
 			NumOfJData = list.length; //NumOfJData=7 總筆數
 			//總頁數 
 			ShowPage = Math.ceil((NumOfJData/count));  
@@ -300,18 +307,26 @@ function loadArticle (searchString) {
 			//顯示最近新增
 			for(var i=0;i<5;i++){
 				var author = allArticle[i].member_nickname;
-				var time = allArticle[i].post_time;
+// 				if(author.length>6){
+// 					author = author.substring(0,5)+"...";
+// 				}
+				var time = allArticle[i].post_time.substring(0,12);
 				var content = allArticle[i].post_content;
+				if(content.length>8){
+					content = content.substring(0,5)+"...";
+				}
 				var postnumber = allArticle[i].post_idS;
 				var profile = allArticle[i].member_profileImage;
-				var newArticleContent = "<li>"+
+				var newArticleContent = "<li style='border-bottom:1px solid #DDDDDD;padding-bottom:5px;margin-top:5px'>"+
 				"<div class='recent-post'>"+
 				"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'>"+"<img class='pull-left' src='"+profile+"'"+
 				"style='width: 100px; height: 90px' alt='thumb1'>"+
-				"</a> <a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
-				"class='posts-list-title'>"+author+"</a> <br> <span class='recent-post-date'>"+time+"</span>"+
-				"</div><div class='clearfix'></div></li><br><br>";
+				"</a> <span><a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
+				">"+content+"</a></span> <br><span><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+author+
+				"'><small style='color:black;'>"+author+"</small></a></span><br> <span class='recent-post-date'>"+time+"</span>"+
+				"</div><div class='clearfix'></div></li>";
 				$("#newArticle").append(newArticleContent);
+				
 				
 			}
 				

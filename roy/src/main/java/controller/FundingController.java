@@ -185,11 +185,13 @@ public class FundingController {
 			jsonMap.put("funding_id", "" + bean.getFunding_id());
 			jsonMap.put("funding_createTime", "" + bean.getFunding_createTime());
 			jsonMap.put("funding_browseCount", "" + bean.getFunding_browseCount());
+			jsonMap.put("funding_status", "" + bean.getFunding_status());
 			fundings.add(jsonMap);
 		}
 
 		return JSONValue.toJSONString(fundings);
 	}
+
 //找出審核通過的專案
 	@RequestMapping(value = "/funding/findAllByPass.controller", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -215,6 +217,7 @@ public class FundingController {
 
 		return JSONValue.toJSONString(fundings);
 	}
+
 //	根據username抓出所有專案
 	@RequestMapping(value = "/personalPage/findProjectByUsername", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -242,7 +245,8 @@ public class FundingController {
 		}
 		return JSONValue.toJSONString(fundings);
 	}
-	//找出該使用者通過審核的專案
+
+	// 找出該使用者通過審核的專案
 	@RequestMapping(value = "/personalPage/findProjectByUsernamePass", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String findProjectByUsernamePass(String username) {
@@ -270,5 +274,12 @@ public class FundingController {
 		return JSONValue.toJSONString(fundings);
 	}
 
-	
+//審核提案
+	@RequestMapping(path = "/back/passCurrentFunding.controller")
+	public void edit(Integer funding_id) {
+		FundingBean bean = fundingService.findFundingById(funding_id);
+		bean.setFunding_status(true);
+		fundingService.update(bean);
+	}
+
 }
