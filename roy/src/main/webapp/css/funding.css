@@ -984,3 +984,9 @@ input[type="file"] {
 	float: right;
     width: 565px;
 }
+.project-manage{
+	margin: auto;
+    width: 57%;
+    float: right;
+    text-align: center;
+}

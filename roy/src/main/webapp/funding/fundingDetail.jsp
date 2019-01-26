@@ -25,7 +25,7 @@
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
-<script src="1.js?ver=1"></script>
+
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script> -->
 
 <!-- End JS -->
@@ -36,7 +36,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <!-- Favicon -->
-<link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
 <!-- Template CSS -->
@@ -76,7 +75,6 @@
 				$(this).find('.pick-lock').focus();
 			}
 		})
-		
 
 		//無法贊助自己的專案
 		if ('${selfusername}' == '${funding.member_username}') {
@@ -89,19 +87,13 @@
 			$('.ban-donate').css("pointer-events", "none");
 			$('.ban-color').css("background-color", "#e0e0e0");
 		}
-		
+		// 點擊展開編輯選單
+		$('#editme').click(function() {
+
+			$('.manage').slideToggle(1500);
+
+		})
 	})
-	//得出每個回饋贊助人數
-	// 		function donatecounts(count){
-	// 			alert(..............)
-	// 		$.get("donateCount_reward.controller",{reward_id:count}).done(function(result){
-
-	// 			alert(result);
-
-	// 		})
-
-	// 	}
-	
 </script>
 <style type="text/css">
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -117,10 +109,20 @@ input[type="number"] {
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
+		<div class="project-manage">
+			<a id="editme" style="cursor: pointer;"><i class="far fa-edit"></i></a>
+			<div class="manage">
+			<ul style="display: contents;" >
+				<li style="display: inline;" >編輯專案</li>
+				<li style="display: inline;" >編輯回饋</li>
+				<li style="display: inline;" >管理訂單</li>
+			</ul>
+			</div>
+		</div>
 		<div class="fundingDetail">
 
-			<div class="detailHead">
-				<h1 style="font-weight: bold">${funding.funding_title}</h1>
+			<div class="detailHead" style="clear: both;">
+				<h1 style="font-weight: bold; display: inline;">${funding.funding_title}</h1>
 				<p>
 					由 <a
 						href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${nickname}">${nickname}</a>
@@ -192,10 +194,10 @@ input[type="number"] {
 					<p class="content-s3">${funding.funding_description}</p>
 				</div>
 
-				<div class="reward-card ban-text" ">
+				<div class="reward-card ban-text"">
 
 
-					<c:forEach var='reward'  items="${reward}">
+					<c:forEach var='reward' items="${reward}">
 
 						<div class="card-toggle ban-donate">
 							<div class="a">
@@ -245,15 +247,14 @@ input[type="number"] {
 													<div class="plus"></div>
 													<div class="extra-sup-1">
 														<label class="extra-sup-2">額外支持</label> <br> <input
-															 name="sup_money" class="pick-lock" type="number"
+															name="sup_money" class="pick-lock" type="number"
 															placeholder="$0">
 													</div>
-<!-- 													<input style="display: none" type="text" -->
-<%-- 														value="${reward.reward_id}"> <input --%>
-<!-- 														style="display: none" type="text" -->
-<%-- 														value="${reward.funding_id}">  --%>
-														<input type="submit"
-														class=btn-submit value="贊助此回饋">
+													<!-- 													<input style="display: none" type="text" -->
+													<%-- 														value="${reward.reward_id}"> <input --%>
+													<!-- 														style="display: none" type="text" -->
+													<%-- 														value="${reward.funding_id}">  --%>
+													<input type="submit" class=btn-submit value="贊助此回饋">
 												</div>
 											</form>
 

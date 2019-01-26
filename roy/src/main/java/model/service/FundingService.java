@@ -36,6 +36,14 @@ public class FundingService {
 		return null;
 	}
 
+	// 找出該使用者通過審核的專案
+	public List<FundingBean> findProjectByUsernamePass(String member_username) {
+		if (member_username != null) {
+			return fundingDAO.findProjectByUsernamePass(member_username);
+		}
+		return null;
+	}
+
 	// 給上傳的圖片檔一個儲存路徑
 	public String imageFilePath(byte[] file) throws IOException {
 		String imageFilePath = "C:/Roy_FarVoice/image/funding/" + System.currentTimeMillis() + ".jpg";

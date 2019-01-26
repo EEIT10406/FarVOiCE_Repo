@@ -517,9 +517,9 @@ function loadMemberLikeMusic(username) {
 		})
 	}
 	
-// 	列出使用者所有專案
+// 	找出該使用者通過審核的專案
 function showAllFunding(username){
-	$.getJSON('/roy/personalPage/findProjectByUsername',{'username' : username},function(data) {
+	$.getJSON('/roy/personalPage/findProjectByUsernamePass',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
 			console.log(list);
