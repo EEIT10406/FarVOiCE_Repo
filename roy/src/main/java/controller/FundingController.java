@@ -175,7 +175,7 @@ public class FundingController {
 			jsonMap.put("funding_title", bean.getFunding_title());
 			jsonMap.put("funding_image", bean.getFunding_image());
 			jsonMap.put("member_username", bean.getMember_username());
-			jsonMap.put("nick_name", "" + memberService.usernameToNickname(bean.getMember_username()));
+			jsonMap.put("nick_name", "" + bean.getMember_nickname());
 			jsonMap.put("funding_description", bean.getFunding_description());
 			jsonMap.put("funding_currentAmount", "" + bean.getFunding_currentAmount());
 			jsonMap.put("funding_goal", "" + bean.getFunding_goal());
@@ -202,7 +202,7 @@ public class FundingController {
 			jsonMap.put("funding_title", bean.getFunding_title());
 			jsonMap.put("funding_image", bean.getFunding_image());
 			jsonMap.put("member_username", bean.getMember_username());
-			jsonMap.put("nick_name", "" + memberService.usernameToNickname(bean.getMember_username()));
+			jsonMap.put("nick_name", bean.getMember_nickname());
 			jsonMap.put("funding_description", bean.getFunding_description());
 			jsonMap.put("funding_currentAmount", "" + bean.getFunding_currentAmount());
 			jsonMap.put("funding_goal", "" + bean.getFunding_goal());
@@ -230,7 +230,7 @@ public class FundingController {
 			jsonMap.put("funding_title", bean.getFunding_title());
 			jsonMap.put("funding_image", bean.getFunding_image());
 			jsonMap.put("member_username", bean.getMember_username());
-			jsonMap.put("nick_name", "" + memberService.usernameToNickname(bean.getMember_username()));
+			jsonMap.put("nick_name", "" + bean.getMember_nickname());
 			jsonMap.put("funding_description", bean.getFunding_description());
 			jsonMap.put("funding_currentAmount", "" + bean.getFunding_currentAmount());
 			jsonMap.put("funding_goal", "" + bean.getFunding_goal());
@@ -258,7 +258,7 @@ public class FundingController {
 			jsonMap.put("funding_title", bean.getFunding_title());
 			jsonMap.put("funding_image", bean.getFunding_image());
 			jsonMap.put("member_username", bean.getMember_username());
-			jsonMap.put("nick_name", "" + memberService.usernameToNickname(bean.getMember_username()));
+			jsonMap.put("nick_name", "" + bean.getMember_nickname());
 			jsonMap.put("funding_description", bean.getFunding_description());
 			jsonMap.put("funding_currentAmount", "" + bean.getFunding_currentAmount());
 			jsonMap.put("funding_goal", "" + bean.getFunding_goal());

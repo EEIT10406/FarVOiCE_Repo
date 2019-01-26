@@ -87,12 +87,7 @@
 			$('.ban-donate').css("pointer-events", "none");
 			$('.ban-color').css("background-color", "#e0e0e0");
 		}
-		// 點擊展開編輯選單
-		$('#editme').click(function() {
-
-			$('.manage').slideToggle(1500);
-
-		})
+		
 	})
 </script>
 <style type="text/css">
@@ -109,16 +104,7 @@ input[type="number"] {
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
-		<div class="project-manage">
-			<a id="editme" style="cursor: pointer;"><i class="far fa-edit"></i></a>
-			<div class="manage">
-			<ul style="display: contents;" >
-				<li style="display: inline;" >編輯專案</li>
-				<li style="display: inline;" >編輯回饋</li>
-				<li style="display: inline;" >管理訂單</li>
-			</ul>
-			</div>
-		</div>
+		
 		<div class="fundingDetail">
 
 			<div class="detailHead" style="clear: both;">
