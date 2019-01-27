@@ -57,7 +57,7 @@ alert('${result}');
 		showAllFunding();
 
 		$(window).load(function() {
-			projectSize();
+// 			projectSize();
 			limitText();
 		})
 
@@ -150,8 +150,7 @@ alert('${result}');
 	// 		}
 	// 獲取專案數量
 	function projectSize() {
-		var pcount = $('.allproject').size();
-		$('.count').text("有 " + pcount + " 件案子正在募資");
+		
 	}
 	// 列出所有專案
 	function showAllFunding() {
@@ -167,7 +166,7 @@ alert('${result}');
 												console.log(list);
 												content +=
 
-												'<div class="project-pre allproject" style="cursor:pointer" href="/roy/funding/detail.controller?funding_id='
+												'<div class="project-pre allproject" id="allproject" style="cursor:pointer" href="/roy/funding/detail.controller?funding_id='
 														+ list.funding_id
 														+ '&day='
 														+ limitDay(list.funding_duration)
@@ -232,8 +231,12 @@ alert('${result}');
 
 											})
 							$('#sortThis').html(content);
-
+							$('.count').text("有 " + data.length + " 件案子正在募資");
 						})
+// 						var pcount = $('#allproject').size();
+// 				console.log(pcount);
+				
+				
 	}
 	//超過50字以...表示
 	function limitText() {

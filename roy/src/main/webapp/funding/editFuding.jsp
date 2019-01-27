@@ -455,6 +455,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 				</div>
 				<input style="display: none;" type="text" name="oImage"
 					value="${fundingBean.funding_image}">
+					<input style="display: none;" type="text" name="funding_id"
+					value="${fundingBean.funding_id}">
 			</form>
 
 		</div>

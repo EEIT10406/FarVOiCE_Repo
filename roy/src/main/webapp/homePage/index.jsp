@@ -41,8 +41,7 @@
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
-<!-- <script src="1.js?ver=1"></script> -->
-
+<script src="1.js?ver=1"></script>
 <!-- End JS -->
 <style>
 #musicPage{
@@ -72,6 +71,7 @@ float:right;width:50px;margin-top:25px;margin-right:50px;
 
 </style>
 <script>
+var peterIds;
 $(document).ready(function(){
 	showAllFunding();
 	
@@ -175,6 +175,7 @@ function timeFn(d1) {//di作为一个变量传进来
 
 function loadLikeMusic(username){
 	$.getJSON('/roy/homePage/indexLikeMusic',{'username': username},function(data) {
+		peterIds = data;
 		var content="";
 		var number=1;
 		var timediff ="";
@@ -231,30 +232,73 @@ function loadLikeMusic(username){
                      number=number+1;
            })
            $('#likes').html(content);
-		 
 		$('span[name="musicId"]').hide();
-	});
+		
+		console.log("peterIds--->"+peterIds)
+		var id = "#message"+peterIds[0].music_id;console.log(id);
+		var content = 
+	     	"<div style='margin-bottom:45px'>"+
+           	"<div style='margin-bottom:15px'>"+
+            "<img src='/roy/image/profile/1547190570275.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px'>"+
+            "<h5 style='margin-bottom:0px;margin-top:15px;letter-spacing:0.5px;display:inline;vertical-align: middle;'>紫色的龍媽的中二名</h5>"+
+            "<small style='vertical-align:middle;margin-top:15px;margin-left:15px'>3小時前</small>"+
+            "</div>"+
+            "<div class='clearfix'></div>"+
+            "<div style='margin-bottom:15px'>聽了真是渾身舒暢</div>"+
+            "<br><br></div>"+
+            '</div>';
+		$(id).html(content);
+		var id = "#message"+peterIds[1].music_id;console.log(id);
+		var content = 
+	     	"<div style='margin-bottom:45px'>"+
+	       	"<div style='margin-bottom:15px'>"+
+	        "<img src='/roy/image/profile/1547190792299.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px'>"+
+	        "<h5 style='margin-bottom:0px;margin-top:15px;letter-spacing:0.5px;display:inline;vertical-align: middle;'>我最愛subway</h5>"+
+	        "<small style='vertical-align:middle;margin-top:15px;margin-left:15px'>2天前</small>"+
+	        "</div>"+
+	        "<div class='clearfix'></div>"+
+	        "<div style='margin-bottom:15px'>激推！</div>"+
+	        "<br><br></div>"+
+	        '</div>';
+			$(id).html(content);
+		var id = "#message"+peterIds[2].music_id;console.log(id);
+		var content = 
+		 	"<div style='margin-bottom:45px'>"+
+		   	"<div style='margin-bottom:15px'>"+
+		    "<img src='/roy/image/profile/1547190442734.jpg' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px'>"+
+		    "<h5 style='margin-bottom:0px;margin-top:15px;letter-spacing:0.5px;display:inline;vertical-align: middle;'>fifi</h5>"+
+		    "<small style='vertical-align:middle;margin-top:15px;margin-left:15px'>剛剛</small>"+
+		    "</div>"+
+		    "<div class='clearfix'></div>"+
+		    "<div style='margin-bottom:15px'>是金子總會發光</div>"+
+		    "<br><br></div>"+
+		    '</div>';
+		$(id).html(content);
 	
-	for(var i=0;i<999999999;i++){}
-	$.getJSON('/roy/homePage/indexLikeMusicComment',{'username': username},function(data) {
-		$.each(data,function(index, obj) {
-			console.log(obj);
-			var id = "#message"+obj.music_id;
-			var content = 
-		     	"<div style='margin-bottom:45px'>"+
-	           	"<div style='margin-bottom:15px'>"+
-	            "<img src='"+obj.member_profileImage+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px'>"+
-	            "<h5 style='margin-bottom:0px;margin-top:15px;letter-spacing:0.5px;display:inline;vertical-align: middle;'>"+obj.member_nickname+"</h5>"+
-	            "<small style='vertical-align:middle;margin-top:15px;margin-left:15px'>"+timeFn(obj.memberCommentMusic_time)+"</small>"+
-	            "</div>"+
-	            "<div class='clearfix'></div>"+
-	            "<div style='margin-bottom:15px'>"+obj.memberCommentMusic_content+"</div>"+
-	            "<br><br></div>"+
-	            '</div>';
-	        $(id).html(content);
-              
-		})	
 	});
+
+
+// 	for(var i=0;i<999999999;i++){}
+// 	$.getJSON('/roy/homePage/indexLikeMusicComment',{'username': username},function(data) {
+// 		console.log("peterIds--->"+peterIds)
+// 		$.each(data,function(index, obj) {
+// 			console.log(obj);
+// 			var id = "#message"+obj.music_id;
+// 			var content = 
+// 		     	"<div style='margin-bottom:45px'>"+
+// 	           	"<div style='margin-bottom:15px'>"+
+// 	            "<img src='"+obj.member_profileImage+"' class='img-circle' style='width:45px;height:45px;float:left;margin-right:15px'>"+
+// 	            "<h5 style='margin-bottom:0px;margin-top:15px;letter-spacing:0.5px;display:inline;vertical-align: middle;'>"+obj.member_nickname+"</h5>"+
+// 	            "<small style='vertical-align:middle;margin-top:15px;margin-left:15px'>"+timeFn(obj.memberCommentMusic_time)+"</small>"+
+// 	            "</div>"+
+// 	            "<div class='clearfix'></div>"+
+// 	            "<div style='margin-bottom:15px'>"+obj.memberCommentMusic_content+"</div>"+
+// 	            "<br><br></div>"+
+// 	            '</div>';
+// 	        $(id).html(content);
+              
+// 		})	
+// 	});
 	
 	
 }
@@ -308,7 +352,7 @@ function loadLikeMusic(username){
 	
 	// 列出所有專案
 	function showAllFunding(){
-		$.getJSON('/roy/funding/findAllByPass.controller',function(data){
+		$.getJSON('/roy/funding/findByPassOrderByMoney.controller',function(data){
 		
 			$.each(data, function(idx, list){
 				var content="";
@@ -357,7 +401,7 @@ function loadLikeMusic(username){
                      </div>
                                             
 <div class="col-md-12" style="margin-top: -30px">
-     <div class="carousel slide testimonials" id="testimonials1">
+     <div class="carousel slide testimonials" id="testimonials1" data-ride="carousel" data-interval="3000">
         <div id="likes" class="carousel-inner">
 			<div class="item active">
                 <div class="col-md-12">       
@@ -411,7 +455,7 @@ function loadLikeMusic(username){
 	   			<i style="color:#666666;" class="fas fa-chevron-circle-right fa-2x" style="text-decoration:none;"></i></a>
 	        </div>
 	        <div class="clearfix"></div>
-	    <div class="carousel slide testimonials" id="testimonials2">
+	    <div class="carousel slide testimonials" id="testimonials2" data-ride="carousel" data-interval="3000">
 			<div class="carousel-inner" id="sortThis"  >
 <!-- 				<div class="item active" > -->
 <!-- 				   <div class="col-md-12" >	       -->
