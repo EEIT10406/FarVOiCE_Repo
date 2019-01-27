@@ -95,7 +95,7 @@ cursor: pointer;
 					<table style="margin-top: 20px;">
 					    <tr>
 							<td style="font-size: 13px; font-weight: bold;">建立者 :</td>
-							<td style="padding: 5px; font-size: 15px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${nickname}">${nickname}</a></td>
+							<td style="padding: 5px; font-size: 15px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${playListBean.member_nickname}">${playListBean.member_nickname}</a></td>
 						</tr>
 						<tr>
 							<td style="font-size: 13px; font-weight: bold;">歌曲數量 :</td>

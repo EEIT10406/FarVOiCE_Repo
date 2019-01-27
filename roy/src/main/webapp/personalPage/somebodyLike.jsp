@@ -322,11 +322,11 @@ function submitBtnClick(){
 					 	list.forEach(function(obj, index) {
 						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameS+"'>"+obj.member_nicknameS+"</a>"
 					 		var content0 = 	"<div class='row'>"
-						 	var content1 = 		"<div class='col-md-7'>"
+						 	var content1 = 		"<div class='col-md-5'>"
 						 	var content2 = 			"<img src='"+obj.member_profileImageS+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
 				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
 				 			var content4 = 		"</div>"
-				 			var content5 = 		"<div class='col-md-5'>"
+				 			var content5 = 		"<div class='col-md-7'>"
 				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
 				 			var content7 = 		"</div>"
 				 			var content8 = 	"</div>"
@@ -364,11 +364,11 @@ function submitBtnClick(){
 					 	list.forEach(function(obj, index) {
 						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameM+"'>"+obj.member_nicknameM+"</a>"
 					 		var content0 = 	"<div class='row'>"
-						 	var content1 = 		"<div class='col-md-7'>"
+						 	var content1 = 		"<div class='col-md-5'>"
 						 	var content2 = 			"<img src='"+obj.member_profileImageM+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
 				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
 				 			var content4 = 		"</div>"
-				 			var content5 = 		"<div class='col-md-5'>"
+				 			var content5 = 		"<div class='col-md-7'>"
 				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
 				 			var content7 = 		"</div>"
 				 			var content8 = 	"</div>"
@@ -393,11 +393,11 @@ function submitBtnClick(){
 
 <script>
 $(document).ready(function() {
-	loadMusic('${somebody}')
+	//loadMusic('${somebody}')
 	loadMusicCount('${somebody}')
-	loadPlayList('${somebody}')
+	//loadPlayList('${somebody}')
 	loadMemberLikeMusic('${somebody}')
-	showAllFunding('${somebody}');
+	//showAllFunding('${somebody}');
 	
 	//按音樂重新載入音樂
 	$('#memberMusic').on('click',function(){
@@ -667,11 +667,11 @@ function showAllFunding(username){
 				<!-- Tab v2 -->
 				<div class="tabs alternative">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#dynamic">動態</a>
+						<li><a href="/roy/personalPage/somebodyPersonalPage.jsp" >動態</a>
 						</li>
 						<li><a href="/roy/personalPage/somebodyMusic.jsp" id="memberMusic">音樂</a></li>
 						<li><a href="/roy/personalPage/somebodyList.jsp" >歌單</a></li>
-						<li><a href="/roy/personalPage/somebodyLike.jsp" id="memberLikeMusic">喜歡</a></li>
+						<li class="active"><a href="#like" id="memberLikeMusic">喜歡</a></li>
 						<li><a href="/roy/personalPage/somebodyProject.jsp" id="memberProject">提案</a></li>
 						<li><a href="/roy/personalPage/somebodyReward.jsp" id="memberReward">贊助</a></li>
 						<li><a href="/roy/personalPage/somebodyAbout.jsp" >關於</a></li>
@@ -679,7 +679,7 @@ function showAllFunding(username){
 
 					<div class="tab-content" style="height: auto;">
 
-						<div class="tab-pane fade in active" id="dynamic">
+						<div class="tab-pane fade in" id="dynamic">
 
 							<div id="test"></div>
 							<a class='readmore' onclick='return showData()'>查看更多文章</a>
@@ -736,7 +736,7 @@ function showAllFunding(username){
 						
 						
 						
-						<div class="tab-pane fade in" style="overflow: auto;" id="like">
+						<div class="tab-pane fade in active" style="overflow: auto;" id="like">
 
 	<!-- 							<div id="likes" class="col-md-5" style="float: left; width: 300px;"> -->
 <!-- 								<a href=""><img src="../img/love.png" -->

@@ -83,11 +83,11 @@ public class MusicController {
 //		0117
 		if (uploadMusicBean != null) {
 			model.addAttribute("musicBean", uploadMusicBean);
-			model.addAttribute("uploadresult", "發佈成功");
-			return "/login-signUp-upload/upload.jsp";
+			model.addAttribute("uploadResult", "發佈成功");
+			return "/personalPage/personalMusic.jsp";
 		} else {
-			model.addAttribute("uploadresult", "發佈失敗");
-			return "/login-signUp-upload/upload.jsp";
+			model.addAttribute("uploadResult", "發佈失敗");
+			return "/personalPage/personalMusic.jsp";
 		}
 
 	}
@@ -199,7 +199,7 @@ public class MusicController {
 		MusicBean musicBean = musicService.findAvailableMusic(Integer.valueOf(musicId));
 		if (musicBean != null) {
 			session.setAttribute("musicPageBean", musicBean);
-			session.setAttribute("nickname", musicService.usernameToNickname(musicBean.getMember_username()));
+			session.setAttribute("nickname", musicBean.getMember_nickname());
 
 			return "/musicPage/musicPage.jsp";
 		} else {
@@ -242,9 +242,8 @@ public class MusicController {
 						music.setMusic_Image(imagePath);
 					}
 					musicService.editMusic(music);
-					System.out.println(music);
-					model.addAttribute("result","更新成功");
-					return "/personalPage/personalPage.jsp";
+					model.addAttribute("updateresult","更新成功");
+					return "/personalPage/personalMusic.jsp";
 			}
 
 			return "";
@@ -255,11 +254,11 @@ public class MusicController {
 		public String deleteMusic(String musicId,Model model) {
 			boolean result = musicService.deleteMusic(Integer.valueOf(musicId));
 			if (result) {
-				model.addAttribute("result", "刪除成功");
-				return "/personalPage/personalPage.jsp";
+				model.addAttribute("deleteresult", "刪除成功");
+				return "/personalPage/personalMusic.jsp";
 			} else {
-				model.addAttribute("result", "刪除失敗");
-				return "/personalPage/personalPage.jsp";
+				model.addAttribute("deleteresult", "刪除失敗");
+				return "/personalPage/personalMusic.jsp";
 			}
 		}
 		
@@ -306,7 +305,7 @@ public class MusicController {
 				jsonMap.put("music_Image", bean.getMusic_Image());
 				jsonMap.put("music_name", bean.getMusic_name());
 				jsonMap.put("music_likeCount", String.valueOf(bean.getMusic_likeCount()));
-				jsonMap.put("nickname", musicService.usernameToNickname(bean.getMember_username()));
+				jsonMap.put("nickname", bean.getMember_nickname());
 				jsonMap.put("music_uploadTime", String.valueOf(bean.getMusic_uploadTime()).substring(0, 10));
 				//0118
 				jsonMap.put("music_music",bean.getMusic_music());

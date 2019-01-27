@@ -49,7 +49,8 @@ public class RewardController {
 //		上一步修改專案
 		if ("編輯專案內容".equals(reward)) {
 			FundingBean editBean = fundingService.findFundingById(bean.getFunding_id());//找此筆專案內容
-			List<MusicBean> musicbeans = musicService.findMusicByUser(createBean.getMember_username());
+			List<MusicBean> musicbeans = musicService.findMusicByUser(editBean.getMember_username());
+			System.out.println(musicbeans);
 					model.addAttribute("fundingBean", editBean);
 					model.addAttribute("musicName", musicbeans);
 			return "editFuding.jsp";

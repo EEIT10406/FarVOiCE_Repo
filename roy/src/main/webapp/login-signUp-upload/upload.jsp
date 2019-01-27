@@ -111,11 +111,7 @@
 			reader.readAsDataURL(files[i]);
 		}
 	}
-	<!-- //判斷上傳是否成功 begin -->
-		<c:if test="${not empty uploadresult}">
-		     alert("${uploadresult}");
-		</c:if>
-		<!-- //  判斷上傳是否成功 end  -->
+
 		<c:if test="${not empty errors}">
 		     alert("${errors.emptyValue}")
 		</c:if>

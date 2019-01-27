@@ -43,7 +43,7 @@ public class IndexController {
 		// 帳號轉暱稱
 		while (top5Ite.hasNext()) {
 			MusicBean temp = top5Ite.next();
-			temp.setMember_username(musicService.usernameToNickname(temp.getMember_username()));
+			temp.setMember_username(temp.getMember_nickname());
 		}
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		String json = gson.toJson(top5);
@@ -67,7 +67,7 @@ public class IndexController {
 			List<Map<String, String>> musics = new LinkedList<Map<String, String>>();
 			for (MusicBean bean : topThree) {
 				Map<String, String> jsonMap = new HashMap<>();
-				MemberCommentMusicBean comment = memberCommentMusicService.showLatestCommentFromMusic(bean.getMusic_id());
+//				MemberCommentMusicBean comment = memberCommentMusicService.showLatestCommentFromMusic(bean.getMusic_id());
 				if (memberLikeMusics != null) {
 					for (Integer likeMusics : memberLikeMusics) {
 						if (bean.getMusic_id() == likeMusics) {
@@ -80,17 +80,17 @@ public class IndexController {
 				if (flag) {
 					jsonMap.put("memberLikeMusic", "/roy/img/indexHeart.png");
 				}
-				if(comment!=null) {
-					jsonMap.put("member_profileImage", String.valueOf(comment.getMember_profileImage()));
-					jsonMap.put("member_nickname", String.valueOf(comment.getMember_nickname()));
-					jsonMap.put("memberCommentMusic_time", String.valueOf(comment.getMemberCommentMusic_time()));
-					jsonMap.put("memberCommentMusic_content", String.valueOf(comment.getMemberCommentMusic_content()));
-				}
+//				if(comment!=null) {
+//					jsonMap.put("member_profileImage", String.valueOf(comment.getMember_profileImage()));
+//					jsonMap.put("member_nickname", String.valueOf(comment.getMember_nickname()));
+//					jsonMap.put("memberCommentMusic_time", String.valueOf(comment.getMemberCommentMusic_time()));
+//					jsonMap.put("memberCommentMusic_content", String.valueOf(comment.getMemberCommentMusic_content()));
+//				}
 				jsonMap.put("music_id", String.valueOf(bean.getMusic_id()));
 				jsonMap.put("music_Image", bean.getMusic_Image());
 				jsonMap.put("music_name", bean.getMusic_name());
 				jsonMap.put("music_likeCount", String.valueOf(bean.getMusic_likeCount()));
-				jsonMap.put("nickname", musicService.usernameToNickname(bean.getMember_username()));
+				jsonMap.put("nickname", bean.getMember_nickname());
 				//0121
 				jsonMap.put("music_music", bean.getMusic_music());
 				//0121

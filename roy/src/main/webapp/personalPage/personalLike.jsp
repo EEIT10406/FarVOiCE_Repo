@@ -171,7 +171,11 @@ opacity:0.4
 </style>
 
 
-
+<script>
+<c:if test="${not empty result}">
+alert("${result}")
+</c:if>
+</script>
 <script>
 	$(document).ready(function() {		
 		var follows = document.querySelectorAll("div.follow");
@@ -210,37 +214,14 @@ opacity:0.4
 		}
 	}
 
-	//贊助%數取到整數
-	function parseInt(percent){
-		var newpercent=Math.ceil(percent);
-		return newpercent
-	}
 
 $(document).ready(function() {
-	loadMusic('${user.member_username}')
+	//loadMusic('${user.member_username}')
 	loadMusicCount('${user.member_username}')
-	loadPlayList('${user.member_username}')
+	//loadPlayList('${user.member_username}')
 	loadMemberLikeMusic('${user.member_username}')
 	loadFanCount('${user.member_username}')
 	loadStarCount('${user.member_username}')
-	showAllFunding('${user.member_username}');
-	
-	//按音樂重新載入喜歡的音樂
-	$('#memberMusic').on('click',function(){
-		loadMusic('${user.member_username}')
-	})
-	
-	//按喜歡重新載入喜歡的音樂
-	$('#memberLikeMusic').on('click',function(){
-		loadMemberLikeMusic('${user.member_username}')
-	})	
-
-	 //編輯音樂
-	$('#music').on('click','.editClick',function() {
-		var row = $(this).parents('#musics');
-        var music_id =row.children('span[name="music_id"]').text();	
-		window.location.href = "/roy/musicPage/editMusic?music_id="+music_id;
-	})
 	
 
 	//按愛心
@@ -309,23 +290,6 @@ $(document).ready(function() {
 			
 	})
 	
-	//點歌單去歌單頁面
-	$('#list').on('click','#listPage',function(){
-		var row = $(this).parents('#lists');
-		var playListId = row.children('span[name="playlist_id"]').text();
-	
-		window.location.href = "/roy/personalPage/locateToPlayList?playListId="+playListId;
-		
-	})
-	
-	//點音樂去音樂頁面
-	$('#music').on('click','#musicPage',function(){
-		var row = $(this).parents('#musics');
-		var musicId = row.children('span[name="music_id"]').text();
-		
-		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
-		
-	})
 	
 	//點喜歡的音樂去音樂頁面
 	$('#like').on('click','#musicPage',function(){
@@ -451,11 +415,11 @@ function loadMemberLikeMusic(username) {
 					 	list.forEach(function(obj, index) {
 						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameS+"'>"+obj.member_nicknameS+"</a>"
 					 		var content0 = 	"<div class='row'>"
-						 	var content1 = 		"<div class='col-md-7'>"
+						 	var content1 = 		"<div class='col-md-5'>"
 						 	var content2 = 			"<img src='"+obj.member_profileImageS+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
 				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
 				 			var content4 = 		"</div>"
-				 			var content5 = 		"<div class='col-md-5'>"
+				 			var content5 = 		"<div class='col-md-7'>"
 				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
 				 			var content7 = 		"</div>"
 				 			var content8 = 	"</div>"
@@ -492,11 +456,11 @@ function loadMemberLikeMusic(username) {
 					 	list.forEach(function(obj, index) {
 						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameM+"'>"+obj.member_nicknameM+"</a>"
 					 		var content0 = 	"<div class='row'>"
-						 	var content1 = 		"<div class='col-md-7'>"
+						 	var content1 = 		"<div class='col-md-5'>"
 						 	var content2 = 			"<img src='"+obj.member_profileImageM+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
 				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
 				 			var content4 = 		"</div>"
-				 			var content5 = 		"<div class='col-md-5'>"
+				 			var content5 = 		"<div class='col-md-7'>"
 				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
 				 			var content7 = 		"</div>"
 				 			var content8 = 	"</div>"
@@ -617,18 +581,18 @@ function showAllFunding(username){
 				<!-- Tab v2 -->
 				<div class="tabs alternative">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#dynamic">動態</a>
+						<li><a href="/roy/personalPage/personalPage.jsp">動態</a>
 						</li>
 						<li><a href="/roy/personalPage/personalMusic.jsp" id="memberMusic">音樂</a></li>
 						<li><a href="/roy/personalPage/personalList.jsp">歌單</a></li>
-						<li><a href="/roy/personalPage/personalLike.jsp" id="memberLikeMusic">喜歡</a></li>
+						<li class="active"><a href="#like" id="memberLikeMusic">喜歡</a></li>
 						<li><a href="/roy/personalPage/personalProject.jsp" id="memberProject">提案</a></li>
 						<li><a href="/roy/personalPage/personalReward.jsp" id="memberDonate">贊助</a></li>
-						<li><a href="/roy/personalPage/personalAbout.jsp">關於</a></li>
+						<li><a href="/roy/personalPage/personalAbout.jsp" >關於</a></li>
 					</ul>
 					
 					<div class="tab-content" style="height: auto;" style="margin-bottom:20px" >
-						<div class="tab-pane fade in active" id="dynamic">
+						<div class="tab-pane fade in" id="dynamic">
 								
 							<div><!-- ===BEGIN of HISTORY === -->
 										 
@@ -670,7 +634,7 @@ function showAllFunding(username){
 						</div>			
 						<div class="tab-pane fade in" style="overflow: auto;" id="list">
 						</div>
-						<div class="tab-pane fade in" style="overflow: auto;" id="like">
+						<div class="tab-pane fade in active" style="overflow: auto;" id="like">
 						</div>
 						<!-- end music -->
                         <div class="tab-pane fade in" style="overflow: auto;" id="userproject">

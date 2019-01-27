@@ -21,6 +21,10 @@ public class ReportService {
 	@Autowired
 	private ReportDAO reportDAO;
 	
+	public void delete(Integer music_id) {
+		reportDAO.deleteByMusic_id(music_id);
+	}
+	
 	public List<ReportBean> findByMember_username(String member_username,String music_id){
 		return reportDAO.findByMember_username(member_username,music_id);
 	}

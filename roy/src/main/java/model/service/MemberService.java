@@ -39,6 +39,9 @@ public class MemberService {
 //	}
 	@Autowired
 	private MemberDAO memberDAO;
+	public List<MemberBean> searchUser(){
+		return memberDAO.findAll();
+	}
 	public MemberService(MemberDAO memberDAO) {
 		super();
 		this.memberDAO = memberDAO;
@@ -118,15 +121,15 @@ public class MemberService {
 		}
 		return null;
 	}
-	//給username得nickname
-	public String usernameToNickname(String username) {
-		MemberBean bean = memberDAO.findByPrimaryKey(username);
-		return bean.getMember_nickname();
-	}
-	//給nickname得username
-	public String nicenameToUsername(String username) {
-		return memberDAO.nicenameToUsername(username);
-	}
+//	//給username得nickname
+//	public String usernameToNickname(String username) {
+//		MemberBean bean = memberDAO.findByPrimaryKey(username);
+//		return bean.getMember_nickname();
+//	}
+//	//給nickname得username
+//	public String nicenameToUsername(String username) {
+//		return memberDAO.nicenameToUsername(username);
+//	}
 	public MemberBean HiMethod(String member_username) {
 		return memberDAO.findByPrimaryKey(member_username);
 	}

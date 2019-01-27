@@ -3,9 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" ></script>
-	
 <script>
+
+var users;
 	$(document).ready(function() {
+		searchUser();
 		$('#logo').css("cursor","pointer");
 		$('#profile').css("cursor","pointer");
 		$('#login').click(function() {
@@ -30,8 +32,51 @@
 		$('#back').click(function(){
 			window.location.href="/roy/back/Back.jsp"
 		})
+			
+
+
+	
 	})
+	        	
+	        	
+	function searchUser(){
+		$.getJSON('/roy/header/searchUser.controller',{'username': "666"},function(data) {
+			users = data;
+			$.each(data,function(index, obj) {
+				console.log(obj);
+			})
+		})
+	}
+
+// 	当在搜索框输入内容时，根据关键字匹配，显示弹出层
+	function searchSuggest(obj){ 
+	  var searchKey=$(obj).val();  
+	  var reg = new RegExp(searchKey,"i"); //忽略大小写匹配搜索框中输入的内容
+	      var arr=[];
+	      for(var i=0,len=users.length;i<len;i++){
+	        if(searchKey!="" && (users[i].member_nickname.search(reg)!=-1))  {
+	      	   arr.push("<li onclick='changeSearchKey(this);' style='float:none;cursor: pointer;'>"+users[i].member_nickname+"</li>"); 
+	        }
+	      }     	  	  
+	      $(".keywords_list").html(arr).show();
+	
+	}
+	//单击匹配列表中的关键字选项时，将该关键字显示在搜索框中
+	function changeSearchKey(obj){
+	   var value=$(obj).text();
+	  $("#searchKey").val(value);
+	  $('.keywords_list').hide(); 
+	}
+	function goto(){
+		var somebody = $("#searchKey").val();
+		if(somebody.trim()==""){
+			alert("必須輸入暱稱");
+			return;
+		}
+		window.location.href='/roy/personalPage/somebodyPersonalPage.controller?nickname='+somebody;
+	}
 </script>
+<!-- <script src="1.js?ver=1"></script> -->
 
 <div class="primary-container-group">
 	<!-- Background -->
@@ -85,7 +130,7 @@
 					</c:choose>
 				
 				
-				
+					
 				
 					<c:choose>
 					    <c:when test="${empty user}">
@@ -105,6 +150,7 @@
 							</c:choose>
 						</c:otherwise>
 					</c:choose>
+				
 				</ul>
 			</div>
 		</div>
@@ -138,6 +184,17 @@
 							</li>
 
 							<li><a href="/roy/contact/contact.jsp"><i class="fas fa-envelope fa-lg"></i>   聯絡客服</a></li>
+							
+							<li><form id="searchUser" style="padding-top:6px"> 
+									<input class="form-control " type="search" id="searchKey"
+												placeholder="搜尋" aria-label="Search" onkeyup="searchSuggest(this);">
+								</form>
+							<ul class="keywords_list" ></ul>
+							</li>
+							<li><button class="btn btn-outline-success"  style="padding-top:12px" type="button" onclick="goto();">搜尋</button>
+							</li>
+							
+							
 						</ul>
 					</div>
 				</div>
