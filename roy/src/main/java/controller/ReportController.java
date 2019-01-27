@@ -107,7 +107,7 @@ public class ReportController {
 			 m1.put("Music_id",""+bean.getMusic_id());
 			 m1.put("Music_likeCount",""+bean.getMusic_likeCount());
 			 m1.put("Member_nickname",""+
-					 memberService.getMemberBeanForSomebodyPersonalPage(bean.getMember_username()).getMember_nickname());
+					 bean.getMember_nickname());
 			 l1.add(m1);
 		 }
 		return JSONValue.toJSONString(l1);

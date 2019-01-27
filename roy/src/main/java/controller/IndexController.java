@@ -43,7 +43,7 @@ public class IndexController {
 		// 帳號轉暱稱
 		while (top5Ite.hasNext()) {
 			MusicBean temp = top5Ite.next();
-			temp.setMember_username(musicService.usernameToNickname(temp.getMember_username()));
+			temp.setMember_username(temp.getMember_nickname());
 		}
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		String json = gson.toJson(top5);
@@ -90,7 +90,7 @@ public class IndexController {
 				jsonMap.put("music_Image", bean.getMusic_Image());
 				jsonMap.put("music_name", bean.getMusic_name());
 				jsonMap.put("music_likeCount", String.valueOf(bean.getMusic_likeCount()));
-				jsonMap.put("nickname", musicService.usernameToNickname(bean.getMember_username()));
+				jsonMap.put("nickname", bean.getMember_nickname());
 				//0121
 				jsonMap.put("music_music", bean.getMusic_music());
 				//0121

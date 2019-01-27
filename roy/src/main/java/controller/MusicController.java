@@ -199,7 +199,7 @@ public class MusicController {
 		MusicBean musicBean = musicService.findAvailableMusic(Integer.valueOf(musicId));
 		if (musicBean != null) {
 			session.setAttribute("musicPageBean", musicBean);
-			session.setAttribute("nickname", musicService.usernameToNickname(musicBean.getMember_username()));
+			session.setAttribute("nickname", musicBean.getMember_nickname());
 
 			return "/musicPage/musicPage.jsp";
 		} else {
@@ -306,7 +306,7 @@ public class MusicController {
 				jsonMap.put("music_Image", bean.getMusic_Image());
 				jsonMap.put("music_name", bean.getMusic_name());
 				jsonMap.put("music_likeCount", String.valueOf(bean.getMusic_likeCount()));
-				jsonMap.put("nickname", musicService.usernameToNickname(bean.getMember_username()));
+				jsonMap.put("nickname", bean.getMember_nickname());
 				jsonMap.put("music_uploadTime", String.valueOf(bean.getMusic_uploadTime()).substring(0, 10));
 				//0118
 				jsonMap.put("music_music",bean.getMusic_music());

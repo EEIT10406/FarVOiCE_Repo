@@ -56,7 +56,7 @@ public class ListMusicController {
 						}else {
 							jsonMap.put("music_name", musicBean.getMusic_name());
 						}
-						jsonMap.put("nickname", musicService.usernameToNickname(musicBean.getMember_username()));
+						jsonMap.put("nickname", musicBean.getMember_nickname());
 						jsonMap.put("music_uploadTime",String.valueOf(musicBean.getMusic_uploadTime()).substring(0, 10));
 						musics.add(jsonMap);
 					}
@@ -113,7 +113,7 @@ public class ListMusicController {
 			
 			for(Integer musicId:musicIds) {
 				MusicBean musicBean=musicService.findMusic(musicId);
-				String nickname=musicService.usernameToNickname(musicBean.getMember_username()); 
+				String nickname=musicBean.getMember_nickname(); 
 				//把memberName設為nickname的名字
 				musicBean.setMember_username(nickname);
 				
@@ -124,7 +124,7 @@ public class ListMusicController {
 				musicBeans.add(musicBean);
 			}
 			
-			model.addAttribute("nickname", memberService.usernameToNickname(playListBean.getMember_username()));
+			model.addAttribute("nickname", playListBean.getMember_username());
 			model.addAttribute("playListBean", playListBean);
 			model.addAttribute("musicBeans", musicBeans);
 			
