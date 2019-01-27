@@ -52,6 +52,7 @@ public class JavaEmailTest implements Runnable
         emailProperties.put("mail.smtp.auth", "true");
         emailProperties.put("mail.smtp.starttls.enable", "true");
         mailSession = Session.getDefaultInstance(emailProperties, null);
+        
     }
  
     private MimeMessage draftEmailMessage() throws AddressException, MessagingException
