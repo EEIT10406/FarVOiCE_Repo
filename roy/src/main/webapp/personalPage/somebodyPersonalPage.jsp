@@ -322,11 +322,11 @@ function submitBtnClick(){
 					 	list.forEach(function(obj, index) {
 						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameS+"'>"+obj.member_nicknameS+"</a>"
 					 		var content0 = 	"<div class='row'>"
-						 	var content1 = 		"<div class='col-md-5'>"
+						 	var content1 = 		"<div class='col-md-7'>"
 						 	var content2 = 			"<img src='"+obj.member_profileImageS+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
 				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
 				 			var content4 = 		"</div>"
-				 			var content5 = 		"<div class='col-md-7'>"
+				 			var content5 = 		"<div class='col-md-5'>"
 				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
 				 			var content7 = 		"</div>"
 				 			var content8 = 	"</div>"
@@ -364,11 +364,11 @@ function submitBtnClick(){
 					 	list.forEach(function(obj, index) {
 						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameM+"'>"+obj.member_nicknameM+"</a>"
 					 		var content0 = 	"<div class='row'>"
-						 	var content1 = 		"<div class='col-md-5'>"
+						 	var content1 = 		"<div class='col-md-7'>"
 						 	var content2 = 			"<img src='"+obj.member_profileImageM+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
 				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
 				 			var content4 = 		"</div>"
-				 			var content5 = 		"<div class='col-md-7'>"
+				 			var content5 = 		"<div class='col-md-5'>"
 				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
 				 			var content7 = 		"</div>"
 				 			var content8 = 	"</div>"
@@ -587,9 +587,9 @@ function loadMusicCount(username) {
 		$('#musicCount').html(data);
 	})
 }
-//	列出使用者所有專案
+//	找出該使用者通過審核的專案
 function showAllFunding(username){
-	$.getJSON('/roy/personalPage/findProjectByUsername',{'username' : username},function(data) {
+	$.getJSON('/roy/personalPage/findProjectByUsernamePass',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
 			console.log(list);
@@ -952,8 +952,6 @@ var size1=5;
 						  	
 		            }//if
 		            else{
-		          
-		            	
 		            	for(var i=pagestart; i< (pagestart+size1); i++){ 
 							function timeFn(d1) {//di作为一个变量传进来
 							    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
@@ -1034,15 +1032,14 @@ var size1=5;
 						}	
 		            }//else
 		            
-		            
 				 },//suss
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert(xhr.status+"-->showData");
                     alert(thrownError);
                 }
             })
- 	}) 
-				}
+ 	}
+
 				 	
 				
 				

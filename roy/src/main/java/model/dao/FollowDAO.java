@@ -139,7 +139,7 @@ public class FollowDAO {
 		Query<FollowBean> query = this.getSession().createQuery(hql);
 		query.setParameter("member_usernameM", m);
 		List<FollowBean> whoFollowMe = query.list();
-		System.out.println("whoFollowMe = "+whoFollowMe);
+//		System.out.println("whoFollowMe = "+whoFollowMe);
 		return whoFollowMe;
 	}
 	public Integer howMuchFollowMe(String m) {
@@ -160,7 +160,7 @@ public class FollowDAO {
 		Query<FollowBean> query = this.getSession().createQuery(hql);
 		query.setParameter("member_usernameS", s);
 		List<FollowBean> iFollowWho = query.list();
-		System.out.println("iFollowWho = "+iFollowWho);
+//		System.out.println("iFollowWho = "+iFollowWho);
 		return iFollowWho;
 	}
 	public Integer iFollowHowMuch(String s) {

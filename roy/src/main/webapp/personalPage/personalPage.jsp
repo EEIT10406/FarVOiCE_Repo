@@ -362,6 +362,7 @@ function loadMusic(username) {
                       	'<span id="add" style="margin-left:0px;">'+
                       	'<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="13px">加入歌單</button>'+
 					  	'</span>'+
+					  	'<br>'+
 					  	'<span class="editClick"><img src="../img/edit.png" width="15px" />編輯</span>'+
                    		'</div>'+
                    		'</div>';
@@ -454,11 +455,11 @@ function loadMemberLikeMusic(username) {
 					 	list.forEach(function(obj, index) {
 						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameS+"'>"+obj.member_nicknameS+"</a>"
 					 		var content0 = 	"<div class='row'>"
-						 	var content1 = 		"<div class='col-md-5'>"
+						 	var content1 = 		"<div class='col-md-7'>"
 						 	var content2 = 			"<img src='"+obj.member_profileImageS+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
 				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
 				 			var content4 = 		"</div>"
-				 			var content5 = 		"<div class='col-md-7'>"
+				 			var content5 = 		"<div class='col-md-5'>"
 				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
 				 			var content7 = 		"</div>"
 				 			var content8 = 	"</div>"
@@ -495,11 +496,11 @@ function loadMemberLikeMusic(username) {
 					 	list.forEach(function(obj, index) {
 						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameM+"'>"+obj.member_nicknameM+"</a>"
 					 		var content0 = 	"<div class='row'>"
-						 	var content1 = 		"<div class='col-md-5'>"
+						 	var content1 = 		"<div class='col-md-7'>"
 						 	var content2 = 			"<img src='"+obj.member_profileImageM+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
 				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
 				 			var content4 = 		"</div>"
-				 			var content5 = 		"<div class='col-md-7'>"
+				 			var content5 = 		"<div class='col-md-5'>"
 				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
 				 			var content7 = 		"</div>"
 				 			var content8 = 	"</div>"
@@ -517,9 +518,9 @@ function loadMemberLikeMusic(username) {
 		})
 	}
 	
-// 	列出使用者所有專案
+// 	找出該使用者通過審核的專案
 function showAllFunding(username){
-	$.getJSON('/roy/personalPage/findProjectByUsername',{'username' : username},function(data) {
+	$.getJSON('/roy/personalPage/findProjectByUsernamePass',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
 			console.log(list);

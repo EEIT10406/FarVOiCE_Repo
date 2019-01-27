@@ -39,12 +39,6 @@ td {
 }
 </style>
 <script>
-<!-- // 判斷是否輸入歌單名稱 begin -->
-	<c:if test="${not empty errors}">
-	alert("${errors.emptyValue}");
-	</c:if>
-	<!-- //  判斷是否輸入歌單名稱 end  -->
-
 	<!-- // 判斷歌單新增是否成功 begin -->
 	<c:if test="${not empty result}">
 	alert("${result}");
@@ -92,7 +86,7 @@ td {
 								name="imageFile"></td>
 							<td><input type="text" style="width: 100px"
 								class="form-control" id="playlist_name" name="playlist_name"
-								placeholder="歌單名稱"></td>
+								placeholder="歌單名稱" required></td>
 							<td><select name="playlist_privacy">
 									<option value="false">公開</option>
 									<option value="true">不公開</option>
@@ -152,15 +146,42 @@ td {
 	<div id="player">
 		<jsp:include page="../homePage/player.jsp" />
 	</div>
-
 <script>
+//刪除歌單
+function removeList(playListId)
+{
+	if(confirm("確定要刪除嗎?"))
+		{
+		$.get('/roy/list/deletePlayList', {'playlist_id' : playListId}, function(data) {
+			alert(data)
+			loadList('${user.member_username}');
+		})
+			}
+	else
+		{	alert("已經取消");}
+}
+//刪除音樂
+function removeMusic(playlist_id,music_id)
+{
+	if(confirm("確定要刪除嗎?"))
+		{
+		$.get('/roy/list/deletePlayListMusic', {'music_id' : music_id,'playlist_id':playlist_id}, function(data) {
+			alert(data)
+			loadListMusic(playlist_id)
+			loadList('${user.member_username}')
+		})
+			}
+	else
+		{	alert("已經取消");}
+}
 
+</script>
+<script>
 
 $(document).ready(function() {
 	loadList('${user.member_username}');
 		
 })
-
 
 		//讀取歌單
 		function loadList(username) {
@@ -195,12 +216,8 @@ $(document).ready(function() {
 				function() {
 					var row = $(this).parents('tr');
 					var playlist_id = row.children('td:nth-child(1)').text();
-					$.get('/roy/list/deletePlayList', {
-						'playlist_id' : playlist_id
-					}, function(data) {
-						alert(data)
-						loadList('${user.member_username}');
-					})
+					removeList(playlist_id)
+					
 				})
 </script>	
 			
@@ -238,11 +255,8 @@ $('#playListTable>tbody').on('click', 'td:nth-child(3)',
 			$('#playListMusicTable>tbody').on('click', 'button:nth-child(1)',function() {
 			var row = $(this).parents('tr');
 			var music_id = row.children('td:nth-child(1)').text();
-			
-			$.get('/roy/list/deletePlayListMusic', {'music_id' : music_id,'playlist_id':playlist_id}, function(data) {
-				loadListMusic(playlist_id)
-				loadList('${user.member_username}')
-			})
+			removeMusic(playlist_id,music_id)
+
 		})
 })
 						

@@ -32,10 +32,6 @@ public class FundingController {
 
 	@Autowired
 	private MemberService memberService;
-
-//創建專案
-//		public String method(String funding_title, String funding_description, Integer funding_goal,
-//				String funding_styleName, String funding_city, Model model) {
 //創建募資專案+上傳圖片
 	@RequestMapping("/funding/funding.controller")
 	public String createProject(FundingBean bean, Model model, HttpSession session,
@@ -53,10 +49,12 @@ public class FundingController {
 		}
 		MemberBean memberBean = (MemberBean) session.getAttribute("user");
 		String username = memberBean.getMember_username();
+		String nickname = memberBean.getMember_nickname();
 		Date date = new Date();
 		bean.setFunding_browseCount(0);
 		bean.setFunding_currentAmount(0);
 		bean.setMember_username(username);
+		bean.setMember_nickname(nickname);
 		bean.setFunding_image(imagepath);
 		bean.setFunding_createTime(date);
 		bean.setFunding_status(false);
@@ -177,7 +175,7 @@ public class FundingController {
 			jsonMap.put("funding_title", bean.getFunding_title());
 			jsonMap.put("funding_image", bean.getFunding_image());
 			jsonMap.put("member_username", bean.getMember_username());
-			jsonMap.put("nick_name", "" + memberService.usernameToNickname(bean.getMember_username()));
+			jsonMap.put("nick_name", "" + bean.getMember_nickname());
 			jsonMap.put("funding_description", bean.getFunding_description());
 			jsonMap.put("funding_currentAmount", "" + bean.getFunding_currentAmount());
 			jsonMap.put("funding_goal", "" + bean.getFunding_goal());
@@ -191,6 +189,7 @@ public class FundingController {
 
 		return JSONValue.toJSONString(fundings);
 	}
+
 //找出審核通過的專案
 	@RequestMapping(value = "/funding/findAllByPass.controller", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -203,7 +202,7 @@ public class FundingController {
 			jsonMap.put("funding_title", bean.getFunding_title());
 			jsonMap.put("funding_image", bean.getFunding_image());
 			jsonMap.put("member_username", bean.getMember_username());
-			jsonMap.put("nick_name", "" + memberService.usernameToNickname(bean.getMember_username()));
+			jsonMap.put("nick_name", bean.getMember_nickname());
 			jsonMap.put("funding_description", bean.getFunding_description());
 			jsonMap.put("funding_currentAmount", "" + bean.getFunding_currentAmount());
 			jsonMap.put("funding_goal", "" + bean.getFunding_goal());
@@ -216,6 +215,7 @@ public class FundingController {
 
 		return JSONValue.toJSONString(fundings);
 	}
+
 //	根據username抓出所有專案
 	@RequestMapping(value = "/personalPage/findProjectByUsername", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -230,7 +230,7 @@ public class FundingController {
 			jsonMap.put("funding_title", bean.getFunding_title());
 			jsonMap.put("funding_image", bean.getFunding_image());
 			jsonMap.put("member_username", bean.getMember_username());
-			jsonMap.put("nick_name", "" + memberService.usernameToNickname(bean.getMember_username()));
+			jsonMap.put("nick_name", "" + bean.getMember_nickname());
 			jsonMap.put("funding_description", bean.getFunding_description());
 			jsonMap.put("funding_currentAmount", "" + bean.getFunding_currentAmount());
 			jsonMap.put("funding_goal", "" + bean.getFunding_goal());
@@ -243,9 +243,38 @@ public class FundingController {
 		}
 		return JSONValue.toJSONString(fundings);
 	}
-	
-	@RequestMapping(path="/back/passCurrentFunding.controller")
-	public void edit(Integer funding_id) {	
+
+	// 找出該使用者通過審核的專案
+	@RequestMapping(value = "/personalPage/findProjectByUsernamePass", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String findProjectByUsernamePass(String username) {
+
+		List<FundingBean> fundingBeans = fundingService.findByUsername(username);
+		System.out.println(fundingBeans);
+
+		List<Map<String, String>> fundings = new LinkedList<Map<String, String>>();
+		for (FundingBean bean : fundingBeans) {
+			Map<String, String> jsonMap = new HashMap<>();
+			jsonMap.put("funding_title", bean.getFunding_title());
+			jsonMap.put("funding_image", bean.getFunding_image());
+			jsonMap.put("member_username", bean.getMember_username());
+			jsonMap.put("nick_name", "" + bean.getMember_nickname());
+			jsonMap.put("funding_description", bean.getFunding_description());
+			jsonMap.put("funding_currentAmount", "" + bean.getFunding_currentAmount());
+			jsonMap.put("funding_goal", "" + bean.getFunding_goal());
+			jsonMap.put("funding_duration", "" + bean.getFunding_duration());
+			jsonMap.put("funding_id", "" + bean.getFunding_id());
+			jsonMap.put("funding_createTime", "" + bean.getFunding_createTime());
+			jsonMap.put("funding_browseCount", "" + bean.getFunding_browseCount());
+			fundings.add(jsonMap);
+
+		}
+		return JSONValue.toJSONString(fundings);
+	}
+
+//審核提案
+	@RequestMapping(path = "/back/passCurrentFunding.controller")
+	public void edit(Integer funding_id) {
 		FundingBean bean = fundingService.findFundingById(funding_id);
 		bean.setFunding_status(true);
 		fundingService.update(bean);

@@ -26,7 +26,6 @@
 <script type="text/javascript" src="../js/slimbox2.js" charset="utf-8"></script>
 <!-- Modernizr -->
 <script src="../js/modernizr.custom.js" type="text/javascript"></script>
-<script src="1.js?ver=1"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script> -->
 
 <!-- End JS -->
@@ -36,8 +35,6 @@
 <meta name="author" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<!-- Favicon -->
-<link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
 <!-- Template CSS -->

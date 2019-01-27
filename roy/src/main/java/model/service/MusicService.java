@@ -197,12 +197,12 @@ public class MusicService {
 		return "/roy/image/music" + imageFilePath.substring(27);
 	}
 
-	// 給username得nickname
-	public String usernameToNickname(String username) {
-		MemberBean bean = memberDAO.findByPrimaryKey(username);
-		return bean.getMember_nickname();
-	}
-
+//	// 給username得nickname
+//	public String usernameToNickname(String username) {
+//		MemberBean bean = memberDAO.findByPrimaryKey(username);
+//		return bean.getMember_nickname();
+//	}
+//
 	// 給nickname得username
 	public String nicenameToUsername(String username) {
 		return memberDAO.nicenameToUsername(username);

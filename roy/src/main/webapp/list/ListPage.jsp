@@ -93,6 +93,10 @@ cursor: pointer;
 					<div style="padding-top: 10px; font-size: 25px;">${playListBean.playlist_name}</div>
 
 					<table style="margin-top: 20px;">
+					    <tr>
+							<td style="font-size: 13px; font-weight: bold;">建立者 :</td>
+							<td style="padding: 5px; font-size: 15px;"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${nickname}">${nickname}</a></td>
+						</tr>
 						<tr>
 							<td style="font-size: 13px; font-weight: bold;">歌曲數量 :</td>
 							<td style="padding: 5px; font-size: 15px;">${playListBean.playlist_musicCount}</td>

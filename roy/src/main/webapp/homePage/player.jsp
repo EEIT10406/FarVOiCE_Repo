@@ -22,7 +22,7 @@
 <script>
 currentSrc = "";
 	$(document).ready(function() {
-		<!-- APlayer -->
+// 	 APlayer
 		toggleFlag = true;
 		$('#listToggle').click(function() {
 			$('#player1').slideToggle(500);

@@ -319,35 +319,18 @@ function loadLikeMusic(username){
 					content += '<div class="item">';
 				}
 				content += 
-				'<div class="col-md-12" >'+
+				'<div class="col-md-12" style="padding-left: 0px">'+
 				'<div class="project-pre allproject" >'+
 				'<div class="img-pres">'+
-				    '<img class="img-in" id="preview_progressbarTW_img"'+
-				    'src="'+list.funding_image+'">'+
+				'<a href="/roy/funding/detail.controller?funding_id='+ list.funding_id+'&day='+limitDay(list.funding_duration)+'">'+
+				    '<img class="img-in" id="preview_progressbarTW_img" style="height: 410px;width:655px"'+
+				    'src="'+list.funding_image+'"></a>'+
 				'</div>'+
-				'<div class="pcontent-pre">'+
-					'<p id="pre-title" class="title-content"'+
-						'style="margin-bottom: -18px">'+list.funding_title+'</p>'+
-// 					'<p class="small creator">'+
-					'<p id="pre-name">'+list.member_nickname+'</p>'+
-					'<p id="pre-content" class="excerpt JQellipsis"'+
-						'style="font-weight: bold; font-size: 0.85rem">'+list.funding_description+'</p>'+
-				'</div>'+
-				'<div class="downMeta-pre">'+
-					 '<progress class="progress-pre"'+
-						'style="margin-bottom: 0px; margin-top: 0px;" value="'+list.funding_currentAmount/list.funding_goal*100+'" max="100"></progress>'+
-					 '<span class="goalMoney osmfont currentMoney">'+list.funding_currentAmount+'</span><span'+
-						' class="hidden-md goalpercent goal"> '+list.funding_currentAmount/list.funding_goal*100+'%</span><span'+
-						' style="font-size: 13px; letter-spacing: 1px"'+
-						'class="date pull-right small"> 還剩 <strong class="days"'+
-						'style="font-size: 13px; font-weight: 1000; letter-spacing: 1px">'+limitDay(list.funding_duration)+'</strong><span'+
-						' style="font-size: 13px; letter-spacing: 1px"> 天</span>'+
-					'</span>'+
-					'<span class="funding_id" style="display:none">'+list.funding_id+'</sapn>'+
-					'<span class="funding_goal" style="display:none">'+list.funding_goal+'</sapn>'+
-					'<span class="funding_createTime" style="display:none">'+list.funding_createTime+'</sapn>'+
-					'<span class="funding_duration" style="display:none">'+list.funding_duration+'</sapn>'+
-					'<span class="funding_browseCount" style="display:none">'+list.funding_browseCount+'</sapn>'+
+				'<div class="pcontent-pre" style="margin-top: 10px;">'+
+				'<a href="/roy/funding/detail.controller?funding_id='+ list.funding_id+'&day='+limitDay(list.funding_duration)+'">'+
+					'<span id="pre-title" class="title-content" style="font-family: 微軟正黑體;font-size: 16px;font-weight: 500"'+
+						'>'+list.funding_title+'</span></a>'+
+						'<a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nick_name+'">'+'<span id="pre-name" style="font-family: 微軟正黑體;margin-left: 10px;">'+list.nick_name+'</span></a>'+
 				'</div>'+
 			'</div> </div></div>';
 				$('#sortThis').append(content);
@@ -389,15 +372,7 @@ function loadLikeMusic(username){
                   </div>
             </div>
        </div>
-       <div style="width:40%;float:right;text-align: right;position: absolute;margin-left: 550px;margin-top:0px;">
-			
-                                 <a class='arrow' href="#testimonials1" data-slide="prev"  style="margin-right:15px;text-decoration:none;" >
-                                   <i style="color:#666666;" class="fas fa-angle-double-left fa-2x"></i>
-                                 </a>
-                                 <a class='arrow' href="#testimonials1" data-slide="next">
-                                     <i style="color:#666666;" class="fas fa-angle-double-right fa-2x" style="text-decoration:none;"></i>
-                                 </a>
-                          </div>
+       
       			</div>                   
 			</div>
                      <!-- End 大家都喜歡 - default full width -->
@@ -407,7 +382,15 @@ function loadLikeMusic(username){
 			</div>
 		</div>
 		</div>
-	
+	<div style="width: 40%;float: right;text-align: center;padding-right: 200px">
+			
+                                 <a class='arrow' href="#testimonials1" data-slide="prev"  style="margin-right:15px;text-decoration:none;" >
+                                   <i style="color:#666666;" class="fas fa-angle-double-left fa-2x"></i>
+                                 </a>
+                                 <a class='arrow' href="#testimonials1" data-slide="next">
+                                     <i style="color:#666666;" class="fas fa-angle-double-right fa-2x" style="text-decoration:none;"></i>
+                                 </a>
+                          </div>
 		<div class="container">
 			<div class="row margin-vert-30">
 				<!-- Main Text -->
@@ -416,12 +399,12 @@ function loadLikeMusic(username){
 
     
 
-	<div class="col-md-9" style="margin-top: -30px">
+	<div class="col-md-9" style="margin-top: -30px;margin-left: -30px;">
 		<div style="width: 92%;margin: auto;">
 			<div style="font-family: 微軟正黑體;display: inline-block;width: 40%;float: left;font-size: 20px;font-weight: bold;">
 	    	<p> 熱門募資活動</p>
 			</div>
-			<div style="width:40%;float:right;text-align: right;position: absolute;margin-left: 140px;">
+			<div style="width:40%;float:right;text-align: right;padding-right: 25px;">
 				<a  href="#testimonials2" data-slide="prev"  style="margin-right:10px;text-decoration:none;" >
 				<i style="color:#666666;" class="fas fa-chevron-circle-left fa-2x"></i></a>
 				<a href="#testimonials2" data-slide="next">
@@ -429,7 +412,7 @@ function loadLikeMusic(username){
 	        </div>
 	        <div class="clearfix"></div>
 	    <div class="carousel slide testimonials" id="testimonials2">
-			<div class="carousel-inner" id="sortThis" >
+			<div class="carousel-inner" id="sortThis"  >
 <!-- 				<div class="item active" > -->
 <!-- 				   <div class="col-md-12" >	       -->
 <!-- 				   內容   -->

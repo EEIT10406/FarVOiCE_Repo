@@ -17,6 +17,7 @@ import model.bean.MemberBean;
 import model.bean.MusicBean;
 import model.bean.RewardBean;
 import model.service.FundingService;
+import model.service.MusicService;
 import model.service.RewardService;
 
 @Controller
@@ -25,11 +26,13 @@ public class RewardController {
 	private FundingService fundingService;
 	@Autowired
 	private RewardService rewardService;
+	@Autowired
+	private MusicService musicService;
 
 //創一筆回饋
 	@RequestMapping("/funding/reward.controller")
-	public String creatRewardModel(HttpSession session, FundingBean fundingBean, String funding_id, String reward,
-			Model model, RewardBean bean, @RequestParam("imageFile") MultipartFile imagefile) {
+	public String creatRewardModel(FundingBean createBean,String reward, Model model, RewardBean bean,
+			@RequestParam("imageFile") MultipartFile imagefile) {
 		String imagepath = "";
 		System.out.println(reward);
 		if (!imagefile.isEmpty()) {
@@ -40,32 +43,27 @@ public class RewardController {
 				e.printStackTrace();
 			}
 		}
-		MemberBean memberBean = (MemberBean) session.getAttribute("user");
 		bean.setReward_image(imagepath);
-		bean.getFunding_id();
 		bean.setReward_donateCount(0);
-		
-//		找出音樂
-		List<MusicBean> musicbeans = fundingService.findMusicByUser(memberBean.getMember_username());
+
 //		上一步修改專案
 		if ("編輯專案內容".equals(reward)) {
-			FundingBean editBean = fundingService.findFundingById(bean.getFunding_id());
-
-			model.addAttribute("fundingBean", editBean);
-			session.setAttribute("musicName", musicbeans);
-			session.setAttribute("fundingBean", editBean);
+			FundingBean editBean = fundingService.findFundingById(bean.getFunding_id());//找此筆專案內容
+			List<MusicBean> musicbeans = musicService.findMusicByUser(createBean.getMember_username());
+					model.addAttribute("fundingBean", editBean);
+					model.addAttribute("musicName", musicbeans);
 			return "editFuding.jsp";
 		}
 //		繼續新增回饋
 		if ("新增一個回饋".equals(reward)) {
-			RewardBean createBean = rewardService.insert(bean);
-			model.addAttribute("rewardBean", createBean);
+			RewardBean createRewardBean = rewardService.insert(bean);
+			model.addAttribute("rewardBean", createRewardBean);
 			return "reward.jsp";
 		}
 //		結束提交專案
 		if ("提交專案".equals(reward)) {
-			RewardBean createBean = rewardService.insert(bean);
-			model.addAttribute("rewardBean", createBean);
+			RewardBean createRewardBean = rewardService.insert(bean);
+			model.addAttribute("rewardBean", createRewardBean);
 			return "personalFunding.jsp";
 		}
 

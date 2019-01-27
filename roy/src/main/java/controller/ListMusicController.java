@@ -20,6 +20,7 @@ import model.bean.MusicBean;
 import model.bean.PlaylistBean;
 import model.bean.primarykey.ListMusicId;
 import model.service.ListMusicService;
+import model.service.MemberService;
 import model.service.MusicService;
 import model.service.PlayListService;
 
@@ -31,6 +32,8 @@ public class ListMusicController {
 	private MusicService musicService;
 	@Autowired
 	private PlayListService playListService;
+	@Autowired
+	private MemberService memberService;
 
 	// 讀歌單內的音樂
 	@RequestMapping(value = "/list/readPlayListMusic", produces = "text/plain;charset=UTF-8")
@@ -53,7 +56,7 @@ public class ListMusicController {
 						}else {
 							jsonMap.put("music_name", musicBean.getMusic_name());
 						}
-						jsonMap.put("nickname", musicService.usernameToNickname(musicBean.getMember_username()));
+						jsonMap.put("nickname", musicBean.getMember_nickname());
 						jsonMap.put("music_uploadTime",String.valueOf(musicBean.getMusic_uploadTime()).substring(0, 10));
 						musics.add(jsonMap);
 					}
@@ -110,7 +113,7 @@ public class ListMusicController {
 			
 			for(Integer musicId:musicIds) {
 				MusicBean musicBean=musicService.findMusic(musicId);
-				String nickname=musicService.usernameToNickname(musicBean.getMember_username()); 
+				String nickname=musicBean.getMember_nickname(); 
 				//把memberName設為nickname的名字
 				musicBean.setMember_username(nickname);
 				
@@ -120,7 +123,8 @@ public class ListMusicController {
 				}
 				musicBeans.add(musicBean);
 			}
-				
+			
+			model.addAttribute("nickname", playListBean.getMember_username());
 			model.addAttribute("playListBean", playListBean);
 			model.addAttribute("musicBeans", musicBeans);
 			

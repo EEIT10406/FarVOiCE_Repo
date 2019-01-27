@@ -57,7 +57,9 @@ public class RootAppConfig {
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.setProperty("hibernate.show_sql", "true");
 //		props.setProperty("hibernate.current_session_context_class", "thread");
+		
 		builder.addProperties(props);
+		builder.addProperties(additionalProperties());
 		return builder.buildSessionFactory();
 	}
 
@@ -71,9 +73,9 @@ public class RootAppConfig {
 
 	private Properties additionalProperties() {
 		Properties properties = new Properties();
-		properties.put("hibernate.dialect", org.hibernate.dialect.SQLServer2012Dialect.class);
-		properties.put("hibernate.show_sql", Boolean.TRUE);
-		properties.put("hibernate.format_sql", Boolean.TRUE);
+//		properties.put("hibernate.dialect", org.hibernate.dialect.SQLServer2012Dialect.class);
+//		properties.put("hibernate.show_sql", Boolean.TRUE);
+//		properties.put("hibernate.format_sql", Boolean.TRUE);
 		properties.put("default_batch_fetch_size", 10);
 		properties.put("hibernate.hbm2ddl.auto", "update");
 		return properties;

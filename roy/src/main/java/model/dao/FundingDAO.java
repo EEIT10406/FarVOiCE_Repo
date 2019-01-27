@@ -99,6 +99,16 @@ public class FundingDAO {
 				.list();
 	}
 
+	// 找出該使用者通過審核的專案
+	public List<FundingBean> findProjectByUsernamePass(String member_username) {
+
+		return this.getSession()
+				.createQuery(
+						"from FundingBean where member_username='" + member_username + "'" + "and funding_status=1",
+						FundingBean.class)
+				.list();
+	}
+
 //找出專案byFundingId
 	public FundingBean findByPrimaryKey(Integer funding_id) {
 		// 0103 OK
