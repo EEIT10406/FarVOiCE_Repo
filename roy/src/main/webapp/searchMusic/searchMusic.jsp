@@ -50,6 +50,10 @@
 	margin-right:5px;
 	cursor: pointer;
 }
+
+
+     
+
 </style>
 <script>
 	function changeCheckBoxs() {

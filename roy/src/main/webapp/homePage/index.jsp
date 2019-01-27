@@ -308,7 +308,7 @@ function loadLikeMusic(username){
 	
 	// 列出所有專案
 	function showAllFunding(){
-		$.getJSON('/roy/funding/findAllByPass.controller',function(data){
+		$.getJSON('/roy/funding/findByPassOrderByMoney.controller',function(data){
 		
 			$.each(data, function(idx, list){
 				var content="";
@@ -357,7 +357,7 @@ function loadLikeMusic(username){
                      </div>
                                             
 <div class="col-md-12" style="margin-top: -30px">
-     <div class="carousel slide testimonials" id="testimonials1">
+     <div class="carousel slide testimonials" id="testimonials1" data-ride="carousel" data-interval="3000">
         <div id="likes" class="carousel-inner">
 			<div class="item active">
                 <div class="col-md-12">       
@@ -411,7 +411,7 @@ function loadLikeMusic(username){
 	   			<i style="color:#666666;" class="fas fa-chevron-circle-right fa-2x" style="text-decoration:none;"></i></a>
 	        </div>
 	        <div class="clearfix"></div>
-	    <div class="carousel slide testimonials" id="testimonials2">
+	    <div class="carousel slide testimonials" id="testimonials2" data-ride="carousel" data-interval="3000">
 			<div class="carousel-inner" id="sortThis"  >
 <!-- 				<div class="item active" > -->
 <!-- 				   <div class="col-md-12" >	       -->

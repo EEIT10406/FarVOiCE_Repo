@@ -32,6 +32,7 @@ public class FundingController {
 
 	@Autowired
 	private MemberService memberService;
+
 //創建募資專案+上傳圖片
 	@RequestMapping("/funding/funding.controller")
 	public String createProject(FundingBean bean, Model model, HttpSession session,
@@ -82,10 +83,11 @@ public class FundingController {
 
 //編輯更新專案內容+保存修改並前往編輯回饋頁面-創建時上一步版本
 	@RequestMapping("/funding/editFundingContent.controller")
-	public String editFundingContent(String editFunding, HttpSession session, String oImage, Model model,
+	public String editFundingContent(String editFunding, String oImage, String funding_id, Model model,
 			FundingBean bean, @RequestParam("imageFile") MultipartFile imagefile) {
 		String imagepath = "";
-		FundingBean editBean = (FundingBean) session.getAttribute("fundingBean");
+		Integer oldFunding_id=Integer.valueOf(funding_id);
+		FundingBean editBean = fundingService.findFundingById(oldFunding_id);
 //點擊保存修改
 		if ("儲存修改".equals(editFunding)) {
 			// 如果有修改圖片
@@ -103,7 +105,7 @@ public class FundingController {
 				bean.setMember_username(editBean.getMember_username());
 				bean.setFunding_createTime(editBean.getFunding_createTime());
 				bean.setFunding_image(imagepath);
-				bean.setFunding_status(false);
+				bean.setFunding_status(editBean.getFunding_status());
 				FundingBean updateFundingBean = fundingService.update(bean);
 				model.addAttribute("fundingBean", updateFundingBean);
 
@@ -115,7 +117,7 @@ public class FundingController {
 				bean.setFunding_id(editBean.getFunding_id());
 				bean.setMember_username(editBean.getMember_username());
 				bean.setFunding_createTime(editBean.getFunding_createTime());
-				bean.setFunding_status(false);
+				bean.setFunding_status(editBean.getFunding_status());
 				bean.setFunding_image(oImage);
 				System.out.println(bean);
 				FundingBean updateFundingBean = fundingService.update(bean);
@@ -140,7 +142,7 @@ public class FundingController {
 				bean.setMember_username(editBean.getMember_username());
 				bean.setFunding_createTime(editBean.getFunding_createTime());
 				bean.setFunding_image(imagepath);
-				bean.setFunding_status(false);
+				bean.setFunding_status(editBean.getFunding_status());
 				FundingBean updateFundingBean = fundingService.update(bean);
 				model.addAttribute("fundingBean", updateFundingBean);
 
@@ -152,7 +154,7 @@ public class FundingController {
 				bean.setFunding_id(editBean.getFunding_id());
 				bean.setMember_username(editBean.getMember_username());
 				bean.setFunding_createTime(editBean.getFunding_createTime());
-				bean.setFunding_status(false);
+				bean.setFunding_status(editBean.getFunding_status());
 				bean.setFunding_image(oImage);
 				FundingBean updateFundingBean = fundingService.update(bean);
 				model.addAttribute("fundingBean", updateFundingBean);
@@ -269,6 +271,32 @@ public class FundingController {
 			fundings.add(jsonMap);
 
 		}
+		return JSONValue.toJSONString(fundings);
+	}
+
+//找出審核通過並以募資金額做排序的熱門專案
+	@RequestMapping(value = "/funding/findByPassOrderByMoney.controller", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String findByPassOrderByMoney() {
+//		回傳所有專案
+		List<FundingBean> fundingBeans = fundingService.findAllByPass();
+		List<Map<String, String>> fundings = new LinkedList<Map<String, String>>();
+		for (FundingBean bean : fundingBeans) {
+			Map<String, String> jsonMap = new HashMap<>();
+			jsonMap.put("funding_title", bean.getFunding_title());
+			jsonMap.put("funding_image", bean.getFunding_image());
+			jsonMap.put("member_username", bean.getMember_username());
+			jsonMap.put("nick_name", bean.getMember_nickname());
+			jsonMap.put("funding_description", bean.getFunding_description());
+			jsonMap.put("funding_currentAmount", "" + bean.getFunding_currentAmount());
+			jsonMap.put("funding_goal", "" + bean.getFunding_goal());
+			jsonMap.put("funding_duration", "" + bean.getFunding_duration());
+			jsonMap.put("funding_id", "" + bean.getFunding_id());
+			jsonMap.put("funding_createTime", "" + bean.getFunding_createTime());
+			jsonMap.put("funding_browseCount", "" + bean.getFunding_browseCount());
+			fundings.add(jsonMap);
+		}
+
 		return JSONValue.toJSONString(fundings);
 	}
 

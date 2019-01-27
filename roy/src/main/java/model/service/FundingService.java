@@ -22,6 +22,12 @@ public class FundingService {
 	@Autowired
 	private MusicDAO musicDAO;
 
+//找出審核通過並以募資金額做排序的熱門專案	
+	public List<FundingBean> findByPassOrderByMoney() {
+		List<FundingBean> bean = fundingDAO.findByPassOrderByMoney();
+		return bean;
+	}
+
 //找出審核通過的專案
 	public List<FundingBean> findAllByPass() {
 		List<FundingBean> bean = fundingDAO.findAllByPass();
