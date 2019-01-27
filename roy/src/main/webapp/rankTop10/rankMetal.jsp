@@ -189,16 +189,26 @@ $(document).ready(function() {
 	
 	
 //滑鼠移入顯示播放圖片
-	$('#rankTopTen').on('mouseover','.music',function(){
-		 this.src = "../img/player.png";
-	})
+// 	$('#rankTopTen').on('mouseover','.music',function(){
+// 		 this.src = "../img/player.png";
+// 	})
 //滑鼠移出重新載入圖片
-	$('#rankTopTen').on('mouseout','.music',function(){
-		var row = $(this).parents('#row');
-        var musicId =row.find('td[name="music_id"]').text();
-    	loadrankTopTen('金屬')
+// 	$('#rankTopTen').on('mouseout','.music',function(){
+// 		var row = $(this).parents('#row');
+//         var musicId =row.find('td[name="music_id"]').text();
+//     	loadrankTopTen('金屬')
          
-	})
+// 	})
+
+//播圖
+		$('#rankTopTen').on('mouseover','.music',function(){
+			tempSrc = this.src;
+			this.src = "../img/player.png";
+		})
+		$('#rankTopTen').on('mouseout','.music',function(){
+			this.src = tempSrc;
+		})
+		//播圖
 	
 	
 })

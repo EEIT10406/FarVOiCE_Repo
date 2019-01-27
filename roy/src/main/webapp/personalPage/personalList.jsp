@@ -221,13 +221,13 @@ alert("${result}")
 	}
 
 $(document).ready(function() {
-	loadMusic('${user.member_username}')
+	//loadMusic('${user.member_username}')
 	loadMusicCount('${user.member_username}')
 	loadPlayList('${user.member_username}')
-	loadMemberLikeMusic('${user.member_username}')
+	//loadMemberLikeMusic('${user.member_username}')
 	loadFanCount('${user.member_username}')
 	loadStarCount('${user.member_username}')
-	showAllFunding('${user.member_username}');
+	//showAllFunding('${user.member_username}');
 	
 	//按音樂重新載入喜歡的音樂
 	$('#memberMusic').on('click',function(){

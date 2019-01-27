@@ -123,8 +123,11 @@ public class ListMusicController {
 				}
 				musicBeans.add(musicBean);
 			}
-			
-			model.addAttribute("nickname", playListBean.getMember_username());
+			if(playListBean.getPlaylist_privacy()==true) {
+			    String listName=playListBean.getPlaylist_name()+" (不公開)";
+			    playListBean.setPlaylist_name(listName);
+			}
+		//	model.addAttribute("nickname", playListBean.getMember_username());
 			model.addAttribute("playListBean", playListBean);
 			model.addAttribute("musicBeans", musicBeans);
 			
