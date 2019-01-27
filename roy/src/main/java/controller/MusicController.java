@@ -83,11 +83,11 @@ public class MusicController {
 //		0117
 		if (uploadMusicBean != null) {
 			model.addAttribute("musicBean", uploadMusicBean);
-			model.addAttribute("uploadresult", "發佈成功");
-			return "/login-signUp-upload/upload.jsp";
+			model.addAttribute("uploadResult", "發佈成功");
+			return "/personalPage/personalMusic.jsp";
 		} else {
-			model.addAttribute("uploadresult", "發佈失敗");
-			return "/login-signUp-upload/upload.jsp";
+			model.addAttribute("uploadResult", "發佈失敗");
+			return "/personalPage/personalMusic.jsp";
 		}
 
 	}
@@ -255,11 +255,11 @@ public class MusicController {
 		public String deleteMusic(String musicId,Model model) {
 			boolean result = musicService.deleteMusic(Integer.valueOf(musicId));
 			if (result) {
-				model.addAttribute("result", "刪除成功");
-				return "/personalPage/personalPage.jsp";
+				model.addAttribute("deleteresult", "刪除成功");
+				return "/personalPage/personalMusic.jsp";
 			} else {
-				model.addAttribute("result", "刪除失敗");
-				return "/personalPage/personalPage.jsp";
+				model.addAttribute("deleteresult", "刪除失敗");
+				return "/personalPage/personalMusic.jsp";
 			}
 		}
 		

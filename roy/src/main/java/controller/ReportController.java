@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import model.bean.MemberBean;
 import model.bean.MusicBean;
 import model.bean.PlaylistBean;
@@ -48,17 +50,26 @@ public class ReportController {
 	StoryService storyService;
 
 	//查檢舉
-	@RequestMapping(value = "**/report.get")
+	@RequestMapping(value = "**/report.get", produces = "application/json;charset=utf-8")
+	@ResponseBody
 	public String get(Model model, Integer report_id) {
-		model.addAttribute("reportBean", reportService.findByPrimaryKey(report_id));
-		return "testSpring2";
+		return new Gson().toJson(reportService.findAll());
 	}
 	//
-		@RequestMapping(value = "**/report.update")
-		public String update(Model model, ReportBean reportBean) {
-			System.out.println(reportBean.getReport_time());
-			model.addAttribute("reportBean", reportService.update(reportBean));
-			return "testSpring2";
+		@RequestMapping(value = "**/report.update",produces="text/html;charset=utf-8")
+		@ResponseBody
+		public String update(Model model, String YON,String music_id,String report_id) {
+			System.out.println(YON+music_id+report_id);
+			if("可".equals(YON)) {
+				musicService.deleteMusic(Integer.valueOf(music_id));
+				reportService.remove(Integer.valueOf(report_id));
+				reportService.delete(Integer.valueOf(music_id));
+				return "音樂下架";
+			} else if("否".equals(YON)) {
+				reportService.remove(Integer.valueOf(report_id));
+				return "音樂不下架";
+			}
+			return "NOT是否";
 		}
 
 	//檢舉
@@ -123,12 +134,14 @@ public class ReportController {
 		for(Integer music_id : musicIds)
 		{
 			MusicBean bean = musicService.findMusic(music_id);
+			if(!bean.getMusic_unavailable()) {
 			HashMap<String,String>  m1 = new HashMap<String,String>();       
 			 m1.put("Music_name",bean.getMusic_name());
 			 m1.put("Member_username",bean.getMember_username());
 			 m1.put("Music_music",bean.getMusic_music());
 			 m1.put("Music_Image",bean.getMusic_Image());
 			 l1.add(m1);
+			}
 		}
 		return JSONValue.toJSONString(l1);
 	}

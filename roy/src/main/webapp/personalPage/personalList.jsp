@@ -171,7 +171,11 @@ opacity:0.4
 </style>
 
 
-
+<script>
+<c:if test="${not empty result}">
+alert("${result}")
+</c:if>
+</script>
 <script>
 	$(document).ready(function() {		
 		var follows = document.querySelectorAll("div.follow");
@@ -451,11 +455,11 @@ function loadMemberLikeMusic(username) {
 					 	list.forEach(function(obj, index) {
 						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameS+"'>"+obj.member_nicknameS+"</a>"
 					 		var content0 = 	"<div class='row'>"
-						 	var content1 = 		"<div class='col-md-7'>"
+						 	var content1 = 		"<div class='col-md-5'>"
 						 	var content2 = 			"<img src='"+obj.member_profileImageS+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
 				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
 				 			var content4 = 		"</div>"
-				 			var content5 = 		"<div class='col-md-5'>"
+				 			var content5 = 		"<div class='col-md-7'>"
 				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
 				 			var content7 = 		"</div>"
 				 			var content8 = 	"</div>"
@@ -492,11 +496,11 @@ function loadMemberLikeMusic(username) {
 					 	list.forEach(function(obj, index) {
 						 	var a = "<a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+obj.member_nicknameM+"'>"+obj.member_nicknameM+"</a>"
 					 		var content0 = 	"<div class='row'>"
-						 	var content1 = 		"<div class='col-md-7'>"
+						 	var content1 = 		"<div class='col-md-5'>"
 						 	var content2 = 			"<img src='"+obj.member_profileImageM+"' style='margin-top: 15px; width: 100px; height: 100px;' />"
 				 			var content3 = 			"<span style='margin-left: 10px; margin-top: 5px; font-size: 18px;'>"+a+"</span>"
 				 			var content4 = 		"</div>"
-				 			var content5 = 		"<div class='col-md-5'>"
+				 			var content5 = 		"<div class='col-md-7'>"
 				 			var content6 = 			"<div class='follow' style='float: right; margin-top: 50px;'>已追蹤</div>"
 				 			var content7 = 		"</div>"
 				 			var content8 = 	"</div>"
@@ -617,18 +621,18 @@ function showAllFunding(username){
 				<!-- Tab v2 -->
 				<div class="tabs alternative">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#dynamic">動態</a>
+						<li><a href="/roy/personalPage/personalPage.jsp">動態</a>
 						</li>
 						<li><a href="/roy/personalPage/personalMusic.jsp" id="memberMusic">音樂</a></li>
-						<li><a href="/roy/personalPage/personalList.jsp">歌單</a></li>
+						<li class="active"><a href="#list">歌單</a></li>
 						<li><a href="/roy/personalPage/personalLike.jsp" id="memberLikeMusic">喜歡</a></li>
 						<li><a href="/roy/personalPage/personalProject.jsp" id="memberProject">提案</a></li>
 						<li><a href="/roy/personalPage/personalReward.jsp" id="memberDonate">贊助</a></li>
-						<li><a href="/roy/personalPage/personalAbout.jsp">關於</a></li>
+						<li><a href="/roy/personalPage/personalAbout.jsp" >關於</a></li>
 					</ul>
 					
 					<div class="tab-content" style="height: auto;" style="margin-bottom:20px" >
-						<div class="tab-pane fade in active" id="dynamic">
+						<div class="tab-pane fade in" id="dynamic">
 								
 							<div><!-- ===BEGIN of HISTORY === -->
 										 
@@ -668,7 +672,7 @@ function showAllFunding(username){
 						<!-- End dynamic -->
 						<div class="tab-pane fade in" style="overflow: auto;" id="music">								
 						</div>			
-						<div class="tab-pane fade in" style="overflow: auto;" id="list">
+						<div class="tab-pane fade in active" style="overflow: auto;" id="list">
 						</div>
 						<div class="tab-pane fade in" style="overflow: auto;" id="like">
 						</div>
