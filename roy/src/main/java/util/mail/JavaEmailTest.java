@@ -58,8 +58,7 @@ public class JavaEmailTest implements Runnable
     private MimeMessage draftEmailMessage() throws AddressException, MessagingException
     {
         String[] toEmails = { email };
-        String emailSubject = "FarVOiCE帳號開通";
-        String emailBody = "This is an email sent by <b>//howtodoinjava.com </b>.";
+        String emailSubject = "FarVOiCE";
         String emailBodyTest = "This is an email sent by FarVOiCE. <br>" +
         						"Your Account : " + userAccount + "<br>" +
         						"Your Password : " + userPassword + "<br>" + 
