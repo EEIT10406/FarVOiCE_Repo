@@ -123,7 +123,7 @@
 			if(!IsEmail($('#member_email').val())){
 				$('#emailCheck').html("信箱格式錯誤!");
 			}else{
-				$('#emailCheck').html("");
+				$('#emailCheck').html("記得去收驗證信喔!");
 			}
 
 		})
@@ -166,7 +166,7 @@
 <%-- 									<span id="sp1" style='color:#880000;'>${errors.signUpError}</span> --%>
 								</div>
 								<div class="col-lg-12 text-center">
-									<button class="btn btn-primary" type="submit" onclick="return foo();" >註冊</button>
+									<button class="btn btn-primary" type="submit" onclick="" >註冊</button>
 								</div>
 								
 							</div>

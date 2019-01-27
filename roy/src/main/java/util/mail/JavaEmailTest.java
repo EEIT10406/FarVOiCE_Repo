@@ -52,17 +52,17 @@ public class JavaEmailTest implements Runnable
         emailProperties.put("mail.smtp.auth", "true");
         emailProperties.put("mail.smtp.starttls.enable", "true");
         mailSession = Session.getDefaultInstance(emailProperties, null);
+        
     }
  
     private MimeMessage draftEmailMessage() throws AddressException, MessagingException
     {
         String[] toEmails = { email };
-        String emailSubject = "FarVOiCE帳號開通";
-        String emailBody = "This is an email sent by <b>//howtodoinjava.com </b>.";
+        String emailSubject = "FarVOiCE";
         String emailBodyTest = "This is an email sent by FarVOiCE. <br>" +
         						"Your Account : " + userAccount + "<br>" +
         						"Your Password : " + userPassword + "<br>" + 
-        						"請點擊以下連結啟用帳號 : http://localhost:8080/roy/register/acticeAccount?userAccount="+userAccount+"&userPassword="+userPassword;
+        						"請點擊以下連結啟用帳號 : http://farvoice10406.southeastasia.cloudapp.azure.com:8080/roy/register/acticeAccount?userAccount="+userAccount+"&userPassword="+userPassword;
         MimeMessage emailMessage = new MimeMessage(mailSession);
         /**
          * Set the mail recipients
