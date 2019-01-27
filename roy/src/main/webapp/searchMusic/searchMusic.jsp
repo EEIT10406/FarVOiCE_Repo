@@ -359,8 +359,8 @@
 				    				'<div><img src="'+music.memberLikeMusic+'" class="heart" music_id="'+music.Music_id+'"><span class="heartCount">'+music.Music_likeCount+'</span><span id="add">'+
 				    				'<button type="button" class="btnAddList" music_id="'+music.Music_id+'" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button></span></a>'+
 				    				'<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare"style="outline: none;" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" src="'+music.Music_Image+'" onclick="sharePeter(this)" ><img src="../img/share.png" width="13px" >分享</button></span>'+
-				    				'<span><button class="reportButton" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'"><img src="../img/exclamation.png" width="15px">檢舉</button></span>'+
-				    				'</div></div></div></div>');
+				    				'</div><span><button class="reportButton" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'"><img src="../img/exclamation.png" width="15px">檢舉</button></span>'+
+				    				'</div></div></div>');
 // 				    		onmouseover="report()"
 				    		docFrag.append(row);
 				    	});
