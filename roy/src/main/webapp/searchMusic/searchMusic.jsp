@@ -352,7 +352,7 @@
 				    				'<div>'+
 				    				'<div class="col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box">'+
 				    				'<div class="work-block m-bottom-2"><a class="play-link" href="#">'+
-				    				'<img class="img-full" height="180px" width="180px" src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
+				    				'<img class="img-full" height="180px" width="180px" src="'+music.Music_Image+'" real_src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
 				    				'</div>	<div  id="row" class="song-info">'+
 				    				'<h5 class="text-ellipsis"><a class="play-link" href = "/roy/musicPage/findMusicById?musicId='+music.Music_id+'" src="'+music.Music_Image+'">'+music.Music_name+'</a></h5>'+
 				    				'<h5 class="text-ellipsis"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+music.Member_nickname+'">'+music.Member_nickname+'</a></h5>'+
@@ -395,7 +395,7 @@
 					title : $(e).attr('music_name'),
 					author : $(e).attr('member_username'),
 					url : $(e).attr('music_music'),
-					pic : $(e).attr('src')
+					pic : $(e).attr('real_src')
 				}]);
 				$(ap.audio).attr('music_id',$(e).attr('music_id'));
 	}

@@ -227,8 +227,10 @@ function test(e){
 	if(confirm(s+"嗎?")){
 		$.get("report.update", {"YON":s,"music_id":$(e).parent('td').attr('music_id'),"report_id":$(e).parent('td').attr('report_id')}, function(message) {
 			alert(message);
+			refreshReport();
 		})
-		refreshReport();
+		
+
 	}
 }
 function passCurrentFunding(e){

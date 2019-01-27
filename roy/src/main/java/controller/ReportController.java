@@ -63,6 +63,7 @@ public class ReportController {
 			if("可".equals(YON)) {
 				musicService.deleteMusic(Integer.valueOf(music_id));
 				reportService.remove(Integer.valueOf(report_id));
+				reportService.delete(Integer.valueOf(music_id));
 				return "音樂下架";
 			} else if("否".equals(YON)) {
 				reportService.remove(Integer.valueOf(report_id));

@@ -6,12 +6,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.ReportBean;
-import model.hibernate.HibernateUtil;
 
 @Repository
 public class ReportDAO {
@@ -71,6 +70,13 @@ public class ReportDAO {
 //		tx.commit();
 //		session.close();
 //		HibernateUtil.closeSessionFactory();
+	}
+	
+	public void deleteByMusic_id(Integer music_id) {
+		  String hql = "delete from ReportBean WHERE music_idReportM=:music_idReportM";
+		  Query query = getSession().createQuery(hql);
+		  query.setInteger("music_idReportM", music_id);
+		  query.executeUpdate();
 	}
 	
 	public ReportBean findByPrimaryKey(Integer report_id) {
