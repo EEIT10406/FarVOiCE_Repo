@@ -156,13 +156,13 @@ function FBLogin() {
 	    }
 	}
 	function submit_frm(){
+	     var frm = document.getElementById("sendEmail");
+	        var emailValue = $('#emailCheck').val();
 		 if(!emailValue){
 	        	alert("請輸入信箱");
 	        	return;
 	        }
 		 alert("記得去收驗證信喔!");
-        var frm = document.getElementById("sendEmail");
-        var emailValue = $('#emailCheck').val();
         frm.action = "/roy/register/sendMail";  
         frm.method = "post";                 
         frm.submit();                        
@@ -308,7 +308,7 @@ h3{
 						      <div class="modal-footer">
 						   
 						       
-						        <button type="button" class="btn btn-secondary" data-dismiss="modal">不屑驗證啦</button>
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">不需要喔</button>
 						        <button type="button" class="btn btn-primary" onclick="submit_frm()">再次寄出驗證信</button>
 						     
 						      </div>

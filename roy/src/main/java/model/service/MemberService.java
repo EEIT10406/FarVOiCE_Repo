@@ -39,6 +39,9 @@ public class MemberService {
 //	}
 	@Autowired
 	private MemberDAO memberDAO;
+	public List<MemberBean> searchUser(){
+		return memberDAO.findAll();
+	}
 	public MemberService(MemberDAO memberDAO) {
 		super();
 		this.memberDAO = memberDAO;

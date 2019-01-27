@@ -62,7 +62,7 @@ public class JavaEmailTest implements Runnable
         String emailBodyTest = "This is an email sent by FarVOiCE. <br>" +
         						"Your Account : " + userAccount + "<br>" +
         						"Your Password : " + userPassword + "<br>" + 
-        						"請點擊以下連結啟用帳號 : http://localhost:8080/roy/register/acticeAccount?userAccount="+userAccount+"&userPassword="+userPassword;
+        						"請點擊以下連結啟用帳號 : http://farvoice10406.southeastasia.cloudapp.azure.com:8080/roy/register/acticeAccount?userAccount="+userAccount+"&userPassword="+userPassword;
         MimeMessage emailMessage = new MimeMessage(mailSession);
         /**
          * Set the mail recipients
