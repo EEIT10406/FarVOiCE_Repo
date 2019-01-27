@@ -352,15 +352,15 @@
 				    				'<div>'+
 				    				'<div class="col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box">'+
 				    				'<div class="work-block m-bottom-2"><a class="play-link" href="#">'+
-				    				'<img class="img-full" height="180px" width="180px" src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
+				    				'<img class="img-full" height="180px" width="180px" src="'+music.Music_Image+'" real_src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
 				    				'</div>	<div  id="row" class="song-info">'+
 				    				'<h5 class="text-ellipsis"><a class="play-link" href = "/roy/musicPage/findMusicById?musicId='+music.Music_id+'" src="'+music.Music_Image+'">'+music.Music_name+'</a></h5>'+
 				    				'<h5 class="text-ellipsis"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+music.Member_nickname+'">'+music.Member_nickname+'</a></h5>'+
 				    				'<div><img src="'+music.memberLikeMusic+'" class="heart" music_id="'+music.Music_id+'"><span class="heartCount">'+music.Music_likeCount+'</span><span id="add">'+
 				    				'<button type="button" class="btnAddList" music_id="'+music.Music_id+'" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button></span></a>'+
 				    				'<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare"style="outline: none;" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" src="'+music.Music_Image+'" onclick="sharePeter(this)" ><img src="../img/share.png" width="13px" >分享</button></span>'+
-				    				'<span><button class="reportButton" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'"><img src="../img/exclamation.png" width="15px">檢舉</button></span>'+
-				    				'</div></div></div></div>');
+				    				'</div><span><button class="reportButton" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'"><img src="../img/exclamation.png" width="15px">檢舉</button></span>'+
+				    				'</div></div></div>');
 // 				    		onmouseover="report()"
 				    		docFrag.append(row);
 				    	});
@@ -395,7 +395,7 @@
 					title : $(e).attr('music_name'),
 					author : $(e).attr('member_username'),
 					url : $(e).attr('music_music'),
-					pic : $(e).attr('src')
+					pic : $(e).attr('real_src')
 				}]);
 				$(ap.audio).attr('music_id',$(e).attr('music_id'));
 	}

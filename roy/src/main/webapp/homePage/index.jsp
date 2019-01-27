@@ -453,9 +453,6 @@ function loadLikeMusic(username){
 
             
 	<jsp:include page="footer.jsp" />
-	<div id="player">
-		<jsp:include page="player.jsp" />
-	</div>
 
 
 
