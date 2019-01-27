@@ -174,7 +174,7 @@ opacity:0.4
 <script>
 <!-- //判斷更新是否成功 begin -->
 <c:if test="${not empty updateresult}">
-alert("${deleteresult}")
+alert("${updateresult}")
 </c:if>
 <!-- //  判斷更新是否成功 end  -->
 <!-- //判斷刪除是否成功 begin -->
@@ -184,7 +184,7 @@ alert("${deleteresult}")
 <!-- //  判斷刪除是否成功 end  -->
 <!-- //判斷上傳是否成功 begin -->
 <c:if test="${not empty uploadResult}">
-     alert("${uploadresult}");
+     alert("${uploadResult}");
 </c:if>
 <!-- //  判斷上傳是否成功 end  -->
 </script>

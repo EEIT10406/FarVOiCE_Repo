@@ -168,7 +168,7 @@ table {
 	text-align: center;
 	word-wrap: break-word;
 	word-break: break-all;
-	opacity:0.4
+	opacity:0.6
 }
 
 .shareAndAddbtn {
