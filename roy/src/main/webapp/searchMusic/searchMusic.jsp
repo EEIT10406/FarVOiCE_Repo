@@ -50,6 +50,9 @@
 	margin-right:5px;
 	cursor: pointer;
 }
+.pic{overflow:hidden;}
+.pic{transform:scale(1,1);transition: all 0.5s ease-out;}
+.pic:hover{transform:scale(1.2,1.2);}
 </style>
 <script>
 	function changeCheckBoxs() {
@@ -352,7 +355,7 @@
 				    				'<div>'+
 				    				'<div class="col-md-3 col-sm-6 col-xs-6 m-bottom-8 item_box">'+
 				    				'<div class="work-block m-bottom-2"><a class="play-link" href="#">'+
-				    				'<img class="img-full" height="180px" width="180px" src="'+music.Music_Image+'" real_src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
+				    				'<img class="img-full pic" height="180px" width="180px" src="'+music.Music_Image+'" real_src="'+music.Music_Image+'" onclick="play(this)" music_id="'+music.Music_id+'" member_username="'+music.Member_username+'" music_name="'+music.Music_name+'" music_music="'+music.Music_music+'">'+
 				    				'</div>	<div  id="row" class="song-info">'+
 				    				'<h5 class="text-ellipsis"><a class="play-link" href = "/roy/musicPage/findMusicById?musicId='+music.Music_id+'" src="'+music.Music_Image+'">'+music.Music_name+'</a></h5>'+
 				    				'<h5 class="text-ellipsis"><a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+music.Member_nickname+'">'+music.Member_nickname+'</a></h5>'+
@@ -370,13 +373,13 @@
 				//載音樂
 				
 		//播圖
-		$('#music-container').on('mouseover','img.img-full',function(){
-			tempSrc = this.src;
-			this.src = "../img/player.png";
-		})
-		$('#music-container').on('mouseout','img.img-full',function(){
-			this.src = tempSrc;
-		})
+// 		$('#music-container').on('mouseover','img.img-full',function(){
+// 			tempSrc = this.src;
+// 			this.src = "../img/player.png";
+// 		})
+// 		$('#music-container').on('mouseout','img.img-full',function(){
+// 			this.src = tempSrc;
+// 		})
 		//播圖
 	})
 	
