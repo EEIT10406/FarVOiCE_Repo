@@ -667,10 +667,10 @@ function showAllFunding(username){
 				<!-- Tab v2 -->
 				<div class="tabs alternative">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#dynamic">動態</a>
+						<li><a href="/roy/personalPage/somebodyPersonalPage.jsp" >動態</a>
 						</li>
 						<li><a href="/roy/personalPage/somebodyMusic.jsp" id="memberMusic">音樂</a></li>
-						<li><a href="/roy/personalPage/somebodyList.jsp" >歌單</a></li>
+						<li class="active"><a href="#list" >歌單</a></li>
 						<li><a href="/roy/personalPage/somebodyLike.jsp" id="memberLikeMusic">喜歡</a></li>
 						<li><a href="/roy/personalPage/somebodyProject.jsp" id="memberProject">提案</a></li>
 						<li><a href="/roy/personalPage/somebodyReward.jsp" id="memberReward">贊助</a></li>
@@ -679,7 +679,7 @@ function showAllFunding(username){
 
 					<div class="tab-content" style="height: auto;">
 
-						<div class="tab-pane fade in active" id="dynamic">
+						<div class="tab-pane fade in" id="dynamic">
 
 							<div id="test"></div>
 							<a class='readmore' onclick='return showData()'>查看更多文章</a>
@@ -711,7 +711,7 @@ function showAllFunding(username){
 						</div>
 						
 						
-						<div class="tab-pane fade in" style="overflow: auto;" id="list">
+						<div class="tab-pane fade in active" style="overflow: auto;" id="list">
 
 	<!-- 						<div style="margin-left:200px;"><a href="">新增歌單</a></div> -->
 						

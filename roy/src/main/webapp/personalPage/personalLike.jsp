@@ -171,7 +171,11 @@ opacity:0.4
 </style>
 
 
-
+<script>
+<c:if test="${not empty result}">
+alert("${result}")
+</c:if>
+</script>
 <script>
 	$(document).ready(function() {		
 		var follows = document.querySelectorAll("div.follow");
@@ -617,18 +621,18 @@ function showAllFunding(username){
 				<!-- Tab v2 -->
 				<div class="tabs alternative">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#dynamic">動態</a>
+						<li><a href="/roy/personalPage/personalPage.jsp">動態</a>
 						</li>
 						<li><a href="/roy/personalPage/personalMusic.jsp" id="memberMusic">音樂</a></li>
 						<li><a href="/roy/personalPage/personalList.jsp">歌單</a></li>
-						<li><a href="/roy/personalPage/personalLike.jsp" id="memberLikeMusic">喜歡</a></li>
+						<li class="active"><a href="#like" id="memberLikeMusic">喜歡</a></li>
 						<li><a href="/roy/personalPage/personalProject.jsp" id="memberProject">提案</a></li>
 						<li><a href="/roy/personalPage/personalReward.jsp" id="memberDonate">贊助</a></li>
-						<li><a href="/roy/personalPage/personalAbout.jsp">關於</a></li>
+						<li><a href="/roy/personalPage/personalAbout.jsp" >關於</a></li>
 					</ul>
 					
 					<div class="tab-content" style="height: auto;" style="margin-bottom:20px" >
-						<div class="tab-pane fade in active" id="dynamic">
+						<div class="tab-pane fade in" id="dynamic">
 								
 							<div><!-- ===BEGIN of HISTORY === -->
 										 
@@ -670,7 +674,7 @@ function showAllFunding(username){
 						</div>			
 						<div class="tab-pane fade in" style="overflow: auto;" id="list">
 						</div>
-						<div class="tab-pane fade in" style="overflow: auto;" id="like">
+						<div class="tab-pane fade in active" style="overflow: auto;" id="like">
 						</div>
 						<!-- end music -->
                         <div class="tab-pane fade in" style="overflow: auto;" id="userproject">
