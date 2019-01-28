@@ -18,6 +18,7 @@ public class NoHandlerFoundControllerAdvice {
 	  @ExceptionHandler(Exception.class)
 	  public String notFoundHandler() {
 		 return "redirect:/error/error.jsp";
+		 
 	  }
 }
 
