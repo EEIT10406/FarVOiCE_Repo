@@ -176,6 +176,7 @@ opacity:0.4
 <c:if test="${not empty updateresult}">
 alert("${updateresult}")
 </c:if>
+
 <!-- //  判斷更新是否成功 end  -->
 <!-- //判斷刪除是否成功 begin -->
 <c:if test="${not empty deleteresult}">
@@ -330,7 +331,7 @@ function loadMusic(username) {
 			content +=  '<div id="musics" class="col-md-5" style="float: left; width: 242px;margin-bottom:10px;">'+
 			            '<span name="music_id" id="musicid">'+list.music_id+'</span>'+
 			            '<span id="musicPage" style="cursor: pointer;">'+
-			               '<img src="'+list.music_Image+'" style="width: 120px; height: 120px;" name="music_Image" />'+
+			               '<img src="'+list.music_Image+'" style="width: 160px; height: 160px;" name="music_Image" />'+
 			            '</span>'+
 			       		'<div name="music_name" style="font-size: 16px;">'+list.music_name+'</div>'+
                    		'<div style="font-size:13px">'+
