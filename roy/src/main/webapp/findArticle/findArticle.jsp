@@ -158,8 +158,8 @@ var NumOfJData;//總筆數
 
 function doPage(){
 	console.log(event.currentTarget);
-	page=event.currentTarget.innerHTML;//當前頁數
-	currentPage = event.currentTarget.innerHTML;//把當前頁數存到 currentPage
+	page = event.currentTarget.innerHTML;//當前頁數
+	currentPage = parseInt(event.currentTarget.innerHTML);//把當前頁數存到 currentPage
 	$(".pagination li").attr("class","");
 	$(event.currentTarget).parents('li').attr("class","active");
 	start = page*count-count;
@@ -329,34 +329,7 @@ function loadArticle (searchString) {
 				
 				
 			}
-				
-				
-				
-				
-				
-			
-			
-			//顯示內容
-// 				var Blog_Item_Details = 
-// 				"<div class='blog-post-details'>"+
-// 				"<div class='blog-post-details-item blog-post-details-item-left'>"+
-// 					"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+author+"</a>"+
-// 				"</div>"+
-// 				"<div class='blog-post-details-item blog-post-details-item-left'>"+
-// 					"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+time+"</a>"+
-// 				"</div>"+
-// 				"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
-// 					"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
-						
-// 				var Blog_Content = "<div class='blog'>"+
-// 									 "<div class='clearfix'></div>"+
-// 										"<div class='blog-post-body row margin-top-15'>"+
-// 										   "<div class='col-md-7'>"+"<p>"+content+"</p>"+
-// 											"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
-// 							"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
-// 						"</a></div></div></div></div><br><br><br><br>";
-// 				content = "" ;
-// 				$("#articlePutHere").append(Blog_Item_Details+Blog_Content);
+
 			
 
 		  },

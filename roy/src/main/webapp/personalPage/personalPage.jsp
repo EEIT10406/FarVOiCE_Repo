@@ -210,75 +210,13 @@ opacity:0.4
 		}
 	}
 
-	//贊助%數取到整數
-	function parseInt(percent){
-		var newpercent=Math.ceil(percent);
-		return newpercent
-	}
+
 
 $(document).ready(function() {
-	loadMusic('${user.member_username}')
-	loadMusicCount('${user.member_username}')
-	loadPlayList('${user.member_username}')
-	loadMemberLikeMusic('${user.member_username}')
+	
 	loadFanCount('${user.member_username}')
 	loadStarCount('${user.member_username}')
-	showAllFunding('${user.member_username}');
-	
-	//按音樂重新載入喜歡的音樂
-	$('#memberMusic').on('click',function(){
-		loadMusic('${user.member_username}')
-	})
-	
-	//按喜歡重新載入喜歡的音樂
-	$('#memberLikeMusic').on('click',function(){
-		loadMemberLikeMusic('${user.member_username}')
-	})	
 
-	 //編輯音樂
-	$('#music').on('click','.editClick',function() {
-		var row = $(this).parents('#musics');
-        var music_id =row.children('span[name="music_id"]').text();	
-		window.location.href = "/roy/musicPage/editMusic?music_id="+music_id;
-	})
-	
-
-	//按愛心
-	$('body').on('click','.heart',function(){
-		var row = $(this).parents('#musics');
-        var musicId =row.children('span[name="music_id"]').text();
-		
-		if (this.src.indexOf("love.png") != -1) {
-			
-			$.get('/roy/personalPage/memberTakeBackLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
-				row.find('.heartCount').text(data);
-			})
-			this.src = "../img/emptyLove.png";
-			
-		} else {
-			
-			$.get('/roy/personalPage/memberClickLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
-				row.find('.heartCount').text(data);
-			})
-			this.src = "../img/love.png";
-		}
-	})
-	
-	//按加入歌單時載入有哪些歌單
-	$('body').on('click','.btnAddList',function() {
- 		var row = $(this).parents('#musics');
-        var music_id =row.children('span[name="music_id"]').text();
-		$.getJSON('/roy/list/readPlayList',{'username' : '${user.member_username}'},function(data) {
-			var html='<option value="'+music_id+'">請選擇歌單</option>';
-			$.each(data,function(index, list) {
-				
-			    html+='<option value="'+list.playlist_id+'">'+list.playlist_name+'</option>';
-			         
-	              })
-	         $('#selectPlayList').html(html);
-			 $('span[name="musicId"]').hide();
-		})
-	})
 	
 	//按分享時載入哪首音樂
 	$('body').on('click','.shareAndAddbtn',function() {
@@ -296,142 +234,8 @@ $(document).ready(function() {
     	 $('#addshareMusicnameSpan > a').attr("href",music_href);
     	 $('#addshareMusicImg').attr("src",music_image);
 		})
-			
-	//把音樂加進歌單裡
-	$('body').on('click','#addMusicToList',function() {
- 		var row = $(this).parents('#addList');
- 		var musicId =row.find('#selectPlayList').children().val();
-		var playListId=$('#selectPlayList').val();
-		$.get('/roy/list/addMusicToPlayList',{'musicId' : musicId,'playListId':playListId},function(data) {
-			alert(data)
-			loadPlayList('${user.member_username}')
-		})
-			
-	})
 	
-	//點歌單去歌單頁面
-	$('#list').on('click','#listPage',function(){
-		var row = $(this).parents('#lists');
-		var playListId = row.children('span[name="playlist_id"]').text();
-	
-		window.location.href = "/roy/personalPage/locateToPlayList?playListId="+playListId;
-		
-	})
-	
-	//點音樂去音樂頁面
-	$('#music').on('click','#musicPage',function(){
-		var row = $(this).parents('#musics');
-		var musicId = row.children('span[name="music_id"]').text();
-		
-		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
-		
-	})
-	
-	//點喜歡的音樂去音樂頁面
-	$('#like').on('click','#musicPage',function(){
-		var row = $(this).parents('#musics');
-		var musicId = row.children('span[name="music_id"]').text();
-		
-		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
-		
-	})
-	
-})
-
-
-//讀取該使用者的所有歌
-function loadMusic(username) {
-
-	$.getJSON('/roy/personalPage/readMusic',{'username' : username},function(data) {
-		var content="";
-		$.each(data,function(index, list) {
-			content +=  '<div id="musics" class="col-md-5" style="float: left; width: 242px;margin-bottom:10px;">'+
-			            '<span name="music_id" id="musicid">'+list.music_id+'</span>'+
-			            '<span id="musicPage" style="cursor: pointer;">'+
-			               '<img src="'+list.music_Image+'" style="width: 120px; height: 120px;" name="music_Image" />'+
-			            '</span>'+
-			       		'<div name="music_name" style="font-size: 16px;">'+list.music_name+'</div>'+
-                   		'<div style="font-size:13px">'+
-			       		'<img src="'+list.memberLikeMusic+'" class="heart">'+
-                   		'<span class="heartCount">'+list.music_likeCount+'</span>'+ 
-                      	'<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare" style="outline: none;" music_id="'+list.music_id+'" music_image="'+list.music_Image+'" music_name="'+list.music_name+'"><img src="../img/share.png" width="13px">分享</button></span>'+
-                      	'<span id="add" style="margin-left:0px;">'+
-                      	'<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="13px">加入歌單</button>'+
-					  	'</span>'+
-					  	'<br>'+
-					  	'<span class="editClick"><img src="../img/edit.png" width="15px" />編輯</span>'+
-                   		'</div>'+
-                   		'</div>';
-
-           })
-           $('#music').html(content);
-		 
-		$('span[name="music_id"]').hide();
-	})
-}
-
-
-//讀取該使用者的所有歌單
-function loadPlayList(username) {
-	$.getJSON('/roy/list/readPlayList',{'username' : username},function(data) {
-		var content="";
-		 $('#list').html("");
-		$.each(data,function(index, list) {
-			content+='<div id="lists" class="col-md-5" style="float: left; width: 300px;margin-bottom:13px;">'+
-		             '<span name="playlist_id">'+list.playlist_id+'</span>'+
-			         '<div id="listPage" style="cursor: pointer;">'+
-		                  '<div style="width: 160px;height: 160px;background: url('+list.playlist_image+') no-repeat; background-size:160px 160px;">'+
-			              '<div class="listSongCount">'+list.playlist_musicCount+'</div></div>'+
-		             '</div>'+
-                     '<div style="font-size: 16px;">'+list.playlist_name+'</div>'+
-                     '<div style="font-size:14px;">'+list.showPlaylist_privacy+'</div>'+
-                 '</div>';
-              })
-              $('#list').html('<div style="margin-left:870px;font-size:15px;font-weight:normal"><a href="../list/createList.jsp">編輯歌單</a></div>'+content);
-		$('span[name="playlist_id"]').hide();
-	})
-}
-
-
-//讀取該使用者喜歡的歌
-function loadMemberLikeMusic(username) {
-
-	$.getJSON('/roy/personalPage/memberLikeMusic',{'username' : username},function(data) {
-		var content="";
-		$.each(data,function(index, list) {
-			content += '<div id="musics" class="col-md-5" style="float: left; width: 240px; music_id="'+list.music_id+'"  music_name="'+list.music_name+'" music_music="'+music.Music_music+'">'+
-                             '<span name="music_id">'+list.music_id+'</span>'+
-				             '<span id="musicPage" style="cursor: pointer;">'+
-                                  '<img src="'+list.music_Image+'" style="width: 120px; height: 120px;" />'+
-                             '</span>'+
-                             '<div style="font-size: 16px;">'+list.music_name+'</div>'+
-
-				             '<div>'+
-                                  '<img src="../img/love.png" class="heart">'+
-				                  '<span class="heartCount">'+list.music_likeCount+'</span>'+ 
-				                  '<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare" style="outline: none;" music_id="'+list.music_id+'" music_image="'+list.music_Image+'" music_name="'+list.music_name+'"><img src="../img/share.png" width="13px">分享</button></span>'+
-					              '</span>'+
-					              '<span id="add">'+
-			                      '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
-								  '</span>'+
-				             '</div>'+
-			             '</div>';
-                })
-           $('#like').html(content);
-		$('span[name="music_id"]').hide();
-	})
-}
-
-
-
-	//讀取使用者上傳的音樂數
-	function loadMusicCount(username) {
-		$.getJSON('/roy/personalPage/uploadMusicCount',{'username' : username},function(data) {
-			$('#musicCount').html(data);
-		})
-	}
-	
-	
+})	
 
 	//抓粉絲數
 	function loadFanCount(username) {
@@ -513,51 +317,7 @@ function loadMemberLikeMusic(username) {
 			}
 		})
 	}
-	
-// 	找出該使用者通過審核的專案
-function showAllFunding(username){
-	$.getJSON('/roy/personalPage/findProjectByUsernamePass',{'username' : username},function(data) {
-		var content="";
-		$.each(data,function(index, list) {
-			console.log(list);
-			content += 
-				'<div class="project-pre allproject" style="cursor:pointer" href="/roy/funding/detail.controller?funding_id='+list.funding_id+'&day='+limitDay(list.funding_duration)+'&nickname='+list.nick_name+'" onclick="detailhref(this)">'+
-				'<div class="img-pres">'+
-				'<img class="img-in" id="preview_progressbarTW_img"'+
-				'src="'+list.funding_image+'">'+
-				'</div>'+
-				'<div class="pcontent-pre">'+
-				'<p id="pre-title" class="title-content"'+
-					'style="margin-bottom: -18px">'+list.funding_title+'</p>'+
-				'<p class="small creator">'+
-				'<a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nick_name+'"><p id="pre-name">'+list.nick_name+'</p></a>'+
 
-				'<p id="pre-content" class="excerpt JQellipsis"'+
-				'style="font-weight: bold; font-size: 0.85rem">'+list.funding_description+'</p>'+
-				'</div>'+
-				'<div class="downMeta-pre">'+
-				'<progress class="progress-pre"'+
-				'style="margin-bottom: 0px; margin-top: 0px;" value="'+list.funding_currentAmount/list.funding_goal*100+'" max="100"></progress>'+
-			    '<span class="goalMoney osmfont currentMoney" style="font-family:Oswald, sans-serif;">'+list.funding_currentAmount+'</span><span'+
-				' class="hidden-md goalpercent goal" style="font-family: Oswald, sans-serif;"> '+parseInt(list.funding_currentAmount/list.funding_goal*100)+'%</span><span'+
-				' style="font-size: 13px; letter-spacing: 1px;font-family: Microsoft JhengHei"'+
-				'class="date pull-right small"> 還剩 <strong class="days"'+
-				'style="font-size: 13px; font-weight: 1000; letter-spacing: 1px;">'+limitDay(list.funding_duration)+'</strong><span'+
-				' style="font-size: 13px; letter-spacing: 1px"> 天</span>'+
-				'</span>'+
-				'<span class="funding_id" style="display:none">'+list.funding_id+'</sapn>'+
-				'<span class="funding_goal" style="display:none">'+list.funding_goal+'</sapn>'+
-				'<span class="funding_createTime" style="display:none">'+list.funding_createTime+'</sapn>'+
-				'<span class="funding_duration" style="display:none">'+list.funding_duration+'</sapn>'+
-				'<span class="funding_browseCount" style="display:none">'+list.funding_browseCount+'</sapn>'+
-				'</div>'+
-			    '</div>';
-           })
-		$('#userproject').html(content);
-		
-	})
-}
-	
 </script>
 
 </head>
@@ -720,35 +480,12 @@ function showAllFunding(username){
 											<h3 class="no-margin no-padding"
 												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px;font-family: 微軟正黑體;padding-bottom:15px">追蹤名單</h3>
 											
-<!-- 											<div class="row"> -->
-<!-- 												<div class="col-md-5"> -->
-<!-- 													<img src="../img/left.JPG" -->
-<!-- 														style="margin-top: 15px; width: 100px; height: 100px;" /> -->
-<!-- 													<span -->
-<!-- 														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span> -->
-<!-- 												</div> -->
-<!-- 												<div class="col-md-7"> -->
-<!-- 													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div> -->
-<!-- 												</div> -->
-<!-- 											</div> -->
 										</div>
 
 
 										<div class="tab-pane fade in" id="fans">
 											<h3 class="no-margin no-padding"
 												style="border-bottom: 1px solid #D3D3D3; margin-bottom: 15px;font-family: 微軟正黑體;padding-bottom:3px">粉絲</h3>
-<!-- 											<div class="row"> -->
-<!-- 												<div class="col-md-5"> -->
-<!-- 													<img src="../img/left.JPG" -->
-<!-- 														style="margin-top: 15px; width: 100px; height: 100px;" /> -->
-<!-- 													<span -->
-<!-- 														style="margin-left: 10px; margin-top: 5px; font-size: 18px;">安董</span> -->
-<!-- 												</div> -->
-<!-- 												<div class="col-md-7"> -->
-<!-- 													<div class="follow" style="float: right; margin-top: 50px;">已追蹤</div> -->
-<!-- 												</div> -->
-<!-- 											</div> -->
-
 
 
 										</div>
@@ -791,27 +528,7 @@ function showAllFunding(username){
 	
 	<!-- 	showArticleFromMember start-->
 <script>
-//點擊預覽小卡跳轉詳細頁面
-function detailhref(e){
-	var webhref=$(e).attr("href");
-	window.location.href=webhref;
-}
-//抓取選取日期計算到期天數
-function limitDay(day) {
-	var pickdate = day;
-	var enddate = new Date(pickdate);
-	var nowdate = new Date();
 
-	var deadline = enddate.getTime()
-			- nowdate.getTime();
-	var days = parseInt(deadline
-			/ (1000 * 60 * 60 * 24)) + 1;
-	if (isNaN(days)) {
-		return 0;
-	}else{
-		return days;
-	}
-}
 //刪除Post或Share
 	function remove(post_idS)
 	{
@@ -948,7 +665,7 @@ function showData(){
 								
 								
 								var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
-								var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='http://localhost:8080/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
+								var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
 
 								
 								//								var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
@@ -1034,7 +751,7 @@ function showData(){
 							
 							
 							var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
-							var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='http://localhost:8080/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
+							var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
 //							var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 							var test = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
 							var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" +  list[i].post_idS + "'>查看全文</a>"
@@ -1085,33 +802,7 @@ function showData(){
     </script>
 	<!-- 	showArticleFromMember end-->
 	<!-- === END CONTENT === -->
-	<!-- addPlayList begin-->		
-	<div class="modal fade" id="addList" aria-hidden="true">
-				<div class="modal-dialog" style="width: 300px;">
-					<div class="modal-content">
-						<h5 style="margin: 10px;">加入歌單</h5>
 
-							<div class="modal-body">
-
-								<div class="form-group">
-									<select name="selectPlayList" id="selectPlayList" class="form-control">
-										<option value="playListId">請選擇歌單</option>
-									</select>
-								</div>
-								<div style="float:right;">
-								<a href="../list/createList.jsp" >新增歌單</a>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary"
-									data-dismiss="modal">取消</button>
-								<button id="addMusicToList" type="button" class="btn btn-primary" data-dismiss="modal" >確定</button>
-							</div>
-						
-					</div>
-				</div>
-			</div>							
-	<!-- addPlayList end-->
 							
 							
 	<!-- addshare begin-->
