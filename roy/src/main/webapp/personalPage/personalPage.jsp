@@ -213,33 +213,10 @@ opacity:0.4
 
 
 $(document).ready(function() {
-	loadMusic('${user.member_username}')
-	loadMusicCount('${user.member_username}')
+	
+	loadFanCount('${user.member_username}')
 	loadStarCount('${user.member_username}')
 
-	 //編輯音樂
-	$('#music').on('click','.editClick',function() {
-		var row = $(this).parents('#musics');
-        var music_id =row.children('span[name="music_id"]').text();	
-		window.location.href = "/roy/musicPage/editMusic?music_id="+music_id;
-	})
-
-	
-	//按加入歌單時載入有哪些歌單
-	$('body').on('click','.btnAddList',function() {
- 		var row = $(this).parents('#musics');
-        var music_id =row.children('span[name="music_id"]').text();
-		$.getJSON('/roy/list/readPlayList',{'username' : '${user.member_username}'},function(data) {
-			var html='<option value="'+music_id+'">請選擇歌單</option>';
-			$.each(data,function(index, list) {
-				
-			    html+='<option value="'+list.playlist_id+'">'+list.playlist_name+'</option>';
-			         
-	              })
-	         $('#selectPlayList').html(html);
-			 $('span[name="musicId"]').hide();
-		})
-	})
 	
 	//按分享時載入哪首音樂
 	$('body').on('click','.shareAndAddbtn',function() {
@@ -258,7 +235,7 @@ $(document).ready(function() {
     	 $('#addshareMusicImg').attr("src",music_image);
 		})
 	
-	
+})	
 
 	//抓粉絲數
 	function loadFanCount(username) {
@@ -688,7 +665,7 @@ function showData(){
 								
 								
 								var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
-								var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='http://localhost:8080/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
+								var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
 
 								
 								//								var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
@@ -774,7 +751,7 @@ function showData(){
 							
 							
 							var content = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'>發表了一篇文章</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
-							var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='http://localhost:8080/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
+							var musiccontent = "<span style='margin-left: 10px; font-size: 15px;' id='Music_name'>" +"<a href='/roy/musicPage/findMusicById?musicId="+music_id+"'>"+music_name+"</a></span>";
 //							var content2 = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i></span>分享了一條音樂</h5><small>"+timediff+"</small><a href='#' onclick='remove("+obj.post_idS+");'></div><div class='clearfix'></a></div>"+"<div style='margin-bottom:15px'>" + obj.post_content + "</div>";
 							var test = "<div style='margin-bottom:15px'><h5 style='margin-bottom:0px;margin-top:0px;letter-spacing:0.5px'><i class='fas fa-heart' style='color:red'></i>分享了一條音樂</h5><small>"+timediff+"</small><a  href='#' onclick='remove("+ list[i].post_idS+");' ><i style='margin-left:40px'class='fas fa-trash-alt'></i></a></div><div class='clearfix'></div>"+"<div style='margin-bottom:15px'>" +  list[i].post_content + "</div>";
 							var button = "<a  class='btn btn-primary'  href='/roy/personalPage/singleArticle.controller?post_idS=" +  list[i].post_idS + "'>查看全文</a>"
