@@ -158,19 +158,27 @@ $(document).ready(function() {
 	
 //按愛心
 	$('body').on('click','.heart',function(){
-		if('${user.member_username}'!=""){
-			
+		if('${user.member_username}'!=""){	
 		   var row = $(this).parents('#row');
            var musicId =row.children('td[name="music_id"]').text();
 		   if (this.src.indexOf("love.png") != -1) {		
-			   $.get('/roy/personalPage/memberTakeBackLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
-				   row.find('.heartCount').text(data);
-			   })
+			  
+			   $.get('/roy/personalPage/memberNotLike',{'musicId' : musicId},function(data) {
+				var deletecount=data;
+				row.find('.heartCount').text(data);
+				$.get('/roy/personalPage/memberTakeBackLike',{'deletecount':deletecount,'musicId' : musicId,'username':'${user.member_username}'},function(data){
+				})
+				
+			})
 			   this.src = "../img/emptyLove.png";	
-		   } else {
-			   $.get('/roy/personalPage/memberClickLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+			   
+		   } else {    
+			   $.get('/roy/personalPage/memberLike',{'musicId' : musicId},function(data) {
+				   var count=data;
 				   row.find('.heartCount').text(data);
-			   })
+				   $.get('/roy/personalPage/memberClickLike',{'count':count,'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+				})
+			})
 			    this.src = "../img/love.png";
 		   }
 		   
@@ -179,6 +187,7 @@ $(document).ready(function() {
 		}
 		
 	})
+	
 	
 //點音樂去音樂頁面
 	$('#rankTopTen').on('click','#musicPage',function(){

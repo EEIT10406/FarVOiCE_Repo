@@ -32,7 +32,7 @@ public class MemberLikeMusicController {
 	// 使用者對音樂按讚
 	@RequestMapping(value = "/personalPage/memberClickLike", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String memberClickLike(String username, String musicId, MemberLikeMusicId memberLikeMusicId,
+	public void memberClickLike(String username, String musicId,String count, MemberLikeMusicId memberLikeMusicId,
 			MemberLikeMusicBean bean, Model model) {
 		memberLikeMusicId.setMember_username(username);
 		memberLikeMusicId.setMusic_id(Integer.valueOf(musicId));
@@ -41,37 +41,52 @@ public class MemberLikeMusicController {
 		MemberLikeMusicBean memberLikeMusicBean = memberLikeMusicService.memberClickLike(bean);
 		if (memberLikeMusicBean != null) {
 			MusicBean musicBean = musicService.findMusic(Integer.valueOf(musicId));
-			int musicLikeCount = musicBean.getMusic_likeCount() + 1;
-			if (musicLikeCount >= 0) {
-				musicBean.setMusic_likeCount(musicLikeCount);
+				musicBean.setMusic_likeCount(Integer.valueOf(count));
 				musicService.updateMusic(musicBean);
-				return String.valueOf(musicLikeCount);
-			}
 		}
-		return "";
 
 	}
+	
+	// 使用者對音樂按讚(先在前端換按讚數)
+		@RequestMapping(value = "/personalPage/memberLike", produces = "text/plain;charset=UTF-8")
+		@ResponseBody
+		public String memberLike(String musicId) {
+				MusicBean musicBean = musicService.findMusic(Integer.valueOf(musicId));
+				int musicLikeCount = musicBean.getMusic_likeCount() + 1;
+				if (musicLikeCount >= 0) {
+					return String.valueOf(musicLikeCount);
+				}
+			return "";
+
+		}
 
 	// 使用者對音樂收回讚
 	@RequestMapping(value = "/personalPage/memberTakeBackLike", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String memberTakeBackLike(String username, String musicId, MemberLikeMusicId memberLikeMusicId) {
+	public void memberTakeBackLike(String deletecount,String username, String musicId, MemberLikeMusicId memberLikeMusicId) {
 		memberLikeMusicId.setMember_username(username);
 		memberLikeMusicId.setMusic_id(Integer.valueOf(musicId));
 
 		boolean result = memberLikeMusicService.memberTakeBackLike(memberLikeMusicId);
 		if (result == true) {
 			MusicBean musicBean = musicService.findMusic(Integer.valueOf(musicId));
-			int musicLikeCount = musicBean.getMusic_likeCount() - 1;
-			if (musicLikeCount >= 0) {
-				musicBean.setMusic_likeCount(musicLikeCount);
+				musicBean.setMusic_likeCount(Integer.valueOf(deletecount));
 				musicService.updateMusic(musicBean);
-				return String.valueOf(musicLikeCount);
-			}
 		}
-		return "";
-
 	}
+	
+	// 使用者對音樂收回讚(先在前端換按讚數)
+		@RequestMapping(value = "/personalPage/memberNotLike", produces = "text/plain;charset=UTF-8")
+		@ResponseBody
+		public String memberNotLike(String musicId) {
+				MusicBean musicBean = musicService.findMusic(Integer.valueOf(musicId));
+				int musicLikeCount = musicBean.getMusic_likeCount() - 1;
+				if (musicLikeCount >= 0) {
+					return String.valueOf(musicLikeCount);
+				}
+			return "";
+		}
+	
 
 	// 看使用者對哪些音樂按讚
 	@RequestMapping(value = "/personalPage/memberLikeMusic", produces = "text/plain;charset=UTF-8")

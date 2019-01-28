@@ -260,6 +260,7 @@ $(document).ready(function() {
 			$.get('/roy/personalPage/memberClickLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
 				row.find('.heartCount').text(data);
 			})
+			
 			this.src = "../img/love.png";
 		}
 	})
