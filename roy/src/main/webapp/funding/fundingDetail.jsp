@@ -47,7 +47,7 @@
 <!-- js -->
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		$('.david').hide();
 		//替換專案內容
 		$('#incontent').on('click', function() {
 
@@ -87,11 +87,17 @@
 			$('.ban-donate').css("pointer-events", "none");
 			$('.ban-color').css("background-color", "#e0e0e0");
 		}
-		
-
+		// 切換支持者
+		$('#sup').click(function() {
+			$('.ajax-content').hide();
+			$('.david').show();
+		})
+		// 切換專案內容
+		$('#incontent').click(function() {
+			$('.david').hide();
+			$('.ajax-content').show();
+		})
 	})
-	
-	var donateHistoryId=${funding.funding_id};
 </script>
 <style type="text/css">
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -107,7 +113,7 @@ input[type="number"] {
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
-		
+
 		<div class="fundingDetail">
 
 			<div class="detailHead" style="clear: both;">
@@ -148,12 +154,12 @@ input[type="number"] {
 					<p>天結束</p>
 				</div>
 				<blockquote class="blockquote-d">
-				<c:if test='${susses ge 100}'>
+					<c:if test='${susses ge 100}'>
 					專案募資成功！<br>在 ${funding.funding_duration} 募資結束前，您都可以持續贊助此計畫。
 				</c:if>
-				<c:if test="${susses lt 100}">
+					<c:if test="${susses lt 100}">
 				           專案正在募資中！<br>在 ${funding.funding_duration} 募資結束前，至少募得 $${funding.funding_goal} 便募資成功。
-				</c:if>	
+				</c:if>
 				</blockquote>
 				<a href="#move" id="entry" class="btn-sup">贊助專案</a>
 
@@ -186,6 +192,19 @@ input[type="number"] {
 					<h1 class="content-s2">${funding.funding_title}</h1>
 					<p class="content-s3">${funding.funding_description}</p>
 				</div>
+
+				<div class="david">
+
+					<c:forEach var="donate" items="${donateMemberBeans}">
+						<div class="supMan">
+							<img style="border-radius: 50%; height: 100px; width: 100px;"
+								src="${donate.member_profileImage}">
+							<p class="littleDavid">${donate.member_nickname}</p>
+						</div>
+					</c:forEach>
+
+				</div>
+
 
 				<div class="reward-card ban-text">
 
