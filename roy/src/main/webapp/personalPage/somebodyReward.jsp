@@ -1161,8 +1161,8 @@ var size1=5;
 	</div>	
 							
 	<jsp:include page="../homePage/footer.jsp" />
-	<!-- 	<div id="player"> -->
-	<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
-	<!-- 	</div> -->
+		<div id="player">
+			<jsp:include page="../homePage/player.jsp" />
+		</div>
 </body>
 </html>

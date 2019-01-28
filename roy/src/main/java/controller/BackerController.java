@@ -118,4 +118,13 @@ public class BackerController {
 		}
 		return JSONValue.toJSONString(backers);
 	}
+	// 找出贊助過的人
+	@RequestMapping(value = "/funding/donateHistory", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public List<MemberBean> donateHistory(Integer funding_id){
+		
+		Integer newFundingId = Integer.valueOf(funding_id);
+		
+		return backerService.donateHistory(newFundingId);
+	}
 }

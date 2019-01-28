@@ -98,7 +98,18 @@ $(document).ready(function() {
 	refreshContact();
 	refreshReport();
 	refreshFunding();
+	
+
+
+
 })
+	//確認審核通過
+	$('#checkconfirm').click(function(){
+		alert('111111111');
+		var text ;
+		confirm("確認審核通過?");
+		
+	})
 function refreshFunding(){
 	$('#fundingTable').html("");
 	$.ajax({
@@ -122,7 +133,7 @@ function refreshFunding(){
 											+obj.funding_title+"</a></td>"+
 							      "<td >"+obj.funding_createTime+"</td>"+
 							      "<td >"+fix+"</td>"+
-							      "<td ><a href='#'  funding_id='"+obj.funding_id+"' onclick='passCurrentFunding(this)'><i class='fas fa-pencil-alt fa-lg'></i></a></td>"+
+							      "<td ><a href='#' id='checkconfirm' funding_id='"+obj.funding_id+"' onclick='passCurrentFunding(this)'><i class='fas fa-pencil-alt fa-lg'></i></a></td>"+
 							  "</tr>";
 				$('#fundingTable').append(content);
 		  	});
@@ -234,6 +245,7 @@ function test(e){
 	}
 }
 function passCurrentFunding(e){
+	if(confirm("確認審核通過?")){
 	$.ajax({
 	    url: "/roy/back/passCurrentFunding.controller",
 	    type: "POST",
@@ -251,10 +263,9 @@ function passCurrentFunding(e){
 	    	$('#fundingTable').html("");
 	    	refreshFunding();
 			console.log("error");
-
 	    }
 	});	
-	
+	}
 }
 //抓取選取日期計算到期天數
 function limitDay(day) {
@@ -270,6 +281,8 @@ function limitDay(day) {
 		return days;
 	}
 }
+
+
 </script>
 </head>
 <body>

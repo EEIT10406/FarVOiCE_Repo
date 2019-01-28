@@ -411,32 +411,26 @@ $(document).ready(function() {
 
 	//按愛心
 	$('body').on('click','.heart',function(){
-		var row = $(this).parents('#musics');
-        var musicId =row.children('span[name="music_id"]').text();
+		if('${user.member_username}'!=""){
+		    var row = $(this).parents('#musics');
+            var musicId =row.children('span[name="music_id"]').text();
 		
-		if (this.src.indexOf("love.png") != -1) {
+		    if (this.src.indexOf("love.png") != -1) {
 			
-			$.get('/roy/personalPage/memberNotLike',{'musicId' : musicId},function(data) {
-				var deletecount=data;
-				row.find('.heartCount').text(data);
-				$.get('/roy/personalPage/memberTakeBackLike',{'deletecount':deletecount,'musicId' : musicId,'username':'${user.member_username}'},function(data){
-				})
-			})
+			    $.get('/roy/personalPage/memberTakeBackLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+				    row.find('.heartCount').text(data);
+			    })
+			    this.src = "../img/emptyLove.png";
 			
-			this.src = "../img/emptyLove.png";
+		    } else {
 			
-		} else {
-			$.get('/roy/personalPage/memberLike',{'musicId' : musicId},function(data) {
-				var count=data;
-				row.find('.heartCount').text(data);
-				
-				$.get('/roy/personalPage/memberClickLike',{'count':count,'musicId' : musicId,'username':'${user.member_username}'},function(data) {
-				})
-				
-			})
-			
-			this.src = "../img/love.png";
-
+			    $.get('/roy/personalPage/memberClickLike',{'musicId' : musicId,'username':'${user.member_username}'},function(data) {
+				    row.find('.heartCount').text(data);
+			    })
+			    this.src = "../img/love.png";
+		    }
+		}else{
+			 window.location.href = "/roy/login-signUp-upload/login.jsp";
 		}
 	})
 	
