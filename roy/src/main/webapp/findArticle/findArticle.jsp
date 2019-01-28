@@ -158,8 +158,8 @@ var NumOfJData;//總筆數
 
 function doPage(){
 	console.log(event.currentTarget);
-	page=event.currentTarget.innerHTML;//當前頁數
-	currentPage = event.currentTarget.innerHTML;//把當前頁數存到 currentPage
+	page = event.currentTarget.innerHTML;//當前頁數
+	currentPage = parseInt(event.currentTarget.innerHTML);//把當前頁數存到 currentPage
 	$(".pagination li").attr("class","");
 	$(event.currentTarget).parents('li').attr("class","active");
 	start = page*count-count;
