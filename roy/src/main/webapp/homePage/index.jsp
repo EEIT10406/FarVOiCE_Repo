@@ -351,7 +351,7 @@ function loadLikeMusic(username){
 	
 	// 列出所有專案
 	function showAllFunding(){
-		$.getJSON('/roy/funding/findAllByPass.controller',function(data){
+		$.getJSON('/roy/funding/findByPassOrderByMoney.controller',function(data){
 		
 			$.each(data, function(idx, list){
 				var content="";
@@ -400,7 +400,8 @@ function loadLikeMusic(username){
                      </div>
                                             
 <div class="col-md-12" style="margin-top: -30px">
-     <div class="carousel slide testimonials" id="testimonials1">
+
+     <div class="carousel slide testimonials" id="testimonials1" data-ride="carousel" data-interval="3000">
         <div id="likes" class="carousel-inner">
 			<div class="item active">
                 <div class="col-md-12">       
@@ -448,13 +449,13 @@ function loadLikeMusic(username){
 	    	<p> 熱門募資活動</p>
 			</div>
 			<div style="width:40%;float:right;text-align: right;padding-right: 25px;">
-				<a  href="#testimonials2" data-slide="prev"  style="margin-right:10px;text-decoration:none;" >
+				<a  href="#testimonials2" data-slide="prev" data-ride="carousel" style="margin-right:10px;text-decoration:none;" >
 				<i style="color:#666666;" class="fas fa-chevron-circle-left fa-2x"></i></a>
 				<a href="#testimonials2" data-slide="next">
 	   			<i style="color:#666666;" class="fas fa-chevron-circle-right fa-2x" style="text-decoration:none;"></i></a>
 	        </div>
 	        <div class="clearfix"></div>
-	    <div class="carousel slide testimonials" id="testimonials2">
+	    <div class="carousel slide testimonials" id="testimonials2" data-ride="carousel" data-interval="3000">
 			<div class="carousel-inner" id="sortThis"  >
 <!-- 				<div class="item active" > -->
 <!-- 				   <div class="col-md-12" >	       -->

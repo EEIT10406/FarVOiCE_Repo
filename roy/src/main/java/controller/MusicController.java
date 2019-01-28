@@ -242,9 +242,8 @@ public class MusicController {
 						music.setMusic_Image(imagePath);
 					}
 					musicService.editMusic(music);
-					System.out.println(music);
-					model.addAttribute("result","更新成功");
-					return "/personalPage/personalPage.jsp";
+					model.addAttribute("updateresult","更新成功");
+					return "/personalPage/personalMusic.jsp";
 			}
 
 			return "";

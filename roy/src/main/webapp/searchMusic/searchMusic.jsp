@@ -50,6 +50,10 @@
 	margin-right:5px;
 	cursor: pointer;
 }
+
+
+     
+
 .pic{overflow:hidden;}
 .pic{transform:scale(1,1);transition: all 0.5s ease-out;}
 .pic:hover{transform:scale(1.2,1.2);}

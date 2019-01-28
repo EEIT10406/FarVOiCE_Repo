@@ -214,37 +214,14 @@ alert("${result}")
 		}
 	}
 
-	//贊助%數取到整數
-	function parseInt(percent){
-		var newpercent=Math.ceil(percent);
-		return newpercent
-	}
 
 $(document).ready(function() {
-	loadMusic('${user.member_username}')
+	//loadMusic('${user.member_username}')
 	loadMusicCount('${user.member_username}')
-	loadPlayList('${user.member_username}')
+	//loadPlayList('${user.member_username}')
 	loadMemberLikeMusic('${user.member_username}')
 	loadFanCount('${user.member_username}')
 	loadStarCount('${user.member_username}')
-	showAllFunding('${user.member_username}');
-	
-	//按音樂重新載入喜歡的音樂
-	$('#memberMusic').on('click',function(){
-		loadMusic('${user.member_username}')
-	})
-	
-	//按喜歡重新載入喜歡的音樂
-	$('#memberLikeMusic').on('click',function(){
-		loadMemberLikeMusic('${user.member_username}')
-	})	
-
-	 //編輯音樂
-	$('#music').on('click','.editClick',function() {
-		var row = $(this).parents('#musics');
-        var music_id =row.children('span[name="music_id"]').text();	
-		window.location.href = "/roy/musicPage/editMusic?music_id="+music_id;
-	})
 	
 
 	//按愛心
@@ -313,23 +290,6 @@ $(document).ready(function() {
 			
 	})
 	
-	//點歌單去歌單頁面
-	$('#list').on('click','#listPage',function(){
-		var row = $(this).parents('#lists');
-		var playListId = row.children('span[name="playlist_id"]').text();
-	
-		window.location.href = "/roy/personalPage/locateToPlayList?playListId="+playListId;
-		
-	})
-	
-	//點音樂去音樂頁面
-	$('#music').on('click','#musicPage',function(){
-		var row = $(this).parents('#musics');
-		var musicId = row.children('span[name="music_id"]').text();
-		
-		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
-		
-	})
 	
 	//點喜歡的音樂去音樂頁面
 	$('#like').on('click','#musicPage',function(){

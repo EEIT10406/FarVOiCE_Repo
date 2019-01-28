@@ -146,7 +146,15 @@
 											"required");
 									$('input[value="編輯專案內容"]').submit();
 								})
-
+						//點擊上一步不檢查提交專案內容
+						$('input[value="提交專案"]').click(
+								function() {
+									$('textarea[name="reward_description"]')
+											.removeAttr("required");
+									$('input[name="imageFile"]').removeAttr(
+											"required");
+									$('input[value="提交專案"]').submit();
+								})
 					})
 </script>
 <style>
@@ -185,6 +193,12 @@
 				<div
 					style="text-align: center; margin-bottom: 15px; margin-top: 15px;">
 					<label class="top-title">回饋設定</label>
+				</div>
+				<div class="create-type" style="margin: auto;">
+					<p class="bluequote">當前回饋數量</p>
+					<p
+						style="font-family: Microsoft JhengHei; font-weight: bold; color: burlywood;">目前有
+						${rewardCount} 項回饋</p>
 				</div>
 				<div class="big">
 
@@ -248,10 +262,8 @@
 
 									<textarea style="font-weight: 400" class="form-control fc"
 										oninput="title" onpropertychange="title"
-										name="reward_description"  placeholder="單純贊助，不需回饋"
-										maxlength="500" rows="11" required
-										oninvalid="setCustomValidity('請輸入回饋描述');"
-										oninput="setCustomValidity('');"></textarea>
+										name="reward_description" placeholder="單純贊助，不需回饋"
+										maxlength="500" rows="11" required></textarea>
 								</div>
 								<label for="" class="input-label">請在此描述這個回饋項目所包含的品項，您也可以為每一個回饋組合創造名稱以利推廣。</label>
 							</div>
@@ -326,8 +338,8 @@
 			</form>
 
 		</div>
-		
-<!-- 	
+
+		<!-- 	
 		<!-- 	=== END CONTENT === -->
 
 		<jsp:include page="../homePage/footer.jsp" />

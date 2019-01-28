@@ -347,7 +347,7 @@ progress {
 
 .upload-image, .create-goal, .create-type, .create-city, .chose-music,
 	.limit-date {
-	width: 60%;
+	max-width: 630px;
 	margin: 10px 10px 10px 10px;
 	padding-top: 10px;
 	padding-left: 10px;
@@ -370,6 +370,7 @@ progress {
 }
 
 .bluequote {
+	font-family: Microsoft JhengHei;
 	text-align: left;
 	color: #00bbd6;
 	padding-left: 8px;
@@ -386,6 +387,7 @@ progress {
 }
 
 .input-label {
+	font-family: Microsoft JhengHei;
 	font-size: 12px;
 	line-height: 1.67;
 	letter-spacing: 1.1px;
@@ -395,6 +397,7 @@ progress {
 }
 
 .input-label-img {
+	font-family: Microsoft JhengHei;
 	font-size: 12px;
 	line-height: 1.67;
 	letter-spacing: 1.1px;
@@ -445,6 +448,7 @@ input[type="file"] {
 }
 
 .custom-file-upload {
+	font-family: Microsoft JhengHei;
 	text-align: center;
 	display: inline-block;
 	padding: 6px 12px;
@@ -484,6 +488,7 @@ input[type="file"] {
 }
 /* 回饋頁面按鈕 */
 .create-reward input {
+	font-family: Microsoft JhengHei;
 	margin: 0 15px 0 15px;
 	display: inline-block;
 	width: 28%;
@@ -513,7 +518,7 @@ input[type="file"] {
 
 .allproject {
 	display: inline-block;
-	width: 27%;
+	max-width: 292px;
 	height: 420px;
 	margin: 15px 22px;
 }

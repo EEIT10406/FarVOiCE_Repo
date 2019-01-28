@@ -91,6 +91,14 @@ public class FundingDAO {
 //	public Session getSession() {
 //		return session;
 //	}
+//找出審核通過並以募資金額做排序的熱門專案
+	public List<FundingBean> findByPassOrderByMoney() {
+		return this.getSession()
+				.createQuery("from FundingBean where funding_status=1 order by funding_currentAmount desc",
+						FundingBean.class)
+				.setMaxResults(5).list();
+	}
+
 //找出使用者所有的募資專案
 	public List<FundingBean> findByUsername(String member_username) {
 

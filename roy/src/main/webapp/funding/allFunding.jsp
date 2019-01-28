@@ -44,20 +44,18 @@
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/funding.css" rel="stylesheet">
 <script type="text/javascript">
+	//	判斷贊助成功跳回所有專案畫面
+	<c:if test="${not empty newDonateBean}">
 
-//	判斷贊助成功跳回所有專案畫面
-<c:if test="${not empty newDonateBean}">
+	alert('${result}');
 
-alert('${result}');
-
-</c:if>
-
+	</c:if>
 
 	$(document).ready(function() {
 		showAllFunding();
 
 		$(window).load(function() {
-			projectSize();
+			// 			projectSize();
 			limitText();
 		})
 
@@ -127,8 +125,8 @@ alert('${result}');
 		}
 	}
 	//贊助%數取到整數
-	function parseInt(percent){
-		var newpercent=Math.ceil(percent);
+	function parseInt(percent) {
+		var newpercent = Math.ceil(percent);
 		return newpercent
 	}
 	// 		function limitDay(s) {
@@ -150,13 +148,13 @@ alert('${result}');
 	// 		}
 	// 獲取專案數量
 	function projectSize() {
-		var pcount = $('.allproject').size();
-		$('.count').text("有 " + pcount + " 件案子正在募資");
+
 	}
 	// 列出所有專案
 	function showAllFunding() {
-		
-				$.getJSON(
+
+		$
+				.getJSON(
 						'findAllByPass.controller',
 						function(data) {
 							var content = "";
@@ -167,7 +165,7 @@ alert('${result}');
 												console.log(list);
 												content +=
 
-												'<div class="project-pre allproject" style="cursor:pointer" href="/roy/funding/detail.controller?funding_id='
+												'<div class="project-pre allproject" id="allproject" style="cursor:pointer" href="/roy/funding/detail.controller?funding_id='
 														+ list.funding_id
 														+ '&day='
 														+ limitDay(list.funding_duration)
@@ -203,7 +201,9 @@ alert('${result}');
 														+ list.funding_currentAmount
 														+ '</span><span'+
 					' class="hidden-md goalpercent goal"> '
-														+ parseInt(list.funding_currentAmount/list.funding_goal*100)
+														+ parseInt(list.funding_currentAmount
+																/ list.funding_goal
+																* 100)
 														+ '%</span><span'+
 					' style="font-size: 13px; letter-spacing: 1px;font-family: Microsoft JhengHei"'+
 					'class="date pull-right small"> 還剩 <strong class="days"'+
@@ -232,8 +232,11 @@ alert('${result}');
 
 											})
 							$('#sortThis').html(content);
-
+							$('.count').text("有 " + data.length + " 件案子正在募資");
 						})
+		// 						var pcount = $('#allproject').size();
+		// 				console.log(pcount);
+
 	}
 	//超過50字以...表示
 	function limitText() {
@@ -252,7 +255,6 @@ alert('${result}');
 		var webhref = $(e).attr("href");
 		window.location.href = webhref;
 	}
-
 </script>
 </head>
 <body>
@@ -271,10 +273,9 @@ alert('${result}');
 				<li id="pledged" class=""><a>募資金額</a></li>
 			</ul>
 		</div>
-		<div style="width: 57%; margin-left: 445px;; text-align: left:;"
-			id="showAll">
+		<div style="max-width: 1090px; margin: auto;" id="showAll">
 
-			<div id="sortThis"></div>
+			<div id="sortThis" style="text-align: center; max-width: 100%;"></div>
 			<!-- 			<div class="project-pre allproject" > -->
 			<!-- 				<div class="img-pres"> -->
 			<!-- 					<img class="img-in" id="preview_progressbarTW_img" -->

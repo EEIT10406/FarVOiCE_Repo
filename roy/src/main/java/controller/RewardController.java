@@ -49,7 +49,8 @@ public class RewardController {
 //		上一步修改專案
 		if ("編輯專案內容".equals(reward)) {
 			FundingBean editBean = fundingService.findFundingById(bean.getFunding_id());//找此筆專案內容
-			List<MusicBean> musicbeans = musicService.findMusicByUser(createBean.getMember_username());
+			List<MusicBean> musicbeans = musicService.findMusicByUser(editBean.getMember_username());
+			System.out.println(musicbeans);
 					model.addAttribute("fundingBean", editBean);
 					model.addAttribute("musicName", musicbeans);
 			return "editFuding.jsp";
@@ -57,14 +58,15 @@ public class RewardController {
 //		繼續新增回饋
 		if ("新增一個回饋".equals(reward)) {
 			RewardBean createRewardBean = rewardService.insert(bean);
+			Integer rewardCount = rewardService.rewardCount(createRewardBean.getFunding_id());
+			model.addAttribute("rewardCount", rewardCount);
 			model.addAttribute("rewardBean", createRewardBean);
 			return "reward.jsp";
 		}
 //		結束提交專案
 		if ("提交專案".equals(reward)) {
-			RewardBean createRewardBean = rewardService.insert(bean);
-			model.addAttribute("rewardBean", createRewardBean);
-			return "personalFunding.jsp";
+			
+			return "/personalPage/personalProject.jsp";
 		}
 
 		return "";

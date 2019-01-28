@@ -1,9 +1,11 @@
 package model.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -85,11 +87,27 @@ public class RewardDAO {
 //	public Session getSession() {
 //		return session;
 //	}
+//計算該提案總贊助人數
+	public BigDecimal sumDonater(Integer funding_id) {
+
+		return new BigDecimal(this.getSession()
+				.createSQLQuery("select sum(reward_donateCount) from reward where funding_id='" + funding_id + "'")
+				.uniqueResult().toString());
+		
+	}
+
+//找出有幾項回饋byFundingid
+	public Integer rewardCount(Integer funding_id) {
+		return this.getSession().createQuery("from RewardBean where funding_id='" + funding_id + "'", RewardBean.class)
+				.list().size();
+	}
+
 //根據funding_id找出回饋
 	public List<RewardBean> findByFundingId(Integer funding_id) {
 		return this.getSession().createQuery("from RewardBean where funding_id='" + funding_id + "'", RewardBean.class)
 				.list();
 	}
+
 //根據回饋ID找出該回饋
 	public RewardBean findByPrimaryKey(Integer reward_id) {
 		// 0103 OK

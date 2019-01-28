@@ -168,7 +168,7 @@ table {
 	text-align: center;
 	word-wrap: break-word;
 	word-break: break-all;
-	opacity:0.4
+	opacity:0.6
 }
 
 .shareAndAddbtn {
@@ -393,11 +393,11 @@ function submitBtnClick(){
 
 <script>
 $(document).ready(function() {
-	loadMusic('${somebody}')
+	//loadMusic('${somebody}')
 	loadMusicCount('${somebody}')
 	loadPlayList('${somebody}')
-	loadMemberLikeMusic('${somebody}')
-	showAllFunding('${somebody}');
+	//loadMemberLikeMusic('${somebody}')
+	//showAllFunding('${somebody}');
 	
 	//按音樂重新載入音樂
 	$('#memberMusic').on('click',function(){

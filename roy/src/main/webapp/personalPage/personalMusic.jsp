@@ -172,6 +172,11 @@ opacity:0.4
 
 
 <script>
+<!-- //判斷更新是否成功 begin -->
+<c:if test="${not empty updateresult}">
+alert("${updateresult}")
+</c:if>
+<!-- //  判斷更新是否成功 end  -->
 <!-- //判斷刪除是否成功 begin -->
 <c:if test="${not empty deleteresult}">
 alert("${deleteresult}")
@@ -179,7 +184,7 @@ alert("${deleteresult}")
 <!-- //  判斷刪除是否成功 end  -->
 <!-- //判斷上傳是否成功 begin -->
 <c:if test="${not empty uploadResult}">
-     alert("${uploadresult}");
+     alert("${uploadResult}");
 </c:if>
 <!-- //  判斷上傳是否成功 end  -->
 </script>
@@ -221,30 +226,13 @@ alert("${deleteresult}")
 		}
 	}
 
-	//贊助%數取到整數
-	function parseInt(percent){
-		var newpercent=Math.ceil(percent);
-		return newpercent
-	}
-
 $(document).ready(function() {
 	loadMusic('${user.member_username}')
 	loadMusicCount('${user.member_username}')
-	loadPlayList('${user.member_username}')
 	loadMemberLikeMusic('${user.member_username}')
 	loadFanCount('${user.member_username}')
 	loadStarCount('${user.member_username}')
-	showAllFunding('${user.member_username}');
-	
-	//按音樂重新載入喜歡的音樂
-	$('#memberMusic').on('click',function(){
-		loadMusic('${user.member_username}')
-	})
-	
-	//按喜歡重新載入喜歡的音樂
-	$('#memberLikeMusic').on('click',function(){
-		loadMemberLikeMusic('${user.member_username}')
-	})	
+
 
 	 //編輯音樂
 	$('#music').on('click','.editClick',function() {
@@ -320,15 +308,6 @@ $(document).ready(function() {
 			
 	})
 	
-	//點歌單去歌單頁面
-	$('#list').on('click','#listPage',function(){
-		var row = $(this).parents('#lists');
-		var playListId = row.children('span[name="playlist_id"]').text();
-	
-		window.location.href = "/roy/personalPage/locateToPlayList?playListId="+playListId;
-		
-	})
-	
 	//點音樂去音樂頁面
 	$('#music').on('click','#musicPage',function(){
 		var row = $(this).parents('#musics');
@@ -338,14 +317,6 @@ $(document).ready(function() {
 		
 	})
 	
-	//點喜歡的音樂去音樂頁面
-	$('#like').on('click','#musicPage',function(){
-		var row = $(this).parents('#musics');
-		var musicId = row.children('span[name="music_id"]').text();
-		
-		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
-		
-	})
 	
 })
 
@@ -378,28 +349,6 @@ function loadMusic(username) {
            $('#music').html(content);
 		 
 		$('span[name="music_id"]').hide();
-	})
-}
-
-
-//讀取該使用者的所有歌單
-function loadPlayList(username) {
-	$.getJSON('/roy/list/readPlayList',{'username' : username},function(data) {
-		var content="";
-		 $('#list').html("");
-		$.each(data,function(index, list) {
-			content+='<div id="lists" class="col-md-5" style="float: left; width: 300px;margin-bottom:13px;">'+
-		             '<span name="playlist_id">'+list.playlist_id+'</span>'+
-			         '<div id="listPage" style="cursor: pointer;">'+
-		                  '<div style="width: 160px;height: 160px;background: url('+list.playlist_image+') no-repeat; background-size:160px 160px;">'+
-			              '<div class="listSongCount">'+list.playlist_musicCount+'</div></div>'+
-		             '</div>'+
-                     '<div style="font-size: 16px;">'+list.playlist_name+'</div>'+
-                     '<div style="font-size:14px;">'+list.showPlaylist_privacy+'</div>'+
-                 '</div>';
-              })
-              $('#list').html('<div style="margin-left:870px;font-size:15px;font-weight:normal"><a href="../list/createList.jsp">編輯歌單</a></div>'+content);
-		$('span[name="playlist_id"]').hide();
 	})
 }
 
@@ -525,49 +474,6 @@ function loadMemberLikeMusic(username) {
 		})
 	}
 	
-// 	找出該使用者通過審核的專案
-function showAllFunding(username){
-	$.getJSON('/roy/personalPage/findProjectByUsernamePass',{'username' : username},function(data) {
-		var content="";
-		$.each(data,function(index, list) {
-			console.log(list);
-			content += 
-				'<div class="project-pre allproject" style="cursor:pointer" href="/roy/funding/detail.controller?funding_id='+list.funding_id+'&day='+limitDay(list.funding_duration)+'&nickname='+list.nick_name+'" onclick="detailhref(this)">'+
-				'<div class="img-pres">'+
-				'<img class="img-in" id="preview_progressbarTW_img"'+
-				'src="'+list.funding_image+'">'+
-				'</div>'+
-				'<div class="pcontent-pre">'+
-				'<p id="pre-title" class="title-content"'+
-					'style="margin-bottom: -18px">'+list.funding_title+'</p>'+
-				'<p class="small creator">'+
-				'<a href="/roy/personalPage/somebodyPersonalPage.controller?nickname='+list.nick_name+'"><p id="pre-name">'+list.nick_name+'</p></a>'+
-
-				'<p id="pre-content" class="excerpt JQellipsis"'+
-				'style="font-weight: bold; font-size: 0.85rem">'+list.funding_description+'</p>'+
-				'</div>'+
-				'<div class="downMeta-pre">'+
-				'<progress class="progress-pre"'+
-				'style="margin-bottom: 0px; margin-top: 0px;" value="'+list.funding_currentAmount/list.funding_goal*100+'" max="100"></progress>'+
-			    '<span class="goalMoney osmfont currentMoney" style="font-family:Oswald, sans-serif;">'+list.funding_currentAmount+'</span><span'+
-				' class="hidden-md goalpercent goal" style="font-family: Oswald, sans-serif;"> '+parseInt(list.funding_currentAmount/list.funding_goal*100)+'%</span><span'+
-				' style="font-size: 13px; letter-spacing: 1px;font-family: Microsoft JhengHei"'+
-				'class="date pull-right small"> 還剩 <strong class="days"'+
-				'style="font-size: 13px; font-weight: 1000; letter-spacing: 1px;">'+limitDay(list.funding_duration)+'</strong><span'+
-				' style="font-size: 13px; letter-spacing: 1px"> 天</span>'+
-				'</span>'+
-				'<span class="funding_id" style="display:none">'+list.funding_id+'</sapn>'+
-				'<span class="funding_goal" style="display:none">'+list.funding_goal+'</sapn>'+
-				'<span class="funding_createTime" style="display:none">'+list.funding_createTime+'</sapn>'+
-				'<span class="funding_duration" style="display:none">'+list.funding_duration+'</sapn>'+
-				'<span class="funding_browseCount" style="display:none">'+list.funding_browseCount+'</sapn>'+
-				'</div>'+
-			    '</div>';
-           })
-		$('#userproject').html(content);
-		
-	})
-}
 	
 </script>
 
@@ -802,27 +708,7 @@ function showAllFunding(username){
 	
 	<!-- 	showArticleFromMember start-->
 <script>
-//點擊預覽小卡跳轉詳細頁面
-function detailhref(e){
-	var webhref=$(e).attr("href");
-	window.location.href=webhref;
-}
-//抓取選取日期計算到期天數
-function limitDay(day) {
-	var pickdate = day;
-	var enddate = new Date(pickdate);
-	var nowdate = new Date();
 
-	var deadline = enddate.getTime()
-			- nowdate.getTime();
-	var days = parseInt(deadline
-			/ (1000 * 60 * 60 * 24)) + 1;
-	if (isNaN(days)) {
-		return 0;
-	}else{
-		return days;
-	}
-}
 //刪除Post或Share
 	function remove(post_idS)
 	{
@@ -833,59 +719,7 @@ function limitDay(day) {
 		else
 			{	alert("已經取消");}
 	}
-	//start 背景ajax
-	//showArticleFromMember
-        $(function () {  
-        showData();
-		//顯示歷史紀錄
-		$.ajax({
-                url: "/roy/personalPage/showAllHistoryTimeFromHstory.controller",   //存取Json的網址             
-                type: "POST",
-                cache:false,
-                dataType:'json',
-                data:{user:$('#username').text()},
-                //contentType: "application/json",              
-				success : function(list)
-				 {  //------------List
-				 	var imgPath=$('#profile').attr('src');
-				 	list.forEach(function(obj, index) {
-				 		var music_name ;
-				 		var story_time ;
-				 		var music_img  ;
-				 		//------------obj抓直出來放到變數
-				 		$.each(obj, function( index, value ) {
-// 				 			console.log( index + ":" + value );
-				 			if(index == 0){
-				 				story_time = value;
-				 			}
-				 			if(index == 3){
-				 				music_name = value;
-				 			}
-				 			if(index == 4){
-				 				music_img = value;
-				 			}
-						});
-				 		//------------endObj
 
-						
-						var cc="<tr>"+
-						     " <td><img class='img-circle' src='"+music_img+"' style='width:45px;height:45px;'></td>"+
-						      "<td>"+music_name+"</td>"+
-						     " <td>"+story_time+"</td>"+
-						    "</tr>";
-						$('#historyTable').append(cc);
-
-				  	})
-				  	//-------------endList
-				  },
-				  
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status+"--->歷史紀錄");
-                    alert(thrownError);
-                }
-            });	 
-			//顯示歷史紀錄END
-});//end 背景處理
 
 
 var counter=0;

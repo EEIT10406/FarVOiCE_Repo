@@ -137,7 +137,7 @@ input[type="number"] {
 					<p>$${funding.funding_goal}</p>
 				</div>
 				<div class="info-2">
-					<h1>${donateCount_funding}</h1>
+					<h1>${sumDonater}</h1>
 					<p>人贊助</p>
 				</div>
 				<div class="info-3">

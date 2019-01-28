@@ -1,5 +1,6 @@
 package controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -43,17 +44,16 @@ public class FundingDetailController {
 		if (funding_id != null) {
 			Integer funding_Id = Integer.valueOf(funding_id);
 			Integer donateCount_funding = backerService.listBackerBeanByFunding_id(funding_Id).size();
-
+			BigDecimal sumDonater = rewardService.sumDonater(funding_Id);
 			List<RewardBean> rewardBeans = rewardService.findRewardByFunding_id(funding_Id);
 			FundingBean fundingBean = fundingService.findFundingById(funding_Id);
-			
-			Integer oldBrowseCount=fundingBean.getFunding_browseCount();//原本的瀏覽次數
-			fundingBean.setFunding_browseCount(oldBrowseCount+1);//瀏覽次數+1
-			fundingService.update(fundingBean);//更新瀏覽次數
+			Integer oldBrowseCount = fundingBean.getFunding_browseCount();// 原本的瀏覽次數
+			fundingBean.setFunding_browseCount(oldBrowseCount + 1);// 瀏覽次數+1
+			fundingService.update(fundingBean);// 更新瀏覽次數
 			Double current = Double.valueOf(fundingBean.getFunding_currentAmount());
 			Double goal = Double.valueOf(fundingBean.getFunding_goal());
 			String percent = String.valueOf(current / goal * 100);
-			model.addAttribute("donateCount_funding", donateCount_funding);
+			model.addAttribute("sumDonater", sumDonater);
 			model.addAttribute("selfusername", username);
 			model.addAttribute("percent", percent);
 			model.addAttribute("day", day);
