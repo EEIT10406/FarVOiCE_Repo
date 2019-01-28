@@ -552,6 +552,7 @@ $(document).ready(function() {
                 data:{user:$('#username').text()},
                 //contentType: "application/json",              
 				success : function(list)
+	
 				 {  //------------List
 				 	var imgPath=$('#profile').attr('src');
 				 	list.forEach(function(obj, index) {
@@ -559,10 +560,15 @@ $(document).ready(function() {
 				 		var story_time ;
 				 		var music_img  ;
 				 		//------------obj抓直出來放到變數
-				 		$.each(obj, function( index, value ) {
-// 				 			console.log( index + ":" + value );
+				 		$.each(obj, function( index, value ) { 				 							 			
+// 				 			console.log(time);
 				 			if(index == 0){
-				 				story_time = value;
+				 				var newDate = value; 
+				 				var time = new Date(newDate);
+				 				
+				 				story_time = new Date(time.setHours(time.getHours()+8)).toLocaleString().replace(/-/g,'/');
+				 				console.log(story_time);
+				 				
 				 			}
 				 			if(index == 3){
 				 				music_name = value;

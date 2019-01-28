@@ -19,12 +19,14 @@ public class PostDAO {
 	//Spring MVC
 	@Autowired
 	private SessionFactory sessionFactory;
+	public Session getSession() {
+		return this.sessionFactory.getCurrentSession();
+		}
+	
 	public PostDAO(SessionFactory sessionfactory) {
 		this.sessionFactory = sessionfactory;
 	}
-	public Session getSession() {
-	return this.sessionFactory.getCurrentSession();
-	}
+	
 	
 	public static void main(String... args) throws IOException, Exception, SQLException {
 //		SessionFactory sessionFactory = HibernateUtil.getSessionfactory();

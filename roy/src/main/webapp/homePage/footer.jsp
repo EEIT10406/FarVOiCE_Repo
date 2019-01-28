@@ -48,7 +48,7 @@
 			<!-- End Contact Details -->
 			<!-- Thumbs Gallery -->
 			<div class="col-md-3 margin-bottom-20">
-				<h3 class="margin-bottom-10">這裡不知道要放甚麼</h3>
+				<h3 class="margin-bottom-10">點我有驚喜^_^</h3>
 				<div class="thumbs-gallery">
 					<a  id="yoga"
 						href="#yoga" onclick="showTalk();"> 
