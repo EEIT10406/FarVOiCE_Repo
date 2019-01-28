@@ -31,7 +31,7 @@
 					<li><a class="fa-signal" href="#">著作權保護措施</a></li>
 					<li><a class="fa-coffee" href="#">免責聲明</a></li>
 				</ul>
-				<div class="clearfix"></div>
+				<div class="clearfix"></div> 
 			</div>
 			<!-- End Sample Menu -->
 			<!-- Contact Details -->
