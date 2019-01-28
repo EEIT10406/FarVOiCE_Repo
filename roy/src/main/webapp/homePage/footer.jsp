@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 	<script>
 	var talk = ["只要是石頭，到哪裡都不會發光的。","又一天過去了。今天過得怎麼樣，夢想是不是更遠了？",
 		"別減肥了，你醜不僅是因為你胖。","有些人感慨：“自己年歲不小了，還沒有成熟起來。”其實你們已經成熟起來了，你們成熟起來就這樣。",

@@ -467,9 +467,9 @@ function loadrankTopTen(type) {
 
 
 	<jsp:include page="../homePage/footer.jsp" />
-	<!-- 	<div id="player"> -->
-	<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
-	<!-- 	</div> -->
+		<div id="player">
+			<jsp:include page="../homePage/player.jsp" />
+		</div>
 <script>
 //按分享時載入哪首音樂
 $('body').on('click','.btnShare',function() {

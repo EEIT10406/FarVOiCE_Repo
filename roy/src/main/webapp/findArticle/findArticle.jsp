@@ -285,7 +285,8 @@ function loadArticle (searchString) {
 				var Blog_Item_Details = 
 					"<div class='blog-post-details'>"+
 					"<div class='blog-post-details-item blog-post-details-item-left'>"+
-						"<i class='fa fa-user color-gray-light'></i><a href='#'>作者:"+allArticle[i].member_nickname+"</a>"+
+						"<i class='fa fa-user color-gray-light'></i><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+allArticle[i].member_nickname+
+						"'>作者:"+allArticle[i].member_nickname+"</a>"+
 					"</div>"+
 					"<div class='blog-post-details-item blog-post-details-item-left'>"+
 						"<i class='fa fa-calendar color-gray-light'></i> <a href='#'>"+allArticle[i].post_time+"</a>"+
