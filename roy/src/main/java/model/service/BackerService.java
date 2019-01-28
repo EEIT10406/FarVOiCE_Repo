@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.BackerBean;
+import model.bean.MemberBean;
 import model.dao.BackerDAO;
 import model.dao.FundingDAO;
 import model.dao.RewardDAO;
@@ -20,6 +21,16 @@ public class BackerService {
 	private RewardDAO rewardDAO;
 	@Autowired
 	private BackerDAO backerDAO;
+
+	// 找出贊助過的人
+	public List<MemberBean> donateHistory(Integer funding_id) {
+
+		if (funding_id != null) {
+			return backerDAO.donateHistory(funding_id);
+		}
+
+		return null;
+	}
 
 	// 根據username找出贊助紀錄
 	public List<BackerBean> listBackerBeanByUsername(String member_username) {

@@ -88,7 +88,10 @@
 			$('.ban-color').css("background-color", "#e0e0e0");
 		}
 		
+
 	})
+	
+	var donateHistoryId=${funding.funding_id};
 </script>
 <style type="text/css">
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -144,9 +147,13 @@ input[type="number"] {
 					<h1>${day}</h1>
 					<p>天結束</p>
 				</div>
-
 				<blockquote class="blockquote-d">
-					專案募資成功！<br>在 2019/01/31 00:00 募資結束前，您都可以持續贊助此計畫。
+				<c:if test='${susses ge 100}'>
+					專案募資成功！<br>在 ${funding.funding_duration} 募資結束前，您都可以持續贊助此計畫。
+				</c:if>
+				<c:if test="${susses lt 100}">
+				           專案正在募資中！<br>在 ${funding.funding_duration} 募資結束前，至少募得 $${funding.funding_goal} 便募資成功。
+				</c:if>	
 				</blockquote>
 				<a href="#move" id="entry" class="btn-sup">贊助專案</a>
 
@@ -180,7 +187,7 @@ input[type="number"] {
 					<p class="content-s3">${funding.funding_description}</p>
 				</div>
 
-				<div class="reward-card ban-text"">
+				<div class="reward-card ban-text">
 
 
 					<c:forEach var='reward' items="${reward}">

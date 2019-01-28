@@ -512,7 +512,7 @@ $(document).ready(function() {
 				
 				<form action="<c:url value="/personalPage/Post.controller"/>" method="post">
 					<div class="modal-body" >
-						<textarea class="form-control" name="post_content" style="width:650px;height:500px;resize:none" placeholder="是不在想些色色的呢?"  ></textarea>
+						<textarea class="form-control" name="post_content" style="width:650px;height:500px;resize:none" placeholder="是不在想Java的呢?"  ></textarea>
 						<input type="checkbox" name="post_privacy" value="true">不想被女友看到嗎?<br>					
 					</div>
 					<div class="modal-footer">

@@ -43,7 +43,6 @@ public class FundingDetailController {
 
 		if (funding_id != null) {
 			Integer funding_Id = Integer.valueOf(funding_id);
-			Integer donateCount_funding = backerService.listBackerBeanByFunding_id(funding_Id).size();
 			BigDecimal sumDonater = rewardService.sumDonater(funding_Id);
 			List<RewardBean> rewardBeans = rewardService.findRewardByFunding_id(funding_Id);
 			FundingBean fundingBean = fundingService.findFundingById(funding_Id);
@@ -52,7 +51,9 @@ public class FundingDetailController {
 			fundingService.update(fundingBean);// 更新瀏覽次數
 			Double current = Double.valueOf(fundingBean.getFunding_currentAmount());
 			Double goal = Double.valueOf(fundingBean.getFunding_goal());
+			Double susses=current / goal*100;
 			String percent = String.valueOf(current / goal * 100);
+			model.addAttribute("susses",susses);
 			model.addAttribute("sumDonater", sumDonater);
 			model.addAttribute("selfusername", username);
 			model.addAttribute("percent", percent);

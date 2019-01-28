@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.BackerBean;
+import model.bean.MemberBean;
 
 @Repository
 public class BackerDAO {
@@ -80,6 +81,16 @@ public class BackerDAO {
 //	public Session getSession() {
 //		return session;
 //	}
+
+//找出贊助過的人
+	public List<MemberBean> donateHistory(Integer funding_id) {
+
+		return this.getSession().createQuery(
+				"from MemberBean where member_username in (select distinct member_username from BackerBean where funding_id ='"
+						+ funding_id + "')",
+				MemberBean.class).list();
+	}
+
 //根據username找出贊助紀錄
 	public List<BackerBean> listBackerBeanByUsername(String member_username) {
 		return this.getSession()
