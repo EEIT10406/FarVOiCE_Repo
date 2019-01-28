@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 	<script>
 	var talk = ["只要是石頭，到哪裡都不會發光的。","又一天過去了。今天過得怎麼樣，夢想是不是更遠了？",
 		"別減肥了，你醜不僅是因為你胖。","有些人感慨：“自己年歲不小了，還沒有成熟起來。”其實你們已經成熟起來了，你們成熟起來就這樣。",
@@ -19,7 +20,7 @@
 	
 	</script>
 <!-- === BEGIN FOOTER === -->
-<div id="base"  >
+<div id="base" >
 	<div class="container padding-vert-30 margin-top-40" >
 		<div  class="row" >
 			<!-- Sample Menu -->
@@ -31,7 +32,7 @@
 					<li><a class="fa-signal" href="#">著作權保護措施</a></li>
 					<li><a class="fa-coffee" href="#">免責聲明</a></li>
 				</ul>
-				<div class="clearfix"></div>
+				<div class="clearfix"></div> 
 			</div>
 			<!-- End Sample Menu -->
 			<!-- Contact Details -->
@@ -41,17 +42,17 @@
 				
 					<p>
 						<span>行銷合作</span>
-						<span class="fa-envelope">Email:</span><a href="mailto:info@joomla51.com">info@joomla51.com</a>
+						<span class="fa-envelope">Email:</span><a href="mailto:farvoiceeeit104@gmail.com">farvoiceeeit104@gmail.com</a>
 					</p>
 			</div>
 			<!-- End Contact Details -->
 			<!-- Thumbs Gallery -->
 			<div class="col-md-3 margin-bottom-20">
-				<h3 class="margin-bottom-10">這裡不知道要放甚麼</h3>
+				<h3 class="margin-bottom-10">點我有驚喜^_^</h3>
 				<div class="thumbs-gallery">
 					<a  id="yoga"
 						href="#yoga" onclick="showTalk();"> 
-						<img src="../img/how.jpg" alt="how.jpg">
+						<img src="../img/how.jpg" height="200px" alt="how.jpg">
 					</a>
 				</div>
 				<div class="clearfix"></div>
