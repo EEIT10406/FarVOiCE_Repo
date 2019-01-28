@@ -520,12 +520,12 @@ function loadMemberLikeMusic(username) {
 	
 // 	找出該使用者通過審核的專案
 function showAllFunding(username){
-	$.getJSON('/roy/personalPage/findProjectByUsernamePass',{'username' : username},function(data) {
+	$.getJSON('/roy/personalPage/findProjectByUsername',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
 			console.log(list);
 			content += 
-				'<div class="project-pre allproject" style="cursor:pointer" href="/roy/funding/detail.controller?funding_id='+list.funding_id+'&day='+limitDay(list.funding_duration)+'&nickname='+list.nick_name+'" onclick="detailhref(this)">'+
+				'<div class="project-pre allproject" style="cursor:pointer;max-width: 278px;" href="/roy/funding/detail.controller?funding_id='+list.funding_id+'&day='+limitDay(list.funding_duration)+'&nickname='+list.nick_name+'" onclick="detailhref(this)">'+
 				'<div class="img-pres">'+
 				'<img class="img-in" id="preview_progressbarTW_img"'+
 				'src="'+list.funding_image+'">'+

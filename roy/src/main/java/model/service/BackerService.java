@@ -21,7 +21,15 @@ public class BackerService {
 	@Autowired
 	private BackerDAO backerDAO;
 
-//以funding_id找出所有贊助者
+	// 根據username找出贊助紀錄
+	public List<BackerBean> listBackerBeanByUsername(String member_username) {
+		if (member_username != null) {
+			return backerDAO.listBackerBeanByUsername(member_username);
+		}
+		return null;
+	}
+
+	// 以funding_id找出所有贊助者
 	public List<BackerBean> listBackerBeanByFunding_id(Integer funding_id) {
 		if (funding_id != null) {
 

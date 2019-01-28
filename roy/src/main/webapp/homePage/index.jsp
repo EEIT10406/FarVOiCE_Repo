@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="../css/bootstrap.css" rel="stylesheet">
 <!-- Template CSS -->
 <link rel="stylesheet" href="../css/animate.css" rel="stylesheet">
-
 <link rel="stylesheet" href="../css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/responsive.css" rel="stylesheet">
@@ -401,6 +400,7 @@ function loadLikeMusic(username){
                      </div>
                                             
 <div class="col-md-12" style="margin-top: -30px">
+
      <div class="carousel slide testimonials" id="testimonials1" data-ride="carousel" data-interval="3000">
         <div id="likes" class="carousel-inner">
 			<div class="item active">
@@ -449,7 +449,7 @@ function loadLikeMusic(username){
 	    	<p> 熱門募資活動</p>
 			</div>
 			<div style="width:40%;float:right;text-align: right;padding-right: 25px;">
-				<a  href="#testimonials2" data-slide="prev"  style="margin-right:10px;text-decoration:none;" >
+				<a  href="#testimonials2" data-slide="prev" data-ride="carousel" style="margin-right:10px;text-decoration:none;" >
 				<i style="color:#666666;" class="fas fa-chevron-circle-left fa-2x"></i></a>
 				<a href="#testimonials2" data-slide="next">
 	   			<i style="color:#666666;" class="fas fa-chevron-circle-right fa-2x" style="text-decoration:none;"></i></a>

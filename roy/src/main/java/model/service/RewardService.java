@@ -1,5 +1,6 @@
 package model.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,22 @@ public class RewardService {
 
 	@Autowired
 	private RewardDAO rewardDAO;
+
+//	計算該提案總贊助人數
+	public BigDecimal sumDonater(Integer funding_id) {
+		if (funding_id != null) {
+			return rewardDAO.sumDonater(funding_id);
+		}
+		return null;
+	}
+
+// 找出有幾項回饋byFundingid
+	public Integer rewardCount(Integer funding_id) {
+		if (funding_id != null) {
+			return rewardDAO.rewardCount(funding_id);
+		}
+		return null;
+	}
 
 //根據專案id找出回饋
 	public List<RewardBean> findRewardByFunding_id(Integer funding_id) {

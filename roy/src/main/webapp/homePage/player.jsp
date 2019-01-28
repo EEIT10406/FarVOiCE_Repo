@@ -39,7 +39,7 @@ currentSrc = "";
 		ap.on('play', function (e) {
 			if(ap.audio.src!=currentSrc){
 				currentSrc = ap.audio.src;
-				currentId = currentSrc.substring(currentSrc.indexOf('-')+1,currentSrc.indexOf('.'));
+				currentId = currentSrc.substring(currentSrc.indexOf('-')+1,currentSrc.indexOf('.mp3'));
 				$.get("report.addMusic_playCount", {'music_id':currentId,'member_username':'${user.member_username}'}, function(message) {
 				})
 			}

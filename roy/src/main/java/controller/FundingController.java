@@ -23,15 +23,20 @@ import model.bean.MemberBean;
 import model.bean.MusicBean;
 import model.service.FundingService;
 import model.service.MemberService;
+import model.service.MusicService;
+import model.service.RewardService;
 
 @Controller
 public class FundingController {
 
 	@Autowired
 	private FundingService fundingService;
-
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MusicService musicService;
+	@Autowired
+	private RewardService rewardService;
 
 //創建募資專案+上傳圖片
 	@RequestMapping("/funding/funding.controller")
@@ -62,7 +67,8 @@ public class FundingController {
 
 		System.out.println(bean);
 		FundingBean createBean = fundingService.insert(bean);
-
+		Integer rewardCount = rewardService.rewardCount(createBean.getFunding_id());
+		model.addAttribute("rewardCount", rewardCount);
 		model.addAttribute("fundingBean", createBean);
 		return "/funding/reward.jsp";
 
@@ -86,7 +92,7 @@ public class FundingController {
 	public String editFundingContent(String editFunding, String oImage, String funding_id, Model model,
 			FundingBean bean, @RequestParam("imageFile") MultipartFile imagefile) {
 		String imagepath = "";
-		Integer oldFunding_id=Integer.valueOf(funding_id);
+		Integer oldFunding_id = Integer.valueOf(funding_id);
 		FundingBean editBean = fundingService.findFundingById(oldFunding_id);
 //點擊保存修改
 		if ("儲存修改".equals(editFunding)) {
@@ -99,6 +105,7 @@ public class FundingController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				bean.setMember_nickname(editBean.getMember_nickname());
 				bean.setFunding_browseCount(editBean.getFunding_browseCount());
 				bean.setFunding_currentAmount(editBean.getFunding_currentAmount());
 				bean.setFunding_id(editBean.getFunding_id());
@@ -107,11 +114,14 @@ public class FundingController {
 				bean.setFunding_image(imagepath);
 				bean.setFunding_status(editBean.getFunding_status());
 				FundingBean updateFundingBean = fundingService.update(bean);
+				List<MusicBean> musicbeans = musicService.findMusicByUser(editBean.getMember_username());
+				model.addAttribute("musicName", musicbeans);
 				model.addAttribute("fundingBean", updateFundingBean);
 
 				return "editFuding.jsp";
 				// 如果沒修改圖片
 			} else {
+				bean.setMember_nickname(editBean.getMember_nickname());
 				bean.setFunding_browseCount(editBean.getFunding_browseCount());
 				bean.setFunding_currentAmount(editBean.getFunding_currentAmount());
 				bean.setFunding_id(editBean.getFunding_id());
@@ -119,15 +129,16 @@ public class FundingController {
 				bean.setFunding_createTime(editBean.getFunding_createTime());
 				bean.setFunding_status(editBean.getFunding_status());
 				bean.setFunding_image(oImage);
-				System.out.println(bean);
 				FundingBean updateFundingBean = fundingService.update(bean);
+				List<MusicBean> musicbeans = musicService.findMusicByUser(editBean.getMember_username());
+				model.addAttribute("musicName", musicbeans);
 				model.addAttribute("fundingBean", updateFundingBean);
 				return "editFuding.jsp";
 			}
 		}
 //點擊回饋設定
 		if ("回饋設定".equals(editFunding)) {
-
+			// 如果有修改圖片
 			if (!imagefile.isEmpty()) {
 
 				try {
@@ -136,6 +147,7 @@ public class FundingController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				bean.setMember_nickname(editBean.getMember_nickname());
 				bean.setFunding_browseCount(editBean.getFunding_browseCount());
 				bean.setFunding_currentAmount(editBean.getFunding_currentAmount());
 				bean.setFunding_id(editBean.getFunding_id());
@@ -144,11 +156,16 @@ public class FundingController {
 				bean.setFunding_image(imagepath);
 				bean.setFunding_status(editBean.getFunding_status());
 				FundingBean updateFundingBean = fundingService.update(bean);
+				List<MusicBean> musicbeans = musicService.findMusicByUser(editBean.getMember_username());
+				Integer rewardCount = rewardService.rewardCount(bean.getFunding_id());
+				model.addAttribute("rewardCount", rewardCount);
+				model.addAttribute("musicName", musicbeans);
 				model.addAttribute("fundingBean", updateFundingBean);
 
 				return "reward.jsp";
 				// 如果沒修改圖片
 			} else {
+				bean.setMember_nickname(editBean.getMember_nickname());
 				bean.setFunding_browseCount(editBean.getFunding_browseCount());
 				bean.setFunding_currentAmount(editBean.getFunding_currentAmount());
 				bean.setFunding_id(editBean.getFunding_id());
@@ -157,6 +174,10 @@ public class FundingController {
 				bean.setFunding_status(editBean.getFunding_status());
 				bean.setFunding_image(oImage);
 				FundingBean updateFundingBean = fundingService.update(bean);
+				List<MusicBean> musicbeans = musicService.findMusicByUser(editBean.getMember_username());
+				Integer rewardCount = rewardService.rewardCount(bean.getFunding_id());
+				model.addAttribute("rewardCount", rewardCount);
+				model.addAttribute("musicName", musicbeans);
 				model.addAttribute("fundingBean", updateFundingBean);
 				return "reward.jsp";
 			}
@@ -251,7 +272,7 @@ public class FundingController {
 	@ResponseBody
 	public String findProjectByUsernamePass(String username) {
 
-		List<FundingBean> fundingBeans = fundingService.findByUsername(username);
+		List<FundingBean> fundingBeans = fundingService.findProjectByUsernamePass(username);
 		System.out.println(fundingBeans);
 
 		List<Map<String, String>> fundings = new LinkedList<Map<String, String>>();

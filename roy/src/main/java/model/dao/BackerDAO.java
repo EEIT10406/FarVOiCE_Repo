@@ -80,6 +80,15 @@ public class BackerDAO {
 //	public Session getSession() {
 //		return session;
 //	}
+//根據username找出贊助紀錄
+	public List<BackerBean> listBackerBeanByUsername(String member_username) {
+		return this.getSession()
+				.createQuery(
+						"from BackerBean where member_username='" + member_username + "'" + "order by backer_time desc",
+						BackerBean.class)
+				.list();
+	}
+
 //以funding_id找出所有贊助者
 	public List<BackerBean> listBackerBeanByFunding_id(Integer funding_id) {
 		return this.getSession().createQuery("from BackerBean where funding_id='" + funding_id + "'", BackerBean.class)
