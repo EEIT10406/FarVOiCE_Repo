@@ -275,7 +275,8 @@
 		</div>
 		<div style="max-width: 1090px; margin: auto;" id="showAll">
 
-			<div id="sortThis" style="text-align: center; max-width: 100%;"></div>
+			<div id="sortThis"
+				style="margin-left: 40px; text-align: left; max-width: 100%;"></div>
 			<!-- 			<div class="project-pre allproject" > -->
 			<!-- 				<div class="img-pres"> -->
 			<!-- 					<img class="img-in" id="preview_progressbarTW_img" -->

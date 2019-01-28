@@ -267,7 +267,7 @@ alert('${result}');
 							<div class="pcontent-pre"
 								style="height: 40px; font-size: 2.5rem; margin-bottom: 0px;">
 								<p id="pre-amount" class="title-content detail-money">${rewardBean.reward_amount}</p>
-								<p class="detail-man">${donateCount}人</p>
+								<p class="detail-man">${rewardBean.reward_donateCount}人</p>
 							</div>
 							<div class="img-detail">
 								<img class="img-in" id="preview_progressbarTW_img"
