@@ -58,14 +58,15 @@ public class RewardController {
 //		繼續新增回饋
 		if ("新增一個回饋".equals(reward)) {
 			RewardBean createRewardBean = rewardService.insert(bean);
+			Integer rewardCount = rewardService.rewardCount(createRewardBean.getFunding_id());
+			model.addAttribute("rewardCount", rewardCount);
 			model.addAttribute("rewardBean", createRewardBean);
 			return "reward.jsp";
 		}
 //		結束提交專案
 		if ("提交專案".equals(reward)) {
-			RewardBean createRewardBean = rewardService.insert(bean);
-			model.addAttribute("rewardBean", createRewardBean);
-			return "personalFunding.jsp";
+			
+			return "/personalPage/personalProject.jsp";
 		}
 
 		return "";

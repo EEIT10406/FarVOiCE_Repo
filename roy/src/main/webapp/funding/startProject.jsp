@@ -56,7 +56,7 @@
 		var dateTemp = date.split("-");
 		var nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-'
 				+ dateTemp[0]); //轉換為MM-DD-YYYY格式
-		var millSeconds = Math.abs(nDate) + (60 * 24 * 60 * 60 * 1000);
+		var millSeconds = Math.abs(nDate) + (63 * 24 * 60 * 60 * 1000);
 		var rDate = new Date(millSeconds);
 		var year = rDate.getFullYear();
 		var month = rDate.getMonth() + 1;
@@ -75,7 +75,7 @@
 		var dateTemp = date.split("-");
 		var nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-'
 				+ dateTemp[0]); //轉換為MM-DD-YYYY格式
-		var millSeconds = Math.abs(nDate) + (1 * 24 * 60 * 60 * 1000);
+		var millSeconds = Math.abs(nDate) + (3 * 24 * 60 * 60 * 1000);
 		var rDate = new Date(millSeconds);
 		var year = rDate.getFullYear();
 		var month = rDate.getMonth() + 1;
@@ -222,7 +222,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .a {
 	display: inline-block;
 	height: 525px;
-	width: 30%;
+	max-width: 315px;
 	vertical-align: middle;
 }
 
@@ -235,10 +235,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .big {
-	height: 525px;
+	display: inline-table; height : 525px;
 	margin: auto;
 	width: 100%;
 	text-align: center;
+	height: 525px;
 }
 </style>
 </head>
@@ -311,7 +312,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 									max="100"></progress>
 								<span class="goalMoney osmfont">0</span>&nbsp; <span
 									class="hidden-md goalpercent goal"> 0%</span> <span
-									style="font-size: 13px; letter-spacing: 1px"
+									style="font-size: 13px; letter-spacing: 1px;font-family: Microsoft JhengHei;"
 									class="date pull-right small"> 還剩 <strong class="days"
 									style="font-size: 13px; font-weight: 1000; letter-spacing: 1px">0</strong><span
 									style="font-size: 13px; letter-spacing: 1px"> 天</span>
@@ -355,7 +356,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 						min=<%out.println(new java.sql.Date(new Date().getTime()));%>
 						required oninvalid="setCustomValidity('請選擇專案期限');"
 						oninput="setCustomValidity('');"> <label for=""
-						class="input-label">募資天數為提案開始60天為限。</label>
+						class="input-label">提案後需經過3天內容審核，募資期限為提案開始60天為限。</label>
 
 				</div>
 

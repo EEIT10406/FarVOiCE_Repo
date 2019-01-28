@@ -398,6 +398,7 @@ $(document).ready(function() {
 	loadPlayList('${somebody}')
 	loadMemberLikeMusic('${somebody}')
 	showAllFunding('${somebody}');
+	showBackList('${somebody}');
 	
 	//按音樂重新載入音樂
 	$('#memberMusic').on('click',function(){
@@ -630,6 +631,56 @@ function showAllFunding(username){
 		
 	})
 }
+
+//根據username找出贊助紀錄
+function showBackList(username){
+	$.getJSON('/roy/personalPage/listBackerBeanByUsername',{'username' : username},function(data) {
+		var content="";
+		$.each(data,function(index, list) {
+			console.log(list);
+			content +=
+
+		'<div class="card-toggle ban-donate" style="max-width: 300px;display: inline-block;margin-left: 17px;">'+
+		'<div class="a">'+
+		'<div class="project-pre pre-hover ban-color">'+
+		'<div class="pcontent-pre"'+
+			'style="height: 40px; font-size: 2.5rem; margin-bottom: 0px;">'+
+			'<p id="pre-amount" class="title-content detail-money">'+list.sup_money+'</p>'+
+		'</div>'+
+		'<div class="img-detail">'+
+			'<img class="img-in" style="max-height: 186px" id="preview_progressbarTW_img"'+
+				'style="border-radius: 0"'+
+				'src="'+list.reward_image+'">'+
+		'</div>'+
+		'<div class="pcontent-pre"'+
+			'style="height: auto; margin-bottom: 0px;">'+
+
+			'<p id="pre-content" class="excerpt"'+
+				'style="font-weight: bold; font-size: 0.85rem">'+list.reward_description+'</p>'+
+		'</div>'+
+		'<div class="downMeta-pre estimated-font">'+
+			'<div style="width: 50%; display: inline-block;">'+
+				'<p class="locate">寄送地點</p>'+
+				'<p style="margin-bottom: 0px; font-size: 13px; letter-spacing: 0.5px;">只寄送台灣本島</p>'+
+		'</div>'+
+		'<div'+
+				'style="width: 50%; display: inline-block; float: right; text-align: right;">'+
+				'<p class="estimated">預計寄送時間</p>'+
+				'<span id="estimated-year"'+
+					'style="font-size: 13px; letter-spacing: 0.5px;">'+list.reward_estimatedYear+'</span> /'+
+				'<span id="estimated-month"'+
+					'style="font-size: 13px; letter-spacing: 0.5px;">'+list.reward_estimatedMonth+'</span>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
+		'</div>';
+	
+		 })
+			$('#reward').html(content);
+			
+		})
+	}
 
 			
 </script>
