@@ -19,7 +19,7 @@
 	
 	</script>
 <!-- === BEGIN FOOTER === -->
-<div id="base"  >
+<div id="base" >
 	<div class="container padding-vert-30 margin-top-40" >
 		<div  class="row" >
 			<!-- Sample Menu -->
@@ -41,7 +41,7 @@
 				
 					<p>
 						<span>行銷合作</span>
-						<span class="fa-envelope">Email:</span><a href="mailto:info@joomla51.com">info@joomla51.com</a>
+						<span class="fa-envelope">Email:</span><a href="mailto:farvoiceeeit104@gmail.com">farvoiceeeit104@gmail.com</a>
 					</p>
 			</div>
 			<!-- End Contact Details -->
@@ -51,7 +51,7 @@
 				<div class="thumbs-gallery">
 					<a  id="yoga"
 						href="#yoga" onclick="showTalk();"> 
-						<img src="../img/how.jpg" alt="how.jpg">
+						<img src="../img/how.jpg" height="200px" alt="how.jpg">
 					</a>
 				</div>
 				<div class="clearfix"></div>
