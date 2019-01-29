@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <Context> -->
-<!-- 	<Resource name="jdbc/xxx" auth="Container" type="javax.sql.DataSource" -->
-<!--                maxTotal="100" maxIdle="30" maxWaitMillis="10000" -->
-<!--                username="FarVoice@dbservereeit104roy" password="VoiceFar10406" -->
-<!--                driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" -->
-<!--                url="jdbc:sqlserver://dbservereeit104roy.database.windows.net:1433;database=FarVoice"/> -->
-<!-- </Context> -->
-
-<Context> 
-<Resource name="jdbc/xxx" auth="Container" type="javax.sql.DataSource" 
-maxTotal="100" maxIdle="30" maxWaitMillis="10000" 
-username="FarVoice@dbservereeit104roy" password="VoiceFar10406" 
-driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
-url="jdbc:sqlserver://dbservereeit104roy.database.windows.net:1433;database=FarVoice"/> 
+<Context>
+	<Resource name="jdbc/xxx" auth="Container" type="javax.sql.DataSource"
+               maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+               username="FarVoice@dbservereeit104roy" password="VoiceFar10406"
+               driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+               url="jdbc:sqlserver://dbservereeit104roy.database.windows.net:1433;database=FarVoice"/>
 </Context>
