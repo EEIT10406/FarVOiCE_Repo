@@ -366,7 +366,7 @@ function loadMemberLikeMusic(username) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 240px; music_id="'+list.music_id+'"  music_name="'+list.music_name+'" music_music="'+music.Music_music+'">'+
                              '<span name="music_id">'+list.music_id+'</span>'+
 				             '<span id="musicPage" style="cursor: pointer;">'+
-                                  '<img src="'+list.music_Image+'" style="width: 120px; height: 120px;" />'+
+                                  '<img src="'+list.music_Image+'" style="width: 160px; height: 160px;" />'+
                              '</span>'+
                              '<div style="font-size: 16px;">'+list.music_name+'</div>'+
 

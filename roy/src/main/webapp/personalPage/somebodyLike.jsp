@@ -132,11 +132,11 @@ table {
 }
 
 .shareAndAdd {
-	width: 50px;
-	margin-top: 5px;
-	padding: 5px;
-	font-size: 13px;
-	margin-left: 10px;
+/* 	width: 50px; */
+/* 	margin-top: 5px; */
+/* 	padding: 5px; */
+/* 	font-size: 13px; */
+/* 	margin-left: 10px; */
 }
 
 .heartCount {
@@ -557,7 +557,7 @@ function loadMemberLikeMusic(username) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 230px;">'+
                              '<span name="music_id">'+list.music_id+'</span>'+
                              '<span id="musicPage" style="cursor: pointer;">'+
-  			                     '<img src="'+list.music_Image+'" style="width: 140px; height: 140px;" />'+
+  			                     '<img src="'+list.music_Image+'" style="width: 160px; height: 160px;" />'+
   			                 '</span>'+
                              '<div style="font-size: 16px;">'+list.music_name+'</div>'+
 				             '<div style="margin-bottom:5px;">'; 
