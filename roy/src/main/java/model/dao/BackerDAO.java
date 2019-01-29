@@ -81,6 +81,12 @@ public class BackerDAO {
 //	public Session getSession() {
 //		return session;
 //	}
+//根據使用者抓出所有贊助
+	public List<BackerBean> userdonateHistory(String member_username) {
+		return this.getSession()
+				.createQuery("from BackerBean where member_username='" + member_username + "'", BackerBean.class)
+				.list();
+	}
 
 //找出贊助過的人
 	public List<MemberBean> donateHistory(Integer funding_id) {

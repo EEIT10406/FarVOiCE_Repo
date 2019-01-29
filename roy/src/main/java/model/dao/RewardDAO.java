@@ -98,13 +98,13 @@ public class RewardDAO {
 
 //找出有幾項回饋byFundingid
 	public Integer rewardCount(Integer funding_id) {
-		return this.getSession().createQuery("from RewardBean where funding_id='" + funding_id + "'", RewardBean.class)
+		return this.getSession().createQuery("from RewardBean where funding_id='" + funding_id + "'" , RewardBean.class)
 				.list().size();
 	}
 
 //根據funding_id找出回饋
 	public List<RewardBean> findByFundingId(Integer funding_id) {
-		return this.getSession().createQuery("from RewardBean where funding_id='" + funding_id + "'", RewardBean.class)
+		return this.getSession().createQuery("from RewardBean where funding_id='" + funding_id + "'order by reward_amount", RewardBean.class)
 				.list();
 	}
 

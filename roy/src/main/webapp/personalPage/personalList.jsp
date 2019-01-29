@@ -384,7 +384,7 @@ function loadPlayList(username) {
 			content+='<div id="lists" class="col-md-5" style="float: left; width: 300px;margin-bottom:13px;">'+
 		             '<span name="playlist_id">'+list.playlist_id+'</span>'+
 			         '<div id="listPage" style="cursor: pointer;">'+
-		                  '<div style="width: 160px;height: 160px;background: url('+list.playlist_image+') no-repeat; background-size:160px 160px;">'+
+		                  '<div style="width: 190px;height: 190px;background: url('+list.playlist_image+') no-repeat; background-size:190px 190px;">'+
 			              '<div class="listSongCount">'+list.playlist_musicCount+'</div></div>'+
 		             '</div>'+
                      '<div style="font-size: 16px;">'+list.playlist_name+'</div>'+

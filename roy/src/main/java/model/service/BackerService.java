@@ -32,6 +32,14 @@ public class BackerService {
 		return null;
 	}
 
+	// 根據使用者抓出所有贊助
+	public List<BackerBean> userdonateHistory(String member_username) {
+		if (member_username != null) {
+			return backerDAO.userdonateHistory(member_username);
+		}
+		return null;
+	}
+
 	// 根據username找出贊助紀錄
 	public List<BackerBean> listBackerBeanByUsername(String member_username) {
 		if (member_username != null) {

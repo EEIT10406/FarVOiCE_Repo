@@ -259,11 +259,11 @@ alert('${result}');
 			</div>
 			<div class="c-2" style="float: right; padding-right: 10px">
 				<p class="thisweek" style="padding-left: 15px">
-					贊助項目<span class="redweek">更換回饋</span>
+					贊助項目<a href="/roy/funding/detail.controller?funding_id=${fundingBean.funding_id}&nickname=${nickname}"><span class="redweek">更換回饋</span></a>
 				</p>
 				<div class="card-toggle ban-donate">
 					<div class="a">
-						<div class="project-pre pre-hover ban-color">
+						<div class="project-pre  ban-color">
 							<div class="pcontent-pre"
 								style="height: 40px; font-size: 2.5rem; margin-bottom: 0px;">
 								<p id="pre-amount" class="title-content detail-money">${rewardBean.reward_amount}</p>

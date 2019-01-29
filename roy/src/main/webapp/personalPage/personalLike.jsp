@@ -295,7 +295,6 @@ $(document).ready(function() {
 	$('#like').on('click','#musicPage',function(){
 		var row = $(this).parents('#musics');
 		var musicId = row.children('span[name="music_id"]').text();
-		
 		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
 		
 	})
@@ -359,14 +358,13 @@ function loadPlayList(username) {
 
 //讀取該使用者喜歡的歌
 function loadMemberLikeMusic(username) {
-
 	$.getJSON('/roy/personalPage/memberLikeMusic',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 240px; music_id="'+list.music_id+'"  music_name="'+list.music_name+'" music_music="'+music.Music_music+'">'+
                              '<span name="music_id">'+list.music_id+'</span>'+
 				             '<span id="musicPage" style="cursor: pointer;">'+
-                                  '<img src="'+list.music_Image+'" style="width: 120px; height: 120px;" />'+
+                                  '<img src="'+list.music_Image+'" style="width: 160px; height: 160px;" />'+
                              '</span>'+
                              '<div style="font-size: 16px;">'+list.music_name+'</div>'+
 

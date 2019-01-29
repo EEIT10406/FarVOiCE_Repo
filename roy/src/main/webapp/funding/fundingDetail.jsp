@@ -78,7 +78,7 @@
 
 		//無法贊助自己的專案
 		if ('${selfusername}' == '${funding.member_username}') {
-
+			$('.personal-edit').show();
 			$('#entry').attr("disabled", true);
 			$('#entry').css("pointer-events", "none");
 			$('#entry').css("background-color", "#bebebe");
@@ -97,7 +97,16 @@
 			$('.david').hide();
 			$('.ajax-content').show();
 		})
+		limitDay()
 	})
+	//抓取選取日期計算到期天數
+	function limitDay() {
+		var enddate = new Date('${funding.funding_duration}');
+		var nowdate = new Date();
+		var deadline = enddate.getTime() - nowdate.getTime();
+		var days = parseInt(deadline / (1000 * 60 * 60 * 24)) + 2;
+		$('.days').text(days);
+	}
 </script>
 <style type="text/css">
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -107,15 +116,29 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 input[type="number"] {
 	-moz-appearance: textfield;
 }
+
+.personal-edit a:hover {
+	border: solid black 1px;
+	background-color: yellow;
+	color: black;
+	border-radius: 3px;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
 	<div id="body_bg">
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
-
 		<div class="fundingDetail">
 
+			<div class="personal-edit" style="display: none;">
+				<a
+					href="personalEditFundingContent.controller?funding_id=${funding.funding_id}"><span>編輯專案</span></a>
+				<a
+					href="toAddRewardPage.controller?funding_id=${funding.funding_id}"><span>新增回饋</span></a>
+				<a><span>贊助管理</span></a>
+			</div>
 			<div class="detailHead" style="clear: both;">
 				<h1 style="font-weight: bold; display: inline;">${funding.funding_title}</h1>
 				<p>
@@ -127,7 +150,9 @@ input[type="number"] {
 
 			<div class="c-1">
 				<div class="detailImg">
-					<img src="${funding.funding_image}">
+					<video class="playmusic" src="${musicBean.music_music}"
+						poster="${funding.funding_image}" controls="controls"
+						controlsList="nodownload"></video>
 				</div>
 				<div class="schedule" id="move">
 					<span class="s-number">$0</span> <span
@@ -150,7 +175,7 @@ input[type="number"] {
 					<p>人贊助</p>
 				</div>
 				<div class="info-3">
-					<h1>${day}</h1>
+					<h1 class="days">${day}</h1>
 					<p>天結束</p>
 				</div>
 				<blockquote class="blockquote-d">
@@ -174,12 +199,19 @@ input[type="number"] {
 					</ul>
 				</div>
 				<div class="create-man">
-					<p style="display: inline-block;">
-						<span>提案者:</span>${nickname}
-					</p>
-					<a> <img src="">
-					</a>
 
+					<span>提案者:</span><a
+						href="/roy/personalPage/detailToPage.controller?nickname=${nickname}">${nickname}
+						<img
+						style="border-radius: 50%; height: 60px; width: 60px; margin-left: 15px;"
+						src="${createPjtBean.member_profileImage}">
+					</a>
+					<div>
+						<p style="color: #9b9b9b; display: inline;">提案數:</p>
+						<span>${createCount}</span> <br>
+						<p style="color: #9b9b9b; display: inline;">贊助數:</p>
+						<span>${donateCount}</span>
+					</div>
 				</div>
 			</div>
 
@@ -197,9 +229,12 @@ input[type="number"] {
 
 					<c:forEach var="donate" items="${donateMemberBeans}">
 						<div class="supMan">
-							<img style="border-radius: 50%; height: 100px; width: 100px;"
+							<a
+								href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${donate.member_nickname}">
+								<img style="border-radius: 50%; height: 100px; width: 100px;"
 								src="${donate.member_profileImage}">
-							<p class="littleDavid">${donate.member_nickname}</p>
+								<p class="littleDavid">${donate.member_nickname}</p>
+							</a>
 						</div>
 					</c:forEach>
 
@@ -245,9 +280,6 @@ input[type="number"] {
 										</div>
 
 										<div class="donate">
-											<p class="donate-p">
-												<span>你的支持將使專案達到</span>150%
-											</p>
 
 											<form method="post"
 												action="<c:url value="turnToDonatePage.controller?reward_id=${reward.reward_id}&funding_id=${reward.funding_id}&funding_title=${funding.funding_title}&nickname=${nickname}"/> ">
@@ -260,7 +292,7 @@ input[type="number"] {
 													<div class="extra-sup-1">
 														<label class="extra-sup-2">額外支持</label> <br> <input
 															name="sup_money" class="pick-lock" type="number"
-															placeholder="$0">
+															placeholder="$0" max="500000">
 													</div>
 													<!-- 													<input style="display: none" type="text" -->
 													<%-- 														value="${reward.reward_id}"> <input --%>

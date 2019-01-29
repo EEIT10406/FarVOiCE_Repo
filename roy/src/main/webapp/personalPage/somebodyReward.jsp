@@ -395,9 +395,10 @@ function submitBtnClick(){
 $(document).ready(function() {
 	loadMusic('${somebody}')
 	loadMusicCount('${somebody}')
-	//loadPlayList('${somebody}')
-	//loadMemberLikeMusic('${somebody}')
-	//showAllFunding('${somebody}');
+	loadPlayList('${somebody}')
+	loadMemberLikeMusic('${somebody}')
+	showAllFunding('${somebody}');
+	showBackList('${somebody}');
 	
 	//按音樂重新載入音樂
 	$('#memberMusic').on('click',function(){
@@ -507,7 +508,7 @@ function loadMusic(username) {
 			content += '<div id="musics" class="col-md-5" style="float: left; width: 240px;margin-bottom:10px;">'+
 			          '<span name="music_id">'+list.music_id+'</span>'+
 			          '<span id="musicPage" style="cursor: pointer;">'+
-			               '<img src="'+list.music_Image+'" style="width: 160px; height: 160px;" />'+
+			               '<img src="'+list.music_Image+'" style="width: 140px; height: 140px;" />'+
 			          '</span>'+
 			       '<div style="font-size: 16px;">'+list.music_name+'</div>'+
                    '<div style="margin-bottom:5px;">';
@@ -631,6 +632,56 @@ function showAllFunding(username){
 	})
 }
 
+//根據username找出贊助紀錄
+function showBackList(username){
+	$.getJSON('/roy/personalPage/listBackerBeanByUsername',{'username' : username},function(data) {
+		var content="";
+		$.each(data,function(index, list) {
+			console.log(list);
+			content +=
+
+		'<div class="card-toggle ban-donate" style="max-width: 300px;display: inline-block;margin-left: 17px;">'+
+		'<div class="a">'+
+		'<div class="project-pre  ban-color">'+
+		'<div class="pcontent-pre"'+
+			'style="height: 40px; font-size: 2.5rem; margin-bottom: 0px;">'+
+			'<p id="pre-amount" class="title-content detail-money">'+list.sup_money+'</p>'+
+		'</div>'+
+		'<div class="img-detail">'+
+			'<img class="img-in" style="height: 186px" id="preview_progressbarTW_img"'+
+				'style="border-radius: 0"'+
+				'src="'+list.reward_image+'">'+
+		'</div>'+
+		'<div class="pcontent-pre"'+
+			'style="height: auto; margin-bottom: 0px;">'+
+
+			'<p id="pre-content" class="excerpt"'+
+				'style="font-weight: bold; font-size: 0.85rem">'+list.reward_description+'</p>'+
+		'</div>'+
+		'<div class="downMeta-pre estimated-font">'+
+			'<div style="width: 50%; display: inline-block;">'+
+				'<p class="locate">寄送地點</p>'+
+				'<p style="margin-bottom: 0px; font-size: 13px; letter-spacing: 0.5px;">只寄送台灣本島</p>'+
+		'</div>'+
+		'<div'+
+				'style="width: 50%; display: inline-block; float: right; text-align: right;">'+
+				'<p class="estimated">預計寄送時間</p>'+
+				'<span id="estimated-year"'+
+					'style="font-size: 13px; letter-spacing: 0.5px;">'+list.reward_estimatedYear+'</span> /'+
+				'<span id="estimated-month"'+
+					'style="font-size: 13px; letter-spacing: 0.5px;">'+list.reward_estimatedMonth+'</span>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
+		'</div>';
+	
+		 })
+			$('#reward').html(content);
+			
+		})
+	}
+
 			
 </script>
 </head>
@@ -667,14 +718,14 @@ function showAllFunding(username){
 				<!-- Tab v2 -->
 				<div class="tabs alternative">
 					<ul class="nav nav-tabs">
-						<li><a href="/roy/personalPage/somebodyPersonalPage.jsp">動態</a>
+						<li><a href="/roy/personalPage/somebodyPersonalPage.jsp" >動態</a>
 						</li>
-						<li class="active"><a href="#music" id="memberMusic">音樂</a></li>
-						<li><a href="/roy/personalPage/somebodyList.jsp">歌單</a></li>
+						<li><a href="/roy/personalPage/somebodyMusic.jsp" id="memberMusic">音樂</a></li>
+						<li><a href="/roy/personalPage/somebodyList.jsp" >歌單</a></li>
 						<li><a href="/roy/personalPage/somebodyLike.jsp" id="memberLikeMusic">喜歡</a></li>
 						<li><a href="/roy/personalPage/somebodyProject.jsp" id="memberProject">提案</a></li>
-						<li><a href="/roy/personalPage/somebodyReward.jsp" id="memberReward">贊助</a></li>
-						<li><a href="/roy/personalPage/somebodyAbout.jsp">關於</a></li>
+						<li class="active"><a href="#reward" id="memberReward">贊助</a></li>
+						<li><a href="/roy/personalPage/somebodyAbout.jsp" >關於</a></li>
 					</ul>
 
 					<div class="tab-content" style="height: auto;">
@@ -693,7 +744,7 @@ function showAllFunding(username){
 						<!-- 						</div> -->
 
 
-						<div class="tab-pane fade in active" style="overflow: auto;" id="music">
+						<div class="tab-pane fade in" style="overflow: auto;" id="music">
 
 							<!-- 							<div id="musics" class="col-md-5" style="float: left; width: 300px;"> -->
 <!-- 								<span name="music_id"></span>  -->
@@ -768,7 +819,7 @@ function showAllFunding(username){
 						<!-- 						end music -->
 
 						<div class="tab-pane fade in" style="overflow: auto;" id="userproject"></div>
-						<div class="tab-pane fade in" style="overflow: auto;" id="reward"></div>
+						<div class="tab-pane fade in active" style="overflow: auto;" id="reward"></div>
 
 
 
@@ -1110,8 +1161,8 @@ var size1=5;
 	</div>	
 							
 	<jsp:include page="../homePage/footer.jsp" />
-	<!-- 	<div id="player"> -->
-	<%-- 		<jsp:include page="../homePage/player.jsp" /> --%>
-	<!-- 	</div> -->
+		<div id="player">
+			<jsp:include page="../homePage/player.jsp" />
+		</div>
 </body>
 </html>
