@@ -295,7 +295,6 @@ $(document).ready(function() {
 	$('#like').on('click','#musicPage',function(){
 		var row = $(this).parents('#musics');
 		var musicId = row.children('span[name="music_id"]').text();
-		
 		window.location.href = "/roy/musicPage/findMusicById?musicId="+musicId;
 		
 	})
@@ -359,7 +358,6 @@ function loadPlayList(username) {
 
 //讀取該使用者喜歡的歌
 function loadMemberLikeMusic(username) {
-
 	$.getJSON('/roy/personalPage/memberLikeMusic',{'username' : username},function(data) {
 		var content="";
 		$.each(data,function(index, list) {

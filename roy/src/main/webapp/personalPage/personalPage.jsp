@@ -214,6 +214,8 @@ opacity:0.4
 
 $(document).ready(function() {
 	
+	loadMusicCount('${user.member_username}')
+	loadMemberLikeMusic('${user.member_username}')
 	loadFanCount('${user.member_username}')
 	loadStarCount('${user.member_username}')
 
@@ -318,6 +320,41 @@ $(document).ready(function() {
 		})
 	}
 
+	//讀取使用者上傳的音樂數
+	function loadMusicCount(username) {
+		$.getJSON('/roy/personalPage/uploadMusicCount',{'username' : username},function(data) {
+			$('#musicCount').html(data);
+		})
+	}
+	
+	
+	//讀取該使用者喜歡的歌
+	function loadMemberLikeMusic(username) {
+		$.getJSON('/roy/personalPage/memberLikeMusic',{'username' : username},function(data) {
+			var content="";
+			$.each(data,function(index, list) {
+				content += '<div id="musics" class="col-md-5" style="float: left; width: 240px; music_id="'+list.music_id+'"  music_name="'+list.music_name+'" music_music="'+music.Music_music+'">'+
+	                             '<span name="music_id">'+list.music_id+'</span>'+
+					             '<span id="musicPage" style="cursor: pointer;">'+
+	                                  '<img src="'+list.music_Image+'" style="width: 160px; height: 160px;" />'+
+	                             '</span>'+
+	                             '<div style="font-size: 16px;">'+list.music_name+'</div>'+
+
+					             '<div>'+
+	                                  '<img src="../img/love.png" class="heart">'+
+					                  '<span class="heartCount">'+list.music_likeCount+'</span>'+ 
+					                  '<span id="share"><button type="button" class="shareAndAddbtn"data-toggle="modal" data-target="#addshare" style="outline: none;" music_id="'+list.music_id+'" music_image="'+list.music_Image+'" music_name="'+list.music_name+'"><img src="../img/share.png" width="13px">分享</button></span>'+
+						              '</span>'+
+						              '<span id="add">'+
+				                      '<button type="button" class="btnAddList" data-toggle="modal" data-target="#addList" style="outline: none;"><img src="../img/add.png" width="15px">加入歌單</button>'+
+									  '</span>'+
+					             '</div>'+
+				             '</div>';
+	                })
+	           $('#like').html(content);
+			$('span[name="music_id"]').hide();
+		})
+	}
 </script>
 
 </head>
@@ -423,7 +460,7 @@ $(document).ready(function() {
 							
 							<div id="test"><br>
 							</div>
-					        <a class='readmore' onclick='return showData()'>查看更多文章</a>
+					        <a class='readmore' onclick='return showData()' style='display:none;'>查看更多文章</a>
 						</div>
 						<!-- End dynamic -->
 						<div class="tab-pane fade in" style="overflow: auto;" id="music">								
@@ -554,6 +591,8 @@ $(document).ready(function() {
 				success : function(list)
 	
 				 {  //------------List
+					
+				 
 				 	var imgPath=$('#profile').attr('src');
 				 	list.forEach(function(obj, index) {
 				 		var music_name ;
@@ -619,7 +658,7 @@ function showData(){
 					
 					 pagestart =(counter*5)-5;
 		             sum = list.length;
-		             
+// 		             if(sum==0){ $(".readmore").hide();}
 		             if(sum - pagestart < size1 ){
 			                size1 = sum - pagestart;
 

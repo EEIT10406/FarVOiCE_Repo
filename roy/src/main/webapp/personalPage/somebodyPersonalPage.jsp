@@ -63,6 +63,7 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    hide:true;
 }
 .readmore:hover {
     background-color: #9f5000; /* Green */
@@ -682,7 +683,7 @@ function showAllFunding(username){
 						<div class="tab-pane fade in active" id="dynamic">
 
 							<div id="test"></div>
-							<a class='readmore' onclick='return showData()'>查看更多文章</a>
+							<a class='readmore' onclick='return showData() ' style='display:none;' >查看更多文章</a>
 						</div>
 						<!-- End dynamic -->
 						<!-- 						<div class="tab-pane fade in active" id="dynamic"> -->
@@ -863,9 +864,10 @@ var size1=5;
                 //contentType: "application/json",              
 				success : function(list)
 				 {   
+					
 					pagestart =(counter*5)-5;
 		            sum = list.length;
-		            
+// 		            if(sum==0){ $(".readmore").hide();}
 					
 		            if(sum - pagestart < size1 ){
 		                size1 = sum - pagestart;
