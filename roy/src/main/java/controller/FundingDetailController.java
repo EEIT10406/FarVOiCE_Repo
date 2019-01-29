@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import model.bean.FundingBean;
 import model.bean.MemberBean;
+import model.bean.MusicBean;
 import model.bean.RewardBean;
 import model.service.BackerService;
 import model.service.FundingService;
+import model.service.MusicService;
 import model.service.RewardService;
 
 @Controller
@@ -25,6 +27,8 @@ public class FundingDetailController {
 	private FundingService fundingService;
 	@Autowired
 	private BackerService backerService;
+	@Autowired
+	private MusicService musicService;
 
 //點擊預覽小卡跳轉到詳細頁面
 	@RequestMapping("/funding/detail.controller")
@@ -48,6 +52,8 @@ public class FundingDetailController {
 			List<RewardBean> rewardBeans = rewardService.findRewardByFunding_id(funding_Id);
 			FundingBean fundingBean = fundingService.findFundingById(funding_Id);
 			Integer oldBrowseCount = fundingBean.getFunding_browseCount();// 原本的瀏覽次數
+			MusicBean musicBean=musicService.findMusic(fundingBean.getMusic_id());
+			
 			fundingBean.setFunding_browseCount(oldBrowseCount + 1);// 瀏覽次數+1
 			fundingService.update(fundingBean);// 更新瀏覽次數
 			Double current = Double.valueOf(fundingBean.getFunding_currentAmount());
@@ -55,6 +61,7 @@ public class FundingDetailController {
 			Double susses=current / goal*100;
 			String percent = String.valueOf(current / goal * 100);
 			System.out.println(donateMemberBeans);
+			model.addAttribute("musicBean",musicBean);
 			model.addAttribute("donateMemberBeans",donateMemberBeans);
 			model.addAttribute("susses",susses);
 			model.addAttribute("sumDonater", sumDonater);

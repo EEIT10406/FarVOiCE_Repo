@@ -991,18 +991,22 @@ input[type="file"] {
 }
 
 .supMan {
-	display: inline-block;
 	margin-top: 30px;
 }
 
 .david {
-	max-width: 600px;
-	display: inline-block;
+	display:inline-block;
 	margin-left: 100px;
 }
 
 .littleDavid {
-	display: nline-block;
+	font-weight: 600;
+	font-size: 15px;
+	font-family: Microsoft JhengHei;
+	display: inline-block;
 	margin-right: 50px;
 	margin-left: 50px;
+}
+.playmusic{
+	max-width: -webkit-fill-available;
 }

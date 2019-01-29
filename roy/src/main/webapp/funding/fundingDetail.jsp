@@ -127,7 +127,8 @@ input[type="number"] {
 
 			<div class="c-1">
 				<div class="detailImg">
-					<img src="${funding.funding_image}">
+<%-- 				<img src="${funding.funding_image}"> --%>
+				<video class="playmusic" src="${musicBean.music_music}" poster="${funding.funding_image}" controls="controls" controlsList="nodownload"></video>
 				</div>
 				<div class="schedule" id="move">
 					<span class="s-number">$0</span> <span
@@ -197,9 +198,11 @@ input[type="number"] {
 
 					<c:forEach var="donate" items="${donateMemberBeans}">
 						<div class="supMan">
+						   <a href="/roy/personalPage/somebodyPersonalPage.controller?nickname=${donate.member_nickname}">
 							<img style="border-radius: 50%; height: 100px; width: 100px;"
 								src="${donate.member_profileImage}">
 							<p class="littleDavid">${donate.member_nickname}</p>
+							</a>
 						</div>
 					</c:forEach>
 
