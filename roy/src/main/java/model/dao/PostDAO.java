@@ -153,7 +153,7 @@ public class PostDAO {
 	
 //顯示所有文章在文章頁面	
 public List<PostBean> showAllArticleInFindArticle (Boolean post_postorshare){
-		String hql = "from PostBean WHERE post_postorshare=:post_postorshare Order By post_time Desc";
+		String hql = "from PostBean WHERE post_postorshare=:post_postorshare and post_privacy=False Order By post_time Desc";
 		Query<PostBean> query = this.getSession().createQuery(hql);
 		query.setParameter("post_postorshare", post_postorshare);
 		List<PostBean> PostList = query.list();
