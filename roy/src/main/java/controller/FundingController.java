@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -21,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import model.bean.FundingBean;
 import model.bean.MemberBean;
 import model.bean.MusicBean;
+import model.bean.RewardBean;
+import model.service.BackerService;
 import model.service.FundingService;
 import model.service.MemberService;
 import model.service.MusicService;
@@ -37,6 +40,8 @@ public class FundingController {
 	private MusicService musicService;
 	@Autowired
 	private RewardService rewardService;
+	@Autowired
+	private BackerService backerService;
 
 //創建募資專案+上傳圖片
 	@RequestMapping("/funding/funding.controller")
@@ -186,6 +191,106 @@ public class FundingController {
 		return "editFuding.jsp";
 	}
 
+	// 編輯更新專案內容+保存修改並前往詳細頁面
+	@RequestMapping("/funding/projectSave.controller")
+	public String projectSave(HttpSession session,String editFunding, String oImage, String funding_id, Model model,
+			FundingBean bean, @RequestParam("imageFile") MultipartFile imagefile) {
+		String imagepath = "";
+		Integer oldFunding_id = Integer.valueOf(funding_id);
+		FundingBean editBean = fundingService.findFundingById(oldFunding_id);
+//點擊保存修改
+		if ("儲存修改".equals(editFunding)) {
+			// 如果有修改圖片
+			if (!imagefile.isEmpty()) {
+
+				try {
+					byte[] imagebyte = imagefile.getBytes();
+					imagepath = fundingService.imageFilePath(imagebyte);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				bean.setFunding_duration(editBean.getFunding_duration());
+				bean.setMember_nickname(editBean.getMember_nickname());
+				bean.setFunding_browseCount(editBean.getFunding_browseCount());
+				bean.setFunding_currentAmount(editBean.getFunding_currentAmount());
+				bean.setFunding_id(editBean.getFunding_id());
+				bean.setMember_username(editBean.getMember_username());
+				bean.setFunding_createTime(editBean.getFunding_createTime());
+				bean.setFunding_image(imagepath);
+				bean.setFunding_status(editBean.getFunding_status());
+				FundingBean updateFundingBean = fundingService.update(bean);
+				List<MusicBean> musicbeans = musicService.findMusicByUser(editBean.getMember_username());
+				model.addAttribute("musicName", musicbeans);
+				model.addAttribute("fundingBean", updateFundingBean);
+				return "personalEdit.jsp";
+				// 如果沒修改圖片
+			} else {
+				bean.setFunding_duration(editBean.getFunding_duration());
+				bean.setMember_nickname(editBean.getMember_nickname());
+				bean.setFunding_browseCount(editBean.getFunding_browseCount());
+				bean.setFunding_currentAmount(editBean.getFunding_currentAmount());
+				bean.setFunding_id(editBean.getFunding_id());
+				bean.setMember_username(editBean.getMember_username());
+				bean.setFunding_createTime(editBean.getFunding_createTime());
+				bean.setFunding_status(editBean.getFunding_status());
+				bean.setFunding_image(oImage);
+				FundingBean updateFundingBean = fundingService.update(bean);
+				List<MusicBean> musicbeans = musicService.findMusicByUser(editBean.getMember_username());
+				model.addAttribute("musicName", musicbeans);
+				model.addAttribute("fundingBean", updateFundingBean);
+				return "personalEdit.jsp";
+			}
+		}
+//點擊返回專案
+		if ("返回專案".equals(editFunding)) {
+			String username = null;
+			try {
+				MemberBean memberBean = (MemberBean) session.getAttribute("user");
+				if (memberBean != null) {
+					username = memberBean.getMember_username();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			if (funding_id != null) {
+				Integer funding_Id = Integer.valueOf(funding_id);
+				BigDecimal sumDonater = rewardService.sumDonater(funding_Id);
+				List<MemberBean> donateMemberBeans = backerService.donateHistory(funding_Id);
+				List<RewardBean> rewardBeans = rewardService.findRewardByFunding_id(funding_Id);
+				FundingBean fundingBean = fundingService.findFundingById(funding_Id);
+				Integer oldBrowseCount = fundingBean.getFunding_browseCount();// 原本的瀏覽次數
+				MusicBean musicBean = musicService.findMusic(fundingBean.getMusic_id());
+				MemberBean createPjtBean = memberService
+						.getMemberBeanForSomebodyPersonalPage(fundingBean.getMember_username());
+				Integer createCount = fundingService.findProjectByUsernamePass(fundingBean.getMember_username()).size();// 抓出提案人提案總數
+
+				Integer donateCount = backerService.userdonateHistory(fundingBean.getMember_username()).size();// 抓出提案人贊助總數
+				fundingBean.setFunding_browseCount(oldBrowseCount + 1);// 瀏覽次數+1
+				fundingService.update(fundingBean);// 更新瀏覽次數
+				Double current = Double.valueOf(fundingBean.getFunding_currentAmount());
+				Double goal = Double.valueOf(fundingBean.getFunding_goal());
+				Double susses = current / goal * 100;
+				String percent = String.valueOf(current / goal * 100);
+				model.addAttribute("donateCount", donateCount);
+				model.addAttribute("createCount", createCount);
+				model.addAttribute("createPjtBean", createPjtBean);
+				model.addAttribute("musicBean", musicBean);
+				model.addAttribute("donateMemberBeans", donateMemberBeans);
+				model.addAttribute("susses", susses);
+				model.addAttribute("sumDonater", sumDonater);
+				model.addAttribute("selfusername", username);
+				model.addAttribute("percent", percent);
+				model.addAttribute("reward", rewardBeans);
+				model.addAttribute("funding", fundingBean);
+				return "/funding/fundingDetail.jsp";
+			}
+		
+		}
+
+		return "/homePage/index.jsp";
+	}
+
 //找出所有專案
 	@RequestMapping(value = "/funding/allFundingProject.controller", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -300,7 +405,7 @@ public class FundingController {
 	@ResponseBody
 	public String findByPassOrderByMoney() {
 //		回傳所有專案
-		List<FundingBean> fundingBeans = fundingService.findAllByPass();
+		List<FundingBean> fundingBeans = fundingService.findByPassOrderByMoney();
 		List<Map<String, String>> fundings = new LinkedList<Map<String, String>>();
 		for (FundingBean bean : fundingBeans) {
 			Map<String, String> jsonMap = new HashMap<>();
@@ -329,4 +434,27 @@ public class FundingController {
 		fundingService.update(bean);
 	}
 
+//進入個人主頁提案標籤
+	@RequestMapping(path = "/personalPage/detailToPage.controller")
+	public String method(Model model, String nickname, HttpSession session) {
+		// 進別人的首頁
+
+		String somebody = musicService.nicenameToUsername(nickname);
+
+		MemberBean userBean = (MemberBean) session.getAttribute("user");
+		// 如果已登入且則進自己個人首頁
+		if (userBean != null) {
+			if (userBean.getMember_username().equals(somebody)) {
+				return "/personalPage/personalProject.jsp";
+			}
+		}
+		MemberBean somebodyBean = memberService.getMemberBeanForSomebodyPersonalPage(somebody);
+		session.setAttribute("somebody", somebody);
+		session.setAttribute("nickname", nickname);
+		session.setAttribute("somebodyImgPath", somebodyBean.getMember_profileImage());
+		session.setAttribute("somebodyRegion", somebodyBean.getMember_region());
+		session.setAttribute("somebodyDescription", somebodyBean.getMember_description());
+		return "/personalPage/somebodyProject.jsp";
+
+	}
 }
