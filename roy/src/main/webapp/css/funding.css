@@ -525,7 +525,7 @@ input[type="file"] {
 /* 募資詳細資訊 */
 .fundingDetail {
 	margin: auto;
-	width: 57%;
+	max-width: 1085px;
 }
 
 .detailHead {
@@ -534,6 +534,7 @@ input[type="file"] {
 }
 
 .detailImg {
+	height: 465px;
 	padding-left: 3.2px;
 }
 
@@ -551,12 +552,13 @@ input[type="file"] {
 }
 
 .create-man {
+	margin-top: -103px;
 	font-weight: bold;
 	font-family: Microsoft JhengHei;
 	padding-left: 35px;
 	float: right;
 	width: 34%;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .create-man span {
@@ -991,18 +993,34 @@ input[type="file"] {
 }
 
 .supMan {
-	display: inline-block;
 	margin-top: 30px;
 }
 
 .david {
-	max-width: 600px;
 	display: inline-block;
 	margin-left: 100px;
 }
 
 .littleDavid {
-	display: nline-block;
+	font-weight: 600;
+	font-size: 15px;
+	font-family: Microsoft JhengHei;
+	display: inline-block;
 	margin-right: 50px;
 	margin-left: 50px;
+}
+
+.playmusic {
+	max-width: -webkit-fill-available;
+}
+
+.personal-edit {
+	text-align: right;
+	max-width: 1085px;
+	padding-right: 25px;
+	padding-top: 12px;
+	font-family: Microsoft JhengHei;
+	font-size: 16px;
+	font-weight: 400;
+	letter-spacing: 5px;
 }

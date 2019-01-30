@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>回饋設定</title>
+<title>新增回饋</title>
 <script type="text/javascript" src="../js/scripts.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
@@ -137,23 +137,15 @@
 											}
 
 										})
-						//點擊上一步不檢查編輯專案內容
-						$('input[value="編輯專案內容"]').click(
+						
+						//點擊上一步不檢查提交專案內容
+						$('input[value="返回專案"]').click(
 								function() {
 									$('textarea[name="reward_description"]')
 											.removeAttr("required");
 									$('input[name="imageFile"]').removeAttr(
 											"required");
-									$('input[value="編輯專案內容"]').submit();
-								})
-						//點擊不檢查提交專案內容
-						$('input[value="提交專案"]').click(
-								function() {
-									$('textarea[name="reward_description"]')
-											.removeAttr("required");
-									$('input[name="imageFile"]').removeAttr(
-											"required");
-									$('input[value="提交專案"]').submit();
+									$('input[value="返回專案"]').submit();
 								})
 					})
 </script>
@@ -192,7 +184,7 @@
 				enctype="multipart/form-data">
 				<div
 					style="text-align: center; margin-bottom: 15px; margin-top: 15px;">
-					<label class="top-title">回饋設定</label>
+					<label class="top-title">新增回饋</label>
 				</div>
 				<div class="create-type" style="margin: auto;">
 					<p class="bluequote">當前專案回饋數量</p>
@@ -288,8 +280,7 @@
 						onchange="readURL(this)" targetID="preview_progressbarTW_img"
 						id="file-upload" type="file" accept="image/jpeg, image/png"
 						name="imageFile" required
-						oninvalid="setCustomValidity('請選擇上傳圖片');"
-						oninput="setCustomValidity('');">
+						>
 					</a>
 					<!-- 					<i id='spin' class="fas fa-spinner fa-spin" style="display: none"></i> -->
 					<p class="showFileName"></p>
@@ -328,13 +319,11 @@
 				</div>
 				<div class="create-reward">
 					<input class="form-control next fc" type="submit" name="reward"
-						value="編輯專案內容"> <input class="form-control next fc"
-						type="submit" name="reward" value="新增一個回饋"> <input
-						class="form-control next fc" type="submit" name="reward"
-						value="提交專案">
+						value="新增一個回饋"> <input class="form-control next fc"
+						type="submit" name="reward" value="返回專案">
 				</div>
 				<input style="display: none;" name="funding_id" type=text
-					value="${fundingBean.funding_id}">
+					value="${funding_id}">
 			</form>
 
 		</div>

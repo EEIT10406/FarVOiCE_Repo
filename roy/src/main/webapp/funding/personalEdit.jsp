@@ -32,6 +32,25 @@
 
 
 <script>
+//抓取選取日期計算到期天數
+$('input[name="funding_duration"]').on(
+		'change',
+		function() {
+			var pickdate = $(
+					'input[name="funding_duration"]')
+					.val();
+			var enddate = new Date(pickdate);
+			var nowdate = new Date();
+
+			var deadline = enddate.getTime()
+					- nowdate.getTime();
+			var days = parseInt(deadline
+					/ (1000 * 60 * 60 * 24)) + 2;
+			$('strong[class="days"]').text(days)
+			if (isNaN(days)) {
+				$('strong[class="days"]').text('0')
+			}
+		})
 	// 設置日期max屬性
 	function getMaxDay() {
 		var date = $('#bookdate').attr('min')
@@ -186,25 +205,7 @@
 											}
 
 										})
-						//抓取選取日期計算到期天數
-						$('input[name="funding_duration"]').on(
-								'change',
-								function() {
-									var pickdate = $(
-											'input[name="funding_duration"]')
-											.val();
-									var enddate = new Date(pickdate);
-									var nowdate = new Date();
-
-									var deadline = enddate.getTime()
-											- nowdate.getTime();
-									var days = parseInt(deadline
-											/ (1000 * 60 * 60 * 24)) + 2;
-									$('strong[class="days"]').text(days)
-									if (isNaN(days)) {
-										$('strong[class="days"]').text('0')
-									}
-								})
+						
 					})
 	//超過50字以...表示
 	function limitText() {
@@ -260,11 +261,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
 		<div class="create-content">
-			<form action="<c:url value="editFundingContent.controller" />"
+			<form action="<c:url value="projectSave.controller"/>"
 				method="post" enctype="multipart/form-data">
 				<div
 					style="text-align: center; margin-bottom: 15px; margin-top: 15px;">
-					<label class="top-title">專案內容</label>
+					<label class="top-title">修改專案內容</label>
 				</div>
 				<div class="big">
 					<div class="a">
@@ -359,7 +360,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 				<div class="limit-date" style="margin: auto;">
 
 					<p class="bluequote">選擇專案期限</p>
-					<input value="${fundingBean.funding_duration}" onchange="enddate"
+					<input disabled="disabled" value="${fundingBean.funding_duration}" onchange="enddate"
 						class="form-control fc" type="date" id="bookdate"
 						name="funding_duration"
 						min=<%out.println(new java.sql.Date(new Date().getTime()));%>
@@ -451,7 +452,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 						name="editFunding" value="儲存修改"> 
 						<input
 						class="form-control next fc" type="submit" name="editFunding"
-						value="回饋設定">
+						value="返回專案">
+						
 				</div>
 				<input style="display: none;" type="text" name="oImage"
 					value="${fundingBean.funding_image}">

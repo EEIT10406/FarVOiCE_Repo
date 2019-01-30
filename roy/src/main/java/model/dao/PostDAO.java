@@ -162,7 +162,7 @@ public List<PostBean> showAllArticleInFindArticle (Boolean post_postorshare){
 
 //顯示單一文章在文章頁面
 public List<PostBean> showSearchArticleInFindArticle (String searchString){
-	String hql = "from PostBean WHERE post_content like :post_content and post_idM = null and post_postorshare = 1 Order By post_time Desc";
+	String hql = "from PostBean WHERE post_content like :post_content and post_idM = null and post_postorshare = 1  and post_privacy=False Order By post_time Desc";
 	Query<PostBean> query = this.getSession().createQuery(hql);
 	query.setParameter("post_content", "%"+searchString+"%");
 	List<PostBean> PostList = query.list();

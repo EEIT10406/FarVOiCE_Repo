@@ -56,9 +56,7 @@ public class RootAppConfig {
 		
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
-		props.setProperty("hibernate.show_sql", "true");
-//		props.setProperty("hibernate.current_session_context_class", "thread");
-		
+		props.setProperty("hibernate.show_sql", "true");	
 		builder.addProperties(props);
 		builder.addProperties(additionalProperties());
 		return builder.buildSessionFactory();

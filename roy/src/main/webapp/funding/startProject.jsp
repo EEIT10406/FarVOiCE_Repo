@@ -9,9 +9,9 @@
 <title>專案內容</title>
 
 <!-- JS -->
+<script type="text/javascript" src="../js/scripts.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/scripts.js"></script>
 <!-- Isotope - Portfolio Sorting -->
 <script type="text/javascript" src="../js/jquery.isotope.js"></script>
 <!-- Mobile Menu - Slicknav -->
@@ -185,7 +185,7 @@
 									var deadline = enddate.getTime()
 											- nowdate.getTime();
 									var days = parseInt(deadline
-											/ (1000 * 60 * 60 * 24)) + 1;
+											/ (1000 * 60 * 60 * 24)) + 2;
 									$('strong[class="days"]').text(days)
 									if (isNaN(days)) {
 										$('strong[class="days"]').text('0')

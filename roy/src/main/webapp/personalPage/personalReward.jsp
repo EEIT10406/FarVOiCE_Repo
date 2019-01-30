@@ -574,14 +574,14 @@ function showBackList(username){
 
 		'<div class="card-toggle ban-donate" style="max-width: 300px;display: inline-block;margin-left: 17px;">'+
 		'<div class="a">'+
-		'<div class="project-pre pre-hover ban-color">'+
+		'<div class="project-pre  ban-color">'+
 		'<div class="pcontent-pre"'+
 			'style="height: 40px; font-size: 2.5rem; margin-bottom: 0px;">'+
 			'<p id="pre-amount" class="title-content detail-money">'+list.sup_money+'</p>'+
 		'</div>'+
 		'<div class="img-detail">'+
 			'<img class="img-in" id="preview_progressbarTW_img"'+
-				'style="border-radius: 0;max-height: 186px"'+
+				'style="border-radius: 0;height: 186px"'+
 				'src="'+list.reward_image+'">'+
 		'</div>'+
 		'<div class="pcontent-pre"'+
