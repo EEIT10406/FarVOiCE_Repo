@@ -126,8 +126,8 @@
 						</div>		
 						<hr>
 						<br>
-						<div class="recent-posts">
-							<h3>最近新增文章</h3>
+						<div class="recent-posts" >
+							<div id="newArticleTitle"></div>
 							<ul class="posts-list margin-top-10" id="newArticle">	
 							</ul>
 						</div>
@@ -248,7 +248,10 @@ function loadArticle (searchString) {
 	$("#articlePutHere").html("");
 	$("#newArticle").html("");
 	var searchString = searchString ;
-	
+	var flag=true;
+	if(searchString){
+		flag=false;
+	}
 	$.ajax({
 		url: "/roy/findArticle/findArticle.controller",       
 		type: "POST",
@@ -313,31 +316,36 @@ function loadArticle (searchString) {
 					
 				
 			}
-			//顯示最近新增
-			for(var i=0;i<5;i++){
-				var author = allArticle[i].member_nickname;
-// 				if(author.length>6){
-// 					author = author.substring(0,5)+"...";
-// 				}
-				var time = allArticle[i].post_time.substring(0,12);
-				var content = allArticle[i].post_content;
-				if(content.length>8){
-					content = content.substring(0,5)+"...";
+			$("#newArticle").html("");
+			$("#newArticleTitle").html("");
+			
+			if(flag){
+				$("#newArticleTitle").append("<h3>最近新增文章</h3>");
+				//顯示最近新增
+				for(var i=0;i<5;i++){
+					var author = allArticle[i].member_nickname;
+//	 				if(author.length>6){
+//	 					author = author.substring(0,5)+"...";
+//	 				}
+					var time = allArticle[i].post_time.substring(0,12);
+					var content = allArticle[i].post_content;
+					if(content.length>8){
+						content = content.substring(0,5)+"...";
+					}
+					var postnumber = allArticle[i].post_idS;
+					var profile = allArticle[i].member_profileImage;
+					var newArticleContent = "<li style='border-bottom:1px solid #DDDDDD;padding-bottom:5px;margin-top:5px'>"+
+					"<div class='recent-post'>"+
+					"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'>"+"<img class='pull-left' src='"+profile+"'"+
+					"style='width: 100px; height: 90px' alt='thumb1'>"+
+					"</a> <span><a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
+					">"+content+"</a></span> <br><span><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+author+
+					"'><small style='color:black;'>"+author+"</small></a></span><br> <span class='recent-post-date'>"+time+"</span>"+
+					"</div><div class='clearfix'></div></li>";
+					$("#newArticle").append(newArticleContent);
 				}
-				var postnumber = allArticle[i].post_idS;
-				var profile = allArticle[i].member_profileImage;
-				var newArticleContent = "<li style='border-bottom:1px solid #DDDDDD;padding-bottom:5px;margin-top:5px'>"+
-				"<div class='recent-post'>"+
-				"<a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'>"+"<img class='pull-left' src='"+profile+"'"+
-				"style='width: 100px; height: 90px' alt='thumb1'>"+
-				"</a> <span><a href='/roy/personalPage/singleArticle.controller?post_idS="+postnumber+"'"+
-				">"+content+"</a></span> <br><span><a href='/roy/personalPage/somebodyPersonalPage.controller?nickname="+author+
-				"'><small style='color:black;'>"+author+"</small></a></span><br> <span class='recent-post-date'>"+time+"</span>"+
-				"</div><div class='clearfix'></div></li>";
-				$("#newArticle").append(newArticleContent);
-				
-				
 			}
+		
 
 			
 
