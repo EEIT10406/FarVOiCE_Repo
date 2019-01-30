@@ -683,6 +683,7 @@ function showAllFunding(username){
 						<div class="tab-pane fade in active" id="dynamic">
 
 							<div id="test"></div>
+
 							<a class='readmore' onclick='return showData() ' style='display:none;' >查看更多文章</a>
 						</div>
 						<!-- End dynamic -->
