@@ -97,8 +97,17 @@
 			$('.david').hide();
 			$('.ajax-content').show();
 		})
+
+		changecolor()
 		limitDay()
 	})
+	//變換進度條顏色
+	function changecolor() {
+			if(${susses ge 100}){
+		$('progress').removeClass("blue").addClass("red");
+			}
+		}
+	
 	//抓取選取日期計算到期天數
 	function limitDay() {
 		var enddate = new Date('${funding.funding_duration}');
@@ -137,7 +146,7 @@ input[type="number"] {
 					href="personalEditFundingContent.controller?funding_id=${funding.funding_id}"><span>編輯專案</span></a>
 				<a
 					href="toAddRewardPage.controller?funding_id=${funding.funding_id}"><span>新增回饋</span></a>
-				<a><span>贊助管理</span></a>
+<!-- 				<a><span>贊助管理</span></a> -->
 			</div>
 			<div class="detailHead" style="clear: both;">
 				<h1 style="font-weight: bold; display: inline;">${funding.funding_title}</h1>
@@ -157,7 +166,7 @@ input[type="number"] {
 				<div class="schedule" id="move">
 					<span class="s-number">$0</span> <span
 						class="schedule-span s-number">$${funding.funding_goal}</span>
-					<progress value="${percent}" max="100"></progress>
+					<progress class="blue" value="${percent}" max="100"></progress>
 					<span style="font-family: Microsoft JhengHei;">募資開始</span><span
 						class="schedule-span" style="font-family: Microsoft JhengHei;">募資成功</span>
 				</div>

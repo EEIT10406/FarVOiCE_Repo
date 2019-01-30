@@ -188,7 +188,7 @@
 		<jsp:include page="../homePage/header.jsp" />
 		<!-- === BEGIN CONTENT === -->
 		<div class="create-content">
-			<form action="<c:url value="addReward.controller" />" method="post"
+			<form action="<c:url value="reward.controller" />" method="post"
 				enctype="multipart/form-data">
 				<div
 					style="text-align: center; margin-bottom: 15px; margin-top: 15px;">

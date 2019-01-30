@@ -132,6 +132,7 @@ public class BackerController {
 			model.addAttribute("percent", percent);
 			model.addAttribute("reward", rewardBeans);
 			model.addAttribute("funding", fundingBean);
+			model.addAttribute("nickname", fundingBean.getMember_nickname());
 			
 			return "/funding/fundingDetail.jsp";
 		}
