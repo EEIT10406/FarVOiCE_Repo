@@ -602,11 +602,10 @@ $(document).ready(function() {
 				 		$.each(obj, function( index, value ) { 				 							 			
 // 				 			console.log(time);
 				 			if(index == 0){
-				 				var newDate = value; 
-				 				var time = new Date(newDate);
-				 				
-				 				story_time = new Date(time.setHours(time.getHours()+8)).toLocaleString().replace(/-/g,'/');
-				 				console.log(story_time);
+// 				 				var newDate = value; 
+// 				 				var time = new Date(newDate);
+// 				 				story_time = new Date(time.setHours(time.getHours()+8)).toLocaleString().replace(/-/g,'/');
+				 				story_time=new Date(value).toLocaleString().replace(/-/g,'/');
 				 				
 				 			}
 				 			if(index == 3){

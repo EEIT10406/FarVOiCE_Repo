@@ -257,6 +257,7 @@ function loadArticle (searchString) {
 		data:{'searchString':searchString},            
 		success : function(list)
 		{	
+			
 			allArticle=list;
 			console.log(allArticle);
 			NumOfJData = list.length; //NumOfJData=7 總筆數
