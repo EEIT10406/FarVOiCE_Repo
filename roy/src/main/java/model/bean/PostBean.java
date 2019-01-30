@@ -1,5 +1,8 @@
 package model.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +33,12 @@ public class PostBean {
 //							--1 是文章
 //	post_musicid int REFERENCES Music(music_id),
 //	post_musicname varchar(30)
+//    private PostBean parentPostBean;  
+//    //子菜单列表  
+//    private List<PostBean> childPostBean = new ArrayList<PostBean>();  
+	
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer post_idS;
@@ -58,6 +67,7 @@ public class PostBean {
 		this.post_idM = post_idM;
 	}
 	public String getMember_username() {
+		
 		return member_username;
 	}
 	public void setMember_username(String member_username) {

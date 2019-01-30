@@ -609,7 +609,7 @@ function showAllFunding(username){
 				'style="font-weight: bold; font-size: 0.85rem">'+list.funding_description+'</p>'+
 				'</div>'+
 				'<div class="downMeta-pre">'+
-				'<progress class="progress-pre"'+
+				'<progress class="progress-pre '+list.changecolor+'"'+
 				'style="margin-bottom: 0px; margin-top: 0px;" value="'+list.funding_currentAmount/list.funding_goal*100+'" max="100"></progress>'+
 			    '<span class="goalMoney osmfont currentMoney" style="font-family: Oswald, sans-serif;">'+list.funding_currentAmount+'</span><span'+
 				' class="hidden-md goalpercent goal" style="font-family: Oswald, sans-serif;"> '+parseInt(list.funding_currentAmount/list.funding_goal*100)+'%</span><span'+

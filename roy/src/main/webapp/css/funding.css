@@ -263,8 +263,12 @@ progress {
 	border-radius: 1rem;
 }
 
-::-webkit-progress-value {
+.red::-webkit-progress-value {
 	background-color: #eb4b4b;
+	border-radius: 1rem;
+}
+.blue::-webkit-progress-value {
+	background-color: #00bbd6;
 	border-radius: 1rem;
 }
 
