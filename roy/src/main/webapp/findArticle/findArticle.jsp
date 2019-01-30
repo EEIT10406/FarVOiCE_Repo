@@ -207,10 +207,15 @@ function showData(token){
 			"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
 				"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
 				
+			var content = allArticle[i].post_content;
+			if(content.length>8){
+				content = content.substring(0,10)+"...";
+			}
+				
 			var Blog_Content = "<div class='blog'>"+
 								 "<div class='clearfix'></div>"+
 									"<div class='blog-post-body row margin-top-15'>"+
-									   "<div class='col-md-7'>"+"<p>"+allArticle[i].post_content+"</p>"+
+									   "<div class='col-md-7'>"+"<p>"+content+"</p>"+
 										"<a href='/roy/personalPage/singleArticle.controller?post_idS="+allArticle[i].post_idS+"'"+
 						"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
 					"</a></div></div></div></div><br><br><br><br>";
@@ -293,11 +298,14 @@ function loadArticle (searchString) {
 					"</div>"+
 					"<div class='blog-post-details-item blog-post-details-item-left blog-post-details-item-last'>"+
 						"<a href=''> <i class='fa fa-comments color-gray-light'></i></a></div></div>";
-						
+					var content = allArticle[i].post_content;
+					if(content.length>8){
+						content = content.substring(0,10)+"...";
+					}
 					var Blog_Content = "<div class='blog'>"+
 										 "<div class='clearfix'></div>"+
 											"<div class='blog-post-body row margin-top-15'>"+
-											   "<div class='col-md-7'>"+"<p>"+allArticle[i].post_content+"</p>"+
+											   "<div class='col-md-7'>"+"<p>"+content+"</p>"+
 												"<a href='/roy/personalPage/singleArticle.controller?post_idS="+allArticle[i].post_idS+"'"+
 								"class='btn btn-primary'>查看全文<i class='icon-chevron-right readmore-icon'></i>"+
 							"</a></div></div></div></div><br><br><br><br>";
