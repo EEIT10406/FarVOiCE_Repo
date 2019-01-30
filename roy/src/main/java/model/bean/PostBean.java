@@ -67,6 +67,7 @@ public class PostBean {
 		this.post_idM = post_idM;
 	}
 	public String getMember_username() {
+		
 		return member_username;
 	}
 	public void setMember_username(String member_username) {
