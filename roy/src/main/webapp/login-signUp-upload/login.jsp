@@ -45,7 +45,8 @@
             onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
     <script type="text/javascript">
         //進入 https://console.developers.google.com/，找「憑證」頁籤(記得先選對專案)，即可找到用戶端ID
-        let Google_appId = "951757376731-dv4o57orj6hpqshouf7a5h5iseu2uiok.apps.googleusercontent.com";
+//         let Google_appId = "951757376731-dv4o57orj6hpqshouf7a5h5iseu2uiok.apps.googleusercontent.com";
+        let Google_appId = "1084913679306-8r5ancff45bj0tf37b15qq74ocq5isd2.apps.googleusercontent.com";
 
         // Called when Google Javascript API Javascript is loaded
         function HandleGoogleApiLibrary() {
