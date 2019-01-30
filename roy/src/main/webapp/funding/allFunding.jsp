@@ -51,6 +51,8 @@
 
 	</c:if>
 
+	
+	
 	$(document).ready(function() {
 		showAllFunding();
 
@@ -58,7 +60,6 @@
 			// 			projectSize();
 			limitText();
 		})
-
 		//預設
 		tinysort.defaults.order = 'desc';
 		tinysort('div#sortThis>div', 'span.funding_browseCount');
@@ -109,7 +110,7 @@
 		})
 
 	})
-
+	
 	//抓取選取日期計算到期天數
 	function limitDay(day) {
 		var pickdate = day;
@@ -195,7 +196,7 @@
 														+ '</p>'
 														+ '</div>'
 														+ '<div class="downMeta-pre">'
-														+ '<progress class="progress-pre"'+
+														+ '<progress class="progress-pre '+list.changecolor+'"'+
 					'style="margin-bottom: 0px; margin-top: 0px;" value="'+list.funding_currentAmount/list.funding_goal*100+'" max="100"></progress>'
 														+ '<span class="goalMoney osmfont currentMoney">'
 														+ list.funding_currentAmount

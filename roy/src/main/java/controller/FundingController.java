@@ -193,7 +193,7 @@ public class FundingController {
 
 	// 編輯更新專案內容+保存修改並前往詳細頁面
 	@RequestMapping("/funding/projectSave.controller")
-	public String projectSave(HttpSession session,String editFunding, String oImage, String funding_id, Model model,
+	public String projectSave(HttpSession session, String editFunding, String oImage, String funding_id, Model model,
 			FundingBean bean, @RequestParam("imageFile") MultipartFile imagefile) {
 		String imagepath = "";
 		Integer oldFunding_id = Integer.valueOf(funding_id);
@@ -220,6 +220,17 @@ public class FundingController {
 				bean.setFunding_status(editBean.getFunding_status());
 				FundingBean updateFundingBean = fundingService.update(bean);
 				List<MusicBean> musicbeans = musicService.findMusicByUser(editBean.getMember_username());
+				
+				if(updateFundingBean.getFunding_currentAmount()>=updateFundingBean.getFunding_goal()) {
+					model.addAttribute("changecolor", "red");
+				}else {
+					model.addAttribute("changecolor", "blue");
+				}
+				Double currentAmount=Double.valueOf(updateFundingBean.getFunding_currentAmount());
+				Double goal=Double.valueOf(updateFundingBean.getFunding_goal());
+				Long percent=Math.round(currentAmount/goal*100);
+				model.addAttribute("percent", percent);
+				
 				model.addAttribute("musicName", musicbeans);
 				model.addAttribute("fundingBean", updateFundingBean);
 				return "personalEdit.jsp";
@@ -236,6 +247,15 @@ public class FundingController {
 				bean.setFunding_image(oImage);
 				FundingBean updateFundingBean = fundingService.update(bean);
 				List<MusicBean> musicbeans = musicService.findMusicByUser(editBean.getMember_username());
+				if(updateFundingBean.getFunding_currentAmount()>=updateFundingBean.getFunding_goal()) {
+					model.addAttribute("changecolor", "red");
+				}else {
+					model.addAttribute("changecolor", "blue");
+				}
+				Double currentAmount=Double.valueOf(updateFundingBean.getFunding_currentAmount());
+				Double goal=Double.valueOf(updateFundingBean.getFunding_goal());
+				Long percent=Math.round(currentAmount/goal*100);
+				model.addAttribute("percent", percent);
 				model.addAttribute("musicName", musicbeans);
 				model.addAttribute("fundingBean", updateFundingBean);
 				return "personalEdit.jsp";
@@ -283,9 +303,10 @@ public class FundingController {
 				model.addAttribute("percent", percent);
 				model.addAttribute("reward", rewardBeans);
 				model.addAttribute("funding", fundingBean);
+				model.addAttribute("nickname", fundingBean.getMember_nickname());
 				return "/funding/fundingDetail.jsp";
 			}
-		
+
 		}
 
 		return "/homePage/index.jsp";
@@ -327,6 +348,11 @@ public class FundingController {
 		List<Map<String, String>> fundings = new LinkedList<Map<String, String>>();
 		for (FundingBean bean : fundingBeans) {
 			Map<String, String> jsonMap = new HashMap<>();
+			if(bean.getFunding_currentAmount()>=bean.getFunding_goal()) {
+				jsonMap.put("changecolor", "red");
+			}else {
+				jsonMap.put("changecolor", "blue");
+			}
 			jsonMap.put("funding_title", bean.getFunding_title());
 			jsonMap.put("funding_image", bean.getFunding_image());
 			jsonMap.put("member_username", bean.getMember_username());
@@ -355,6 +381,11 @@ public class FundingController {
 		List<Map<String, String>> fundings = new LinkedList<Map<String, String>>();
 		for (FundingBean bean : fundingBeans) {
 			Map<String, String> jsonMap = new HashMap<>();
+			if(bean.getFunding_currentAmount()>=bean.getFunding_goal()) {
+				jsonMap.put("changecolor", "red");
+			}else {
+				jsonMap.put("changecolor", "blue");
+			}
 			jsonMap.put("funding_title", bean.getFunding_title());
 			jsonMap.put("funding_image", bean.getFunding_image());
 			jsonMap.put("member_username", bean.getMember_username());
@@ -383,6 +414,11 @@ public class FundingController {
 		List<Map<String, String>> fundings = new LinkedList<Map<String, String>>();
 		for (FundingBean bean : fundingBeans) {
 			Map<String, String> jsonMap = new HashMap<>();
+			if(bean.getFunding_currentAmount()>=bean.getFunding_goal()) {
+				jsonMap.put("changecolor", "red");
+			}else {
+				jsonMap.put("changecolor", "blue");
+			}
 			jsonMap.put("funding_title", bean.getFunding_title());
 			jsonMap.put("funding_image", bean.getFunding_image());
 			jsonMap.put("member_username", bean.getMember_username());

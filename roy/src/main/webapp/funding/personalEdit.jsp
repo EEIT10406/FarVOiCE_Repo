@@ -318,11 +318,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 									style="font-weight: bold; font-size: 0.85rem">${fundingBean.funding_description}</p>
 							</div>
 							<div class="downMeta-pre">
-								<progress class="progress-pre"
-									style="margin-bottom: 0px; margin-top: 0px;" value="0"
+								<progress class="progress-pre ${changecolor}"
+									style="margin-bottom: 0px; margin-top: 0px;" value="${percent}"
 									max="100"></progress>
-								<span class="goalMoney osmfont">0</span>&nbsp; <span
-									class="hidden-md goalpercent goal"> 0%</span> <span
+								<span class="goalMoney osmfont">${fundingBean.funding_currentAmount}</span>&nbsp; <span
+									class="hidden-md goalpercent goal"> ${percent}%</span> <span
 									style="font-size: 13px; letter-spacing: 1px"
 									class="date pull-right small"> 還剩 <strong class="days"
 									style="font-size: 13px; font-weight: 1000; letter-spacing: 1px">0</strong><span

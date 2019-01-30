@@ -56,6 +56,7 @@ public class RewardController {
 //		上一步修改專案
 		if ("編輯專案內容".equals(reward)) {
 			FundingBean editBean = fundingService.findFundingById(bean.getFunding_id());// 找此筆專案內容
+			System.out.println(bean.getFunding_id());
 			List<MusicBean> musicbeans = musicService.findMusicByUser(editBean.getMember_username());
 			model.addAttribute("fundingBean", editBean);
 			model.addAttribute("musicName", musicbeans);
@@ -148,6 +149,7 @@ public class RewardController {
 				model.addAttribute("percent", percent);
 				model.addAttribute("reward", rewardBeans);
 				model.addAttribute("funding", fundingBean);
+				model.addAttribute("nickname", fundingBean.getMember_nickname());
 				return "/funding/fundingDetail.jsp";
 			}
 

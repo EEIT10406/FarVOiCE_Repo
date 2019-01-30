@@ -94,7 +94,15 @@ public class FundingDetailController {
 			Integer editFunding_id=Integer.valueOf(funding_id);
 			FundingBean editFundingBean=fundingService.findFundingById(editFunding_id);
 			List<MusicBean> editMusicBean=musicService.findMusicByUser(editFundingBean.getMember_username());
-			
+			if(editFundingBean.getFunding_currentAmount()>=editFundingBean.getFunding_goal()) {
+				model.addAttribute("changecolor", "red");
+			}else {
+				model.addAttribute("changecolor", "blue");
+			}
+			Double currentAmount=Double.valueOf(editFundingBean.getFunding_currentAmount());
+			Double goal=Double.valueOf(editFundingBean.getFunding_goal());
+			Long percent=Math.round(currentAmount/goal*100);
+			model.addAttribute("percent", percent);
 			model.addAttribute("fundingBean", editFundingBean);
 			model.addAttribute("musicName", editMusicBean);
 			return "/funding/personalEdit.jsp";
